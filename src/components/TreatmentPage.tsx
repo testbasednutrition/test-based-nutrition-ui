@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { useQuiz } from "@/components/QuizContext";
 
 interface TreatmentPageProps {
   title: string;
@@ -16,9 +17,12 @@ const TreatmentPage = ({
   subtitle,
   body,
   image,
-  quizUrl = "https://calendar.app.google/CDYDAvjFmMvJP3S88",
+  quizUrl,
   extraButtons,
 }: TreatmentPageProps) => {
+  const { openQuiz } = useQuiz();
+  // Derive goal ID from title
+  const goalId = title.toLowerCase().replace(/['']/g, "").replace(/\s+/g, "-");
   return (
     <div className="min-h-screen bg-secondary">
       <Navbar />
@@ -42,10 +46,8 @@ const TreatmentPage = ({
                 ))}
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button size="lg" variant="outline" asChild className="text-base uppercase tracking-widest font-medium">
-                  <a href={quizUrl} target="_blank" rel="noopener noreferrer">
-                    Take Quiz
-                  </a>
+                <Button size="lg" variant="outline" className="text-base uppercase tracking-widest font-medium" onClick={() => openQuiz(goalId)}>
+                  Take Quiz
                 </Button>
                 {extraButtons?.map((btn) => (
                   <Button key={btn.label} size="lg" variant="outline" asChild className="text-base uppercase tracking-widest font-medium">

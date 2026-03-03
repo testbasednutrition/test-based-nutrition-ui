@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useQuiz } from "@/components/QuizContext";
 
 const partners = [
   "St Michaels Falmouth",
@@ -11,6 +12,7 @@ const partners = [
 ];
 
 const Hero = () => {
+  const { openQuiz } = useQuiz();
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video */}
@@ -38,8 +40,8 @@ const Hero = () => {
           Personalised nutrition and performance protocols guided by world-leading experts and advanced testing.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
-          <Button size="lg" asChild className="text-base px-8 py-6">
-            <a href="https://calendar.app.google/CDYDAvjFmMvJP3S88" target="_blank" rel="noopener noreferrer">Take Quiz</a>
+          <Button size="lg" className="text-base px-8 py-6" onClick={() => openQuiz()}>
+            Take Quiz
           </Button>
           <Button size="lg" variant="outline" asChild className="text-base px-8 py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 bg-transparent">
             <a href="#services">Treatments</a>

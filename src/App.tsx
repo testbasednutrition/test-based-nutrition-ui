@@ -3,6 +3,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { QuizProvider } from "@/components/QuizContext";
+import Quiz from "@/components/Quiz";
+import FloatingQuizCTA from "@/components/FloatingQuizCTA";
 import Index from "./pages/Index";
 import SpecialistsDirectory from "./pages/SpecialistsDirectory";
 import SpecialistProfile from "./pages/SpecialistProfile";
@@ -19,23 +22,27 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/specialists" element={<SpecialistsDirectory />} />
-          <Route path="/specialists/:slug" element={<SpecialistProfile />} />
-          <Route path="/treatments/mens-health" element={<MensHealth />} />
-          <Route path="/treatments/womens-health" element={<WomensHealth />} />
-          <Route path="/treatments/childrens-health" element={<ChildrensHealth />} />
-          <Route path="/treatments/skin-health" element={<SkinHealth />} />
-          <Route path="/treatments/anti-ageing" element={<AntiAgeing />} />
-          <Route path="/treatments/fertility" element={<Fertility />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <QuizProvider>
+        <Toaster />
+        <Sonner />
+        <Quiz />
+        <FloatingQuizCTA />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/specialists" element={<SpecialistsDirectory />} />
+            <Route path="/specialists/:slug" element={<SpecialistProfile />} />
+            <Route path="/treatments/mens-health" element={<MensHealth />} />
+            <Route path="/treatments/womens-health" element={<WomensHealth />} />
+            <Route path="/treatments/childrens-health" element={<ChildrensHealth />} />
+            <Route path="/treatments/skin-health" element={<SkinHealth />} />
+            <Route path="/treatments/anti-ageing" element={<AntiAgeing />} />
+            <Route path="/treatments/fertility" element={<Fertility />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </QuizProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
