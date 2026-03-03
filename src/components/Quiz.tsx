@@ -415,7 +415,7 @@ const Quiz = () => {
                           alt={assignedSpecialist.name}
                           className="w-14 h-14 rounded-full object-cover"
                         />
-                        <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-background" />
+                        <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-primary border-2 border-background" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">
@@ -553,7 +553,7 @@ const Quiz = () => {
                         <div className="space-y-1.5 mb-5">
                           {selectedConcerns.map((c) => (
                             <div key={c} className="flex items-center gap-2 text-xs">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+                              <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
                               <span>{c}</span>
                             </div>
                           ))}
