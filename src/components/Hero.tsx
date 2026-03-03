@@ -40,7 +40,7 @@ const Hero = () => {
           Personalised nutrition and performance protocols guided by world-leading experts and advanced testing.
         </p>
         <div className="mt-10 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-          <Button size="lg" className="text-base px-8 py-6" onClick={() => openQuiz()}>
+          <Button size="lg" variant="outline" className="text-base px-8 py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 bg-transparent" onClick={() => openQuiz()}>
             Take the Personalised Protocol Quiz
           </Button>
         </div>
