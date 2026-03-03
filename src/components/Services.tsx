@@ -22,6 +22,7 @@ const services = [
     description: "Heart health, muscle maintenance, and vitality through targeted nutrition.",
     detail: "From puberty to healthy ageing, we identify hidden nutritional deficiencies that compromise cellular health — leading to hormonal imbalances, inflammation, and cognitive decline. Our test-based approach optimises strength, energy, and resilience at every stage.",
     link: "/treatments/mens-health",
+    image: mensImg,
   },
   {
     icon: Heart,
@@ -29,6 +30,7 @@ const services = [
     description: "Hormonal balance, bone density, and immune function across life stages.",
     detail: "With up to 70% of women facing hidden deficiencies disrupting hormones, energy, and mental health, we translate cutting-edge science into effective solutions — from fertility and pregnancy to perimenopause and menopause.",
     link: "/treatments/womens-health",
+    image: womensImg,
   },
   {
     icon: Brain,
@@ -36,6 +38,7 @@ const services = [
     description: "Targeted nutrition for radiant skin, collagen support, and protection from oxidative stress.",
     detail: "Chronic skin conditions are often driven by inflammation, poor gut health, and nutrient deficiencies at the cellular level. Our test-based approach restores balance from within, delivering visible results in as little as 6–8 weeks.",
     link: "/treatments/skin-health",
+    image: skinImg,
   },
   {
     icon: Dumbbell,
@@ -43,6 +46,7 @@ const services = [
     description: "Optimise energy, endurance, and recovery for elite and amateur athletes.",
     detail: "We work with professional athletes and active individuals to identify nutritional gaps that limit performance. Through precision testing and personalised protocols, we help you train harder, recover faster, and perform at your peak.",
     link: "/specialists",
+    image: fertilityImg,
   },
 ];
 
