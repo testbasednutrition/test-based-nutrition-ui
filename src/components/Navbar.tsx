@@ -101,15 +101,15 @@ const Navbar = () => {
           ref={megaRef}
           className="hidden lg:block absolute left-0 right-0 top-full bg-background border-b border-border shadow-lg animate-in fade-in slide-in-from-top-2 duration-200"
         >
-          <div className="container py-8">
-            <div className="grid grid-cols-5 gap-8">
+          <div className="container py-4">
+            <div className="grid grid-cols-5 gap-6">
               {megaMenuData.map((col) => (
                 <div key={col.heading}>
-                  <h4 className="text-sm font-bold uppercase tracking-widest text-foreground mb-4 pb-2 border-b border-border">
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-foreground mb-2 pb-1.5 border-b border-border">
                     {col.heading}
                   </h4>
                   {col.items.length > 0 ? (
-                    <ul className="space-y-2.5">
+                    <ul className="space-y-1.5">
                       {col.items.map((item) => (
                         <li key={item}>
                           <a
