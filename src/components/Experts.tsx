@@ -40,7 +40,11 @@ const Experts = () => {
                   {expert.name.charAt(0)}
                 </span>
               </div>
-              <h3 className="text-xl font-bold">{expert.name}</h3>
+              <h3 className="text-xl font-bold">
+                <a href={expert.name === "Neil Parsley" ? "/specialist/neil-parsley" : "#"} className="hover:text-primary transition-colors">
+                  {expert.name}
+                </a>
+              </h3>
               <p className="text-primary text-sm font-medium mt-1">{expert.role}</p>
               <p className="text-muted-foreground text-sm">{expert.org}</p>
               <blockquote className="mt-4 text-muted-foreground italic text-sm border-l-2 border-primary/30 pl-4">
