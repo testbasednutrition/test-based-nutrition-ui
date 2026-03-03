@@ -5,7 +5,7 @@ const services = [
   { icon: Heart, title: "Women's Wellbeing", description: "Hormonal balance, bone density, and immune function across life stages." },
   { icon: Shield, title: "Men's Health", description: "Heart health, muscle maintenance, and vitality through targeted nutrition." },
   { icon: Baby, title: "Children's Health", description: "Brain development, immune support, and growth through balanced nutrition." },
-  { icon: Brain, title: "Mental Health", description: "Cognitive function and mood support through omega balance and nutrients." },
+  { icon: Brain, title: "Skin Health", description: "Cognitive function and mood support through omega balance and nutrients." },
   { icon: Activity, title: "Gut Health", description: "Microbiome support, inflammation reduction, and digestive optimisation." },
 ];
 
