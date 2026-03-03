@@ -39,12 +39,9 @@ const Hero = () => {
         <p className="mt-6 text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
           Personalised nutrition and performance protocols guided by world-leading experts and advanced testing.
         </p>
-        <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
+        <div className="mt-10 animate-fade-in" style={{ animationDelay: "0.4s" }}>
           <Button size="lg" className="text-base px-8 py-6" onClick={() => openQuiz()}>
-            Take Quiz
-          </Button>
-          <Button size="lg" variant="outline" asChild className="text-base px-8 py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 bg-transparent">
-            <a href="#services">Treatments</a>
+            Take the Personalised Protocol Quiz
           </Button>
         </div>
       </div>
