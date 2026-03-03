@@ -1,10 +1,10 @@
 import { Brain, Heart, Baby, Dumbbell, Shield } from "lucide-react";
 
 const services = [
-  { icon: Brain, title: "Skin Health", description: "Targeted nutrition for radiant skin, collagen support, and protection from oxidative stress." },
+  { icon: Baby, title: "Children's Health", description: "Brain development, immune support, and growth through balanced nutrition." },
   { icon: Shield, title: "Men's Health", description: "Heart health, muscle maintenance, and vitality through targeted nutrition." },
   { icon: Heart, title: "Women's Wellbeing", description: "Hormonal balance, bone density, and immune function across life stages." },
-  { icon: Baby, title: "Children's Health", description: "Brain development, immune support, and growth through balanced nutrition." },
+  { icon: Brain, title: "Skin Health", description: "Targeted nutrition for radiant skin, collagen support, and protection from oxidative stress." },
   { icon: Dumbbell, title: "Sport Performance", description: "Optimise energy, endurance, and recovery for elite and amateur athletes." },
 ];
 
