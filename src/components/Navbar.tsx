@@ -97,11 +97,14 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden lg:block">
+        <div className="hidden lg:flex items-center gap-3">
           <Button asChild>
             <a href="https://calendar.app.google/CDYDAvjFmMvJP3S88" target="_blank" rel="noopener noreferrer">
               Partner With Us
             </a>
+          </Button>
+          <Button variant="ghost" asChild className="text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/10">
+            <a href="/partner-sign-in">Partner Sign In</a>
           </Button>
         </div>
 
@@ -214,6 +217,9 @@ const Navbar = () => {
               <a href="https://calendar.app.google/CDYDAvjFmMvJP3S88" target="_blank" rel="noopener noreferrer">
                 Partner With Us
               </a>
+            </Button>
+            <Button variant="ghost" asChild className="w-full text-muted-foreground hover:text-foreground">
+              <a href="/partner-sign-in">Partner Sign In</a>
             </Button>
           </div>
         </div>
