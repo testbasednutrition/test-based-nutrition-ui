@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { Brain, Heart, Baby, Dumbbell, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
+import childrensImg from "@/assets/treatments/childrens-health.jpg";
+import mensImg from "@/assets/treatments/mens-health.jpg";
+import womensImg from "@/assets/treatments/womens-health.jpg";
+import skinImg from "@/assets/treatments/skin-health.jpg";
+import fertilityImg from "@/assets/treatments/fertility.jpg";
 
 const services = [
   {
@@ -9,6 +14,7 @@ const services = [
     description: "Brain development, immune support, and growth through balanced nutrition.",
     detail: "We specialise in supporting neurodivergent children and picky eaters with science-backed nutritional protocols. Our team of doctors and scientists help families address deficiencies that affect focus, mood, and sleep — transforming mealtimes and long-term wellbeing.",
     link: "/treatments/childrens-health",
+    image: childrensImg,
   },
   {
     icon: Shield,
@@ -16,6 +22,7 @@ const services = [
     description: "Heart health, muscle maintenance, and vitality through targeted nutrition.",
     detail: "From puberty to healthy ageing, we identify hidden nutritional deficiencies that compromise cellular health — leading to hormonal imbalances, inflammation, and cognitive decline. Our test-based approach optimises strength, energy, and resilience at every stage.",
     link: "/treatments/mens-health",
+    image: mensImg,
   },
   {
     icon: Heart,
@@ -23,6 +30,7 @@ const services = [
     description: "Hormonal balance, bone density, and immune function across life stages.",
     detail: "With up to 70% of women facing hidden deficiencies disrupting hormones, energy, and mental health, we translate cutting-edge science into effective solutions — from fertility and pregnancy to perimenopause and menopause.",
     link: "/treatments/womens-health",
+    image: womensImg,
   },
   {
     icon: Brain,
@@ -30,6 +38,7 @@ const services = [
     description: "Targeted nutrition for radiant skin, collagen support, and protection from oxidative stress.",
     detail: "Chronic skin conditions are often driven by inflammation, poor gut health, and nutrient deficiencies at the cellular level. Our test-based approach restores balance from within, delivering visible results in as little as 6–8 weeks.",
     link: "/treatments/skin-health",
+    image: skinImg,
   },
   {
     icon: Dumbbell,
@@ -37,6 +46,7 @@ const services = [
     description: "Optimise energy, endurance, and recovery for elite and amateur athletes.",
     detail: "We work with professional athletes and active individuals to identify nutritional gaps that limit performance. Through precision testing and personalised protocols, we help you train harder, recover faster, and perform at your peak.",
     link: "/specialists",
+    image: fertilityImg,
   },
 ];
 
@@ -75,12 +85,19 @@ const Services = () => {
         </div>
 
         {/* Content panel */}
-        <div className="max-w-4xl mx-auto bg-card rounded-2xl border border-border p-8 md:p-12 shadow-sm">
-          <div className="flex flex-col md:flex-row gap-8 items-start">
-            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-              <ActiveIcon className="w-7 h-7 text-primary" />
+        <div className="max-w-5xl mx-auto bg-card rounded-2xl border border-border overflow-hidden shadow-sm">
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-2/5 h-56 md:h-auto">
+              <img
+                src={services[active].image}
+                alt={services[active].title}
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 p-8 md:p-12 flex flex-col justify-center">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+                <ActiveIcon className="w-6 h-6 text-primary" />
+              </div>
               <h3 className="text-2xl font-bold font-serif mb-2">{services[active].title}</h3>
               <p className="text-muted-foreground text-sm font-medium mb-4">
                 {services[active].description}
