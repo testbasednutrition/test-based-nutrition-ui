@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import SpecialistsDirectory from "./pages/SpecialistsDirectory";
 import SpecialistProfile from "./pages/SpecialistProfile";
 import NotFound from "./pages/NotFound";
+import NewsHub from "./pages/NewsHub";
 import MensHealth from "./pages/treatments/MensHealth";
 import WomensHealth from "./pages/treatments/WomensHealth";
 import ChildrensHealth from "./pages/treatments/ChildrensHealth";

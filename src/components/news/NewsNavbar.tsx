@@ -43,7 +43,7 @@ const NewsNavbar = () => {
           <button className="text-muted-foreground hover:text-foreground transition-colors">
             <Search className="w-4 h-4" />
           </button>
-          <Button size="sm" onClick={openQuiz}>
+          <Button size="sm" onClick={() => openQuiz()}>
             Take the Quiz
           </Button>
         </div>
