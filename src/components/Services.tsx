@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { Brain, Heart, Baby, Dumbbell, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
+import childrensImg from "@/assets/treatments/childrens-health.jpg";
+import mensImg from "@/assets/treatments/mens-health.jpg";
+import womensImg from "@/assets/treatments/womens-health.jpg";
+import skinImg from "@/assets/treatments/skin-health.jpg";
+import fertilityImg from "@/assets/treatments/fertility.jpg";
 
 const services = [
   {
