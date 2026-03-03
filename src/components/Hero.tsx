@@ -33,11 +33,11 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container text-center px-6 py-32 md:py-0">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight animate-fade-in">
-          Your Health,{" "}
-          <span className="block">Backed by Science</span>
+          Precision Health,{" "}
+          <span className="block">Proven Results</span>
         </h1>
         <p className="mt-6 text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
-          Personalised nutrition and performance protocols guided by world-leading experts and advanced testing.
+          Science-led nutrition protocols built around your unique biology.
         </p>
         <div className="mt-10 animate-fade-in" style={{ animationDelay: "0.4s" }}>
           <Button size="lg" variant="outline" className="text-base px-8 py-6 border border-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground bg-transparent" onClick={() => openQuiz()}>
