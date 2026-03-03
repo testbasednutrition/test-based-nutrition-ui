@@ -1,5 +1,15 @@
 import { Button } from "@/components/ui/button";
 
+const partners = [
+  "St Michaels Falmouth",
+  "Showoff",
+  "Soho House",
+  "Hexagon Health",
+  "Hoar Cross Hall",
+  "Glass House",
+  "MyAe",
+];
+
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -29,41 +39,53 @@ const Hero = () => {
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
           <Button size="lg" asChild className="text-base px-8 py-6">
-            <a href="https://calendar.app.google/CDYDAvjFmMvJP3S88" target="_blank" rel="noopener noreferrer">Take Quiz
-
-            </a>
+            <a href="https://calendar.app.google/CDYDAvjFmMvJP3S88" target="_blank" rel="noopener noreferrer">Take Quiz</a>
           </Button>
           <Button size="lg" variant="outline" asChild className="text-base px-8 py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 bg-transparent">
-            <a href="#services">Treatments
-
-            </a>
+            <a href="#services">Treatments</a>
           </Button>
         </div>
       </div>
 
       {/* Trust Bar */}
-      <div className="absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border">
-        <div className="container py-4 flex flex-wrap justify-center gap-6 md:gap-12 text-sm text-muted-foreground">
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            150+ Elite Athletes
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            England FA Experts
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            Personalised Protocols
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            Science-Led Approach
-          </span>
+      <div className="absolute bottom-0 left-0 right-0">
+        <div className="bg-background/95 backdrop-blur-sm border-t border-border">
+          <div className="container py-4 flex flex-wrap justify-center gap-6 md:gap-12 text-sm text-muted-foreground">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-primary" />
+              150+ Elite Athletes
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-primary" />
+              England FA Experts
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-primary" />
+              Personalised Protocols
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-primary" />
+              Science-Led Approach
+            </span>
+          </div>
+        </div>
+
+        {/* Sliding Partners */}
+        <div className="bg-secondary border-t border-border overflow-hidden">
+          <div className="flex animate-marquee whitespace-nowrap py-4">
+            {[...partners, ...partners, ...partners].map((name, i) => (
+              <span
+                key={i}
+                className="mx-8 md:mx-12 text-sm md:text-base font-semibold tracking-widest uppercase text-muted-foreground/60"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 };
 
 export default Hero;
