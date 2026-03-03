@@ -1,16 +1,42 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const megaMenuData = [
+  { heading: "Skin", items: [] },
+  { heading: "Men", items: ["Testosterone", "Weight Loss", "Diabetes", "Mental Health"] },
+  { heading: "Women", items: ["Fertility", "Pregnancy", "Hormones", "Perimenopause", "Weight Loss", "Mental Health"] },
+  { heading: "Children", items: ["Youth Sport", "Baby", "Junior", "Teen", "Neuro"] },
+  { heading: "Sport", items: ["Youth", "Coaches", "Athletes", "Hyrox", "Peak Performance"] },
+];
+
 const navLinks = [
-  { label: "Treatments", href: "#services" },
   { label: "How we Works", href: "#how-it-works" },
   { label: "Specialists", href: "#experts" },
   { label: "News Hub", href: "#news" },
 ];
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const [mobileMegaOpen, setMobileMegaOpen] = useState(false);
+  const megaRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        megaRef.current &&
+        !megaRef.current.contains(e.target as Node) &&
+        triggerRef.current &&
+        !triggerRef.current.contains(e.target as Node)
+      ) {
+        setMegaOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
@@ -30,6 +56,16 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
+          <div className="relative">
+            <button
+              ref={triggerRef}
+              onClick={() => setMegaOpen(!megaOpen)}
+              className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Treatments
+              <ChevronDown className={`w-4 h-4 transition-transform ${megaOpen ? "rotate-180" : ""}`} />
+            </button>
+          </div>
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -52,23 +88,97 @@ const Navbar = () => {
         {/* Mobile Toggle */}
         <button
           className="lg:hidden p-2"
-          onClick={() => setOpen(!open)}
+          onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
+      {/* Desktop Mega Menu */}
+      {megaOpen && (
+        <div
+          ref={megaRef}
+          className="hidden lg:block absolute left-0 right-0 top-full bg-background border-b border-border shadow-lg animate-in fade-in slide-in-from-top-2 duration-200"
+        >
+          <div className="container py-8">
+            <div className="grid grid-cols-5 gap-8">
+              {megaMenuData.map((col) => (
+                <div key={col.heading}>
+                  <h4 className="text-sm font-bold uppercase tracking-widest text-foreground mb-4 pb-2 border-b border-border">
+                    {col.heading}
+                  </h4>
+                  {col.items.length > 0 ? (
+                    <ul className="space-y-2.5">
+                      {col.items.map((item) => (
+                        <li key={item}>
+                          <a
+                            href="#"
+                            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                            onClick={() => setMegaOpen(false)}
+                          >
+                            {item}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-sm text-muted-foreground italic">Coming soon</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Mobile Menu */}
-      {open && (
+      {mobileOpen && (
         <div className="lg:hidden bg-background border-t border-border">
           <div className="container py-6 flex flex-col gap-4">
+            {/* Mobile Treatments Accordion */}
+            <button
+              className="flex items-center justify-between text-base font-medium text-muted-foreground hover:text-foreground py-2"
+              onClick={() => setMobileMegaOpen(!mobileMegaOpen)}
+            >
+              Treatments
+              <ChevronDown className={`w-4 h-4 transition-transform ${mobileMegaOpen ? "rotate-180" : ""}`} />
+            </button>
+            {mobileMegaOpen && (
+              <div className="pl-4 pb-2 grid grid-cols-2 gap-4">
+                {megaMenuData.map((col) => (
+                  <div key={col.heading}>
+                    <h4 className="text-xs font-bold uppercase tracking-widest text-foreground mb-2">
+                      {col.heading}
+                    </h4>
+                    {col.items.length > 0 ? (
+                      <ul className="space-y-1.5">
+                        {col.items.map((item) => (
+                          <li key={item}>
+                            <a
+                              href="#"
+                              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                              onClick={() => { setMobileOpen(false); setMobileMegaOpen(false); }}
+                            >
+                              {item}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-xs text-muted-foreground italic">Coming soon</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 className="text-base font-medium text-muted-foreground hover:text-foreground py-2"
-                onClick={() => setOpen(false)}
+                onClick={() => setMobileOpen(false)}
               >
                 {link.label}
               </a>
