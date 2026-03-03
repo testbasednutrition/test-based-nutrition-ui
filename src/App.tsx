@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import SpecialistsDirectory from "./pages/SpecialistsDirectory";
 import SpecialistProfile from "./pages/SpecialistProfile";
 import NotFound from "./pages/NotFound";
+import NewsHub from "./pages/NewsHub";
 import MensHealth from "./pages/treatments/MensHealth";
 import WomensHealth from "./pages/treatments/WomensHealth";
 import ChildrensHealth from "./pages/treatments/ChildrensHealth";
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/treatments/skin-health" element={<SkinHealth />} />
             <Route path="/treatments/anti-ageing" element={<AntiAgeing />} />
             <Route path="/treatments/fertility" element={<Fertility />} />
+            <Route path="/news" element={<NewsHub />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
