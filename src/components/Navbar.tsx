@@ -63,12 +63,12 @@ const Navbar = () => {
       <div className="container flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full border-2 border-foreground relative">
+          <div className="w-8 h-8 rounded-full border-2 border-primary-foreground relative">
             <div className="absolute bottom-0.5 right-0.5 w-2 h-2 rounded-full bg-primary" />
           </div>
           <div className="leading-tight">
-            <span className="font-semibold text-sm tracking-wide">Test-based</span>
-            <span className="block text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
+            <span className="font-semibold text-sm tracking-wide text-primary-foreground">Test-based</span>
+            <span className="block text-[10px] tracking-[0.2em] text-primary-foreground/70 uppercase">
               Nutrition + Performance
             </span>
           </div>
@@ -80,7 +80,7 @@ const Navbar = () => {
             <button
               ref={triggerRef}
               onClick={() => setMegaOpen(!megaOpen)}
-              className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center gap-1 text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
             >
               Treatments
               <ChevronDown className={`w-4 h-4 transition-transform ${megaOpen ? "rotate-180" : ""}`} />
@@ -90,7 +90,7 @@ const Navbar = () => {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
             >
               {link.label}
             </a>
