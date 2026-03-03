@@ -11,8 +11,8 @@ const megaMenuData = [
 ];
 
 const navLinks = [
-  { label: "How we Works", href: "#how-it-works" },
-  { label: "Specialists", href: "#experts" },
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Specialists", href: "/specialists" },
   { label: "News Hub", href: "#news" },
 ];
 

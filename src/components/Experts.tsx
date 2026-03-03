@@ -41,7 +41,7 @@ const Experts = () => {
                 </span>
               </div>
               <h3 className="text-xl font-bold">
-                <a href={expert.name === "Neil Parsley" ? "/specialist/neil-parsley" : "#"} className="hover:text-primary transition-colors">
+                <a href={expert.name === "Neil Parsley" ? "/specialists/neil-parsley" : expert.name === "Dr. Ishtiaq Rehman" ? "/specialists/dr-ishtiaq-rehman" : "/specialists"} className="hover:text-primary transition-colors">
                   {expert.name}
                 </a>
               </h3>
