@@ -32,7 +32,7 @@ const megaMenuData = [
 const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
   { label: "Specialists", href: "/specialists" },
-  { label: "News Hub", href: "#news" },
+  { label: "News Hub", href: "/news" },
 ];
 
 const Navbar = () => {
