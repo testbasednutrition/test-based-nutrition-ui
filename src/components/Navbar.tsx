@@ -1,9 +1,28 @@
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+
+const treatmentRoutes: Record<string, string> = {
+  "Skin Health": "/treatments/skin-health",
+  "Anti-Ageing": "/treatments/anti-ageing",
+  "Testosterone": "/treatments/mens-health",
+  "Weight Loss": "/treatments/mens-health",
+  "Diabetes": "/treatments/mens-health",
+  "Mental Health": "/treatments/mens-health",
+  "Fertility": "/treatments/fertility",
+  "Pregnancy": "/treatments/womens-health",
+  "Hormones": "/treatments/womens-health",
+  "Perimenopause": "/treatments/womens-health",
+  "Youth Sport": "/treatments/childrens-health",
+  "Baby": "/treatments/childrens-health",
+  "Junior": "/treatments/childrens-health",
+  "Teen": "/treatments/childrens-health",
+  "Neuro": "/treatments/childrens-health",
+};
 
 const megaMenuData = [
-  { heading: "Skin", items: [] },
+  { heading: "Skin", items: ["Skin Health", "Anti-Ageing"] },
   { heading: "Men", items: ["Testosterone", "Weight Loss", "Diabetes", "Mental Health"] },
   { heading: "Women", items: ["Fertility", "Pregnancy", "Hormones", "Perimenopause", "Weight Loss", "Mental Health"] },
   { heading: "Children", items: ["Youth Sport", "Baby", "Junior", "Teen", "Neuro"] },
@@ -17,6 +36,7 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileMegaOpen, setMobileMegaOpen] = useState(false);
@@ -112,13 +132,16 @@ const Navbar = () => {
                     <ul className="space-y-1">
                       {col.items.map((item) => (
                         <li key={item}>
-                          <a
-                            href="#"
-                            className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                            onClick={() => setMegaOpen(false)}
+                          <button
+                            className="text-sm text-muted-foreground hover:text-primary transition-colors text-left"
+                            onClick={() => {
+                              setMegaOpen(false);
+                              const route = treatmentRoutes[item];
+                              if (route) navigate(route);
+                            }}
                           >
                             {item}
-                          </a>
+                          </button>
                         </li>
                       ))}
                     </ul>
@@ -153,15 +176,19 @@ const Navbar = () => {
                     </h4>
                     {col.items.length > 0 ? (
                       <ul className="space-y-1.5">
-                        {col.items.map((item) => (
+                         {col.items.map((item) => (
                           <li key={item}>
-                            <a
-                              href="#"
-                              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                              onClick={() => { setMobileOpen(false); setMobileMegaOpen(false); }}
+                            <button
+                              className="text-sm text-muted-foreground hover:text-primary transition-colors text-left"
+                              onClick={() => {
+                                setMobileOpen(false);
+                                setMobileMegaOpen(false);
+                                const route = treatmentRoutes[item];
+                                if (route) navigate(route);
+                              }}
                             >
                               {item}
-                            </a>
+                            </button>
                           </li>
                         ))}
                       </ul>
