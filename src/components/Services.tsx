@@ -85,12 +85,19 @@ const Services = () => {
         </div>
 
         {/* Content panel */}
-        <div className="max-w-4xl mx-auto bg-card rounded-2xl border border-border p-8 md:p-12 shadow-sm">
-          <div className="flex flex-col md:flex-row gap-8 items-start">
-            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-              <ActiveIcon className="w-7 h-7 text-primary" />
+        <div className="max-w-5xl mx-auto bg-card rounded-2xl border border-border overflow-hidden shadow-sm">
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-2/5 h-56 md:h-auto">
+              <img
+                src={services[active].image}
+                alt={services[active].title}
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 p-8 md:p-12 flex flex-col justify-center">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+                <ActiveIcon className="w-6 h-6 text-primary" />
+              </div>
               <h3 className="text-2xl font-bold font-serif mb-2">{services[active].title}</h3>
               <p className="text-muted-foreground text-sm font-medium mb-4">
                 {services[active].description}
