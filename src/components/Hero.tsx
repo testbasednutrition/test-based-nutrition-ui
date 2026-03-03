@@ -9,8 +9,8 @@ const Hero = () => {
         <img
           src={heroBg}
           alt="Athletic performance"
-          className="w-full h-full object-cover"
-        />
+          className="w-full h-full object-cover" />
+        
         <div className="absolute inset-0 bg-foreground/60" />
       </div>
 
@@ -25,13 +25,13 @@ const Hero = () => {
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
           <Button size="lg" asChild className="text-base px-8 py-6">
-            <a href="https://calendar.app.google/CDYDAvjFmMvJP3S88" target="_blank" rel="noopener noreferrer">
-              Book Free Consultation
+            <a href="https://calendar.app.google/CDYDAvjFmMvJP3S88" target="_blank" rel="noopener noreferrer">Take Quiz
+
             </a>
           </Button>
           <Button size="lg" variant="outline" asChild className="text-base px-8 py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 bg-transparent">
-            <a href="#services">
-              Explore Services
+            <a href="#services">Treatments
+
             </a>
           </Button>
         </div>
@@ -58,8 +58,8 @@ const Hero = () => {
           </span>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default Hero;
