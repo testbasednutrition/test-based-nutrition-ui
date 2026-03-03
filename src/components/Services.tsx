@@ -14,6 +14,7 @@ const services = [
     description: "Brain development, immune support, and growth through balanced nutrition.",
     detail: "We specialise in supporting neurodivergent children and picky eaters with science-backed nutritional protocols. Our team of doctors and scientists help families address deficiencies that affect focus, mood, and sleep — transforming mealtimes and long-term wellbeing.",
     link: "/treatments/childrens-health",
+    image: childrensImg,
   },
   {
     icon: Shield,
