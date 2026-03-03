@@ -1,12 +1,11 @@
-import { Activity, Brain, Heart, Baby, Dumbbell, Shield } from "lucide-react";
+import { Brain, Heart, Baby, Dumbbell, Shield } from "lucide-react";
 
 const services = [
-  { icon: Dumbbell, title: "Sport Performance", description: "Optimise energy, endurance, and recovery for elite and amateur athletes." },
-  { icon: Heart, title: "Women's Wellbeing", description: "Hormonal balance, bone density, and immune function across life stages." },
+  { icon: Brain, title: "Skin Health", description: "Targeted nutrition for radiant skin, collagen support, and protection from oxidative stress." },
   { icon: Shield, title: "Men's Health", description: "Heart health, muscle maintenance, and vitality through targeted nutrition." },
+  { icon: Heart, title: "Women's Wellbeing", description: "Hormonal balance, bone density, and immune function across life stages." },
   { icon: Baby, title: "Children's Health", description: "Brain development, immune support, and growth through balanced nutrition." },
-  { icon: Brain, title: "Skin Health", description: "Cognitive function and mood support through omega balance and nutrients." },
-  { icon: Activity, title: "Gut Health", description: "Microbiome support, inflammation reduction, and digestive optimisation." },
+  { icon: Dumbbell, title: "Sport Performance", description: "Optimise energy, endurance, and recovery for elite and amateur athletes." },
 ];
 
 const Services = () => {
@@ -22,11 +21,11 @@ const Services = () => {
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {services.map((service) => (
             <div
               key={service.title}
-              className="bg-card rounded-xl p-8 border border-border hover:border-primary/30 hover:shadow-lg transition-all group cursor-pointer"
+              className="bg-card rounded-xl p-8 border border-border hover:border-primary/30 hover:shadow-lg transition-all group cursor-pointer w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
             >
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                 <service.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
