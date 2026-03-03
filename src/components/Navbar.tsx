@@ -104,7 +104,7 @@ const Navbar = () => {
             </a>
           </Button>
           <Button variant="ghost" asChild className="text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/10">
-            <a href="/partner-sign-in">Partner Sign In</a>
+            <a href="/partner-sign-in">Sign In</a>
           </Button>
         </div>
 
@@ -219,7 +219,7 @@ const Navbar = () => {
               </a>
             </Button>
             <Button variant="ghost" asChild className="w-full text-muted-foreground hover:text-foreground">
-              <a href="/partner-sign-in">Partner Sign In</a>
+              <a href="/partner-sign-in">Sign In</a>
             </Button>
           </div>
         </div>
