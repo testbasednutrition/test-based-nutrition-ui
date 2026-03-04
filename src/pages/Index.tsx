@@ -20,6 +20,7 @@ const Index = () => {
       <HowItWorks />
       <Experts />
       <CTA />
+      <BackgroundPaths title="Your Health Journey Starts Here" />
       <Footer />
     </div>
   );
