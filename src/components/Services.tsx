@@ -68,20 +68,30 @@ const Services = () => {
         </div>
 
         {/* Tab bar */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-10">
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-10">
           {services.map((s, i) => (
-            <button
-              key={s.title}
-              onClick={() => setActive(i)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all border ${
-                i === active
-                  ? "bg-primary text-primary-foreground border-primary shadow-md"
-                  : "bg-card text-muted-foreground border-border hover:border-primary/40 hover:text-foreground"
-              }`}
-            >
-              <s.icon className="w-4 h-4" />
-              <span className="hidden sm:inline">{s.title}</span>
-            </button>
+            <div key={s.title} className="relative group/container">
+              <GlowingEffect
+                spread={30}
+                glow={i === active}
+                disabled={false}
+                proximity={48}
+                inactiveZone={0.01}
+                borderWidth={1}
+                blur={4}
+              />
+              <button
+                onClick={() => setActive(i)}
+                className={`relative flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium transition-all border ${
+                  i === active
+                    ? "bg-primary text-primary-foreground border-primary shadow-md"
+                    : "bg-card text-muted-foreground border-border hover:text-foreground"
+                }`}
+              >
+                <s.icon className="w-4 h-4" />
+                <span className="hidden sm:inline">{s.title}</span>
+              </button>
+            </div>
           ))}
         </div>
 
