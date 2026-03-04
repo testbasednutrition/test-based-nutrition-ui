@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Brain, Heart, Baby, Dumbbell, Shield } from "lucide-react";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { Link } from "react-router-dom";
 import childrensImg from "@/assets/treatments/childrens-health.jpg";
 import mensImg from "@/assets/treatments/mens-health.jpg";
