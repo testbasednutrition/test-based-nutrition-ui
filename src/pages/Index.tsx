@@ -6,6 +6,7 @@ import HowItWorks from "@/components/HowItWorks";
 import Services from "@/components/Services";
 import Experts from "@/components/Experts";
 import CTA from "@/components/CTA";
+import { BackgroundPaths } from "@/components/ui/background-paths";
 import Footer from "@/components/Footer";
 
 const Index = () => {
