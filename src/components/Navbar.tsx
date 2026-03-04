@@ -82,7 +82,7 @@ const Navbar = () => {
               onClick={() => setMegaOpen(!megaOpen)}
               className="flex items-center gap-1 text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
             >
-              Treatments
+              Protocol
               <ChevronDown className={`w-4 h-4 transition-transform ${megaOpen ? "rotate-180" : ""}`} />
             </button>
           </div>
@@ -167,7 +167,7 @@ const Navbar = () => {
               className="flex items-center justify-between text-base font-medium text-muted-foreground hover:text-foreground py-2"
               onClick={() => setMobileMegaOpen(!mobileMegaOpen)}
             >
-              Treatments
+              Protocol
               <ChevronDown className={`w-4 h-4 transition-transform ${mobileMegaOpen ? "rotate-180" : ""}`} />
             </button>
             {mobileMegaOpen && (
