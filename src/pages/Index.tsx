@@ -18,7 +18,7 @@ const Index = () => {
       <Pillars />
       <HowItWorks />
       <Experts />
-      <CTA />
+      
       <TestimonialsSection />
       <BackgroundPaths title="Your Health Journey Starts Here" />
       <Footer />
