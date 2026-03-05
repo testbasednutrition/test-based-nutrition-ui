@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+    <!-- The Test-Based Black O -->
+    <circle cx="450" cy="450" r="280" fill="none" stroke="#000000" stroke-width="140"/>
+    
+    <!-- The Solid Red Dot -->
+    <circle cx="850" cy="780" r="110" fill="#9E2A2B"/>
+</svg>
