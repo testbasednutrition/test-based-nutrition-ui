@@ -11,6 +11,7 @@ export type MegaMenuItem = {
             label: string;
             description: string;
             icon: React.ElementType;
+            link?: string;
         }[];
     }[];
     link?: string;
@@ -39,7 +40,7 @@ const MegaMenu = React.forwardRef<HTMLUListElement, MegaMenuProps>(
                 {items.map((navItem) => (
                     <li
                         key={navItem.label}
-                        className="relative"
+                        className="static"
                         onMouseEnter={() => handleHover(navItem.label)}
                         onMouseLeave={() => handleHover(null)}
                     >
@@ -68,39 +69,41 @@ const MegaMenu = React.forwardRef<HTMLUListElement, MegaMenuProps>(
 
                         <AnimatePresence>
                             {openMenu === navItem.label && navItem.subMenus && (
-                                <div className="absolute left-0 top-full w-auto pt-2 z-10">
+                                <div className="fixed left-0 top-[60px] md:top-[80px] w-full pt-2 z-50 px-4 md:px-8 flex justify-start">
                                     <motion.div
-                                        className="w-max border border-white/10 bg-[#0A0A0A] p-4"
+                                        className="w-full max-w-[1400px] border border-white/10 bg-[#0A0A0A]/95 backdrop-blur-md p-6 shadow-2xl"
                                         style={{
                                             borderRadius: 16,
                                         }}
                                         layoutId="menu"
                                     >
-                                        <div className="flex w-fit shrink-0 space-x-9 overflow-hidden">
+                                        <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
                                             {navItem.subMenus.map((sub) => (
                                                 <motion.div layout className="w-full" key={sub.title}>
-                                                    <h3 className="mb-4 text-sm font-medium capitalize text-white/50">
+                                                    <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
                                                         {sub.title}
                                                     </h3>
-                                                    <ul className="space-y-6">
+                                                    <ul className="space-y-3">
                                                         {sub.items.map((item) => {
                                                             const Icon = item.icon;
                                                             return (
                                                                 <li key={item.label}>
                                                                     <a
-                                                                        href="#"
-                                                                        className="flex items-start space-x-3 group"
+                                                                        href={item.link || "#"}
+                                                                        className="flex items-start space-x-2 group"
                                                                     >
-                                                                        <div className="flex size-9 shrink-0 items-center justify-center rounded-md border border-white/30 text-white transition-colors duration-300 group-hover:bg-white group-hover:text-[#0A0A0A]">
-                                                                            <Icon className="h-5 w-5 flex-none" />
+                                                                        <div className="flex size-7 shrink-0 items-center justify-center rounded border border-white/20 text-white/70 transition-colors duration-300 group-hover:bg-white group-hover:text-[#0A0A0A]">
+                                                                            <Icon className="h-4 w-4 flex-none" />
                                                                         </div>
-                                                                        <div className="w-max leading-5">
-                                                                            <p className="shrink-0 text-sm font-medium text-white">
+                                                                        <div className="w-full leading-tight">
+                                                                            <p className="shrink-0 text-xs mt-1 font-medium text-white/80 group-hover:text-white transition-colors duration-300">
                                                                                 {item.label}
                                                                             </p>
-                                                                            <p className="shrink-0 text-xs text-white/50 transition-colors duration-300 group-hover:text-white">
-                                                                                {item.description}
-                                                                            </p>
+                                                                            {item.description && (
+                                                                                <p className="shrink-0 text-[10px] text-white/40 transition-colors duration-300 group-hover:text-white/70 mt-0.5">
+                                                                                    {item.description}
+                                                                                </p>
+                                                                            )}
                                                                         </div>
                                                                     </a>
                                                                 </li>
