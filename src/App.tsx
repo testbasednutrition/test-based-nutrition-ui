@@ -6,9 +6,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QuizProvider } from "@/components/QuizContext";
 import Quiz from "@/components/Quiz";
 import FloatingQuizCTA from "@/components/FloatingQuizCTA";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import SpecialistsDirectory from "./pages/SpecialistsDirectory";
 import SpecialistProfile from "./pages/SpecialistProfile";
+import ClinicsDirectory from "./pages/ClinicsDirectory";
+import ClinicProfile from "./pages/ClinicProfile";
+import AreaProfile from "./pages/AreaProfile";
 import NotFound from "./pages/NotFound";
 import NewsHub from "./pages/NewsHub";
 import MensHealth from "./pages/treatments/MensHealth";
@@ -17,6 +21,7 @@ import ChildrensHealth from "./pages/treatments/ChildrensHealth";
 import SkinHealth from "./pages/treatments/SkinHealth";
 import AntiAgeing from "./pages/treatments/AntiAgeing";
 import Fertility from "./pages/treatments/Fertility";
+import PartnerWithUs from "./pages/PartnerWithUs";
 
 const queryClient = new QueryClient();
 
@@ -29,10 +34,14 @@ const App = () => (
         <Quiz />
         <FloatingQuizCTA />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/specialists" element={<SpecialistsDirectory />} />
             <Route path="/specialists/:slug" element={<SpecialistProfile />} />
+            <Route path="/clinics" element={<ClinicsDirectory />} />
+            <Route path="/clinics/:slug" element={<ClinicProfile />} />
+            <Route path="/locations/:area" element={<AreaProfile />} />
             <Route path="/treatments/mens-health" element={<MensHealth />} />
             <Route path="/treatments/womens-health" element={<WomensHealth />} />
             <Route path="/treatments/childrens-health" element={<ChildrensHealth />} />
@@ -40,6 +49,7 @@ const App = () => (
             <Route path="/treatments/anti-ageing" element={<AntiAgeing />} />
             <Route path="/treatments/fertility" element={<Fertility />} />
             <Route path="/news" element={<NewsHub />} />
+            <Route path="/partner-with-us" element={<PartnerWithUs />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

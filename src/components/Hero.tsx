@@ -1,50 +1,115 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useQuiz } from "@/components/QuizContext";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const partners = [
-  "St Michaels Falmouth",
-  "Showoff",
-  "Soho House",
-  "Hexagon Health",
-  "Hoar Cross Hall",
-  "Glass House",
-  "MyAe",
+  "/logos/partner_1.png",
+  "/logos/partner_2.png",
+  "/logos/partner_3.png",
+  "/logos/partner_4.png",
+  "/logos/partner_5.png",
+  "/logos/partner_6.png",
+];
+
+const slides = [
+  {
+    videoUrl: "/videos/vital-organs.mp4",
+    heading1: "A New Era in Personalised,",
+    heading2: "Preventative Nutrition",
+    subheading: "Where advanced testing, practitioner insight and science-led nutrition come together to support long-term health, performance and longevity.",
+    cta: "Take the Personalised Protocol Quiz",
+    action: "quiz"
+  },
+  {
+    videoUrl: "/videos/hero-bg.mp4",
+    heading1: "Transform Your Health,",
+    heading2: "Client Examples",
+    subheading: "See how test-based nutrition has changed the lives of our clients.",
+    cta: "View Client Stories",
+    action: "scroll"
+  }
 ];
 
 const Hero = () => {
   const { openQuiz } = useQuiz();
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 8000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const slide = slides[currentSlide];
+
+  const handleCta = () => {
+    if (slide.action === "quiz") {
+      openQuiz();
+    } else {
+      document.getElementById("transformations")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video */}
-      <div className="absolute inset-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
+      {slides.map((s, index) => (
+        <div 
+          key={s.videoUrl}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === currentSlide ? "opacity-100 z-0" : "opacity-0 -z-10"
+          }`}
         >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-        </video>
-        
-        <div className="absolute inset-0 bg-foreground/60" />
-      </div>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src={s.videoUrl} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-foreground/60" />
+        </div>
+      ))}
 
       {/* Content */}
       <div className="relative z-10 container text-center px-6 py-32 md:py-0">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight animate-fade-in">
-          Precision Health,{" "}
-          <span className="block">Proven Results</span>
+        <h1 key={`heading-${currentSlide}`} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight animate-fade-in">
+          {slide.heading1}{" "}
+          <span className="block">{slide.heading2}</span>
         </h1>
-        <p className="mt-6 text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
-          Science-led nutrition protocols built around your unique biology.
+        <p key={`subheading-${currentSlide}`} className="mt-6 text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          {slide.subheading}
         </p>
-        <div className="mt-10 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-          <Button size="lg" variant="outline" className="text-base px-8 py-6 border border-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground bg-transparent" onClick={() => openQuiz()}>
-            Take the Personalised Protocol Quiz
+        <div key={`cta-${currentSlide}`} className="mt-10 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+          <Button size="lg" variant="outline" className="text-base px-8 py-6 border border-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground bg-transparent" onClick={handleCta}>
+            {slide.cta}
           </Button>
         </div>
       </div>
+
+      {/* Slider Controls */}
+      <button 
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-background/20 hover:bg-background/40 text-primary-foreground transition-colors hidden md:block"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-8 h-8" />
+      </button>
+      <button 
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-background/20 hover:bg-background/40 text-primary-foreground transition-colors hidden md:block"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-8 h-8" />
+      </button>
+
 
       {/* Trust Bar */}
       <div className="absolute bottom-0 left-0 right-0">
@@ -52,33 +117,33 @@ const Hero = () => {
           <div className="container py-4 flex flex-wrap justify-center gap-6 md:gap-12 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary" />
-              150+ Elite Athletes
+              Foundational Testing
             </span>
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary" />
-              England FA Experts
+              Rapid Point-of-Care Testing
             </span>
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary" />
-              Personalised Protocols
+              Expert-Led Protocols
             </span>
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary" />
-              Science-Led Approach
+              Personalised Preventative Programmes
             </span>
           </div>
         </div>
 
         {/* Sliding Partners */}
         <div className="bg-secondary border-t border-border overflow-hidden">
-          <div className="flex animate-marquee whitespace-nowrap py-4">
-            {[...partners, ...partners, ...partners].map((name, i) => (
-              <span
+          <div className="flex animate-marquee whitespace-nowrap py-6 items-center">
+            {[...partners, ...partners, ...partners, ...partners].map((logoUrl, i) => (
+              <img
                 key={i}
-                className="mx-8 md:mx-12 text-sm md:text-base font-semibold tracking-widest uppercase text-muted-foreground/60"
-              >
-                {name}
-              </span>
+                src={logoUrl}
+                alt={`Partner Logo ${i}`}
+                className="h-[50px] md:h-[70px] mx-10 md:mx-16 object-contain opacity-100 hover:scale-105 transition-transform mix-blend-multiply cursor-pointer"
+              />
             ))}
           </div>
         </div>

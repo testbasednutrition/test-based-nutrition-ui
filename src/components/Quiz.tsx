@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useQuiz } from "@/components/QuizContext";
 import { specialists } from "@/data/specialists";
+import { GOALS, QUIZ_DATA } from "@/data/quiz-data";
 import {
   X,
   ArrowLeft,
@@ -26,14 +27,7 @@ import {
   Info,
 } from "lucide-react";
 
-const GOALS = [
-  { id: "mens-health", label: "Men's Health", desc: "Testosterone, energy & metabolic optimisation", icon: Shield },
-  { id: "womens-health", label: "Women's Health", desc: "Hormones, fertility & holistic wellbeing", icon: Flower2 },
-  { id: "skin-health", label: "Skin Health", desc: "Radiance, hydration & dermal nutrition", icon: Sparkles },
-  { id: "anti-ageing", label: "Anti-Ageing", desc: "Longevity, cellular repair & vitality", icon: Heart },
-  { id: "fertility", label: "Fertility", desc: "Reproductive health & preconception support", icon: Baby },
-  { id: "childrens-health", label: "Children's Health", desc: "Growth, development & youth performance", icon: Dumbbell },
-];
+// Removed GOALS from here since they are now in quiz-data.ts
 
 const GOAL_TO_CATEGORY: Record<string, string[]> = {
   "mens-health": ["Medical & Clinical", "Fitness & Coaching"],
@@ -44,24 +38,7 @@ const GOAL_TO_CATEGORY: Record<string, string[]> = {
   "childrens-health": ["Fitness & Coaching", "Medical & Clinical"],
 };
 
-const ACTIVITY_LEVELS = [
-  { id: "sedentary", label: "Sedentary", desc: "Desk job, little movement", icon: Coffee },
-  { id: "lightly-active", label: "Lightly Active", desc: "Occasional walks or yoga", icon: Activity },
-  { id: "moderately-active", label: "Moderately Active", desc: "Gym 3-4 times a week", icon: Dumbbell },
-  { id: "highly-active", label: "Highly Active", desc: "Intense daily training", icon: Zap },
-];
-
-const SLEEP_OPTIONS = [
-  { id: "under-5", label: "Under 5 hrs" },
-  { id: "5-6", label: "5–6 hrs" },
-  { id: "7-8", label: "7–8 hrs" },
-  { id: "over-8", label: "8+ hrs" },
-];
-
-const CONCERNS = [
-  "Low energy", "Weight management", "Stress & anxiety", "Poor sleep",
-  "Skin issues", "Digestive problems", "Joint pain", "Brain fog",
-];
+// Activity levels, sleep, and concerns removed because Questions are now entirely dynamic per GOAL
 
 // Simple mock available times
 const AVAILABLE_TIMES = ["09:00 AM", "10:30 AM", "01:15 PM", "02:45 PM", "04:00 PM", "05:30 PM"];
@@ -84,10 +61,9 @@ const DAY_NAMES = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 const Quiz = () => {
   const { isOpen, closeQuiz, preselectedGoal } = useQuiz();
   const [step, setStep] = useState(0);
-  const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
-  const [activityLevel, setActivityLevel] = useState<string | null>(null);
-  const [sleep, setSleep] = useState<string | null>(null);
-  const [selectedConcerns, setSelectedConcerns] = useState<string[]>([]);
+  const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
+  const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -101,10 +77,8 @@ const Quiz = () => {
   useEffect(() => {
     if (isOpen) {
       setStep(0);
-      setSelectedGoals(preselectedGoal ? [preselectedGoal] : []);
-      setActivityLevel(null);
-      setSleep(null);
-      setSelectedConcerns([]);
+      setSelectedGoal(preselectedGoal || null);
+      setAnswers({});
       setName("");
       setEmail("");
       setPhone("");
@@ -115,13 +89,13 @@ const Quiz = () => {
     }
   }, [isOpen, preselectedGoal]);
 
-  // Pick a specialist based on selected goals
+  // Pick a specialist based on selected goal
   const assignedSpecialist = useMemo(() => {
-    if (selectedGoals.length === 0) return specialists[0];
-    const preferredCategories = selectedGoals.flatMap((g) => GOAL_TO_CATEGORY[g] || []);
+    if (!selectedGoal) return specialists[0];
+    const preferredCategories = GOAL_TO_CATEGORY[selectedGoal] || [];
     const match = specialists.find((s) => preferredCategories.includes(s.category));
     return match || specialists[0];
-  }, [selectedGoals]);
+  }, [selectedGoal]);
 
   const weekDays = useMemo(() => getDaysInWeek(weekOffset), [weekOffset]);
   const today = new Date();
@@ -132,32 +106,45 @@ const Quiz = () => {
     return d >= today && d.getDay() !== 0 && d.getDay() !== 6;
   };
 
-  const toggleGoal = (id: string) => {
-    setSelectedGoals((prev) =>
-      prev.includes(id) ? prev.filter((g) => g !== id) : [...prev, id]
-    );
-  };
-
-  const toggleConcern = (c: string) => {
-    setSelectedConcerns((prev) =>
-      prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]
-    );
+  const handleAnswer = (questionId: string, answer: string, type: "single" | "multiple") => {
+    setAnswers((prev) => {
+      const current = prev[questionId];
+      if (type === "single") {
+        return { ...prev, [questionId]: answer };
+      } else {
+        const arr = Array.isArray(current) ? current : [];
+        if (arr.includes(answer)) {
+          return { ...prev, [questionId]: arr.filter(a => a !== answer) };
+        } else {
+          return { ...prev, [questionId]: [...arr, answer] };
+        }
+      }
+    });
   };
 
   const canContinue = () => {
-    if (step === 0) return selectedGoals.length > 0;
-    if (step === 1) return activityLevel !== null && sleep !== null;
-    if (step === 2) return name.trim().length > 0 && email.trim().length > 0;
-    if (step === 3) return selectedDate !== null && selectedTime !== null;
+    if (step === 0) return selectedGoal !== null;
+    if (step === 1 || step === 2) {
+      if (!selectedGoal) return false;
+      const quiz = QUIZ_DATA[selectedGoal];
+      if (!quiz) return true;
+      const qStart = step === 1 ? 0 : 3;
+      const qEnd = step === 1 ? 3 : quiz.questions.length;
+      return quiz.questions.slice(qStart, qEnd).every(q => {
+        const ans = answers[q.id];
+        if (q.type === "multiple") return Array.isArray(ans) && ans.length > 0;
+        return typeof ans === "string" && ans.trim().length > 0;
+      });
+    }
+    if (step === 3) return name.trim().length > 0 && email.trim().length > 0;
+    if (step === 4) return selectedDate !== null && selectedTime !== null;
     return true;
   };
 
   const handleSubmit = () => {
     console.log("Quiz submitted:", {
-      goals: selectedGoals,
-      activityLevel,
-      sleep,
-      concerns: selectedConcerns,
+      goal: selectedGoal,
+      answers,
       name: name.trim(),
       email: email.trim(),
       phone: phone.trim(),
@@ -168,10 +155,10 @@ const Quiz = () => {
     setSubmitted(true);
   };
 
-  const totalSteps = 4;
+  const totalSteps = 5;
   const progress = ((step + 1) / totalSteps) * 100;
 
-  const stepLabels = ["Health Goals", "Lifestyle Assessment", "Your Details", "Book Specialist"];
+  const stepLabels = ["Health Goals", "Assessment Part 1", "Assessment Part 2", "Your Details", "Book Specialist"];
 
   if (submitted) {
     return (
@@ -199,10 +186,12 @@ const Quiz = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && closeQuiz()}>
-      <DialogContent className="max-w-4xl p-0 gap-0 border-none overflow-hidden max-h-[90vh] overflow-y-auto [&>button]:hidden">
-        {/* Header */}
-        <div className="sticky top-0 bg-background z-10 border-b border-border">
-          <div className="flex items-center justify-between px-6 py-3">
+      <DialogContent className="max-w-4xl w-[95vw] p-0 gap-0 border-none overflow-hidden max-h-[90vh] bg-background shadow-2xl [&>button]:hidden sm:rounded-2xl">
+        {/* Scrollable Container wrapper to keep layout flow intact */}
+        <div className="relative flex flex-col w-full max-h-[90vh] overflow-y-auto overflow-x-hidden">
+          {/* Header */}
+          <div className="sticky top-0 bg-background z-20 border-b border-border w-full shadow-sm">
+            <div className="flex items-center justify-between px-6 py-4">
             <span className="text-xs font-semibold tracking-widest uppercase text-primary">
               Step {step + 1} of {totalSteps}
             </span>
@@ -226,16 +215,16 @@ const Quiz = () => {
           {/* Step 1: Goals */}
           {step === 0 && (
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-2">What are your primary health goals?</h2>
-              <p className="text-muted-foreground mb-8">Select all that apply. We'll tailor your protocol based on your priorities.</p>
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">What is your primary health goal?</h2>
+              <p className="text-muted-foreground mb-8">Select one category so we can tailor your assessment accurately.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {GOALS.map((goal) => {
                   const Icon = goal.icon;
-                  const selected = selectedGoals.includes(goal.id);
+                  const selected = selectedGoal === goal.id;
                   return (
                     <button
                       key={goal.id}
-                      onClick={() => toggleGoal(goal.id)}
+                      onClick={() => setSelectedGoal(goal.id)}
                       className={`relative p-5 rounded-xl border-2 text-left transition-all duration-200 ${
                         selected
                           ? "border-primary bg-primary/5"
@@ -257,95 +246,59 @@ const Quiz = () => {
             </div>
           )}
 
-          {/* Step 2: Lifestyle */}
-          {step === 1 && (
+          {/* Step 2 & 3: Dynamic Quiz */}
+          {(step === 1 || step === 2) && selectedGoal && QUIZ_DATA[selectedGoal] && (
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-2">Lifestyle & Environment</h2>
-              <p className="text-muted-foreground mb-8">Help us understand your daily patterns to personalise your protocol.</p>
-
-              <div className="mb-8">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-semibold">1</span>
-                  <h3 className="font-semibold">How would you rate your daily physical activity?</h3>
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {ACTIVITY_LEVELS.map((level) => {
-                    const Icon = level.icon;
-                    const selected = activityLevel === level.id;
-                    return (
-                      <button
-                        key={level.id}
-                        onClick={() => setActivityLevel(level.id)}
-                        className={`p-4 rounded-xl border-2 text-center transition-all duration-200 ${
-                          selected
-                            ? "border-primary bg-primary/5"
-                            : "border-border hover:border-muted-foreground/30 bg-card"
-                        }`}
-                      >
-                        <Icon className={`w-5 h-5 mx-auto mb-2 ${selected ? "text-primary" : "text-muted-foreground"}`} />
-                        <h4 className="font-semibold text-xs">{level.label}</h4>
-                        <p className="text-[10px] text-muted-foreground mt-1">{level.desc}</p>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="mb-8">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-semibold">2</span>
-                  <h3 className="font-semibold">How many hours of restorative sleep do you get?</h3>
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {SLEEP_OPTIONS.map((opt) => {
-                    const selected = sleep === opt.id;
-                    return (
-                      <button
-                        key={opt.id}
-                        onClick={() => setSleep(opt.id)}
-                        className={`p-4 rounded-xl border-2 text-center transition-all duration-200 ${
-                          selected
-                            ? "border-primary bg-primary/5"
-                            : "border-border hover:border-muted-foreground/30 bg-card"
-                        }`}
-                      >
-                        <Moon className={`w-5 h-5 mx-auto mb-2 ${selected ? "text-primary" : "text-muted-foreground"}`} />
-                        <h4 className="font-semibold text-xs">{opt.label}</h4>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-semibold">3</span>
-                  <h3 className="font-semibold">Any specific health concerns? <span className="text-muted-foreground font-normal">(optional)</span></h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {CONCERNS.map((c) => {
-                    const selected = selectedConcerns.includes(c);
-                    return (
-                      <button
-                        key={c}
-                        onClick={() => toggleConcern(c)}
-                        className={`px-4 py-2 rounded-full text-xs font-medium border transition-all duration-200 ${
-                          selected
-                            ? "border-primary bg-primary text-primary-foreground"
-                            : "border-border bg-card text-foreground hover:border-muted-foreground/30"
-                        }`}
-                      >
-                        {c}
-                      </button>
-                    );
-                  })}
-                </div>
+              <h2 className="text-xl md:text-2xl font-bold mb-1">{QUIZ_DATA[selectedGoal].title}</h2>
+              <p className="text-muted-foreground mb-4 text-sm">Help us understand your specific situation to personalise your protocol.</p>
+              
+              <div className="space-y-5">
+                {QUIZ_DATA[selectedGoal].questions.slice(step === 1 ? 0 : 3, step === 1 ? 3 : QUIZ_DATA[selectedGoal].questions.length).map((q, idx) => {
+                   const ans = answers[q.id];
+                   const overallIdx = (step === 1 ? 0 : 3) + idx;
+                   return (
+                     <div key={q.id}>
+                       <div className="flex items-start gap-2 mb-2">
+                         <span className="w-5 h-5 shrink-0 rounded-full bg-primary text-primary-foreground text-[10px] flex items-center justify-center font-bold mt-0.5">{overallIdx + 1}</span>
+                         <div>
+                           <h3 className="font-semibold text-sm leading-tight">{q.label}</h3>
+                           {q.type === "multiple" && <p className="text-[10px] text-muted-foreground">Select all that apply</p>}
+                         </div>
+                       </div>
+                       
+                       <div className="flex flex-wrap gap-2 pl-7">
+                         {q.options.map((opt) => {
+                           const isSelected = q.type === "multiple" 
+                             ? (Array.isArray(ans) && ans.includes(opt))
+                             : ans === opt;
+                             
+                           return (
+                             <button
+                               key={opt}
+                               onClick={() => handleAnswer(q.id, opt, q.type)}
+                               className={`px-2.5 py-1.5 rounded-md border hover:scale-[1.02] active:scale-95 text-left transition-all duration-200 ${
+                                 isSelected
+                                   ? "border-primary bg-primary/10 text-primary font-medium"
+                                   : "border-border hover:border-muted-foreground/30 bg-card text-muted-foreground"
+                               }`}
+                             >
+                                <div className="flex items-center gap-1.5">
+                                  {isSelected && <CheckCircle2 className="w-3 h-3 shrink-0" />}
+                                  <span className="text-[11px] sm:text-xs leading-tight">{opt}</span>
+                                </div>
+                             </button>
+                           )
+                         })}
+                       </div>
+                     </div>
+                   );
+                })}
               </div>
             </div>
           )}
 
-          {/* Step 3: Contact */}
-          {step === 2 && (
+          {/* Step 4: Contact */}
+          {step === 3 && (
             <div className="grid md:grid-cols-5 gap-8">
               <div className="md:col-span-3">
                 <h2 className="text-2xl md:text-3xl font-bold mb-2">Personalise Your Protocol</h2>
@@ -532,31 +485,39 @@ const Quiz = () => {
                       <h3 className="font-bold text-sm">Your Protocol Context</h3>
                     </div>
 
-                    <p className="text-[10px] font-semibold tracking-widest uppercase text-muted-foreground mb-2">Primary Goals</p>
+                    <p className="text-[10px] font-semibold tracking-widest uppercase text-muted-foreground mb-2">Primary Goal</p>
                     <div className="space-y-1.5 mb-5">
-                      {selectedGoals.map((gId) => {
-                        const goal = GOALS.find((g) => g.id === gId);
+                      {(() => {
+                        const goal = GOALS.find((g) => g.id === selectedGoal);
                         if (!goal) return null;
                         const Icon = goal.icon;
                         return (
-                          <div key={gId} className="flex items-center gap-2 text-sm">
+                          <div className="flex items-center gap-2 text-sm">
                             <Icon className="w-4 h-4 text-primary" />
                             <span className="font-medium">{goal.label}</span>
                           </div>
                         );
-                      })}
+                      })()}
                     </div>
 
-                    {selectedConcerns.length > 0 && (
+                    {Object.keys(answers).length > 0 && (
                       <>
                         <p className="text-[10px] font-semibold tracking-widest uppercase text-muted-foreground mb-2">Quiz Insights</p>
-                        <div className="space-y-1.5 mb-5">
-                          {selectedConcerns.map((c) => (
-                            <div key={c} className="flex items-center gap-2 text-xs">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
-                              <span>{c}</span>
-                            </div>
-                          ))}
+                        <div className="space-y-2 mb-5">
+                          {Object.entries(answers).slice(0, 3).map(([key, rawAns]) => {
+                             const q = selectedGoal ? QUIZ_DATA[selectedGoal]?.questions.find(x => x.id === key) : null;
+                             if (!q) return null;
+                             const ansStr = Array.isArray(rawAns) ? rawAns.join(", ") : rawAns;
+                             return (
+                               <div key={key} className="text-xs">
+                                 <span className="text-muted-foreground block mb-0.5">{q.label}</span>
+                                 <div className="flex items-start gap-1.5">
+                                   <CheckCircle2 className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+                                   <span className="font-medium">{ansStr.length > 50 ? ansStr.substring(0, 50) + "..." : ansStr}</span>
+                                 </div>
+                               </div>
+                             );
+                          })}
                         </div>
                       </>
                     )}
@@ -590,8 +551,8 @@ const Quiz = () => {
           )}
         </div>
 
-        {/* Footer - hidden on step 4 since it has its own CTA */}
-        {step < 3 && (
+        {/* Footer - hidden on step 5 since it has its own CTA */}
+        {step < 4 && (
           <div className="sticky bottom-0 bg-background border-t border-border px-6 py-4 flex items-center justify-between">
             <button
               onClick={() => step > 0 && setStep(step - 1)}
@@ -605,7 +566,7 @@ const Quiz = () => {
 
             <div className="flex items-center gap-3">
               <span className="text-xs text-muted-foreground hidden sm:block">
-                {step === 0 ? "Next: Lifestyle Assessment" : step === 1 ? "Next: Your Details" : step === 2 ? "Next: Book Specialist" : ""}
+                {step === 0 ? "Next: Assessment Part 1" : step === 1 ? "Next: Assessment Part 2" : step === 2 ? "Next: Your Details" : step === 3 ? "Next: Book Specialist" : ""}
               </span>
               <Button
                 onClick={() => setStep(step + 1)}
@@ -619,18 +580,19 @@ const Quiz = () => {
           </div>
         )}
 
-        {/* Back button on step 4 */}
-        {step === 3 && (
-          <div className="sticky bottom-0 bg-background border-t border-border px-6 py-4">
-            <button
-              onClick={() => setStep(2)}
-              className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back
-            </button>
-          </div>
-        )}
+          {/* Back button on step 5 */}
+          {step === 4 && (
+            <div className="sticky bottom-0 bg-background z-20 border-t border-border px-6 py-4 w-full">
+              <button
+                onClick={() => setStep(3)}
+                className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back
+              </button>
+            </div>
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );

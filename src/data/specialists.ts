@@ -1,9 +1,11 @@
 export type SpecialistCategory =
   | "All"
   | "Medical & Clinical"
-  | "Combat Sports"
-  | "Fitness & Coaching"
-  | "Health & Wellness";
+  | "Allied Health"
+  | "Functional & Holistic"
+  | "Health & Lifestyle"
+  | "Mental Health"
+  | "Sports Performance";
 
 export interface Testimonial {
   name: string;
@@ -16,6 +18,7 @@ export interface Specialist {
   name: string;
   role: string;
   category: SpecialistCategory;
+  specificTitle?: string;
   image: string;
   secondaryImage?: string;
   bio: string[];
@@ -27,14 +30,42 @@ export interface Specialist {
   currentOrg?: string;
   experience?: string;
   testimonials?: Testimonial[];
+  location?: string;
+  consultationType?: string;
+  rating?: number;
+  reviewCount?: number;
+  languages?: string[];
+  testingExpertise?: string[];
+  
+  // New TBN listing fields
+  tbnFocusTags?: string[];
+  foundationalHealthTesting?: string[];
+  pointOfCareTesting?: string[];
+  galleryImages?: string[];
+  newsHubContributions?: boolean;
+
+  specialization_tags?: string[];
+  primary_testing_methods?: string[];
+  first_balance_result?: string;
+  second_balance_result?: string;
+  why_joined_tbn?: string;
+  other_blood_tests?: string;
+  gallery_image_urls?: string[];
+  accepting_new_clients?: boolean;
+  email_address?: string;
+  phone_number?: string;
+  address?: string;
+  clinic_name?: string;
 }
 
 export const categories: SpecialistCategory[] = [
   "All",
   "Medical & Clinical",
-  "Combat Sports",
-  "Fitness & Coaching",
-  "Health & Wellness",
+  "Allied Health",
+  "Functional & Holistic",
+  "Health & Lifestyle",
+  "Mental Health",
+  "Sports Performance",
 ];
 
 export const specialists: Specialist[] = [
@@ -64,7 +95,40 @@ export const specialists: Specialist[] = [
     bookingUrl: "https://www.drishtiaqrehman.co.uk/#appointment",
     bookingLabel: "Book Now",
     currentOrg: "England FA",
-    experience: "20+ Years",
+    experience: "25+ Years Exp.",
+    location: "Marylebone, London",
+    consultationType: "Online & In-person",
+    rating: 4.9,
+    reviewCount: 142,
+    languages: ["English"],
+    testingExpertise: ["Functional Labs", "Genomic Testing"],
+    accepting_new_clients: true,
+    email_address: "info@dr-rehman.co.uk",
+    phone_number: "+44 7815 753332",
+    clinic_name: "Dr. Rehman Nutrition Clinic",
+    address: "28 Cathedral Road, Marylebone, London W1G",
+    specialization_tags: [
+      "Perimenopause",
+      "Mood, Brain Fog & Hormonal Health",
+      "Menopause",
+      "Gut Health",
+      "Hormonal Conditions",
+      "Healthy Ageing for Men"
+    ],
+    primary_testing_methods: [
+      "Finger Prick Balance Testing (Omega 6:3)",
+      "Finger Prick Gut Health Testing",
+      "Vitamin D Levels (FP)",
+      "HbA1c - Diabetes (FP)"
+    ],
+    first_balance_result: "14:1",
+    second_balance_result: "2:1",
+    why_joined_tbn: "After undertaking the Omega 6:3 Balance Test and using the Balance Oil myself, I experienced a marked improvement in energy, sleep quality and overall wellbeing. This prompted me to explore the evidence in greater depth. Following further research, I introduced the test and supplement to my own family and began offering them to patients where appropriate. I believe assessing and optimising omega-3 status can represent an important — and often overlooked — component of a comprehensive lifestyle medicine approach focused on both current wellbeing and long-term health.",
+    other_blood_tests: "I perform venous blood sampling within clinic and am able to arrange a comprehensive range of investigations — including all standard tests.",
+    gallery_image_urls: [
+      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=800"
+    ],
   },
   {
     slug: "jayden-blanchard",
@@ -88,6 +152,13 @@ export const specialists: Specialist[] = [
     bookingUrl: "https://www.lifechiropractic.co.uk/book-appointment/",
     bookingLabel: "Book Now",
     currentOrg: "Life Chiropractic Basildon",
+    experience: "10+ Years Exp.",
+    location: "Essex, London",
+    consultationType: "Online Only",
+    rating: 4.8,
+    reviewCount: 89,
+    languages: ["English", "Spanish"],
+    testingExpertise: ["Microbiome Analysis"],
   },
 
   // ── Combat Sports ──
@@ -113,7 +184,13 @@ export const specialists: Specialist[] = [
     bookingUrl: "mailto:info@optimiseperfomance.com",
     bookingLabel: "Book a Consultation",
     currentOrg: "England FA & Manchester City",
-    experience: "25+ Years",
+    experience: "25+ Years Exp.",
+    location: "Chelsea, London",
+    consultationType: "In-person Only",
+    rating: 5.0,
+    reviewCount: 210,
+    languages: ["English"],
+    testingExpertise: ["Functional Labs", "Microbiome Analysis"],
     testimonials: [
       {
         name: "Dave Ryding",
@@ -405,6 +482,15 @@ export const specialists: Specialist[] = [
 
 export function getSpecialistBySlug(slug: string): Specialist | undefined {
   return specialists.find((s) => s.slug === slug);
+}
+
+export function getSpecialistsByLocation(locationQuery: string): Specialist[] {
+  const query = locationQuery.toLowerCase();
+  return specialists.filter((s) => {
+    const hasLocationMatch = s.location && s.location.toLowerCase().includes(query);
+    const hasAddressMatch = s.address && s.address.toLowerCase().includes(query);
+    return hasLocationMatch || hasAddressMatch;
+  });
 }
 
 export function getSpecialistsByCategory(category: SpecialistCategory): Specialist[] {

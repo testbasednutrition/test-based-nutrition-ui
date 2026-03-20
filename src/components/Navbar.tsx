@@ -1,119 +1,239 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { ProtocolsMegaMenu } from "./ProtocolsMegaMenu";
-
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
 const treatmentRoutes: Record<string, string> = {
-  "Skin Health": "/treatments/skin-health",
-  "Anti-Ageing": "/treatments/anti-ageing",
-  "Testosterone": "/treatments/mens-health",
-  "Weight Loss": "/treatments/mens-health",
-  "Diabetes": "/treatments/mens-health",
-  "Mental Health": "/treatments/mens-health",
-  "Fertility": "/treatments/fertility",
-  "Pregnancy": "/treatments/womens-health",
-  "Hormones": "/treatments/womens-health",
-  "Perimenopause": "/treatments/womens-health",
-  "Youth Sport": "/treatments/childrens-health",
-  "Baby": "/treatments/childrens-health",
-  "Junior": "/treatments/childrens-health",
-  "Teen": "/treatments/childrens-health",
-  "Neuro": "/treatments/childrens-health",
+  // Women's Health
+  "Puberty & Teen Hormones": "/treatments/womens-health",
+  "Fertility & Conception": "/treatments/fertility",
+  "Pregnancy & Postnatal Health": "/treatments/womens-health",
+  "Perimenopause & Menopause": "/treatments/womens-health",
+  "Hormonal Conditions": "/treatments/womens-health",
+  "Mood, Brain Fog & Burnout": "/treatments/womens-health",
+  "Weight Loss & Metabolic Support": "/treatments/womens-health",
+  "Gut Health Issues": "/treatments/womens-health", // Generic gut mapped to women's health for this section
+  
+  // Men's Health
+  "Teen & Young Men's Hormones": "/treatments/mens-health",
+  "Testosterone & Hormonal Health": "/treatments/mens-health",
+  "Male Fertility": "/treatments/fertility",
+  "Weight Loss & Metabolic Health": "/treatments/mens-health",
+  "Stress, Mood & Burnout": "/treatments/mens-health",
+  "Healthy Ageing for Men": "/treatments/anti-ageing",
+  // "Gut Health Issues" is already declared above, but the route is generic anyway, we will handle potential duplicate keys by using unique maps or just relying on the same generic path:
+  // We'll map "Gut Health Issues" to a generic route if needed, or leave the single instance if sufficient.
+  
+  // Children's Health
+  "Early Childhood Development": "/treatments/childrens-health",
+  "Gut Health in Children": "/treatments/childrens-health",
+  "Neurodivergent Children (ADHD & Focus)": "/treatments/childrens-health",
+  "Immunity, Growth & Development": "/treatments/childrens-health",
+  "Teen Health & Hormones": "/treatments/childrens-health",
+  "Emotional Wellbeing & Behaviour": "/treatments/childrens-health",
+
+  // Neurodivergence
+  "ADHD in Children": "/treatments/childrens-health",
+  "Neurodivergent Teens": "/treatments/childrens-health",
+  "ADHD in Women": "/treatments/womens-health",
+  "ADHD in Adults": "/treatments/mens-health",
+  "Focus, Brain Fog & Cognitive Health": "/treatments/anti-ageing",
+  "Gut Health & Neurodivergence": "/treatments/mens-health",
+
+  // Skin Health
+  "Acne & Teen Skin": "/treatments/skin-health",
+  "Hormonal Skin": "/treatments/skin-health",
+  "Chronic Skin Conditions": "/treatments/skin-health",
+  "Skin & Gut Health": "/treatments/skin-health",
+  "Skin Ageing & Collagen Health": "/treatments/anti-ageing",
+  "Perimenopause Skin": "/treatments/skin-health",
+
+  // Sports Performance
+  "Youth Performance": "/treatments/childrens-health",
+  "Athletes (Amateur to Elite)": "/treatments/mens-health",
+  "Event & Competition Preparation": "/treatments/mens-health",
+  "Coaches & Performance Teams": "/treatments/mens-health",
+  "Peak Performance & Longevity": "/treatments/anti-ageing",
 };
 
 const megaMenuData = [
-  { heading: "Skin", items: ["Skin Health", "Anti-Ageing"] },
-  { heading: "Men", items: ["Testosterone", "Weight Loss", "Diabetes", "Mental Health"] },
-  { heading: "Women", items: ["Fertility", "Pregnancy", "Hormones", "Perimenopause", "Weight Loss", "Mental Health"] },
-  { heading: "Children", items: ["Youth Sport", "Baby", "Junior", "Teen", "Neuro"] },
-  { heading: "Sport", items: ["Youth", "Coaches", "Athletes", "Hyrox", "Peak Performance"] },
+  { 
+    heading: "Women's Health", 
+    items: ["Puberty & Teen Hormones", "Fertility & Conception", "Pregnancy & Postnatal Health", "Perimenopause & Menopause", "Hormonal Conditions", "Mood, Brain Fog & Burnout", "Weight Loss & Metabolic Support", "Gut Health Issues"] 
+  },
+  { 
+    heading: "Men's Health", 
+    items: ["Teen & Young Men's Hormones", "Testosterone & Hormonal Health", "Male Fertility", "Weight Loss & Metabolic Health", "Stress, Mood & Burnout", "Healthy Ageing for Men", "Gut Health Issues"] 
+  },
+  { 
+    heading: "Children's Health", 
+    items: ["Early Childhood Development", "Gut Health in Children", "Neurodivergent Children (ADHD & Focus)", "Immunity, Growth & Development", "Teen Health & Hormones", "Emotional Wellbeing & Behaviour"] 
+  },
+  { 
+    heading: "Neurodivergence", 
+    items: ["ADHD in Children", "Neurodivergent Teens", "ADHD in Women", "ADHD in Adults", "Focus, Brain Fog & Cognitive Health", "Gut Health & Neurodivergence"] 
+  },
+  { 
+    heading: "Skin Health", 
+    items: ["Acne & Teen Skin", "Hormonal Skin", "Chronic Skin Conditions", "Skin & Gut Health", "Skin Ageing & Collagen Health", "Perimenopause Skin"] 
+  },
+  { 
+    heading: "Sports Performance", 
+    items: ["Youth Performance", "Athletes (Amateur to Elite)", "Event & Competition Preparation", "Coaches & Performance Teams", "Peak Performance & Longevity"] 
+  },
 ];
 
 const navLinks = [
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Specialists", href: "/specialists" },
-  { label: "News Hub", href: "/news" },
+  { label: "Testing", href: "#" },
+  { label: "TBN Method", href: "#how-it-works" },
+  { label: "News", href: "/news" },
 ];
 
-const Navbar = () => {
+interface NavbarProps {
+  alwaysSolid?: boolean;
+}
+
+const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
   const [mobileMegaOpen, setMobileMegaOpen] = useState(false);
-  const megaRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLButtonElement>(null);
+  const [mobileDirectoryOpen, setMobileDirectoryOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        megaRef.current &&
-        !megaRef.current.contains(e.target as Node) &&
-        triggerRef.current &&
-        !triggerRef.current.contains(e.target as Node)
-      ) {
-        setMegaOpen(false);
-      }
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const isSolid = alwaysSolid || isScrolled || mobileOpen;
+
+  const navBgClass = isSolid ? "bg-stone-50 shadow-md border-b border-border/20" : "bg-transparent pb-4 pt-2"; // add padding when transparent so it feels like it "drops down" on scroll
+  const linkClass = "text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors " + (isSolid ? "text-black/80 hover:text-black" : "text-white/90 hover:text-white drop-shadow-md");
+  const triggerClass = "cursor-pointer border-none outline-none focus:bg-transparent data-[state=open]:bg-transparent " + linkClass + " " + (isSolid ? "data-[state=open]:text-black" : "data-[state=open]:text-white");
+  const logoClass = "h-8 md:h-10 object-contain transition-all duration-300 " + (!isSolid ? "brightness-0 invert" : "");
+  const btnOutlineClass = "bg-transparent border-[1.5px] transition-colors " + (isSolid ? "border-primary text-primary hover:bg-primary/5 hover:text-primary" : "border-white/80 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm");
+  const btnGhostClass = "transition-colors " + (isSolid ? "text-black/80 hover:text-black hover:bg-black/10" : "text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm");
+  const mobileToggleClass = "lg:hidden p-2 transition-colors " + (isSolid ? "text-black" : "text-white drop-shadow-md");
+
 
   return (
     <>
-      <ProtocolsMegaMenu />
-      <nav className="fixed top-10 left-0 right-0 z-50 bg-transparent">
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBgClass}`}>
         <div className="container flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full border-2 border-primary-foreground relative">
-              <div className="absolute bottom-0.5 right-0.5 w-2 h-2 rounded-full bg-primary" />
-            </div>
-            <div className="leading-tight">
-              <span className="font-semibold text-sm tracking-wide text-primary-foreground">Test-based</span>
-              <span className="block text-[10px] tracking-[0.2em] text-primary-foreground/70 uppercase">
-                Nutrition + Performance
-              </span>
-            </div>
+          <a href="/" className="flex items-center">
+            <img 
+              src="/logos/test-based-logotype-460x92.png" 
+              alt="Test-Based Nutrition" 
+              className={logoClass}
+            />
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-8">
-            <div className="relative">
-              <button
-                ref={triggerRef}
-                onClick={() => setMegaOpen(!megaOpen)}
-                className="flex items-center gap-1 text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-              >
-                Protocol
-                <ChevronDown className={`w-4 h-4 transition-transform ${megaOpen ? "rotate-180" : ""}`} />
-              </button>
-            </div>
-            {navLinks.map((link) => (
+          <div className="hidden lg:flex items-center">
+            <Menubar className="border-none bg-transparent p-0 space-x-0">
+              <MenubarMenu>
+                <MenubarTrigger className={triggerClass}>
+                  TBN Pathways
+                </MenubarTrigger>
+                <MenubarContent align="start" alignOffset={-120} sideOffset={24} className="p-6 md:p-8 w-[95vw] max-w-[1200px] max-h-[85vh] overflow-y-auto shadow-2xl bg-background border border-border rounded-xl">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 xl:gap-8">
+                    {megaMenuData.map((col) => (
+                      <div key={col.heading} className="flex flex-col">
+                        <h4 className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground border-b border-primary/20 pb-2 mb-4">
+                          {col.heading}
+                        </h4>
+                        <div className="flex flex-col gap-2.5">
+                          {col.items.length > 0 ? (
+                            col.items.map((item) => (
+                              <MenubarItem 
+                                key={item} 
+                                onClick={() => {
+                                  const route = treatmentRoutes[item];
+                                  if (route) navigate(route);
+                                }}
+                                className="cursor-pointer text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] text-muted-foreground hover:text-primary focus:bg-primary/5 focus:text-primary transition-colors leading-relaxed whitespace-normal break-words"
+                              >
+                                {item}
+                              </MenubarItem>
+                            ))
+                          ) : (
+                            <span className="text-[10px] text-muted-foreground italic">Coming soon</span>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </MenubarContent>
+              </MenubarMenu>
+            </Menubar>
+
+            <div className="flex items-center gap-6 ml-6">
               <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                href={navLinks[0].href}
+                className={linkClass}
               >
-                {link.label}
+                {navLinks[0].label}
               </a>
-            ))}
+
+              <a
+                href={navLinks[1].href}
+                className={linkClass}
+              >
+                {navLinks[1].label}
+              </a>
+
+              <Menubar className="border-none bg-transparent p-0 space-x-0">
+                <MenubarMenu>
+                  <MenubarTrigger className={triggerClass}>
+                    Directory
+                  </MenubarTrigger>
+                  <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-2 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-1">
+                    <MenubarItem className="cursor-pointer" asChild>
+                      <a href="/specialists" className="text-sm font-semibold text-muted-foreground hover:text-primary focus:text-primary focus:bg-primary/5 transition-colors py-2 px-3 block rounded-md w-full">Specialists</a>
+                    </MenubarItem>
+                    <MenubarItem className="cursor-pointer" asChild>
+                      <a href="/clinics" className="text-sm font-semibold text-muted-foreground hover:text-primary focus:text-primary focus:bg-primary/5 transition-colors py-2 px-3 block rounded-md w-full">Clinics</a>
+                    </MenubarItem>
+                    <MenubarItem className="cursor-pointer" asChild>
+                      <a href="/health-clubs" className="text-sm font-semibold text-muted-foreground hover:text-primary focus:text-primary focus:bg-primary/5 transition-colors py-2 px-3 block rounded-md w-full">Health Clubs</a>
+                    </MenubarItem>
+                  </MenubarContent>
+                </MenubarMenu>
+              </Menubar>
+
+              <a
+                href={navLinks[2].href}
+                className={linkClass}
+              >
+                {navLinks[2].label}
+              </a>
+            </div>
           </div>
 
           <div className="hidden lg:flex items-center gap-3">
-            <Button asChild>
-              <a href="https://calendar.app.google/CDYDAvjFmMvJP3S88" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" asChild className={btnOutlineClass}>
+              <a href="/partner-with-us">
                 Partner With Us
               </a>
             </Button>
-            <Button variant="ghost" asChild className="text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/10">
+            <Button variant="ghost" asChild className={btnGhostClass}>
               <a href="/partner-sign-in">Sign In</a>
             </Button>
           </div>
 
           {/* Mobile Toggle */}
           <button
-            className="lg:hidden p-2"
+            className={mobileToggleClass}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -121,56 +241,16 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Desktop Mega Menu */}
-        {megaOpen && (
-          <div
-            ref={megaRef}
-            className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-full bg-background border border-border shadow-lg rounded-b-lg animate-in fade-in slide-in-from-top-2 duration-200"
-          >
-            <div className="px-8 py-4">
-              <div className="flex gap-8">
-                {megaMenuData.map((col) => (
-                  <div key={col.heading} className="min-w-[120px]">
-                    <h4 className="text-xs font-bold uppercase tracking-widest text-foreground mb-2 pb-1.5 border-b border-border">
-                      {col.heading}
-                    </h4>
-                    {col.items.length > 0 ? (
-                      <ul className="space-y-1">
-                        {col.items.map((item) => (
-                          <li key={item}>
-                            <button
-                              className="text-sm text-muted-foreground hover:text-primary transition-colors text-left"
-                              onClick={() => {
-                                setMegaOpen(false);
-                                const route = treatmentRoutes[item];
-                                if (route) navigate(route);
-                              }}
-                            >
-                              {item}
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-sm text-muted-foreground italic">Coming soon</p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Mobile Menu */}
         {mobileOpen && (
           <div className="lg:hidden bg-background border-t border-border">
             <div className="container py-6 flex flex-col gap-4">
               {/* Mobile Treatments Accordion */}
               <button
-                className="flex items-center justify-between text-base font-medium text-muted-foreground hover:text-foreground py-2"
+                className="flex items-center justify-between text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
                 onClick={() => setMobileMegaOpen(!mobileMegaOpen)}
               >
-                Protocol
+                TBN Pathways
                 <ChevronDown className={`w-4 h-4 transition-transform ${mobileMegaOpen ? "rotate-180" : ""}`} />
               </button>
               {mobileMegaOpen && (
@@ -206,18 +286,47 @@ const Navbar = () => {
                 </div>
               )}
 
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-base font-medium text-muted-foreground hover:text-foreground py-2"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <Button asChild className="mt-2 w-full">
-                <a href="https://calendar.app.google/CDYDAvjFmMvJP3S88" target="_blank" rel="noopener noreferrer">
+              <a
+                href={navLinks[0].href}
+                className="text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
+                onClick={() => setMobileOpen(false)}
+              >
+                {navLinks[0].label}
+              </a>
+
+              <a
+                href={navLinks[1].href}
+                className="text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
+                onClick={() => setMobileOpen(false)}
+              >
+                {navLinks[1].label}
+              </a>
+
+              {/* Mobile Directory Accordion */}
+              <button
+                className="flex items-center justify-between text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
+                onClick={() => setMobileDirectoryOpen(!mobileDirectoryOpen)}
+              >
+                Directory
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileDirectoryOpen ? "rotate-180" : ""}`} />
+              </button>
+              {mobileDirectoryOpen && (
+                <div className="pl-4 pb-2 flex flex-col gap-3">
+                  <a href="/specialists" className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors block" onClick={() => setMobileOpen(false)}>Specialists</a>
+                  <a href="/clinics" className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors block" onClick={() => setMobileOpen(false)}>Clinics</a>
+                  <a href="/health-clubs" className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors block" onClick={() => setMobileOpen(false)}>Health Clubs</a>
+                </div>
+              )}
+
+              <a
+                href={navLinks[2].href}
+                className="text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
+                onClick={() => setMobileOpen(false)}
+              >
+                {navLinks[2].label}
+              </a>
+              <Button variant="outline" asChild className="mt-2 w-full border-primary text-primary hover:bg-primary/5 hover:text-primary transition-colors bg-transparent border-[1.5px]">
+                <a href="/partner-with-us">
                   Partner With Us
                 </a>
               </Button>

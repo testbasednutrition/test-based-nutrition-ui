@@ -2,19 +2,15 @@ const Footer = () => {
   return (
     <footer className="bg-card border-t border-border py-16">
       <div className="container px-6">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 rounded-full border-2 border-foreground relative">
-                <div className="absolute bottom-0.5 right-0.5 w-1.5 h-1.5 rounded-full bg-primary" />
-              </div>
-              <div className="leading-tight">
-                <span className="font-semibold text-sm">Test-based</span>
-                <span className="block text-[9px] tracking-[0.2em] text-muted-foreground uppercase">
-                  Nutrition + Performance
-                </span>
-              </div>
+              <img 
+                src="/logos/test-based-logotype-460x92.png" 
+                alt="Test-Based Nutrition" 
+                className="h-8 object-contain"
+              />
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Uniting elite experts in health and performance. Science-led, results-driven.
@@ -43,6 +39,17 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Locations (SEO) */}
+          <div>
+            <h4 className="font-semibold text-sm mb-4 font-sans">Locations</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><a href="/locations/london" className="hover:text-foreground transition-colors">London</a></li>
+              <li><a href="/locations/cardiff" className="hover:text-foreground transition-colors">Cardiff</a></li>
+              <li><a href="/locations/wirral" className="hover:text-foreground transition-colors">Wirral</a></li>
+              <li><a href="/locations/essex" className="hover:text-foreground transition-colors">Essex</a></li>
+            </ul>
+          </div>
+
           {/* Contact */}
           <div>
             <h4 className="font-semibold text-sm mb-4 font-sans">Get Started</h4>
@@ -60,12 +67,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-border mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-border mt-12 pt-8 flex flex-col items-center justify-center gap-4">
           <p className="text-xs text-muted-foreground">
             © 2026 Test-Based Nutrition. All rights reserved.
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Independent Partner of Zinzino
           </p>
         </div>
       </div>

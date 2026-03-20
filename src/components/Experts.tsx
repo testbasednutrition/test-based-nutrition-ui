@@ -1,55 +1,64 @@
 const experts = [
   {
-    name: "Neil Parsley",
-    role: "Consulting Performance Coach",
-    org: "England FA & Manchester City",
-    quote: "If You're Not Assessing, You're Guessing.",
+    name: "Natasha Sundharawipata",
+    role: "Founder & Director",
+    org: "Founder of Test-Based Nutrition, Natasha leads the vision and growth of the TBN collective. With over two decades of experience in marketing and strategic business development, she specialises in integrating test-based nutrition systems into clinics, pharmacies and health clubs, helping practitioners deliver personalised preventative healthcare.",
+    link: "/specialists/natasha-sundharawipata",
+    image: "/experts/natasha-latest.png",
   },
   {
-    name: "Dr. Ishtiaq Rehman",
-    role: "Consulting Doctor",
-    org: "England FA",
-    quote: "Understanding your internal health today for a better tomorrow.",
+    name: "Dr Ishtiaq Rehman",
+    role: "Medical Director",
+    org: "Current England FA Doctor, Dr Rehman leads the medical development of Test-Based Nutrition. His experience in elite sports medicine and preventative health helps guide the clinical principles behind TBN, supporting programmes focused on performance, resilience and long-term health optimisation.",
+    link: "/specialists/dr-ishtiaq-rehman",
+    image: "/experts/dr-rehman-v3.png",
+  },
+  {
+    name: "Neil Parsley",
+    role: "Performance Director",
+    org: "Former Team GB performance coach with leadership roles across elite sport including Manchester City and England FA. Neil brings extensive experience in athlete performance, recovery and development, helping integrate test-based nutrition strategies within high-performance environments.",
+    link: "/specialists/neil-parsley",
+    image: "/experts/neil-parsley-v3.png",
   },
 ];
 
 const Experts = () => {
   return (
-    <section id="experts" className="py-20 md:py-32">
-      <div className="container px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
-            Our Elite Experts
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-            Led by World-Leading Experts<span className="text-primary">.</span>
+    <section id="experts" className="py-20 md:py-32 bg-secondary">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="text-center max-w-4xl mx-auto mb-16 md:mb-24 flex flex-col items-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair font-heading mb-6">
+            Our Purpose-Driven Mission<span className="text-primary">.</span>
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            Our specialists conduct in-depth consultations to optimise your well-being and health, focusing on preventive healthcare for the future.
+          <p className="font-montserrat text-[14px] leading-relaxed text-muted-foreground max-w-2xl mx-auto">
+            Born from personal transformation and developed with world-leading medical and performance expertise.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {experts.map((expert) => (
-            <div
-              key={expert.name}
-              className="bg-card rounded-xl p-8 border border-border hover:shadow-lg transition-shadow"
-            >
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                <span className="text-2xl font-serif font-bold text-primary">
-                  {expert.name.charAt(0)}
-                </span>
-              </div>
-              <h3 className="text-xl font-bold">
-                <a href={expert.name === "Neil Parsley" ? "/specialists/neil-parsley" : expert.name === "Dr. Ishtiaq Rehman" ? "/specialists/dr-ishtiaq-rehman" : "/specialists"} className="hover:text-primary transition-colors">
-                  {expert.name}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-8 xl:gap-12">
+          {experts.map((expert, index) => (
+            <div key={index} className="flex flex-col items-center">
+              {/* Expert Top Image */}
+              <a href={expert.link} className="w-full relative group block overflow-hidden rounded-xl mb-6 bg-transparent shadow-sm">
+                <div className="w-full h-auto overflow-hidden bg-muted">
+                  <img 
+                    src={expert.image} 
+                    alt={expert.name}
+                    className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                </div>
+              </a>
+
+              {/* Text Content */}
+              <div className="text-center px-4">
+                <a href={expert.link} className="hover:text-primary transition-colors inline-block mb-2">
+                  <h3 className="text-xl md:text-2xl font-serif text-foreground/90 mb-3">{expert.name}</h3>
                 </a>
-              </h3>
-              <p className="text-primary text-sm font-medium mt-1">{expert.role}</p>
-              <p className="text-muted-foreground text-sm">{expert.org}</p>
-              <blockquote className="mt-4 text-muted-foreground italic text-sm border-l-2 border-primary/30 pl-4">
-                "{expert.quote}"
-              </blockquote>
+                <p className="text-sm font-medium text-muted-foreground/90 mb-1">{expert.role}</p>
+                <div className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
+                  {expert.org}
+                </div>
+              </div>
             </div>
           ))}
         </div>

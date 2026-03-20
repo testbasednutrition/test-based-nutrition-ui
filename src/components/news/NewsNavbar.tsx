@@ -18,14 +18,13 @@ const NewsNavbar = () => {
       <div className="container flex items-center justify-between h-14 md:h-16 px-6">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full border-2 border-foreground relative">
-            <div className="absolute bottom-0.5 right-0.5 w-1.5 h-1.5 rounded-full bg-primary" />
-          </div>
-          <div className="leading-tight">
-            <span className="font-semibold text-sm">News Hub</span>
-            <span className="block text-[9px] tracking-[0.2em] text-muted-foreground uppercase">
-              Health & Science
-            </span>
+          <img 
+            src="/logos/test-based-logotype-460x92.png" 
+            alt="Test-Based Nutrition" 
+            className="h-6 md:h-8 object-contain"
+          />
+          <div className="leading-tight border-l border-border pl-2 ml-1">
+            <span className="font-semibold text-xs whitespace-nowrap">News Hub</span>
           </div>
         </Link>
 
@@ -35,7 +34,7 @@ const NewsNavbar = () => {
             <Link
               key={l.label}
               to={l.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground transition-colors"
             >
               {l.label}
             </Link>
@@ -61,7 +60,7 @@ const NewsNavbar = () => {
               <Link
                 key={l.label}
                 to={l.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground py-2"
+                className="text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
                 onClick={() => setOpen(false)}
               >
                 {l.label}
