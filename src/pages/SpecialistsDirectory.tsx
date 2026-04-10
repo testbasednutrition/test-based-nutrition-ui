@@ -163,7 +163,7 @@ const SpecialistsDirectory = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             
             {/* Sidebar Filters */}
-            <aside className="w-full lg:w-64 shrink-0 space-y-8">
+            <aside className="hidden lg:block w-full lg:w-64 shrink-0 space-y-8">
               <div className="flex items-center justify-between pb-4 border-b border-border">
                 <h3 className="font-semibold text-sm tracking-widest uppercase">Filters</h3>
                 <button className="text-muted-foreground hover:text-primary transition-colors">
@@ -230,8 +230,34 @@ const SpecialistsDirectory = () => {
             </aside>
 
             {/* Results Grid */}
-            <div className="flex-1 space-y-6">
+            <div className="flex-1 space-y-6 overflow-hidden">
               
+              {/* Mobile Filter Tabs */}
+              <div className="flex lg:hidden overflow-x-auto pb-4 gap-2 no-scrollbar w-full border-b border-border">
+                {[
+                  "All",
+                  "Women's Health", 
+                  "Men's Health", 
+                  "Children's Health", 
+                  "Neurodivergence",
+                  "Skin Health",
+                  "Sports Performance",
+                  "Pain, Fatigue & Inflammation"
+                ].map((spec) => (
+                  <button
+                    key={spec}
+                    onClick={() => setActiveCategory(spec as SpecialistCategory)}
+                    className={`whitespace-nowrap px-4 py-2 rounded-full text-[13px] font-semibold transition-colors ${
+                      activeCategory === spec 
+                        ? "bg-primary text-primary-foreground" 
+                        : "bg-background text-muted-foreground hover:bg-secondary border border-border transition-all"
+                    }`}
+                  >
+                    {spec}
+                  </button>
+                ))}
+              </div>
+
               {/* Results Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
@@ -256,14 +282,14 @@ const SpecialistsDirectory = () => {
               </div>
 
               {/* Specialist Cards list */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 sm:gap-6">
                 {filtered.map((specialist) => (
                   <div 
                     key={specialist.slug}
                     className="flex flex-col overflow-hidden bg-background border border-border rounded-2xl shadow-sm hover:shadow-md transition-shadow relative"
                   >
                     {/* Top Image Box */}
-                    <Link to={`/specialists/${specialist.slug}`} className="block w-full h-56 bg-secondary relative group cursor-pointer overflow-hidden">
+                    <Link to={`/specialists/${specialist.slug}`} className="block w-full h-32 sm:h-56 bg-secondary relative group cursor-pointer overflow-hidden">
                       <img
                         src={specialist.image}
                         alt={specialist.name}
@@ -276,28 +302,28 @@ const SpecialistsDirectory = () => {
                     </Link>
 
                     {/* Bottom Info Box */}
-                    <div className="flex-1 flex flex-col justify-between p-5">
+                    <div className="flex-1 flex flex-col justify-between p-3 sm:p-5">
                       <div className="space-y-3">
                         {/* Title Row */}
                         <div className="flex justify-between items-start gap-4">
                           <div className="pr-1">
-                            <h3 className="text-xl font-bold line-clamp-1">{specialist.name}</h3>
-                            <p className="text-[13px] font-semibold text-primary mt-1 line-clamp-1">
+                            <h3 className="text-[13px] sm:text-xl font-bold line-clamp-1">{specialist.name}</h3>
+                            <p className="text-[10px] sm:text-[13px] font-semibold text-primary mt-0.5 sm:mt-1 line-clamp-1">
                               {specialist.category} {specialist.role && `• ${specialist.role.split("—")[0].trim()}`}
                             </p>
                           </div>
                           
                           {/* Rating Badge */}
                           {specialist.rating && (
-                            <div className="flex items-center gap-1.5 px-2 py-1 bg-secondary rounded-md text-sm font-bold shrink-0">
-                              <Star className="w-3.5 h-3.5 fill-primary text-primary" />
+                            <div className="flex items-center gap-1 sm:gap-1.5 px-1.5 py-0.5 sm:px-2 sm:py-1 bg-secondary rounded-md text-[10px] sm:text-sm font-bold shrink-0">
+                              <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-primary text-primary" />
                               <span>{specialist.rating}</span>
                             </div>
                           )}
                         </div>
 
                         {/* Details Row with Icons */}
-                        <div className="flex flex-col gap-2.5 text-xs text-muted-foreground font-medium pt-2">
+                        <div className="hidden sm:flex flex-col gap-2.5 text-xs text-muted-foreground font-medium pt-2">
                           <div className="flex items-center gap-2">
                             <MapPin className="w-4 h-4 text-primary shrink-0" />
                             <span className="line-clamp-1">{specialist.location || "London, UK"}</span>
@@ -313,19 +339,19 @@ const SpecialistsDirectory = () => {
                         </div>
 
                         {/* Bio snippet */}
-                        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed mt-4">
+                        <p className="hidden sm:block text-sm text-muted-foreground line-clamp-2 leading-relaxed mt-4">
                           {specialist.bio[0]}
                         </p>
                       </div>
 
                       {/* Action buttons */}
-                      <div className="flex flex-col sm:flex-row items-center gap-3 mt-6 pt-5 border-t border-border/50">
-                        <Link to={`/specialists/${specialist.slug}`} className="w-full sm:w-1/2">
-                          <Button variant="outline" className="w-full font-semibold px-4 border-border hover:bg-secondary">
+                      <div className="flex flex-col items-center gap-1.5 sm:gap-3 mt-3 sm:mt-6 pt-3 sm:pt-5 border-t border-border/50">
+                        <Link to={`/specialists/${specialist.slug}`} className="w-full text-center">
+                          <Button variant="outline" className="w-full font-semibold px-2 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-sm h-auto border-border hover:bg-secondary">
                             View Profile
                           </Button>
                         </Link>
-                        <Button className="w-full sm:w-1/2 font-semibold bg-primary hover:bg-primary/90 text-primary-foreground px-4 shadow-sm">
+                        <Button className="w-full font-semibold bg-primary hover:bg-primary/90 text-primary-foreground px-2 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-sm h-auto shadow-sm">
                           Book
                         </Button>
                       </div>
