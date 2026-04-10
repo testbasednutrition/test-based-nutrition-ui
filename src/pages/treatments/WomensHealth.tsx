@@ -72,26 +72,32 @@ const WomensHealth = () => {
              </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
               {/* Lyndsey */}
-              <Link to="/specialists/lyndsey-hopper" className="bg-[#fcfaf7] hover:bg-[#f3eedd] border border-gray-100 p-6 lg:p-8 rounded-[2rem] shadow-sm transition-colors group flex flex-col items-center text-center">
-                 <img src="https://test-basednutrition.com/assets/images/0a4ad164-ccc2-4459-a338-38f4cb2fce4e-1256x1675.jpg" alt="Lyndsey Hopper" className="w-[100px] h-[100px] lg:w-[120px] lg:h-[120px] rounded-full object-cover shadow-sm mb-5 group-hover:scale-105 transition-transform" />
-                 <div className="text-[18px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1.5">Lyndsey Hopper</div>
-                 <div className="text-[14px] font-medium text-gray-500 leading-snug">Wellness Coach</div>
+              <Link to="/specialists/lyndsey-hopper" className="bg-[#fcfaf7] hover:bg-[#f3eedd] border border-gray-100 p-4 lg:p-6 rounded-2xl shadow-sm transition-colors group flex items-center gap-4 lg:gap-5">
+                 <img src="https://test-basednutrition.com/assets/images/0a4ad164-ccc2-4459-a338-38f4cb2fce4e-1256x1675.jpg" alt="Lyndsey Hopper" className="w-[60px] h-[60px] lg:w-[72px] lg:h-[72px] rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform shrink-0" />
+                 <div className="flex-1 min-w-0">
+                    <div className="text-[16px] lg:text-[17px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-0.5 truncate">Lyndsey Hopper</div>
+                    <div className="text-[13px] lg:text-[14px] font-medium text-gray-500 leading-snug truncate">Wellness Coach</div>
+                 </div>
               </Link>
               
               {/* Fiona */}
-              <Link to="/specialists/fiona-pursglove" className="bg-[#fcfaf7] hover:bg-[#f3eedd] border border-gray-100 p-6 lg:p-8 rounded-[2rem] shadow-sm transition-colors group flex flex-col items-center text-center">
-                 <img src="https://test-basednutrition.com/assets/images/fiona-11-1256x837.jpeg" alt="Fiona Pursglove" className="w-[100px] h-[100px] lg:w-[120px] lg:h-[120px] rounded-full object-cover shadow-sm mb-5 group-hover:scale-105 transition-transform" />
-                 <div className="text-[18px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1.5">Fiona Pursglove</div>
-                 <div className="text-[14px] font-medium text-gray-500 leading-snug">Naturopathic Nutritionist</div>
+              <Link to="/specialists/fiona-pursglove" className="bg-[#fcfaf7] hover:bg-[#f3eedd] border border-gray-100 p-4 lg:p-6 rounded-2xl shadow-sm transition-colors group flex items-center gap-4 lg:gap-5">
+                 <img src="https://test-basednutrition.com/assets/images/fiona-11-1256x837.jpeg" alt="Fiona Pursglove" className="w-[60px] h-[60px] lg:w-[72px] lg:h-[72px] rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform shrink-0" />
+                 <div className="flex-1 min-w-0">
+                    <div className="text-[16px] lg:text-[17px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-0.5 truncate">Fiona Pursglove</div>
+                    <div className="text-[13px] lg:text-[14px] font-medium text-gray-500 leading-snug truncate">Naturopathic Nutritionist</div>
+                 </div>
               </Link>
 
               {/* Dr. Emily Chen */}
-              <div className="bg-[#fcfaf7] border border-gray-100 p-6 lg:p-8 rounded-[2rem] shadow-sm flex flex-col items-center text-center cursor-default">
-                 <img src="https://images.unsplash.com/photo-1594824432258-45e04ca9f663?auto=format&fit=crop&q=80&w=200&h=200" alt="Dr. Emily Chen" className="w-[100px] h-[100px] lg:w-[120px] lg:h-[120px] rounded-full object-cover shadow-sm mb-5" />
-                 <div className="text-[18px] font-bold text-[#111827] leading-snug mb-1.5">Dr. Emily Chen</div>
-                 <div className="text-[14px] font-medium text-gray-500 leading-snug">Obstetrician-Gynecologist</div>
+              <div className="bg-[#fcfaf7] border border-gray-100 p-4 lg:p-6 rounded-2xl shadow-sm flex items-center gap-4 lg:gap-5 cursor-default">
+                 <img src="https://images.unsplash.com/photo-1594824432258-45e04ca9f663?auto=format&fit=crop&q=80&w=200&h=200" alt="Dr. Emily Chen" className="w-[60px] h-[60px] lg:w-[72px] lg:h-[72px] rounded-full object-cover shadow-sm shrink-0" />
+                 <div className="flex-1 min-w-0">
+                    <div className="text-[16px] lg:text-[17px] font-bold text-[#111827] leading-snug mb-0.5 truncate">Dr. Emily Chen</div>
+                    <div className="text-[13px] lg:text-[14px] font-medium text-gray-500 leading-snug truncate">Obstetrician-Gynecologist</div>
+                 </div>
               </div>
           </div>
         </div>
