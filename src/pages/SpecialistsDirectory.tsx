@@ -226,30 +226,7 @@ const SpecialistsDirectory = () => {
                 </div>
               </div>
 
-              {/* Experience */}
-              <div className="space-y-4">
-                <h4 className="font-semibold text-sm">Experience</h4>
-                <Slider defaultValue={[15]} max={30} step={1} className="py-4" />
-                <div className="flex items-center justify-between text-xs font-semibold text-muted-foreground">
-                  <span>0 YEARS</span>
-                  <span>30+ YEARS</span>
-                </div>
-              </div>
 
-              {/* Languages */}
-              <div className="space-y-4">
-                <h4 className="font-semibold text-sm">Languages</h4>
-                <Select defaultValue="english">
-                  <SelectTrigger className="w-full bg-background border-border">
-                    <SelectValue placeholder="Select Language" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="english">English</SelectItem>
-                    <SelectItem value="spanish">Spanish</SelectItem>
-                    <SelectItem value="french">French</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
             </aside>
 
             {/* Results Grid */}
