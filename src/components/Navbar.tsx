@@ -329,7 +329,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                       <a href="/specialists" className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:!text-primary focus:!text-primary transition-colors border-b border-primary/20 pb-2 mb-4 block w-full outline-none">Specialists</a>
                     </MenubarItem>
                     <MenubarItem className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
-                      <a href="/clinics" className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:!text-primary focus:!text-primary transition-colors border-b border-primary/20 pb-2 mb-2 block w-full outline-none">Clinics</a>
+                      <a href="/clinics" className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:!text-primary focus:!text-primary transition-colors border-b border-primary/20 pb-2 mb-2 block w-full outline-none">Partner Type</a>
                     </MenubarItem>
                   </MenubarContent>
                 </MenubarMenu>
