@@ -325,11 +325,11 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                     Directory
                   </MenubarTrigger>
                   <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-4 bg-background border border-border rounded-xl shadow-xl flex flex-col">
-                    <MenubarItem className="cursor-pointer p-0" asChild>
-                      <a href="/specialists" className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors border-b border-primary/20 pb-2 mb-4 block w-full outline-none">Specialists</a>
+                    <MenubarItem className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
+                      <a href="/specialists" className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:!text-primary focus:!text-primary transition-colors border-b border-primary/20 pb-2 mb-4 block w-full outline-none">Specialists</a>
                     </MenubarItem>
-                    <MenubarItem className="cursor-pointer p-0" asChild>
-                      <a href="/clinics" className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors border-b border-primary/20 pb-2 mb-2 block w-full outline-none">Clinics</a>
+                    <MenubarItem className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
+                      <a href="/clinics" className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:!text-primary focus:!text-primary transition-colors border-b border-primary/20 pb-2 mb-2 block w-full outline-none">Clinics</a>
                     </MenubarItem>
                   </MenubarContent>
                 </MenubarMenu>
