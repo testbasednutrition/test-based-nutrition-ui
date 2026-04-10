@@ -326,10 +326,10 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                   </MenubarTrigger>
                   <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-2 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-1">
                     <MenubarItem className="cursor-pointer" asChild>
-                      <a href="/specialists" className="text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] text-muted-foreground hover:text-primary focus:text-primary focus:bg-primary/5 transition-colors py-2 px-3 block rounded-md w-full">Specialists</a>
+                      <a href="/specialists" className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-muted-foreground hover:text-primary focus:text-primary focus:bg-primary/5 transition-colors py-2 px-3 block rounded-md w-full">Specialists</a>
                     </MenubarItem>
                     <MenubarItem className="cursor-pointer" asChild>
-                      <a href="/clinics" className="text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] text-muted-foreground hover:text-primary focus:text-primary focus:bg-primary/5 transition-colors py-2 px-3 block rounded-md w-full">Clinics</a>
+                      <a href="/clinics" className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-muted-foreground hover:text-primary focus:text-primary focus:bg-primary/5 transition-colors py-2 px-3 block rounded-md w-full">Clinics</a>
                     </MenubarItem>
                   </MenubarContent>
                 </MenubarMenu>
