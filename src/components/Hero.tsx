@@ -107,7 +107,7 @@ const Hero = () => {
       {/* Trust Bar */}
       <div className="absolute bottom-0 left-0 right-0">
         <div className="bg-background/95 backdrop-blur-sm border-t border-border">
-          <div className="container px-2 sm:px-8 py-3 md:py-4 flex flex-nowrap justify-center gap-3 md:gap-12 text-[10.5px] sm:text-xs md:text-sm text-muted-foreground whitespace-nowrap overflow-x-auto">
+          <div className="w-full px-1 sm:px-8 py-3 md:py-4 flex flex-nowrap justify-center sm:justify-center gap-2 sm:gap-6 md:gap-12 text-[11.5px] min-[390px]:text-[12.5px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-muted-foreground whitespace-nowrap overflow-x-auto">
             <span className="hidden md:flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary" />
               Foundational Testing
