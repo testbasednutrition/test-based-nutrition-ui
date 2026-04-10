@@ -158,7 +158,7 @@ const PartnerLoginModal = ({ children }: { children: React.ReactNode }) => {
       const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       window.location.href = isLocal 
         ? "http://localhost:3000/dashboard" 
-        : "https://partner-hub-git-main-testbasednutritions-projects.vercel.app/dashboard";
+        : "https://partner-hub-jade.vercel.app/dashboard";
     }
   };
 
