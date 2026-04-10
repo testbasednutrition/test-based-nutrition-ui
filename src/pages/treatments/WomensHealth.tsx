@@ -53,7 +53,7 @@ const WomensHealth = () => {
            </div>
            
            {/* Image & Stacked Cards Side */}
-           <div className="w-full lg:w-8/12 xl:w-2/3 flex flex-col lg:flex-row items-center gap-6 lg:gap-8 relative mt-12 lg:mt-0">
+           <div className="w-full lg:w-8/12 xl:w-2/3 flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8 relative mt-12 lg:mt-0">
               
               {/* Primary Background Image */}
               <div className="w-full lg:flex-1 rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-square lg:aspect-auto lg:h-[520px] shadow-sm z-0">
@@ -61,24 +61,31 @@ const WomensHealth = () => {
               </div>
               
               {/* Stacked Cards Container */}
-              <div className="w-[85%] sm:w-[240px] xl:w-[260px] shrink-0 relative z-10 max-lg:-mt-16 bg-[#f8f5eb] rounded-[2rem] p-6 xl:p-8 shadow-sm">
-                 <h4 className="font-playfair text-[24px] xl:text-[28px] font-bold text-[#111827] mb-8 leading-[1.15] tracking-tight">
-                   Women's Health<br/>Specialist Leaders
-                 </h4>
+              <div className="w-[85%] sm:w-[320px] xl:w-[340px] shrink-0 relative z-10 max-lg:-mt-16 bg-[#f8f5eb] rounded-[2rem] p-6 xl:p-10 shadow-sm flex flex-col justify-center">
+                 <div className="mb-10">
+                   <span className="font-playfair text-[#7a2a33] font-bold tracking-widest uppercase text-xs mb-3 block">Women's Health</span>
+                   <h4 className="font-playfair text-[28px] xl:text-[34px] font-bold text-[#111827] leading-[1.1] tracking-tight">
+                     Specialist Leaders
+                   </h4>
+                 </div>
                  
-                 <div className="flex flex-col gap-8">
+                 <div className="flex flex-col gap-6">
                      {/* Lyndsey */}
-                     <Link to="/specialists/lyndsey-hopper" className="group">
-                       <img src="https://test-basednutrition.com/assets/images/0a4ad164-ccc2-4459-a338-38f4cb2fce4e-1256x1675.jpg" alt="Lyndsey Hopper" className="w-full aspect-square rounded-2xl object-cover object-top mb-3.5 shadow-sm group-hover:scale-[1.03] transition-transform" />
-                       <div className="text-[15px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug">Lyndsey Hopper,</div>
-                       <div className="text-[13px] font-medium text-gray-600 leading-snug mt-0.5">Wellness Coach</div>
+                     <Link to="/specialists/lyndsey-hopper" className="group flex items-center gap-4">
+                       <img src="https://test-basednutrition.com/assets/images/0a4ad164-ccc2-4459-a338-38f4cb2fce4e-1256x1675.jpg" alt="Lyndsey Hopper" className="w-[64px] h-[64px] rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform shrink-0" />
+                       <div className="flex-1 min-w-0">
+                          <div className="text-[16px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug truncate">Lyndsey Hopper</div>
+                          <div className="text-[13px] font-medium text-gray-500 leading-snug mt-0.5 truncate">Wellness Coach</div>
+                       </div>
                      </Link>
                      
                      {/* Fiona */}
-                     <Link to="/specialists/fiona-pursglove" className="group">
-                       <img src="https://test-basednutrition.com/assets/images/fiona-11-1256x837.jpeg" alt="Fiona Pursglove" className="w-full aspect-square rounded-2xl object-cover object-center mb-3.5 shadow-sm group-hover:scale-[1.03] transition-transform" />
-                       <div className="text-[15px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug">Fiona Pursglove,</div>
-                       <div className="text-[13px] font-medium text-gray-600 leading-snug mt-0.5">Naturopathic Nutritionist</div>
+                     <Link to="/specialists/fiona-pursglove" className="group flex items-center gap-4">
+                       <img src="https://test-basednutrition.com/assets/images/fiona-11-1256x837.jpeg" alt="Fiona Pursglove" className="w-[64px] h-[64px] rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform shrink-0" />
+                       <div className="flex-1 min-w-0">
+                          <div className="text-[16px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug truncate">Fiona Pursglove</div>
+                          <div className="text-[13px] font-medium text-gray-500 leading-snug mt-0.5 whitespace-normal">Naturopathic Nutritionist</div>
+                       </div>
                      </Link>
                  </div>
               </div>
