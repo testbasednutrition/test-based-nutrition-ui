@@ -131,7 +131,91 @@ interface NavbarProps {
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 
-// Removed inline PartnerLoginModal since we are redirecting directly to the securely hosted Partner Hub Hub login screen.
+const PartnerLoginModal = ({ children }: { children: React.ReactNode }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      toast.error("Please enter both email and password.");
+      return;
+    }
+    
+    setLoading(true);
+    const { error, data } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    setLoading(false);
+
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Successfully authenticated!");
+      
+      // Pass the tokens to the separated partner-hub so it can securely bypass the cross-domain login wall
+      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const baseUrl = isLocal ? "http://localhost:3000" : "https://partner-hub-jade.vercel.app";
+      
+      if (data?.session) {
+        window.location.href = `${baseUrl}/login?access_token=${data.session.access_token}&refresh_token=${data.session.refresh_token}`;
+      } else {
+        window.location.href = `${baseUrl}/login`;
+      }
+    }
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        {children}
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold font-playfair tracking-tight">Partner Portal</DialogTitle>
+          <DialogDescription>
+            Sign in to access marketing assets, manage your profile, and publish news to the Hub.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid gap-2">
+            <Label htmlFor="email">Work Email</Label>
+            <Input 
+              id="email" 
+              type="email" 
+              placeholder="doctor@clinic.com" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="password">Password</Label>
+            <Input 
+              id="password" 
+              type="password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+            />
+          </div>
+        </div>
+        <div className="flex flex-col gap-2 mt-2">
+          <Button 
+            className="w-full font-bold bg-[#1a3646] hover:bg-[#112430]" 
+            onClick={handleLogin}
+            disabled={loading}
+          >
+            {loading ? "Authenticating..." : "Sign In to Dashboard"}
+          </Button>
+          <p className="text-xs text-center text-muted-foreground mt-4">
+            Not a partner yet? <a href="/partner-with-us" className="text-primary hover:underline">Apply here</a>.
+          </p>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
   const navigate = useNavigate();
@@ -269,11 +353,11 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 Partner With Us
               </a>
             </Button>
-            <Button variant="ghost" asChild className={btnGhostClass}>
-              <a href="https://partner-hub-jade.vercel.app/login">
+            <PartnerLoginModal>
+              <Button variant="ghost" className={btnGhostClass}>
                 Sign In
-              </a>
-            </Button>
+              </Button>
+            </PartnerLoginModal>
           </div>
 
           {/* Mobile Toggle */}
@@ -375,11 +459,11 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                   Partner With Us
                 </a>
               </Button>
-              <Button variant="ghost" asChild className="w-full text-muted-foreground hover:text-foreground">
-                <a href="https://partner-hub-jade.vercel.app/login">
+              <PartnerLoginModal>
+                <Button variant="ghost" className="w-full text-muted-foreground hover:text-foreground">
                   Sign In
-                </a>
-              </Button>
+                </Button>
+              </PartnerLoginModal>
             </div>
           </div>
         )}
