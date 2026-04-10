@@ -93,15 +93,34 @@ const SpecialistsDirectory = () => {
 
           {/* Search Bar container */}
           <div className="flex flex-col md:flex-row items-stretch bg-background border border-border rounded-xl shadow-sm overflow-hidden transition-shadow focus-within:shadow-md focus-within:border-primary/20">
-            <SearchField 
-              icon={Search} 
-              label="TBN Pathway" 
-              placeholder="e.g. Hormone Health" 
-            />
+            <div className="flex bg-background items-center gap-3 px-5 py-3 flex-1 min-w-[200px] border-b md:border-b-0 md:border-r border-border hover:bg-secondary/30 transition-colors">
+              <Search className="w-5 h-5 text-muted-foreground" />
+              <div className="flex flex-col w-full gap-0.5">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
+                  TBN Pathway
+                </span>
+                <Select value={activeCategory} onValueChange={(val) => setActiveCategory(val as SpecialistCategory)}>
+                  <SelectTrigger className="h-5 p-0 border-none bg-transparent shadow-none focus:ring-0 text-sm font-semibold px-0 text-foreground text-left">
+                    <SelectValue placeholder="Select Pathway" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="All">All Pathways</SelectItem>
+                    <SelectItem value="Women's Health">Women's Health</SelectItem>
+                    <SelectItem value="Men's Health">Men's Health</SelectItem>
+                    <SelectItem value="Children's Health">Children's Health</SelectItem>
+                    <SelectItem value="Neurodivergence">Neurodivergence</SelectItem>
+                    <SelectItem value="Skin Health">Skin Health</SelectItem>
+                    <SelectItem value="Sports Performance">Sports Performance</SelectItem>
+                    <SelectItem value="Pain, Fatigue & Inflammation">Pain, Fatigue & Inflammation</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            
             <SearchField 
               icon={MapPin} 
               label="Location" 
-              placeholder="City or Zip code" 
+              placeholder="e.g. Essex" 
               value={locationSearch}
               onChange={setLocationSearch}
             />
