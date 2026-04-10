@@ -29,9 +29,9 @@ const WomensHealth = () => {
       <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-8 md:py-16 mb-16">
         
         {/* HERO SECTION - Spans full width of the top container */}
-        <div className="w-full flex flex-col lg:flex-row items-center gap-10 lg:gap-12 xl:gap-16 mb-16 xl:mb-24">
+        <div className="w-full flex flex-col lg:flex-row items-center gap-10 lg:gap-12 mb-16 xl:mb-24">
            {/* Text Side */}
-           <div className="w-full lg:w-5/12 text-center lg:text-left pt-4 xl:pt-8 flex flex-col justify-center">
+           <div className="w-full lg:w-4/12 xl:w-1/3 text-center lg:text-left pt-4 xl:pt-8 flex flex-col justify-center">
               <h3 className="font-playfair text-[#7a2a33] font-bold tracking-widest uppercase text-sm mb-4">Women's Health</h3>
               <h1 className="font-playfair text-5xl md:text-[4rem] xl:text-[4.5rem] font-bold text-gray-900 leading-[1.05] mb-6">
                 Beyond<br />Hormones
@@ -53,7 +53,7 @@ const WomensHealth = () => {
            </div>
            
            {/* Image & Stacked Cards Side */}
-           <div className="w-full lg:w-7/12 flex flex-col lg:flex-row items-center gap-6 xl:gap-8 relative mt-12 lg:mt-0">
+           <div className="w-full lg:w-8/12 xl:w-2/3 flex flex-col lg:flex-row items-center gap-6 lg:gap-10 xl:gap-16 relative mt-12 lg:mt-0 xl:pl-8">
               
               {/* Primary Background Image */}
               <div className="w-full lg:flex-1 rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-square lg:aspect-auto lg:h-[520px] shadow-sm z-0">
@@ -82,15 +82,6 @@ const WomensHealth = () => {
                        <div className="text-[14px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug">Fiona Pursglove,</div>
                        <div className="text-[12px] font-medium text-gray-600 leading-snug mt-0.5">Naturopathic<br/>Nutritionist</div>
                      </Link>
-                   </div>
-
-                   {/* Bottom Row: Emily Chen */}
-                   <div className="flex items-center gap-4 mt-2 group cursor-default">
-                     <img src="https://images.unsplash.com/photo-1594824432258-45e04ca9f663?auto=format&fit=crop&q=80&w=200&h=200" alt="Dr. Emily Chen" className="w-[48px] h-[48px] rounded-[14px] object-cover shadow-sm flex-shrink-0" />
-                     <div>
-                        <div className="text-[14px] font-bold text-[#111827] leading-tight">Dr. Emily Chen,</div>
-                        <div className="text-[12px] font-medium text-gray-600 leading-tight mt-0.5">Obstetrician-Gynecologist</div>
-                     </div>
                    </div>
                  </div>
               </div>
