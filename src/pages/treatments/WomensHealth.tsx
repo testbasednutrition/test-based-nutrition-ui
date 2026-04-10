@@ -95,7 +95,6 @@ const WomensHealth = () => {
 
         {/* EXPLORE YOUR PATHWAY - SUB CATEGORIES GRID */}
         <div className="mb-12 xl:mb-20 bg-white p-8 lg:p-12 rounded-[2.5rem] shadow-sm border border-gray-100 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Leaf className="w-48 h-48 -mr-12 -mt-12"/></div>
           <h2 className="font-playfair text-xl lg:text-2xl font-bold text-center text-gray-900 mb-8 tracking-widest uppercase relative z-10">Explore Your Pathway</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 relative z-10">
             {[
