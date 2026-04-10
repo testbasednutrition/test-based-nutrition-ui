@@ -331,9 +331,6 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                     <MenubarItem className="cursor-pointer" asChild>
                       <a href="/clinics" className="text-sm font-semibold text-muted-foreground hover:text-primary focus:text-primary focus:bg-primary/5 transition-colors py-2 px-3 block rounded-md w-full">Clinics</a>
                     </MenubarItem>
-                    <MenubarItem className="cursor-pointer" asChild>
-                      <a href="/health-clubs" className="text-sm font-semibold text-muted-foreground hover:text-primary focus:text-primary focus:bg-primary/5 transition-colors py-2 px-3 block rounded-md w-full">Health Clubs</a>
-                    </MenubarItem>
                   </MenubarContent>
                 </MenubarMenu>
               </Menubar>
@@ -443,7 +440,6 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 <div className="pl-4 pb-2 flex flex-col gap-3">
                   <a href="/specialists" className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors block" onClick={() => setMobileOpen(false)}>Specialists</a>
                   <a href="/clinics" className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors block" onClick={() => setMobileOpen(false)}>Clinics</a>
-                  <a href="/health-clubs" className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors block" onClick={() => setMobileOpen(false)}>Health Clubs</a>
                 </div>
               )}
 
