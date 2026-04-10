@@ -53,7 +53,7 @@ const WomensHealth = () => {
            </div>
            
            {/* Image & Stacked Cards Side */}
-           <div className="w-full lg:w-8/12 xl:w-2/3 flex flex-col lg:flex-row items-center gap-6 lg:gap-10 xl:gap-16 relative mt-12 lg:mt-0 xl:pl-8">
+           <div className="w-full lg:w-8/12 xl:w-2/3 flex flex-col lg:flex-row items-center gap-6 lg:gap-8 relative mt-12 lg:mt-0">
               
               {/* Primary Background Image */}
               <div className="w-full lg:flex-1 rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-square lg:aspect-auto lg:h-[520px] shadow-sm z-0">
