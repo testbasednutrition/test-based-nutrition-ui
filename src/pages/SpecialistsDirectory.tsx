@@ -72,10 +72,19 @@ const SpecialistsDirectory = () => {
   // Apply a basic filter just for show (only show approved profiles in the grid)
   const approvedSpecialists = specialists.filter(s => s.is_approved !== false);
   const filtered = approvedSpecialists.filter((s) => {
-    const matchesCategory = 
-      activeCategory === "All" || 
-      s.category === activeCategory || 
-      (s.specialization_tags && s.specialization_tags.includes(activeCategory));
+    let matchesCategory = true;
+    
+    if (activeCategory !== "All") {
+      const normalize = (str: string) => str.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const activeNorm = normalize(activeCategory);
+      
+      const catMatch = s.category && normalize(s.category).includes(activeNorm);
+      const tagsMatch = s.specialization_tags && s.specialization_tags.some(tag => 
+        normalize(tag).includes(activeNorm)
+      );
+      
+      matchesCategory = !!(catMatch || tagsMatch);
+    }
       
     const matchesLocation = !locationSearch || 
       (s.location && s.location.toLowerCase().includes(locationSearch.toLowerCase())) ||
