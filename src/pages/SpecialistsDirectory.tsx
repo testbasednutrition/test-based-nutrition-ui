@@ -72,7 +72,11 @@ const SpecialistsDirectory = () => {
   // Apply a basic filter just for show (only show approved profiles in the grid)
   const approvedSpecialists = specialists.filter(s => s.is_approved !== false);
   const filtered = approvedSpecialists.filter((s) => {
-    const matchesCategory = activeCategory === "All" || s.category === activeCategory;
+    const matchesCategory = 
+      activeCategory === "All" || 
+      s.category === activeCategory || 
+      (s.specialization_tags && s.specialization_tags.includes(activeCategory));
+      
     const matchesLocation = !locationSearch || 
       (s.location && s.location.toLowerCase().includes(locationSearch.toLowerCase())) ||
       (s.address && s.address.toLowerCase().includes(locationSearch.toLowerCase()));
