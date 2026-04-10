@@ -337,11 +337,6 @@ const SpecialistsDirectory = () => {
                             <span className="line-clamp-1">{specialist.experience || "10+ Years Exp."}</span>
                           </div>
                         </div>
-
-                        {/* Bio snippet */}
-                        <p className="hidden sm:block text-sm text-muted-foreground line-clamp-2 leading-relaxed mt-4">
-                          {specialist.bio[0]}
-                        </p>
                       </div>
 
                       {/* Action buttons */}
