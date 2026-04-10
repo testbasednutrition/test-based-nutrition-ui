@@ -75,14 +75,24 @@ const SpecialistsDirectory = () => {
     let matchesCategory = true;
     
     if (activeCategory !== "All") {
-      const normalize = (str: string) => str.toLowerCase().replace(/[^a-z0-9]/g, '');
-      const activeNorm = normalize(activeCategory);
+      const pathwayKeywords: Record<string, string[]> = {
+        "Women's Health": ["women", "pregnancy", "postnatal", "perimenopause", "menopause", "hormonal conditions", "fertility & conception", "hormonal skin", "pcos", "endometriosis"],
+        "Men's Health": ["men", "testosterone", "male"],
+        "Children's Health": ["child", "teen", "youth", "puberty", "growth & development", "paediatric"],
+        "Neurodivergence": ["neurodivergen", "adhd", "focus", "brain fog", "cognitive", "autism"],
+        "Skin Health": ["skin", "acne", "collagen", "eczema", "psoriasis"],
+        "Sports Performance": ["performance", "athlete", "competition", "coach", "sport"],
+        "Pain, Fatigue & Inflammation": ["pain", "fatigue", "inflammation", "stress", "burnout", "immunity", "gut health", "metabolic", "weight", "joint"]
+      };
+
+      const keywords = pathwayKeywords[activeCategory] || [activeCategory.toLowerCase()];
       
-      const catMatch = s.category && normalize(s.category).includes(activeNorm);
-      const tagsMatch = s.specialization_tags && s.specialization_tags.some(tag => 
-        normalize(tag).includes(activeNorm)
-      );
+      const tagsMatch = s.specialization_tags && s.specialization_tags.some(tag => {
+        const lowerTag = tag.toLowerCase();
+        return keywords.some(kw => lowerTag.includes(kw));
+      });
       
+      const catMatch = s.category && s.category === activeCategory;
       matchesCategory = !!(catMatch || tagsMatch);
     }
       
