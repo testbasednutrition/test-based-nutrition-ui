@@ -154,10 +154,11 @@ const PartnerLoginModal = ({ children }: { children: React.ReactNode }) => {
     } else {
       toast.success("Successfully authenticated!");
       
-      // Note: Because the Partner Hub is on port 3000 and uses SSR cookies for auth, 
-      // we navigate directly there. If Next.js doesn't pick up the localStorage session, 
-      // the user will gracefully see the 3000 login page to ensure cookies are set.
-      window.location.href = "http://localhost:3000/dashboard";
+      // Dynamically redirect based on where the app is running
+      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      window.location.href = isLocal 
+        ? "http://localhost:3000/dashboard" 
+        : "https://partner-hub-jade.vercel.app/dashboard";
     }
   };
 
