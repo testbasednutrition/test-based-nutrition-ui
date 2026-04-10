@@ -43,10 +43,10 @@ const SearchField = ({
   value?: string;
   onChange?: (val: string) => void;
 }) => (
-  <div className="flex bg-background items-center gap-3 px-4 py-2 flex-1 min-w-[200px] border-r border-border last:border-0">
+  <div className="flex bg-background items-center gap-3 px-5 py-3 flex-1 min-w-[200px] border-b md:border-b-0 md:border-r border-border last:border-0 hover:bg-secondary/30 transition-colors">
     <Icon className="w-5 h-5 text-muted-foreground" />
-    <div className="flex flex-col w-full">
-      <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+    <div className="flex flex-col w-full gap-0.5">
+      <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
         {label}
       </span>
       <input 
@@ -54,7 +54,7 @@ const SearchField = ({
         value={value}
         onChange={(e) => onChange && onChange(e.target.value)}
         placeholder={placeholder} 
-        className="text-sm font-medium bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground/60 w-full"
+        className="text-sm font-semibold bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground/50 w-full p-0 h-5"
       />
     </div>
   </div>
@@ -92,10 +92,10 @@ const SpecialistsDirectory = () => {
           </h1>
 
           {/* Search Bar container */}
-          <div className="flex flex-col md:flex-row items-stretch bg-background border border-border rounded-xl shadow-sm overflow-hidden">
+          <div className="flex flex-col md:flex-row items-stretch bg-background border border-border rounded-xl shadow-sm overflow-hidden transition-shadow focus-within:shadow-md focus-within:border-primary/20">
             <SearchField 
               icon={Search} 
-              label="Condition / Speciality" 
+              label="TBN Pathway" 
               placeholder="e.g. Hormone Health" 
             />
             <SearchField 
@@ -106,29 +106,28 @@ const SpecialistsDirectory = () => {
               onChange={setLocationSearch}
             />
             
-            <div className="flex items-center gap-3 px-4 py-2 flex-1 min-w-[200px]">
+            <div className="flex bg-background items-center gap-3 px-5 py-3 flex-1 min-w-[200px] hover:bg-secondary/30 transition-colors">
               <Video className="w-5 h-5 text-muted-foreground" />
-              <div className="flex flex-col w-full">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+              <div className="flex flex-col w-full gap-0.5">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
                   Consultation Type
                 </span>
-                <Select defaultValue="online-inperson">
-                  <SelectTrigger className="h-auto p-0 border-none bg-transparent shadow-none focus:ring-0 text-sm font-medium px-0">
+                <Select defaultValue="specialist">
+                  <SelectTrigger className="h-5 p-0 border-none bg-transparent shadow-none focus:ring-0 text-sm font-semibold px-0">
                     <SelectValue placeholder="Select type" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="online-inperson">Online & In-person</SelectItem>
-                    <SelectItem value="online-only">Online Only</SelectItem>
-                    <SelectItem value="inperson-only">In-person Only</SelectItem>
+                    <SelectItem value="specialist">Specialist</SelectItem>
+                    <SelectItem value="partner">Partner Business</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
 
-            <div className="p-2 flex items-center bg-background md:border-l md:border-border">
-              <Button className="w-full md:w-auto px-8 py-6 h-auto text-base whitespace-nowrap bg-primary hover:bg-primary/90 text-primary-foreground shadow-md rounded-lg break-keep flex gap-2">
+            <div className="p-2 flex items-center bg-background border-t md:border-t-0 md:border-l md:border-border">
+              <Button className="w-full md:w-auto px-8 py-5 md:py-0 h-full md:h-12 text-[15px] font-bold whitespace-nowrap bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-sm flex gap-2">
                 <Search className="w-4 h-4" />
-                Search Doctors
+                Search
               </Button>
             </div>
           </div>
