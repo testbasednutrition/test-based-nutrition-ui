@@ -131,9 +131,9 @@ const SpecialistsDirectory = () => {
                 <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
                   Consultation Type
                 </span>
-                <Select defaultValue="specialist">
-                  <SelectTrigger className="h-5 p-0 border-none bg-transparent shadow-none focus:ring-0 text-sm font-semibold px-0">
-                    <SelectValue placeholder="Select type" />
+                <Select>
+                  <SelectTrigger className="h-5 p-0 border-none bg-transparent shadow-none focus:ring-0 text-sm font-semibold px-0 text-foreground [&>span:first-child[data-placeholder]]:text-muted-foreground/50 [&>span:first-child[data-placeholder]]:font-medium">
+                    <SelectValue placeholder="Specialist" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="specialist">Specialist</SelectItem>
