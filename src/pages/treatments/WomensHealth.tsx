@@ -62,11 +62,8 @@ const WomensHealth = () => {
 
         {/* WOMEN'S HEALTH SPECIALISTS ROW */}
         <div className="mb-20 xl:mb-24 mt-12 max-w-[1100px] mx-auto px-4 lg:px-0">
-          <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-10 lg:mb-12 text-center sm:text-left gap-4">
+          <div className="mb-10 lg:mb-12 text-center sm:text-left">
              <h2 className="font-playfair text-[15px] lg:text-[16px] text-gray-900 font-bold tracking-[0.2em] uppercase">Women's Health Specialists</h2>
-             <Link to="/specialists" className="text-[#7a2a33] font-bold text-[11px] flex items-center gap-2 hover:opacity-80 transition-opacity uppercase tracking-[0.2em]">
-                View all experts <ArrowRight className="w-4 h-4" />
-             </Link>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0 lg:divide-x divide-[#7a2a33]/20">
