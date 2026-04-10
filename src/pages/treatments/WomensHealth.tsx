@@ -29,7 +29,7 @@ const WomensHealth = () => {
       <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-8 md:py-16 mb-16">
         
         {/* HERO SECTION - Spans full width of the top container */}
-        <div className="w-full flex flex-col lg:flex-row items-center gap-10 lg:gap-16 xl:gap-24 mb-16 xl:mb-24">
+        <div className="w-full flex flex-col lg:flex-row items-center gap-10 lg:gap-12 xl:gap-16 mb-16 xl:mb-24">
            {/* Text Side */}
            <div className="w-full lg:w-5/12 text-center lg:text-left pt-4 xl:pt-8 flex flex-col justify-center">
               <h3 className="font-playfair text-[#7a2a33] font-bold tracking-widest uppercase text-sm mb-4">Women's Health</h3>
@@ -52,9 +52,50 @@ const WomensHealth = () => {
               </div>
            </div>
            
-           {/* Image Side */}
-           <div className="w-full lg:w-7/12 relative rounded-[2rem] overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-[550px] shadow-lg">
-              <img src={heroImg} alt="Women's Health" className="w-full h-full object-cover" />
+           {/* Image & Clinical Leads Side */}
+           <div className="w-full lg:w-7/12 flex flex-col sm:flex-row gap-6 relative">
+              
+              {/* Primary Image (Now smaller, 2/3 width) */}
+              <div className="w-full sm:w-2/3 relative rounded-[2.5rem] overflow-hidden aspect-[4/5] sm:aspect-auto sm:h-[480px] lg:h-[520px] shadow-lg border-4 border-white">
+                 <img src={heroImg} alt="Women's Health" className="w-full h-full object-cover" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+              
+              {/* Clinical Leads Card (1/3 width, floating slightly) */}
+              <div className="w-full sm:w-1/3 flex flex-col justify-end pb-8 sm:pb-12">
+                 <div className="bg-white rounded-[2rem] p-5 lg:p-6 shadow-xl border border-gray-100 sm:-ml-12 relative z-10 hover:shadow-2xl transition-shadow w-[280px] sm:w-auto mx-auto sm:mx-0">
+                    <div className="w-12 h-12 bg-[#7a2a33]/5 rounded-full flex items-center justify-center mb-4 border border-[#7a2a33]/10">
+                      <Stethoscope className="w-6 h-6 text-[#7a2a33]" />
+                    </div>
+                    <span className="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1 block">Clinical Leadership</span>
+                    <h4 className="font-playfair text-[18px] lg:text-[20px] font-bold text-gray-900 mb-5 leading-tight">Women's Health<br/>Specialists</h4>
+                    
+                    <div className="space-y-4">
+                      {/* Leader 1 */}
+                      <Link to="/specialists/lyndsey-hopper" className="flex items-center gap-3 group">
+                        <img src="https://test-basednutrition.com/assets/images/0a4ad164-ccc2-4459-a338-38f4cb2fce4e-1256x1675.jpg" alt="Lyndsey Hopper" className="w-12 h-12 rounded-full object-cover border-2 border-transparent group-hover:border-[#7a2a33] transition-colors shadow-sm" />
+                        <div className="flex-1 min-w-0">
+                           <div className="text-[14px] font-bold text-gray-900 group-hover:text-[#7a2a33] transition-colors leading-tight truncate">Lyndsey Hopper</div>
+                           <div className="text-[12px] font-medium text-gray-500 leading-tight mt-0.5 truncate">Wellness Coach</div>
+                        </div>
+                      </Link>
+                      
+                      {/* Leader 2 */}
+                      <Link to="/specialists/fiona-pursglove" className="flex items-center gap-3 group">
+                        <img src="https://test-basednutrition.com/assets/images/fiona-11-1256x837.jpeg" alt="Fiona Pursglove" className="w-12 h-12 rounded-full object-cover border-2 border-transparent group-hover:border-[#7a2a33] transition-colors shadow-sm" />
+                        <div className="flex-1 min-w-0">
+                           <div className="text-[14px] font-bold text-gray-900 group-hover:text-[#7a2a33] transition-colors leading-tight truncate">Fiona Pursglove</div>
+                           <div className="text-[12px] font-medium text-gray-500 leading-tight mt-0.5 truncate">Naturopathic Nutritionist</div>
+                        </div>
+                      </Link>
+                    </div>
+                    
+                    <Link to="/specialists" className="mt-6 flex items-center gap-2 text-[13px] font-bold text-[#7a2a33] hover:text-[#5c1c24] transition-colors group">
+                      View all experts <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                 </div>
+              </div>
+
            </div>
         </div>
 

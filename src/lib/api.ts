@@ -3,10 +3,8 @@ import { Specialist, SpecialistCategory } from '../data/specialists';
 import { Article, Category, articles as staticArticles } from '../data/newsArticles';
 
 // Helper to generate a URL-friendly slug
-const generateSlug = (firstName: string, lastName: string, id: string) => {
-  const base = `${firstName}-${lastName}`.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  const shortId = id.split('-')[0];
-  return `${base}-${shortId}`;
+const generateSlug = (firstName: string, lastName: string) => {
+  return `${firstName}-${lastName}`.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 };
 
 export async function fetchSpecialists(): Promise<Specialist[]> {
@@ -30,7 +28,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
     };
 
     return {
-      slug: generateSlug(row.first_name, row.last_name, row.id),
+      slug: generateSlug(row.first_name, row.last_name),
       name: `${row.first_name || ''} ${row.last_name || ''}`.trim(),
       role: row.professional_title || '',
       category: (row.primary_category as SpecialistCategory) || 'All',
