@@ -53,17 +53,17 @@ const WomensHealth = () => {
            </div>
            
            {/* Image & Stacked Cards Side */}
-           <div className="w-full lg:w-7/12 flex flex-col lg:flex-row items-center relative mt-12 lg:mt-0">
+           <div className="w-full lg:w-7/12 flex flex-col lg:flex-row items-center gap-6 xl:gap-8 relative mt-12 lg:mt-0">
               
               {/* Primary Background Image */}
-              <div className="w-full lg:w-[65%] xl:w-[70%] rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-square lg:aspect-auto lg:h-[520px] shadow-sm z-0">
+              <div className="w-full lg:flex-1 rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-square lg:aspect-auto lg:h-[520px] shadow-sm z-0">
                  <img src={heroImg} alt="Women's Health" className="w-full h-full object-cover object-[20%_top]" />
               </div>
               
               {/* Stacked Cards Container */}
-              <div className="w-[90%] sm:w-[380px] lg:w-[350px] xl:w-[400px] relative z-10 max-lg:-mt-16 lg:-ml-[15%]">
+              <div className="w-[90%] sm:w-[380px] lg:w-[320px] xl:w-[380px] shrink-0 relative z-10 max-lg:-mt-16">
                  {/* Back Layer (Single solid beige shadow layer) */}
-                 <div className="absolute inset-0 bg-[#e9e3da] rounded-[2.5rem] translate-x-4 lg:translate-x-6 translate-y-4 lg:translate-y-6"></div>
+                 <div className="absolute inset-0 bg-[#e9e3da] rounded-[2.5rem] translate-x-4 lg:translate-x-5 translate-y-4 lg:translate-y-5"></div>
                  
                  {/* Front Card */}
                  <div className="relative bg-[#fcfaf7] rounded-[2.5rem] p-8 lg:p-10 shadow-sm border border-white flex flex-col justify-center">
