@@ -66,28 +66,28 @@ const WomensHealth = () => {
              <h2 className="font-playfair text-[15px] lg:text-[16px] text-gray-900 font-bold tracking-[0.2em] uppercase">Women's Health Specialists</h2>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0 lg:divide-x divide-[#7a2a33]/20">
+          <div className="grid grid-cols-2 gap-4 sm:gap-10 lg:gap-0 divide-x divide-[#7a2a33]/20">
               {/* Lyndsey */}
-              <Link to="/specialists/lyndsey-hopper" className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 lg:gap-8 lg:pr-14">
-                 <div className="w-[140px] xl:w-[150px] shrink-0 aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
+              <Link to="/specialists/lyndsey-hopper" className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 pr-4 sm:pr-6 lg:pr-14">
+                 <div className="w-[90px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
                     <img src="https://test-basednutrition.com/assets/images/0a4ad164-ccc2-4459-a338-38f4cb2fce4e-1256x1675.jpg" alt="Lyndsey Hopper" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
-                 <div className="flex flex-col flex-1 pl-2 sm:pl-0 pt-2 sm:pt-0">
-                   <h3 className="font-playfair text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-2">Lyndsey Hopper</h3>
-                   <div className="font-sans text-[11px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-3">Wellness Coach</div>
-                   <p className="text-gray-600 text-[13px] leading-relaxed max-w-xs">Specialising in preventative performance and establishing transformative, cellular-level health protocols tuned directly to your lifestyle.</p>
+                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
+                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-2">Lyndsey Hopper</h3>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-2 sm:mb-3">Wellness Coach</div>
+                   <p className="text-gray-600 text-[11px] sm:text-[13px] leading-relaxed max-w-xs mx-auto sm:mx-0">Specialising in preventative performance and establishing transformative, cellular-level health protocols tuned directly to your lifestyle.</p>
                  </div>
               </Link>
               
               {/* Fiona */}
-              <Link to="/specialists/fiona-pursglove" className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 lg:gap-8 lg:pl-14">
-                 <div className="w-[140px] xl:w-[150px] shrink-0 aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
+              <Link to="/specialists/fiona-pursglove" className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 pl-4 sm:pl-6 lg:pl-14">
+                 <div className="w-[90px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
                     <img src="https://test-basednutrition.com/assets/images/fiona-11-1256x837.jpeg" alt="Fiona Pursglove" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
-                 <div className="flex flex-col flex-1 pl-2 sm:pl-0 pt-2 sm:pt-0">
-                   <h3 className="font-playfair text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-2">Fiona Pursglove</h3>
-                   <div className="font-sans text-[11px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-3">Naturopathic Nutritionist</div>
-                   <p className="text-gray-600 text-[13px] leading-relaxed max-w-xs">Integrating comprehensive biomarker analysis with bespoke naturopathic therapies to radically rebalance and optimize hormonal health.</p>
+                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
+                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-2">Fiona Pursglove</h3>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-2 sm:mb-3">Naturopathic Nutritionist</div>
+                   <p className="text-gray-600 text-[11px] sm:text-[13px] leading-relaxed max-w-xs mx-auto sm:mx-0">Integrating comprehensive biomarker analysis with bespoke naturopathic therapies to radically rebalance and optimize hormonal health.</p>
                  </div>
               </Link>
           </div>
