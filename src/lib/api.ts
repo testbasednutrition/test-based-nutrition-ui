@@ -1,5 +1,6 @@
 import { supabase } from './supabase';
 import { Specialist, SpecialistCategory } from '../data/specialists';
+import { Article, Category, articles as staticArticles } from '../data/newsArticles';
 
 // Helper to generate a URL-friendly slug
 const generateSlug = (firstName: string, lastName: string, id: string) => {
@@ -57,6 +58,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
       address: row.address,
       clinic_name: row.clinic_name,
       location: row.address, // For simpler filtering based on existing mock logic
+      is_approved: row.is_approved,
 
       // Other properties mapped best-effort
       consultationType: row.consultation_type,
@@ -69,4 +71,72 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
       newsHubContributions: row.news_hub_article_interest,
     };
   });
+}
+
+export async function fetchNewsArticles(): Promise<Article[]> {
+  const { data, error } = await supabase
+    .from('news_articles')
+    .select('*')
+    .order('published_date', { ascending: false });
+
+  if (error || !data || data.length === 0) {
+    if (error) {
+      console.warn('Supabase fetch failed or table missing. Falling back to static news data:', error.message);
+    }
+    return staticArticles;
+  }
+
+  return data.map((row) => ({
+    id: row.id,
+    title: row.title,
+    excerpt: row.excerpt,
+    category: row.category as Category,
+    author: row.author,
+    date: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(row.published_date)),
+    image: row.image,
+    readTime: row.read_time,
+    featured: row.featured,
+    longRead: row.long_read,
+  }));
+}
+
+export async function fetchNewsCategories(): Promise<string[]> {
+  const { data, error } = await supabase
+    .from('news_categories')
+    .select('name')
+    .order('name');
+
+  if (error || !data || data.length === 0) {
+    if (error) console.warn('Supabase fetch failed or categories missing. Falling back to static categories.', error.message);
+    return ["Public Health", "Medical Research", "Biotechnology", "AI & Digital Health", "Pharma & Policy", "Global Health"];
+  }
+
+  return data.map((row) => row.name);
+}
+
+export async function fetchNewsArticleById(id: string): Promise<Article | null> {
+  const { data, error } = await supabase
+    .from('news_articles')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error || !data) {
+    if (error) console.warn('Supabase fetch failed for article. Falling back to static data:', error.message);
+    const staticArticle = staticArticles.find(a => a.id === id);
+    return staticArticle || null;
+  }
+
+  return {
+    id: data.id,
+    title: data.title,
+    excerpt: data.excerpt,
+    category: data.category as Category,
+    author: data.author,
+    date: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(data.published_date)),
+    image: data.image,
+    readTime: data.read_time,
+    featured: data.featured,
+    longRead: data.long_read,
+  };
 }

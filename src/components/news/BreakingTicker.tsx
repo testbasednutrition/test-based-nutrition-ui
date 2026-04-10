@@ -8,7 +8,7 @@ const headlines = [
 ];
 
 const BreakingTicker = () => (
-  <div className="bg-primary text-primary-foreground overflow-hidden">
+  <div className="fixed top-16 md:top-20 left-0 right-0 z-40 bg-primary text-primary-foreground overflow-hidden shadow-md">
     <div className="container flex items-center h-10 gap-3 px-6">
       <span className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider shrink-0">
         <Zap className="w-3.5 h-3.5" /> Breaking

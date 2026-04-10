@@ -3,14 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useQuiz } from "@/components/QuizContext";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const partners = [
-  "/logos/partner_1.png",
-  "/logos/partner_2.png",
-  "/logos/partner_3.png",
-  "/logos/partner_4.png",
-  "/logos/partner_5.png",
-  "/logos/partner_6.png",
-];
+import ClientLogos from "@/components/ClientLogos";
 
 const slides = [
   {
@@ -114,8 +107,8 @@ const Hero = () => {
       {/* Trust Bar */}
       <div className="absolute bottom-0 left-0 right-0">
         <div className="bg-background/95 backdrop-blur-sm border-t border-border">
-          <div className="container py-4 flex flex-wrap justify-center gap-6 md:gap-12 text-sm text-muted-foreground">
-            <span className="flex items-center gap-2">
+          <div className="container px-2 sm:px-8 py-3 md:py-4 flex flex-nowrap justify-center gap-3 md:gap-12 text-[10.5px] sm:text-xs md:text-sm text-muted-foreground whitespace-nowrap overflow-x-auto">
+            <span className="hidden md:flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary" />
               Foundational Testing
             </span>
@@ -123,7 +116,7 @@ const Hero = () => {
               <span className="w-2 h-2 rounded-full bg-primary" />
               Rapid Point-of-Care Testing
             </span>
-            <span className="flex items-center gap-2">
+            <span className="hidden md:flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-primary" />
               Expert-Led Protocols
             </span>
@@ -135,18 +128,7 @@ const Hero = () => {
         </div>
 
         {/* Sliding Partners */}
-        <div className="bg-secondary border-t border-border overflow-hidden">
-          <div className="flex animate-marquee whitespace-nowrap py-6 items-center">
-            {[...partners, ...partners, ...partners, ...partners].map((logoUrl, i) => (
-              <img
-                key={i}
-                src={logoUrl}
-                alt={`Partner Logo ${i}`}
-                className="h-[50px] md:h-[70px] mx-10 md:mx-16 object-contain opacity-100 hover:scale-105 transition-transform mix-blend-multiply cursor-pointer"
-              />
-            ))}
-          </div>
-        </div>
+        <ClientLogos />
       </div>
     </section>
   );

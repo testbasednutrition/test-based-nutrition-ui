@@ -16,6 +16,11 @@ const foundations = [
     title: "Personalised Health Protocols",
     description: "Each programme is built around your unique biology and health goals. Tailored nutrition, lifestyle and supplementation strategies are designed to support preventative care.",
   },
+  {
+    icon: LineChart,
+    title: "Measurable Optimisation",
+    description: "Health optimisation is an ongoing process.\n\nThrough retesting and progress tracking, programmes are refined to support continuous improvements in energy, resilience and long-term wellbeing.",
+  },
 ];
 
 const Pillars = () => {
@@ -41,9 +46,7 @@ const Pillars = () => {
             return (
               <div
                 key={foundation.title}
-                className={`group relative bg-white rounded-2xl p-4 sm:p-6 border border-border shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col ${
-                  i === 0 ? "md:col-span-2 md:max-w-lg md:mx-auto w-full" : ""
-                }`}
+                className="group relative bg-white rounded-2xl p-4 sm:p-6 border border-border shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col"
                 style={{ animationDelay: `${i * 0.15}s` }}
               >
                 {/* Decorative background gradient on hover */}
@@ -55,7 +58,7 @@ const Pillars = () => {
                 
                 <h3 className="text-base sm:text-lg font-bold mb-2 sm:mb-3 text-foreground group-hover:text-primary transition-colors relative z-10 leading-tight">{foundation.title}</h3>
                 
-                <p className="text-muted-foreground text-xs leading-relaxed flex-grow relative z-10">
+                <p className="text-muted-foreground text-xs leading-relaxed flex-grow relative z-10 whitespace-pre-line mt-2">
                   {foundation.description}
                 </p>
               </div>

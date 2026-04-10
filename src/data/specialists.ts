@@ -1,11 +1,12 @@
 export type SpecialistCategory =
   | "All"
-  | "Medical & Clinical"
-  | "Allied Health"
-  | "Functional & Holistic"
-  | "Health & Lifestyle"
-  | "Mental Health"
-  | "Sports Performance";
+  | "Women's Health"
+  | "Men's Health"
+  | "Children's Health"
+  | "Neurodivergence"
+  | "Skin Health"
+  | "Sports Performance"
+  | "Pain, Fatigue & Inflammation";
 
 export interface Testimonial {
   name: string;
@@ -56,16 +57,18 @@ export interface Specialist {
   phone_number?: string;
   address?: string;
   clinic_name?: string;
+  is_approved?: boolean;
 }
 
 export const categories: SpecialistCategory[] = [
   "All",
-  "Medical & Clinical",
-  "Allied Health",
-  "Functional & Holistic",
-  "Health & Lifestyle",
-  "Mental Health",
+  "Women's Health",
+  "Men's Health",
+  "Children's Health",
+  "Neurodivergence",
+  "Skin Health",
   "Sports Performance",
+  "Pain, Fatigue & Inflammation",
 ];
 
 export const specialists: Specialist[] = [
@@ -74,7 +77,7 @@ export const specialists: Specialist[] = [
     slug: "dr-ishtiaq-rehman",
     name: "Dr. Ishtiaq Rehman",
     role: "Consulting Doctor — England FA",
-    category: "Medical & Clinical",
+    category: "Women's Health",
     image: "https://test-basednutrition.com/assets/images/ish4-1256x889.jpeg",
     secondaryImage: "https://test-basednutrition.com/assets/images/ish2-634x434.jpeg",
     bio: [
@@ -134,7 +137,7 @@ export const specialists: Specialist[] = [
     slug: "jayden-blanchard",
     name: "Jayden Blanchard",
     role: "Doctor of Chiropractic — Life Chiropractic Basildon",
-    category: "Medical & Clinical",
+    category: "Pain, Fatigue & Inflammation",
     image: "https://test-basednutrition.com/assets/images/jayden-blanchard-3-1256x1883.jpeg",
     secondaryImage: "https://test-basednutrition.com/assets/images/jayden-blanchard-1-698x1046.jpg",
     bio: [
@@ -166,7 +169,7 @@ export const specialists: Specialist[] = [
     slug: "neil-parsley",
     name: "Neil Parsley",
     role: "Consulting Performance Coach — England FA & Manchester City",
-    category: "Combat Sports",
+    category: "Sports Performance",
     image: "https://test-basednutrition.com/assets/images/optimise-gallery-9-1256x852.jpeg",
     bio: [
       "Neil Parsley is a passionate elite performance coach, having worked with Olympic and professional athletes. He is currently consulting to England FA and Manchester City. Neil also privately trains numerous English Premiership footballers over the last 5 seasons; both in season and abroad on multiple training camps.",
@@ -208,7 +211,7 @@ export const specialists: Specialist[] = [
     slug: "mariusz-domasat",
     name: "Mariusz Domasat",
     role: "Elite Grappling and MMA Coach",
-    category: "Combat Sports",
+    category: "Sports Performance",
     image: "https://test-basednutrition.com/assets/images/mariusz3-1000x1500.jpeg",
     secondaryImage: "https://test-basednutrition.com/assets/images/mariusz1-698x465.jpeg",
     bio: [
@@ -231,7 +234,7 @@ export const specialists: Specialist[] = [
     slug: "sonny-hardy",
     name: "Sonny Hardy",
     role: "Professional Boxer and Youth Coach",
-    category: "Combat Sports",
+    category: "Sports Performance",
     image: "https://test-basednutrition.com/assets/images/sonny-hardy-1256x1256.jpg",
     secondaryImage: "https://test-basednutrition.com/assets/images/sonny-hardy-5-698x740.jpeg",
     bio: [
@@ -252,7 +255,7 @@ export const specialists: Specialist[] = [
     slug: "mike-grundy",
     name: "Mike Grundy",
     role: "UFC Veteran & Commonwealth Games Medalist",
-    category: "Combat Sports",
+    category: "Sports Performance",
     image: "https://test-basednutrition.com/assets/images/mike-grundy-6-1015x1014.jpg",
     secondaryImage: "https://test-basednutrition.com/assets/images/mike-grundy3-477x611.jpg",
     bio: [
@@ -276,7 +279,7 @@ export const specialists: Specialist[] = [
     slug: "ross-pearce",
     name: "Ross Pearce",
     role: "Professional Boxing Coach — RJ's Boxing Gym",
-    category: "Combat Sports",
+    category: "Sports Performance",
     image: "https://test-basednutrition.com/assets/images/ross-pearce-4-1200x1500.jpg",
     secondaryImage: "https://test-basednutrition.com/assets/images/ross-pearce-3-698x873.jpg",
     bio: [
@@ -299,7 +302,7 @@ export const specialists: Specialist[] = [
     slug: "lyndsey-hopper",
     name: "Lyndsey Hopper",
     role: "Personal Trainer & Online Wellness Coach — David Lloyd",
-    category: "Fitness & Coaching",
+    category: "Women's Health",
     image: "https://test-basednutrition.com/assets/images/0a4ad164-ccc2-4459-a338-38f4cb2fce4e-1256x1675.jpg",
     secondaryImage: "https://test-basednutrition.com/assets/images/133eeab8-4ba2-4af3-932c-258cc70b76521-698x931.jpg",
     bio: [
@@ -321,7 +324,7 @@ export const specialists: Specialist[] = [
     slug: "william-todd",
     name: "William Todd",
     role: "Strength & Conditioning Coach and Tennis Coach",
-    category: "Fitness & Coaching",
+    category: "Sports Performance",
     image: "https://test-basednutrition.com/assets/images/william-todd-2-1256x1256.jpg",
     secondaryImage: "https://test-basednutrition.com/assets/images/william-todd-4-698x688.jpg",
     bio: [
@@ -345,7 +348,7 @@ export const specialists: Specialist[] = [
     slug: "trevor-ford",
     name: "Trevor Ford",
     role: "Senior Personal Trainer & Nutrition Specialist",
-    category: "Fitness & Coaching",
+    category: "Men's Health",
     image: "https://test-basednutrition.com/assets/images/trevor-ford-1-1125x1500.jpg",
     secondaryImage: "https://test-basednutrition.com/assets/images/trevor-ford-3-698x465.jpeg",
     bio: [
@@ -371,7 +374,7 @@ export const specialists: Specialist[] = [
     slug: "kia-porter",
     name: "Kia Porter",
     role: "Holistic Health Specialist & Naturopathic Health Coach",
-    category: "Health & Wellness",
+    category: "Pain, Fatigue & Inflammation",
     image: "https://test-basednutrition.com/assets/images/kia-1-1125x1500.jpeg",
     secondaryImage: "https://test-basednutrition.com/assets/images/kia-6-698x937.jpg",
     bio: [
@@ -392,7 +395,7 @@ export const specialists: Specialist[] = [
     slug: "sally-butler",
     name: "Sally Butler",
     role: "Nutritional Intolerance & Emotional Well-being Practitioner",
-    category: "Health & Wellness",
+    category: "Children's Health",
     image: "https://test-basednutrition.com/assets/images/dsc07409-1256x837.jpeg",
     secondaryImage: "https://test-basednutrition.com/assets/images/the-mint-heart-logo-698x1047.jpg",
     bio: [
@@ -414,7 +417,7 @@ export const specialists: Specialist[] = [
     slug: "fiona-pursglove",
     name: "Fiona Pursglove",
     role: "Naturopathic Nutritionist — FigTree Nutrition & Health",
-    category: "Health & Wellness",
+    category: "Women's Health",
     image: "https://test-basednutrition.com/assets/images/fiona-11-1256x837.jpeg",
     secondaryImage: "https://test-basednutrition.com/assets/images/fiona-9-698x698.jpg",
     bio: [
@@ -437,7 +440,7 @@ export const specialists: Specialist[] = [
     slug: "kimberly-whittall",
     name: "Kimberly Whittall",
     role: "Rapid Transformation Therapy & Mindset Expert",
-    category: "Health & Wellness",
+    category: "Neurodivergence",
     image: "https://test-basednutrition.com/assets/images/kimberly-whittall-malloch-1-1066x1600.jpeg",
     secondaryImage: "https://test-basednutrition.com/assets/images/kimberly-whittall-malloch-4-698x1048.jpg",
     bio: [
@@ -459,7 +462,7 @@ export const specialists: Specialist[] = [
     slug: "emily-holland",
     name: "Emily Holland",
     role: "Gut and Skin Health Specialist",
-    category: "Health & Wellness",
+    category: "Skin Health",
     image: "https://test-basednutrition.com/assets/images/612056a2-c50b-4e85-9b8d-4639e40f9106-1256x942.jpeg",
     secondaryImage: "https://test-basednutrition.com/assets/images/7153dd7b-7bb7-47be-b82d-864b5c1a68831-698x386.jpeg",
     bio: [

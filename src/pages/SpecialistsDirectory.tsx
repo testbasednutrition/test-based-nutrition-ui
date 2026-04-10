@@ -33,11 +33,15 @@ import { Label } from "@/components/ui/label";
 const SearchField = ({ 
   icon: Icon, 
   label, 
-  placeholder 
+  placeholder,
+  value,
+  onChange
 }: { 
   icon: LucideIcon; 
   label: string; 
   placeholder: string;
+  value?: string;
+  onChange?: (val: string) => void;
 }) => (
   <div className="flex bg-background items-center gap-3 px-4 py-2 flex-1 min-w-[200px] border-r border-border last:border-0">
     <Icon className="w-5 h-5 text-muted-foreground" />
@@ -47,6 +51,8 @@ const SearchField = ({
       </span>
       <input 
         type="text" 
+        value={value}
+        onChange={(e) => onChange && onChange(e.target.value)}
         placeholder={placeholder} 
         className="text-sm font-medium bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground/60 w-full"
       />
@@ -56,17 +62,23 @@ const SearchField = ({
 
 const SpecialistsDirectory = () => {
   const [activeCategory, setActiveCategory] = useState<SpecialistCategory>("All");
+  const [locationSearch, setLocationSearch] = useState("");
   
   const { data: specialists = [], isLoading, error } = useQuery({
     queryKey: ['specialists'],
     queryFn: fetchSpecialists
   });
 
-  // Apply a basic filter just for show
-  const filtered =
-    activeCategory === "All"
-      ? specialists
-      : specialists.filter((s) => s.category === activeCategory);
+  // Apply a basic filter just for show (only show approved profiles in the grid)
+  const approvedSpecialists = specialists.filter(s => s.is_approved !== false);
+  const filtered = approvedSpecialists.filter((s) => {
+    const matchesCategory = activeCategory === "All" || s.category === activeCategory;
+    const matchesLocation = !locationSearch || 
+      (s.location && s.location.toLowerCase().includes(locationSearch.toLowerCase())) ||
+      (s.address && s.address.toLowerCase().includes(locationSearch.toLowerCase()));
+    
+    return matchesCategory && matchesLocation;
+  });
 
   return (
     <div className="min-h-screen bg-secondary/30 font-sans">
@@ -90,6 +102,8 @@ const SpecialistsDirectory = () => {
               icon={MapPin} 
               label="Location" 
               placeholder="City or Zip code" 
+              value={locationSearch}
+              onChange={setLocationSearch}
             />
             
             <div className="flex items-center gap-3 px-4 py-2 flex-1 min-w-[200px]">
@@ -135,24 +149,44 @@ const SpecialistsDirectory = () => {
                 </button>
               </div>
 
-              {/* Specialisation filter */}
+              {/* TBN Pathways filter */}
               <div className="space-y-4">
-                <h4 className="font-semibold text-sm">Specialisation</h4>
+                <h4 className="font-semibold text-sm">TBN Pathways</h4>
                 <div className="space-y-3">
                   {[
-                    "Functional Medicine", 
-                    "Nutritional Therapy", 
-                    "Hormone Health", 
-                    "Gut Health"
+                    "All",
+                    "Women's Health", 
+                    "Men's Health", 
+                    "Children's Health", 
+                    "Neurodivergence",
+                    "Skin Health",
+                    "Sports Performance",
+                    "Pain, Fatigue & Inflammation"
                   ].map((spec) => (
                     <div className="flex items-center space-x-3" key={spec}>
-                      <Checkbox id={`spec-${spec}`} className="rounded border-border data-[state=checked]:bg-primary data-[state=checked]:text-white" />
+                      <Checkbox 
+                        id={`spec-${spec}`} 
+                        className="rounded border-border data-[state=checked]:bg-primary data-[state=checked]:text-white" 
+                        checked={activeCategory === spec}
+                        onCheckedChange={() => setActiveCategory(spec as SpecialistCategory)}
+                      />
                       <Label htmlFor={`spec-${spec}`} className="text-sm font-normal text-muted-foreground cursor-pointer">
                         {spec}
                       </Label>
                     </div>
                   ))}
                 </div>
+              </div>
+
+              {/* Location filter */}
+              <div className="space-y-4">
+                <h4 className="font-semibold text-sm">Location</h4>
+                <Input 
+                  placeholder="Enter city or region" 
+                  className="bg-background border-border text-sm h-10" 
+                  value={locationSearch}
+                  onChange={(e) => setLocationSearch(e.target.value)}
+                />
               </div>
 
               {/* Testing Expertise */}

@@ -1,19 +1,18 @@
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import type { Category } from "@/data/newsArticles";
-import { categories } from "@/data/newsArticles";
 
 interface Props {
-  active: Category | "All";
-  onCategoryChange: (c: Category | "All") => void;
+  categories: string[];
+  active: string;
+  onCategoryChange: (c: string) => void;
   search: string;
   onSearchChange: (s: string) => void;
 }
 
-const CategoryFilter = ({ active, onCategoryChange, search, onSearchChange }: Props) => (
+const CategoryFilter = ({ categories, active, onCategoryChange, search, onSearchChange }: Props) => (
   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
     <div className="flex flex-wrap gap-2">
-      {(["All", ...categories] as const).map((c) => (
+      {["All", ...categories].map((c) => (
         <button
           key={c}
           onClick={() => onCategoryChange(c)}

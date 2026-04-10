@@ -9,6 +9,16 @@ import {
   MenubarMenu,
   MenubarTrigger,
 } from "@/components/ui/menubar";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 const treatmentRoutes: Record<string, string> = {
   // Women's Health
   "Puberty & Teen Hormones": "/treatments/womens-health",
@@ -60,44 +70,147 @@ const treatmentRoutes: Record<string, string> = {
   "Event & Competition Preparation": "/treatments/mens-health",
   "Coaches & Performance Teams": "/treatments/mens-health",
   "Peak Performance & Longevity": "/treatments/anti-ageing",
+
+  // Pain, Fatigue & Inflammation
+  "Chronic Pain & Fatigue": "/treatments/pain-fatigue",
+  "Hormonal Pain & Inflammation": "/treatments/pain-fatigue",
+  "Arthritis, Joint Pain & Stiffness": "/treatments/pain-fatigue",
+  "Injury, Recovery & Ongoing Pain": "/treatments/pain-fatigue",
+  "Surgery Preparation & Recovery": "/treatments/pain-fatigue",
+  "Gut Health & Inflammation": "/treatments/pain-fatigue",
 };
 
 const megaMenuData = [
   { 
     heading: "Women's Health", 
+    href: "/treatments/womens-health",
     items: ["Puberty & Teen Hormones", "Fertility & Conception", "Pregnancy & Postnatal Health", "Perimenopause & Menopause", "Hormonal Conditions", "Mood, Brain Fog & Burnout", "Weight Loss & Metabolic Support", "Gut Health Issues"] 
   },
   { 
     heading: "Men's Health", 
+    href: "/treatments/mens-health",
     items: ["Teen & Young Men's Hormones", "Testosterone & Hormonal Health", "Male Fertility", "Weight Loss & Metabolic Health", "Stress, Mood & Burnout", "Healthy Ageing for Men", "Gut Health Issues"] 
   },
   { 
     heading: "Children's Health", 
+    href: "/treatments/childrens-health",
     items: ["Early Childhood Development", "Gut Health in Children", "Neurodivergent Children (ADHD & Focus)", "Immunity, Growth & Development", "Teen Health & Hormones", "Emotional Wellbeing & Behaviour"] 
   },
   { 
     heading: "Neurodivergence", 
+    href: "/treatments/neurodivergence",
     items: ["ADHD in Children", "Neurodivergent Teens", "ADHD in Women", "ADHD in Adults", "Focus, Brain Fog & Cognitive Health", "Gut Health & Neurodivergence"] 
   },
   { 
     heading: "Skin Health", 
+    href: "/treatments/skin-health",
     items: ["Acne & Teen Skin", "Hormonal Skin", "Chronic Skin Conditions", "Skin & Gut Health", "Skin Ageing & Collagen Health", "Perimenopause Skin"] 
   },
   { 
     heading: "Sports Performance", 
+    href: "/treatments/sports-performance",
     items: ["Youth Performance", "Athletes (Amateur to Elite)", "Event & Competition Preparation", "Coaches & Performance Teams", "Peak Performance & Longevity"] 
+  },
+  {
+    heading: "Pain, Fatigue & Inflammation",
+    href: "/treatments/pain-fatigue",
+    items: ["Chronic Pain & Fatigue", "Hormonal Pain & Inflammation", "Arthritis, Joint Pain & Stiffness", "Injury, Recovery & Ongoing Pain", "Surgery Preparation & Recovery", "Gut Health & Inflammation"]
   },
 ];
 
 const navLinks = [
   { label: "Testing", href: "#" },
-  { label: "TBN Method", href: "#how-it-works" },
+  { label: "TBN Method", href: "/#how-it-works" },
   { label: "News", href: "/news" },
 ];
 
 interface NavbarProps {
   alwaysSolid?: boolean;
 }
+
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
+
+const PartnerLoginModal = ({ children }: { children: React.ReactNode }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      toast.error("Please enter both email and password.");
+      return;
+    }
+    
+    setLoading(true);
+    const { error, data } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    setLoading(false);
+
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Successfully authenticated!");
+      
+      // Note: Because the Partner Hub is on port 3000 and uses SSR cookies for auth, 
+      // we navigate directly there. If Next.js doesn't pick up the localStorage session, 
+      // the user will gracefully see the 3000 login page to ensure cookies are set.
+      window.location.href = "http://localhost:3000/dashboard";
+    }
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        {children}
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold font-playfair tracking-tight">Partner Portal</DialogTitle>
+          <DialogDescription>
+            Sign in to access marketing assets, manage your profile, and publish news to the Hub.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid gap-2">
+            <Label htmlFor="email">Work Email</Label>
+            <Input 
+              id="email" 
+              type="email" 
+              placeholder="doctor@clinic.com" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="password">Password</Label>
+            <Input 
+              id="password" 
+              type="password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+            />
+          </div>
+        </div>
+        <div className="flex flex-col gap-2 mt-2">
+          <Button 
+            className="w-full font-bold bg-[#1a3646] hover:bg-[#112430]" 
+            onClick={handleLogin}
+            disabled={loading}
+          >
+            {loading ? "Authenticating..." : "Sign In to Dashboard"}
+          </Button>
+          <p className="text-xs text-center text-muted-foreground mt-4">
+            Not a partner yet? <a href="/partner-with-us" className="text-primary hover:underline">Apply here</a>.
+          </p>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
   const navigate = useNavigate();
@@ -145,13 +258,22 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 <MenubarTrigger className={triggerClass}>
                   TBN Pathways
                 </MenubarTrigger>
-                <MenubarContent align="start" alignOffset={-120} sideOffset={24} className="p-6 md:p-8 w-[95vw] max-w-[1200px] max-h-[85vh] overflow-y-auto shadow-2xl bg-background border border-border rounded-xl">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 xl:gap-8">
+                <MenubarContent align="start" alignOffset={-250} sideOffset={24} className="p-6 md:p-8 w-[98vw] max-w-[1400px] max-h-[85vh] overflow-y-auto shadow-2xl bg-background border border-border rounded-xl">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 xl:gap-6">
                     {megaMenuData.map((col) => (
                       <div key={col.heading} className="flex flex-col">
-                        <h4 className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground border-b border-primary/20 pb-2 mb-4">
-                          {col.heading}
-                        </h4>
+                        {col.href ? (
+                          <a 
+                            href={col.href} 
+                            className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors border-b border-primary/20 pb-2 mb-4 block w-full outline-none"
+                          >
+                            {col.heading}
+                          </a>
+                        ) : (
+                          <h4 className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground border-b border-primary/20 pb-2 mb-4">
+                            {col.heading}
+                          </h4>
+                        )}
                         <div className="flex flex-col gap-2.5">
                           {col.items.length > 0 ? (
                             col.items.map((item) => (
@@ -226,9 +348,11 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 Partner With Us
               </a>
             </Button>
-            <Button variant="ghost" asChild className={btnGhostClass}>
-              <a href="/partner-sign-in">Sign In</a>
-            </Button>
+            <PartnerLoginModal>
+              <Button variant="ghost" className={btnGhostClass}>
+                Sign In
+              </Button>
+            </PartnerLoginModal>
           </div>
 
           {/* Mobile Toggle */}
@@ -330,9 +454,11 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                   Partner With Us
                 </a>
               </Button>
-              <Button variant="ghost" asChild className="w-full text-muted-foreground hover:text-foreground">
-                <a href="/partner-sign-in">Sign In</a>
-              </Button>
+              <PartnerLoginModal>
+                <Button variant="ghost" className="w-full text-muted-foreground hover:text-foreground">
+                  Sign In
+                </Button>
+              </PartnerLoginModal>
             </div>
           </div>
         )}

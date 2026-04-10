@@ -45,7 +45,7 @@ const servicesData: Gallery4Props = {
       id: "sports-performance",
       title: "Sports Performance",
       description: "Science-led nutrition programmes designed to optimise energy, recovery and athletic performance.",
-      href: "/specialists",
+      href: "/treatments/sports-performance",
       image: "/services/sports-performance-v2.jpg",
     },
   ],

@@ -1,9 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import type { Article } from "@/data/newsArticles";
 import { getArticleImage } from "@/components/news/newsImages";
+import { Link } from "react-router-dom";
 
-const ArticleCard = ({ title, excerpt, category, author, date, image, readTime }: Article) => (
-  <article className="group cursor-pointer">
+const ArticleCard = ({ id, title, excerpt, category, author, date, image, readTime }: Article) => (
+  <Link to={`/news/${id}`} className="block group cursor-pointer h-full">
+    <article className="h-full flex flex-col">
     <div className="rounded-lg overflow-hidden mb-4 aspect-[3/2]">
       <img
         src={getArticleImage(image)}
@@ -18,7 +20,7 @@ const ArticleCard = ({ title, excerpt, category, author, date, image, readTime }
     <h3 className="font-bold text-lg leading-snug mb-2 group-hover:text-primary transition-colors line-clamp-2">
       {title}
     </h3>
-    <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{excerpt}</p>
+    <div className="text-sm text-muted-foreground line-clamp-2 mb-3" dangerouslySetInnerHTML={{ __html: excerpt }} />
     <div className="flex items-center gap-2 text-xs text-muted-foreground">
       <span className="font-medium text-foreground">{author}</span>
       <span>·</span>
@@ -26,7 +28,8 @@ const ArticleCard = ({ title, excerpt, category, author, date, image, readTime }
       <span>·</span>
       <span>{readTime}</span>
     </div>
-  </article>
+    </article>
+  </Link>
 );
 
 export default ArticleCard;

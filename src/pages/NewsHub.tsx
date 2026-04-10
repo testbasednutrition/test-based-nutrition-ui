@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import NewsNavbar from "@/components/news/NewsNavbar";
+import { useState, useMemo, useEffect } from "react";
+import Navbar from "@/components/Navbar";
 import BreakingTicker from "@/components/news/BreakingTicker";
 import NewsHero from "@/components/news/NewsHero";
 import CategoryFilter from "@/components/news/CategoryFilter";
@@ -7,14 +7,36 @@ import ArticleCard from "@/components/news/ArticleCard";
 import FeaturedInsights from "@/components/news/FeaturedInsights";
 import NewsletterSignup from "@/components/news/NewsletterSignup";
 import Footer from "@/components/Footer";
-import { articles, type Category } from "@/data/newsArticles";
+import { type Article } from "@/data/newsArticles";
+import { fetchNewsArticles, fetchNewsCategories } from "@/lib/api";
 
 const NewsHub = () => {
-  const [activeCategory, setActiveCategory] = useState<Category | "All">("All");
+  const [activeCategory, setActiveCategory] = useState<string>("All");
   const [search, setSearch] = useState("");
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const featured = articles.find((a) => a.featured)!;
-  const trending = articles.filter((a) => !a.featured).slice(0, 4);
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const [arts, cats] = await Promise.all([
+          fetchNewsArticles(),
+          fetchNewsCategories()
+        ]);
+        setArticles(arts);
+        setCategories(cats);
+      } catch (error) {
+        console.error("Failed to load data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
+
+  const featured = articles.find((a) => a.featured) || articles[0];
+  const trending = articles.filter((a) => !a.featured && a.id !== featured?.id).slice(0, 4);
   const longReads = articles.filter((a) => a.longRead);
 
   const filtered = useMemo(() => {
@@ -30,11 +52,29 @@ const NewsHub = () => {
       );
     }
     return result;
-  }, [activeCategory, search]);
+  }, [activeCategory, search, articles]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center">
+        <Navbar alwaysSolid />
+        <div className="animate-pulse text-muted-foreground mt-20">Loading news...</div>
+      </div>
+    );
+  }
+
+  if (!articles.length) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center">
+        <Navbar alwaysSolid />
+        <div className="text-muted-foreground mt-20">No articles available.</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
-      <NewsNavbar />
+      <Navbar alwaysSolid />
       <BreakingTicker />
       <NewsHero featured={featured} trending={trending} />
 
@@ -43,6 +83,7 @@ const NewsHub = () => {
         <div className="container px-6">
           <h2 className="text-2xl md:text-3xl font-bold mb-8">Latest Articles</h2>
           <CategoryFilter
+            categories={categories}
             active={activeCategory}
             onCategoryChange={setActiveCategory}
             search={search}

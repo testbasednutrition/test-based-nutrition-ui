@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import type { Article } from "@/data/newsArticles";
 import { getArticleImage } from "@/components/news/newsImages";
+import { Link } from "react-router-dom";
 
 interface Props {
   featured: Article;
@@ -10,7 +11,7 @@ interface Props {
 }
 
 const NewsHero = ({ featured, trending }: Props) => (
-  <section className="pt-24 pb-12 md:pt-32 md:pb-16">
+  <section className="pt-32 pb-12 md:pt-40 md:pb-16">
     <div className="container px-6">
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Main featured */}
@@ -31,11 +32,9 @@ const NewsHero = ({ featured, trending }: Props) => (
             <h1 className="text-2xl md:text-4xl font-bold text-background leading-tight mb-3">
               {featured.title}
             </h1>
-            <p className="text-background/80 text-sm md:text-base max-w-2xl mb-4 line-clamp-2">
-              {featured.excerpt}
-            </p>
-            <Button size="sm" className="gap-2">
-              Read Full Story <ArrowRight className="w-4 h-4" />
+            <div className="text-background/80 text-sm md:text-base max-w-2xl mb-4 line-clamp-2" dangerouslySetInnerHTML={{ __html: featured.excerpt }} />
+            <Button size="sm" className="gap-2" asChild>
+              <Link to={`/news/${featured.id}`}>Read Full Story <ArrowRight className="w-4 h-4" /></Link>
             </Button>
           </div>
         </div>

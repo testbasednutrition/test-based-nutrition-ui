@@ -15,12 +15,16 @@ import ClinicProfile from "./pages/ClinicProfile";
 import AreaProfile from "./pages/AreaProfile";
 import NotFound from "./pages/NotFound";
 import NewsHub from "./pages/NewsHub";
+import NewsArticle from "./pages/NewsArticle";
 import MensHealth from "./pages/treatments/MensHealth";
 import WomensHealth from "./pages/treatments/WomensHealth";
 import ChildrensHealth from "./pages/treatments/ChildrensHealth";
 import SkinHealth from "./pages/treatments/SkinHealth";
 import AntiAgeing from "./pages/treatments/AntiAgeing";
 import Fertility from "./pages/treatments/Fertility";
+import Neurodivergence from "./pages/treatments/Neurodivergence";
+import SportsPerformance from "./pages/treatments/SportsPerformance";
+import PainFatigue from "./pages/treatments/PainFatigue";
 import PartnerWithUs from "./pages/PartnerWithUs";
 
 const queryClient = new QueryClient();
@@ -46,9 +50,13 @@ const App = () => (
             <Route path="/treatments/womens-health" element={<WomensHealth />} />
             <Route path="/treatments/childrens-health" element={<ChildrensHealth />} />
             <Route path="/treatments/skin-health" element={<SkinHealth />} />
+            <Route path="/treatments/neurodivergence" element={<Neurodivergence />} />
+            <Route path="/treatments/sports-performance" element={<SportsPerformance />} />
+            <Route path="/treatments/pain-fatigue" element={<PainFatigue />} />
             <Route path="/treatments/anti-ageing" element={<AntiAgeing />} />
             <Route path="/treatments/fertility" element={<Fertility />} />
             <Route path="/news" element={<NewsHub />} />
+            <Route path="/news/:id" element={<NewsArticle />} />
             <Route path="/partner-with-us" element={<PartnerWithUs />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

@@ -68,7 +68,15 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border mt-12 pt-8 flex flex-col items-center justify-center gap-4">
-          <p className="text-xs text-muted-foreground">
+          
+          <div className="max-w-5xl w-full text-center px-4">
+            <p className="text-[11px] text-muted-foreground leading-relaxed">
+              <span className="font-bold text-foreground uppercase tracking-widest mr-1">Disclaimer:</span>
+              This service provides wellness screening and educational insight. It does not diagnose, treat or replace medical or sports medicine advice. Any information provided is for general wellbeing purposes only and should be discussed with a qualified healthcare professional where appropriate.
+            </p>
+          </div>
+
+          <p className="text-[11px] text-muted-foreground font-medium">
             © 2026 Test-Based Nutrition. All rights reserved.
           </p>
         </div>

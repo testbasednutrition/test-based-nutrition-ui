@@ -43,7 +43,6 @@ const Index = () => {
         title1="Undecided how we can Help?"
         title2="Click the Personal Protocol Quiz"
       />
-      <ClientLogos />
       <Footer />
     </div>
   );
