@@ -108,9 +108,8 @@ const WomensHealth = () => {
               "Weight & Metabolic Health",
               "Gut Health"
             ].map((item, idx) => (
-              <Link key={idx} to="/treatments" className="bg-[#fcfaf7] hover:bg-white px-4 py-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center justify-center lg:justify-start gap-3 text-center lg:text-left group">
-                <div className="w-2 h-2 rounded-full bg-[#d0bfae] group-hover:bg-[#7a2a33] transition-colors shrink-0"></div>
-                <span className="font-bold text-[13px] md:text-[14px] text-gray-800 leading-tight">{item}</span>
+              <Link key={idx} to="/treatments" className="bg-[#fcfaf7] hover:bg-[#7a2a33]/5 px-4 py-4 rounded-xl border border-[#7a2a33]/20 hover:border-[#7a2a33]/40 shadow-sm transition-colors flex items-center justify-center text-center group">
+                <span className="font-semibold text-[13px] md:text-[14px] text-gray-800 leading-tight">{item}</span>
               </Link>
             ))}
           </div>
