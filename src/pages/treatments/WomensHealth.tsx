@@ -61,22 +61,23 @@ const WomensHealth = () => {
         </div>
 
         {/* WOMEN'S HEALTH SPECIALISTS ROW */}
-        <div className="mb-20 xl:mb-24 mt-12">
-          <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-10 lg:mb-14 text-center sm:text-left gap-4">
+        <div className="mb-20 xl:mb-24 mt-12 max-w-4xl mx-auto px-4 sm:px-0">
+          <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-10 lg:mb-12 text-center sm:text-left gap-4">
              <h2 className="font-playfair text-[15px] lg:text-[16px] text-gray-900 font-bold tracking-[0.2em] uppercase">Women's Health Specialists</h2>
              <Link to="/specialists" className="text-[#7a2a33] font-bold text-[11px] flex items-center gap-2 hover:opacity-80 transition-opacity uppercase tracking-[0.2em]">
                 View all experts <ArrowRight className="w-4 h-4" />
              </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 xl:gap-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14">
               {/* Lyndsey */}
               <Link to="/specialists/lyndsey-hopper" className="group flex flex-col items-center sm:items-start text-center sm:text-left">
                  <div className="w-full aspect-square overflow-hidden mb-6 lg:mb-8 rounded-[2px] shadow-sm border border-gray-100/50">
                     <img src="https://test-basednutrition.com/assets/images/0a4ad164-ccc2-4459-a338-38f4cb2fce4e-1256x1675.jpg" alt="Lyndsey Hopper" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
-                 <h3 className="font-playfair text-[28px] lg:text-[34px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-3">Lyndsey Hopper</h3>
-                 <div className="font-sans text-[12px] lg:text-[13px] font-semibold text-gray-500 uppercase tracking-widest">Wellness Coach</div>
+                 <h3 className="font-playfair text-[24px] lg:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-3">Lyndsey Hopper</h3>
+                 <div className="font-sans text-[11px] lg:text-[12px] font-semibold text-gray-500 uppercase tracking-widest mb-4">Wellness Coach</div>
+                 <p className="text-gray-600 text-[14px] leading-relaxed max-w-sm">Specialising in preventative performance and establishing transformative, cellular-level health protocols tuned exactly to your lifestyle.</p>
               </Link>
               
               {/* Fiona */}
@@ -84,8 +85,9 @@ const WomensHealth = () => {
                  <div className="w-full aspect-square overflow-hidden mb-6 lg:mb-8 rounded-[2px] shadow-sm border border-gray-100/50">
                     <img src="https://test-basednutrition.com/assets/images/fiona-11-1256x837.jpeg" alt="Fiona Pursglove" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
-                 <h3 className="font-playfair text-[28px] lg:text-[34px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-3">Fiona Pursglove</h3>
-                 <div className="font-sans text-[12px] lg:text-[13px] font-semibold text-gray-500 uppercase tracking-widest">Naturopathic Nutritionist</div>
+                 <h3 className="font-playfair text-[24px] lg:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-3">Fiona Pursglove</h3>
+                 <div className="font-sans text-[11px] lg:text-[12px] font-semibold text-gray-500 uppercase tracking-widest mb-4">Naturopathic Nutritionist</div>
+                 <p className="text-gray-600 text-[14px] leading-relaxed max-w-sm">Integrating comprehensive biomarker analysis with bespoke naturopathic therapies to rebalance and optimize hormonal health.</p>
               </Link>
           </div>
         </div>
