@@ -63,7 +63,7 @@ const WomensHealth = () => {
         {/* WOMEN'S HEALTH SPECIALISTS ROW */}
         <div className="mb-20 xl:mb-24 mt-12 max-w-[1100px] mx-auto px-4 lg:px-0">
           <div className="mb-10 lg:mb-12 text-center sm:text-left">
-             <h2 className="font-playfair text-[15px] lg:text-[16px] text-gray-900 font-bold tracking-[0.2em] uppercase">Women's Health Specialists</h2>
+             <h2 className="font-playfair text-[15px] lg:text-[16px] text-gray-900 font-bold tracking-[0.2em] uppercase">Women's Lead Health Specialists</h2>
           </div>
           
           <div className="grid grid-cols-2 gap-4 sm:gap-10 lg:gap-0 divide-x divide-[#7a2a33]/20">
