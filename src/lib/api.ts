@@ -28,8 +28,8 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
     };
 
     return {
-      slug: generateSlug(row.first_name, row.last_name),
-      name: `${row.first_name || ''} ${row.last_name || ''}`.trim(),
+      slug: generateSlug(row.first_name || row.clinic_name || 'partner', row.last_name || ''),
+      name: `${row.first_name || ''} ${row.last_name || ''}`.trim() || row.clinic_name || 'Unnamed Partner',
       role: row.professional_title || '',
       category: (row.primary_category as SpecialistCategory) || 'All',
       specificTitle: row.specific_title,
