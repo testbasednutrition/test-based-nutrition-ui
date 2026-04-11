@@ -10,7 +10,7 @@ const partners = [
 
 const ClientLogos = () => {
   return (
-    <div className="bg-secondary border-t border-border overflow-hidden">
+    <div className="bg-transparent border-t border-border overflow-hidden">
       <div className="flex animate-marquee whitespace-nowrap py-4 md:py-6 items-center">
         {[...partners, ...partners, ...partners, ...partners].map((logoUrl, i) => (
           <img
