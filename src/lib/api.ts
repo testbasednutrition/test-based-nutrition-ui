@@ -4,7 +4,7 @@ import { Article, Category, articles as staticArticles } from '../data/newsArtic
 
 // Helper to generate a URL-friendly slug
 const generateSlug = (firstName: string, lastName: string) => {
-  return `${firstName}-${lastName}`.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  return `${firstName}-${lastName}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-+|-+$)/g, '');
 };
 
 export async function fetchSpecialists(): Promise<Specialist[]> {
