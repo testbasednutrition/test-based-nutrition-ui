@@ -184,35 +184,6 @@ const SportsPerformance = () => {
                    <p className="text-gray-600 text-[11px] sm:text-[13px] leading-relaxed max-w-xs mx-auto sm:mx-0 mb-3">Specialising in performance medicine, recovery, and athlete health optimisation at elite level.</p>
                    <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#7a2a33]/30 pl-3">"Performance is driven by the systems behind it — not just the output you see."</p>
 
-                   <div className="mt-8 flex flex-row gap-3 sm:gap-4 justify-center sm:justify-start mx-auto sm:mx-0">
-                     <RotatingGallery 
-                       className="w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] shadow-sm border border-gray-100/50"
-                       images={[
-                         '/images/specialists/ishtiaq/media__1776806182951.jpg',
-                         '/images/specialists/ishtiaq/media__1776806183084.jpg',
-                         '/images/specialists/ishtiaq/media__1776806183119.jpg'
-                       ]}
-                       interval={3500}
-                     />
-                     <RotatingGallery 
-                       className="w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] shadow-sm border border-gray-100/50"
-                       images={[
-                         '/images/specialists/ishtiaq/media__1776806183029.jpg',
-                         '/images/specialists/ishtiaq/media__1776806183166.jpg',
-                         '/images/specialists/ishtiaq/media__1776806182951.jpg'
-                       ]}
-                       interval={4000}
-                     />
-                     <RotatingGallery 
-                       className="w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] shadow-sm border border-gray-100/50"
-                       images={[
-                         '/images/specialists/ishtiaq/media__1776806183119.jpg',
-                         '/images/specialists/ishtiaq/media__1776806183084.jpg',
-                         '/images/specialists/ishtiaq/media__1776806183029.jpg'
-                       ]}
-                       interval={4500}
-                     />
-                   </div>
                  </div>
               </div>
               
@@ -693,32 +664,32 @@ const SportsPerformance = () => {
 
         {/* SECTION 8 — PARTNER WITH US & DIRECTORY */}
         <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4 mb-24">
-           <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start">
+           <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
               
               {/* Left Column: Partner With Us */}
-              <div className="w-full lg:flex-1 bg-[#1c1c1c] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-xl relative overflow-hidden flex flex-col hover:shadow-2xl transition-shadow duration-300">
-                  <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-white -mr-16 -mt-16"/></div>
+              <div className="w-full lg:flex-1 bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
+                  <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-[#7a2a33] -mr-16 -mt-16"/></div>
                   
                   <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 relative z-10 flex-grow">
                      {/* Left side of the Partner box */}
                      <div className="flex flex-col justify-between">
                          <div>
-                             <p className="font-bold text-[#d0bfae] text-[13px] uppercase tracking-widest mb-4">Partner With Us</p>
-                             <h2 className="font-playfair text-[28px] md:text-[36px] xl:text-[42px] font-bold text-white leading-tight mb-6">
+                             <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest mb-4">Partner With Us</p>
+                             <h2 className="font-playfair text-[28px] md:text-[36px] xl:text-[42px] font-bold text-gray-900 leading-tight mb-6">
                                 TBN operates inside real environments
                              </h2>
-                             <p className="font-montserrat text-[15px] leading-relaxed text-white/80 mb-10">
+                             <p className="font-montserrat text-[15px] leading-relaxed text-gray-600 mb-10">
                                 — embedding structured testing, specialist insight, and performance systems into existing services.
                              </p>
                          </div>
                          
                          <div className="mt-auto">
-                            <p className="font-bold text-white text-[13px] uppercase tracking-widest mb-4">Partner With TBN</p>
+                            <p className="font-bold text-gray-900 text-[13px] uppercase tracking-widest mb-4">Partner With TBN</p>
                             <div className="flex flex-col sm:flex-row gap-3">
-                               <button className="flex-1 bg-white text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-100 transition-colors shadow-sm text-center">
+                               <button className="flex-1 bg-[#7a2a33] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#5c1c24] transition-colors shadow-sm text-center">
                                  Become a Performance Partner
                                </button>
-                               <button className="flex-1 bg-transparent border border-white/20 text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-white/10 transition-colors text-center">
+                               <button className="flex-1 bg-white border border-gray-200 text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm text-center">
                                  Invite Us to Your Facility
                                </button>
                             </div>
@@ -727,7 +698,7 @@ const SportsPerformance = () => {
 
                      {/* Right side of the Partner box */}
                      <div className="flex flex-col xl:pl-8">
-                         <h3 className="font-playfair text-[20px] font-bold text-white mb-6 xl:mt-1">What This Delivers</h3>
+                         <h3 className="font-playfair text-[20px] font-bold text-gray-900 mb-6 xl:mt-1">What This Delivers</h3>
                          <ul className="space-y-4">
                             {[
                               "Advanced training for coaches and practitioners",
@@ -738,8 +709,8 @@ const SportsPerformance = () => {
                               "New revenue opportunities"
                             ].map((item, idx) => (
                               <li key={idx} className="flex items-start gap-4">
-                                <CheckCircle2 className="w-5 h-5 text-[#d0bfae] shrink-0 mt-0.5" />
-                                <span className="text-[14px] leading-snug font-medium text-white/90">{item}</span>
+                                <CheckCircle2 className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" />
+                                <span className="text-[14px] leading-snug font-medium text-gray-700">{item}</span>
                               </li>
                             ))}
                          </ul>
@@ -753,10 +724,7 @@ const SportsPerformance = () => {
                  <div className="w-full bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg flex-1">
                     <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#7a2a33] -mr-12 -mb-12"/></div>
 
-                    <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 border border-gray-100 relative z-10 shrink-0">
-                       <Search className="w-6 h-6 text-[#7a2a33]" strokeWidth={2.5}/>
-                    </div>
-                    
+
                     <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
                        Access TBN-approved clinics across the UK.
                     </h2>
@@ -775,10 +743,7 @@ const SportsPerformance = () => {
                  <div className="w-full bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-md flex-1">
                     <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><FileText className="w-48 h-48 text-gray-900 -mr-12 -mb-12"/></div>
 
-                    <div className="w-14 h-14 bg-[#fcfaf7] border border-[#e9e7dc] rounded-2xl flex items-center justify-center shadow-sm mb-6 relative z-10 shrink-0">
-                       <FileText className="w-6 h-6 text-gray-900" strokeWidth={2.5}/>
-                    </div>
-                    
+
                     <h2 className="font-playfair text-[20px] font-bold text-gray-900 leading-snug mb-4 relative z-10 uppercase tracking-wider">
                        LATEST INSIGHTS
                     </h2>
