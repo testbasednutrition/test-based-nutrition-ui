@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import SportsClientLogos from "@/components/SportsClientLogos";
-import ExpertsFocusRail from "@/components/ExpertsFocusRail";
+import RotatingGallery from "@/components/RotatingGallery";
 import { Gallery4 } from "@/components/ui/gallery4";
 import Footer from "@/components/Footer";
 import HowWeSupportYou from "@/components/HowWeSupportYou";
@@ -19,34 +19,41 @@ import {
   Sun, Droplet, Database, Hexagon, Flame, FlaskConical
 } from "lucide-react";
 
-// Fallback to a stunning athletic unsplash image if local asset is missing
-const heroImg = "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80";
+// Local hero image instead of Unsplash
+const heroImg = "/images/sports/hero.jpg";
 
 const SportsPerformance = () => {
-  const { openQuiz } = useQuiz();
+  const quizContext = useQuiz();
+  const openQuiz = quizContext?.openQuiz || (() => {});
   return (
-    <div className="min-h-screen flex flex-col pt-24 bg-[#fdfdf9] font-montserrat">
+    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#fdfdf9] font-montserrat">
       <Navbar alwaysSolid />
       
-      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-8 md:py-16 mb-16">
-        
-        {/* SECTION 1 — HERO */}
-        <div className="w-full flex flex-col lg:flex-row items-center gap-10 lg:gap-16 xl:gap-24 mb-12 xl:mb-20">
-           <div className="w-full lg:w-5/12 text-center lg:text-left pt-4 xl:pt-8 flex flex-col justify-center">
+      {/* FULL BLEED HERO SECTION */}
+      <div className="w-full relative bg-[#fdfdf9] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
+        {/* Background Image spanning the right side */}
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
+          <img src={heroImg} alt="Sports Performance" className="w-full h-full object-cover object-[center_20%]" />
+          
+          {/* Bottom fade for grounding the Tailored Box */}
+          <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+          {/* Blend image and black gradient into the left text container background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#fdfdf9] via-[#fdfdf9]/70 lg:via-[#fdfdf9]/20 to-transparent"></div>
+        </div>
+
+        {/* Content Container Aligned inside normal max-width margins */}
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 pt-12 pb-12 lg:py-0 justify-between flex-grow">
+           <div className="w-full lg:w-5/12 text-center lg:text-left flex flex-col justify-center">
               <h3 className="font-playfair text-[#7a2a33] font-bold tracking-widest uppercase text-sm mb-4">Sports Performance</h3>
               <h1 className="font-playfair text-[3rem] md:text-[3.5rem] xl:text-[4rem] font-bold text-gray-900 leading-[1.05] mb-6">
                 Performance Meets Precision
               </h1>
-              <p className="text-lg xl:text-xl leading-relaxed font-bold mb-4 text-[#7a2a33]">
-                Up to 70% of performance limitations are internal.
-              </p>
-              <p className="font-medium text-gray-700 mb-2 text-[17px]">Train harder. Still plateau?</p>
-              <p className="font-medium text-gray-700 mb-6 italic text-[17px]">It’s not effort — it’s function.</p>
               
-              <p className="text-[16px] xl:text-[17px] text-gray-800 leading-relaxed max-w-[480px] mx-auto lg:mx-0 mb-6">
+              <p className="text-[16px] xl:text-[17px] text-gray-900 lg:text-gray-800 leading-relaxed max-w-[480px] mx-auto lg:mx-0 mb-6 font-medium">
                 A pioneering test-based performance system — delivered by specialists across elite sport.
               </p>
-              <p className="font-bold text-[#7a2a33] text-[18px] mb-8">Test. Target. Transform.</p>
+              <p className="font-semibold uppercase tracking-widest text-[#7a2a33] text-[14px] mb-8">Test. Target. Transform.</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button 
@@ -54,61 +61,158 @@ const SportsPerformance = () => {
                   className="bg-[#7a2a33] hover:bg-[#5c1c24] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
                   Start Your Journey <ArrowRight className="w-4 h-4" />
                 </button>
-                <Link to="/partner-with-us" className="bg-white hover:bg-gray-50 border border-gray-300 transition-colors text-gray-800 px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
-                  Explore Your Pathway
-                </Link>
               </div>
            </div>
            
-           <div className="w-full lg:w-7/12 relative rounded-[2rem] overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-[650px] shadow-lg">
-              <img src={heroImg} alt="Sports Performance" className="w-full h-full object-cover" />
+           <div className="w-full lg:w-5/12 relative mt-auto lg:mt-0 flex justify-end items-end h-full self-end lg:pb-12 xl:pb-16 mt-8">
+              <div className="w-full bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl flex flex-col sm:flex-row gap-4 justify-between items-center text-white shadow-2xl">
+                <div>
+                   <p className="font-playfair font-bold text-xl mb-1 text-white">Tailored for your sport</p>
+                   <p className="text-white text-sm font-medium">Testing protocols aligned to the physical demands of your discipline.</p>
+                </div>
+                <button 
+                   onClick={() => openQuiz()}
+                   className="shrink-0 bg-white text-gray-900 border border-transparent px-5 py-2.5 rounded-full font-bold text-[13px] uppercase tracking-wider hover:bg-gray-100 transition-all shadow-md">
+                  Take the Assessment
+                </button>
+              </div>
            </div>
         </div>
+        
+        {/* Logos Floating over the bottom of the Hero */}
+        <div className="w-full relative z-10 pt-4 pb-2 md:pb-6">
+           <SportsClientLogos />
+        </div>
+      </div>
 
-        {/* TRUST BAR */}
-        <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-[#f5f5f5] border-y border-gray-200 py-3 md:py-4 mb-2 xl:mb-4 overflow-hidden">
-          <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
-              Rapid Performance Testing
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
-              Real-Time Intelligence
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
-              Guided by Elite Specialists
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
-              Measurable Performance Gains
-            </span>
+      {/* TRUST BAR */}
+      <div className="w-full bg-[#f5f5f5] border-y border-gray-200 py-3 md:py-4 mb-2 overflow-hidden">
+        <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+            Rapid Performance Testing
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+            Real-Time Intelligence
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+            Guided by Elite Specialists
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+            Measurable Performance Gains
+          </span>
+        </div>
+      </div>
+
+      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pb-8 md:pb-16 mb-16">
+
+        {/* SECTION 2 — EXPLORE YOUR PATHWAY */}
+        <div className="mb-12 xl:mb-20">
+          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-2 md:pt-4">
+            <Gallery4 
+              subtitle="Performance Pathways"
+              title="Personalised Performance Support"
+              description="Each pathway includes targeted testing, a complimentary consultation, and personalised protocols aligned to your results, goals, and performance demands."
+              compact={true}
+              items={[
+                {
+                  id: "youth",
+                  title: "Youth Performance",
+                  description: "Build physical capacity, focus, and long-term development from the ground up.\nFor youth athletes, academies, and development pathways.",
+                  href: "#",
+                  image: "/images/sports/youth.jpg",
+                },
+                {
+                  id: "athletes",
+                  title: "Athletes (Amateur → Elite)",
+                  description: "Improve output, recovery, and repeatable high-level performance.\nAcross individual and team sports, from amateur to elite level.",
+                  href: "#",
+                  image: "/images/sports/athletes.jpg",
+                },
+                {
+                  id: "event",
+                  title: "Event & Competition Preparation",
+                  description: "Prepare for peak performance under pressure and in the lead-up to competition.\nFor HYROX, endurance events, competitions, and performance deadlines.",
+                  href: "#",
+                  image: "/images/sports/events.jpg",
+                },
+                {
+                  id: "coaches",
+                  title: "Coaches & Performance Teams",
+                  description: "Embed structured performance systems across athletes, teams, and environments.\nFor coaches, PTs, academies, and performance environments.",
+                  href: "#",
+                  image: "/images/sports/coaches.jpg",
+                },
+                {
+                  id: "longevity",
+                  title: "Peak Performance & Longevity",
+                  description: "Sustain output, reduce decline, and extend performance over time.\nFor long-term athletes, masters competitors, and high-performing individuals.",
+                  href: "#",
+                  image: "/images/sports/esports.jpg",
+                }
+              ]}
+            />
           </div>
         </div>
 
-        {/* SPORTS ELITE LOGOS */}
-        <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] mb-12 xl:mb-20">
-          <SportsClientLogos />
-        </div>
-
-        {/* SECTION 2 — SPECIALIST LEADS */}
+{/* SECTION 3 — SPECIALIST LEADS */}
         <div className="mb-20 xl:mb-24 px-4 lg:px-0">
-          <div className="mb-10 lg:mb-12 text-center sm:text-left">
-             <h2 className="font-playfair text-[15px] lg:text-[16px] text-gray-900 font-bold tracking-[0.2em] uppercase">Built by those working at the highest level of sport</h2>
+          <div className="mb-16 text-center flex flex-col items-center justify-center max-w-3xl mx-auto">
+             <p className="text-[12px] font-bold tracking-widest uppercase text-[#7a2a33] mb-3">Our Specialists</p>
+             <h2 className="font-playfair text-[28px] md:text-[36px] text-gray-900 font-bold tracking-wider mb-4 leading-tight">Meet the TBN Collective</h2>
+             <p className="font-montserrat text-[14px] leading-relaxed text-gray-600 max-w-2xl mx-auto">
+               A specialist-led performance network across coaching, health, and recovery — built to support athletes, teams, and environments at scale.
+             </p>
+          </div>
+          
+          <div className="mb-10 lg:mb-12 text-center sm:text-left border-t border-gray-100 pt-10">
+             <h3 className="font-playfair text-[15px] lg:text-[16px] text-gray-900 font-bold tracking-[0.2em] uppercase">Built by those working at the highest level of sport</h3>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#7a2a33]/20">
               {/* Ishtiaq */}
               <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
-                 <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
-                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80" alt="Dr Ishtiaq Rehman" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
+                 <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-[4/5] sm:aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
+                    <img src="/images/specialists/ishtiaq.jpg" alt="Dr Ishtiaq Rehman" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-2">Dr Ishtiaq Rehman</h3>
                    <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-2 sm:mb-3">Consulting England FA Doctor</div>
                    <p className="text-gray-600 text-[11px] sm:text-[13px] leading-relaxed max-w-xs mx-auto sm:mx-0 mb-3">Specialising in performance medicine, recovery, and athlete health optimisation at elite level.</p>
                    <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#7a2a33]/30 pl-3">"Performance is driven by the systems behind it — not just the output you see."</p>
+
+                   <div className="mt-8 flex flex-row gap-3 sm:gap-4 justify-center sm:justify-start mx-auto sm:mx-0">
+                     <RotatingGallery 
+                       className="w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] shadow-sm border border-gray-100/50"
+                       images={[
+                         '/images/specialists/ishtiaq/media__1776806182951.jpg',
+                         '/images/specialists/ishtiaq/media__1776806183084.jpg',
+                         '/images/specialists/ishtiaq/media__1776806183119.jpg'
+                       ]}
+                       interval={3500}
+                     />
+                     <RotatingGallery 
+                       className="w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] shadow-sm border border-gray-100/50"
+                       images={[
+                         '/images/specialists/ishtiaq/media__1776806183029.jpg',
+                         '/images/specialists/ishtiaq/media__1776806183166.jpg',
+                         '/images/specialists/ishtiaq/media__1776806182951.jpg'
+                       ]}
+                       interval={4000}
+                     />
+                     <RotatingGallery 
+                       className="w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] shadow-sm border border-gray-100/50"
+                       images={[
+                         '/images/specialists/ishtiaq/media__1776806183119.jpg',
+                         '/images/specialists/ishtiaq/media__1776806183084.jpg',
+                         '/images/specialists/ishtiaq/media__1776806183029.jpg'
+                       ]}
+                       interval={4500}
+                     />
+                   </div>
                  </div>
               </div>
               
@@ -127,74 +231,8 @@ const SportsPerformance = () => {
           </div>
         </div>
 
-        {/* SECTION 3 — TBN COLLECTIVE (FOCUS RAIL) */}
-        <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] mb-12 xl:mb-20">
-          <ExpertsFocusRail 
-            subtitle="OUR SPECIALISTS"
-            title="Meet the TBN Collective"
-            description="A specialist-led performance network across coaching, health, and recovery — built to support athletes, teams, and environments at scale."
-            alignment="center"
-            className="w-full bg-[#fdfdf9] border-t border-gray-100/60 pt-16 md:pt-24 pb-12 overflow-hidden flex flex-col justify-start"
-          />
-        </div>
 
-        {/* SECTION 3 — EXPLORE YOUR PATHWAY */}
-        <div className="mb-12 xl:mb-20">
-          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw]">
-            <Gallery4 
-              subtitle="Performance Pathways"
-              title="Personalised Performance Support"
-              description="Each pathway includes targeted testing, a complimentary consultation, and personalised protocols aligned to your results, goals, and performance demands."
-              compact={true}
-              items={[
-                {
-                  id: "youth",
-                  title: "Youth Performance",
-                  description: "Build physical capacity, focus, and long-term development from the ground up.\nFor youth athletes, academies, and development pathways.",
-                  href: "#",
-                  image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&q=80",
-                },
-                {
-                  id: "athletes",
-                  title: "Athletes (Amateur → Elite)",
-                  description: "Improve output, recovery, and repeatable high-level performance.\nAcross individual and team sports, from amateur to elite level.",
-                  href: "#",
-                  image: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80",
-                },
-                {
-                  id: "event",
-                  title: "Event & Competition Preparation",
-                  description: "Prepare for peak performance under pressure and in the lead-up to competition.\nFor HYROX, endurance events, competitions, and performance deadlines.",
-                  href: "#",
-                  image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80",
-                },
-                {
-                  id: "coaches",
-                  title: "Coaches & Performance Teams",
-                  description: "Embed structured performance systems across athletes, teams, and environments.\nFor coaches, PTs, academies, and performance environments.",
-                  href: "#",
-                  image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&q=80",
-                },
-                {
-                  id: "longevity",
-                  title: "Peak Performance & Longevity",
-                  description: "Sustain output, reduce decline, and extend performance over time.\nFor long-term athletes, masters competitors, and high-performing individuals.",
-                  href: "#",
-                  image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80",
-                }
-              ]}
-            />
-          </div>
-
-          <div className="text-center max-w-4xl mx-auto mt-12 md:mt-16 px-4 pb-4">
-             <h2 className="font-playfair text-[20px] md:text-[24px] lg:text-[28px] text-gray-900 font-bold tracking-wider mb-4 leading-tight">Performance pathways across every arena</h2>
-             <p className="font-montserrat text-[14px] leading-relaxed text-muted-foreground/90 max-w-3xl mx-auto">
-               Select the environment, demand, and level aligned to your performance goals.
-             </p>
-          </div>
-        </div>
-
-        {/* SECTION 7.5 — THE SCIENCE BEHIND PERFORMANCE */}
+                {/* SECTION 7.5 — THE SCIENCE BEHIND PERFORMANCE */}
         <div className="w-full mt-16 lg:mt-24 max-w-6xl mx-auto px-4">
            <div className="text-center mb-12">
               <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">The Science Behind Performance</h2>
