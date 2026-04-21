@@ -6,6 +6,13 @@ import { Gallery4 } from "@/components/ui/gallery4";
 import Footer from "@/components/Footer";
 import HowWeSupportYou from "@/components/HowWeSupportYou";
 import { Link } from "react-router-dom";
+import { useQuiz } from "@/components/QuizContext";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   Activity, HeartPulse, Brain, Leaf, FileText, Search, MessageCircle, TrendingUp,
   AlertTriangle, ArrowRight, CheckCircle2, Stethoscope, Microscope, Dumbbell, Timer, Zap, Quote, Users, MapPin, Search as SearchIcon,
@@ -16,6 +23,7 @@ import {
 const heroImg = "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80";
 
 const SportsPerformance = () => {
+  const { openQuiz } = useQuiz();
   return (
     <div className="min-h-screen flex flex-col pt-24 bg-[#fdfdf9] font-montserrat">
       <Navbar alwaysSolid />
@@ -41,7 +49,9 @@ const SportsPerformance = () => {
               <p className="font-bold text-[#7a2a33] text-[18px] mb-8">Test. Target. Transform.</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="bg-[#7a2a33] hover:bg-[#5c1c24] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
+                <button 
+                  onClick={() => openQuiz()}
+                  className="bg-[#7a2a33] hover:bg-[#5c1c24] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
                   Start Your Journey <ArrowRight className="w-4 h-4" />
                 </button>
                 <Link to="/partner-with-us" className="bg-white hover:bg-gray-50 border border-gray-300 transition-colors text-gray-800 px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
@@ -276,7 +286,7 @@ const SportsPerformance = () => {
         <div className="w-full mt-20 lg:mt-24 max-w-6xl mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-12">
-            <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest mb-3">At home or in clinic</p>
+            <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest mb-3">Testing at home or in clinic</p>
             <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">Start With The Foundations</h2>
             <p className="font-montserrat text-[15px] font-medium leading-relaxed text-gray-600 max-w-2xl mx-auto">
               Every performance system starts at a cellular level.
@@ -475,7 +485,7 @@ const SportsPerformance = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 items-stretch">
             
             {/* Box 1: Free Consultation */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#7a2a33]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#7a2a33]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                {/* Header Zone */}
                <div className="h-[100px] shrink-0 mb-2">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight">Free Consultation</h3>
@@ -508,7 +518,7 @@ const SportsPerformance = () => {
             </div>
 
             {/* Box 2: Foundations */}
-            <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+            <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#7a2a33] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#8c353f] whitespace-nowrap">Most Popular</div>
                
                {/* Header Zone */}
@@ -552,7 +562,7 @@ const SportsPerformance = () => {
             </div>
 
             {/* Box 3: Advanced Review */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-blue-600/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-blue-600/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                {/* Header Zone */}
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Advanced Performance Review</h3>
@@ -595,7 +605,7 @@ const SportsPerformance = () => {
             </div>
 
             {/* Box 4: Elite Consultation */}
-            <div className="bg-[#1c1c1c] border border-white/10 p-8 rounded-[2rem] shadow-xl hover:shadow-2xl flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-all duration-300">
+            <div className="bg-[#1c1c1c] border border-white/10 p-8 rounded-[2rem] shadow-xl hover:shadow-2xl flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-all duration-300 transform-gpu will-change-transform isolate">
                <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#d0bfae] opacity-10 blur-3xl rounded-full pointer-events-none group-hover:opacity-20 transition-opacity duration-500"></div>
                
                {/* Header Zone */}
@@ -699,28 +709,124 @@ const SportsPerformance = () => {
                   </div>
               </div>
 
-              {/* Right Column: Directory Access (Smaller box) */}
-              <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
-                 <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#7a2a33] -mr-12 -mb-12"/></div>
+              {/* Right Column: Stacked Boxes */}
+              <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 flex flex-col gap-6 lg:gap-8">
+                 {/* Directory Access */}
+                 <div className="w-full bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg flex-1">
+                    <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#7a2a33] -mr-12 -mb-12"/></div>
 
-                 <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 border border-gray-100 relative z-10 shrink-0">
-                    <Search className="w-6 h-6 text-[#7a2a33]" strokeWidth={2.5}/>
-                 </div>
-                 
-                 <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
-                    Access TBN-approved clinics across the UK.
-                 </h2>
-                 <p className="text-[13px] text-gray-600 mb-8 font-medium leading-relaxed relative z-10">
-                    Find specialist practitioners who embed the TBN testing and performance model into their environment. Discover cutting-edge support near you.
-                 </p>
-                 
-                 <div className="mt-auto w-full relative z-10">
-                    <button className="w-full text-center bg-[#7a2a33] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#8c353f] transition-colors shadow-md">
-                       Explore Directory
-                    </button>
-                 </div>
+                    <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 border border-gray-100 relative z-10 shrink-0">
+                       <Search className="w-6 h-6 text-[#7a2a33]" strokeWidth={2.5}/>
+                    </div>
+                    
+                    <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
+                       Access TBN-approved clinics across the UK.
+                    </h2>
+                    <p className="text-[13px] text-gray-600 mb-8 font-medium leading-relaxed relative z-10">
+                       Find specialist practitioners who embed the TBN testing and performance model into their environment. Discover cutting-edge support near you.
+                    </p>
+                    
+                    <div className="mt-auto w-full relative z-10">
+                       <button className="w-full text-center bg-[#7a2a33] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#8c353f] transition-colors shadow-md">
+                          Explore Directory
+                       </button>
+                    </div>
+                  </div>
+
+                 {/* Latest Insights */}
+                 <div className="w-full bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-md flex-1">
+                    <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><FileText className="w-48 h-48 text-gray-900 -mr-12 -mb-12"/></div>
+
+                    <div className="w-14 h-14 bg-[#fcfaf7] border border-[#e9e7dc] rounded-2xl flex items-center justify-center shadow-sm mb-6 relative z-10 shrink-0">
+                       <FileText className="w-6 h-6 text-gray-900" strokeWidth={2.5}/>
+                    </div>
+                    
+                    <h2 className="font-playfair text-[20px] font-bold text-gray-900 leading-snug mb-4 relative z-10 uppercase tracking-wider">
+                       LATEST INSIGHTS
+                    </h2>
+                    <p className="text-[13px] text-gray-600 mb-8 font-medium leading-relaxed relative z-10">
+                       Performance, recovery, cognitive optimisation, and emerging sport science.
+                    </p>
+                    
+                    <div className="mt-auto w-full relative z-10">
+                       <button className="w-full text-center bg-transparent border border-gray-200 text-gray-900 px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm">
+                          View Articles
+                       </button>
+                    </div>
+                  </div>
               </div>
-           </div>
+            </div>
+         </div>
+
+        {/* SECTION 9 — FAQ */}
+        <div className="w-full mt-24 lg:mt-32 max-w-4xl mx-auto px-4 mb-24">
+          <div className="text-center mb-12">
+            <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">
+              FREQUENTLY ASKED QUESTIONS
+            </h2>
+            <p className="font-montserrat text-[15px] font-medium text-gray-600">
+              A New Approach to Performance — Explained
+            </p>
+          </div>
+
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {/* FAQ 1 */}
+            <AccordionItem value="item-1" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#7a2a33] text-left">
+                Why use test-based nutrition for performance?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p className="mb-2">Because performance is driven by how effectively the body adapts, recovers, and sustains output under load.</p>
+                <p>Testing provides a clearer view of the internal factors influencing energy, recovery, and resilience — allowing for more precise, personalised performance strategies.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* FAQ 2 */}
+            <AccordionItem value="item-2" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#7a2a33] text-left">
+                How is TBN different from standard coaching or sports nutrition?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p className="mb-2">Most performance support focuses on training or nutrition in isolation.</p>
+                <p>TBN combines structured testing, specialist-led interpretation, and real-world application — creating a more complete performance system built around measurable insight and progression.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* FAQ 3 */}
+            <AccordionItem value="item-3" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#7a2a33] text-left">
+                Can I work directly with Dr Ishtiaq Rehman or Neil Parsley?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p className="mb-2 font-medium text-gray-900">Yes.</p>
+                <p className="mb-2">Through advanced and elite pathways, you can access 1:1 support with Dr Ishtiaq Rehman or Neil Parsley, alongside senior specialists within the TBN collective.</p>
+                <p>These sessions focus on interpreting your results, identifying performance constraints, and guiding your next phase of progression.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* FAQ 4 */}
+            <AccordionItem value="item-4" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#7a2a33] text-left">
+                Is this only for elite athletes?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p className="mb-2 font-medium text-gray-900">No.</p>
+                <p className="mb-2">TBN supports all levels — from ambitious gym members and amateur competitors to elite athletes, teams, and performance environments.</p>
+                <p>The pathway scales based on the individual, not just the level.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* FAQ 5 */}
+            <AccordionItem value="item-5" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#7a2a33] text-left">
+                Can TBN integrate into my gym, club, or performance environment?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p className="mb-2 font-medium text-gray-900">Yes.</p>
+                <p>TBN is designed to operate within existing environments — enhancing coaching, physiotherapy, and performance support through structured testing, specialist insight, and integrated systems.</p>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
 
         {/* FINAL CTA */}
@@ -730,22 +836,29 @@ const SportsPerformance = () => {
              <div className="absolute bottom-0 left-0 p-8 opacity-10"><Zap className="w-48 h-48 -ml-16 -mb-16 text-white rotate-180"/></div>
              
              <h2 className="font-playfair text-3xl md:text-4xl lg:text-[40px] font-bold text-white mb-6 relative z-10 leading-tight">
-               Understand What’s Driving<br/>Your Performance
+               Performance without guesswork
              </h2>
-             <p className="text-white/80 font-bold mb-4 uppercase tracking-widest text-[13px] relative z-10 border-b border-white/20 pb-4 inline-block px-8">
-               Not guesswork. Not generic plans.
-             </p>
+             <div className="flex flex-col items-center relative z-10 border-b border-white/20 pb-5 mb-5 px-8">
+               <p className="text-white/90 font-bold uppercase tracking-widest text-[13px] mb-2 text-center">
+                 From fitness to elite sport. From gaming to free diving.
+               </p>
+               <p className="text-white/70 font-bold uppercase tracking-widest text-[12px] text-center">
+                 This is a new model for performance.
+               </p>
+             </div>
              <p className="text-[20px] font-playfair font-bold text-[#e9e7dc] mb-10 relative z-10">
-               Test-based. Personalised. Precision-driven.
+               Test-Based. Specialist-Led. Precision-Driven.
              </p>
              
              <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full max-w-lg">
-               <button className="flex-1 bg-white hover:bg-gray-100 text-[#7a2a33] px-6 py-4 rounded-xl font-bold text-[15px] shadow-lg flex justify-center items-center gap-2 group transition-all">
-                 Book Your Free Consultation <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
+               <button 
+                 onClick={() => openQuiz()}
+                 className="flex-1 bg-white hover:bg-gray-100 text-[#7a2a33] px-6 py-4 rounded-xl font-bold text-[15px] shadow-lg flex justify-center items-center gap-2 group transition-all">
+                 Start Your Journey <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
                </button>
-               <button className="flex-1 bg-[#5c1c24] hover:bg-[#4a161d] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
-                 Start Your Performance Pathway <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
-               </button>
+               <Link to="/partner-with-us" className="flex-1 bg-[#5c1c24] hover:bg-[#4a161d] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
+                 Partner With Us <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
+               </Link>
              </div>
           </div>
         </div>
