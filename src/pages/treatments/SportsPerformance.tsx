@@ -1,10 +1,15 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
+import SportsClientLogos from "@/components/SportsClientLogos";
+import ExpertsFocusRail from "@/components/ExpertsFocusRail";
+import { Gallery4 } from "@/components/ui/gallery4";
 import Footer from "@/components/Footer";
+import HowWeSupportYou from "@/components/HowWeSupportYou";
 import { Link } from "react-router-dom";
 import {
   Activity, HeartPulse, Brain, Leaf, FileText, Search, MessageCircle, TrendingUp,
-  AlertTriangle, ArrowRight, CheckCircle2, Stethoscope, Microscope, Dumbbell, Timer, Zap, Quote, Users, MapPin, Search as SearchIcon
+  AlertTriangle, ArrowRight, CheckCircle2, Stethoscope, Microscope, Dumbbell, Timer, Zap, Quote, Users, MapPin, Search as SearchIcon,
+  Sun, Droplet, Database, Hexagon, Flame, FlaskConical
 } from "lucide-react";
 
 // Fallback to a stunning athletic unsplash image if local asset is missing
@@ -21,30 +26,27 @@ const SportsPerformance = () => {
         <div className="w-full flex flex-col lg:flex-row items-center gap-10 lg:gap-16 xl:gap-24 mb-12 xl:mb-20">
            <div className="w-full lg:w-5/12 text-center lg:text-left pt-4 xl:pt-8 flex flex-col justify-center">
               <h3 className="font-playfair text-[#7a2a33] font-bold tracking-widest uppercase text-sm mb-4">Sports Performance</h3>
-              <h1 className="font-playfair text-[2.5rem] md:text-[3.5rem] xl:text-[4rem] font-bold text-gray-900 leading-[1.05] mb-6">
-                What’s Limiting Your Performance?
+              <h1 className="font-playfair text-[3rem] md:text-[3.5rem] xl:text-[4rem] font-bold text-gray-900 leading-[1.05] mb-6">
+                Performance Meets Precision
               </h1>
               <p className="text-lg xl:text-xl leading-relaxed font-bold mb-4 text-[#7a2a33]">
-                Up to 70% of performance limitations are linked to internal factors such as inflammation, recovery, and nutrient status.
+                Up to 70% of performance limitations are internal.
               </p>
-              <p className="font-medium text-gray-700 mb-2">Fatigue. Inconsistency. Slow recovery.</p>
-              <p className="font-medium text-gray-700 mb-6 italic">Often not training issues — but internal performance constraints.</p>
-              <p className="font-bold text-gray-900 mb-6">We use advanced testing to uncover what may be limiting your performance beneath the surface.</p>
+              <p className="font-medium text-gray-700 mb-2 text-[17px]">Train harder. Still plateau?</p>
+              <p className="font-medium text-gray-700 mb-6 italic text-[17px]">It’s not effort — it’s function.</p>
               
-              <ul className="text-left space-y-3 mb-8 bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
-                 <li className="flex gap-3 items-start"><CheckCircle2 className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" /> <span className="font-bold text-sm text-gray-800">Test-based performance insight</span></li>
-                 <li className="flex gap-3 items-start"><CheckCircle2 className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" /> <span className="font-bold text-sm text-gray-800">15-minute rapid results available</span></li>
-                 <li className="flex gap-3 items-start"><CheckCircle2 className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" /> <span className="font-bold text-sm text-gray-800">Used in clinics, gyms, and elite environments</span></li>
-                 <li className="flex gap-3 items-start"><CheckCircle2 className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" /> <span className="font-bold text-sm text-gray-800">Built for athletes, teams, and high performers</span></li>
-              </ul>
+              <p className="text-[16px] xl:text-[17px] text-gray-800 leading-relaxed max-w-[480px] mx-auto lg:mx-0 mb-6">
+                A pioneering test-based performance system — delivered by specialists across elite sport.
+              </p>
+              <p className="font-bold text-[#7a2a33] text-[18px] mb-8">Test. Target. Transform.</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button className="bg-[#7a2a33] hover:bg-[#5c1c24] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
-                  Free Consultation <ArrowRight className="w-4 h-4" />
+                  Start Your Journey <ArrowRight className="w-4 h-4" />
                 </button>
-                <button className="bg-white hover:bg-gray-50 border border-[#7a2a33]/20 transition-colors text-[#7a2a33] px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
-                  Partner With Us
-                </button>
+                <Link to="/partner-with-us" className="bg-white hover:bg-gray-50 border border-gray-300 transition-colors text-gray-800 px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
+                  Explore Your Pathway
+                </Link>
               </div>
            </div>
            
@@ -53,359 +55,672 @@ const SportsPerformance = () => {
            </div>
         </div>
 
+        {/* TRUST BAR */}
+        <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-[#f5f5f5] border-y border-gray-200 py-3 md:py-4 mb-2 xl:mb-4 overflow-hidden">
+          <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+              Rapid Performance Testing
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+              Real-Time Intelligence
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+              Guided by Elite Specialists
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+              Measurable Performance Gains
+            </span>
+          </div>
+        </div>
+
+        {/* SPORTS ELITE LOGOS */}
+        <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] mb-12 xl:mb-20">
+          <SportsClientLogos />
+        </div>
+
         {/* SECTION 2 — SPECIALIST LEADS */}
-        <div className="mb-20 xl:mb-24 mt-12 max-w-[1100px] mx-auto px-4 lg:px-0">
+        <div className="mb-20 xl:mb-24 px-4 lg:px-0">
           <div className="mb-10 lg:mb-12 text-center sm:text-left">
-             <h2 className="font-playfair text-[15px] lg:text-[16px] text-gray-900 font-bold tracking-[0.2em] uppercase">Led by Directors leading at the Highest Level of Sport Performance</h2>
+             <h2 className="font-playfair text-[15px] lg:text-[16px] text-gray-900 font-bold tracking-[0.2em] uppercase">Built by those working at the highest level of sport</h2>
           </div>
           
-          <div className="grid grid-cols-2 gap-4 sm:gap-10 lg:gap-0 divide-x divide-[#7a2a33]/20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#7a2a33]/20">
               {/* Ishtiaq */}
-              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 pr-4 sm:pr-6 lg:pr-14">
-                 <div className="w-[90px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
+              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
+                 <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
                     <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80" alt="Dr Ishtiaq Rehman" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-2">Dr Ishtiaq Rehman</h3>
-                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-2 sm:mb-3">England FA Doctor</div>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-2 sm:mb-3">Consulting England FA Doctor</div>
                    <p className="text-gray-600 text-[11px] sm:text-[13px] leading-relaxed max-w-xs mx-auto sm:mx-0 mb-3">Specialising in performance medicine, recovery, and athlete health optimisation at elite level.</p>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#7a2a33]/30 pl-3">"Performance is not just built in training — it’s built through understanding how the body functions under pressure."</p>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#7a2a33]/30 pl-3">"Performance is driven by the systems behind it — not just the output you see."</p>
                  </div>
               </div>
               
               {/* Neil */}
-              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 pl-4 sm:pl-6 lg:pl-14">
-                 <div className="w-[90px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
+              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pl-4 lg:pl-14">
+                 <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-[4/5] sm:aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
                     <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=400&q=80" alt="Neil Parsley" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-2">Neil Parsley</h3>
-                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-2 sm:mb-3">Elite Performance Coach<br/>Man City | Team GB | England Rugby</div>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-2 sm:mb-3">Elite Performance Coach<br/><span className="text-[9px] lg:text-[10px] opacity-80">Former Manchester City, Team GB, England Rugby & England FA</span></div>
                    <p className="text-gray-600 text-[11px] sm:text-[13px] leading-relaxed max-w-xs mx-auto sm:mx-0 mb-3">Working with elite athletes to optimise performance, resilience, and competitive output.</p>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#7a2a33]/30 pl-3">"Marginal gains come from precision — not guesswork. The difference is always beneath the surface."</p>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#7a2a33]/30 pl-3">"Progress comes from identifying constraints and removing them with precision."</p>
                  </div>
               </div>
           </div>
+        </div>
+
+        {/* SECTION 3 — TBN COLLECTIVE (FOCUS RAIL) */}
+        <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] mb-12 xl:mb-20">
+          <ExpertsFocusRail 
+            subtitle="OUR SPECIALISTS"
+            title="Meet the TBN Collective"
+            description="A specialist-led performance network across coaching, health, and recovery — built to support athletes, teams, and environments at scale."
+            alignment="center"
+            className="w-full bg-[#fdfdf9] border-t border-gray-100/60 pt-16 md:pt-24 pb-12 overflow-hidden flex flex-col justify-start"
+          />
         </div>
 
         {/* SECTION 3 — EXPLORE YOUR PATHWAY */}
-        <div className="mb-12 xl:mb-20 bg-white p-8 lg:p-12 rounded-[2.5rem] shadow-sm border border-gray-100 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Dumbbell className="w-48 h-48 -mr-12 -mt-12"/></div>
-          <h2 className="font-playfair text-xl lg:text-3xl font-bold text-center text-gray-900 mb-2 tracking-widest uppercase relative z-10">Choose Your Performance Pathway</h2>
-          <p className="text-center font-bold text-[#7a2a33] uppercase tracking-widest text-xs mb-8">Structured support across all levels of performance:</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 relative z-10">
-            {[
-              "Athletes (Amateur to Elite)",
-              "Youth Performance",
-              "Event & Competition Preparation",
-              "Coaches & Performance Teams",
-              "Cognitive Performance",
-              "Extreme & Endurance Performance",
-              "Recovery & Injury",
-              "Female Performance"
-            ].map((item, idx) => (
-              <div key={idx} className="bg-[#fcfaf7] hover:bg-white px-5 py-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center justify-start gap-3 text-left group">
-                <div className="w-2 h-2 rounded-full bg-[#d0bfae] group-hover:bg-[#7a2a33] transition-colors shrink-0"></div>
-                <span className="font-bold text-[13px] md:text-[14px] text-gray-800 leading-tight">{item}</span>
-              </div>
-            ))}
+        <div className="mb-12 xl:mb-20">
+          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw]">
+            <Gallery4 
+              subtitle="Performance Pathways"
+              title="Personalised Performance Support"
+              description="Each pathway includes targeted testing, a complimentary consultation, and personalised protocols aligned to your results, goals, and performance demands."
+              compact={true}
+              items={[
+                {
+                  id: "youth",
+                  title: "Youth Performance",
+                  description: "Build physical capacity, focus, and long-term development from the ground up.\nFor youth athletes, academies, and development pathways.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&q=80",
+                },
+                {
+                  id: "athletes",
+                  title: "Athletes (Amateur → Elite)",
+                  description: "Improve output, recovery, and repeatable high-level performance.\nAcross individual and team sports, from amateur to elite level.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80",
+                },
+                {
+                  id: "event",
+                  title: "Event & Competition Preparation",
+                  description: "Prepare for peak performance under pressure and in the lead-up to competition.\nFor HYROX, endurance events, competitions, and performance deadlines.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80",
+                },
+                {
+                  id: "coaches",
+                  title: "Coaches & Performance Teams",
+                  description: "Embed structured performance systems across athletes, teams, and environments.\nFor coaches, PTs, academies, and performance environments.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&q=80",
+                },
+                {
+                  id: "longevity",
+                  title: "Peak Performance & Longevity",
+                  description: "Sustain output, reduce decline, and extend performance over time.\nFor long-term athletes, masters competitors, and high-performing individuals.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80",
+                }
+              ]}
+            />
+          </div>
+
+          <div className="text-center max-w-4xl mx-auto mt-12 md:mt-16 px-4 pb-4">
+             <h2 className="font-playfair text-[20px] md:text-[24px] lg:text-[28px] text-gray-900 font-bold tracking-wider mb-4 leading-tight">Performance pathways across every arena</h2>
+             <p className="font-montserrat text-[14px] leading-relaxed text-muted-foreground/90 max-w-3xl mx-auto">
+               Select the environment, demand, and level aligned to your performance goals.
+             </p>
           </div>
         </div>
 
-        {/* 2-COLUMN LAYOUT CONTEXT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 text-gray-800">
-          
-          {/* LEFT COLUMN - Combined content (8 cols) */}
-          <div className="lg:col-span-8 flex flex-col space-y-12 pr-0 lg:pr-4 xl:pr-8">
+        {/* SECTION 7.5 — THE SCIENCE BEHIND PERFORMANCE */}
+        <div className="w-full mt-16 lg:mt-24 max-w-6xl mx-auto px-4">
+           <div className="text-center mb-12">
+              <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">The Science Behind Performance</h2>
+              <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest flex items-center justify-center gap-2"><div className="w-1.5 h-1.5 bg-[#7a2a33] rounded-full" /> Key drivers we assess <div className="w-1.5 h-1.5 bg-[#7a2a33] rounded-full" /></p>
+           </div>
+           
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {/* Box 1 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300">
+                   <Microscope className="w-7 h-7 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Cellular Health</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Supports adaptation, repair, and repeatable performance.</p>
+              </div>
+
+              {/* Box 2 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300">
+                   <HeartPulse className="w-7 h-7 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Inflammation & Recovery</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">A major factor in soreness, slower recovery, reduced resilience, and inconsistency.</p>
+              </div>
+
+              {/* Box 3 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300">
+                   <Leaf className="w-7 h-7 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Gut Health & Absorption</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Because what you consume only matters if your body can absorb and utilise it effectively.</p>
+              </div>
+
+              {/* Box 4 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300">
+                   <Zap className="w-7 h-7 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Metabolic Function</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Energy stability, training capacity, and recovery are influenced by how well the body manages fuel and demand.</p>
+              </div>
+
+              {/* Box 5 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300">
+                   <Activity className="w-7 h-7 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Hormonal & Stress Response</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Relevant to performance under pressure, recovery, resilience, and long-term progression.</p>
+              </div>
+
+              {/* Box 6 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300">
+                   <Brain className="w-7 h-7 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Focus & Cognitive Performance</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Reaction speed, mental sharpness, emotional regulation, and sustained concentration all matter in modern sport.</p>
+              </div>
+           </div>
+        </div>
+
+        {/* SECTION 7.6 — EXPERT QUOTE */}
+        <div className="w-full mt-16 lg:mt-20 px-6">
+           <div className="flex flex-col items-end max-w-4xl mx-auto gap-4">
+              
+              <div className="flex items-center gap-4 w-full">
+                 <Quote className="w-8 h-8 text-gray-900 fill-gray-900 shrink-0" />
+                 <p className="font-playfair text-[18px] md:text-[22px] lg:text-[25px] font-bold italic text-gray-900 text-left leading-snug tracking-wide m-0">
+                    The highest performers don't guess. They measure, adapt, and refine.
+                 </p>
+              </div>
+
+              <div className="flex items-center gap-4 shrink-0 mt-2">
+                 <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center bg-white shrink-0 shadow-sm">
+                   <Stethoscope className="w-5 h-5 text-[#7a2a33]" strokeWidth={2} />
+                 </div>
+                 <div className="flex flex-col text-left">
+                    <span className="font-bold text-gray-900 text-[12px] uppercase tracking-widest leading-none mb-1.5">Dr Ishtiaq Rehman</span>
+                    <span className="font-bold text-[#7a2a33] text-[10px] uppercase tracking-widest leading-none">Test Based Nutrition</span>
+                 </div>
+              </div>
+
+           </div>
+        </div>
+
+        {/* SECTION 7.7 — START WITH THE FOUNDATIONS */}
+        <div className="w-full mt-20 lg:mt-24 max-w-6xl mx-auto px-4">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest mb-3">At home or in clinic</p>
+            <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">Start With The Foundations</h2>
+            <p className="font-montserrat text-[15px] font-medium leading-relaxed text-gray-600 max-w-2xl mx-auto">
+              Every performance system starts at a cellular level.
+            </p>
+          </div>
+
+          {/* Foundation Tests */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
+            <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
+              <div className="flex items-center gap-5 mb-5">
+                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300 shrink-0">
+                  <Activity className="w-6 h-6 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                </div>
+                <h3 className="font-playfair font-bold text-[22px] text-gray-900 leading-tight">Omega Balance<br/>Test</h3>
+              </div>
+              <p className="font-montserrat text-[14px] leading-relaxed text-gray-600 font-medium">Measures cellular health, inflammatory balance, and recovery efficiency.</p>
+            </div>
             
-            {/* SECTION 4 — IT'S NOT JUST TRAINING */}
-            <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-2 h-full bg-[#7a2a33]"></div>
-              <h3 className="font-playfair text-[24px] font-bold tracking-wider text-gray-900 mb-6 uppercase">It’s Not Just Training</h3>
-              
-              <div className="flex flex-wrap gap-2 mb-8">
-                 {['Fatigue', 'Slow recovery', 'Brain fog', 'Inconsistency', 'Reduced output'].map((item, i) => (
-                    <span key={i} className="bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-lg text-[13px] font-bold text-gray-800 shadow-sm">{item}</span>
-                 ))}
+            <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
+              <div className="flex items-center gap-5 mb-5">
+                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300 shrink-0">
+                  <Leaf className="w-6 h-6 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                </div>
+                <h3 className="font-playfair font-bold text-[22px] text-gray-900 leading-tight">Gut Microbiome<br/>Test</h3>
               </div>
-              
-              <p className="font-medium text-[15px] text-gray-700 mb-5 border-l-2 border-[#7a2a33]/20 pl-4 py-1">
-                These are often treated as <span className="font-bold text-gray-900">performance issues</span>. But in many cases, they may be influenced by:
-              </p>
-              
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                <li className="flex items-center gap-3 bg-[#fcfaf7] p-4 rounded-xl border border-[#e9e7dc]"><AlertTriangle className="w-4 h-4 text-gray-400 shrink-0" /> <span className="font-bold text-[13.5px] text-gray-800">Poor nutrient absorption</span></li>
-                <li className="flex items-center gap-3 bg-[#fcfaf7] p-4 rounded-xl border border-[#e9e7dc]"><AlertTriangle className="w-4 h-4 text-gray-400 shrink-0" /> <span className="font-bold text-[13.5px] text-gray-800">Metabolic inefficiency</span></li>
-                <li className="flex items-center gap-3 bg-[#fcfaf7] p-4 rounded-xl border border-[#e9e7dc]"><AlertTriangle className="w-4 h-4 text-gray-400 shrink-0" /> <span className="font-bold text-[13.5px] text-gray-800">Inflammatory load</span></li>
-                <li className="flex items-center gap-3 bg-[#fcfaf7] p-4 rounded-xl border border-[#e9e7dc]"><AlertTriangle className="w-4 h-4 text-gray-400 shrink-0" /> <span className="font-bold text-[13.5px] text-gray-800">Cellular imbalance</span></li>
-              </ul>
-              
-              <div className="bg-[#1c1c1c] text-white p-6 md:p-8 rounded-2xl relative shadow-lg">
-                 <Quote className="absolute top-4 right-4 w-10 h-10 text-white/5" />
-                 <p className="font-bold text-[15px] leading-relaxed mb-5 relative z-10 flex gap-3"><ArrowRight className="w-5 h-5 text-[#d0bfae] shrink-0 mt-0.5" /> Performance is driven by cellular health, metabolism, inflammation, nutrient status, and how effectively your body adapts under load.</p>
-                 <div className="flex items-center gap-3 relative z-10 border-t border-white/10 pt-5">
-                   <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                     <Stethoscope className="w-5 h-5 text-[#d0bfae]" />
-                   </div>
-                   <div>
-                     <p className="text-[13px] font-bold text-white uppercase tracking-widest mb-0.5">Dr Ishtiaq Rehman</p>
-                     <p className="text-[11px] font-bold text-white/50 uppercase tracking-widest">England FA Doctor</p>
-                   </div>
-                 </div>
-              </div>
-            </div>
-
-            {/* SECTION 6 — THE SCIENCE BEHIND PERFORMANCE */}
-            <div className="pt-4">
-              <div className="flex items-center gap-3 mb-6">
-                <Microscope className="w-8 h-8 text-[#7a2a33]" />
-                <h3 className="font-playfair text-[24px] font-bold tracking-wider text-gray-900 uppercase">The Science Behind Your Performance</h3>
-              </div>
-              <p className="text-gray-700 mb-8 font-bold">Performance is driven by key internal systems:</p>
-              
-              <div className="space-y-4">
-                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center gap-4 group hover:border-[#7a2a33]/30 transition-colors">
-                   <div className="md:w-1/3">
-                     <h4 className="font-playfair font-bold text-[18px] text-gray-900 flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[#7a2a33]" /> Omega Balance</h4>
-                   </div>
-                   <div className="md:w-2/3 border-l-2 border-gray-100 pl-4">
-                     <p className="text-sm font-medium text-gray-600">Impacts inflammation, recovery, brain function, and cellular performance.</p>
-                   </div>
-                 </div>
-                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center gap-4 group hover:border-[#7a2a33]/30 transition-colors">
-                   <div className="md:w-1/3">
-                     <h4 className="font-playfair font-bold text-[18px] text-gray-900 flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[#7a2a33]" /> Gut Health & Absorption</h4>
-                   </div>
-                   <div className="md:w-2/3 border-l-2 border-gray-100 pl-4">
-                     <p className="text-sm font-medium text-gray-600">Influences nutrient uptake, immune response, and energy production.</p>
-                   </div>
-                 </div>
-                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center gap-4 group hover:border-[#7a2a33]/30 transition-colors">
-                   <div className="md:w-1/3">
-                     <h4 className="font-playfair font-bold text-[18px] text-gray-900 flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[#7a2a33]" /> Hormone Regulation</h4>
-                   </div>
-                   <div className="md:w-2/3 border-l-2 border-gray-100 pl-4">
-                     <p className="text-sm font-medium text-gray-600">Affects energy, recovery, strength, and mental resilience.</p>
-                   </div>
-                 </div>
-                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center gap-4 group hover:border-[#7a2a33]/30 transition-colors">
-                   <div className="md:w-1/3">
-                     <h4 className="font-playfair font-bold text-[18px] text-gray-900 flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[#7a2a33]" /> Blood Sugar (HbA1c)</h4>
-                   </div>
-                   <div className="md:w-2/3 border-l-2 border-gray-100 pl-4">
-                     <p className="text-sm font-medium text-gray-600">Drives energy stability, endurance, and fatigue patterns.</p>
-                   </div>
-                 </div>
-                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center gap-4 group hover:border-[#56292f]/30 transition-colors">
-                   <div className="md:w-1/3">
-                     <h4 className="font-playfair font-bold text-[18px] text-gray-900 flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[#56292f]" /> Inflammation</h4>
-                   </div>
-                   <div className="md:w-2/3 border-l-2 border-gray-100 pl-4">
-                     <p className="text-sm font-bold text-[#7a2a33]">A core driver behind fatigue, injury risk, and reduced output.</p>
-                   </div>
-                 </div>
-              </div>
-            </div>
-
-            {/* SECTION 7 — TESTING */}
-            <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-sm border border-gray-100">
-               <div className="mb-10 text-center sm:text-left">
-                 <h3 className="font-playfair text-[28px] font-bold tracking-wider text-gray-900 mb-2 uppercase">Understand What’s Happening Beneath the Surface</h3>
-               </div>
-               
-               {/* Foundational */}
-               <div className="mb-12">
-                 <h4 className="font-bold text-[#7a2a33] text-[16px] uppercase tracking-widest mb-6 flex items-center justify-center sm:justify-start gap-2 border-b-2 border-[#7a2a33]/10 pb-3"><div className="w-2 h-2 bg-[#7a2a33]" /> FOUNDATIONAL TESTING</h4>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                   <div className="bg-[#fcfaf7] p-6 rounded-2xl shadow-sm border border-[#e9e7dc]">
-                     <h5 className="font-playfair font-bold text-xl text-gray-900 mb-4">Omega Balance</h5>
-                     <ul className="text-[13.5px] font-medium text-gray-700 space-y-3">
-                       <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5"/> Supports cellular performance</li>
-                       <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5"/> Influences inflammation and recovery</li>
-                       <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5"/> Impacts brain and physical output</li>
-                     </ul>
-                   </div>
-                   <div className="bg-[#fcfaf7] p-6 rounded-2xl shadow-sm border border-[#e9e7dc]">
-                     <h5 className="font-playfair font-bold text-xl text-gray-900 mb-4">Gut Health</h5>
-                     <ul className="text-[13.5px] font-medium text-gray-700 space-y-3">
-                       <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5"/> Supports nutrient absorption</li>
-                       <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5"/> Influences immune and digestive function</li>
-                       <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5"/> Impacts energy and resilience</li>
-                     </ul>
-                   </div>
-                 </div>
-               </div>
-
-               {/* Rapid Point of care */}
-               <div className="mb-12">
-                 <h4 className="font-bold text-blue-700 text-[16px] uppercase tracking-widest mb-6 flex items-center justify-center sm:justify-start gap-2 border-b-2 border-blue-100 pb-3"><Zap className="w-5 h-5 text-blue-600" /> RAPID POINT-OF-CARE TESTING</h4>
-                 <div className="bg-blue-50/40 p-6 lg:p-8 rounded-3xl border border-blue-100">
-                   <h5 className="font-playfair font-bold text-[22px] text-gray-900 mb-3">15-Minute Performance Insights</h5>
-                   <p className="font-bold text-sm text-gray-700 mb-6 italic">Available in clinics, gyms, and performance environments.</p>
-                   
-                   <p className="text-[14px] font-medium text-gray-600 mb-4">Finger-prick testing provides rapid insight into:</p>
-                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-                     <span className="bg-white px-4 py-2 border border-blue-100 shadow-sm rounded-xl font-bold text-sm text-center">Vitamin D</span>
-                     <span className="bg-white px-4 py-2 border border-blue-100 shadow-sm rounded-xl font-bold text-sm text-center">HbA1c</span>
-                     <span className="bg-white px-4 py-2 border border-blue-100 shadow-sm rounded-xl font-bold text-sm text-center">CRP / inflammation</span>
-                     <span className="bg-white px-4 py-2 border border-blue-100 shadow-sm rounded-xl font-bold text-sm text-center">Ferritin</span>
-                     <span className="bg-white px-4 py-2 border border-blue-100 shadow-sm rounded-xl font-bold text-sm text-center">Cortisol</span>
-                     <span className="bg-white px-4 py-2 border border-blue-100 shadow-sm rounded-xl font-bold text-sm text-center">Folate</span>
-                   </div>
-                   <div className="bg-blue-600 text-white p-4 rounded-xl text-center font-bold shadow-md w-full sm:w-auto inline-block px-8 py-3">
-                     Results in as little as 3–15 minutes.
-                   </div>
-                 </div>
-               </div>
-               
-               {/* Advanced */}
-               <div>
-                 <h4 className="font-bold text-gray-800 text-[16px] uppercase tracking-widest mb-6 flex items-center justify-center sm:justify-start gap-2 border-b-2 border-gray-100 pb-3"><Microscope className="w-5 h-5" /> ADVANCED TESTING</h4>
-                 <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                   <div>
-                     <p className="font-bold text-sm text-gray-700 mb-4 italic">Available at selected clinics:</p>
-                     <ul className="text-[14px] font-bold text-gray-800 grid grid-cols-2 gap-y-3">
-                       <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-gray-400 rounded-full" /> Testosterone</li>
-                       <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-gray-400 rounded-full" /> B12</li>
-                       <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-gray-400 rounded-full" /> Thyroid (TSH)</li>
-                       <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-gray-400 rounded-full" /> FSH</li>
-                       <li className="flex items-center gap-2 col-span-2"><div className="w-1.5 h-1.5 bg-gray-400 rounded-full" /> Hormonal markers</li>
-                     </ul>
-                   </div>
-                   <div className="bg-[#fcfaf7] p-5 rounded-xl border border-[#e9e7dc] text-center font-bold text-[#7a2a33] text-[14px]">
-                     Providing deeper, more detailed insight where required.
-                   </div>
-                 </div>
-               </div>
-
+              <p className="font-montserrat text-[14px] leading-relaxed text-gray-600 font-medium">Assesses absorption, immune interaction, and gut-driven performance constraints.</p>
             </div>
           </div>
 
-          {/* RIGHT COLUMN - Original far right (4 cols) */}
-          <div className="lg:col-span-4 flex flex-col space-y-10 pl-0 lg:pl-4 xl:pl-8">
+          {/* 15-MINUTE PERFORMANCE INSIGHT */}
+          <div className="bg-white border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden">
+            {/* Background Accent */}
+            <div className="absolute top-0 right-0 w-full h-2 bg-gradient-to-r from-blue-600 to-[#7a2a33]"></div>
             
-            {/* SECTION 5 — WAYS TO WORK WITH US */}
-            <div className="bg-white rounded-[2rem] border border-gray-100 shadow-xl overflow-hidden text-center sticky top-24 pt-8">
-               <h3 className="font-playfair text-[20px] font-bold tracking-wider text-gray-900 uppercase">Flexible Entry Points.</h3>
-               <p className="font-bold text-[#7a2a33] mb-8 text-[12px] uppercase tracking-widest mt-1">Structured Progression.</p>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center gap-2 bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full font-bold text-[13px] uppercase tracking-widest mb-6">
+                <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></div> 15-Minute Performance Insight
+              </div>
+              <h3 className="font-playfair text-[26px] md:text-[32px] font-bold text-gray-900 mb-4 uppercase tracking-wider">Advanced Point-of-Care Screening</h3>
+              <p className="font-montserrat text-[15px] font-medium text-gray-600 max-w-2xl mx-auto">
+                Fast, targeted screening to highlight key drivers of performance, recovery, and resilience.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+              {/* Left Column: Finger Prick */}
+              <div className="lg:col-span-8">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center -ml-2">
+                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-red-600"></div>
+                  </div>
+                  <h4 className="font-bold text-gray-900 text-[18px] uppercase tracking-widest">Finger Prick</h4>
+                </div>
+                <p className="text-[13px] font-bold text-red-600/80 uppercase tracking-widest mb-8 pl-9">Immediate in-clinic insight</p>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Vitamin D */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
+                       <Sun className="w-5 h-5" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Vitamin D <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">8 MINS</span></p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Muscle function + recovery</p>
+                     </div>
+                  </div>
+                  
+                  {/* HbA1c */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
+                       <Droplet className="w-5 h-5" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">HbA1c <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">5 MINS</span></p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Energy regulation + output</p>
+                     </div>
+                  </div>
+                  
+                  {/* Ferritin */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
+                       <Database className="w-5 h-5" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Ferritin <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">15 MINS</span></p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Oxygen transport + endurance</p>
+                     </div>
+                  </div>
+                  
+                  {/* Cortisol */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
+                       <Brain className="w-5 h-5" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Cortisol <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">15 MINS</span></p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Stress load + recovery capacity</p>
+                     </div>
+                  </div>
+                  
+                  {/* Folate */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
+                       <Hexagon className="w-5 h-5" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Folate <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">15 MINS</span></p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Energy production</p>
+                     </div>
+                  </div>
+                  
+                  {/* Cystatin C */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
+                       <Activity className="w-5 h-5" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Cystatin C <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">3 MINS</span></p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Recovery load + metabolic stress</p>
+                     </div>
+                  </div>
+                  
+                  {/* CRP / hs-CRP */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
+                       <Flame className="w-5 h-5" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">CRP / hs-CRP <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">3 MINS</span></p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Inflammation</p>
+                     </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Right Column: Phlebotomy */}
+              <div className="lg:col-span-4 lg:border-l lg:border-gray-100 lg:pl-10">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center -ml-2">
+                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-600"></div>
+                  </div>
+                  <h4 className="font-bold text-gray-900 text-[18px] uppercase tracking-widest">Phlebotomy Required</h4>
+                </div>
+                <p className="text-[13px] font-bold text-blue-600/80 uppercase tracking-widest mb-8 pl-9">Deeper performance biomarkers</p>
+                
+                <div className="flex flex-col gap-4">
+                  {/* Testosterone */}
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-10 h-10 rounded-full bg-blue-50/50 border border-blue-50 flex items-center justify-center shrink-0 shadow-sm text-blue-600/80">
+                       <FlaskConical className="w-5 h-5" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Testosterone <span className="text-[9px] font-bold bg-gray-50 border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2 hidden xl:block">15 MINS</span></p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Strength, recovery, output</p>
+                     </div>
+                  </div>
+                  
+                  {/* Vitamin B12 */}
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-10 h-10 rounded-full bg-blue-50/50 border border-blue-50 flex items-center justify-center shrink-0 shadow-sm text-blue-600/80">
+                       <Droplet className="w-5 h-5 fill-current opacity-70" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Vitamin B12 <span className="text-[9px] font-bold bg-gray-50 border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2 hidden xl:block">15 MINS</span></p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Energy, focus, neurological function</p>
+                     </div>
+                  </div>
+                  
+                  {/* TSH (Thyroid) */}
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-10 h-10 rounded-full bg-blue-50/50 border border-blue-50 flex items-center justify-center shrink-0 shadow-sm text-blue-600/80">
+                       <Search className="w-5 h-5" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">TSH (Thyroid) <span className="text-[9px] font-bold bg-gray-50 border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2 hidden xl:block">15 MINS</span></p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Metabolism, consistency, energy</p>
+                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* SECTION 7.8 — HOW WE SUPPORT YOU */}
+        <HowWeSupportYou />
+
+        {/* SECTION 7.9 — PRICING / SUPPORT LEVELS */}
+        <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4">
+          <div className="text-center mb-12 lg:mb-16">
+            <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">Choose Your Performance Support Level</h2>
+            <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest mb-4">
+              From foundational support to specialist-led performance strategy
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 items-stretch">
+            
+            {/* Box 1: Free Consultation */}
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#7a2a33]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+               {/* Header Zone */}
+               <div className="h-[100px] shrink-0 mb-2">
+                 <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight">Free Consultation</h3>
+               </div>
                
-               <div className="space-y-4 px-6 pb-6">
-                 {/* Option 1 */}
-                 <div className="bg-[#fcfaf7] border border-gray-200 rounded-2xl p-6 relative text-left">
-                   <div className="absolute -top-3 left-6 bg-[#7a2a33] text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Option 1 — Entry Pathway</div>
-                   <h4 className="font-playfair font-bold text-[18px] text-gray-900 mb-4 mt-2 pr-4 leading-tight">Free Consultation + Personalised Results Review</h4>
-                   <ul className="text-[12px] font-medium text-gray-700 space-y-2 mb-6">
-                     <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0" /> 30-minute consultation</li>
-                     <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0" /> Learn the science behind your symptoms</li>
-                     <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0" /> Education-led approach</li>
-                     <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0" /> Foundational testing + protocol</li>
-                   </ul>
-                   <div className="bg-white p-3 rounded-xl border border-gray-100 text-center mb-4">
-                     <p className="text-[11px] font-bold text-gray-500 line-through">From £482</p>
-                     <p className="text-[18px] font-bold text-[#7a2a33]">£189 <span className="text-[11px] font-bold text-red-600 bg-red-50 px-1 rounded">(Save 61%)</span></p>
-                     <p className="text-[14px] font-bold text-gray-800 mt-1">£39/month <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1 rounded">(Save 29%)</span></p>
-                   </div>
-                   <p className="text-[11px] italic text-gray-500 font-medium text-center leading-tight">
-                     Each test result leads to a personalised, medically supported protocol.
-                   </p>
-                 </div>
-
-                 {/* Option 2 */}
-                 <div className="bg-white border border-gray-200 rounded-2xl p-6 relative text-left mt-6">
-                   <div className="absolute -top-3 left-6 bg-gray-800 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Option 2 — Specialist Review</div>
-                   <h4 className="font-playfair font-bold text-[18px] text-gray-900 mb-4 mt-2 leading-tight">TBN Specialist Consultation + Private Results Review</h4>
-                   <ul className="text-[12px] font-medium text-gray-700 space-y-2 mb-4">
-                     <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-gray-800 shrink-0 mt-1.5" /> Free consultation</li>
-                     <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-gray-800 shrink-0 mt-1.5" /> 30-minute results review</li>
-                     <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-gray-800 shrink-0 mt-1.5" /> Delivered by a TBN specialist, coach, or practitioner</li>
-                   </ul>
-                   <div className="bg-gray-50 p-3 rounded-xl font-bold text-[12px] text-center text-gray-800">
-                     You choose your expert.
+               {/* Body Zone */}
+               <div className="flex-grow flex flex-col justify-start mb-6 space-y-3">
+                 <p className="font-bold text-[11px] text-gray-400 uppercase tracking-widest mb-3">Includes</p>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-gray-900 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Define your goals</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-gray-900 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Identify effective starting point</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-gray-900 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Understand the TBN performance system</span></div>
+               </div>
+               
+               {/* Footer Zone */}
+               <div className="h-[360px] shrink-0 pt-6 border-t border-gray-100 flex flex-col">
+                 <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
+                   <div className="flex flex-col justify-end h-full">
+                     <span className="text-[32px] font-bold text-gray-900 leading-none">Free</span>
                    </div>
                  </div>
-
-                 {/* Option 3 */}
-                 <div className="bg-white border border-gray-200 border-l-[4px] border-l-blue-600 rounded-2xl p-6 relative text-left mt-6">
-                   <div className="absolute -top-3 left-6 bg-blue-600 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Option 3 — Doctor-Led</div>
-                   <h4 className="font-playfair font-bold text-[18px] text-gray-900 mb-4 mt-2 leading-tight">Doctor Consultation + Full Protocol + Follow-Up</h4>
-                   <ul className="text-[12px] font-medium text-gray-700 space-y-2 mb-6">
-                     <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0 mt-1.5" /> Doctor consultation</li>
-                     <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0 mt-1.5" /> Full results review</li>
-                     <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0 mt-1.5" /> Personalised protocol</li>
-                     <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0 mt-1.5" /> Follow-up review after second test</li>
-                   </ul>
-                   <div className="text-center font-bold text-[20px] text-gray-900">
-                     £95 <span className="text-[14px] text-gray-400">/</span> £195
-                   </div>
-                 </div>
-                 
-                 <button className="w-full bg-[#7a2a33] text-white py-4 rounded-xl font-bold text-[15px] shadow-sm mt-4 hover:bg-[#5c1c24] transition-colors">
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase border border-gray-200 text-gray-900 rounded-full hover:bg-gray-50 transition-colors shadow-sm mb-6">
                    Book Free Consultation
                  </button>
+                 <div className="flex-grow">
+                   <p className="font-montserrat text-[13px] text-gray-500 leading-relaxed text-center">
+                     Gain extreme clarity on your immediate next steps before committing to a protocol.
+                   </p>
+                 </div>
                </div>
             </div>
 
+            {/* Box 2: Foundations */}
+            <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#7a2a33] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#8c353f] whitespace-nowrap">Most Popular</div>
+               
+               {/* Header Zone */}
+               <div className="h-[100px] shrink-0 mb-2 flex flex-col">
+                 <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Performance Foundations</h3>
+                 <p className="text-[11px] font-bold text-[#7a2a33] uppercase tracking-widest">6-Month Structured Programme</p>
+               </div>
+               
+               {/* Body Zone */}
+               <div className="flex-grow mb-6 space-y-3">
+                 <p className="font-bold text-[11px] text-gray-400 uppercase tracking-widest mb-3">Includes</p>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Balance Test</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Personalised Results Review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">6-Month Performance Protocol</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Retest Included</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Ongoing Support</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Access to Community & Education</span></div>
+               </div>
 
+               {/* Footer Zone */}
+               <div className="h-[360px] shrink-0 pt-6 border-t border-[#e9e7dc] flex flex-col">
+                 <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
+                   <div className="flex flex-col justify-end h-full">
+                     <div className="flex items-end gap-3 mb-1.5 align-bottom">
+                       <span className="text-[32px] font-bold text-gray-900 leading-none">£189</span>
+                       <span className="text-gray-400 line-through text-[14px] leading-snug">£482</span>
+                       <span className="text-[#7a2a33] font-bold text-[11px] uppercase bg-[#7a2a33]/10 px-2 py-0.5 rounded ml-auto">Save 61%</span>
+                     </div>
+                     <p className="text-[13px] text-gray-500 font-medium flex items-center gap-1.5">+ £39/mo <span className="text-[#7a2a33] font-bold text-[11px] uppercase bg-[#7a2a33]/10 px-1.5 py-[2px] rounded">Save 29%</span></p>
+                   </div>
+                 </div>
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#7a2a33] text-white rounded-full hover:bg-[#8c353f] transition-colors shadow-md mb-6">
+                   Start Foundations
+                 </button>
+                 <div className="flex-grow">
+                   <p className="font-montserrat text-[13px] text-gray-500 leading-relaxed text-center">
+                     Build the foundations of performance through structured testing, personalised protocols, and measurable progression.
+                   </p>
+                 </div>
+               </div>
+            </div>
+
+            {/* Box 3: Advanced Review */}
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-blue-600/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+               {/* Header Zone */}
+               <div className="h-[100px] shrink-0 mb-2 flex flex-col">
+                 <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Advanced Performance Review</h3>
+                 <p className="text-[11px] font-bold text-blue-600 uppercase tracking-widest">1:1 Strategic Review</p>
+               </div>
+               
+               {/* Body Zone */}
+               <div className="flex-grow mb-6 space-y-3">
+                 <p className="font-bold text-[11px] text-gray-400 uppercase tracking-widest mb-3">Includes</p>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">1:1 Advanced Results Review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Performance Strategy Recommendation</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Sport-Specific Guidance</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Clear Next-Phase Planning</span></div>
+               </div>
+
+               {/* Footer Zone */}
+               <div className="h-[360px] shrink-0 pt-6 border-t border-gray-100 flex flex-col">
+                 <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
+                   <div className="flex flex-col justify-end h-full">
+                     <div className="flex items-end gap-2 align-bottom">
+                       <span className="text-[32px] font-bold text-gray-900 leading-none">£85</span>
+                       <span className="text-[14px] text-gray-500 font-bold tracking-widest uppercase mb-0.5">Add-on</span>
+                     </div>
+                   </div>
+                 </div>
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-md mb-6">
+                   Book Advanced Review
+                 </button>
+                 <div className="flex-grow flex flex-col justify-between">
+                   <p className="font-montserrat text-[13px] text-gray-500 leading-relaxed text-center mb-4">
+                     A private performance review designed to translate your results into a clear, actionable strategy.
+                   </p>
+                   <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100/50 w-full mt-auto">
+                     <p className="font-bold text-[11px] text-blue-600/70 uppercase tracking-widest mb-1">Delivered By</p>
+                     <p className="text-[13px] text-gray-800 font-bold mb-1">Senior TBN Specialists</p>
+                     <p className="text-[11px] text-gray-500 leading-tight">With pathway escalation to Dr Ishtiaq Rehman or Neil Parsley where required</p>
+                   </div>
+                 </div>
+               </div>
+            </div>
+
+            {/* Box 4: Elite Consultation */}
+            <div className="bg-[#1c1c1c] border border-white/10 p-8 rounded-[2rem] shadow-xl hover:shadow-2xl flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-all duration-300">
+               <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#d0bfae] opacity-10 blur-3xl rounded-full pointer-events-none group-hover:opacity-20 transition-opacity duration-500"></div>
+               
+               {/* Header Zone */}
+               <div className="h-[100px] shrink-0 mb-2 relative z-10 flex flex-col">
+                 <h3 className="font-playfair text-[24px] font-bold text-white leading-tight mb-2">TBN Elite Performance</h3>
+                 <p className="text-[11px] font-bold text-[#d0bfae] uppercase tracking-widest">Private 1:1 with Doctor / Coach</p>
+               </div>
+               
+               {/* Body Zone */}
+               <div className="flex-grow mb-6 space-y-3 relative z-10">
+                 <p className="font-bold text-[11px] text-white/40 uppercase tracking-widest mb-3">Includes</p>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Private 1:1 Consultation</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Full Results Review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Personalised Strategy</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Bespoke Protocol Development</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Follow-Up & Second Review</span></div>
+               </div>
+
+               {/* Footer Zone */}
+               <div className="h-[360px] shrink-0 pt-6 border-t border-white/10 flex flex-col relative z-10">
+                 <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
+                   <div className="flex flex-col justify-end h-full">
+                     <div className="flex items-end gap-2 align-bottom">
+                       <span className="text-[32px] font-bold text-white leading-none">£185</span>
+                     </div>
+                   </div>
+                 </div>
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#d0bfae] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6">
+                   Apply for Elite Support
+                 </button>
+                 <div className="flex-grow flex flex-col justify-between">
+                   <p className="font-montserrat text-[13px] text-white/60 leading-relaxed text-center mb-2">
+                     Direct access to the highest level of performance support within TBN.
+                   </p>
+                   <div className="bg-white/5 p-3.5 rounded-xl border border-white/10 w-full mt-auto">
+                     <p className="font-bold text-[11px] text-[#d0bfae]/70 uppercase tracking-widest mb-2">Work 1:1 With</p>
+                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#d0bfae] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Dr Ishtiaq Rehman <span className="text-white/50 font-normal">(England FA)</span></p></div>
+                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#d0bfae] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Neil Parsley <span className="text-white/50 font-normal">(Man City, Team GB)</span></p></div>
+                     <p className="text-[11px] text-white/50 italic mt-2 pl-3 border-l border-white/10">or senior TBN specialist</p>
+                   </div>
+                 </div>
+               </div>
+            </div>
 
           </div>
         </div>
 
-        {/* SECTION 8 — PARTNER WITH US (Moved below columns) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-16 lg:mt-24">
-          <div className="lg:col-span-8">
-            <div className="bg-[#1c1c1c] p-8 lg:p-12 rounded-[2.5rem] shadow-lg relative overflow-hidden group h-full flex flex-col justify-center">
-               <div className="absolute top-0 right-0 p-8 opacity-10"><Users className="w-48 h-48 text-white -mr-12 -mt-12"/></div>
-               <p className="text-[11px] font-bold uppercase tracking-widest text-[#d0bfae] mb-3 relative z-10">Join the TBN Collective</p>
-               <h3 className="font-playfair text-[32px] md:text-[40px] font-bold text-white mb-6 relative z-10">Partner With Us</h3>
-               <p className="font-medium text-[15px] md:text-[16px] text-white/80 mb-8 max-w-xl relative z-10">
-                 Work with your clients, patients, or athletes using a structured, test-based model.
-               </p>
-               
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 mb-10 relative z-10">
-                 <div className="flex flex-col">
-                    <h4 className="font-bold text-white text-[12px] uppercase tracking-widest mb-4">What You Gain:</h4>
-                    <ul className="text-[14px] font-bold text-white/90 space-y-4 pl-2">
-                       <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-[#d0bfae] mt-2 shrink-0"/> <span className="leading-tight">Free training and certification</span></li>
-                       <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-[#d0bfae] mt-2 shrink-0"/> <span className="leading-tight">Full integration into your practice or facility</span></li>
-                       <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-[#d0bfae] mt-2 shrink-0"/> <span className="leading-tight">Marketing and client acquisition support</span></li>
-                    </ul>
-                 </div>
-                 <div className="flex flex-col mt-4 md:mt-10">
-                    <ul className="text-[14px] font-bold text-white/90 space-y-4 pl-2">
-                       <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-[#d0bfae] mt-2 shrink-0"/> <span className="leading-tight">Additional revenue streams</span></li>
-                       <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-[#d0bfae] mt-2 shrink-0"/> <span className="leading-tight">Access to a medically-led system</span></li>
-                    </ul>
-                 </div>
-               </div>
-               
-               <div className="relative z-10 w-full sm:w-auto">
-                 <button className="bg-white text-gray-900 px-10 py-3.5 rounded-xl font-bold text-[15px] hover:bg-gray-100 transition-colors w-full sm:w-auto mt-2">
-                   Learn More
-                 </button>
-               </div>
-            </div>
-          </div>
-          <div className="lg:col-span-4 flex flex-col gap-8">
-            {/* Practitioner Directory block */}
-            <div className="bg-[#f2efe9] p-8 lg:p-10 rounded-[2.5rem] border border-[#e9e7dc] shadow-sm flex-1 flex flex-col justify-center">
-               <h3 className="font-playfair text-[24px] font-bold text-gray-900 mb-4 flex items-center gap-3"><SearchIcon className="w-6 h-6 text-[#7a2a33]"/> Practitioner Directory</h3>
-               <p className="text-[15px] font-medium text-gray-700 mb-8">Find a Specialist Near You</p>
-               <Link to="/specialists" className="flex items-center gap-2 font-bold text-[15px] text-[#7a2a33] hover:text-[#5c1c24] transition-colors group mt-auto">
-                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /> View Directory Listings
-               </Link>
-            </div>
+        {/* SECTION 8 — PARTNER WITH US & DIRECTORY */}
+        <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4 mb-24">
+           <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start">
+              
+              {/* Left Column: Partner With Us */}
+              <div className="w-full lg:flex-1 bg-[#1c1c1c] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-xl relative overflow-hidden flex flex-col hover:shadow-2xl transition-shadow duration-300">
+                  <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-white -mr-16 -mt-16"/></div>
+                  
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 relative z-10 flex-grow">
+                     {/* Left side of the Partner box */}
+                     <div className="flex flex-col justify-between">
+                         <div>
+                             <p className="font-bold text-[#d0bfae] text-[13px] uppercase tracking-widest mb-4">Partner With Us</p>
+                             <h2 className="font-playfair text-[28px] md:text-[36px] xl:text-[42px] font-bold text-white leading-tight mb-6">
+                                TBN operates inside real environments
+                             </h2>
+                             <p className="font-montserrat text-[15px] leading-relaxed text-white/80 mb-10">
+                                — embedding structured testing, specialist insight, and performance systems into existing services.
+                             </p>
+                         </div>
+                         
+                         <div className="mt-auto">
+                            <p className="font-bold text-white text-[13px] uppercase tracking-widest mb-4">Partner With TBN</p>
+                            <div className="flex flex-col sm:flex-row gap-3">
+                               <button className="flex-1 bg-white text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-100 transition-colors shadow-sm text-center">
+                                 Become a Performance Partner
+                               </button>
+                               <button className="flex-1 bg-transparent border border-white/20 text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-white/10 transition-colors text-center">
+                                 Invite Us to Your Facility
+                               </button>
+                            </div>
+                         </div>
+                     </div>
 
-            {/* Leading Insights block */}
-            <div className="bg-white p-8 lg:p-10 rounded-[2.5rem] border border-gray-100 shadow-sm flex-1 flex flex-col justify-center">
-               <h3 className="font-playfair text-[24px] font-bold text-gray-900 mb-4 flex items-center gap-3"><FileText className="w-6 h-6 text-[#7a2a33]"/> Leading Insights</h3>
-               <p className="text-[15px] font-medium text-gray-600 mb-8 leading-relaxed">
-                 Access expert-led content and category-specific education, continuously updated.
-               </p>
-               <Link to="/news-hub" className="flex items-center gap-2 font-bold text-[15px] text-[#7a2a33] hover:text-[#5c1c24] transition-colors group mt-auto">
-                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /> Explore Insights
-               </Link>
-            </div>
-          </div>
+                     {/* Right side of the Partner box */}
+                     <div className="flex flex-col xl:pl-8">
+                         <h3 className="font-playfair text-[20px] font-bold text-white mb-6 xl:mt-1">What This Delivers</h3>
+                         <ul className="space-y-4">
+                            {[
+                              "Advanced training for coaches and practitioners",
+                              "Integrated performance testing within your environment",
+                              "Ongoing access to specialist-led insight",
+                              "Enhanced client and athlete journeys",
+                              "Scalable performance services",
+                              "New revenue opportunities"
+                            ].map((item, idx) => (
+                              <li key={idx} className="flex items-start gap-4">
+                                <CheckCircle2 className="w-5 h-5 text-[#d0bfae] shrink-0 mt-0.5" />
+                                <span className="text-[14px] leading-snug font-medium text-white/90">{item}</span>
+                              </li>
+                            ))}
+                         </ul>
+                     </div>
+                  </div>
+              </div>
+
+              {/* Right Column: Directory Access (Smaller box) */}
+              <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
+                 <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#7a2a33] -mr-12 -mb-12"/></div>
+
+                 <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 border border-gray-100 relative z-10 shrink-0">
+                    <Search className="w-6 h-6 text-[#7a2a33]" strokeWidth={2.5}/>
+                 </div>
+                 
+                 <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
+                    Access TBN-approved clinics across the UK.
+                 </h2>
+                 <p className="text-[13px] text-gray-600 mb-8 font-medium leading-relaxed relative z-10">
+                    Find specialist practitioners who embed the TBN testing and performance model into their environment. Discover cutting-edge support near you.
+                 </p>
+                 
+                 <div className="mt-auto w-full relative z-10">
+                    <button className="w-full text-center bg-[#7a2a33] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#8c353f] transition-colors shadow-md">
+                       Explore Directory
+                    </button>
+                 </div>
+              </div>
+           </div>
         </div>
 
         {/* FINAL CTA */}

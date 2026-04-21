@@ -1,8 +1,25 @@
+import React from "react";
 import { FocusRail, type FocusRailItem } from "@/components/ui/focus-rail";
 import { useQuery } from "@tanstack/react-query";
 import { fetchSpecialists } from "@/lib/api";
 
-export default function ExpertsFocusRail() {
+export interface ExpertsFocusRailProps {
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+  description?: React.ReactNode;
+  alignment?: "center" | "left";
+  layout?: "stacked" | "split";
+  className?: string;
+}
+
+export default function ExpertsFocusRail({
+  title = <>Meet the <br className="hidden sm:block" /> TBN Collective</>,
+  subtitle = "OUR SPECIALISTS",
+  description = "Explore our growing network of practitioners, clinicians, pharmacists and performance specialists delivering personalised preventative healthcare through the Test-Based Nutrition approach.",
+  alignment = "center",
+  layout = "stacked",
+  className = "w-full h-full bg-stone-50/50 py-16 md:py-24 overflow-hidden flex flex-col justify-start"
+}: ExpertsFocusRailProps = {}) {
   const { data: specialists = [], isLoading } = useQuery({
     queryKey: ['specialists'],
     queryFn: fetchSpecialists
@@ -29,26 +46,28 @@ export default function ExpertsFocusRail() {
   if (expertItems.length === 0) return null;
 
   return (
-    <div className="w-full h-full bg-stone-50/50 py-16 md:py-24 overflow-hidden flex flex-col justify-start">
-      <div className="w-full max-w-3xl lg:max-w-none mx-auto px-6 md:px-10 lg:px-12 mb-12 md:mb-16 text-center flex flex-col items-center">
-        <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">
-          OUR SPECIALISTS
-        </p>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair font-heading text-foreground mb-4 leading-tight">
-          Meet the <br className="hidden sm:block" /> TBN Collective
-        </h2>
-        <p className="font-montserrat text-[14px] text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          Explore our growing network of practitioners, clinicians, pharmacists and performance specialists delivering personalised preventative healthcare through the Test-Based Nutrition approach.
-        </p>
-      </div>
+    <div className={className}>
+      <div className={`max-w-[1440px] mx-auto w-full ${layout === 'split' ? 'lg:flex lg:flex-row lg:items-center lg:gap-12' : 'flex flex-col'}`}>
+        <div className={`w-full ${layout === 'split' ? 'lg:w-[45%] px-6 md:px-10 lg:pl-16 lg:pr-8 mb-12 lg:mb-0' : 'max-w-3xl lg:max-w-none mx-auto px-6 md:px-10 lg:px-12 mb-12 md:mb-16'} flex flex-col ${alignment === 'center' ? 'items-center text-center' : 'items-start text-left'}`}>
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">
+            {subtitle}
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair font-heading text-foreground mb-4 leading-tight">
+            {title}
+          </h2>
+          <p className={`font-montserrat text-[14px] text-muted-foreground leading-relaxed ${layout === 'split' ? 'max-w-lg' : 'max-w-3xl'} ${alignment === 'center' ? 'mx-auto' : ''}`}>
+            {description}
+          </p>
+        </div>
 
-      <div className="w-full max-w-2xl lg:max-w-none mx-auto px-4 md:px-8">
-        <FocusRail 
-          items={expertItems} 
-          autoPlay={true} 
-          interval={4000}
-          loop={true} 
-        />
+        <div className={`w-full ${layout === 'split' ? 'lg:w-[55%]' : 'max-w-2xl lg:max-w-none mx-auto'} px-4 md:px-8`}>
+          <FocusRail 
+            items={expertItems} 
+            autoPlay={true} 
+            interval={4000}
+            loop={true} 
+          />
+        </div>
       </div>
     </div>
   );

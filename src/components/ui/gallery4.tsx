@@ -21,6 +21,7 @@ export interface Gallery4Item {
 
 export interface Gallery4Props {
   title?: string;
+  subtitle?: string;
   description?: string;
   items?: Gallery4Item[];
   compact?: boolean;
@@ -76,6 +77,7 @@ const data = [
 
 const Gallery4 = ({
   title = "Case Studies",
+  subtitle = "What We Treat",
   description = "Discover how leading companies and developers are leveraging modern web technologies to build exceptional digital experiences. These case studies showcase real-world applications and success stories.",
   items = data,
   compact = false,
@@ -107,7 +109,7 @@ const Gallery4 = ({
         {compact ? (
           <div className="text-center max-w-4xl mx-auto mb-12 flex flex-col items-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
-              What We Treat
+              {subtitle}
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair font-heading mb-5">
               {title}<span className="text-primary">.</span>
@@ -156,7 +158,7 @@ const Gallery4 = ({
       <div className="w-full">
         {compact ? (
           <div className="container mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-2 lg:grid-cols-6 gap-3 md:gap-4 lg:gap-4">
+            <div className={`grid grid-cols-2 gap-3 md:gap-4 lg:gap-4 ${items.length === 5 ? 'lg:grid-cols-5' : 'lg:grid-cols-6'}`}>
               {items.map((item) => (
               <a key={item.id} href={item.href} className="group w-full h-full min-h-[14rem] sm:min-h-[16rem] md:aspect-[3/4] lg:aspect-[4/5] perspective-1000">
                 <div className="relative w-full h-full transition-transform duration-700 preserve-3d group-hover:rotate-y-180 cursor-pointer shadow-sm rounded-xl">
