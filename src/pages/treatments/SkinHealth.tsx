@@ -6,6 +6,18 @@ import heroImg from "@/assets/treatments/skin-health-hero.jpg";
 import { Gallery4 } from "@/components/ui/gallery4";
 import { Marquee } from "@/components/ui/marquee";
 import { Badge } from "@/components/ui/badge";
+import { FocusRail } from "@/components/ui/focus-rail";
+import { useQuery } from "@tanstack/react-query";
+import { fetchSpecialists } from "@/lib/api";
+import ArticleCard from "@/components/news/ArticleCard";
+import { articles as newsArticles } from "@/data/newsArticles";
+import { useQuiz } from "@/components/QuizContext";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   Activity,
   Droplet,
@@ -23,7 +35,8 @@ import {
   Microscope,
   Users,
   Settings,
-  RefreshCw
+  RefreshCw,
+  Zap
 } from "lucide-react";
 
 // Note: Ensure the hero image exists or falls back cleanly
@@ -45,6 +58,22 @@ const marqueeData = [
 ];
 
 const SkinHealth = () => {
+  const quizContext = useQuiz();
+  const openQuiz = quizContext?.openQuiz || (() => {});
+
+  const { data: specialists = [], isLoading: isSpecialistsLoading } = useQuery({
+    queryKey: ['specialists'],
+    queryFn: fetchSpecialists
+  });
+
+  const expertItems = specialists.map((s, index) => ({
+    id: s.slug || `expert-${index}`,
+    title: s.name,
+    description: s.bio && s.bio.length > 0 ? s.bio[0] : 'Health & Wellness Expert',
+    meta: `${s.category} • ${s.role}`,
+    imageSrc: s.image || "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800"
+  }));
+
   return (
     <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#fdfcfb] font-montserrat">
       <Navbar alwaysSolid />
@@ -778,6 +807,250 @@ const SkinHealth = () => {
             </div>
 
           </div>
+        </div>
+
+        {/* SECTION — PARTNER WITH US & DIRECTORY */}
+        <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4 mb-24">
+           {/* Centered Section Heading */}
+           <div className="max-w-[800px] mx-auto text-center mb-16">
+             <h2 className="font-playfair text-[32px] md:text-[40px] font-bold text-gray-900 leading-tight mb-4 uppercase">
+               PARTNER WITH US
+             </h2>
+             <p className="font-bold text-[#8b5e4a] text-[13px] md:text-[14px] uppercase tracking-widest leading-snug">
+               Integrated into hand-selected clinics, health clubs, gyms, and performance settings
+             </p>
+           </div>
+           
+           <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
+              
+              {/* Left Column: Partner With Us */}
+              <div className="w-full lg:flex-1 bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
+                  <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-[#8b5e4a] -mr-16 -mt-16"/></div>
+                  
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 relative z-10 flex-grow">
+                     {/* Left side of the Partner box */}
+                     <div className="flex flex-col justify-between">
+                         <div>
+                             <h3 className="font-playfair text-[24px] md:text-[28px] xl:text-[32px] font-bold text-gray-900 leading-tight mb-4">
+                                TBN operates inside real environments
+                             </h3>
+                             <p className="font-montserrat text-[15px] leading-relaxed text-gray-600 mb-10">
+                                — embedding structured testing, specialist insight, and clinical systems into existing services.
+                             </p>
+                         </div>
+                         
+                         <div className="mt-auto">
+                            <p className="font-bold text-gray-900 text-[13px] uppercase tracking-widest mb-4">Partner With TBN</p>
+                            <div className="flex flex-col sm:flex-row gap-3">
+                               <button className="flex-1 bg-[#8b5e4a] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#6e4736] transition-colors shadow-sm text-center">
+                                 Become a Partner
+                               </button>
+                               <button className="flex-1 bg-white border border-gray-200 text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm text-center">
+                                 Invite Us to Your Facility
+                               </button>
+                            </div>
+                         </div>
+                     </div>
+
+                     {/* Right side of the Partner box */}
+                     <div className="flex flex-col xl:pl-8">
+                         <h3 className="font-playfair text-[20px] font-bold text-gray-900 mb-6 xl:mt-1">What This Delivers</h3>
+                         <ul className="space-y-4">
+                            {[
+                              "Advanced training for coaches and practitioners",
+                              "Integrated testing within your environment",
+                              "Ongoing access to specialist-led insight",
+                              "Enhanced client journeys",
+                              "Scalable health services",
+                              "New revenue opportunities"
+                            ].map((item, idx) => (
+                              <li key={idx} className="flex items-start gap-4">
+                                <CheckCircle2 className="w-5 h-5 text-[#8b5e4a] shrink-0 mt-0.5" />
+                                <span className="text-[14px] leading-snug font-medium text-gray-700">{item}</span>
+                              </li>
+                            ))}
+                         </ul>
+                     </div>
+                  </div>
+              </div>
+
+              {/* Right Column: Stacked Boxes */}
+              <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 flex flex-col gap-6 lg:gap-8">
+                 {/* Directory Access */}
+                 <div className="w-full bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
+                    <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#8b5e4a] -mr-12 -mb-12"/></div>
+
+                    <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
+                       Access TBN-approved clinics across the UK.
+                    </h2>
+                    <p className="text-[13px] text-gray-600 mb-8 font-medium leading-relaxed relative z-10">
+                       Find specialist TBN practitioners. Discover cutting-edge support near you.
+                    </p>
+                    
+                    {/* Directory Flicker / Focus Rail */}
+                    <div className="w-[calc(100%+4rem)] md:w-[calc(100%+5rem)] -mx-8 md:-mx-10 mb-6 relative z-10 overflow-hidden shrink-0">
+                       {isSpecialistsLoading || expertItems.length === 0 ? (
+                          <div className="h-[380px] flex items-center justify-center">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#8b5e4a]"></div>
+                          </div>
+                       ) : (
+                          <FocusRail 
+                            items={expertItems} 
+                            autoPlay={true} 
+                            interval={4000}
+                            loop={true} 
+                            compact={true}
+                            className="bg-transparent h-auto !w-full"
+                          />
+                       )}
+                    </div>
+                    
+                    <div className="mt-auto w-full relative z-10">
+                       <button className="w-full text-center bg-[#8b5e4a] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#6e4736] transition-colors shadow-md">
+                          Explore Directory
+                       </button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+         </div>
+
+        {/* LATEST INSIGHTS HORIZONTAL GALLERY */}
+        <div className="w-full mt-8 max-w-[1400px] mx-auto px-4 mb-8">
+          <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-8 md:mb-10 text-center md:text-left gap-4">
+             <div>
+                <h2 className="font-playfair text-[28px] md:text-[32px] font-bold text-gray-900 tracking-wider uppercase">
+                   LATEST INSIGHTS
+                </h2>
+                <p className="font-montserrat text-[14px] md:text-[15px] font-medium text-gray-600 mt-2">
+                   Cellular health, gut-skin connections, and dermatological science.
+                </p>
+             </div>
+             <Link to="/news" className="text-[#8b5e4a] font-bold text-[13px] uppercase tracking-wider hover:underline flex items-center gap-2">
+                View All Articles <ArrowRight className="w-4 h-4" />
+             </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {newsArticles.slice(0, 3).map(article => (
+              <ArticleCard key={article.id} {...article} />
+            ))}
+          </div>
+        </div>
+
+        {/* FINAL CTA */}
+        <div className="mt-16 lg:mt-24 mb-16">
+          <div className="bg-[#8b5e4a] p-10 lg:p-16 rounded-[3rem] shadow-xl relative overflow-hidden flex flex-col items-center text-center w-full max-w-[1400px] mx-auto px-4">
+             <div className="absolute top-0 right-0 p-8 opacity-10"><Zap className="w-48 h-48 -mr-16 -mt-16 text-white"/></div>
+             <div className="absolute bottom-0 left-0 p-8 opacity-10"><Zap className="w-48 h-48 -ml-16 -mb-16 text-white rotate-180"/></div>
+             
+             <h2 className="font-playfair text-3xl md:text-4xl lg:text-[40px] font-bold text-white mb-6 relative z-10 leading-tight uppercase">
+               SKIN, WITHOUT GUESSWORK
+             </h2>
+             <div className="flex flex-col items-center relative z-10 border-b border-white/20 pb-5 mb-5 px-8">
+               <p className="text-white/90 font-bold uppercase tracking-widest text-[13px] mb-2 text-center">
+                 A more intelligent approach to skin health
+               </p>
+             </div>
+             <p className="text-[20px] font-playfair font-bold text-[#e9e7dc] mb-10 relative z-10">
+               Test-Based. Personalised. Transformative.
+             </p>
+             
+             <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full max-w-lg">
+               <button 
+                 onClick={() => openQuiz()}
+                 className="flex-1 bg-white hover:bg-gray-100 text-[#8b5e4a] px-6 py-4 rounded-xl font-bold text-[15px] shadow-lg flex justify-center items-center gap-2 group transition-all">
+                 Start Your Journey <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
+               </button>
+               <Link to="/clinics" className="flex-1 bg-[#6e4736] hover:bg-[#5a3a2d] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
+                 Find a Clinic <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
+               </Link>
+             </div>
+          </div>
+        </div>
+
+        {/* SECTION 9 — FAQ */}
+        <div className="w-full mt-24 lg:mt-32 max-w-4xl mx-auto px-4 mb-24">
+          <div className="text-center mb-12">
+            <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">
+              FREQUENTLY ASKED QUESTIONS
+            </h2>
+          </div>
+
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {/* FAQ 1 */}
+            <AccordionItem value="item-1" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#8b5e4a] text-left">
+                Why do my skin concerns keep returning?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p className="mb-2">Skin concerns are often treated on the surface.</p>
+                <p>However, factors such as inflammation, hormones, gut health, and nutrient status may influence how the skin behaves over time.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* FAQ 2 */}
+            <AccordionItem value="item-2" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#8b5e4a] text-left">
+                How is this different from standard skin treatments?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p className="mb-2">Most approaches focus on appearance.</p>
+                <p>This approach explores what may be influencing your skin beneath the surface.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* FAQ 3 */}
+            <AccordionItem value="item-3" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#8b5e4a] text-left">
+                Will this replace my treatments?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p className="mb-2 font-medium text-gray-900">No.</p>
+                <p>It is designed to support and enhance them.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* FAQ 4 */}
+            <AccordionItem value="item-4" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#8b5e4a] text-left">
+                What is Skin Driver Testing?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p>It focuses on identifying factors such as inflammation, gut health, and hormonal balance that may influence your skin.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* FAQ 5 */}
+            <AccordionItem value="item-5" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#8b5e4a] text-left">
+                How do you decide which tests I need?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p>Testing is determined by consultation, based on your symptoms and goals.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* FAQ 6 */}
+            <AccordionItem value="item-6" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#8b5e4a] text-left">
+                Can I do this at home?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p className="mb-2 font-medium text-gray-900">Yes.</p>
+                <p>Foundational testing can be completed at home, with optional in-clinic support.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* FAQ 7 */}
+            <AccordionItem value="item-7" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#8b5e4a] text-left">
+                How long before I see changes?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p>Many pathways are supported over 3–6 months, allowing time for measurable progress.</p>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
 
       </main>
