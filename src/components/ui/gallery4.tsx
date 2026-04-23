@@ -111,8 +111,12 @@ const Gallery4 = ({
             <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
               {subtitle}
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair font-heading mb-5">
-              {title}<span className="text-primary">.</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair font-heading mb-2">
+              {typeof title === 'string' ? (
+                <>{title}<span className="text-primary">.</span></>
+              ) : (
+                title
+              )}
             </h2>
             {description && (
               <p className="font-montserrat text-[14px] text-muted-foreground/90 max-w-2xl mx-auto leading-relaxed">

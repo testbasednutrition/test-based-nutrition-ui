@@ -168,7 +168,7 @@ const SkinHealth = () => {
           <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-2 md:pt-4">
             <Gallery4 
               subtitle="SKIN HEALTH PATHWAYS"
-              title={<span className="md:whitespace-nowrap xl:tracking-tight xl:text-[46px] 2xl:text-[50px] inline-block">Personalised. Preventative. Transformative</span>}
+              title={<span className="md:whitespace-nowrap xl:tracking-tight xl:text-[46px] 2xl:text-[50px]">Personalised. Preventative. Transformative<span className="text-[#8b5e4a]">.</span></span>}
               description="Each pathway includes targeted testing, a consultation, and personalised protocols aligned to your skin concerns and underlying drivers"
               compact={true}
               items={[
