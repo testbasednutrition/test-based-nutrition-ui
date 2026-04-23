@@ -179,16 +179,16 @@ const Gallery4 = ({
                   </div>
 
                   {/* Back Side */}
-                  <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-xl overflow-hidden bg-[#F3F2EE] border-[0.5px] border-primary/70 px-4 md:px-5 pt-4 pb-4 md:pt-6 md:pb-6 flex flex-col items-center justify-between text-center">
-                    <div className="font-bold font-montserrat text-sm md:text-base xl:text-lg text-stone-900 leading-tight shrink-0 mt-1 md:mt-0">
+                  <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-xl overflow-hidden bg-[#F3F2EE] border-[0.5px] border-primary/70 px-2.5 md:px-3 pt-3 pb-3 md:pt-4 md:pb-3 flex flex-col items-center justify-between text-center">
+                    <div className="font-bold font-montserrat text-[13px] xl:text-[14px] text-stone-900 leading-snug shrink-0">
                       {item.title}
                     </div>
-                    <div className="text-[10.5px] md:text-xs xl:text-[13px] font-montserrat text-stone-800 leading-relaxed overflow-y-auto w-full px-1 scrollbar-hide py-1">
+                    <div className="text-[9.5px] md:text-[10.5px] xl:text-[12px] font-montserrat text-stone-800 leading-snug overflow-y-auto w-full px-1 scrollbar-hide py-1">
                       <span className="whitespace-normal break-words">{item.description}</span>
                     </div>
-                    <div className="flex items-center text-[10px] xl:text-[11px] font-bold font-montserrat uppercase tracking-wider text-primary hover:text-stone-900 transition-colors w-full justify-center shrink-0 mb-1 md:mb-0">
+                    <div className="flex items-center text-[9px] xl:text-[10px] font-bold font-montserrat uppercase tracking-wider text-primary hover:text-stone-900 transition-colors w-full justify-center shrink-0">
                       Read more{" "}
-                      <ArrowRight className="ml-1 md:ml-2 size-3 xl:size-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="ml-1 md:ml-2 size-3 transition-transform group-hover:translate-x-1" />
                     </div>
                   </div>
 

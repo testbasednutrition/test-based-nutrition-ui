@@ -17,7 +17,11 @@ const ClientLogos = () => {
             key={i}
             src={logoUrl}
             alt={`Partner Logo ${i}`}
-            className="h-[40px] md:h-[50px] mx-8 md:mx-12 object-contain opacity-100 hover:scale-105 transition-transform mix-blend-multiply cursor-pointer"
+            className={`mx-8 md:mx-12 object-contain opacity-100 hover:scale-105 transition-transform mix-blend-multiply cursor-pointer ${
+              logoUrl.includes('(2) (5)')
+                ? 'h-[60px] md:h-[80px]'
+                : 'h-[40px] md:h-[50px]'
+            }`}
           />
         ))}
       </div>

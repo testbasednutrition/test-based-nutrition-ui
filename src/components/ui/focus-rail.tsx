@@ -22,6 +22,7 @@ interface FocusRailProps {
   autoPlay?: boolean;
   interval?: number;
   className?: string;
+  compact?: boolean;
 }
 
 /**
@@ -62,6 +63,7 @@ export function FocusRail({
   autoPlay = false,
   interval = 4000,
   className,
+  compact = false,
 }: FocusRailProps) {
   const [active, setActive] = React.useState(initialIndex);
   const [isHovering, setIsHovering] = React.useState(false);
@@ -146,7 +148,8 @@ export function FocusRail({
   return (
     <div
       className={cn(
-        "group relative flex h-[600px] w-full flex-col overflow-hidden bg-transparent text-foreground outline-none select-none overflow-x-hidden rounded-3xl",
+        "group relative flex w-full flex-col overflow-hidden bg-transparent text-foreground outline-none select-none overflow-x-hidden rounded-3xl",
+        compact ? "h-[380px]" : "h-[600px]",
         className
       )}
       onMouseEnter={() => setIsHovering(true)}
@@ -159,7 +162,10 @@ export function FocusRail({
       <div className="relative z-10 flex flex-1 flex-col justify-center px-4 md:px-8">
         {/* DRAGGABLE RAIL CONTAINER */}
         <motion.div
-          className="relative mx-auto flex h-[360px] w-full max-w-6xl items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing"
+          className={cn(
+            "relative mx-auto flex w-full max-w-6xl items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing",
+            compact ? "h-[220px]" : "h-[360px]"
+          )}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.2}
@@ -177,7 +183,7 @@ export function FocusRail({
             const dist = Math.abs(offset);
 
             // Dynamic transforms
-            const xOffset = offset * 320;
+            const xOffset = offset * (compact ? 160 : 320);
             const zOffset = -dist * 180;
             const scale = isCenter ? 1 : 0.85;
             const rotateY = offset * -20;
@@ -190,7 +196,8 @@ export function FocusRail({
               <motion.div
                 key={absIndex}
                 className={cn(
-                  "absolute aspect-[3/4] w-[260px] md:w-[300px] rounded-2xl border-t border-black/5 bg-white shadow-xl transition-shadow duration-300",
+                  "absolute aspect-[3/4] rounded-2xl border-t border-black/5 bg-white shadow-xl transition-shadow duration-300",
+                  compact ? "w-[150px] md:w-[170px]" : "w-[260px] md:w-[300px]",
                   isCenter ? "z-20 shadow-black/10 cursor-pointer" : "z-10"
                 )}
                 initial={false}
@@ -232,8 +239,14 @@ export function FocusRail({
         </motion.div>
 
         {/* Info & Controls */}
-        <div className="mx-auto mt-12 flex w-full max-w-4xl flex-col items-center justify-between gap-6 md:flex-row pointer-events-auto">
-          <div className="flex flex-1 flex-col items-center text-center md:items-start md:text-left h-32 justify-center">
+        <div className={cn(
+            "mx-auto flex w-full max-w-4xl items-center justify-between pointer-events-auto",
+            compact ? "mt-4 flex-col gap-3" : "mt-12 flex-col md:flex-row gap-6"
+        )}>
+          <div className={cn(
+              "flex flex-1 flex-col items-center justify-center",
+              compact ? "h-auto text-center" : "text-center md:items-start md:text-left h-32"
+          )}>
             {activeItem && (
               <AnimatePresence mode="wait">
                 <motion.div

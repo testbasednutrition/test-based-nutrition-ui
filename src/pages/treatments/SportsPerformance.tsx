@@ -7,6 +7,11 @@ import Footer from "@/components/Footer";
 import HowWeSupportYou from "@/components/HowWeSupportYou";
 import { Link } from "react-router-dom";
 import { useQuiz } from "@/components/QuizContext";
+import { FocusRail } from "@/components/ui/focus-rail";
+import { useQuery } from "@tanstack/react-query";
+import { fetchSpecialists } from "@/lib/api";
+import ArticleCard from "@/components/news/ArticleCard";
+import { articles as newsArticles } from "@/data/newsArticles";
 import {
   Accordion,
   AccordionContent,
@@ -25,6 +30,21 @@ const heroImg = "/images/sports/hero.jpg";
 const SportsPerformance = () => {
   const quizContext = useQuiz();
   const openQuiz = quizContext?.openQuiz || (() => {});
+  
+  // Fetch specialists array for the directory flicker / focus rail
+  const { data: specialists = [], isLoading: isSpecialistsLoading } = useQuery({
+    queryKey: ['specialists'],
+    queryFn: fetchSpecialists
+  });
+
+  const expertItems = specialists.map((s, index) => ({
+    id: s.slug || `expert-${index}`,
+    title: s.name,
+    description: s.bio && s.bio.length > 0 ? s.bio[0] : 'Health & Wellness Expert',
+    meta: `${s.category} • ${s.role}`,
+    imageSrc: s.image || "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800"
+  }));
+
   return (
     <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#fdfdf9] font-montserrat">
       <Navbar alwaysSolid />
@@ -121,37 +141,44 @@ const SportsPerformance = () => {
                 {
                   id: "youth",
                   title: "Youth Performance",
-                  description: "Build physical capacity, focus, and long-term development from the ground up.\nFor youth athletes, academies, and development pathways.",
+                  description: "Build physical capacity, coordination, focus, and long-term development from the ground up.\nFor youth athletes, academies, and structured development pathways.",
                   href: "#",
                   image: "/images/sports/youth.jpg",
                 },
                 {
                   id: "athletes",
                   title: "Athletes (Amateur → Elite)",
-                  description: "Improve output, recovery, and repeatable high-level performance.\nAcross individual and team sports, from amateur to elite level.",
+                  description: "Improve output, recovery, and repeatable high-level performance.\nAcross individual and team sports, from amateur to elite level — including the demands of focus, reaction speed, and decision-making under pressure.",
                   href: "#",
                   image: "/images/sports/athletes.jpg",
                 },
                 {
                   id: "event",
                   title: "Event & Competition Preparation",
-                  description: "Prepare for peak performance under pressure and in the lead-up to competition.\nFor HYROX, endurance events, competitions, and performance deadlines.",
+                  description: "Prepare for peak performance under pressure and in the lead-up to competition.\nFor HYROX, endurance events, competitions, and performance deadlines where both physical and mental readiness are critical.",
                   href: "#",
                   image: "/images/sports/events.jpg",
                 },
                 {
                   id: "coaches",
                   title: "Coaches & Performance Teams",
-                  description: "Embed structured performance systems across athletes, teams, and environments.\nFor coaches, PTs, academies, and performance environments.",
+                  description: "Embed structured, test-led performance systems across athletes and teams.\nFor coaches, PTs, academies, and performance teams looking to optimise output, recovery, and in-game decision-making.",
                   href: "#",
                   image: "/images/sports/coaches.jpg",
                 },
                 {
-                  id: "longevity",
-                  title: "Peak Performance & Longevity",
-                  description: "Sustain output, reduce decline, and extend performance over time.\nFor long-term athletes, masters competitors, and high-performing individuals.",
+                  id: "cognitive",
+                  title: "Cognitive & Gaming Performance",
+                  description: "Optimise focus, reaction time, and decision-making under load.\nFor gamers, esports competitors, and high-performance individuals where precision, timing, and sustained mental output drive results.",
                   href: "#",
                   image: "/images/sports/esports.jpg",
+                },
+                {
+                  id: "longevity",
+                  title: "Peak Performance & Longevity",
+                  description: "Sustain output, reduce decline, and extend performance over time.\nFor long-term athletes, masters competitors, and high-performing individuals focused on maintaining both physical capacity and cognitive sharpness.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800",
                 }
               ]}
             />
@@ -179,9 +206,9 @@ const SportsPerformance = () => {
                     <img src="/images/specialists/ishtiaq.jpg" alt="Dr Ishtiaq Rehman" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
-                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-2">Dr Ishtiaq Rehman</h3>
-                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-2 sm:mb-3">Consulting England FA Doctor</div>
-                   <p className="text-gray-600 text-[11px] sm:text-[13px] leading-relaxed max-w-xs mx-auto sm:mx-0 mb-3">Specialising in performance medicine, recovery, and athlete health optimisation at elite level.</p>
+                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-0">Dr Ishtiaq Rehman</h3>
+                   <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">MBChB, MRCGP, MFSEM, Dip SEM</p>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-4">Consulting England FA Doctor</div>
                    <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#7a2a33]/30 pl-3">"Performance is driven by the systems behind it — not just the output you see."</p>
 
                  </div>
@@ -193,9 +220,9 @@ const SportsPerformance = () => {
                     <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=400&q=80" alt="Neil Parsley" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
-                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-2">Neil Parsley</h3>
-                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-2 sm:mb-3">Elite Performance Coach<br/><span className="text-[9px] lg:text-[10px] opacity-80">Former Manchester City, Team GB, England Rugby & England FA</span></div>
-                   <p className="text-gray-600 text-[11px] sm:text-[13px] leading-relaxed max-w-xs mx-auto sm:mx-0 mb-3">Working with elite athletes to optimise performance, resilience, and competitive output.</p>
+                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-1">Neil Parsley</h3>
+                   <div className="font-sans text-[9px] lg:text-[10px] font-semibold text-gray-900 uppercase tracking-widest mb-1 mt-1">Former Manchester City, Team GB, England Rugby &amp; England FA</div>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#7a2a33] uppercase tracking-widest mb-4">Elite Performance Coach</div>
                    <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#7a2a33]/30 pl-3">"Progress comes from identifying constraints and removing them with precision."</p>
                  </div>
               </div>
@@ -268,23 +295,25 @@ const SportsPerformance = () => {
         </div>
 
         {/* SECTION 7.6 — EXPERT QUOTE */}
-        <div className="w-full mt-16 lg:mt-20 px-6">
-           <div className="flex flex-col items-end max-w-4xl mx-auto gap-4">
+        <div className="w-full mt-16 lg:mt-20 max-w-6xl mx-auto px-4">
+           <div className="bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm w-full hover:shadow-md transition-shadow duration-300">
               
-              <div className="flex items-center gap-4 w-full">
-                 <Quote className="w-8 h-8 text-gray-900 fill-gray-900 shrink-0" />
-                 <p className="font-playfair text-[18px] md:text-[22px] lg:text-[25px] font-bold italic text-gray-900 text-left leading-snug tracking-wide m-0">
-                    The highest performers don't guess. They measure, adapt, and refine.
-                 </p>
-              </div>
-
-              <div className="flex items-center gap-4 shrink-0 mt-2">
-                 <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center bg-white shrink-0 shadow-sm">
-                   <Stethoscope className="w-5 h-5 text-[#7a2a33]" strokeWidth={2} />
+              <div className="flex flex-col items-center lg:items-end max-w-[1050px] mx-auto w-full gap-5">
+                 <div className="flex items-center gap-4 w-full justify-center lg:justify-start">
+                    <Quote className="w-8 h-8 text-gray-900 fill-gray-900 shrink-0" />
+                    <p className="font-playfair text-[18px] md:text-[22px] lg:text-[25px] font-bold italic text-gray-900 text-left leading-snug tracking-wide m-0">
+                       The highest performers don&apos;t guess. They measure, adapt, and refine.
+                    </p>
                  </div>
-                 <div className="flex flex-col text-left">
-                    <span className="font-bold text-gray-900 text-[12px] uppercase tracking-widest leading-none mb-1.5">Dr Ishtiaq Rehman</span>
-                    <span className="font-bold text-[#7a2a33] text-[10px] uppercase tracking-widest leading-none">Test Based Nutrition</span>
+
+                 <div className="flex items-center gap-4 shrink-0 mt-2">
+                    <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center bg-white shrink-0 shadow-sm">
+                      <Stethoscope className="w-5 h-5 text-[#7a2a33]" strokeWidth={2} />
+                    </div>
+                    <div className="flex flex-col text-left">
+                       <span className="font-bold text-gray-900 text-[12px] uppercase tracking-widest leading-none mb-1.5">Dr Ishtiaq Rehman</span>
+                       <span className="font-bold text-[#7a2a33] text-[10px] uppercase tracking-widest leading-none">Test Based Nutrition</span>
+                    </div>
                  </div>
               </div>
 
@@ -571,20 +600,20 @@ const SportsPerformance = () => {
             </div>
 
             {/* Box 3: Advanced Review */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-blue-600/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#7a2a33]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                {/* Header Zone */}
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Advanced Performance Review</h3>
-                 <p className="text-[11px] font-bold text-blue-600 uppercase tracking-widest">1:1 Strategic Review</p>
+                 <p className="text-[11px] font-bold text-[#7a2a33] uppercase tracking-widest">1:1 Strategic Review</p>
                </div>
                
                {/* Body Zone */}
                <div className="flex-grow mb-6 space-y-3">
                  <p className="font-bold text-[11px] text-gray-400 uppercase tracking-widest mb-3">Includes</p>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">1:1 Advanced Results Review</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Performance Strategy Recommendation</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Sport-Specific Guidance</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Clear Next-Phase Planning</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">1:1 Advanced Results Review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Performance Strategy Recommendation</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Sport-Specific Guidance</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Clear Next-Phase Planning</span></div>
                </div>
 
                {/* Footer Zone */}
@@ -597,15 +626,15 @@ const SportsPerformance = () => {
                      </div>
                    </div>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-md mb-6">
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#7a2a33] text-white rounded-full hover:bg-[#8c353f] transition-colors shadow-md mb-6">
                    Book Advanced Review
                  </button>
                  <div className="flex-grow flex flex-col justify-between">
                    <p className="font-montserrat text-[13px] text-gray-500 leading-relaxed text-center mb-4">
                      A private performance review designed to translate your results into a clear, actionable strategy.
                    </p>
-                   <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100/50 w-full mt-auto">
-                     <p className="font-bold text-[11px] text-blue-600/70 uppercase tracking-widest mb-1">Delivered By</p>
+                   <div className="bg-[#fdfaf8] p-4 rounded-xl border border-[#7a2a33]/10 w-full mt-auto">
+                     <p className="font-bold text-[11px] text-[#7a2a33]/80 uppercase tracking-widest mb-1">Delivered By</p>
                      <p className="text-[13px] text-gray-800 font-bold mb-1">Senior TBN Specialists</p>
                      <p className="text-[11px] text-gray-500 leading-tight">With pathway escalation to Dr Ishtiaq Rehman or Neil Parsley where required</p>
                    </div>
@@ -614,7 +643,7 @@ const SportsPerformance = () => {
             </div>
 
             {/* Box 4: Elite Consultation */}
-            <div className="bg-[#1c1c1c] border border-white/10 p-8 rounded-[2rem] shadow-xl hover:shadow-2xl flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-all duration-300 transform-gpu will-change-transform isolate">
+            <div className="bg-[#7a2a33] border border-white/10 p-8 rounded-[2rem] shadow-xl hover:shadow-2xl flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-all duration-300 transform-gpu will-change-transform isolate">
                <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#d0bfae] opacity-10 blur-3xl rounded-full pointer-events-none group-hover:opacity-20 transition-opacity duration-500"></div>
                
                {/* Header Zone */}
@@ -662,8 +691,19 @@ const SportsPerformance = () => {
           </div>
         </div>
 
+
         {/* SECTION 8 — PARTNER WITH US & DIRECTORY */}
         <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4 mb-24">
+           {/* Centered Section Heading */}
+           <div className="max-w-[800px] mx-auto text-center mb-16">
+             <h2 className="font-playfair text-[32px] md:text-[40px] font-bold text-gray-900 leading-tight mb-4 uppercase">
+               PARTNER WITH US
+             </h2>
+             <p className="font-bold text-[#7a2a33] text-[13px] md:text-[14px] uppercase tracking-widest leading-snug">
+               Integrated into hand-selected clinics, health clubs, gyms, and performance settings
+             </p>
+           </div>
+           
            <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
               
               {/* Left Column: Partner With Us */}
@@ -674,10 +714,9 @@ const SportsPerformance = () => {
                      {/* Left side of the Partner box */}
                      <div className="flex flex-col justify-between">
                          <div>
-                             <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest mb-4">Partner With Us</p>
-                             <h2 className="font-playfair text-[28px] md:text-[36px] xl:text-[42px] font-bold text-gray-900 leading-tight mb-6">
+                             <h3 className="font-playfair text-[24px] md:text-[28px] xl:text-[32px] font-bold text-gray-900 leading-tight mb-4">
                                 TBN operates inside real environments
-                             </h2>
+                             </h3>
                              <p className="font-montserrat text-[15px] leading-relaxed text-gray-600 mb-10">
                                 — embedding structured testing, specialist insight, and performance systems into existing services.
                              </p>
@@ -721,7 +760,7 @@ const SportsPerformance = () => {
               {/* Right Column: Stacked Boxes */}
               <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 flex flex-col gap-6 lg:gap-8">
                  {/* Directory Access */}
-                 <div className="w-full bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg flex-1">
+                 <div className="w-full bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
                     <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#7a2a33] -mr-12 -mb-12"/></div>
 
 
@@ -729,8 +768,26 @@ const SportsPerformance = () => {
                        Access TBN-approved clinics across the UK.
                     </h2>
                     <p className="text-[13px] text-gray-600 mb-8 font-medium leading-relaxed relative z-10">
-                       Find specialist practitioners who embed the TBN testing and performance model into their environment. Discover cutting-edge support near you.
+                       Find specialist TBN practitioners. Discover cutting-edge support near you.
                     </p>
+                    
+                    {/* Directory Flicker / Focus Rail */}
+                    <div className="w-[calc(100%+4rem)] md:w-[calc(100%+5rem)] -mx-8 md:-mx-10 mb-6 relative z-10 overflow-hidden shrink-0">
+                       {isSpecialistsLoading || expertItems.length === 0 ? (
+                          <div className="h-[380px] flex items-center justify-center">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#7a2a33]"></div>
+                          </div>
+                       ) : (
+                          <FocusRail 
+                            items={expertItems} 
+                            autoPlay={true} 
+                            interval={4000}
+                            loop={true} 
+                            compact={true}
+                            className="bg-transparent h-auto !w-full"
+                          />
+                       )}
+                    </div>
                     
                     <div className="mt-auto w-full relative z-10">
                        <button className="w-full text-center bg-[#7a2a33] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#8c353f] transition-colors shadow-md">
@@ -738,28 +795,65 @@ const SportsPerformance = () => {
                        </button>
                     </div>
                   </div>
-
-                 {/* Latest Insights */}
-                 <div className="w-full bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-md flex-1">
-                    <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><FileText className="w-48 h-48 text-gray-900 -mr-12 -mb-12"/></div>
-
-
-                    <h2 className="font-playfair text-[20px] font-bold text-gray-900 leading-snug mb-4 relative z-10 uppercase tracking-wider">
-                       LATEST INSIGHTS
-                    </h2>
-                    <p className="text-[13px] text-gray-600 mb-8 font-medium leading-relaxed relative z-10">
-                       Performance, recovery, cognitive optimisation, and emerging sport science.
-                    </p>
-                    
-                    <div className="mt-auto w-full relative z-10">
-                       <button className="w-full text-center bg-transparent border border-gray-200 text-gray-900 px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm">
-                          View Articles
-                       </button>
-                    </div>
-                  </div>
               </div>
             </div>
          </div>
+
+        {/* LATEST INSIGHTS HORIZONTAL GALLERY */}
+        <div className="w-full mt-8 max-w-[1400px] mx-auto px-4 mb-8">
+          <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-8 md:mb-10 text-center md:text-left gap-4">
+             <div>
+                <h2 className="font-playfair text-[28px] md:text-[32px] font-bold text-gray-900 tracking-wider uppercase">
+                   LATEST INSIGHTS
+                </h2>
+                <p className="font-montserrat text-[14px] md:text-[15px] font-medium text-gray-600 mt-2">
+                   Performance, recovery, cognitive optimisation, and emerging science.
+                </p>
+             </div>
+             <Link to="/news" className="text-[#7a2a33] font-bold text-[13px] uppercase tracking-wider hover:underline flex items-center gap-2">
+                View All Articles <ArrowRight className="w-4 h-4" />
+             </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {newsArticles.slice(0, 3).map(article => (
+              <ArticleCard key={article.id} {...article} />
+            ))}
+          </div>
+        </div>
+
+        {/* FINAL CTA */}
+        <div className="mt-16 lg:mt-24">
+          <div className="bg-[#7a2a33] p-10 lg:p-16 rounded-[3rem] shadow-xl relative overflow-hidden flex flex-col items-center text-center">
+             <div className="absolute top-0 right-0 p-8 opacity-10"><Zap className="w-48 h-48 -mr-16 -mt-16 text-white"/></div>
+             <div className="absolute bottom-0 left-0 p-8 opacity-10"><Zap className="w-48 h-48 -ml-16 -mb-16 text-white rotate-180"/></div>
+             
+             <h2 className="font-playfair text-3xl md:text-4xl lg:text-[40px] font-bold text-white mb-6 relative z-10 leading-tight">
+               Performance without guesswork
+             </h2>
+             <div className="flex flex-col items-center relative z-10 border-b border-white/20 pb-5 mb-5 px-8">
+               <p className="text-white/90 font-bold uppercase tracking-widest text-[13px] mb-2 text-center">
+                 From fitness to elite sport. From gaming to free diving.
+               </p>
+               <p className="text-white/70 font-bold uppercase tracking-widest text-[12px] text-center">
+                 This is a new model for performance.
+               </p>
+             </div>
+             <p className="text-[20px] font-playfair font-bold text-[#e9e7dc] mb-10 relative z-10">
+               Test-Based. Specialist-Led. Precision-Driven.
+             </p>
+             
+             <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full max-w-lg">
+               <button 
+                 onClick={() => openQuiz()}
+                 className="flex-1 bg-white hover:bg-gray-100 text-[#7a2a33] px-6 py-4 rounded-xl font-bold text-[15px] shadow-lg flex justify-center items-center gap-2 group transition-all">
+                 Start Your Journey <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
+               </button>
+               <Link to="/partner-with-us" className="flex-1 bg-[#5c1c24] hover:bg-[#4a161d] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
+                 Partner With Us <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
+               </Link>
+             </div>
+          </div>
+        </div>
 
         {/* SECTION 9 — FAQ */}
         <div className="w-full mt-24 lg:mt-32 max-w-4xl mx-auto px-4 mb-24">
@@ -830,40 +924,6 @@ const SportsPerformance = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-        </div>
-
-        {/* FINAL CTA */}
-        <div className="mt-16 lg:mt-24">
-          <div className="bg-[#7a2a33] p-10 lg:p-16 rounded-[3rem] shadow-xl relative overflow-hidden flex flex-col items-center text-center">
-             <div className="absolute top-0 right-0 p-8 opacity-10"><Zap className="w-48 h-48 -mr-16 -mt-16 text-white"/></div>
-             <div className="absolute bottom-0 left-0 p-8 opacity-10"><Zap className="w-48 h-48 -ml-16 -mb-16 text-white rotate-180"/></div>
-             
-             <h2 className="font-playfair text-3xl md:text-4xl lg:text-[40px] font-bold text-white mb-6 relative z-10 leading-tight">
-               Performance without guesswork
-             </h2>
-             <div className="flex flex-col items-center relative z-10 border-b border-white/20 pb-5 mb-5 px-8">
-               <p className="text-white/90 font-bold uppercase tracking-widest text-[13px] mb-2 text-center">
-                 From fitness to elite sport. From gaming to free diving.
-               </p>
-               <p className="text-white/70 font-bold uppercase tracking-widest text-[12px] text-center">
-                 This is a new model for performance.
-               </p>
-             </div>
-             <p className="text-[20px] font-playfair font-bold text-[#e9e7dc] mb-10 relative z-10">
-               Test-Based. Specialist-Led. Precision-Driven.
-             </p>
-             
-             <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full max-w-lg">
-               <button 
-                 onClick={() => openQuiz()}
-                 className="flex-1 bg-white hover:bg-gray-100 text-[#7a2a33] px-6 py-4 rounded-xl font-bold text-[15px] shadow-lg flex justify-center items-center gap-2 group transition-all">
-                 Start Your Journey <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
-               </button>
-               <Link to="/partner-with-us" className="flex-1 bg-[#5c1c24] hover:bg-[#4a161d] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
-                 Partner With Us <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
-               </Link>
-             </div>
-          </div>
         </div>
       </main>
       
