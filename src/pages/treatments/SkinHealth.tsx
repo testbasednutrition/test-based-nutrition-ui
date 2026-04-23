@@ -2,7 +2,8 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import heroImg from "@/assets/treatments/skin-health.jpg";
+import heroImg from "@/assets/treatments/skin-health-hero.jpg";
+import { Gallery4 } from "@/components/ui/gallery4";
 import {
   Activity,
   Droplet,
@@ -25,61 +26,145 @@ const heroFallback = "https://images.unsplash.com/photo-1512496015851-a1c81523c6
 
 const SkinHealth = () => {
   return (
-    <div className="min-h-screen flex flex-col pt-24 bg-[#fdfcfb] font-montserrat">
+    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#fdfcfb] font-montserrat">
       <Navbar alwaysSolid />
       
-      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-8 md:py-16 mb-16">
-        
-        {/* HERO SECTION */}
-        <div className="w-full flex flex-col lg:flex-row items-center gap-10 lg:gap-16 xl:gap-24 mb-16 xl:mb-24">
-           {/* Text Side */}
-           <div className="w-full lg:w-5/12 text-center lg:text-left pt-4 xl:pt-8 flex flex-col justify-center">
-              <h3 className="font-playfair text-[#8b5e4a] font-bold tracking-widest uppercase text-sm mb-4">Skin Health</h3>
-              <h1 className="font-playfair text-5xl md:text-[4rem] xl:text-[4.5rem] font-bold text-gray-900 leading-[1.05] mb-6">
-                The Science of<br />Skin Health
-              </h1>
-              <p className="text-lg xl:text-xl leading-relaxed font-medium mb-8 text-gray-700">
-                Optimising your skin from within by addressing the root metabolic, hormonal, and digestive causes. True skin resilience requires internal balance.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="bg-[#8b5e4a] hover:bg-[#6e4736] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
-                  Take Quiz <ArrowRight className="w-4 h-4" />
-                </button>
-                <Link to="/partner-with-us" className="border border-gray-300 hover:bg-gray-50 transition-colors bg-white text-gray-800 px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
-                  Partner With Us
-                </Link>
-              </div>
-           </div>
+      {/* FULL BLEED HERO SECTION */}
+      <div className="w-full relative bg-[#fdfcfb] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
+         {/* Background Image spanning the right side */}
+         <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
+           <img 
+             src={heroImg} 
+             onError={(e) => { e.currentTarget.src = heroFallback; }}
+             alt="Skin Health" 
+             className="w-full h-full object-cover object-[center_35%]" 
+           />
            
-           {/* Image Side */}
-           <div className="w-full lg:w-7/12 relative rounded-[2rem] overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-[550px] shadow-lg">
-              <img 
-                src={heroImg} 
-                onError={(e) => { e.currentTarget.src = heroFallback; }}
-                alt="Skin Health" 
-                className="w-full h-full object-cover" 
-              />
-           </div>
-        </div>
+           {/* Bottom fade for grounding the Tailored Box */}
+           <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
-        {/* EXPLORE YOUR PATHWAY */}
-        <div className="mb-12 xl:mb-20 bg-white p-8 lg:p-12 rounded-[2.5rem] shadow-sm border border-gray-100 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Sparkles className="w-48 h-48 -mr-12 -mt-12"/></div>
-          <h2 className="font-playfair text-xl lg:text-2xl font-bold text-center text-gray-900 mb-8 tracking-widest uppercase relative z-10">Explore Your Pathway</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 relative z-10">
-            {[
-              "Acne & Breakouts",
-              "Redness & Rosacea",
-              "Premature Ageing",
-              "Dryness & Eczema",
-              "Pigmentation"
-            ].map((item, idx) => (
-              <Link key={idx} to="#" className="bg-[#fcfaf7] hover:bg-white px-4 py-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center justify-center lg:justify-start gap-3 text-center lg:text-left group">
-                <div className="w-2 h-2 rounded-full bg-[#8b5e4a] group-hover:bg-[#6e4736] transition-colors shrink-0"></div>
-                <span className="font-bold text-[13px] md:text-[14px] text-gray-800 leading-tight">{item}</span>
-              </Link>
-            ))}
+           {/* Blend image and black gradient into the left text container background */}
+           <div className="absolute inset-0 bg-gradient-to-r from-[#fdfcfb] via-[#fdfcfb]/70 lg:via-[#fdfcfb]/20 to-transparent"></div>
+         </div>
+         
+         {/* Content Container Aligned inside normal max-width margins */}
+         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 pt-12 pb-12 lg:py-0 justify-between flex-grow">
+            <div className="w-full lg:w-5/12 text-center lg:text-left flex flex-col justify-center">
+               <h3 className="font-playfair text-[#8b5e4a] font-bold tracking-widest uppercase text-sm mb-3">Skin Health</h3>
+               <h1 className="font-playfair text-[3rem] md:text-[3.5rem] xl:text-[4rem] font-bold text-gray-900 leading-[1.05] mb-6">
+                 SKIN, FROM WITHIN
+               </h1>
+               
+               <p className="text-[14px] xl:text-[15px] text-gray-900 lg:text-gray-800 leading-relaxed max-w-[480px] mx-auto lg:mx-0 mb-4 font-medium">
+                 Up to 97% of people have an imbalanced omega-6:3 ratio. Affecting how cells function, inflammation is regulated, and how the skin repairs and responds.
+               </p>
+               <p className="text-[14px] xl:text-[15px] text-gray-900 lg:text-gray-800 leading-relaxed max-w-[480px] mx-auto lg:mx-0 mb-4 font-bold">
+                 Breakouts. Sensitivity. Premature ageing.
+               </p>
+               <p className="text-[14px] xl:text-[15px] text-gray-900 lg:text-gray-800 leading-relaxed max-w-[480px] mx-auto lg:mx-0 mb-6 font-medium">
+                 Often treated on the surface — but influenced by internal factors, including gut health. A personalised, test-based approach to understanding what may be influencing your skin.
+               </p>
+               <p className="font-semibold uppercase tracking-widest text-[#8b5e4a] text-[13px] mb-8">Test. Target. Transform.</p>
+               
+               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                 <button className="bg-[#8b5e4a] hover:bg-[#6e4736] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2 shadow-md">
+                   Start Your Journey <ArrowRight className="w-4 h-4" />
+                 </button>
+               </div>
+            </div>
+            
+            <div className="w-full lg:w-5/12 relative mt-auto lg:mt-0 flex justify-end items-end h-full self-end lg:pb-12 xl:pb-16 mt-8">
+               <div className="w-full bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl flex flex-col sm:flex-row gap-4 justify-between items-center text-white shadow-2xl">
+                 <div>
+                    <p className="font-playfair font-bold text-xl mb-1 text-white">Tailored for your skin</p>
+                    <p className="text-white text-sm font-medium">Testing protocols aligned to internal dermatological health and biological triggers.</p>
+                 </div>
+                 <button className="shrink-0 bg-white text-gray-900 border border-transparent px-5 py-2.5 rounded-full font-bold text-[13px] uppercase tracking-wider hover:bg-gray-100 transition-all shadow-md">
+                   Take the Assessment
+                 </button>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+      {/* TRUST BAR */}
+      <div className="w-full bg-[#f5f5f5] border-y border-gray-200 py-3 md:py-4 mb-2 overflow-hidden">
+        <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#8b5e4a]" />
+            Advanced Testing
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#8b5e4a]" />
+            Real Insight
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#8b5e4a]" />
+            Specialist-Led Support
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#8b5e4a]" />
+            Measurable Outcomes
+          </span>
+        </div>
+      </div>
+
+
+      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pb-8 md:pb-16 mb-16">
+
+        {/* SECTION 2 — EXPLORE YOUR PATHWAY */}
+        <div className="mb-12 xl:mb-20">
+          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-2 md:pt-4">
+            <Gallery4 
+              subtitle="SKIN HEALTH PATHWAYS"
+              title="Personalised. Preventative. Transformative."
+              description="Each pathway includes targeted testing, a consultation, and personalised protocols aligned to your skin concerns and underlying drivers"
+              compact={true}
+              items={[
+                {
+                  id: "acne",
+                  title: "Acne & Breakouts",
+                  description: "Acne affects up to 85% of people\nDiscover how inflammation, hormones, and gut health may influence breakouts",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=800&q=80",
+                },
+                {
+                  id: "ageing",
+                  title: "Ageing & Skin Longevity",
+                  description: "Collagen production declines from the mid-20s\nExplore how cellular health and inflammation may influence skin structure and ageing",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6ece?auto=format&fit=crop&w=800&q=80",
+                },
+                {
+                  id: "rosacea",
+                  title: "Rosacea, Sensitivity & Redness",
+                  description: "Sensitive skin is often reactive\nIdentify how inflammation and immune response may influence flare-ups",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1512496015851-a1c81523c6f1?auto=format&fit=crop&w=800&q=80",
+                },
+                {
+                  id: "pigmentation",
+                  title: "Pigmentation & Uneven Skin Tone",
+                  description: "Pigmentation is often treated on the surface\nAssess how hormonal and inflammatory factors may influence skin tone",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=80",
+                },
+                {
+                  id: "gut-skin",
+                  title: "Gut–Skin Axis",
+                  description: "The gut and skin are connected through immune pathways\nExplore how microbiome balance may influence skin clarity",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80",
+                },
+                {
+                  id: "hormonal",
+                  title: "Hormonal Skin",
+                  description: "Hormonal fluctuations commonly impact the skin\nUnderstand how internal signalling may influence breakouts and skin changes",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=800&q=80",
+                }
+              ]}
+            />
           </div>
         </div>
 
