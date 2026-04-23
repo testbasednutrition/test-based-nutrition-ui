@@ -90,6 +90,14 @@ export default {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-33.33%)" },
         },
+        "marquee-auto": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -97,6 +105,8 @@ export default {
         "fade-in": "fade-in 0.6s ease-out forwards",
         "slide-in": "slide-in 0.6s ease-out forwards",
         marquee: "marquee 20s linear infinite",
+        "marquee-auto": "marquee-auto var(--duration) infinite linear",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
       },
     },
   },
