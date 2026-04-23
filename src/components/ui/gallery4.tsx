@@ -20,7 +20,7 @@ export interface Gallery4Item {
 }
 
 export interface Gallery4Props {
-  title?: string;
+  title?: React.ReactNode | string;
   subtitle?: string;
   description?: string;
   items?: Gallery4Item[];
