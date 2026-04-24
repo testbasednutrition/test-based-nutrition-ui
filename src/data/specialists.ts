@@ -170,7 +170,7 @@ export const specialists: Specialist[] = [
     name: "Neil Parsley",
     role: "Consulting Performance Coach — England FA & Manchester City",
     category: "Sports Performance",
-    image: "https://test-basednutrition.com/assets/images/optimise-gallery-9-1256x852.jpeg",
+    image: "/images/specialists/neil-parsley.png",
     bio: [
       "Neil Parsley is a passionate elite performance coach, having worked with Olympic and professional athletes. He is currently consulting to England FA and Manchester City. Neil also privately trains numerous English Premiership footballers over the last 5 seasons; both in season and abroad on multiple training camps.",
       "With over 25 years of dedicated experience in the world of sports, his expertise lies in connecting with athletes, coaches, leaders, and key stakeholders at a high level. Neil's experience extends to the international stage, having coached senior podium athletes across multiple Summer and Winter Olympic cycles, international rugby, and international football.",
