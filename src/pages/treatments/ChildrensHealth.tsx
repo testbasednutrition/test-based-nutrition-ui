@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import heroImg from "@/assets/treatments/childrens-health.jpg";
+
 import {
   Activity,
   Heart,
@@ -23,6 +23,7 @@ import {
 
 // Note: Ensure the hero image exists or falls back cleanly
 const heroFallback = "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=1200";
+const heroImg = "/services/childrens-health-v2.jpg";
 
 const ChildrensHealth = () => {
   return (

@@ -123,10 +123,10 @@ const megaMenuData = [
 ];
 
 const testingMenuItems = [
-  { label: "Foundations", href: "#" },
-  { label: "Rapid Screening", href: "#" },
-  { label: "Advanced Testing", href: "#" },
-  { label: "Test Packages", href: "#" },
+  { label: "Foundations", href: "/testing#foundations" },
+  { label: "Rapid Screening", href: "/testing#rapid-screening" },
+  { label: "Advanced Testing", href: "/testing#advanced-testing" },
+  { label: "Test Packages", href: "/testing#test-packages" },
 ];
 
 const tbnMethodMenuItems = [
@@ -339,7 +339,10 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
               <Menubar className="border-none bg-transparent p-0 space-x-0">
                 {/* Testing Dropdown */}
                 <MenubarMenu>
-                  <MenubarTrigger className={triggerClass}>
+                  <MenubarTrigger 
+                    className={triggerClass}
+                    onClick={() => navigate('/testing')}
+                  >
                     Testing
                   </MenubarTrigger>
                   <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-4 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-1">
@@ -467,13 +470,23 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
               )}
 
               {/* Mobile Testing Accordion */}
-              <button
-                className="flex items-center justify-between text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
-                onClick={() => setMobileTestingOpen(!mobileTestingOpen)}
-              >
-                Testing
-                <ChevronDown className={`w-4 h-4 transition-transform ${mobileTestingOpen ? "rotate-180" : ""}`} />
-              </button>
+              <div className="flex items-center justify-between py-2">
+                <button
+                  className="text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    navigate('/testing');
+                  }}
+                >
+                  Testing
+                </button>
+                <button
+                  className="text-muted-foreground hover:text-foreground px-4 -mr-4"
+                  onClick={() => setMobileTestingOpen(!mobileTestingOpen)}
+                >
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileTestingOpen ? "rotate-180" : ""}`} />
+                </button>
+              </div>
               {mobileTestingOpen && (
                 <div className="pl-4 pb-2 flex flex-col gap-2">
                   {testingMenuItems.map((item) => (

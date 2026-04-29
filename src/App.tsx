@@ -13,6 +13,7 @@ import SpecialistProfile from "./pages/SpecialistProfile";
 import ClinicsDirectory from "./pages/ClinicsDirectory";
 import ClinicProfile from "./pages/ClinicProfile";
 import AreaProfile from "./pages/AreaProfile";
+import TestingPage from "./pages/TestingPage";
 import NotFound from "./pages/NotFound";
 import NewsHub from "./pages/NewsHub";
 import NewsArticle from "./pages/NewsArticle";
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/news" element={<NewsHub />} />
             <Route path="/news/:id" element={<NewsArticle />} />
             <Route path="/partner-with-us" element={<PartnerWithUs />} />
+            <Route path="/testing" element={<TestingPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

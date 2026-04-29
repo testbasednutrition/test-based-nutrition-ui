@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 
 // Local hero image instead of Unsplash
-const heroImg = "/images/sports/hero.jpg";
+const heroImg = "/services/sports-performance-v2.jpg";
 
 const SportsPerformance = () => {
   const quizContext = useQuiz();
@@ -240,8 +240,8 @@ const SportsPerformance = () => {
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {/* Box 1 */}
               <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300">
-                   <Microscope className="w-7 h-7 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/cellular.png" alt="Cellular Health" className="w-full h-full object-contain scale-[1.15]" />
                 </div>
                 <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Cellular Health</h3>
                 <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Supports adaptation, repair, and repeatable performance.</p>
@@ -249,8 +249,8 @@ const SportsPerformance = () => {
 
               {/* Box 2 */}
               <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300">
-                   <HeartPulse className="w-7 h-7 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/inflammation.png" alt="Inflammation & Recovery" className="w-full h-full object-contain scale-[1.15]" />
                 </div>
                 <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Inflammation & Recovery</h3>
                 <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">A major factor in soreness, slower recovery, reduced resilience, and inconsistency.</p>
@@ -258,8 +258,8 @@ const SportsPerformance = () => {
 
               {/* Box 3 */}
               <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300">
-                   <Leaf className="w-7 h-7 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/gut.png" alt="Gut Health & Absorption" className="w-full h-full object-contain scale-[1.15]" />
                 </div>
                 <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Gut Health & Absorption</h3>
                 <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Because what you consume only matters if your body can absorb and utilise it effectively.</p>
@@ -267,8 +267,8 @@ const SportsPerformance = () => {
 
               {/* Box 4 */}
               <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300">
-                   <Zap className="w-7 h-7 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/metabolic.png" alt="Metabolic Function" className="w-full h-full object-contain scale-[1.15]" />
                 </div>
                 <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Metabolic Function</h3>
                 <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Energy stability, training capacity, and recovery are influenced by how well the body manages fuel and demand.</p>
@@ -276,8 +276,8 @@ const SportsPerformance = () => {
 
               {/* Box 5 */}
               <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300">
-                   <Activity className="w-7 h-7 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/hormone.png" alt="Hormonal & Stress Response" className="w-full h-full object-contain scale-[1.15]" />
                 </div>
                 <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Hormonal & Stress Response</h3>
                 <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Relevant to performance under pressure, recovery, resilience, and long-term progression.</p>
@@ -285,8 +285,8 @@ const SportsPerformance = () => {
 
               {/* Box 6 */}
               <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300">
-                   <Brain className="w-7 h-7 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/focus.png" alt="Focus & Cognitive Performance" className="w-full h-full object-contain scale-[1.15]" />
                 </div>
                 <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Focus & Cognitive Performance</h3>
                 <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Reaction speed, mental sharpness, emotional regulation, and sustained concentration all matter in modern sport.</p>
@@ -335,8 +335,8 @@ const SportsPerformance = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
             <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
               <div className="flex items-center gap-5 mb-5">
-                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300 shrink-0">
-                  <Activity className="w-6 h-6 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 shrink-0 p-0">
+                  <img src="/images/test-logos/omega3balance.png" alt="Omega Balance Test" className="w-full h-full object-contain scale-[1.15]" />
                 </div>
                 <h3 className="font-playfair font-bold text-[22px] text-gray-900 leading-tight">Omega Balance<br/>Test</h3>
               </div>
@@ -345,8 +345,8 @@ const SportsPerformance = () => {
             
             <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
               <div className="flex items-center gap-5 mb-5">
-                <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center border border-[#e9e7dc] group-hover:bg-[#7a2a33] group-hover:border-[#7a2a33] transition-colors duration-300 shrink-0">
-                  <Leaf className="w-6 h-6 text-[#7a2a33] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 shrink-0 p-0">
+                  <img src="/images/test-logos/guthealth1.png" alt="Gut Microbiome Test" className="w-full h-full object-contain scale-[1.15]" />
                 </div>
                 <h3 className="font-playfair font-bold text-[22px] text-gray-900 leading-tight">Gut Microbiome<br/>Test</h3>
               </div>
@@ -383,8 +383,8 @@ const SportsPerformance = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Vitamin D */}
                   <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
-                       <Sun className="w-5 h-5" />
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/vitamind.png" alt="Vitamin D" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Vitamin D <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">8 MINS</span></p>
@@ -394,8 +394,8 @@ const SportsPerformance = () => {
                   
                   {/* HbA1c */}
                   <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
-                       <Droplet className="w-5 h-5" />
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/hba1c.png" alt="HbA1c" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">HbA1c <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">5 MINS</span></p>
@@ -405,8 +405,8 @@ const SportsPerformance = () => {
                   
                   {/* Ferritin */}
                   <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
-                       <Database className="w-5 h-5" />
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/ferritin.png" alt="Ferritin" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Ferritin <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">15 MINS</span></p>
@@ -416,8 +416,8 @@ const SportsPerformance = () => {
                   
                   {/* Cortisol */}
                   <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
-                       <Brain className="w-5 h-5" />
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/cortisol.png" alt="Cortisol" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Cortisol <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">15 MINS</span></p>
@@ -427,8 +427,8 @@ const SportsPerformance = () => {
                   
                   {/* Folate */}
                   <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
-                       <Hexagon className="w-5 h-5" />
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/folate.png" alt="Folate" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Folate <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">15 MINS</span></p>
@@ -438,8 +438,8 @@ const SportsPerformance = () => {
                   
                   {/* Cystatin C */}
                   <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
-                       <Activity className="w-5 h-5" />
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/cystatin.png" alt="Cystatin C" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Cystatin C <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">3 MINS</span></p>
@@ -449,8 +449,8 @@ const SportsPerformance = () => {
                   
                   {/* CRP / hs-CRP */}
                   <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm text-red-600/80">
-                       <Flame className="w-5 h-5" />
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/crp.png" alt="CRP / hs-CRP" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">CRP / hs-CRP <span className="text-[9px] font-bold bg-white border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2">3 MINS</span></p>
@@ -473,8 +473,8 @@ const SportsPerformance = () => {
                 <div className="flex flex-col gap-4">
                   {/* Testosterone */}
                   <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-10 h-10 rounded-full bg-blue-50/50 border border-blue-50 flex items-center justify-center shrink-0 shadow-sm text-blue-600/80">
-                       <FlaskConical className="w-5 h-5" />
+                     <div className="w-12 h-12 rounded-full bg-blue-50/50 border border-blue-50 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/testosterone.png" alt="Testosterone" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Testosterone <span className="text-[9px] font-bold bg-gray-50 border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2 hidden xl:block">15 MINS</span></p>
@@ -484,8 +484,8 @@ const SportsPerformance = () => {
                   
                   {/* Vitamin B12 */}
                   <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-10 h-10 rounded-full bg-blue-50/50 border border-blue-50 flex items-center justify-center shrink-0 shadow-sm text-blue-600/80">
-                       <Droplet className="w-5 h-5 fill-current opacity-70" />
+                     <div className="w-12 h-12 rounded-full bg-blue-50/50 border border-blue-50 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/vitaminb12.png" alt="Vitamin B12" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Vitamin B12 <span className="text-[9px] font-bold bg-gray-50 border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2 hidden xl:block">15 MINS</span></p>
@@ -495,8 +495,8 @@ const SportsPerformance = () => {
                   
                   {/* TSH (Thyroid) */}
                   <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-10 h-10 rounded-full bg-blue-50/50 border border-blue-50 flex items-center justify-center shrink-0 shadow-sm text-blue-600/80">
-                       <Search className="w-5 h-5" />
+                     <div className="w-12 h-12 rounded-full bg-blue-50/50 border border-blue-50 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/tsh.png" alt="TSH (Thyroid)" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">TSH (Thyroid) <span className="text-[9px] font-bold bg-gray-50 border border-gray-100 px-1.5 py-0.5 rounded text-gray-500 shrink-0 mt-0.5 ml-2 hidden xl:block">15 MINS</span></p>

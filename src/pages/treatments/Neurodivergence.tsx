@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 // Note: Ensure the hero image exists or falls back cleanly
-const heroImg = "https://images.unsplash.com/photo-1551847677-dc82d762e1bd?auto=format&fit=crop&q=80&w=1200";
+const heroImg = "/services/neurodivergence-v2.jpg";
 const heroFallback = "https://images.unsplash.com/photo-1551847677-dc82d762e1bd?auto=format&fit=crop&q=80&w=1200";
 
 const Neurodivergence = () => {

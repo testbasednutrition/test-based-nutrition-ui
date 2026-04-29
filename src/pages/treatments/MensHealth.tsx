@@ -1,309 +1,843 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
+import { Gallery4 } from "@/components/ui/gallery4";
 import Footer from "@/components/Footer";
+import HowWeSupportYou from "@/components/HowWeSupportYou";
 import { Link } from "react-router-dom";
-import heroImg from "@/assets/treatments/mens-health.jpg";
+import { useQuiz } from "@/components/QuizContext";
+import { FocusRail } from "@/components/ui/focus-rail";
+import { useQuery } from "@tanstack/react-query";
+import { fetchSpecialists } from "@/lib/api";
 import {
-  Activity,
-  HeartPulse,
-  Brain,
-  Dumbbell,
-  FileText,
-  Search,
-  MessageCircle,
-  TrendingUp,
-  AlertTriangle,
-  ArrowRight,
-  CheckCircle2,
-  Stethoscope,
-  Microscope,
-  Flame,
-  Users
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Activity, HeartPulse, Brain, Leaf, FileText, Search, MessageCircle, TrendingUp,
+  AlertTriangle, ArrowRight, CheckCircle2, Stethoscope, Microscope, Quote, Users, Droplet
 } from "lucide-react";
 
-// Note: Ensure the hero image exists or falls back cleanly
-const heroFallback = "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=1200";
+const heroImg = "/services/mens-health-v2.jpg";
 
 const MensHealth = () => {
+  const quizContext = useQuiz();
+  const openQuiz = quizContext?.openQuiz || (() => {});
+  
+  const { data: specialists = [], isLoading: isSpecialistsLoading } = useQuery({
+    queryKey: ['specialists'],
+    queryFn: fetchSpecialists
+  });
+
+  const expertItems = specialists.map((s, index) => ({
+    id: s.slug || `expert-${index}`,
+    title: s.name,
+    description: s.bio && s.bio.length > 0 ? s.bio[0] : 'Health & Wellness Expert',
+    meta: `${s.category} • ${s.role}`,
+    imageSrc: s.image || "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800"
+  }));
+
   return (
-    <div className="min-h-screen flex flex-col pt-24 bg-[#fdfdf9] font-montserrat">
+    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#fdfdf9] font-montserrat">
       <Navbar alwaysSolid />
       
-      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-8 md:py-16 mb-16">
-        
-        {/* HERO SECTION */}
-        <div className="w-full flex flex-col lg:flex-row items-center gap-10 lg:gap-16 xl:gap-24 mb-16 xl:mb-24">
-           {/* Text Side */}
-           <div className="w-full lg:w-5/12 text-center lg:text-left pt-4 xl:pt-8 flex flex-col justify-center">
-              <h3 className="font-playfair text-[#1a3646] font-bold tracking-widest uppercase text-sm mb-4">Men's Health</h3>
-              <h1 className="font-playfair text-5xl md:text-[4rem] xl:text-[4.5rem] font-bold text-gray-900 leading-[1.05] mb-6">
-                The Science of<br />Men's Health
+      {/* FULL BLEED HERO SECTION */}
+      <div className="w-full relative bg-[#fdfdf9] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
+        {/* Background Image spanning the right side */}
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
+          <img src={heroImg} alt="Men's Health" className="w-full h-full object-cover object-[center_20%]" />
+          
+          {/* Bottom fade for grounding the Tailored Box */}
+          <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+          {/* Blend image and black gradient into the left text container background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#fdfdf9] via-[#fdfdf9]/70 lg:via-[#fdfdf9]/20 to-transparent"></div>
+        </div>
+
+        {/* Content Container Aligned inside normal max-width margins */}
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 pt-12 pb-12 lg:py-0 justify-between flex-grow">
+           <div className="w-full lg:w-5/12 text-center lg:text-left flex flex-col justify-center">
+              <h3 className="font-playfair text-[#7a2a33] font-bold tracking-widest uppercase text-sm mb-4">MEN'S HEALTH</h3>
+              <h1 className="font-playfair text-[3rem] md:text-[3.5rem] xl:text-[4rem] font-bold text-gray-900 leading-[1.05] mb-6">
+                The System Behind Men’s Health Concerns
               </h1>
-              <p className="text-lg xl:text-xl leading-relaxed font-medium mb-8 text-gray-700">
-                Optimising every generation: from peak performance and vitality to midlife resilience and healthy ageing. 1 in 2 men will face a chronic health condition, and hidden nutritional deficiencies are often the root cause.
-              </p>
+              
+              <div className="text-[16px] xl:text-[17px] text-gray-900 lg:text-gray-800 leading-relaxed max-w-[480px] mx-auto lg:mx-0 mb-6 font-medium space-y-4">
+                 <p>1 in 4 men in the UK experience poor mental health. Hormonal and metabolic factors are often missed or under-measured.</p>
+                 <p>Symptoms are often managed with medication. Even advanced approaches can overlook foundational drivers. So what’s actually driving men’s health today?</p>
+              </div>
+
+              <p className="font-semibold uppercase tracking-widest text-[#7a2a33] text-[14px] mb-2">A precision, test-based men’s health system</p>
+              <p className="font-semibold uppercase tracking-widest text-[#7a2a33] text-[14px] mb-2">Focused on identifying the internal factors influencing health, performance, and recovery.</p>
+              <p className="font-semibold uppercase tracking-widest text-[#7a2a33] text-[14px] mb-8">Test. Target. Transform.</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="bg-[#1a3646] hover:bg-[#112430] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
-                  Take Quiz <ArrowRight className="w-4 h-4" />
+                <button 
+                  onClick={() => openQuiz()}
+                  className="bg-[#7a2a33] hover:bg-[#5c1c24] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
+                  Start Your Journey <ArrowRight className="w-4 h-4" />
                 </button>
-                <Link to="/partner-with-us" className="border border-gray-300 hover:bg-gray-50 transition-colors bg-white text-gray-800 px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
-                  Partner With Us
-                </Link>
+                <button 
+                  onClick={() => {
+                    document.getElementById('pathways')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="bg-white hover:bg-gray-50 border border-gray-200 transition-colors text-gray-900 px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
+                  Explore Your Pathway
+                </button>
               </div>
            </div>
            
-           {/* Image Side */}
-           <div className="w-full lg:w-7/12 relative rounded-[2rem] overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-[550px] shadow-lg">
-              <img 
-                src={heroImg} 
-                onError={(e) => { e.currentTarget.src = heroFallback; }}
-                alt="Men's Health" 
-                className="w-full h-full object-cover" 
-              />
+           <div className="w-full lg:w-5/12 relative mt-auto lg:mt-0 flex justify-end items-end h-full self-end lg:pb-12 xl:pb-16 mt-8">
+              <div className="w-full bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl flex flex-col sm:flex-row gap-4 justify-between items-center text-white shadow-2xl">
+                <div>
+                   <p className="font-playfair font-bold text-xl mb-1 text-white">Targeted Support</p>
+                   <p className="text-white text-sm font-medium">Testing protocols aligned to your symptoms, life stage, and goals.</p>
+                </div>
+                <button 
+                   onClick={() => openQuiz()}
+                   className="shrink-0 bg-white text-[#7a2a33] border border-transparent px-5 py-2.5 rounded-full font-bold text-[13px] uppercase tracking-wider hover:bg-gray-100 transition-all shadow-md">
+                  Take the Assessment
+                </button>
+              </div>
+           </div>
+        </div>
+      </div>
+
+      {/* TRUST BAR */}
+      <div className="w-full bg-[#f5f5f5] border-y border-gray-200 py-3 md:py-4 mb-2 overflow-hidden">
+        <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+            Foundational Testing
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+            Rapid Point-of-Care Testing
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+            Expert-Led Protocols
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+            Personalised Preventative Programmes
+          </span>
+        </div>
+      </div>
+
+      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pb-8 md:pb-16 mb-16">
+
+        {/* SECTION 2 — EXPLORE YOUR PATHWAY */}
+        <div id="pathways" className="mb-12 xl:mb-20">
+          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-2 md:pt-4">
+            <Gallery4 
+              subtitle="Men's Health Pathways"
+              title="Explore Your Men's Health Pathway"
+              description="Personalised support. Each pathway includes targeted testing, a consultation, and personalised protocols aligned to your symptoms, lifestyle, and goals."
+              compact={true}
+              items={[
+                {
+                  id: "testosterone",
+                  title: "Testosterone & Hormonal Health",
+                  description: "Low testosterone is increasingly reported in men across all ages\nExplore how hormonal balance, nutrient status, and metabolic function may influence energy, strength, mood, and recovery.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=800",
+                },
+                {
+                  id: "fertility",
+                  title: "Male Fertility",
+                  description: "Sperm health is influenced by lifestyle, inflammation, and nutrient status\nUnderstand how oxidative stress, hormones, and cellular health may impact fertility and reproductive function.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1518104593124-ac2ea0c0ee8b?auto=format&fit=crop&q=80&w=800",
+                },
+                {
+                  id: "weight",
+                  title: "Weight Loss, Pre-Diabetes & Type 2 Diabetes",
+                  description: "Blood sugar dysregulation often develops gradually — and can go unnoticed\nAssess how insulin response, inflammation, and metabolism may influence weight gain, energy crashes, and long-term health risk.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&q=80&w=800",
+                },
+                {
+                  id: "stress",
+                  title: "Stress, Mood & Burnout",
+                  description: "Chronic stress can impact hormones, energy, and mental clarity\nExplore how cortisol patterns, nutrient levels, and metabolic health may influence mood, focus, and resilience.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1499540633125-484965b60031?auto=format&fit=crop&q=80&w=800",
+                },
+                {
+                  id: "ageing",
+                  title: "Healthy Ageing for Men",
+                  description: "Ageing is influenced by hormonal, metabolic, and cellular changes\nUnderstand how inflammation, nutrient status, and internal health markers may impact longevity, strength, and vitality over time.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80&w=800",
+                },
+                {
+                  id: "gut",
+                  title: "Gut Health Issues",
+                  description: "Gut health influences nutrient absorption, inflammation, and overall wellbeing\nAssess microbiome balance and digestive function to understand how gut health may be contributing to wider symptoms.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1505553258544-245842838965?auto=format&fit=crop&q=80&w=800",
+                }
+              ]}
+            />
+            <div className="text-center mt-6">
+              <p className="font-bold text-[#7a2a33] text-[14px]">Each pathway is delivered through structured testing, specialist insight, and measurable progression.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION 3 — SPECIALIST LEADS */}
+        <div className="mb-20 xl:mb-24 px-4 lg:px-0">
+          <div className="mb-16 text-center flex flex-col items-center justify-center max-w-3xl mx-auto">
+             <p className="text-[12px] font-bold tracking-widest uppercase text-[#7a2a33] mb-3">Led by Leading Specialists</p>
+             <h2 className="font-playfair text-[28px] md:text-[36px] text-gray-900 font-bold tracking-wider mb-4 leading-tight">Built by those working at the highest level of men’s health, performance, and clinical insight.</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#7a2a33]/20">
+              {/* Ishtiaq */}
+              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
+                 <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-[4/5] sm:aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
+                    <img src="/images/specialists/ishtiaq.jpg" alt="Dr Ishtiaq Rehman" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
+                 </div>
+                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
+                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-1">Dr Ishtiaq Rehman</h3>
+                   <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">MBChB, MFSEM</p>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#7a2a33] uppercase tracking-widest mb-4">TBN Co-Founder & Medical Director | England FA Doctor</div>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#7a2a33]/30 pl-3">"Men’s health is often managed at the symptom level — but real change comes from understanding what’s driving it beneath the surface."</p>
+                 </div>
+              </div>
+              
+              {/* Neil Parsley */}
+              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pl-4 lg:pl-14">
+                 <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-[4/5] sm:aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
+                    <img src="/images/specialists/neil-parsley.png" alt="Neil Parsley" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
+                 </div>
+                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
+                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-1">Neil Parsley</h3>
+                   <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">Elite Performance Coach</p>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#7a2a33] uppercase tracking-widest mb-4">Former Manchester City, Team GB, England Rugby</div>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#7a2a33]/30 pl-3">"Energy, resilience, and performance are driven by internal systems — once identified, they can be supported with precision."</p>
+                 </div>
+              </div>
+          </div>
+          
+          <div className="mt-12 text-center max-w-2xl mx-auto border-t border-gray-100 pt-8">
+            <h4 className="font-playfair text-[20px] font-bold text-gray-900 mb-2">The TBN Collective</h4>
+            <p className="text-sm font-medium text-gray-600">A specialist-led network across men’s health, hormones, metabolism, mental performance, and recovery — delivering structured, test-based support at scale.</p>
+          </div>
+        </div>
+
+
+        {/* SECTION 7.5 — THE SCIENCE BEHIND MEN'S HEALTH */}
+        <div className="w-full mt-16 lg:mt-24 max-w-6xl mx-auto px-4">
+           <div className="text-center mb-12">
+              <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">The Science Behind Men’s Health</h2>
+              <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest flex items-center justify-center gap-2"><div className="w-1.5 h-1.5 bg-[#7a2a33] rounded-full" /> Key drivers we assess <div className="w-1.5 h-1.5 bg-[#7a2a33] rounded-full" /></p>
+           </div>
+           
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {/* Box 1 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/cellular.png" alt="Cellular Health" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Cellular Health</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Supports energy, repair, and overall function across all systems.</p>
+              </div>
+
+              {/* Box 2 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/inflammation.png" alt="Inflammation & Recovery Load" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Inflammation & Recovery Load</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">A key factor influencing recovery, fatigue, and long-term health.</p>
+              </div>
+
+              {/* Box 3 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/hormone.png" alt="Hormonal Balance" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Hormonal Balance</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Plays a central role in energy, mood, strength, and metabolic function.</p>
+              </div>
+
+              {/* Box 4 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/metabolic.png" alt="Metabolic Function" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Metabolic Function</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Influences energy stability, weight regulation, and performance.</p>
+              </div>
+
+              {/* Box 5 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/gut.png" alt="Gut Health & Absorption" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Gut Health & Absorption</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Impacts nutrient utilisation, inflammation, and wider system function.</p>
+              </div>
+
+              {/* Box 6 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/focus.png" alt="Cognitive Performance & Mental Health" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Cognitive Performance & Mental Health</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Influenced by nutrient status, fatty acid balance, and metabolic health.</p>
+              </div>
+           </div>
+
+           <div className="mt-12 bg-[#7a2a33] text-white p-8 md:p-10 rounded-3xl shadow-xl text-center space-y-4 max-w-4xl mx-auto">
+             <p className="font-playfair italic text-[20px] md:text-[24px] font-bold">"What we apply in elite sport — identifying and supporting the root drivers of performance — becomes even more important as men age and the demands on the body change."</p>
+             <p className="font-sans text-[14px] uppercase tracking-widest text-[#d0bfae] font-bold">— Dr Ishtiaq Rehman</p>
            </div>
         </div>
 
-        {/* EXPLORE YOUR PATHWAY */}
-        <div className="mb-12 xl:mb-20 bg-white p-8 lg:p-12 rounded-[2.5rem] shadow-sm border border-gray-100 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Dumbbell className="w-48 h-48 -mr-12 -mt-12"/></div>
-          <h2 className="font-playfair text-xl lg:text-2xl font-bold text-center text-gray-900 mb-8 tracking-widest uppercase relative z-10">Explore Your Pathway</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 relative z-10">
-            {[
-              "Low Energy",
-              "Brain Fog",
-              "Muscle Loss",
-              "Weight Gain",
-              "Low Libido"
-            ].map((item, idx) => (
-              <Link key={idx} to="#" className="bg-[#fcfaf7] hover:bg-white px-4 py-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center justify-center lg:justify-start gap-3 text-center lg:text-left group">
-                <div className="w-2 h-2 rounded-full bg-[#1a3646] group-hover:bg-[#112430] transition-colors shrink-0"></div>
-                <span className="font-bold text-[13px] md:text-[14px] text-gray-800 leading-tight">{item}</span>
-              </Link>
-            ))}
+        {/* SECTION 7.7 — START WITH THE FOUNDATIONS */}
+        <div className="w-full mt-20 lg:mt-24 max-w-6xl mx-auto px-4">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest mb-3">At home or in clinic</p>
+            <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">START WITH THE FOUNDATIONS</h2>
+            <p className="font-montserrat text-[15px] font-medium leading-relaxed text-gray-600 max-w-2xl mx-auto">
+              Every men’s health pathway begins with baseline insight at a cellular level.
+            </p>
           </div>
-        </div>
 
-        {/* 2-COLUMN LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 text-gray-800">
-          
-          {/* LEFT COLUMN */}
-          <div className="lg:col-span-8 flex flex-col space-y-12 pr-0 lg:pr-4 xl:pr-8">
-            
-            {/* THIS IS WHERE WE DIFFERENTIATE HARD */}
-            <div className="bg-white p-8 lg:p-10 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-2 h-full bg-[#1a3646]"></div>
-              <h3 className="font-playfair text-[24px] font-bold tracking-wider text-gray-900 mb-6 uppercase">It's Not Just About Ageing</h3>
-              <p className="text-gray-600 mb-6 font-medium">We identify imbalances in metabolism, hormones, and cellular health to keep you stronger for longer. Men's health is intrinsically linked to how your body is:</p>
-              
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gray-400" /> <span className="font-medium text-gray-800">managing stress and cortisol</span></li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gray-400" /> <span className="font-medium text-gray-800">regulating insulin and fat</span></li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gray-400" /> <span className="font-medium text-gray-800">producing and metabolising testosterone</span></li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gray-400" /> <span className="font-medium text-gray-800">maintaining muscular mass</span></li>
+          {/* Foundation Tests */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
+            <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
+              <div className="flex items-center gap-5 mb-5">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 shrink-0 p-0">
+                  <img src="/images/test-logos/omega3balance.png" alt="Omega Balance Test" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[22px] text-gray-900 leading-tight">Omega Balance<br/>Test</h3>
+              </div>
+              <p className="font-montserrat text-[14px] leading-relaxed text-gray-600 font-medium mb-3">Provides insight into:</p>
+              <ul className="space-y-1">
+                 <li className="flex items-start gap-2 text-[14px] text-gray-600"><span className="text-[#7a2a33]">•</span> fatty acid balance</li>
+                 <li className="flex items-start gap-2 text-[14px] text-gray-600"><span className="text-[#7a2a33]">•</span> cellular health</li>
+                 <li className="flex items-start gap-2 text-[14px] text-gray-600"><span className="text-[#7a2a33]">•</span> inflammatory load</li>
               </ul>
-              
-              <div className="bg-[#1a3646]/5 p-5 rounded-xl border border-[#1a3646]/10">
-                <p className="font-bold text-gray-900 text-[15px] leading-relaxed">
-                  👉 Our science-led approach moves beyond generic advice and symptom treatment to uncover true vital longevity.
-                </p>
-              </div>
             </div>
-
-            {/* WHAT MAY BE DRIVING YOUR SYMPTOMS */}
-            <div className="pt-4">
-              <div className="flex items-center gap-3 mb-6">
-                <Activity className="w-8 h-8 text-[#1a3646]" />
-                <h3 className="font-playfair text-[22px] font-bold tracking-wider text-gray-900 uppercase">What May Be Driving Your Symptoms</h3>
+            
+            <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
+              <div className="flex items-center gap-5 mb-5">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 shrink-0 p-0">
+                  <img src="/images/test-logos/guthealth1.png" alt="Gut Microbiome Test" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[22px] text-gray-900 leading-tight">Gut Microbiome<br/>Test</h3>
               </div>
-              
-              <div className="space-y-6">
-                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex gap-4">
-                  <div className="shrink-0 mt-1"><HeartPulse className="w-6 h-6 text-[#1a3646]" /></div>
-                  <div>
-                    <h4 className="font-playfair font-bold text-[18px] text-gray-900 mb-2">Hormonal Profile</h4>
-                    <p className="text-sm text-gray-600">Testosterone levels, cortisol imbalances, and thyroid function working together to dictate energy, drive, and recovery.</p>
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex gap-4">
-                  <div className="shrink-0 mt-1"><Activity className="w-6 h-6 text-[#1a3646]" /></div>
-                  <div>
-                    <h4 className="font-playfair font-bold text-[18px] text-gray-900 mb-2">Metabolic Health</h4>
-                    <p className="text-sm text-gray-600">Insulin resistance, visceral fat accumulation, and cardiovascular risk markers that subtly deteriorate over decades.</p>
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex gap-4">
-                  <div className="shrink-0 mt-1"><Brain className="w-6 h-6 text-[#1a3646]" /></div>
-                  <div>
-                    <h4 className="font-playfair font-bold text-[18px] text-gray-900 mb-2">Lifestyle Stressors</h4>
-                    <p className="text-sm text-gray-600">Chronic physical/mental stress, sleep apnea, and environmental toxins that relentlessly chip away at resilience.</p>
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex gap-4">
-                  <div className="shrink-0 mt-1"><Flame className="w-6 h-6 text-[#1a3646]" /></div>
-                  <div>
-                    <h4 className="font-playfair font-bold text-[18px] text-gray-900 mb-2">Gut & Inflammation</h4>
-                    <p className="text-sm text-gray-600">Systemic inflammation, poor digestive absorption, and microbiome issues limiting the nutrients you actually absorb.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-12 p-8 bg-[#1a3646] rounded-2xl text-center shadow-lg relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-xl"></div>
-                <h4 className="text-white font-playfair font-bold text-xl md:text-2xl leading-snug relative z-10 uppercase tracking-wider">
-                  Test rather than guess with targeted health screening
-                </h4>
-              </div>
+              <p className="font-montserrat text-[14px] leading-relaxed text-gray-600 font-medium mb-3">Provides insight into:</p>
+              <ul className="space-y-1">
+                 <li className="flex items-start gap-2 text-[14px] text-gray-600"><span className="text-[#7a2a33]">•</span> microbiome balance</li>
+                 <li className="flex items-start gap-2 text-[14px] text-gray-600"><span className="text-[#7a2a33]">•</span> digestive environment</li>
+                 <li className="flex items-start gap-2 text-[14px] text-gray-600"><span className="text-[#7a2a33]">•</span> nutrient absorption</li>
+              </ul>
             </div>
+          </div>
 
-            {/* WHERE WE START DIFFERENTLY */}
-            <div className="bg-[#fcfaf7] p-8 lg:p-10 rounded-3xl shadow-sm border border-[#e9e7dc] mt-6">
-               <div className="mb-10 text-center">
-                 <h3 className="font-playfair text-[24px] font-bold tracking-wider text-gray-900 uppercase">Advanced Diagnostics</h3>
-                 <p className="font-medium text-gray-600 mt-2">Comprehensive male health panels providing actionable insight into your physical foundation.</p>
-               </div>
-               
-               <div className="space-y-8">
-                 <div>
-                   <h4 className="font-playfair font-bold text-[20px] text-gray-900 mb-3 border-b pb-2 border-gray-200">Rapid Clinic Screening</h4>
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
-                     <div className="bg-white py-4 px-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
-                       <span className="font-playfair font-bold text-gray-900 text-[16px]">Hormones</span>
-                       <span className="text-[13px] font-bold text-gray-700">Testosterone, Cortisol</span>
-                     </div>
-                     <div className="bg-white py-4 px-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
-                       <span className="font-playfair font-bold text-gray-900 text-[16px]">Metabolic</span>
-                       <span className="text-[13px] font-bold text-gray-700">Insulin, HbA1c</span>
-                     </div>
-                     <div className="bg-white py-4 px-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
-                       <span className="font-playfair font-bold text-gray-900 text-[16px]">Cardiovascular</span>
-                       <span className="text-[13px] font-bold text-gray-700">Lipids, ApoB</span>
-                     </div>
-                     <div className="bg-white py-4 px-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
-                       <span className="font-playfair font-bold text-gray-900 text-[16px]">Inflammation</span>
-                       <span className="text-[13px] font-bold text-gray-700">hs-CRP</span>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-            </div>
-
-            {/* FROM SYMPTOMS TO PROFILE */}
-            <div className="p-8 lg:p-10 border-2 border-dashed border-gray-300 rounded-[2rem] relative bg-white/30 box-border mt-6">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#fdfdf9] px-6 py-2 rounded-full border border-gray-200 font-playfair font-bold text-[18px] text-gray-900 shadow-sm flex items-center gap-3 whitespace-nowrap">
-                <FileText className="w-5 h-5 text-gray-400"/> Diagnostics <ArrowRight className="w-4 h-4 text-[#1a3646]" /> Protocol
+          {/* 15-MINUTE HEALTH INSIGHT */}
+          <div className="bg-white border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-full h-2 bg-gradient-to-r from-blue-600 to-[#7a2a33]"></div>
+            
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center gap-2 bg-[#7a2a33]/10 text-[#7a2a33] px-4 py-1.5 rounded-full font-bold text-[13px] uppercase tracking-widest mb-6">
+                <div className="w-2 h-2 rounded-full bg-[#7a2a33] animate-pulse"></div> Rapid Health Insight
               </div>
-              
-              <p className="text-center font-bold text-gray-800 mb-6 mt-6 uppercase tracking-wider text-[13px]">We connect:</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
-                <div className="bg-white shadow-sm border border-gray-200 py-4 rounded-xl flex items-center justify-center font-bold text-[13px] text-gray-900 px-4 text-center">your performance goals</div>
-                <div className="bg-white shadow-sm border border-gray-200 py-4 rounded-xl flex flex-col items-center justify-center font-bold text-[13px] text-gray-900 px-4 text-center leading-tight">
-                  your lab markers
-                </div>
-                <div className="bg-white shadow-sm border border-gray-200 py-4 rounded-xl flex items-center justify-center font-bold text-[13px] text-gray-900 px-4 text-center">your lifestyle stressors</div>
-              </div>
-              
-              <p className="text-center font-bold text-[18px] text-gray-900 mb-2">
-                To build a <span className="text-[#1a3646]">highly personalised longevity profile and protocol</span>
+              <h3 className="font-playfair text-[26px] md:text-[32px] font-bold text-gray-900 mb-4 uppercase tracking-wider">Advanced Point-of-Care Screening</h3>
+              <p className="font-montserrat text-[15px] font-medium text-gray-600 max-w-2xl mx-auto">
+                Fast, targeted screening to highlight key internal factors influencing men’s health.
               </p>
             </div>
-
-          </div>
-
-          {/* RIGHT COLUMN */}
-          <div className="lg:col-span-4 flex flex-col space-y-10 pl-0 lg:pl-4 xl:pl-8">
             
-            {/* WHO THIS IS FOR */}
-            <div className="bg-[#1a3646] p-8 lg:p-10 rounded-3xl shadow-lg text-white relative overflow-hidden group shrink-0">
-               <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform"><Activity className="w-32 h-32 -mr-16 -mt-16"/></div>
-               <h3 className="font-playfair text-[20px] font-bold tracking-wider mb-6 uppercase relative z-10 text-white">Who This Is For</h3>
-               
-               <p className="font-bold mb-5 relative z-10 text-[15px] leading-relaxed">
-                 Whether diagnosing fatigue or optimising for peak performance, we uncover the crucial health metrics holding you back.
-               </p>
-               
-               <ul className="space-y-3 relative z-10 font-bold text-[14px]">
-                 <li className="bg-white/10 px-4 py-3 rounded-lg border border-white/5 backdrop-blur-sm shadow-sm text-center">Men experiencing burnout</li>
-                 <li className="bg-white/10 px-4 py-3 rounded-lg border border-white/5 backdrop-blur-sm shadow-sm text-center">Athletes demanding optimal recovery</li>
-                 <li className="bg-white/10 px-4 py-3 rounded-lg border border-white/5 backdrop-blur-sm shadow-sm text-center">Professionals facing high stress loads</li>
-                 <li className="bg-white/10 px-4 py-3 rounded-lg border border-white/5 backdrop-blur-sm shadow-sm text-center">Navigating mid-life shifts safely</li>
-               </ul>
-            </div>
-
-            {/* CLINICAL LEADERS */}
-            <div className="bg-[#fcfaf7] p-6 lg:p-8 rounded-3xl shadow-sm border border-[#e9e7dc] shrink-0">
-               <div className="flex items-center justify-between mb-4">
-                 <h3 className="font-playfair text-[18px] font-bold tracking-wider text-gray-900 uppercase">Clinical Leaders</h3>
-                 <Users className="w-5 h-5 text-gray-400" />
-               </div>
-               
-               <ul className="space-y-6">
-                 <li className="flex flex-col gap-2">
-                   <div className="flex items-center gap-3">
-                     <div className="w-10 h-10 bg-gray-200 rounded-full shrink-0 flex items-center justify-center text-gray-400 font-bold">JC</div> 
-                     <div className="flex flex-col">
-                       <span className="font-bold text-[15px] text-gray-900 leading-tight">Dr. James Carter</span>
-                       <span className="text-[12px] font-bold text-[#1a3646] uppercase">Lead Specialist</span>
-                     </div>
-                   </div>
-                   <p className="text-[13px] text-gray-600 font-medium leading-relaxed mt-1">Authority on male hormone optimization and longevity to overcome burnout and preserve muscle mass.</p>
-                 </li>
-                 
-                 <li className="flex flex-col gap-2 border-t border-gray-100 pt-5">
-                   <div className="flex items-center gap-3">
-                     <div className="w-10 h-10 bg-gray-200 rounded-full shrink-0 flex items-center justify-center text-gray-400 font-bold">DC</div> 
-                     <div className="flex flex-col">
-                       <span className="font-bold text-[15px] text-gray-900 leading-tight">Dr. David Chen</span>
-                       <span className="text-[12px] font-bold text-[#1a3646] uppercase">Science Director</span>
-                     </div>
-                   </div>
-                   <p className="text-[13px] text-gray-600 font-medium leading-relaxed mt-1">Bridges complex biosystems research and accessible clinical interventions for optimal vitality.</p>
-                 </li>
-               </ul>
-            </div>
-
-            {/* YOUR PROTOCOL JOURNEY */}
-            <div className="bg-[#fcfaf7] p-6 lg:p-8 rounded-3xl shadow-sm border border-[#e9e7dc] shrink-0">
-              <h3 className="font-playfair text-[20px] font-bold tracking-wider text-gray-900 mb-8 uppercase text-center xl:text-left flex items-center justify-center xl:justify-start gap-3">
-                <TrendingUp className="w-6 h-6 text-[#1a3646]" /> Protocol Journey
-              </h3>
-              
-              <div className="space-y-4 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-300 before:to-transparent xl:before:ml-5 xl:before:-translate-x-px">
-                
-                {[
-                  "Free Consultation",
-                  "Comprehensive Testing",
-                  "Personalised Strategy",
-                  "Expert Consultation",
-                  "Monitor & Thrive"
-                ].map((step, idx) => (
-                  <div key={idx} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active xl:justify-between xl:even:flex-row">
-                    <div className={`flex items-center justify-center w-10 h-10 rounded-full border border-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm xl:order-none xl:translate-x-0 xl:group-odd:translate-x-0 text-sm ${idx === 2 ? 'bg-[#1a3646] text-white shadow-md' : 'bg-white text-gray-600'}`}>{idx + 1}</div>
-                    <div className={`w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-gray-100 shadow-sm xl:w-[calc(100%-3.5rem)] text-[13px] font-bold flex items-center min-h-[60px] ${idx === 2 ? 'bg-[#1a3646] text-white border-[#112430] shadow-md shadow-[#1a3646]/20' : 'bg-white text-gray-800'}`}>
-                      {step}
-                    </div>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+              {/* Left Column: Finger Prick */}
+              <div className="lg:col-span-8">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center -ml-2">
+                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-red-600"></div>
                   </div>
-                ))}
+                  <h4 className="font-bold text-gray-900 text-[18px] uppercase tracking-widest">Finger Prick <span className="text-[12px] text-gray-400 normal-case tracking-normal ml-2">(15-minute screening)</span></h4>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                  {/* Vitamin D */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/vitamind.png" alt="Vitamin D" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1">Vitamin D</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight">immune & hormone support</p>
+                     </div>
+                  </div>
+                  
+                  {/* HbA1c */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/hba1c.png" alt="HbA1c" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1">HbA1c</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight">blood sugar regulation</p>
+                     </div>
+                  </div>
+                  
+                  {/* Ferritin */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/ferritin.png" alt="Ferritin" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1">Ferritin</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight">energy & iron status</p>
+                     </div>
+                  </div>
+                  
+                  {/* Cortisol */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="flex-1 min-w-0 px-2 py-1">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1">Cortisol</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight">stress response</p>
+                     </div>
+                  </div>
+
+                  {/* Folate */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/folate.png" alt="Folate" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1">Folate</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight">cellular function</p>
+                     </div>
+                  </div>
+                  
+                  {/* Cystatin C */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/cystatin.png" alt="Cystatin C" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1">Cystatin C</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight">metabolic load</p>
+                     </div>
+                  </div>
+
+                  {/* CRP / hs-CRP */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative sm:col-span-2">
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/crp.png" alt="CRP / hs-CRP" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1">CRP / hs-CRP</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight">inflammation & cardiovascular insight</p>
+                     </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Right Column: Phlebotomy */}
+              <div className="lg:col-span-4 lg:border-l lg:border-gray-100 lg:pl-10">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center -ml-2">
+                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-600"></div>
+                  </div>
+                  <h4 className="font-bold text-gray-900 text-[18px] uppercase tracking-widest">Phlebotomy Required</h4>
+                </div>
+                
+                <div className="flex flex-col gap-4 mt-8">
+                  {/* Testosterone */}
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1">Testosterone</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight">hormonal health</p>
+                     </div>
+                  </div>
+                  
+                  {/* Vitamin B12 */}
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1">Vitamin B12</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight">energy & cognition</p>
+                     </div>
+                  </div>
+
+                  {/* TSH */}
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1">TSH (Thyroid)</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight">metabolism</p>
+                     </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 text-center lg:text-left">
+                  <p className="text-[12px] font-medium text-gray-500 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    Markers are selected based on your symptoms, health goals, and pathway.
+                  </p>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* FINAL CLOSE */}
-            <div className="bg-yellow-50/50 p-6 lg:p-8 rounded-3xl border border-yellow-200/50 relative shadow-sm shrink-0 mt-6">
-                 <div className="flex items-center gap-2 mb-4">
-                   <AlertTriangle className="w-5 h-5 text-yellow-600" />
-                   <h4 className="font-bold text-[13px] text-yellow-700 uppercase tracking-widest">Important</h4>
+        {/* SECTION 7.8 — HOW WE SUPPORT YOU */}
+        <HowWeSupportYou />
+
+        {/* SECTION 7.9 — PRICING / SUPPORT LEVELS */}
+        <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4">
+          <div className="text-center mb-12 lg:mb-16">
+            <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">CHOOSE YOUR SUPPORT LEVEL</h2>
+            <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest mb-4">
+              From foundational insight to specialist-led strategy
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 items-stretch">
+            
+            {/* Box 1: Free Consultation */}
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#7a2a33]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+               <div className="h-[100px] shrink-0 mb-2">
+                 <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight">Free Consultation</h3>
+               </div>
+               
+               <div className="flex-grow flex flex-col justify-start mb-6 space-y-3">
+                 <p className="font-bold text-[11px] text-gray-400 uppercase tracking-widest mb-3">Includes</p>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-gray-900 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Understand your symptoms</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-gray-900 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Identify the most relevant pathway</span></div>
+               </div>
+               
+               <div className="h-[360px] shrink-0 pt-6 border-t border-gray-100 flex flex-col">
+                 <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
+                   <div className="flex flex-col justify-end h-full">
+                     <span className="text-[32px] font-bold text-gray-900 leading-none">Free</span>
+                   </div>
                  </div>
-                 <ul className="text-[13px] leading-relaxed opacity-90 font-bold text-gray-700 space-y-1.5 list-disc pl-4">
-                   <li>This proactive approach does not replace medical care</li>
-                   <li>Provides targeted cellular insight for optimal resilience</li>
-                 </ul>
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase border border-gray-200 text-gray-900 rounded-full hover:bg-gray-50 transition-colors shadow-sm mb-6">
+                   Book Free Consultation
+                 </button>
+                 <div className="flex-grow">
+                   <p className="font-montserrat text-[13px] text-gray-500 leading-relaxed text-center">
+                     A starting point to understand your symptoms and the most relevant pathway.
+                   </p>
+                 </div>
+               </div>
+            </div>
+
+            {/* Box 2: Foundations */}
+            <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#7a2a33] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#8c353f] whitespace-nowrap">Most Popular</div>
+               
+               <div className="h-[100px] shrink-0 mb-2 flex flex-col">
+                 <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Men's Health Foundations</h3>
+                 <p className="text-[11px] font-bold text-[#7a2a33] uppercase tracking-widest">6-Month Structured Programme</p>
+               </div>
+               
+               <div className="flex-grow mb-6 space-y-3">
+                 <p className="font-bold text-[11px] text-gray-400 uppercase tracking-widest mb-3">Includes</p>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Omega Balance Test</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Personalised Results Review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">6-Month Health Protocol</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Retest Included</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Ongoing Support</span></div>
+               </div>
+
+               <div className="h-[360px] shrink-0 pt-6 border-t border-[#e9e7dc] flex flex-col">
+                 <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
+                   <div className="flex flex-col justify-end h-full">
+                     <div className="flex items-end gap-3 mb-1.5 align-bottom">
+                       <span className="text-[32px] font-bold text-gray-900 leading-none">£189</span>
+                       <span className="text-gray-400 line-through text-[14px] leading-snug">£482</span>
+                     </div>
+                     <p className="text-[13px] text-gray-500 font-medium flex items-center gap-1.5">+ £39/mo optional support</p>
+                   </div>
+                 </div>
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#7a2a33] text-white rounded-full hover:bg-[#8c353f] transition-colors shadow-md mb-6">
+                   Start Foundations
+                 </button>
+                 <div className="flex-grow">
+                   <p className="font-montserrat text-[13px] text-gray-500 leading-relaxed text-center">
+                     Build the foundations of health through structured testing, personalised protocols, and measurable progression.
+                   </p>
+                 </div>
+               </div>
+            </div>
+
+            {/* Box 3: Advanced Review */}
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#7a2a33]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+               <div className="h-[100px] shrink-0 mb-2 flex flex-col">
+                 <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Advanced Results Review</h3>
+                 <p className="text-[11px] font-bold text-[#7a2a33] uppercase tracking-widest">1:1 Strategic Review</p>
+               </div>
+               
+               <div className="flex-grow mb-6 space-y-3">
+                 <p className="font-bold text-[11px] text-gray-400 uppercase tracking-widest mb-3">Includes</p>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">1:1 Results Review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Personalised Strategy</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Lifestyle Alignment</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Next-Phase Planning</span></div>
+               </div>
+
+               <div className="h-[360px] shrink-0 pt-6 border-t border-gray-100 flex flex-col">
+                 <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
+                   <div className="flex flex-col justify-end h-full">
+                     <div className="flex items-end gap-2 align-bottom">
+                       <span className="text-[32px] font-bold text-gray-900 leading-none">£85</span>
+                       <span className="text-[14px] text-gray-500 font-bold tracking-widest uppercase mb-0.5">Add-on</span>
+                     </div>
+                   </div>
+                 </div>
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#7a2a33] text-white rounded-full hover:bg-[#8c353f] transition-colors shadow-md mb-6">
+                   Book Advanced Review
+                 </button>
+                 <div className="flex-grow flex flex-col justify-between">
+                   <p className="font-montserrat text-[13px] text-gray-500 leading-relaxed text-center mb-4">
+                     1:1 with specialist or Dr Ishtiaq Rehman / Neil Parsley.
+                   </p>
+                 </div>
+               </div>
+            </div>
+
+            {/* Box 4: Elite Consultation */}
+            <div className="bg-[#7a2a33] border border-white/10 p-8 rounded-[2rem] shadow-xl hover:shadow-2xl flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-all duration-300 transform-gpu will-change-transform isolate">
+               <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#d0bfae] opacity-10 blur-3xl rounded-full pointer-events-none group-hover:opacity-20 transition-opacity duration-500"></div>
+               
+               <div className="h-[100px] shrink-0 mb-2 relative z-10 flex flex-col">
+                 <h3 className="font-playfair text-[24px] font-bold text-white leading-tight mb-2">TBN Elite Consultation</h3>
+                 <p className="text-[11px] font-bold text-[#d0bfae] uppercase tracking-widest">Private 1:1 with Doctor or Elite Coach</p>
+               </div>
+               
+               <div className="flex-grow mb-6 space-y-3 relative z-10">
+                 <p className="font-bold text-[11px] text-white/40 uppercase tracking-widest mb-3">Includes</p>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Full Results Review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Personalised Strategy</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Bespoke Protocol</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Follow-Up & Retest</span></div>
+               </div>
+
+               <div className="h-[360px] shrink-0 pt-6 border-t border-white/10 flex flex-col relative z-10">
+                 <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
+                   <div className="flex flex-col justify-end h-full">
+                     <div className="flex items-end gap-2 align-bottom">
+                       <span className="text-[32px] font-bold text-white leading-none">£185</span>
+                     </div>
+                   </div>
+                 </div>
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#d0bfae] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6">
+                   Apply for Elite Support
+                 </button>
+                 <div className="flex-grow flex flex-col justify-between">
+                   <p className="font-montserrat text-[13px] text-white/60 leading-relaxed text-center mb-2">
+                     Work directly with:
+                   </p>
+                   <div className="bg-white/5 p-3.5 rounded-xl border border-white/10 w-full mt-auto">
+                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#d0bfae] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Dr Ishtiaq Rehman <span className="text-white/50 font-normal">(Medical Director)</span></p></div>
+                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#d0bfae] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Neil Parsley <span className="text-white/50 font-normal">(Elite Coach)</span></p></div>
+                   </div>
+                 </div>
+               </div>
             </div>
 
           </div>
         </div>
+
+        {/* SECTION 8 — PARTNER WITH US & DIRECTORY */}
+        <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4 mb-24">
+           <div className="max-w-[800px] mx-auto text-center mb-16">
+             <h2 className="font-playfair text-[32px] md:text-[40px] font-bold text-gray-900 leading-tight mb-4 uppercase">
+               PARTNER WITH TBN
+             </h2>
+             <p className="font-bold text-[#7a2a33] text-[13px] md:text-[14px] uppercase tracking-widest leading-snug">
+               Built for clinics, health clubs, and performance environments.
+             </p>
+           </div>
+           
+           <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
+              {/* Left Column: Partner With Us */}
+              <div className="w-full lg:flex-1 bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
+                  <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-[#7a2a33] -mr-16 -mt-16"/></div>
+                  
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 relative z-10 flex-grow">
+                     <div className="flex flex-col justify-between">
+                         <div>
+                             <h3 className="font-playfair text-[24px] md:text-[28px] xl:text-[32px] font-bold text-gray-900 leading-tight mb-4">
+                                Partner with us
+                             </h3>
+                         </div>
+                         
+                         <div className="mt-auto">
+                            <div className="flex flex-col sm:flex-row gap-3">
+                               <button className="flex-1 bg-[#7a2a33] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#5c1c24] transition-colors shadow-sm text-center">
+                                 Become a TBN Partner
+                               </button>
+                               <button className="flex-1 bg-white border border-gray-200 text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm text-center">
+                                 Invite TBN Into Your Facility
+                               </button>
+                            </div>
+                         </div>
+                     </div>
+
+                     <div className="flex flex-col xl:pl-8">
+                         <ul className="space-y-4 xl:mt-4">
+                            {[
+                              "Training & integration",
+                              "Testing systems",
+                              "Specialist access",
+                              "Scalable services",
+                              "New revenue opportunities"
+                            ].map((item, idx) => (
+                              <li key={idx} className="flex items-start gap-4">
+                                <CheckCircle2 className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" />
+                                <span className="text-[14px] leading-snug font-medium text-gray-700">{item}</span>
+                              </li>
+                            ))}
+                         </ul>
+                     </div>
+                  </div>
+              </div>
+
+              {/* Right Column: Directory */}
+              <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 flex flex-col gap-6 lg:gap-8">
+                 <div className="w-full bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
+                    <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#7a2a33] -mr-12 -mb-12"/></div>
+
+                    <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
+                       Find a Men's Health Clinic / Hub
+                    </h2>
+                    
+                    <div className="w-[calc(100%+4rem)] md:w-[calc(100%+5rem)] -mx-8 md:-mx-10 mb-6 relative z-10 overflow-hidden shrink-0">
+                       {isSpecialistsLoading || expertItems.length === 0 ? (
+                          <div className="h-[380px] flex items-center justify-center">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#7a2a33]"></div>
+                          </div>
+                       ) : (
+                          <FocusRail 
+                            items={expertItems} 
+                            autoPlay={true} 
+                            interval={4000}
+                            loop={true} 
+                            compact={true}
+                            className="bg-transparent h-auto !w-full"
+                          />
+                       )}
+                    </div>
+                    
+                    <div className="mt-auto w-full relative z-10">
+                       <button className="w-full text-center bg-[#7a2a33] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#5c1c24] transition-colors shadow-md">
+                          Explore Clinic Directory
+                       </button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+         </div>
+
+         {/* FAQ SECTION */}
+         <div className="w-full mt-24 max-w-4xl mx-auto px-4 mb-24">
+            <div className="text-center mb-12">
+               <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">A New Approach to Men’s Health — Explained</h2>
+            </div>
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              <AccordionItem value="item-1" className="bg-white border border-gray-200 rounded-xl px-6 py-2">
+                <AccordionTrigger className="text-left font-bold text-[16px] text-gray-900 hover:text-[#7a2a33] hover:no-underline">
+                  Why use a test-based approach for men’s health?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 text-[15px] leading-relaxed pb-4 space-y-3">
+                  <p>Because many of the factors influencing energy, mood, weight, and performance are not always visible without structured insight.</p>
+                  <p>A test-based approach helps identify key internal drivers — allowing for more targeted, personalised support rather than guesswork.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2" className="bg-white border border-gray-200 rounded-xl px-6 py-2">
+                <AccordionTrigger className="text-left font-bold text-[16px] text-gray-900 hover:text-[#7a2a33] hover:no-underline">
+                  How is this different from standard healthcare or functional approaches?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 text-[15px] leading-relaxed pb-4 space-y-3">
+                  <p>Many approaches focus on symptoms or isolated areas of health.</p>
+                  <p>TBN brings together structured testing, specialist insight, and personalised protocols — creating a more complete picture of what may be influencing your health and how to support it over time.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3" className="bg-white border border-gray-200 rounded-xl px-6 py-2">
+                <AccordionTrigger className="text-left font-bold text-[16px] text-gray-900 hover:text-[#7a2a33] hover:no-underline">
+                  What do you mean by “root drivers”?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 text-[15px] leading-relaxed pb-4 space-y-3">
+                  <p>Root drivers refer to the underlying internal factors that may influence how you feel and function.</p>
+                  <p>This can include areas such as hormonal balance, inflammation, metabolic function, gut health, and nutrient status — all of which are assessed through structured testing.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-4" className="bg-white border border-gray-200 rounded-xl px-6 py-2">
+                <AccordionTrigger className="text-left font-bold text-[16px] text-gray-900 hover:text-[#7a2a33] hover:no-underline">
+                  Is this suitable if I’ve been told everything is “normal”?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 text-[15px] leading-relaxed pb-4 space-y-3">
+                  <p>Yes. Many individuals experience ongoing symptoms despite “normal” ranges.</p>
+                  <p>This approach focuses on gaining deeper insight into internal patterns and imbalances that may not always be explored in standard pathways.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-5" className="bg-white border border-gray-200 rounded-xl px-6 py-2">
+                <AccordionTrigger className="text-left font-bold text-[16px] text-gray-900 hover:text-[#7a2a33] hover:no-underline">
+                  Do I need to visit a clinic?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 text-[15px] leading-relaxed pb-4 space-y-3">
+                  <p>No. You can start at home with foundational testing, or work directly with a TBN clinic, health club, or practitioner for in-person support and rapid screening.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-6" className="bg-white border border-gray-200 rounded-xl px-6 py-2">
+                <AccordionTrigger className="text-left font-bold text-[16px] text-gray-900 hover:text-[#7a2a33] hover:no-underline">
+                  Who will review my results?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 text-[15px] leading-relaxed pb-4 space-y-3">
+                  <p>Results are reviewed by trained TBN specialists.</p>
+                  <p>Depending on your pathway and needs, you may also work directly with Dr Ishtiaq Rehman, Neil Parsley, or other senior specialists within the TBN Collective.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-7" className="bg-white border border-gray-200 rounded-xl px-6 py-2">
+                <AccordionTrigger className="text-left font-bold text-[16px] text-gray-900 hover:text-[#7a2a33] hover:no-underline">
+                  Is this only for men with health concerns?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 text-[15px] leading-relaxed pb-4 space-y-3">
+                  <p>No. Many men use this approach proactively — to better understand their health, optimise performance, and support long-term wellbeing.</p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-8" className="bg-white border border-gray-200 rounded-xl px-6 py-2">
+                <AccordionTrigger className="text-left font-bold text-[16px] text-gray-900 hover:text-[#7a2a33] hover:no-underline">
+                  How quickly do I get results?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 text-[15px] leading-relaxed pb-4 space-y-3">
+                  <ul className="space-y-1 pl-4">
+                     <li className="list-disc"><span className="font-semibold text-gray-800">Foundational tests:</span> returned via lab analysis</li>
+                     <li className="list-disc"><span className="font-semibold text-gray-800">Point-of-care testing:</span> available in approximately 15 minutes in clinic</li>
+                  </ul>
+                  <p>This allows for both baseline insight and immediate feedback where appropriate.</p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+         </div>
+
+         {/* FINAL CTA */}
+         <div className="w-full max-w-4xl mx-auto px-4 mb-16 text-center">
+            <h2 className="font-playfair text-[32px] font-bold text-gray-900 mb-6">A new approach to men’s health</h2>
+            <p className="text-[18px] text-[#7a2a33] font-bold mb-2">From fatigue and burnout to performance and longevity —</p>
+            <p className="text-[16px] text-gray-600 mb-8 font-medium">this is a structured, measurable way to understand and support your health.<br/><br/>Test-Based. Specialist-Led. Precision-Driven.</p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+               <button onClick={() => openQuiz()} className="bg-[#7a2a33] text-white px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-[#5c1c24] transition-colors shadow-sm">
+                 Start Your Journey
+               </button>
+               <button className="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm">
+                 Find a Clinic
+               </button>
+            </div>
+         </div>
+
+
+
       </main>
       
       <Footer />

@@ -162,7 +162,11 @@ const Gallery4 = ({
       <div className="w-full">
         {compact ? (
           <div className="container mx-auto px-4 md:px-6">
-            <div className={`grid grid-cols-2 gap-3 md:gap-4 lg:gap-4 ${items.length === 5 ? 'lg:grid-cols-5' : 'lg:grid-cols-6'}`}>
+            <div className={`grid grid-cols-2 gap-3 md:gap-4 lg:gap-4 ${
+              items.length === 5 ? 'lg:grid-cols-5' : 
+              items.length === 7 ? 'lg:grid-cols-7' : 
+              'lg:grid-cols-6'
+            }`}>
               {items.map((item) => (
               <a key={item.id} href={item.href} className="group w-full h-full min-h-[14rem] sm:min-h-[16rem] md:aspect-[3/4] lg:aspect-[4/5] perspective-1000">
                 <div className="relative w-full h-full transition-transform duration-700 preserve-3d group-hover:rotate-y-180 cursor-pointer shadow-sm rounded-xl">
