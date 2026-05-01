@@ -52,12 +52,12 @@ const treatmentRoutes: Record<string, string> = {
   "Children": "/treatments/neurodivergence",
 
   // Skin Health
-  "Acne & Teen Skin": "/treatments/skin-health",
-  "Hormonal Skin": "/treatments/skin-health",
-  "Chronic Conditions": "/treatments/skin-health",
-  "Skin & Gut": "/treatments/skin-health",
-  "Skin Ageing": "/treatments/anti-ageing",
-  "Perimenopause Skin": "/treatments/skin-health",
+  "Acne & Breakouts": "/treatments/skin-health",
+  "Eczema & Psoriasis": "/treatments/skin-health",
+  "Rosacea & Sensitive Skin": "/treatments/skin-health",
+  "Hormonal & Perimenopause Skin": "/treatments/skin-health",
+  "Baby & Children's Skin": "/treatments/skin-health",
+  "Skin Ageing & Longevity": "/treatments/anti-ageing",
 
   // Sports Performance
   "Youth Performance": "/treatments/sports-performance",
@@ -106,7 +106,7 @@ const megaMenuData = [
     heading: "Skin Health", 
     href: "/treatments/skin-health",
     subtitle: "",
-    items: ["Acne & Teen Skin", "Hormonal Skin", "Chronic Conditions", "Skin & Gut", "Skin Ageing", "Perimenopause Skin"] 
+    items: ["Acne & Breakouts", "Eczema & Psoriasis", "Rosacea & Sensitive Skin", "Hormonal & Perimenopause Skin", "Baby & Children's Skin", "Skin Ageing & Longevity"] 
   },
   { 
     heading: "Sports Performance", 

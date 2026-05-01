@@ -53,7 +53,8 @@ const servicesData: Gallery4Props = {
       title: "Pain, Fatigue & Inflammation",
       description: "Chronic symptoms and recovery pathways for fibromyalgia, hormonal pain, injury, and gut-driven inflammation.",
       href: "/treatments/pain-fatigue",
-      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800",
+      image: "/services/pain-fatigue-v2.jpg",
+      imageClassName: "object-[80%_center]",
     },
   ],
 };

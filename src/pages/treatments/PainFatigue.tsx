@@ -13,7 +13,7 @@ import {
   AlertTriangle, ArrowRight, CheckCircle2, Stethoscope, Microscope, Dumbbell, Timer, Zap, Quote, Users, MapPin, Search as SearchIcon,
   Sun, Droplet, Database, Hexagon, Flame, FlaskConical
 } from "lucide-react";
-const heroImg = "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1200";
+const heroImg = "/services/pain-fatigue-v2.jpg";
 
 const PainFatigue = () => {
   const quizContext = useQuiz();
@@ -41,7 +41,7 @@ const PainFatigue = () => {
       <div className="w-full relative bg-[#fdfdf9] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
         {/* Background Image spanning the right side */}
         <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
-          <img src={heroImg} alt="Pain & Fatigue" className="w-full h-full object-cover object-[center_20%] grayscale" />
+          <img src={heroImg} alt="Pain & Fatigue" className="w-full h-full object-cover object-[center_20%]" />
           
           {/* Bottom fade for grounding the Tailored Box */}
           <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>

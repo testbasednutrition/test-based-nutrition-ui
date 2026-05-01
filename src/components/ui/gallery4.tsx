@@ -17,6 +17,7 @@ export interface Gallery4Item {
   description: string;
   href: string;
   image: string;
+  imageClassName?: string;
 }
 
 export interface Gallery4Props {
@@ -176,11 +177,11 @@ const Gallery4 = ({
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="absolute h-full w-full object-cover object-center transition-transform duration-[2000ms] group-hover:scale-110"
+                      className={`absolute h-full w-full object-cover transition-transform duration-[2000ms] group-hover:scale-110 ${item.imageClassName || "object-center"}`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 p-2 md:p-4 flex flex-col justify-end h-full w-full">
-                      <div className="font-bold font-montserrat text-xs md:text-sm xl:text-base text-primary-foreground leading-tight text-center w-full break-words px-1">
+                    <div className="absolute inset-x-0 bottom-0 p-2 md:p-3 flex flex-col justify-end h-full w-full">
+                      <div className="font-bold font-montserrat text-[11px] sm:text-[12px] md:text-[13px] xl:text-[14px] text-primary-foreground leading-[1.2] text-center w-full px-0.5">
                         {item.title}
                       </div>
                     </div>
@@ -228,7 +229,7 @@ const Gallery4 = ({
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                        className={`absolute h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 ${item.imageClassName || "object-center"}`}
                       />
                       <div className="absolute inset-0 h-full bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
                       <div className="absolute inset-x-0 bottom-0 flex flex-col items-start text-primary-foreground p-6 md:p-8">
