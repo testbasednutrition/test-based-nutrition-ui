@@ -27,6 +27,7 @@ import Neurodivergence from "./pages/treatments/Neurodivergence";
 import SportsPerformance from "./pages/treatments/SportsPerformance";
 import PainFatigue from "./pages/treatments/PainFatigue";
 import PartnerWithUs from "./pages/PartnerWithUs";
+import StMichaels from "./pages/StMichaels";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,7 @@ const App = () => (
             <Route path="/news/:id" element={<NewsArticle />} />
             <Route path="/partner-with-us" element={<PartnerWithUs />} />
             <Route path="/testing" element={<TestingPage />} />
+            <Route path="/retreats/st-michaels" element={<StMichaels />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

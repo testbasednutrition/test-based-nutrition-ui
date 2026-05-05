@@ -147,6 +147,7 @@ const partnerMenuItems = [
   { label: "Clinics & Practitioners", href: "/partner-with-us" },
   { label: "Health Clubs", href: "/partner-with-us" },
   { label: "Events & Workshops", href: "/partner-with-us" },
+  { label: "Retreats", href: "/retreats/st-michaels" },
 ];
 
 interface NavbarProps {
