@@ -47,8 +47,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/specialists" element={<SpecialistsDirectory />} />
             <Route path="/specialists/:slug" element={<SpecialistProfile />} />
-            <Route path="/clinics" element={<ClinicsDirectory />} />
-            <Route path="/clinics/:slug" element={<ClinicProfile />} />
+            <Route path="/partners" element={<ClinicsDirectory />} />
+            <Route path="/partners/:slug" element={<ClinicProfile />} />
             <Route path="/locations/:area" element={<AreaProfile />} />
             <Route path="/treatments/mens-health" element={<MensHealth />} />
             <Route path="/treatments/womens-health" element={<WomensHealth />} />

@@ -139,7 +139,7 @@ const tbnMethodMenuItems = [
 
 const clinicsMenuItems = [
   { label: "Find a Specialist", href: "/specialists" },
-  { label: "Find a Clinic", href: "/clinics" },
+  { label: "Find a Partner Business", href: "/partners" },
 ];
 
 const partnerMenuItems = [
@@ -292,26 +292,26 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 <MenubarTrigger className={triggerClass}>
                   TBN Pathways
                 </MenubarTrigger>
-                <MenubarContent align="start" alignOffset={-250} sideOffset={24} className="p-6 md:p-8 w-[98vw] max-w-[1400px] max-h-[85vh] overflow-y-auto shadow-2xl bg-background border border-border rounded-xl">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 xl:gap-6">
+                <MenubarContent align="start" alignOffset={-250} sideOffset={24} className="p-4 md:p-6 w-[98vw] max-w-[1400px] max-h-[85vh] overflow-y-auto shadow-2xl bg-background border border-border rounded-xl">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 xl:gap-4">
                     {megaMenuData.map((col) => (
                       <div key={col.heading} className="flex flex-col">
                         {col.href ? (
                           <a 
                             href={col.href} 
-                            className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors border-b border-primary/20 pb-2 mb-2 block w-full outline-none"
+                            className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors border-b border-primary/20 pb-1.5 mb-1.5 block w-full outline-none"
                           >
                             {col.heading}
                           </a>
                         ) : (
-                          <h4 className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground border-b border-primary/20 pb-2 mb-2">
+                          <h4 className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground border-b border-primary/20 pb-1.5 mb-1.5">
                             {col.heading}
                           </h4>
                         )}
                         {col.subtitle && (
                           <p className="text-[9px] italic text-muted-foreground mb-2 leading-snug">{col.subtitle}</p>
                         )}
-                        <div className="flex flex-col gap-2.5">
+                        <div className="flex flex-col gap-0.5">
                           {col.items.length > 0 ? (
                             col.items.map((item) => (
                               <MenubarItem 
@@ -320,7 +320,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                                   const route = treatmentRoutes[item];
                                   if (route) navigate(route);
                                 }}
-                                className="cursor-pointer text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] text-muted-foreground hover:text-primary focus:bg-primary/5 focus:text-primary transition-colors leading-relaxed whitespace-normal break-words"
+                                className="cursor-pointer py-1 px-1 -mx-1 text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] text-muted-foreground hover:text-primary focus:bg-primary/5 focus:text-primary transition-colors leading-snug whitespace-normal break-words"
                               >
                                 {item}
                               </MenubarItem>
@@ -346,10 +346,10 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                   >
                     Testing
                   </MenubarTrigger>
-                  <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-4 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-1">
+                  <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
                     {testingMenuItems.map((item) => (
                       <MenubarItem key={item.label} className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
-                        <a href={item.href} className="text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] text-muted-foreground hover:!text-primary focus:!text-primary transition-colors py-1.5 block w-full outline-none">{item.label}</a>
+                        <a href={item.href} className="font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] text-foreground hover:!text-primary focus:!text-primary transition-colors py-1 block w-full outline-none">{item.label}</a>
                       </MenubarItem>
                     ))}
                   </MenubarContent>
@@ -363,24 +363,24 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                   >
                     The TBN Method
                   </MenubarTrigger>
-                  <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-4 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-1">
+                  <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
                     {tbnMethodMenuItems.map((item) => (
                       <MenubarItem key={item.label} className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
-                        <a href={item.href} className="text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] text-muted-foreground hover:!text-primary focus:!text-primary transition-colors py-1.5 block w-full outline-none">{item.label}</a>
+                        <a href={item.href} className="font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] text-foreground hover:!text-primary focus:!text-primary transition-colors py-1 block w-full outline-none">{item.label}</a>
                       </MenubarItem>
                     ))}
                   </MenubarContent>
                 </MenubarMenu>
 
-                {/* Clinics & Health Clubs Dropdown */}
+                {/* Directory Dropdown */}
                 <MenubarMenu>
                   <MenubarTrigger className={triggerClass}>
-                    Clinics & Health Clubs
+                    Directory
                   </MenubarTrigger>
-                  <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-4 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-1">
+                  <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
                     {clinicsMenuItems.map((item) => (
                       <MenubarItem key={item.label} className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
-                        <a href={item.href} className="text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] text-muted-foreground hover:!text-primary focus:!text-primary transition-colors py-1.5 block w-full outline-none">{item.label}</a>
+                        <a href={item.href} className="font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] text-foreground hover:!text-primary focus:!text-primary transition-colors py-1 block w-full outline-none">{item.label}</a>
                       </MenubarItem>
                     ))}
                   </MenubarContent>
@@ -402,10 +402,10 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 <MenubarTrigger className={"cursor-pointer border-[1.5px] rounded-md px-4 py-1.5 text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors outline-none focus:bg-transparent data-[state=open]:bg-transparent " + (isSolid ? "border-black text-black hover:bg-black/5 data-[state=open]:!text-black" : "border-white/80 text-white hover:bg-white/10 backdrop-blur-sm data-[state=open]:!text-black")}>
                   Partner With Us
                 </MenubarTrigger>
-                <MenubarContent align="end" sideOffset={24} className="min-w-[220px] p-4 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-1">
+                <MenubarContent align="end" sideOffset={24} className="min-w-[220px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
                   {partnerMenuItems.map((item) => (
                     <MenubarItem key={item.label} className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
-                      <a href={item.href} className="text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] text-muted-foreground hover:!text-primary focus:!text-primary transition-colors py-1.5 block w-full outline-none">{item.label}</a>
+                      <a href={item.href} className="font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] text-foreground hover:!text-primary focus:!text-primary transition-colors py-1 block w-full outline-none">{item.label}</a>
                     </MenubarItem>
                   ))}
                 </MenubarContent>
@@ -525,12 +525,12 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 </div>
               )}
 
-              {/* Mobile Clinics & Health Clubs Accordion */}
+              {/* Mobile Directory Accordion */}
               <button
                 className="flex items-center justify-between text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
                 onClick={() => setMobileClinicsOpen(!mobileClinicsOpen)}
               >
-                Clinics & Health Clubs
+                Directory
                 <ChevronDown className={`w-4 h-4 transition-transform ${mobileClinicsOpen ? "rotate-180" : ""}`} />
               </button>
               {mobileClinicsOpen && (

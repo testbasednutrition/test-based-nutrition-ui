@@ -13,6 +13,18 @@ export interface Clinic {
 
 export const clinics: Clinic[] = [
   {
+    slug: "london-wellness-clinic",
+    name: "London Wellness Clinic",
+    description: "A premium testing and functional medicine hub in the heart of London, specialising in advanced diagnostics and comprehensive test-based nutritional pathways.",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200",
+    location: "London",
+    address: "10 Harley Street, London, W1G 9PF",
+    contactEmail: "info@londonwellness.co.uk",
+    contactPhone: "020 7123 4567",
+    specialties: ["Functional Medicine", "Gut Health", "Metabolic Testing", "Women's Health"],
+    specialistSlugs: ["dr-ishtiaq-rehman", "neil-parsley"],
+  },
+  {
     slug: "hexagon-health",
     name: "Hexagon Health",
     description: "A lifestyle and longevity clinic providing proactive, personalised care for people seeking clarity about their current health, support with weight, menopause, energy, and metabolic concerns.",

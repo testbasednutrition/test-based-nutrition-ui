@@ -294,8 +294,8 @@ const TestingPage = () => {
                  <li className="text-[14px] font-medium text-gray-600">Specialist Consultations</li>
                  <li className="text-[14px] font-medium text-gray-600">Bespoke Protocols</li>
               </ul>
-              <Link to="/clinics" className="bg-[#7a2a33] text-white px-8 py-4 rounded-xl font-bold text-[13px] uppercase tracking-wider hover:bg-[#5c1c24] transition-colors mt-auto w-full shadow-sm">
-                Find My Nearest TBN Hub
+              <Link to="/partners" className="bg-[#7a2a33] text-white px-8 py-4 rounded-xl font-bold text-[13px] uppercase tracking-wider hover:bg-[#5c1c24] transition-colors mt-auto w-full shadow-sm">
+                Find My Nearest Partner Business
               </Link>
            </div>
 
@@ -327,8 +327,8 @@ const TestingPage = () => {
                   }} className="bg-[#7a2a33] text-white px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-[#5c1c24] transition-colors shadow-lg">
                     Order My Balance Test Kit
                   </button>
-                  <Link to="/clinics" className="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm">
-                    Find My Nearest TBN Hub
+                  <Link to="/partners" className="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm">
+                    Find My Nearest Partner Business
                   </Link>
                </div>
             </div>
