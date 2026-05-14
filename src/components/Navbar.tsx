@@ -185,9 +185,9 @@ const PartnerLoginModal = ({ children }: { children: React.ReactNode }) => {
       const baseUrl = isLocal ? "http://localhost:3000" : "https://partner-hub-jade.vercel.app";
       
       if (data?.session) {
-        window.location.href = `${baseUrl}/login?access_token=${data.session.access_token}&refresh_token=${data.session.refresh_token}`;
+        window.location.href = `${baseUrl}/dashboard?access_token=${data.session.access_token}&refresh_token=${data.session.refresh_token}`;
       } else {
-        window.location.href = `${baseUrl}/login`;
+        window.location.href = `${baseUrl}/dashboard`;
       }
     }
   };
