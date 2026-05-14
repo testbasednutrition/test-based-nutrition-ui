@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-card border-t border-border py-16">
       <div className="container px-6">
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
-          <div>
+          <div className="lg:pr-4">
             <div className="flex items-center gap-2 mb-4">
               <img 
                 src="/logos/test-based-logotype-460x92.png" 
@@ -17,50 +19,52 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Services */}
+          {/* Pathways */}
           <div>
-            <h4 className="font-semibold text-sm mb-4 font-sans">Services</h4>
+            <h4 className="font-semibold text-sm mb-4 font-sans text-foreground">Health Pathways</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#services" className="hover:text-foreground transition-colors">Nutrition</a></li>
-              <li><a href="#services" className="hover:text-foreground transition-colors">Performance</a></li>
-              <li><a href="#services" className="hover:text-foreground transition-colors">Omega Balance</a></li>
-              <li><a href="#services" className="hover:text-foreground transition-colors">Vitamin D</a></li>
+              <li><Link to="/treatments/womens-health" className="hover:text-foreground transition-colors">Women's Health</Link></li>
+              <li><Link to="/treatments/mens-health" className="hover:text-foreground transition-colors">Men's Health</Link></li>
+              <li><Link to="/treatments/childrens-health" className="hover:text-foreground transition-colors">Children's Health</Link></li>
+              <li><Link to="/treatments/neurodivergence" className="hover:text-foreground transition-colors">Neurodivergence</Link></li>
+              <li><Link to="/treatments/skin-health" className="hover:text-foreground transition-colors">Skin Health</Link></li>
+              <li><Link to="/treatments/sports-performance" className="hover:text-foreground transition-colors">Sports Performance</Link></li>
+              <li><Link to="/treatments/pain-fatigue" className="hover:text-foreground transition-colors">Pain & Fatigue</Link></li>
             </ul>
           </div>
 
-          {/* Company */}
+          {/* The System */}
           <div>
-            <h4 className="font-semibold text-sm mb-4 font-sans">Company</h4>
+            <h4 className="font-semibold text-sm mb-4 font-sans text-foreground">The System</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#about" className="hover:text-foreground transition-colors">About Us</a></li>
-              <li><a href="#experts" className="hover:text-foreground transition-colors">Our Experts</a></li>
-              <li><a href="#news" className="hover:text-foreground transition-colors">News Hub</a></li>
-              <li><a href="https://calendar.app.google/CDYDAvjFmMvJP3S88" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Partner With Us</a></li>
+              <li><Link to="/tbn-method" className="hover:text-foreground transition-colors">The TBN Method</Link></li>
+              <li><Link to="/testing" className="hover:text-foreground transition-colors">Testing Pathways</Link></li>
+              <li><Link to="/retreats/st-michaels" className="hover:text-foreground transition-colors">Retreats</Link></li>
+              <li><Link to="/news" className="hover:text-foreground transition-colors">News Hub</Link></li>
             </ul>
           </div>
 
-          {/* Locations (SEO) */}
+          {/* Directory & Partners */}
           <div>
-            <h4 className="font-semibold text-sm mb-4 font-sans">Locations</h4>
+            <h4 className="font-semibold text-sm mb-4 font-sans text-foreground">Directory & Partners</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="/locations/london" className="hover:text-foreground transition-colors">London</a></li>
-              <li><a href="/locations/cardiff" className="hover:text-foreground transition-colors">Cardiff</a></li>
-              <li><a href="/locations/wirral" className="hover:text-foreground transition-colors">Wirral</a></li>
-              <li><a href="/locations/essex" className="hover:text-foreground transition-colors">Essex</a></li>
+              <li><Link to="/clinics" className="hover:text-foreground transition-colors">Find a Clinic</Link></li>
+              <li><Link to="/specialists" className="hover:text-foreground transition-colors">Find a Specialist</Link></li>
+              <li><Link to="/partner-with-us-2" className="hover:text-foreground transition-colors font-semibold text-[#7a2a33]">Partner With Us</Link></li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-sm mb-4 font-sans">Get Started</h4>
+            <h4 className="font-semibold text-sm mb-4 font-sans text-foreground">Get Started</h4>
             <p className="text-sm text-muted-foreground mb-4">
-              Book your free consultation and start your journey to optimal health.
+              Book your free consultation or find a clinic near you to start your journey.
             </p>
             <a
               href="https://calendar.app.google/CDYDAvjFmMvJP3S88"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-6 py-2.5 text-sm font-medium hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center justify-center rounded-md bg-[#7a2a33] text-white px-6 py-2.5 text-sm font-bold hover:bg-[#5c1c24] transition-colors w-full"
             >
               Book Now
             </a>
@@ -77,7 +81,7 @@ const Footer = () => {
           </div>
 
           <p className="text-[11px] text-muted-foreground font-medium">
-            © 2026 Test-Based Nutrition. All rights reserved.
+            © {new Date().getFullYear()} Test-Based Nutrition. All rights reserved.
           </p>
         </div>
       </div>
