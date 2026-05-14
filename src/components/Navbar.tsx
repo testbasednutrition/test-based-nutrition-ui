@@ -130,11 +130,11 @@ const testingMenuItems = [
 ];
 
 const tbnMethodMenuItems = [
-  { label: "How It Works", href: "/#how-it-works" },
-  { label: "The Science", href: "#" },
-  { label: "Our Specialists", href: "/specialists" },
-  { label: "TBN Academy", href: "#" },
-  { label: "Why TBN", href: "#" },
+  { label: "Overview", href: "/tbn-method" },
+  { label: "How It Works", href: "/tbn-method#how-it-works" },
+  { label: "The Science", href: "/tbn-method#science" },
+  { label: "Our Specialists", href: "/tbn-method#science" },
+  { label: "TBN Academy", href: "/tbn-method#academy" },
 ];
 
 const clinicsMenuItems = [
@@ -265,7 +265,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
 
   const navBgClass = isSolid ? "bg-stone-50 shadow-md border-b border-border/20" : "bg-transparent pb-4 pt-2"; // add padding when transparent so it feels like it "drops down" on scroll
   const linkClass = "text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors " + (isSolid ? "text-black/80 hover:text-black" : "text-white/90 hover:text-white drop-shadow-md");
-  const triggerClass = "cursor-pointer border-none outline-none focus:bg-transparent data-[state=open]:bg-transparent " + linkClass + " data-[state=open]:!text-[#7a2a33]";
+  const triggerClass = "cursor-pointer border-none outline-none focus:bg-transparent data-[state=open]:bg-transparent " + linkClass + " data-[state=open]:!text-black";
   const logoClass = "h-8 md:h-10 object-contain transition-all duration-300 " + (!isSolid ? "brightness-0 invert" : "");
   const btnOutlineClass = "bg-transparent border-[1.5px] transition-colors " + (isSolid ? "border-primary text-primary hover:bg-primary/5 hover:text-primary" : "border-white/80 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm");
   const btnGhostClass = "transition-colors " + (isSolid ? "text-black/80 hover:text-black hover:bg-black/10" : "text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm");
@@ -357,7 +357,10 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
 
                 {/* TBN Method Dropdown */}
                 <MenubarMenu>
-                  <MenubarTrigger className={triggerClass}>
+                  <MenubarTrigger 
+                    className={triggerClass}
+                    onClick={() => navigate('/tbn-method')}
+                  >
                     The TBN Method
                   </MenubarTrigger>
                   <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-4 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-1">
@@ -396,7 +399,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
           <div className="hidden lg:flex items-center gap-3">
             <Menubar className="border-none bg-transparent p-0 space-x-0">
               <MenubarMenu>
-                <MenubarTrigger className={"cursor-pointer border-[1.5px] rounded-md px-4 py-1.5 text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors outline-none focus:bg-transparent data-[state=open]:bg-transparent " + (isSolid ? "border-primary text-primary hover:bg-primary/5 data-[state=open]:!text-[#7a2a33]" : "border-white/80 text-white hover:bg-white/10 backdrop-blur-sm data-[state=open]:!text-white")}>
+                <MenubarTrigger className={"cursor-pointer border-[1.5px] rounded-md px-4 py-1.5 text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors outline-none focus:bg-transparent data-[state=open]:bg-transparent " + (isSolid ? "border-black text-black hover:bg-black/5 data-[state=open]:!text-black" : "border-white/80 text-white hover:bg-white/10 backdrop-blur-sm data-[state=open]:!text-black")}>
                   Partner With Us
                 </MenubarTrigger>
                 <MenubarContent align="end" sideOffset={24} className="min-w-[220px] p-4 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-1">
@@ -497,13 +500,23 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
               )}
 
               {/* Mobile TBN Method Accordion */}
-              <button
-                className="flex items-center justify-between text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
-                onClick={() => setMobileTbnMethodOpen(!mobileTbnMethodOpen)}
-              >
-                The TBN Method
-                <ChevronDown className={`w-4 h-4 transition-transform ${mobileTbnMethodOpen ? "rotate-180" : ""}`} />
-              </button>
+              <div className="flex items-center justify-between py-2">
+                <button
+                  className="text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    navigate('/tbn-method');
+                  }}
+                >
+                  The TBN Method
+                </button>
+                <button
+                  className="text-muted-foreground hover:text-foreground px-4 -mr-4"
+                  onClick={() => setMobileTbnMethodOpen(!mobileTbnMethodOpen)}
+                >
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileTbnMethodOpen ? "rotate-180" : ""}`} />
+                </button>
+              </div>
               {mobileTbnMethodOpen && (
                 <div className="pl-4 pb-2 flex flex-col gap-2">
                   {tbnMethodMenuItems.map((item) => (

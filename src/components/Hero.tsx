@@ -7,7 +7,7 @@ import ClientLogos from "@/components/ClientLogos";
 
 const slides = [
   {
-    videoUrl: "/videos/vital-organs.mp4",
+    videoUrl: "/videos/whatsapp-hero.mp4",
     heading1: "A New Era in Personalised,",
     heading2: "Preventative Nutrition",
     subheading: "Where advanced testing, practitioner insight and science-led nutrition come together to support long-term health, performance and longevity.",

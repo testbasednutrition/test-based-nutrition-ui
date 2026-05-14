@@ -1,307 +1,830 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
+import RotatingGallery from "@/components/RotatingGallery";
+import { Gallery4 } from "@/components/ui/gallery4";
 import Footer from "@/components/Footer";
+import HowWeSupportYou from "@/components/HowWeSupportYou";
 import { Link } from "react-router-dom";
+import { useQuiz } from "@/components/QuizContext";
+import { FocusRail } from "@/components/ui/focus-rail";
+import { useQuery } from "@tanstack/react-query";
+import { fetchSpecialists } from "@/lib/api";
+import ArticleCard from "@/components/news/ArticleCard";
+import { articles as newsArticles } from "@/data/newsArticles";
 import {
-  Activity,
-  Brain,
-  Zap,
-  Leaf,
-  FileText,
-  Search,
-  MessageCircle,
-  TrendingUp,
-  AlertTriangle,
-  ArrowRight,
-  CheckCircle2,
-  Stethoscope,
-  Microscope,
-  Users
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Activity, HeartPulse, Brain, Leaf, FileText, Search, MessageCircle, TrendingUp,
+  AlertTriangle, ArrowRight, CheckCircle2, Stethoscope, Microscope, Dumbbell, Timer, Zap, Quote, Users, MapPin, Search as SearchIcon,
+  Sun, Droplet, Database, Hexagon, Flame, FlaskConical
 } from "lucide-react";
 
-// Note: Ensure the hero image exists or falls back cleanly
-const heroImg = "/services/neurodivergence-v2.jpg";
-const heroFallback = "https://images.unsplash.com/photo-1551847677-dc82d762e1bd?auto=format&fit=crop&q=80&w=1200";
+const heroImg = "/images/treatments/neuro_hero.png";
 
 const Neurodivergence = () => {
+  const quizContext = useQuiz();
+  const openQuiz = quizContext?.openQuiz || (() => {});
+  
+  const { data: specialists = [], isLoading: isSpecialistsLoading } = useQuery({
+    queryKey: ['specialists'],
+    queryFn: fetchSpecialists
+  });
+
+  const expertItems = specialists.map((s, index) => ({
+    id: s.slug || `expert-${index}`,
+    title: s.name,
+    description: s.bio && s.bio.length > 0 ? s.bio[0] : 'Health & Wellness Expert',
+    meta: `${s.category} • ${s.role}`,
+    imageSrc: s.image || "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800"
+  }));
+
   return (
-    <div className="min-h-screen flex flex-col pt-24 bg-[#fdfcfd] font-montserrat">
+    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#fdfdf9] font-montserrat">
       <Navbar alwaysSolid />
       
-      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-8 md:py-16 mb-16">
-        
-        {/* HERO SECTION */}
-        <div className="w-full flex flex-col lg:flex-row items-center gap-10 lg:gap-16 xl:gap-24 mb-16 xl:mb-24">
-           {/* Text Side */}
-           <div className="w-full lg:w-5/12 text-center lg:text-left pt-4 xl:pt-8 flex flex-col justify-center">
-              <h3 className="font-playfair text-[#4b3e6e] font-bold tracking-widest uppercase text-sm mb-4">Neurodivergence</h3>
-              <h1 className="font-playfair text-5xl md:text-[4rem] xl:text-[4.5rem] font-bold text-gray-900 leading-[1.05] mb-6">
-                The Science of<br />Neurodivergence
+      {/* FULL BLEED HERO SECTION */}
+      <div className="w-full relative bg-[#fdfdf9] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
+        {/* Background Image spanning the right side */}
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
+          <img src={heroImg} alt="Neurodivergence" className="w-full h-full object-cover object-[center_20%]" />
+          
+          {/* Bottom fade for grounding the Tailored Box */}
+          <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+          {/* Blend image and black gradient into the left text container background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#fdfdf9] via-[#fdfdf9]/70 lg:via-[#fdfdf9]/20 to-transparent"></div>
+        </div>
+
+        {/* Content Container Aligned inside normal max-width margins */}
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 pt-12 pb-12 lg:py-0 justify-between flex-grow">
+           <div className="w-full lg:w-5/12 text-center lg:text-left flex flex-col justify-center">
+              <h3 className="font-playfair text-[#7a2a33] font-bold tracking-widest uppercase text-sm mb-4">Neurodivergence</h3>
+              <h1 className="font-playfair text-[3rem] md:text-[3.5rem] xl:text-[4rem] font-bold text-gray-900 leading-[1.05] mb-6">
+                It’s Not Just Behaviour. It’s Function.
               </h1>
-              <p className="text-lg xl:text-xl leading-relaxed font-medium mb-8 text-gray-700">
-                Supporting cognitive health, focus, and emotional balance through targeted, evidence-based nutrition and biological optimization.
-              </p>
+              
+              <div className="text-[16px] xl:text-[17px] text-gray-900 lg:text-gray-800 leading-relaxed max-w-[480px] mx-auto lg:mx-0 mb-6 font-medium space-y-4">
+                <p>ADHD waiting lists in parts of the UK now stretch into years. Medication shortages continue to impact thousands of families.</p>
+                <p>Many people are left trying to cope — with little wider support around sleep, stress, nutrition, gut health, hormones, and nervous system load.</p>
+                <p>Treat the symptoms. Still struggling? <strong>It’s not just behaviour — it’s function.</strong></p>
+                <p>A pioneering test-based system supporting neurodivergent individuals and families — delivered by specialists across cognition, hormones, gut health, behaviour, and performance.</p>
+              </div>
+              <p className="font-semibold uppercase tracking-widest text-[#7a2a33] text-[14px] mb-8">Test. Target. Transform.</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="bg-[#4b3e6e] hover:bg-[#3a3055] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
-                  Take Quiz <ArrowRight className="w-4 h-4" />
+                <button 
+                  onClick={() => openQuiz()}
+                  className="bg-[#7a2a33] hover:bg-[#8c353f] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
+                  Start Your Journey <ArrowRight className="w-4 h-4" />
                 </button>
-                <Link to="/partner-with-us" className="border border-gray-300 hover:bg-gray-50 transition-colors bg-white text-gray-800 px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
-                  Partner With Us
-                </Link>
               </div>
            </div>
            
-           {/* Image Side */}
-           <div className="w-full lg:w-7/12 relative rounded-[2rem] overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-[550px] shadow-lg">
-              <img 
-                src={heroImg} 
-                onError={(e) => { e.currentTarget.src = heroFallback; }}
-                alt="Neurodivergence" 
-                className="w-full h-full object-cover" 
-              />
+           <div className="w-full lg:w-5/12 relative mt-auto lg:mt-0 flex justify-end items-end h-full self-end lg:pb-12 xl:pb-16 mt-8">
+              <div className="w-full bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl flex flex-col sm:flex-row gap-4 justify-between items-center text-white shadow-2xl">
+                <div>
+                   <p className="font-playfair font-bold text-xl mb-1 text-white">Personalised Precision</p>
+                   <p className="text-white text-sm font-medium">Testing protocols aligned to your cognitive and functional demands.</p>
+                </div>
+                <button 
+                   onClick={() => document.getElementById("pathways")?.scrollIntoView({ behavior: "smooth" })}
+                   className="shrink-0 bg-white text-gray-900 border border-transparent px-5 py-2.5 rounded-full font-bold text-[13px] uppercase tracking-wider hover:bg-gray-100 transition-all shadow-md">
+                  Explore Your Pathway
+                </button>
+              </div>
+           </div>
+        </div>
+      </div>
+
+      {/* TRUST BAR */}
+      <div className="w-full bg-[#f5f5f5] border-y border-gray-200 py-3 md:py-4 mb-2 overflow-hidden">
+        <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+            Foundational Testing
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+            Rapid Point-of-Care Testing
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+            Expert-Led Protocols
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7a2a33]" />
+            Personalised Preventative Programmes
+          </span>
+        </div>
+      </div>
+
+      <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pb-8 md:pb-16 mb-16">
+
+        {/* SECTION 3 — SPECIALIST LEADS */}
+        <div className="mb-20 xl:mb-24 px-4 lg:px-0 mt-16">
+          <div className="mb-16 text-center flex flex-col items-center justify-center max-w-3xl mx-auto">
+             <p className="text-[12px] font-bold tracking-widest uppercase text-[#7a2a33] mb-3">Our Specialists</p>
+             <h2 className="font-playfair text-[28px] md:text-[36px] text-gray-900 font-bold tracking-wider mb-4 leading-tight uppercase">LED BY NEURODIVERGENCE & COGNITIVE HEALTH SPECIALISTS</h2>
+             <p className="font-montserrat text-[14px] leading-relaxed text-gray-600 max-w-2xl mx-auto">
+               Built by those working across neurodivergence, cognition, mental wellbeing, education, nervous system support, and lived experience.
+             </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#7a2a33]/20 border-t border-gray-100 pt-10">
+              {/* Specialist 1 */}
+              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
+                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
+                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-0">Dr Jennifer Kirton</h3>
+                   <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">BSc, MSc, PhD</p>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#7a2a33] uppercase tracking-widest mb-4">Autism & Neurodivergence Research Specialist<br/>University of Liverpool Autism Hub Co-Founder<br/>Late Diagnosed ADHD</div>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#7a2a33]/30 pl-3">"Research increasingly highlights the importance of understanding wider health factors in neurodivergent individuals — including gut health, nutritional status, inflammation, and the systems influencing cognitive and emotional wellbeing."</p>
+                 </div>
+              </div>
+              
+              {/* Specialist 2 */}
+              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pl-4 lg:pl-14">
+                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
+                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-1">Emma-Louise Pannell</h3>
+                   <div className="font-sans text-[9px] lg:text-[10px] font-semibold text-gray-900 uppercase tracking-widest mb-1 mt-1">F.Y.I.P Founder & CEO</div>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#7a2a33] uppercase tracking-widest mb-4">Lived Experience: Late Diagnosed ADHD, ADD, OCD & Autism<br/>Mother of a Neurodivergent Child | 14+ Years in Mental Health & System Leadership</div>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#7a2a33]/30 pl-3">"Many neurodivergent individuals spend years trying to cope without understanding how factors like nervous system load, gut health, nutrient deficiencies, inflammation, and hormonal health may be influencing how they feel, function, and regulate day to day."</p>
+                 </div>
+              </div>
+          </div>
+        </div>
+
+        {/* SECTION 2 — EXPLORE YOUR PATHWAY */}
+        <div id="pathways" className="mb-12 xl:mb-20">
+          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-2 md:pt-4">
+            <Gallery4 
+              subtitle="Neurodivergence Pathways"
+              title="Personalised support"
+              description="Each pathway includes targeted testing, a consultation, and personalised protocols aligned to cognitive wellbeing, emotional regulation, nervous system support, lifestyle, and daily function."
+              compact={true}
+              items={[
+                {
+                  id: "neuro-curious",
+                  title: "NEURO CURIOUS",
+                  description: "Many individuals explore neurodivergent traits long before formal assessment or diagnosis. Understand how sleep, stress load, nutrition, gut health, and metabolic function may influence focus, overwhelm, emotional regulation, and cognitive wellbeing.",
+                  href: "#",
+                  image: "/images/treatments/neuro-pathway-7.jpg",
+                },
+                {
+                  id: "diagnosed-adhd",
+                  title: "DIAGNOSED ADHD & NEURODIVERGENCE",
+                  description: "ADHD assessment waiting times in some UK regions now extend into years. Explore how nervous system load, nutrient status, inflammation, and lifestyle factors may influence day-to-day function, focus, and resilience alongside existing support pathways.",
+                  href: "#",
+                  image: "/images/treatments/neuro-pathway-6.jpg",
+                },
+                {
+                  id: "neuro-mums",
+                  title: "NEURO MUMS",
+                  description: "Neurodivergent mothers often carry increased emotional, sensory, and cognitive load. Assess how hormones, sleep disruption, inflammation, and nervous system stress may influence burnout, overwhelm, emotional regulation, and daily wellbeing.",
+                  href: "#",
+                  image: "/images/treatments/neuro-pathway-2.jpg",
+                },
+                {
+                  id: "women",
+                  title: "WOMEN (PERIMENOPAUSE & MENOPAUSE)",
+                  description: "Hormonal transition can amplify focus issues, emotional regulation challenges, and cognitive fatigue. Understand how hormones, inflammation, metabolic health, and nutrient status may influence brain fog, overwhelm, and nervous system resilience.",
+                  href: "#",
+                  image: "/images/treatments/neuro-pathway-5.jpg",
+                },
+                {
+                  id: "men",
+                  title: "MEN",
+                  description: "Many neurodivergent men experience ongoing challenges with focus, motivation, stress, and emotional regulation. Explore how metabolic health, sleep, inflammation, hormones, and lifestyle factors may influence cognitive performance and resilience.",
+                  href: "#",
+                  image: "/images/treatments/neuro-pathway-4.jpg",
+                },
+                {
+                  id: "children",
+                  title: "CHILDREN",
+                  description: "Focus, behaviour, emotional regulation, sleep, and learning can all be influenced by wider lifestyle and health factors. Assess how nutrition, gut health, sleep quality, and nervous system load may influence day-to-day wellbeing and development.",
+                  href: "#",
+                  image: "/images/treatments/neuro-pathway-3.jpg",
+                },
+                {
+                  id: "teen-girls",
+                  title: "TEEN GIRLS",
+                  description: "Teen girls often experience increased emotional and hormonal pressure during adolescence. Understand how sleep, stress load, hormonal changes, and nutrient status may influence confidence, emotional regulation, focus, and overwhelm.",
+                  href: "#",
+                  image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&q=80&w=800",
+                },
+                {
+                  id: "teen-boys",
+                  title: "TEEN BOYS",
+                  description: "Teen boys may experience challenges with focus, motivation, emotional regulation, and energy. Explore how sleep, metabolic health, nutrition, and nervous system load may influence cognitive function, resilience, and performance.",
+                  href: "#",
+                  image: "/images/treatments/neuro-pathway-1.jpg",
+                }
+              ]}
+            />
+          </div>
+        </div>
+
+
+        {/* SECTION 7.5 — THE SCIENCE BEHIND NEURODIVERGENCE */}
+        <div className="w-full mt-16 lg:mt-24 max-w-6xl mx-auto px-4">
+           <div className="text-center mb-12">
+              <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">The Science Behind Neurodivergence</h2>
+              <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest flex items-center justify-center gap-2"><div className="w-1.5 h-1.5 bg-[#7a2a33] rounded-full" /> Key drivers we assess <div className="w-1.5 h-1.5 bg-[#7a2a33] rounded-full" /></p>
+           </div>
+           
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {/* Box 1 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/cellular.png" alt="Omega Balance & Brain Signalling" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Omega Balance & Brain Signalling</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">The brain is nearly 60% fat. Fatty acid balance may influence cognition, focus, emotional regulation, and nervous system signalling.</p>
+              </div>
+
+              {/* Box 2 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/gut.png" alt="Gut-Brain Communication" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Gut-Brain Communication</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">The gut and brain communicate continuously through the gut-brain axis. Gut health may influence cognition, inflammation, mood, and neurological wellbeing.</p>
+              </div>
+
+              {/* Box 3 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/cellular.png" alt="Nutrient Status & Neurological Function" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Nutrient Status & Neurological Function</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Nutrients including iron, B12, folate, and vitamin D play important roles in brain and nervous system health. Deficiencies may influence fatigue, concentration, and cognitive performance.</p>
+              </div>
+
+              {/* Box 4 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/metabolic.png" alt="Blood Sugar & Cognitive Stability" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Blood Sugar & Cognitive Stability</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">The brain relies on stable energy supply to function effectively. Blood sugar instability may influence focus, mood regulation, energy, and cognitive resilience.</p>
+              </div>
+
+              {/* Box 5 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/hormone.png" alt="Hormones, Stress & Cognitive Load" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Hormones, Stress & Cognitive Load</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Hormonal and stress responses may influence overwhelm, emotional regulation, sleep, and nervous system load. This may become increasingly relevant during hormonal transition phases.</p>
+              </div>
+
+              {/* Box 6 */}
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 p-0">
+                   <img src="/images/test-logos/inflammation.png" alt="Inflammation & Nervous System Resilience" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Inflammation & Nervous System Resilience</h3>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Inflammatory activity may influence cognition, fatigue, emotional wellbeing, and nervous system function. Understanding inflammatory load may provide wider insight into how the body is functioning.</p>
+              </div>
            </div>
         </div>
 
-        {/* EXPLORE YOUR PATHWAY */}
-        <div className="mb-12 xl:mb-20 bg-white p-8 lg:p-12 rounded-[2.5rem] shadow-sm border border-gray-100 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Brain className="w-48 h-48 -mr-12 -mt-12"/></div>
-          <h2 className="font-playfair text-xl lg:text-2xl font-bold text-center text-gray-900 mb-8 tracking-widest uppercase relative z-10">Explore Your Pathway</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 relative z-10">
-            {[
-              "Lack of Focus",
-              "Brain Fog",
-              "Anxiety & Overload",
-              "Mood Dysregulation",
-              "Poor Sleep"
-            ].map((item, idx) => (
-              <Link key={idx} to="#" className="bg-[#fcfaf7] hover:bg-white px-4 py-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center justify-center lg:justify-start gap-3 text-center lg:text-left group">
-                <div className="w-2 h-2 rounded-full bg-[#4b3e6e] group-hover:bg-[#3a3055] transition-colors shrink-0"></div>
-                <span className="font-bold text-[13px] md:text-[14px] text-gray-800 leading-tight">{item}</span>
-              </Link>
-            ))}
+        {/* SECTION 7.6 — EXPERT QUOTE */}
+        <div className="w-full mt-16 lg:mt-20 max-w-6xl mx-auto px-4">
+           <div className="bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm w-full hover:shadow-md transition-shadow duration-300">
+              
+              <div className="flex flex-col items-center lg:items-end max-w-[1050px] mx-auto w-full gap-5">
+                 <div className="flex items-center gap-4 w-full justify-center lg:justify-start">
+                    <Quote className="w-8 h-8 text-gray-900 fill-gray-900 shrink-0" />
+                    <p className="font-playfair text-[18px] md:text-[22px] lg:text-[25px] font-bold italic text-gray-900 text-left leading-snug tracking-wide m-0">
+                       "Many neurodivergent individuals are navigating far more than behaviour alone. Understanding the wider systems influencing cognition, regulation, energy, and wellbeing is where meaningful support begins."
+                    </p>
+                 </div>
+
+                 <div className="flex items-center gap-4 shrink-0 mt-2">
+                    <div className="flex flex-col text-left">
+                       <span className="font-bold text-gray-900 text-[12px] uppercase tracking-widest leading-none mb-1.5">— Emma-Louise Pannell</span>
+                    </div>
+                 </div>
+              </div>
+
+           </div>
+        </div>
+
+        {/* SECTION 7.7 — START WITH THE FOUNDATIONS */}
+        <div className="w-full mt-20 lg:mt-24 max-w-6xl mx-auto px-4">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest mb-3">Understanding these drivers starts with structured, measurable insight.</p>
+            <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">Start With The Foundations</h2>
+            <p className="font-montserrat text-[15px] font-medium leading-relaxed text-gray-600 max-w-2xl mx-auto">
+              Every neurodivergence pathway starts at a cellular level
+            </p>
+          </div>
+
+          {/* Foundation Tests */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
+            <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
+              <div className="flex items-center gap-5 mb-5">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 shrink-0 p-0">
+                  <img src="/images/test-logos/omega3balance.png" alt="Omega Balance Test" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[22px] text-gray-900 leading-tight">Omega Balance<br/>Test</h3>
+              </div>
+              <p className="font-montserrat text-[14px] leading-relaxed text-gray-600 font-medium">Measures cellular health, fatty acid balance, and inflammatory activity. Low omega-3 levels and high omega-6:3 ratios may influence cognition, focus, emotional regulation, nervous system signalling, and wider brain function.</p>
+            </div>
+            
+            <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
+              <div className="flex items-center gap-5 mb-5">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-[#e9e7dc] shadow-sm overflow-hidden group-hover:shadow-md transition-shadow duration-300 shrink-0 p-0">
+                  <img src="/images/test-logos/guthealth1.png" alt="Gut Microbiome Test" className="w-full h-full object-contain scale-[1.15]" />
+                </div>
+                <h3 className="font-playfair font-bold text-[22px] text-gray-900 leading-tight">Gut Microbiome<br/>Test</h3>
+              </div>
+              <p className="font-montserrat text-[14px] leading-relaxed text-gray-600 font-medium">Assesses microbiome activity, gut-brain communication, and nutrient utilisation. Gut health may influence mood, cognition, inflammation, and nervous system function.</p>
+            </div>
+          </div>
+
+          {/* 15-MINUTE PERFORMANCE INSIGHT */}
+          <div className="bg-white border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden">
+            {/* Background Accent */}
+            <div className="absolute top-0 right-0 w-full h-2 bg-gradient-to-r from-red-600 to-[#7a2a33]"></div>
+            
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center gap-2 bg-red-50 text-red-700 px-4 py-1.5 rounded-full font-bold text-[13px] uppercase tracking-widest mb-6">
+                <div className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></div> 15-Minute Cognitive & Nervous System Insight
+              </div>
+              <h3 className="font-playfair text-[26px] md:text-[32px] font-bold text-gray-900 mb-4 uppercase tracking-wider">Advanced Point-of-Care Screening</h3>
+              <p className="font-montserrat text-[15px] font-medium text-gray-600 max-w-2xl mx-auto">
+                Fast, targeted screening to highlight key internal factors influencing cognition, emotional wellbeing, nervous system resilience, and day-to-day function.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+              {/* Left Column: Finger Prick */}
+              <div className="lg:col-span-8">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center -ml-2">
+                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-red-600"></div>
+                  </div>
+                  <h4 className="font-bold text-gray-900 text-[18px] uppercase tracking-widest">Finger Prick</h4>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                  {/* Vitamin D */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/vitamind.png" alt="Vitamin D" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Vitamin D</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Neurological function + immune support</p>
+                     </div>
+                  </div>
+                  
+                  {/* HbA1c */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/hba1c.png" alt="HbA1c" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">HbA1c</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Blood sugar regulation + cognitive stability</p>
+                     </div>
+                  </div>
+                  
+                  {/* Ferritin */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/ferritin.png" alt="Ferritin" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Ferritin</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Iron status + concentration support</p>
+                     </div>
+                  </div>
+                  
+                  {/* Cortisol */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/cortisol.png" alt="Cortisol" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Cortisol</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Stress response + nervous system load</p>
+                     </div>
+                  </div>
+                  
+                  {/* Folate */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/folate.png" alt="Folate" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Folate</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Neurological health + cellular repair</p>
+                     </div>
+                  </div>
+                  
+                  {/* Cystatin C */}
+                  <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/cystatin.png" alt="Cystatin C" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Cystatin C</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Metabolic stress + system resilience</p>
+                     </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Right Column: Phlebotomy */}
+              <div className="lg:col-span-4 lg:border-l lg:border-gray-100 lg:pl-10">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center -ml-2">
+                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-red-600"></div>
+                  </div>
+                  <h4 className="font-bold text-gray-900 text-[18px] uppercase tracking-widest">Advanced Testing (Blood Draw)</h4>
+                </div>
+                
+                <div className="flex flex-col gap-4 mt-8">
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-red-50/50 border border-red-50 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/vitaminb12.png" alt="Vitamin B12" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Vitamin B12</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Neurological health + energy production</p>
+                     </div>
+                  </div>
+                  
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-red-50/50 border border-red-50 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/tsh.png" alt="TSH (Thyroid)" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">TSH (Thyroid)</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Metabolic function + cognitive regulation</p>
+                     </div>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-red-50/50 border border-red-50 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/fsh.png" alt="FSH" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">FSH</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Hormonal transition + cycle signalling</p>
+                     </div>
+                  </div>
+                  
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-red-50/50 border border-red-50 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                       <img src="/images/test-logos/testosterone.png" alt="Testosterone" className="w-full h-full object-contain rounded-full scale-[1.15]" />
+                     </div>
+                     <div className="flex-1 min-w-0">
+                       <p className="font-bold text-gray-900 text-[14px] mb-1 flex justify-between items-start">Testosterone</p>
+                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Hormonal balance + cognitive resilience</p>
+                     </div>
+                  </div>
+                </div>
+                <p className="text-[12px] text-gray-500 font-medium mt-6 italic text-center lg:text-left">Screening is determined through consultation and pathway selection.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* SECTION 7.8 — HOW WE SUPPORT YOU */}
+        <HowWeSupportYou />
+
+        {/* SECTION 7.9 — PRICING / SUPPORT LEVELS */}
+        <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4">
+          <div className="text-center mb-12 lg:mb-16">
+            <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">Choose Your Support Level</h2>
+            <p className="font-bold text-[#7a2a33] text-[13px] uppercase tracking-widest mb-4">
+              From foundational support to specialist-led neurodivergence strategy
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 items-stretch">
+            
+            {/* Box 1: Free Consultation */}
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#7a2a33]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+               <div className="h-[100px] shrink-0 mb-2">
+                 <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight">Free Consultation</h3>
+               </div>
+               
+               <div className="flex-grow flex flex-col justify-start mb-6 space-y-3">
+                 <p className="font-bold text-[11px] text-gray-400 uppercase tracking-widest mb-3">Includes</p>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-gray-900 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Understand your symptoms</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-gray-900 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Discuss challenges</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-gray-900 shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Identify appropriate starting pathway</span></div>
+               </div>
+               
+               <div className="h-[360px] shrink-0 pt-6 border-t border-gray-100 flex flex-col">
+                 <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
+                   <div className="flex flex-col justify-end h-full">
+                     <span className="text-[32px] font-bold text-gray-900 leading-none">Free</span>
+                   </div>
+                 </div>
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase border border-gray-200 text-gray-900 rounded-full hover:bg-gray-50 transition-colors shadow-sm mb-6">
+                   Book Free Consultation
+                 </button>
+               </div>
+            </div>
+
+            {/* Box 2: Foundations */}
+            <div className="bg-[#fcfaf7] border border-[#e9e7dc] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#7a2a33] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#8c353f] whitespace-nowrap">Most Popular</div>
+               
+               <div className="h-[100px] shrink-0 mb-2 flex flex-col">
+                 <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Neuro Foundations</h3>
+                 <p className="text-[11px] font-bold text-[#7a2a33] uppercase tracking-widest">6-Month Structured Programme</p>
+               </div>
+               
+               <div className="flex-grow mb-6 space-y-3">
+                 <p className="font-bold text-[11px] text-gray-400 uppercase tracking-widest mb-3">Includes</p>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Omega Balance Test</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Gut Health Test</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Personalised Results Review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">6-Month Protocol</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Retest Included</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Ongoing Support</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Access to TBN Community</span></div>
+               </div>
+
+               <div className="h-[360px] shrink-0 pt-6 border-t border-[#e9e7dc] flex flex-col">
+                 <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
+                   <div className="flex flex-col justify-end h-full">
+                     <div className="flex items-end gap-3 mb-1.5 align-bottom">
+                       <span className="text-[32px] font-bold text-gray-900 leading-none">£189</span>
+                       <span className="text-gray-400 line-through text-[14px] leading-snug">£482</span>
+                       <span className="text-[#7a2a33] font-bold text-[11px] uppercase bg-[#7a2a33]/10 px-2 py-0.5 rounded ml-auto">Save 61%</span>
+                     </div>
+                     <p className="text-[13px] text-gray-500 font-medium flex items-center gap-1.5">+ £39/mo <span className="text-gray-400 font-normal">optional support</span></p>
+                   </div>
+                 </div>
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#7a2a33] text-white rounded-full hover:bg-[#8c353f] transition-colors shadow-md mb-6">
+                   Start Foundations
+                 </button>
+               </div>
+            </div>
+
+            {/* Box 3: Advanced Review */}
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#7a2a33]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+               <div className="h-[100px] shrink-0 mb-2 flex flex-col">
+                 <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Advanced Neuro Review</h3>
+                 <p className="text-[11px] font-bold text-[#7a2a33] uppercase tracking-widest">1:1 Strategic Review</p>
+               </div>
+               
+               <div className="flex-grow mb-6 space-y-3">
+                 <p className="font-bold text-[11px] text-gray-400 uppercase tracking-widest mb-3">Includes</p>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Advanced Results Review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Personalised Strategy</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Lifestyle & System Insight</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#7a2a33] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Next-Phase Planning</span></div>
+               </div>
+
+               <div className="h-[360px] shrink-0 pt-6 border-t border-gray-100 flex flex-col">
+                 <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
+                   <div className="flex flex-col justify-end h-full">
+                     <div className="flex items-end gap-2 align-bottom">
+                       <span className="text-[32px] font-bold text-gray-900 leading-none">£85</span>
+                       <span className="text-[14px] text-gray-500 font-bold tracking-widest uppercase mb-0.5">Add-on</span>
+                     </div>
+                   </div>
+                 </div>
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#7a2a33] text-white rounded-full hover:bg-[#8c353f] transition-colors shadow-md mb-6">
+                   Book Advanced Review
+                 </button>
+                 <div className="flex-grow flex flex-col justify-between">
+                   <p className="font-montserrat text-[13px] text-gray-500 leading-relaxed text-center mb-4">
+                     Delivered by neurodivergence and cognitive wellbeing specialists aligned to your pathway.
+                   </p>
+                 </div>
+               </div>
+            </div>
+
+            {/* Box 4: Elite Consultation */}
+            <div className="bg-[#7a2a33] border border-white/10 p-8 rounded-[2rem] shadow-xl hover:shadow-2xl flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-all duration-300 transform-gpu will-change-transform isolate">
+               <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#d0bfae] opacity-10 blur-3xl rounded-full pointer-events-none group-hover:opacity-20 transition-opacity duration-500"></div>
+               
+               <div className="h-[100px] shrink-0 mb-2 relative z-10 flex flex-col">
+                 <h3 className="font-playfair text-[24px] font-bold text-white leading-tight mb-2">TBN Elite Neuro Consultation</h3>
+                 <p className="text-[11px] font-bold text-[#d0bfae] uppercase tracking-widest">Private 1:1 with Specialist</p>
+               </div>
+               
+               <div className="flex-grow mb-6 space-y-3 relative z-10">
+                 <p className="font-bold text-[11px] text-white/40 uppercase tracking-widest mb-3">Includes</p>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Private 1:1 Consultation</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Full Results Review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Personalised Strategy</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Bespoke Protocol Development</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Follow-Up & Retest Review</span></div>
+               </div>
+
+               <div className="h-[360px] shrink-0 pt-6 border-t border-white/10 flex flex-col relative z-10">
+                 <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
+                   <div className="flex flex-col justify-end h-full">
+                     <div className="flex items-end gap-2 align-bottom">
+                       <span className="text-[32px] font-bold text-white leading-none">£185</span>
+                     </div>
+                   </div>
+                 </div>
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#d0bfae] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6">
+                   Apply for Elite Support
+                 </button>
+                 <div className="flex-grow flex flex-col justify-between">
+                   <p className="font-montserrat text-[13px] text-white/60 leading-relaxed text-center mb-2">
+                     Direct access to the highest level of neurodivergence support within TBN.
+                   </p>
+                   <div className="bg-white/5 p-3.5 rounded-xl border border-white/10 w-full mt-auto">
+                     <p className="font-bold text-[11px] text-[#d0bfae]/70 uppercase tracking-widest mb-2">Work 1:1 With</p>
+                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#d0bfae] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Emma-Louise Pannell</p></div>
+                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#d0bfae] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Dr Jennifer Kirton</p></div>
+                     <p className="text-[11px] text-white/50 italic mt-2 pl-3 border-l border-white/10">Or a senior TBN specialist aligned to your pathway</p>
+                   </div>
+                 </div>
+               </div>
+            </div>
+
           </div>
         </div>
 
-        {/* 2-COLUMN LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 text-gray-800">
-          
-          {/* LEFT COLUMN */}
-          <div className="lg:col-span-8 flex flex-col space-y-12 pr-0 lg:pr-4 xl:pr-8">
-            
-            {/* THIS IS WHERE WE DIFFERENTIATE HARD */}
-            <div className="bg-white p-8 lg:p-10 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-2 h-full bg-[#4b3e6e]"></div>
-              <h3 className="font-playfair text-[24px] font-bold tracking-wider text-gray-900 mb-6 uppercase">It's Not a Deficit</h3>
-              <p className="text-gray-600 mb-6 font-medium">Neurodivergence is a unique biological profile. However, co-occurring nutritional and biochemical imbalances can exacerbate symptoms. We address the gut-brain axis to unlock your natural potential. Your cognitive health is intrinsically linked to how your body is:</p>
-              
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gray-400" /> <span className="font-medium text-gray-800">producing optimal neurotransmitters</span></li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gray-400" /> <span className="font-medium text-gray-800">managing systemic neuro-inflammation</span></li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gray-400" /> <span className="font-medium text-gray-800">utilizing essential trace minerals</span></li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-gray-400" /> <span className="font-medium text-gray-800">balancing hormones through life stages</span></li>
-              </ul>
-              
-              <div className="bg-[#4b3e6e]/5 p-5 rounded-xl border border-[#4b3e6e]/10">
-                <p className="font-bold text-gray-900 text-[15px] leading-relaxed">
-                  👉 We refuse to accept that burnout or chronic brain fog are inevitable within a neurodivergent profile. We map your bio-chemical architecture.
-                </p>
-              </div>
-            </div>
 
-            {/* WHAT MAY BE DRIVING YOUR SYMPTOMS */}
-            <div className="pt-4">
-              <div className="flex items-center gap-3 mb-6">
-                <Brain className="w-8 h-8 text-[#4b3e6e]" />
-                <h3 className="font-playfair text-[22px] font-bold tracking-wider text-gray-900 uppercase">What May Be Exacerbating Symptoms</h3>
-              </div>
+        {/* SECTION 8 — PARTNER WITH US & DIRECTORY */}
+        <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4 mb-24">
+           <div className="max-w-[800px] mx-auto text-center mb-16">
+             <h2 className="font-playfair text-[32px] md:text-[40px] font-bold text-gray-900 leading-tight mb-4 uppercase">
+               PARTNER WITH US
+             </h2>
+             <p className="font-bold text-[#7a2a33] text-[13px] md:text-[14px] uppercase tracking-widest leading-snug">
+               Integrated into clinics, education environments, family support services, and neurodivergence pathways.
+             </p>
+           </div>
+           
+           <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
               
-              <div className="space-y-6">
-                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex gap-4">
-                  <div className="shrink-0 mt-1"><Leaf className="w-6 h-6 text-[#4b3e6e]" /></div>
-                  <div>
-                    <h4 className="font-playfair font-bold text-[18px] text-gray-900 mb-2">The Gut-Brain Axis</h4>
-                    <p className="text-sm text-gray-600">Microbiome imbalances affect neurotransmitter production like serotonin and dopamine, leading directly to mood dysregulation.</p>
+              <div className="w-full lg:flex-1 bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
+                  <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-[#7a2a33] -mr-16 -mt-16"/></div>
+                  
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 relative z-10 flex-grow">
+                     <div className="flex flex-col justify-between">
+                         <div className="mt-auto">
+                            <div className="flex flex-col sm:flex-row gap-3">
+                               <button className="flex-1 bg-[#7a2a33] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#8c353f] transition-colors shadow-sm text-center">
+                                 Become a Neurodivergence Partner
+                               </button>
+                               <button className="flex-1 bg-white border border-gray-200 text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm text-center">
+                                 Invite Us to Your Clinic or Service
+                               </button>
+                            </div>
+                         </div>
+                     </div>
+
+                     <div className="flex flex-col xl:pl-8">
+                         <h3 className="font-playfair text-[20px] font-bold text-gray-900 mb-6 xl:mt-1">What This Delivers</h3>
+                         <ul className="space-y-4">
+                            {[
+                              "Advanced practitioner training",
+                              "Integrated testing systems",
+                              "Specialist-led insight",
+                              "Structured neurodivergence pathways",
+                              "Scalable services",
+                              "New revenue opportunities"
+                            ].map((item, idx) => (
+                              <li key={idx} className="flex items-start gap-4">
+                                <CheckCircle2 className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" />
+                                <span className="text-[14px] leading-snug font-medium text-gray-700">{item}</span>
+                              </li>
+                            ))}
+                         </ul>
+                     </div>
                   </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex gap-4">
-                  <div className="shrink-0 mt-1"><Zap className="w-6 h-6 text-[#4b3e6e]" /></div>
-                  <div>
-                    <h4 className="font-playfair font-bold text-[18px] text-gray-900 mb-2">Biochemical Deficits</h4>
-                    <p className="text-sm text-gray-600">Lacking key nutrients like Magnesium, Zinc, B-Vitamins, and critical Omega-3s that are essential for neural connections.</p>
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex gap-4">
-                  <div className="shrink-0 mt-1"><Activity className="w-6 h-6 text-[#4b3e6e]" /></div>
-                  <div>
-                    <h4 className="font-playfair font-bold text-[18px] text-gray-900 mb-2">Inflammation</h4>
-                    <p className="text-sm text-gray-600">Systemic neuro-inflammation triggered by diet, stress, or undetected food sensitivities that block cognitive pathways.</p>
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex gap-4">
-                  <div className="shrink-0 mt-1"><Search className="w-6 h-6 text-[#4b3e6e]" /></div>
-                  <div>
-                    <h4 className="font-playfair font-bold text-[18px] text-gray-900 mb-2">Hormonal Shifts</h4>
-                    <p className="text-sm text-gray-600">Estrogen and testosterone variations heavily impact ADHD and neurodivergent symptom manifestation across distinct life stages.</p>
-                  </div>
-                </div>
               </div>
 
-              <div className="mt-12 p-8 bg-[#4b3e6e] rounded-2xl text-center shadow-lg relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-xl"></div>
-                <h4 className="text-white font-playfair font-bold text-xl md:text-2xl leading-snug relative z-10 uppercase tracking-wider">
-                  Exacting testing for targeted therapeutic nutrition
-                </h4>
-              </div>
-            </div>
+              <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 flex flex-col gap-6 lg:gap-8">
+                 <div className="w-full bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
+                    <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#7a2a33] -mr-12 -mb-12"/></div>
 
-            {/* WHERE WE START DIFFERENTLY */}
-            <div className="bg-[#fcfbfd] p-8 lg:p-10 rounded-3xl shadow-sm border border-[#edeaf2] mt-6">
-               <div className="mb-10 text-center">
-                 <h3 className="font-playfair text-[24px] font-bold tracking-wider text-gray-900 uppercase">Advanced Diagnostics</h3>
-                 <p className="font-medium text-gray-600 mt-2">Grounding your nervous system requires precise biological mapping, not guesswork.</p>
-               </div>
-               
-               <div className="space-y-8">
-                 <div>
-                   <h4 className="font-playfair font-bold text-[20px] text-gray-900 mb-3 border-b pb-2 border-gray-200">Rapid Clinic Screening</h4>
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
-                     <div className="bg-white py-4 px-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
-                       <span className="font-playfair font-bold text-gray-900 text-[16px]">Neurotransmitters</span>
-                       <span className="text-[13px] font-bold text-gray-700">Metabolite Panel</span>
-                     </div>
-                     <div className="bg-white py-4 px-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
-                       <span className="font-playfair font-bold text-gray-900 text-[16px]">Nutritional</span>
-                       <span className="text-[13px] font-bold text-gray-700">Zinc, B12, Mag</span>
-                     </div>
-                     <div className="bg-white py-4 px-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
-                       <span className="font-playfair font-bold text-gray-900 text-[16px]">Sensitivities</span>
-                       <span className="text-[13px] font-bold text-gray-700">Food Reactivity</span>
-                     </div>
-                     <div className="bg-white py-4 px-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
-                       <span className="font-playfair font-bold text-gray-900 text-[16px]">Gut-Brain</span>
-                       <span className="text-[13px] font-bold text-gray-700">Microbiome Var.</span>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-            </div>
-
-            {/* FROM SYMPTOMS TO PROFILE */}
-            <div className="p-8 lg:p-10 border-2 border-dashed border-gray-300 rounded-[2rem] relative bg-white/30 box-border mt-6">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#fdfcfd] px-6 py-2 rounded-full border border-gray-200 font-playfair font-bold text-[18px] text-gray-900 shadow-sm flex items-center gap-3 whitespace-nowrap">
-                <FileText className="w-5 h-5 text-gray-400"/> Diagnostics <ArrowRight className="w-4 h-4 text-[#4b3e6e]" /> Protocol
-              </div>
-              
-              <p className="text-center font-bold text-gray-800 mb-6 mt-6 uppercase tracking-wider text-[13px]">We connect:</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
-                <div className="bg-white shadow-sm border border-gray-200 py-4 rounded-xl flex items-center justify-center font-bold text-[13px] text-gray-900 px-4 text-center">your cognitive load</div>
-                <div className="bg-white shadow-sm border border-gray-200 py-4 rounded-xl flex flex-col items-center justify-center font-bold text-[13px] text-gray-900 px-4 text-center leading-tight">
-                  your neuro-markers
-                </div>
-                <div className="bg-white shadow-sm border border-gray-200 py-4 rounded-xl flex items-center justify-center font-bold text-[13px] text-gray-900 px-4 text-center">your dietary needs</div>
-              </div>
-              
-              <p className="text-center font-bold text-[18px] text-gray-900 mb-2">
-                To build a <span className="text-[#4b3e6e]">highly personalised cognitive capacity protocol</span>
-              </p>
-            </div>
-
-          </div>
-
-          {/* RIGHT COLUMN */}
-          <div className="lg:col-span-4 flex flex-col space-y-10 pl-0 lg:pl-4 xl:pl-8">
-            
-            {/* WHO THIS IS FOR */}
-            <div className="bg-[#4b3e6e] p-8 lg:p-10 rounded-3xl shadow-lg text-white relative overflow-hidden group shrink-0">
-               <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform"><Brain className="w-32 h-32 -mr-16 -mt-16"/></div>
-               <h3 className="font-playfair text-[20px] font-bold tracking-wider mb-6 uppercase relative z-10 text-white">Who This Is For</h3>
-               
-               <p className="font-bold mb-5 relative z-10 text-[15px] leading-relaxed">
-                 Designed for adults, teens, and children seeking cognitive clarity, nervous system regulation, and sustainable focus.
-               </p>
-               
-               <ul className="space-y-3 relative z-10 font-bold text-[14px]">
-                 <li className="bg-white/10 px-4 py-3 rounded-lg border border-white/5 backdrop-blur-sm shadow-sm text-center">ADHD and ADD profiles</li>
-                 <li className="bg-white/10 px-4 py-3 rounded-lg border border-white/5 backdrop-blur-sm shadow-sm text-center">Autistic spectrum support</li>
-                 <li className="bg-white/10 px-4 py-3 rounded-lg border border-white/5 backdrop-blur-sm shadow-sm text-center">Managing severe anxiety and overload</li>
-                 <li className="bg-white/10 px-4 py-3 rounded-lg border border-white/5 backdrop-blur-sm shadow-sm text-center">Reversing unexplained brain fog</li>
-               </ul>
-            </div>
-
-            {/* CLINICAL LEADERS */}
-            <div className="bg-[#fcfaf7] p-6 lg:p-8 rounded-3xl shadow-sm border border-[#e9e7dc] shrink-0">
-               <div className="flex items-center justify-between mb-4">
-                 <h3 className="font-playfair text-[18px] font-bold tracking-wider text-gray-900 uppercase">Clinical Leaders</h3>
-                 <Users className="w-5 h-5 text-gray-400" />
-               </div>
-               
-               <ul className="space-y-6">
-                 <li className="flex flex-col gap-2">
-                   <div className="flex items-center gap-3">
-                     <div className="w-10 h-10 bg-gray-200 rounded-full shrink-0 flex items-center justify-center text-gray-400 font-bold">ER</div> 
-                     <div className="flex flex-col">
-                       <span className="font-bold text-[15px] text-gray-900 leading-tight">Dr. Elena Rostova</span>
-                       <span className="text-[12px] font-bold text-[#4b3e6e] uppercase">Cognitive Lead</span>
-                     </div>
-                   </div>
-                   <p className="text-[13px] text-gray-600 font-medium leading-relaxed mt-1">Specialises in the biochemical foundations of neurodivergence, formulating exact protocols to balance neurotransmitters.</p>
-                 </li>
-                 
-                 <li className="flex flex-col gap-2 border-t border-gray-100 pt-5">
-                   <div className="flex items-center gap-3">
-                     <div className="w-10 h-10 bg-gray-200 rounded-full shrink-0 flex items-center justify-center text-gray-400 font-bold">DC</div> 
-                     <div className="flex flex-col">
-                       <span className="font-bold text-[15px] text-gray-900 leading-tight">Dr. David Chen</span>
-                       <span className="text-[12px] font-bold text-[#4b3e6e] uppercase">Science Director</span>
-                     </div>
-                   </div>
-                   <p className="text-[13px] text-gray-600 font-medium leading-relaxed mt-1">Integrates cognitive neuroscience into functional testing to support brain-barrier integrity and mood stabilisation.</p>
-                 </li>
-               </ul>
-            </div>
-
-            {/* YOUR PROTOCOL JOURNEY */}
-            <div className="bg-[#fcfaf7] p-6 lg:p-8 rounded-3xl shadow-sm border border-[#e9e7dc] shrink-0">
-              <h3 className="font-playfair text-[20px] font-bold tracking-wider text-gray-900 mb-8 uppercase text-center xl:text-left flex items-center justify-center xl:justify-start gap-3">
-                <TrendingUp className="w-6 h-6 text-[#4b3e6e]" /> Protocol Journey
-              </h3>
-              
-              <div className="space-y-4 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-300 before:to-transparent xl:before:ml-5 xl:before:-translate-x-px">
-                
-                {[
-                  "Free Consultation",
-                  "Cognitive Testing",
-                  "Personalised Strategy",
-                  "Expert Consultation",
-                  "Monitor & Focus"
-                ].map((step, idx) => (
-                  <div key={idx} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active xl:justify-between xl:even:flex-row">
-                    <div className={`flex items-center justify-center w-10 h-10 rounded-full border border-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm xl:order-none xl:translate-x-0 xl:group-odd:translate-x-0 text-sm ${idx === 2 ? 'bg-[#4b3e6e] text-white shadow-md' : 'bg-white text-gray-600'}`}>{idx + 1}</div>
-                    <div className={`w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-gray-100 shadow-sm xl:w-[calc(100%-3.5rem)] text-[13px] font-bold flex items-center min-h-[60px] ${idx === 2 ? 'bg-[#4b3e6e] text-white border-[#3a3055] shadow-md shadow-[#4b3e6e]/20' : 'bg-white text-gray-800'}`}>
-                      {step}
+                    <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10 uppercase">
+                       DIRECTORY
+                    </h2>
+                    <p className="text-[13px] text-gray-600 mb-8 font-medium leading-relaxed relative z-10">
+                       Access TBN-approved clinics and practitioners across the UK.
+                    </p>
+                    
+                    <div className="mt-auto w-full relative z-10">
+                       <button className="w-full text-center bg-[#7a2a33] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#8c353f] transition-colors shadow-md">
+                          Explore Directory
+                       </button>
                     </div>
                   </div>
-                ))}
+                  
+                  <div className="w-full bg-[#fcfaf7] border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg mt-8">
+                    <h2 className="font-playfair text-[20px] font-bold text-gray-900 leading-snug mb-4 relative z-10 uppercase">
+                       FIND A TBN NEURODIVERGENCE CLINIC
+                    </h2>
+                    <p className="text-[13px] text-gray-600 mb-8 font-medium leading-relaxed relative z-10">
+                       Access TBN through a growing network of specialist-led clinics and support environments.
+                    </p>
+                    
+                    <div className="mt-auto w-full relative z-10">
+                       <button className="w-full text-center bg-white border border-gray-200 text-gray-900 px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-md">
+                          Find a Clinic Near You
+                       </button>
+                    </div>
+                  </div>
               </div>
             </div>
+         </div>
 
-            {/* FINAL CLOSE */}
-            <div className="bg-yellow-50/50 p-6 lg:p-8 rounded-3xl border border-yellow-200/50 relative shadow-sm shrink-0 mt-6">
-                 <div className="flex items-center gap-2 mb-4">
-                   <AlertTriangle className="w-5 h-5 text-yellow-600" />
-                   <h4 className="font-bold text-[13px] text-yellow-700 uppercase tracking-widest">Important</h4>
-                 </div>
-                 <ul className="text-[13px] leading-relaxed opacity-90 font-bold text-gray-700 space-y-1.5 list-disc pl-4">
-                   <li>This does not replace formal psychiatric pathways or medications</li>
-                   <li>Focuses purely on biological, nutritional optimisation</li>
-                 </ul>
-            </div>
-
+        {/* FINAL CTA */}
+        <div className="mt-16 lg:mt-24">
+          <div className="bg-[#7a2a33] p-10 lg:p-16 rounded-[3rem] shadow-xl relative overflow-hidden flex flex-col items-center text-center">
+             <div className="absolute top-0 right-0 p-8 opacity-10"><Zap className="w-48 h-48 -mr-16 -mt-16 text-white"/></div>
+             <div className="absolute bottom-0 left-0 p-8 opacity-10"><Zap className="w-48 h-48 -ml-16 -mb-16 text-white rotate-180"/></div>
+             
+             <h2 className="font-playfair text-3xl md:text-4xl lg:text-[40px] font-bold text-white mb-6 relative z-10 leading-tight">
+               A more structured approach to neurodivergent wellbeing
+             </h2>
+             <div className="flex flex-col items-center relative z-10 border-b border-white/20 pb-5 mb-5 px-8">
+               <p className="text-white/90 font-bold uppercase tracking-widest text-[13px] mb-2 text-center">
+                 From cognition and emotional regulation to nervous system resilience and family support — this is a new model for understanding neurodivergence.
+               </p>
+             </div>
+             <p className="text-[20px] font-playfair font-bold text-[#e9e7dc] mb-10 relative z-10">
+               Test-Based. Specialist-Led. Precision-Driven.
+             </p>
+             
+             <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full max-w-2xl justify-center">
+               <button 
+                 onClick={() => openQuiz()}
+                 className="flex-1 bg-white hover:bg-gray-100 text-[#7a2a33] px-6 py-4 rounded-xl font-bold text-[15px] shadow-lg flex justify-center items-center gap-2 group transition-all">
+                 Start Your Journey <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
+               </button>
+               <Link to="/directory" className="flex-1 bg-[#8c353f] hover:bg-[#4a161d] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
+                 Find a Clinic <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
+               </Link>
+               <Link to="/partner-with-us" className="flex-1 bg-[#8c353f] hover:bg-[#4a161d] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
+                 Partner With Us <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
+               </Link>
+             </div>
           </div>
+        </div>
+
+        {/* SECTION 9 — FAQ */}
+        <div className="w-full mt-24 lg:mt-32 max-w-4xl mx-auto px-4 mb-24">
+          <div className="text-center mb-12">
+            <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">
+               FREQUENTLY ASKED QUESTIONS
+            </h2>
+          </div>
+
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            <AccordionItem value="item-1" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#7a2a33] text-left">
+                Why use a test-based approach in neurodivergence?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                Because many factors influencing cognition, emotional regulation, focus, fatigue, and nervous system resilience are not always visible without structured insight.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#7a2a33] text-left">
+                Is this an alternative to diagnosis or medication?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p className="mb-2 font-medium text-gray-900">No.</p>
+                <p>TBN does not diagnose or replace medical care. The focus is on understanding wider lifestyle, nutritional, metabolic, inflammatory, and nervous system factors that may influence wellbeing and day-to-day function.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#7a2a33] text-left">
+                Why are gut health and omega balance relevant?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                Research continues to explore how gut-brain communication, inflammation, nutrient status, and fatty acid balance may influence cognition, emotional wellbeing, and nervous system function.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4" className="bg-white border rounded-2xl px-6 py-2 shadow-sm data-[state=open]:shadow-md transition-all">
+              <AccordionTrigger className="text-[16px] font-bold text-gray-900 hover:no-underline hover:text-[#7a2a33] text-left">
+                Is this suitable for children and families?
+              </AccordionTrigger>
+              <AccordionContent className="text-[14px] text-gray-600 leading-relaxed pt-2 pb-4">
+                <p className="mb-2 font-medium text-gray-900">Yes.</p>
+                <p>TBN supports children, teens, adults, parents, and wider neurodivergent families through structured pathways and specialist-led support.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+          </Accordion>
         </div>
       </main>
       
