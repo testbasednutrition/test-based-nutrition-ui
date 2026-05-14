@@ -78,7 +78,7 @@ export const specialists: Specialist[] = [
     name: "Dr. Ishtiaq Rehman",
     role: "Consulting Doctor — England FA",
     category: "Women's Health",
-    image: "https://test-basednutrition.com/assets/images/ish4-1256x889.jpeg",
+    image: "/experts/ishtiaq-rehman-new.jpg",
     secondaryImage: "https://test-basednutrition.com/assets/images/ish2-634x434.jpeg",
     bio: [
       "Dr. Ishtiaq Rehman is a renowned figure in the field of sports medicine, with a career that spans consulting for elite organisations such as the England FA and Sunderland FC. His passion for performance optimisation has led him to become a Partner of test-basednutrition.com, using science-backed methods to improve the health and well-being of clients.",
@@ -170,7 +170,7 @@ export const specialists: Specialist[] = [
     name: "Neil Parsley",
     role: "Consulting Performance Coach — England FA & Manchester City",
     category: "Sports Performance",
-    image: "/images/specialists/neil-parsley.png",
+    image: "/experts/neil-parsley-new.jpg",
     bio: [
       "Neil Parsley is a passionate elite performance coach, having worked with Olympic and professional athletes. He is currently consulting to England FA and Manchester City. Neil also privately trains numerous English Premiership footballers over the last 5 seasons; both in season and abroad on multiple training camps.",
       "With over 25 years of dedicated experience in the world of sports, his expertise lies in connecting with athletes, coaches, leaders, and key stakeholders at a high level. Neil's experience extends to the international stage, having coached senior podium athletes across multiple Summer and Winter Olympic cycles, international rugby, and international football.",

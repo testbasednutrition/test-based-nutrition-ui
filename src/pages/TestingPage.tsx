@@ -11,7 +11,7 @@ import {
   RefreshCw, Zap, Search, ActivitySquare, TestTube2, BrainCircuit
 } from "lucide-react";
 
-const heroImg = "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200";
+const heroImg = "/images/testing-hero-new.png";
 
 const TestingPage = () => {
   const quizContext = useQuiz();
@@ -294,8 +294,8 @@ const TestingPage = () => {
                  <li className="text-[14px] font-medium text-gray-600">Specialist Consultations</li>
                  <li className="text-[14px] font-medium text-gray-600">Bespoke Protocols</li>
               </ul>
-              <Link to="/partners" className="bg-[#7a2a33] text-white px-8 py-4 rounded-xl font-bold text-[13px] uppercase tracking-wider hover:bg-[#5c1c24] transition-colors mt-auto w-full shadow-sm">
-                Find My Nearest Partner Business
+              <Link to="/collectives" className="bg-[#7a2a33] text-white px-8 py-4 rounded-xl font-bold text-[13px] uppercase tracking-wider hover:bg-[#5c1c24] transition-colors mt-auto w-full shadow-sm">
+                Find My Nearest Collective
               </Link>
            </div>
 
@@ -327,8 +327,8 @@ const TestingPage = () => {
                   }} className="bg-[#7a2a33] text-white px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-[#5c1c24] transition-colors shadow-lg">
                     Order My Balance Test Kit
                   </button>
-                  <Link to="/partners" className="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm">
-                    Find My Nearest Partner Business
+                  <Link to="/collectives" className="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm">
+                    Find My Nearest Collective
                   </Link>
                </div>
             </div>

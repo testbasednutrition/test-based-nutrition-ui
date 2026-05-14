@@ -27,11 +27,11 @@ const ClinicProfile = () => {
       <div className="pt-24 md:pt-32 pb-4">
         <div className="container px-4 md:px-6 lg:px-8 max-w-7xl">
           <button
-            onClick={() => navigate("/partners")}
+            onClick={() => navigate("/collectives")}
             className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Partner Businesses
+            Back to Collectives
           </button>
         </div>
       </div>
@@ -60,7 +60,7 @@ const ClinicProfile = () => {
               <div className="lg:col-span-6">
                 <p className="text-sm font-bold uppercase tracking-widest text-primary mb-3 flex items-center gap-2">
                   <Building2 className="w-4 h-4" />
-                  Partner Business
+                  Collective
                 </p>
                 
                 <h1 className="text-4xl md:text-5xl font-bold leading-tight text-foreground mb-4">

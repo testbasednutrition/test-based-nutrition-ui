@@ -215,7 +215,7 @@ const WomensHealth = () => {
               {/* Ishtiaq */}
               <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pl-4 lg:pl-14">
                  <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-[4/5] sm:aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
-                    <img src="/images/specialists/ishtiaq.jpg" alt="Dr Ishtiaq Rehman" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
+                    <img src="/experts/ishtiaq-rehman-new.jpg" alt="Dr Ishtiaq Rehman" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-1">Dr Ishtiaq Rehman</h3>
@@ -339,7 +339,7 @@ const WomensHealth = () => {
 
           {/* 15-MINUTE HEALTH INSIGHT */}
           <div className="bg-white border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-full h-2 bg-gradient-to-r from-blue-600 to-[#7a2a33]"></div>
+            <div className="absolute top-0 right-0 w-full h-2 bg-gradient-to-r from-red-600 to-[#7a2a33]"></div>
             
             <div className="text-center mb-12">
               <div className="inline-flex items-center justify-center gap-2 bg-[#7a2a33]/10 text-[#7a2a33] px-4 py-1.5 rounded-full font-bold text-[13px] uppercase tracking-widest mb-6">
@@ -433,15 +433,15 @@ const WomensHealth = () => {
               {/* Right Column: Phlebotomy */}
               <div className="lg:col-span-4 lg:border-l lg:border-gray-100 lg:pl-10">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center -ml-2">
-                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-600"></div>
+                  <div className="w-8 h-8 rounded-full bg-[#7a2a33]/10 flex items-center justify-center -ml-2">
+                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-[#7a2a33]"></div>
                   </div>
                   <h4 className="font-bold text-gray-900 text-[18px] uppercase tracking-widest">Phlebotomy Required</h4>
                 </div>
                 
                 <div className="flex flex-col gap-4 mt-8">
                   {/* Progesterone */}
-                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-[#7a2a33]/30 transition-colors flex items-start gap-3 relative">
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1">Progesterone</p>
                        <p className="text-[12px] text-gray-600 font-medium leading-tight">Hormonal balance</p>
@@ -449,7 +449,7 @@ const WomensHealth = () => {
                   </div>
 
                   {/* Testosterone */}
-                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-[#7a2a33]/30 transition-colors flex items-start gap-3 relative">
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1">Testosterone</p>
                        <p className="text-[12px] text-gray-600 font-medium leading-tight">Energy & strength</p>
@@ -457,7 +457,7 @@ const WomensHealth = () => {
                   </div>
 
                   {/* TSH */}
-                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-[#7a2a33]/30 transition-colors flex items-start gap-3 relative">
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1">TSH (Thyroid)</p>
                        <p className="text-[12px] text-gray-600 font-medium leading-tight">Metabolism</p>
@@ -465,7 +465,7 @@ const WomensHealth = () => {
                   </div>
                   
                   {/* Vitamin B12 */}
-                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-[#7a2a33]/30 transition-colors flex items-start gap-3 relative">
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1">Vitamin B12</p>
                        <p className="text-[12px] text-gray-600 font-medium leading-tight">Energy & cognition</p>
@@ -473,7 +473,7 @@ const WomensHealth = () => {
                   </div>
 
                   {/* Cortisol */}
-                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-[#7a2a33]/30 transition-colors flex items-start gap-3 relative">
                      <div className="flex-1 min-w-0">
                        <p className="font-bold text-gray-900 text-[14px] mb-1">Cortisol</p>
                        <p className="text-[12px] text-gray-600 font-medium leading-tight">Stress response</p>

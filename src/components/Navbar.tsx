@@ -139,7 +139,7 @@ const tbnMethodMenuItems = [
 
 const clinicsMenuItems = [
   { label: "Find a Specialist", href: "/specialists" },
-  { label: "Find a Partner Business", href: "/partners" },
+  { label: "Find a Collective", href: "/collectives" },
 ];
 
 const partnerMenuItems = [

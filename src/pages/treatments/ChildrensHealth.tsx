@@ -43,11 +43,11 @@ const ChildrensHealth = () => {
       
       {/* FULL BLEED HERO SECTION */}
       <div className="w-full relative bg-[#fdfdf9] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
-        <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
-          <img src={heroImg} alt="Children & Teen Health" className="w-full h-full object-cover object-[center_30%]" />
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[65%] z-0">
+          <img src={heroImg} alt="Children & Teen Health" className="w-full h-full object-cover object-[left_30%]" />
           
           <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fdfdf9] via-[#fdfdf9]/70 lg:via-[#fdfdf9]/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#fdfdf9] from-15% via-[#fdfdf9]/80 lg:via-[#fdfdf9]/30 to-transparent"></div>
         </div>
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 pt-12 pb-12 lg:py-0 justify-between flex-grow">

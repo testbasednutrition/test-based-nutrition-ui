@@ -11,17 +11,17 @@ const experts = [
   },
   {
     name: "Dr Ishtiaq Rehman",
-    role: "Medical Director",
+    role: "Co-Founder\nMedical Director",
     org: "Current England FA Doctor. Leads the medical development of TBN, guiding our clinical principles through elite sports medicine.",
     link: "/specialists/dr-ishtiaq-rehman",
-    image: "/experts/dr-rehman-v3.png",
+    image: "/experts/ishtiaq-rehman-new.jpg",
   },
   {
     name: "Neil Parsley",
-    role: "Performance Director",
+    role: "Co-Founder\nPerformance Director",
     org: "Former Team GB coach. Brings extensive experience integrating test-based nutrition strategies within high-performance environments.",
     link: "/specialists/neil-parsley",
-    image: "/experts/neil-parsley-v3.png",
+    image: "/experts/neil-parsley-new.jpg",
   },
 ];
 
@@ -48,7 +48,7 @@ const Experts = () => {
                 <a href={experts[0].link} className="hover:text-primary transition-colors inline-block mb-1">
                   <h3 className="text-xl md:text-2xl font-serif text-foreground/90">{experts[0].name}</h3>
                 </a>
-                <p className="text-[11px] font-bold uppercase tracking-widest text-primary mb-3">{experts[0].role}</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest text-primary mb-3 whitespace-pre-line">{experts[0].role}</p>
                 <p className="text-[13px] md:text-sm text-muted-foreground leading-relaxed max-w-lg mx-auto">
                   {experts[0].org}
                 </p>
@@ -72,7 +72,7 @@ const Experts = () => {
                     <a href={expert.link} className="hover:text-primary transition-colors inline-block mb-1">
                       <h3 className="text-lg md:text-xl font-serif text-foreground/90">{expert.name}</h3>
                     </a>
-                    <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-primary mb-2">{expert.role}</p>
+                    <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-primary mb-2 whitespace-pre-line">{expert.role}</p>
                     <p className="text-[12px] md:text-[13px] text-muted-foreground leading-relaxed">
                       {expert.org}
                     </p>
@@ -100,7 +100,7 @@ const Experts = () => {
                </div>
                
                <div className="mt-12 pt-8 border-t border-border">
-                 <a href="/treatments/testing" className="inline-flex items-center font-bold text-[13px] uppercase tracking-widest text-foreground hover:text-primary transition-colors group">
+                 <a href="/tbn-method" className="inline-flex items-center font-bold text-[13px] uppercase tracking-widest text-foreground hover:text-primary transition-colors group">
                    Explore Our Method
                    <ArrowRight className="ml-3 size-4 transition-transform group-hover:translate-x-1" />
                  </a>

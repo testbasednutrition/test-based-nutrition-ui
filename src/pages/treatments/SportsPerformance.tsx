@@ -203,7 +203,7 @@ const SportsPerformance = () => {
               {/* Ishtiaq */}
               <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
                  <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-[4/5] sm:aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
-                    <img src="/images/specialists/ishtiaq.jpg" alt="Dr Ishtiaq Rehman" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
+                    <img src="/experts/ishtiaq-rehman-new.jpg" alt="Dr Ishtiaq Rehman" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-0">Dr Ishtiaq Rehman</h3>
@@ -217,7 +217,7 @@ const SportsPerformance = () => {
               {/* Neil */}
               <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pl-4 lg:pl-14">
                  <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-[4/5] sm:aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
-                    <img src="/images/specialists/neil-parsley.png" alt="Neil Parsley" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
+                    <img src="/experts/neil-parsley-new.jpg" alt="Neil Parsley" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#7a2a33] transition-colors leading-snug mb-1 sm:mb-1">Neil Parsley</h3>
@@ -357,11 +357,11 @@ const SportsPerformance = () => {
           {/* 15-MINUTE PERFORMANCE INSIGHT */}
           <div className="bg-white border border-[#e9e7dc] rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden">
             {/* Background Accent */}
-            <div className="absolute top-0 right-0 w-full h-2 bg-gradient-to-r from-blue-600 to-[#7a2a33]"></div>
+            <div className="absolute top-0 right-0 w-full h-2 bg-gradient-to-r from-red-600 to-[#7a2a33]"></div>
             
             <div className="text-center mb-12">
-              <div className="inline-flex items-center justify-center gap-2 bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full font-bold text-[13px] uppercase tracking-widest mb-6">
-                <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></div> 15-Minute Performance Insight
+              <div className="inline-flex items-center justify-center gap-2 bg-[#7a2a33]/10 text-[#7a2a33] px-4 py-1.5 rounded-full font-bold text-[13px] uppercase tracking-widest mb-6">
+                <div className="w-2 h-2 rounded-full bg-[#7a2a33] animate-pulse"></div> 15-Minute Performance Insight
               </div>
               <h3 className="font-playfair text-[26px] md:text-[32px] font-bold text-gray-900 mb-4 uppercase tracking-wider">Advanced Point-of-Care Screening</h3>
               <p className="font-montserrat text-[15px] font-medium text-gray-600 max-w-2xl mx-auto">
@@ -463,17 +463,17 @@ const SportsPerformance = () => {
               {/* Right Column: Phlebotomy */}
               <div className="lg:col-span-4 lg:border-l lg:border-gray-100 lg:pl-10">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center -ml-2">
-                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-blue-600"></div>
+                  <div className="w-8 h-8 rounded-full bg-[#7a2a33]/10 flex items-center justify-center -ml-2">
+                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-[#7a2a33]"></div>
                   </div>
                   <h4 className="font-bold text-gray-900 text-[18px] uppercase tracking-widest">Phlebotomy Required</h4>
                 </div>
-                <p className="text-[13px] font-bold text-blue-600/80 uppercase tracking-widest mb-8 pl-9">Deeper performance biomarkers</p>
+                <p className="text-[13px] font-bold text-[#7a2a33]/80 uppercase tracking-widest mb-8 pl-9">Deeper performance biomarkers</p>
                 
                 <div className="flex flex-col gap-4">
                   {/* Testosterone */}
-                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-blue-50/50 border border-blue-50 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-[#7a2a33]/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-[#7a2a33]/5 border border-[#7a2a33]/20 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
                        <img src="/images/test-logos/testosterone.png" alt="Testosterone" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">
@@ -483,8 +483,8 @@ const SportsPerformance = () => {
                   </div>
                   
                   {/* Vitamin B12 */}
-                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-blue-50/50 border border-blue-50 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-[#7a2a33]/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-[#7a2a33]/5 border border-[#7a2a33]/20 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
                        <img src="/images/test-logos/vitaminb12.png" alt="Vitamin B12" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">
@@ -494,8 +494,8 @@ const SportsPerformance = () => {
                   </div>
                   
                   {/* TSH (Thyroid) */}
-                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-blue-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-blue-50/50 border border-blue-50 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
+                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-[#7a2a33]/30 transition-colors flex items-start gap-3 relative">
+                     <div className="w-12 h-12 rounded-full bg-[#7a2a33]/5 border border-[#7a2a33]/20 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
                        <img src="/images/test-logos/tsh.png" alt="TSH (Thyroid)" className="w-full h-full object-contain rounded-full scale-[1.15]" />
                      </div>
                      <div className="flex-1 min-w-0">

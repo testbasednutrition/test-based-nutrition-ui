@@ -43,8 +43,8 @@ const SearchField = ({
   value?: string;
   onChange?: (val: string) => void;
 }) => (
-  <div className="flex bg-background items-center gap-3 px-5 py-3 flex-1 min-w-[200px] border-b md:border-b-0 md:border-r border-border last:border-0 hover:bg-secondary/30 transition-colors">
-    <Icon className="w-5 h-5 text-muted-foreground" />
+  <div className="flex bg-background items-center gap-2.5 px-4 py-2 flex-1 min-w-[200px] border-b md:border-b-0 md:border-r border-border last:border-0 hover:bg-secondary/30 transition-colors">
+    <Icon className="w-4 h-4 text-muted-foreground" />
     <div className="flex flex-col w-full gap-0.5">
       <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
         {label}
@@ -116,8 +116,8 @@ const SpecialistsDirectory = () => {
 
           {/* Search Bar container */}
           <div className="flex flex-col md:flex-row items-stretch bg-background border border-border rounded-xl shadow-sm overflow-hidden transition-shadow focus-within:shadow-md focus-within:border-primary/20">
-            <div className="flex bg-background items-center gap-3 px-5 py-3 flex-1 min-w-[200px] border-b md:border-b-0 md:border-r border-border hover:bg-secondary/30 transition-colors">
-              <Search className="w-5 h-5 text-muted-foreground" />
+            <div className="flex bg-background items-center gap-2.5 px-4 py-2 flex-1 min-w-[200px] border-b md:border-b-0 md:border-r border-border hover:bg-secondary/30 transition-colors">
+              <Search className="w-4 h-4 text-muted-foreground" />
               <div className="flex flex-col w-full gap-0.5">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
                   TBN Pathway
@@ -148,27 +148,11 @@ const SpecialistsDirectory = () => {
               onChange={setLocationSearch}
             />
             
-            <div className="flex bg-background items-center gap-3 px-5 py-3 flex-1 min-w-[200px] hover:bg-secondary/30 transition-colors">
-              <Video className="w-5 h-5 text-muted-foreground" />
-              <div className="flex flex-col w-full gap-0.5">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
-                  Consultation Type
-                </span>
-                <Select>
-                  <SelectTrigger className="h-5 p-0 border-none bg-transparent shadow-none focus:ring-0 text-sm font-semibold px-0 text-foreground [&>span:first-child[data-placeholder]]:text-muted-foreground/50 [&>span:first-child[data-placeholder]]:font-medium">
-                    <SelectValue placeholder="Specialist" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="specialist">Specialist</SelectItem>
-                    <SelectItem value="partner">Partner Business</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
 
-            <div className="p-2 flex items-center bg-background border-t md:border-t-0 md:border-l md:border-border">
-              <Button className="w-full md:w-auto px-8 py-5 md:py-0 h-full md:h-12 text-[15px] font-bold whitespace-nowrap bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-sm flex gap-2">
-                <Search className="w-4 h-4" />
+
+            <div className="p-1.5 flex items-center bg-background border-t md:border-t-0 md:border-l md:border-border">
+              <Button className="w-full md:w-auto px-6 py-3 md:py-0 h-full md:h-10 text-[14px] font-bold whitespace-nowrap bg-primary hover:bg-primary/90 text-primary-foreground rounded-md shadow-sm flex gap-2">
+                <Search className="w-3.5 h-3.5" />
                 Search
               </Button>
             </div>
