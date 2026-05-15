@@ -22,7 +22,7 @@ const PartnerWithUs2 = () => {
     { label: "300+", clients: "300+ Clients", value: "£50,000+", desc: "Monthly Recurring Revenue" }
   ];
   return (
-    <div className="min-h-screen bg-[#fcfaf7]">
+    <div className="min-h-screen bg-[#f9f5f2]">
       <Navbar alwaysSolid={false} />
 
       {/* 1. Hero Section */}
@@ -38,7 +38,7 @@ const PartnerWithUs2 = () => {
 
         <div className="container relative z-10 text-white">
           <div className="max-w-3xl space-y-8 animate-fade-in">
-            <span className="text-[#fcfaf7] uppercase tracking-[0.2em] font-bold text-sm">
+            <span className="text-[#f9f5f2] uppercase tracking-[0.2em] font-bold text-sm">
               PARTNER WITH TEST-BASED NUTRITION
             </span>
             <h1 className="text-5xl md:text-7xl font-playfair font-bold leading-tight">
@@ -51,7 +51,7 @@ const PartnerWithUs2 = () => {
               Bring the world’s first test-based nutrition integration solution into your clinic, pharmacy, health club, or wellness business.
             </p>
             <div className="pt-4">
-              <Button size="lg" className="bg-[#7a2a33] hover:bg-[#5a1a23] text-white px-8 h-14 text-base font-bold tracking-wide rounded-full shadow-lg" asChild>
+              <Button size="lg" className="bg-[#9f1e13] hover:bg-[#80180f] text-white px-8 h-14 text-base font-bold tracking-wide rounded-full shadow-lg" asChild>
                 <a href="#apply">
                   Apply to Partner With TBN <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
@@ -62,9 +62,9 @@ const PartnerWithUs2 = () => {
       </section>
 
       {/* 2. The Hook */}
-      <section className="py-24 bg-[#fcfaf7]">
+      <section className="py-24 bg-[#f9f5f2]">
         <div className="container max-w-4xl text-center space-y-8">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#7a2a33]">The Future of Wellness is Not a Guessing Game</h2>
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13]">The Future of Wellness is Not a Guessing Game</h2>
           <p className="text-xl md:text-2xl font-light text-gray-800 leading-relaxed max-w-3xl mx-auto">
             Your clients are no longer satisfied with generic advice or "trial and error" supplement routines. They want data. They want insight. They want results they can see on paper.
           </p>
@@ -78,32 +78,32 @@ const PartnerWithUs2 = () => {
       <section className="py-24 bg-white border-t border-gray-100">
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
-            <span className="text-[#7a2a33] uppercase tracking-[0.2em] font-bold text-sm">The TBN Integration Model</span>
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#7a2a33] mt-4">Learn. Launch. Lead.</h2>
+            <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">The TBN Integration Model</span>
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13] mt-4">Learn. Launch. Lead.</h2>
             <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto font-medium">
               We don’t just give you a test; we give you a business-in-a-box.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4 p-10 border border-[#7a2a33] rounded-3xl bg-[#fcfaf7] hover:shadow-xl transition-shadow">
-              <h3 className="text-3xl font-bold font-playfair text-[#7a2a33] mb-4">Learn</h3>
+            <div className="text-center space-y-4 p-10 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2] hover:shadow-xl transition-shadow">
+              <h3 className="text-3xl font-bold font-playfair text-[#9f1e13] mb-4">Learn</h3>
               <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b border-gray-200 pb-4 mb-4">Master the TBN Method</h4>
               <p className="text-gray-700 leading-relaxed text-left">
                 We train your team in the science of biomarkers, gut health, and compliance-conscious communication.
               </p>
             </div>
 
-            <div className="text-center space-y-4 p-10 border border-[#7a2a33] rounded-3xl bg-[#fcfaf7] hover:shadow-xl transition-shadow">
-              <h3 className="text-3xl font-bold font-playfair text-[#7a2a33] mb-4">Launch</h3>
+            <div className="text-center space-y-4 p-10 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2] hover:shadow-xl transition-shadow">
+              <h3 className="text-3xl font-bold font-playfair text-[#9f1e13] mb-4">Launch</h3>
               <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b border-gray-200 pb-4 mb-4">Deploy with Confidence</h4>
               <p className="text-gray-700 leading-relaxed text-left">
                 Deploy "Test Days," rapid point-of-care screening, and marketing assets designed to fill your diary from Day 1.
               </p>
             </div>
 
-            <div className="text-center space-y-4 p-10 border border-[#7a2a33] rounded-3xl bg-[#fcfaf7] hover:shadow-xl transition-shadow">
-              <h3 className="text-3xl font-bold font-playfair text-[#7a2a33] mb-4">Lead</h3>
+            <div className="text-center space-y-4 p-10 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2] hover:shadow-xl transition-shadow">
+              <h3 className="text-3xl font-bold font-playfair text-[#9f1e13] mb-4">Lead</h3>
               <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b border-gray-200 pb-4 mb-4">Become the Authority</h4>
               <p className="text-gray-700 leading-relaxed text-left">
                 Become the regional authority in preventative health. Build recurring revenue through retesting and specialist-led protocols.
@@ -114,10 +114,10 @@ const PartnerWithUs2 = () => {
       </section>
 
       {/* 4. Select Integration Pathway */}
-      <section className="py-24 bg-[#fcfaf7]">
+      <section className="py-24 bg-[#f9f5f2]">
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#7a2a33]">Select Your Integration Pathway</h2>
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13]">Select Your Integration Pathway</h2>
             <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
               Click to explore how TBN fits your specific business model:
             </p>
@@ -125,68 +125,68 @@ const PartnerWithUs2 = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors cursor-pointer">
-              <Building2 className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-3">Clinics & Practitioners</h3>
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors cursor-pointer">
+              <Building2 className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-3">Clinics & Practitioners</h3>
               <p className="text-gray-600 leading-relaxed flex-1 mb-6">
                 Add data-driven insight to osteopathy, chiro, or aesthetics.
               </p>
-              <div className="text-[#7a2a33] font-bold flex items-center gap-2 group-hover:underline">
+              <div className="text-[#9f1e13] font-bold flex items-center gap-2 group-hover:underline">
                 Explore Clinic Path <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors cursor-pointer">
-              <Store className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-3">Pharmacies</h3>
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors cursor-pointer">
+              <Store className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-3">Pharmacies</h3>
               <p className="text-gray-600 leading-relaxed flex-1 mb-6">
                 Transition from reactive retail to a proactive health destination.
               </p>
-              <div className="text-[#7a2a33] font-bold flex items-center gap-2 group-hover:underline">
+              <div className="text-[#9f1e13] font-bold flex items-center gap-2 group-hover:underline">
                 Explore Pharmacy Path <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors cursor-pointer">
-              <HeartPulse className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-3">Gyms & Health Clubs</h3>
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors cursor-pointer">
+              <HeartPulse className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-3">Gyms & Health Clubs</h3>
               <p className="text-gray-600 leading-relaxed flex-1 mb-6">
                 Increase retention and PT value with metabolic & recovery testing.
               </p>
-              <div className="text-[#7a2a33] font-bold flex items-center gap-2 group-hover:underline">
+              <div className="text-[#9f1e13] font-bold flex items-center gap-2 group-hover:underline">
                 Explore Gym Path <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors cursor-pointer">
-              <BookOpen className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-3">Academies & CPD</h3>
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors cursor-pointer">
+              <BookOpen className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-3">Academies & CPD</h3>
               <p className="text-gray-600 leading-relaxed flex-1 mb-6">
                 Train the practitioners of the future with certified test-based courses.
               </p>
-              <div className="text-[#7a2a33] font-bold flex items-center gap-2 group-hover:underline">
+              <div className="text-[#9f1e13] font-bold flex items-center gap-2 group-hover:underline">
                 Explore Academy Path <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors cursor-pointer">
-              <ShieldCheck className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-3">Retreats & Resorts</h3>
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors cursor-pointer">
+              <ShieldCheck className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-3">Retreats & Resorts</h3>
               <p className="text-gray-600 leading-relaxed flex-1 mb-6">
                 Bring test-based health into premium wellness experiences.
               </p>
-              <div className="text-[#7a2a33] font-bold flex items-center gap-2 group-hover:underline">
+              <div className="text-[#9f1e13] font-bold flex items-center gap-2 group-hover:underline">
                 Explore Retreat Path <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors cursor-pointer">
-              <UserCheck className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-3">Certified Consultants</h3>
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors cursor-pointer">
+              <UserCheck className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-3">Certified Consultants</h3>
               <p className="text-gray-600 leading-relaxed flex-1 mb-6">
                 Learn the method. Launch your pathway. Lead with confidence.
               </p>
-              <div className="text-[#7a2a33] font-bold flex items-center gap-2 group-hover:underline">
+              <div className="text-[#9f1e13] font-bold flex items-center gap-2 group-hover:underline">
                 Explore Consultant Path <ArrowRight className="w-4 h-4" />
               </div>
             </div>
@@ -200,26 +200,26 @@ const PartnerWithUs2 = () => {
         <div className="container max-w-5xl">
           <div className="text-center mb-16">
             <span className="text-black uppercase tracking-[0.2em] font-bold text-sm block mb-4">THE COMMERCIAL EDGE</span>
-            <h2 className="text-5xl md:text-6xl font-playfair font-bold text-[#7a2a33]">New Revenue, Zero Guesswork</h2>
+            <h2 className="text-5xl md:text-6xl font-playfair font-bold text-[#9f1e13]">New Revenue, Zero Guesswork</h2>
             <p className="text-xl mt-4 max-w-2xl mx-auto font-medium text-gray-700">
               TBN is designed to sit alongside your existing treatments—not replace them.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-[#fcfaf7] p-8 rounded-2xl border border-gray-200 text-center">
-              <Zap className="w-12 h-12 text-[#7a2a33] mx-auto mb-6" />
-              <h3 className="text-xl font-bold mb-3 text-[#7a2a33]">Rapid Screening</h3>
+            <div className="bg-[#f9f5f2] p-8 rounded-2xl border border-gray-200 text-center">
+              <Zap className="w-12 h-12 text-[#9f1e13] mx-auto mb-6" />
+              <h3 className="text-xl font-bold mb-3 text-[#9f1e13]">Rapid Screening</h3>
               <p className="text-gray-600">Results in &lt;15 minutes to spark instant client engagement.</p>
             </div>
-            <div className="bg-[#fcfaf7] p-8 rounded-2xl border border-gray-200 text-center">
-              <Repeat className="w-12 h-12 text-[#7a2a33] mx-auto mb-6" />
-              <h3 className="text-xl font-bold mb-3 text-[#7a2a33]">Recurring Income</h3>
+            <div className="bg-[#f9f5f2] p-8 rounded-2xl border border-gray-200 text-center">
+              <Repeat className="w-12 h-12 text-[#9f1e13] mx-auto mb-6" />
+              <h3 className="text-xl font-bold mb-3 text-[#9f1e13]">Recurring Income</h3>
               <p className="text-gray-600">Built-in retesting cycles and protocol subscriptions.</p>
             </div>
-            <div className="bg-[#fcfaf7] p-8 rounded-2xl border border-gray-200 text-center">
-              <Users className="w-12 h-12 text-[#7a2a33] mx-auto mb-6" />
-              <h3 className="text-xl font-bold mb-3 text-[#7a2a33]">Specialist Support</h3>
+            <div className="bg-[#f9f5f2] p-8 rounded-2xl border border-gray-200 text-center">
+              <Users className="w-12 h-12 text-[#9f1e13] mx-auto mb-6" />
+              <h3 className="text-xl font-bold mb-3 text-[#9f1e13]">Specialist Support</h3>
               <p className="text-gray-600">Access our Collective of doctors and experts for complex cases.</p>
             </div>
           </div>
@@ -227,9 +227,9 @@ const PartnerWithUs2 = () => {
       </section>
 
       {/* 6. LIMITED OFFER Package */}
-      <section className="py-24 bg-[#7a2a33] text-[#fcfaf7] overflow-hidden">
+      <section className="py-24 bg-[#9f1e13] text-[#f9f5f2] overflow-hidden">
         <div className="container max-w-5xl relative z-10 text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-white text-[#7a2a33] font-bold tracking-widest uppercase text-xs mb-8">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-white text-[#9f1e13] font-bold tracking-widest uppercase text-xs mb-8">
             LIMITED OFFER
           </span>
           <h2 className="text-4xl md:text-6xl font-playfair font-bold mb-6">The £6,000 Rollout Package</h2>
@@ -262,10 +262,10 @@ const PartnerWithUs2 = () => {
       </section>
 
       {/* Earnings Calculator */}
-      <section className="py-20 bg-[#fcfaf7] border-y border-gray-200">
+      <section className="py-20 bg-[#f9f5f2] border-y border-gray-200">
         <div className="container max-w-6xl">
           <div className="text-center mb-12">
-            <span className="text-[#7a2a33] uppercase tracking-[0.2em] font-bold text-sm block mb-4">Calculate Your Potential</span>
+            <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm block mb-4">Calculate Your Potential</span>
             <h2 className="text-4xl font-playfair font-bold text-gray-900 mb-4">How Much Could You Earn?</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Test-Based Nutrition creates powerful recurring revenue streams. Slide to see your potential monthly income based on client volume.
@@ -293,13 +293,13 @@ const PartnerWithUs2 = () => {
                   step="1" 
                   value={clientTier} 
                   onChange={(e) => setClientTier(parseInt(e.target.value))}
-                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#7a2a33]"
+                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#9f1e13]"
                 />
                 <div className="flex justify-between text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-4 px-1">
                   {earningTiers.map((tier, index) => (
                     <div 
                       key={index} 
-                      className={`transition-colors duration-300 ${clientTier === index ? 'text-[#7a2a33] scale-110' : 'hover:text-gray-600'}`}
+                      className={`transition-colors duration-300 ${clientTier === index ? 'text-[#9f1e13] scale-110' : 'hover:text-gray-600'}`}
                       onClick={() => setClientTier(index)}
                       style={{ cursor: 'pointer' }}
                     >
@@ -313,7 +313,7 @@ const PartnerWithUs2 = () => {
             {/* Earnings Column */}
             <div className="w-full md:w-1/3 md:border-l md:border-gray-100 md:pl-12 order-1 md:order-2 text-center md:text-left">
               <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Projected Income</p>
-              <p className="text-[#7a2a33] font-bold text-4xl md:text-5xl font-playfair transition-all duration-300 leading-none mb-2">
+              <p className="text-[#9f1e13] font-bold text-4xl md:text-5xl font-playfair transition-all duration-300 leading-none mb-2">
                 {earningTiers[clientTier].value}
               </p>
               <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
@@ -358,7 +358,7 @@ const PartnerWithUs2 = () => {
                 </div>
                 <div className="space-y-3">
                   <label htmlFor="partnershipType" className="text-sm font-semibold text-white/90">Partnership Type *</label>
-                  <select id="partnershipType" defaultValue="" className="flex h-14 w-full rounded-md border border-white/10 bg-[#1a1a1a] text-white px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7a2a33]" required>
+                  <select id="partnershipType" defaultValue="" className="flex h-14 w-full rounded-md border border-white/10 bg-[#1a1a1a] text-white px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9f1e13]" required>
                     <option value="" disabled className="text-white/50">Select a category</option>
                     <option value="clinic">Clinic / Private Practice</option>
                     <option value="pharmacy">Pharmacy</option>
@@ -373,7 +373,7 @@ const PartnerWithUs2 = () => {
               </div>
 
               <div className="pt-6">
-                <Button type="submit" size="lg" className="w-full h-16 text-sm font-bold tracking-widest bg-[#7a2a33] hover:bg-[#5a1a23] text-white rounded-xl uppercase">
+                <Button type="submit" size="lg" className="w-full h-16 text-sm font-bold tracking-widest bg-[#9f1e13] hover:bg-[#80180f] text-white rounded-xl uppercase">
                   Apply to Partner With TBN Today
                 </Button>
               </div>

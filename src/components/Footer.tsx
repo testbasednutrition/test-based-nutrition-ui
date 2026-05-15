@@ -50,7 +50,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link to="/collectives" className="hover:text-foreground transition-colors">Find a Collective</Link></li>
               <li><Link to="/specialists" className="hover:text-foreground transition-colors">Find a Specialist</Link></li>
-              <li><Link to="/partner-with-us-2" className="hover:text-foreground transition-colors font-semibold text-[#7a2a33]">Partner With Us</Link></li>
+              <li><Link to="/partner-with-us-2" className="hover:text-foreground transition-colors font-semibold text-[#9f1e13]">Partner With Us</Link></li>
             </ul>
           </div>
 
@@ -64,7 +64,7 @@ const Footer = () => {
               href="https://calendar.app.google/CDYDAvjFmMvJP3S88"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md bg-[#7a2a33] text-white px-6 py-2.5 text-sm font-bold hover:bg-[#5c1c24] transition-colors w-full"
+              className="inline-flex items-center justify-center rounded-md bg-[#9f1e13] text-white px-6 py-2.5 text-sm font-bold hover:bg-[#80180f] transition-colors w-full"
             >
               Book Now
             </a>

@@ -38,7 +38,7 @@ export default function ExpertsFocusRail({
     id: s.slug || `expert-${index}`,
     title: s.name,
     description: s.bio[0] || 'Health & Wellness Expert',
-    meta: `${s.category} • ${s.role}`,
+    meta: s.role,
     imageSrc: s.image || "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800",
     href: `/specialists/${s.slug}`,
   }));

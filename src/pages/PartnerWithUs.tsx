@@ -13,7 +13,7 @@ const heroImg = "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?au
 
 const PartnerWithUs = () => {
   return (
-    <div className="min-h-screen bg-[#fcfaf7]">
+    <div className="min-h-screen bg-[#f9f5f2]">
       <Navbar alwaysSolid={false} />
 
       {/* Hero Section */}
@@ -29,7 +29,7 @@ const PartnerWithUs = () => {
 
         <div className="container relative z-10 text-white">
           <div className="max-w-3xl space-y-8 animate-fade-in">
-            <span className="text-[#fcfaf7] uppercase tracking-[0.2em] font-semibold text-sm">
+            <span className="text-[#f9f5f2] uppercase tracking-[0.2em] font-semibold text-sm">
               PARTNER WITH TEST-BASED NUTRITION
             </span>
             <h1 className="text-5xl md:text-7xl font-playfair font-bold leading-tight">
@@ -44,14 +44,14 @@ const PartnerWithUs = () => {
             <p className="text-base text-gray-300 leading-relaxed max-w-2xl hidden md:block">
               We support clinics, pharmacies, health clubs, gyms, resorts, training academies, practitioners, coaches and specialists to bring test-based nutrition into real-world practice — with the training, systems, marketing and specialist support to launch confidently and grow sustainably.
             </p>
-            <div className="space-y-2 text-[#fcfaf7] font-medium border-l-2 border-[#7a2a33] pl-4 italic">
+            <div className="space-y-2 text-[#f9f5f2] font-medium border-l-2 border-[#9f1e13] pl-4 italic">
               <p>This is not just a test.</p>
               <p>This is not just a product.</p>
               <p>This is not another wellness trend.</p>
               <p>This is a complete integration solution for businesses ready to educate, empower and transform client outcomes.</p>
             </div>
             <div className="pt-4">
-              <Button size="lg" className="bg-[#7a2a33] hover:bg-[#5a1a23] text-white px-8 rounded-full shadow-lg" asChild>
+              <Button size="lg" className="bg-[#9f1e13] hover:bg-[#80180f] text-white px-8 rounded-full shadow-lg" asChild>
                 <a href="#apply">
                   Apply to Partner With TBN <ArrowRight className="ml-2 w-4 h-4" />
                 </a>
@@ -62,24 +62,24 @@ const PartnerWithUs = () => {
       </section>
 
       {/* Why Partner With TBN */}
-      <section className="py-24 bg-[#fcfaf7]">
+      <section className="py-24 bg-[#f9f5f2]">
         <div className="container max-w-4xl text-center space-y-8">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#7a2a33]">Why Partner With TBN?</h2>
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13]">Why Partner With TBN?</h2>
           <p className="text-xl md:text-2xl font-light text-gray-800 leading-relaxed max-w-3xl mx-auto">
             Because the future of health is personalised, preventative and test-based.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left py-8">
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
-              <h3 className="font-bold text-lg mb-4 text-[#7a2a33]">The Shift in Demand</h3>
+              <h3 className="font-bold text-lg mb-4 text-[#9f1e13]">The Shift in Demand</h3>
               <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" /> Clients are no longer satisfied with generic advice, isolated treatments or supplement guesswork.</li>
-                <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" /> They want to understand what their body needs.</li>
-                <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" /> They want clearer insight and personalised education.</li>
-                <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" /> They want practical next steps and ongoing support.</li>
+                <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#9f1e13] shrink-0 mt-0.5" /> Clients are no longer satisfied with generic advice, isolated treatments or supplement guesswork.</li>
+                <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#9f1e13] shrink-0 mt-0.5" /> They want to understand what their body needs.</li>
+                <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#9f1e13] shrink-0 mt-0.5" /> They want clearer insight and personalised education.</li>
+                <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#9f1e13] shrink-0 mt-0.5" /> They want practical next steps and ongoing support.</li>
               </ul>
             </div>
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
-              <h3 className="font-bold text-lg mb-4 text-[#7a2a33]">The Solution</h3>
+              <h3 className="font-bold text-lg mb-4 text-[#9f1e13]">The Solution</h3>
               <p className="text-gray-700 mb-4 leading-relaxed">
                 TBN helps businesses meet that need with a structured, science-led and commercially sustainable model.
               </p>
@@ -95,17 +95,17 @@ const PartnerWithUs = () => {
       <section className="py-24 bg-white border-t border-gray-100">
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
-            <span className="text-[#7a2a33] uppercase tracking-[0.2em] font-bold text-sm">The TBN Business Integration Model</span>
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#7a2a33] mt-4">Learn. Launch. Lead.</h2>
+            <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">The TBN Business Integration Model</span>
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13] mt-4">Learn. Launch. Lead.</h2>
             <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
               TBN gives purpose-driven businesses a clear pathway to integrate test-based nutrition without building the system from scratch.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4 p-8 border border-[#7a2a33] rounded-3xl bg-[#fcfaf7]">
-              <div className="w-16 h-16 mx-auto bg-[#7a2a33] rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-md">1</div>
-              <h3 className="text-xl font-bold font-playfair text-[#7a2a33]">Learn</h3>
+            <div className="text-center space-y-4 p-8 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2]">
+              <div className="w-16 h-16 mx-auto bg-[#9f1e13] rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-md">1</div>
+              <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Learn</h3>
               <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">Train in the TBN Method</h4>
               <p className="text-gray-600 text-sm leading-relaxed text-left">
                 We train you and your team in the TBN Method, testing ecosystem, consultation pathway, client education model and compliance-conscious communication. You learn how to explain test-based nutrition, introduce screening responsibly, understand foundational testing, guide clients through a structured pathway and communicate with confidence.
@@ -115,9 +115,9 @@ const PartnerWithUs = () => {
               </div>
             </div>
 
-            <div className="text-center space-y-4 p-8 border border-[#7a2a33] rounded-3xl bg-[#fcfaf7]">
-              <div className="w-16 h-16 mx-auto bg-[#7a2a33] rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-md">2</div>
-              <h3 className="text-xl font-bold font-playfair text-[#7a2a33]">Launch</h3>
+            <div className="text-center space-y-4 p-8 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2]">
+              <div className="w-16 h-16 mx-auto bg-[#9f1e13] rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-md">2</div>
+              <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Launch</h3>
               <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">Bring it into real-world service</h4>
               <p className="text-gray-600 text-sm leading-relaxed text-left">
                 We support you in launching TBN inside your business through consultations, test days, workshops, events, member programmes, pharmacy screening pathways, CPD courses, retreats or specialist-led education sessions. Includes: launch planning, marketing assets, campaign copy, consultation structures and more.
@@ -127,9 +127,9 @@ const PartnerWithUs = () => {
               </div>
             </div>
 
-            <div className="text-center space-y-4 p-8 border border-[#7a2a33] rounded-3xl bg-[#fcfaf7]">
-              <div className="w-16 h-16 mx-auto bg-[#7a2a33] rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-md">3</div>
-              <h3 className="text-xl font-bold font-playfair text-[#7a2a33]">Lead</h3>
+            <div className="text-center space-y-4 p-8 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2]">
+              <div className="w-16 h-16 mx-auto bg-[#9f1e13] rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-md">3</div>
+              <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Lead</h3>
               <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">Become known for prevention</h4>
               <p className="text-gray-600 text-sm leading-relaxed text-left">
                 We help you build a recognised position in your sector through ongoing client pathways, retesting, education, specialist support, recurring wellness programmes and regional visibility. The aim is to support stronger engagement, better retention, new revenue streams and long-term business growth.
@@ -143,7 +143,7 @@ const PartnerWithUs = () => {
       </section>
 
       {/* What We Help You Integrate */}
-      <section className="py-24 bg-[#7a2a33] text-[#fcfaf7]">
+      <section className="py-24 bg-[#9f1e13] text-[#f9f5f2]">
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-playfair font-bold">What We Help You Integrate</h2>
@@ -199,11 +199,11 @@ const PartnerWithUs = () => {
       </section>
 
       {/* Pathways Grid */}
-      <section className="py-24 bg-[#fcfaf7]">
+      <section className="py-24 bg-[#f9f5f2]">
         <div className="container max-w-7xl">
           <div className="text-center mb-16">
-            <span className="text-[#7a2a33] uppercase tracking-[0.2em] font-bold text-sm">Who Can Partner With TBN?</span>
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#7a2a33] mt-4">One integration system. Multiple partner pathways.</h2>
+            <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">Who Can Partner With TBN?</span>
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13] mt-4">One integration system. Multiple partner pathways.</h2>
             <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
               Each partner type has different goals, clients and commercial opportunities. Find the pathway designed for your business model.
             </p>
@@ -212,111 +212,111 @@ const PartnerWithUs = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             {/* Host a TBN Hub */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors">
-              <Building2 className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-2">Host a TBN Hub</h3>
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+              <Building2 className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Host a TBN Hub</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Become a recognised local destination for test-based nutrition.</p>
               <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-6">
                 Ideal for clinics, pharmacies, health clubs, wellness centres and multidisciplinary practices that want to host regular test days, workshops, consultations and client education events. Bring the TBN Method into your venue and become a regional access point.
               </p>
-              <div className="text-[#7a2a33] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
+              <div className="text-[#9f1e13] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
                 Explore Hosting a TBN Hub <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
             {/* Clinics & Practitioners */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors">
-              <Stethoscope className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-2">Clinics & Practitioners</h3>
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+              <Stethoscope className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Clinics & Practitioners</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Add test-based nutrition without building the system yourself.</p>
               <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-6">
                 For osteopaths, chiropractors, skin clinics, pain specialists, nutritional therapists and private health professionals. We help you move beyond guessing with supplements, allowing you to create structured, test-based transformation programmes.
               </p>
-              <div className="text-[#7a2a33] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
+              <div className="text-[#9f1e13] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
                 Explore Clinics & Practitioners <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
             {/* Pharmacies */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors">
-              <Store className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-2">Pharmacies</h3>
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+              <Store className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Pharmacies</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Bring personalised preventative health into community pharmacy.</p>
               <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-6">
                 Through rapid screening, Omega Balance testing, results reviews and education pathways, forward-thinking pharmacies can expand beyond transactional healthcare and become local hubs for proactive wellness support.
               </p>
-              <div className="text-[#7a2a33] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
+              <div className="text-[#9f1e13] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
                 Explore Pharmacy Partnerships <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
             {/* Health Clubs & Gyms */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors">
-              <HeartPulse className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-2">Health Clubs & Gyms</h3>
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+              <HeartPulse className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Health Clubs & Gyms</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Lead the next era of full-body health optimisation.</p>
               <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-6">
                 Modern members want energy, recovery, performance and measurable progress. Add premium test-based health insight to your member experience to support retention, empower PTs, and create powerful new revenue streams.
               </p>
-              <div className="text-[#7a2a33] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
+              <div className="text-[#9f1e13] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
                 Explore Health Club & Gyms <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
             {/* Academies */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors">
-              <BookOpen className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-2">Academies & CPD</h3>
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+              <BookOpen className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Academies & CPD</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Train the practitioners of the future.</p>
               <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-6">
                 Collaborate with TBN to offer certified test-based nutrition CPD courses to your students and alumni networks. Support your graduates with a practical commercial pathway in preventative health education.
               </p>
-              <div className="text-[#7a2a33] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
+              <div className="text-[#9f1e13] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
                 Explore Academy Partnerships <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
             {/* Retreats */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors">
-              <ShieldCheck className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-2">Retreats & Resorts</h3>
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+              <ShieldCheck className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Retreats & Resorts</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Premium test-based wellness experiences.</p>
               <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-6">
                 Wellness guests want insight, transformation and meaningful next steps. Offer guest screening pathways, health education talks, and post-retreat support pathways that build ongoing client relationships.
               </p>
-              <div className="text-[#7a2a33] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
+              <div className="text-[#9f1e13] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
                 Explore Retreats & Resorts <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
             {/* Events */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors">
-              <Presentation className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-2">Events & Workshops</h3>
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+              <Presentation className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Events & Workshops</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Educate first. Build trust. Create demand.</p>
               <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-6">
                 Run powerful education-led events that introduce your community to test-based nutrition. We provide event structures, marketing copy, and pathways to convert attendees into consultations.
               </p>
-              <div className="text-[#7a2a33] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
+              <div className="text-[#9f1e13] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
                 Explore Events & Workshops <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
             {/* Certified Consultant */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#7a2a33] transition-colors">
-              <UserCheck className="w-10 h-10 text-[#7a2a33] mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-[#7a2a33] mb-2">Certified Consultant</h3>
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+              <UserCheck className="w-10 h-10 text-[#9f1e13] mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Certified Consultant</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Learn the method. Launch your pathway.</p>
               <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-6">
                 For practitioners, coaches, PTs, and wellness entrepreneurs who want to fully understand and deliver the TBN pathway. Get trained to educate clients, guide consultations, and build a thriving business.
               </p>
-              <div className="text-[#7a2a33] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
+              <div className="text-[#9f1e13] text-sm font-bold flex items-center gap-2 group-hover:underline cursor-pointer">
                 Explore Consultant Training <ArrowRight className="w-4 h-4" />
               </div>
             </div>
 
             {/* Specialist Collective */}
-            <div className="bg-[#7a2a33] rounded-3xl p-8 border border-[#7a2a33] shadow-md flex flex-col h-full group text-[#fcfaf7]">
+            <div className="bg-[#9f1e13] rounded-3xl p-8 border border-[#9f1e13] shadow-md flex flex-col h-full group text-[#f9f5f2]">
               <Brain className="w-10 h-10 text-white mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-white mb-2">Specialist Collective</h3>
               <p className="text-sm text-white/90 font-medium mb-4">Support the movement. Shape the education.</p>
@@ -336,26 +336,26 @@ const PartnerWithUs = () => {
       <section className="py-24 bg-white border-y border-gray-100">
         <div className="container max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
-            <span className="text-[#7a2a33] uppercase tracking-[0.2em] font-bold text-sm">The Commercial Opportunity</span>
-            <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#7a2a33]">Add new income without replacing what you already do.</h2>
+            <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">The Commercial Opportunity</span>
+            <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#9f1e13]">Add new income without replacing what you already do.</h2>
             <p className="text-gray-600 leading-relaxed text-lg">
               TBN is designed to seamlessly integrate into your existing business model, sitting perfectly alongside osteopathy, pharmacy, aesthetics, PT, retreats, and more.
             </p>
-            <div className="bg-[#fcfaf7] border border-gray-200 rounded-3xl p-6">
-              <h4 className="font-bold text-[#7a2a33] mb-3">Revenue Opportunities Include:</h4>
+            <div className="bg-[#f9f5f2] border border-gray-200 rounded-3xl p-6">
+              <h4 className="font-bold text-[#9f1e13] mb-3">Revenue Opportunities Include:</h4>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm text-gray-700">
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33]" /> Rapid screening appts</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33]" /> Consultation packages</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33]" /> Omega & Gut tests</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33]" /> Product subscriptions</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33]" /> Retesting pathways</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33]" /> Workshops & events</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#9f1e13]" /> Rapid screening appts</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#9f1e13]" /> Consultation packages</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#9f1e13]" /> Omega & Gut tests</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#9f1e13]" /> Product subscriptions</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#9f1e13]" /> Retesting pathways</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#9f1e13]" /> Workshops & events</li>
               </ul>
             </div>
             <p className="text-sm text-gray-600 font-medium">TBN helps you build longer-term client pathways that combine education, testing, and ongoing support. This means stronger retention and sustainable growth.</p>
           </div>
 
-          <div className="bg-[#7a2a33] text-[#fcfaf7] rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
+          <div className="bg-[#9f1e13] text-[#f9f5f2] rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -translate-y-10 translate-x-10 blur-xl"></div>
             <span className="text-white/80 uppercase tracking-widest text-xs font-bold mb-2 block">Available for selected partners during rollout phase</span>
             <h3 className="text-3xl font-playfair font-bold text-white mb-8">Free Training & Marketing Package</h3>
@@ -364,17 +364,17 @@ const PartnerWithUs = () => {
               <div className="border-l-2 border-white/20 pl-4">
                 <h4 className="font-bold text-white mb-1">Free Certified TBN Training</h4>
                 <p className="text-sm text-white/80 mb-1">Training in the TBN Method, testing ecosystem, consultation pathway and client education process.</p>
-                <p className="text-xs font-bold text-[#fcfaf7]/60 uppercase tracking-wider">Value: £2,000</p>
+                <p className="text-xs font-bold text-[#f9f5f2]/60 uppercase tracking-wider">Value: £2,000</p>
               </div>
               <div className="border-l-2 border-white/20 pl-4">
                 <h4 className="font-bold text-white mb-1">Free Marketing Support & Launch Assets</h4>
                 <p className="text-sm text-white/80 mb-1">Campaign copy, event assets, test day support, and positioning.</p>
-                <p className="text-xs font-bold text-[#fcfaf7]/60 uppercase tracking-wider">Value: £2,500</p>
+                <p className="text-xs font-bold text-[#f9f5f2]/60 uppercase tracking-wider">Value: £2,500</p>
               </div>
               <div className="border-l-2 border-white/20 pl-4">
                 <h4 className="font-bold text-white mb-1">Free Annual Microsite Listing</h4>
                 <p className="text-sm text-white/80 mb-1">A featured presence on Test-BasedNutrition.com to support visibility.</p>
-                <p className="text-xs font-bold text-[#fcfaf7]/60 uppercase tracking-wider">Value: £1,500</p>
+                <p className="text-xs font-bold text-[#f9f5f2]/60 uppercase tracking-wider">Value: £1,500</p>
               </div>
             </div>
             <div className="mt-8 pt-6 border-t border-white/20">
@@ -386,21 +386,21 @@ const PartnerWithUs = () => {
       </section>
 
       {/* Difference & Who we look for */}
-      <section className="py-24 bg-[#fcfaf7]">
+      <section className="py-24 bg-[#f9f5f2]">
         <div className="container max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-[#7a2a33]">Who We Are Looking For</h2>
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-[#9f1e13]">Who We Are Looking For</h2>
             <p className="text-gray-600 leading-relaxed">
               TBN is selective. We are not looking for every clinic or wellness business. We are looking for purpose-driven partners who want to raise the standard of client education.
             </p>
             <ul className="grid grid-cols-2 gap-3 text-sm text-gray-800 font-medium pb-4">
-              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33]" /> Purpose-driven</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33]" /> Education-led</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33]" /> Client-centred</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#7a2a33]" /> Open to science</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#9f1e13]" /> Purpose-driven</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#9f1e13]" /> Education-led</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#9f1e13]" /> Client-centred</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#9f1e13]" /> Open to science</li>
             </ul>
             <div className="bg-white p-6 border border-gray-200 rounded-2xl">
-              <h4 className="font-bold text-[#7a2a33] mb-3">This is for you if:</h4>
+              <h4 className="font-bold text-[#9f1e13] mb-3">This is for you if:</h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>• Your clients are asking more nutrition questions</li>
                 <li>• You want to stop guessing with supplements</li>
@@ -412,7 +412,7 @@ const PartnerWithUs = () => {
           </div>
 
           <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-[#7a2a33]">What Makes TBN Different?</h2>
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-[#9f1e13]">What Makes TBN Different?</h2>
             <p className="text-gray-600 leading-relaxed font-semibold">
               We are the integration specialists. Many companies provide tests. Some provide supplements. Some offer training. TBN brings the full ecosystem together.
             </p>
@@ -471,7 +471,7 @@ const PartnerWithUs = () => {
                 </div>
                 <div className="space-y-3">
                   <label htmlFor="partnershipType" className="text-sm font-semibold text-white/90">Partnership Type *</label>
-                  <select id="partnershipType" defaultValue="" className="flex h-14 w-full rounded-md border border-white/10 bg-[#1a1a1a] text-white px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7a2a33]" required>
+                  <select id="partnershipType" defaultValue="" className="flex h-14 w-full rounded-md border border-white/10 bg-[#1a1a1a] text-white px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9f1e13]" required>
                     <option value="" disabled className="text-white/50">Select a category</option>
                     <option value="clinic">Clinic / Private Practice</option>
                     <option value="pharmacy">Pharmacy</option>
@@ -496,7 +496,7 @@ const PartnerWithUs = () => {
               </div>
 
               <div className="pt-6">
-                <Button type="submit" size="lg" className="w-full h-16 text-sm font-bold tracking-widest bg-[#7a2a33] hover:bg-[#5a1a23] text-white rounded-xl">
+                <Button type="submit" size="lg" className="w-full h-16 text-sm font-bold tracking-widest bg-[#9f1e13] hover:bg-[#80180f] text-white rounded-xl">
                   APPLY TO PARTNER WITH TBN
                 </Button>
                 <p className="text-xs text-center text-white/50 mt-4">

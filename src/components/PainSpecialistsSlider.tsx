@@ -14,7 +14,7 @@ export default function PainSpecialistsSlider() {
   if (isLoading) {
     return (
       <div className="bg-white p-6 lg:p-8 rounded-3xl shadow-sm border border-gray-100 flex items-center justify-center h-[500px]">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#7a2a33]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#9f1e13]"></div>
       </div>
     );
   }
@@ -30,7 +30,7 @@ export default function PainSpecialistsSlider() {
         id: s.slug || `expert-${index}`,
         title: s.name,
         description: s.bio?.[0] || 'Chronic Pain Specialist',
-        meta: `${s.category || 'Specialist'} • ${s.role || 'Consultant'}`,
+        meta: s.role || 'Consultant',
         imageSrc: s.image || "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800",
         href: `/specialists/${s.slug}`,
       };
@@ -52,7 +52,7 @@ export default function PainSpecialistsSlider() {
   return (
     <div className="bg-white p-5 lg:p-6 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden shrink-0">
       <h3 className="font-playfair text-[18px] font-bold tracking-wider text-gray-900 mb-6 uppercase text-center xl:text-left flex items-center justify-center xl:justify-start gap-2">
-        <Users className="w-5 h-5 text-[#7a2a33]" /> Chronic Pain Specialists
+        <Users className="w-5 h-5 text-[#9f1e13]" /> Chronic Pain Specialists
       </h3>
       
       <div className="w-full relative -mx-2 sm:mx-0">

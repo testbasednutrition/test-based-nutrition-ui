@@ -7,7 +7,7 @@ const heroImg = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?au
 
 const TBNMethod = () => {
   return (
-    <div className="min-h-screen bg-[#fcfaf7]">
+    <div className="min-h-screen bg-[#f9f5f2]">
       <Navbar alwaysSolid={false} />
 
       {/* Hero Section */}
@@ -23,7 +23,7 @@ const TBNMethod = () => {
 
         <div className="container relative z-10 text-white">
           <div className="max-w-3xl space-y-8 animate-fade-in">
-            <span className="text-[#fcfaf7] uppercase tracking-[0.2em] font-semibold text-sm">
+            <span className="text-[#f9f5f2] uppercase tracking-[0.2em] font-semibold text-sm">
               The TBN Method
             </span>
             <h1 className="text-5xl md:text-7xl font-playfair font-bold leading-tight">
@@ -33,10 +33,10 @@ const TBNMethod = () => {
               A science-led, personalised approach to preventative health, built around testing, education, specialist insight and measurable client pathways.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button size="lg" className="bg-[#7a2a33] hover:bg-[#5a1a23] text-white px-8 rounded-full">
+              <Button size="lg" className="bg-[#9f1e13] hover:bg-[#80180f] text-white px-8 rounded-full">
                 Start Your TBN Journey <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
-              <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-[#7a2a33] hover:border-[#7a2a33] hover:text-white rounded-full">
+              <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-[#9f1e13] hover:border-[#9f1e13] hover:text-white rounded-full">
                 Partner With TBN
               </Button>
             </div>
@@ -45,7 +45,7 @@ const TBNMethod = () => {
       </section>
 
       {/* Intro Section */}
-      <section className="py-24 bg-[#7a2a33] text-[#fcfaf7]">
+      <section className="py-24 bg-[#9f1e13] text-[#f9f5f2]">
         <div className="container max-w-4xl text-center space-y-8">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold">A New Era in Personalised Preventative Health</h2>
           <p className="text-lg md:text-xl font-light leading-relaxed">
@@ -64,12 +64,12 @@ const TBNMethod = () => {
               </ul>
             </div>
             <div className="space-y-4">
-              <h3 className="font-bold text-xl mb-4 text-[#fcfaf7]">The TBN Method</h3>
+              <h3 className="font-bold text-xl mb-4 text-[#f9f5f2]">The TBN Method</h3>
               <ul className="space-y-3 font-medium">
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#fcfaf7]" /> Instead of guessing, we test.</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#fcfaf7]" /> Instead of generic advice, we educate.</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#fcfaf7]" /> Instead of isolated treatments, we build pathways.</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#fcfaf7]" /> Instead of short-term fixes, we build foundations.</li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#f9f5f2]" /> Instead of guessing, we test.</li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#f9f5f2]" /> Instead of generic advice, we educate.</li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#f9f5f2]" /> Instead of isolated treatments, we build pathways.</li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#f9f5f2]" /> Instead of short-term fixes, we build foundations.</li>
               </ul>
             </div>
           </div>
@@ -80,11 +80,11 @@ const TBNMethod = () => {
       </section>
 
       {/* For Clients Section */}
-      <section id="how-it-works" className="py-24 bg-[#fcfaf7]">
+      <section id="how-it-works" className="py-24 bg-[#f9f5f2]">
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
-            <span className="text-[#7a2a33] uppercase tracking-[0.2em] font-bold text-sm">For Clients</span>
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#7a2a33] mt-4">How the TBN Method Works</h2>
+            <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">For Clients</span>
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13] mt-4">How the TBN Method Works</h2>
             <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
               A complete pathway from first consultation to long-term progress. Moving away from guesswork and towards a clearer understanding of your health foundations.
             </p>
@@ -93,32 +93,32 @@ const TBNMethod = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Step 1 */}
             <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#7a2a33]/5 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-              <span className="text-[#7a2a33] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">01</span>
-              <h3 className="text-2xl font-bold text-[#7a2a33] mb-2 font-playfair">Step 1: Test</h3>
-              <p className="text-[#7a2a33] font-medium mb-6">Insight before action.</p>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#9f1e13]/5 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+              <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">01</span>
+              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">Step 1: Test</h3>
+              <p className="text-[#9f1e13] font-medium mb-6">Insight before action.</p>
               <p className="text-gray-600 mb-6 text-sm leading-relaxed">
                 Every TBN pathway starts by understanding the person first. We explore your goals, lifestyle, nutrition, sleep, hormones, and wellbeing to identify the right testing pathway.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <Beaker className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" />
+                  <Beaker className="w-5 h-5 text-[#9f1e13] shrink-0 mt-0.5" />
                   <div>
-                    <strong className="block text-[#7a2a33] text-sm">Foundational Testing</strong>
+                    <strong className="block text-[#9f1e13] text-sm">Foundational Testing</strong>
                     <span className="text-gray-500 text-xs">Omega Balance & Gut Health testing to understand internal balance.</span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Zap className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" />
+                  <Zap className="w-5 h-5 text-[#9f1e13] shrink-0 mt-0.5" />
                   <div>
-                    <strong className="block text-[#7a2a33] text-sm">Rapid Point-of-Care</strong>
+                    <strong className="block text-[#9f1e13] text-sm">Rapid Point-of-Care</strong>
                     <span className="text-gray-500 text-xs">Selected biomarkers screened on-site in under 15 minutes.</span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Activity className="w-5 h-5 text-[#7a2a33] shrink-0 mt-0.5" />
+                  <Activity className="w-5 h-5 text-[#9f1e13] shrink-0 mt-0.5" />
                   <div>
-                    <strong className="block text-[#7a2a33] text-sm">Advanced Pathways</strong>
+                    <strong className="block text-[#9f1e13] text-sm">Advanced Pathways</strong>
                     <span className="text-gray-500 text-xs">Deep insights into hormones, metabolic health, and performance.</span>
                   </div>
                 </li>
@@ -127,11 +127,11 @@ const TBNMethod = () => {
             </div>
 
             {/* Step 2 */}
-            <div className="bg-[#7a2a33] text-white p-10 rounded-3xl shadow-lg relative overflow-hidden group">
+            <div className="bg-[#9f1e13] text-white p-10 rounded-3xl shadow-lg relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
               <span className="text-white font-bold text-6xl opacity-10 absolute top-8 right-8 font-playfair">02</span>
               <h3 className="text-2xl font-bold mb-2 font-playfair">Step 2: Target</h3>
-              <p className="text-[#fcfaf7] font-medium mb-6 opacity-80">Turning insight into a personalised pathway.</p>
+              <p className="text-[#f9f5f2] font-medium mb-6 opacity-80">Turning insight into a personalised pathway.</p>
               <p className="text-gray-300 mb-6 text-sm leading-relaxed">
                 Once we understand your goals and test insights, we help create a targeted education and support pathway. Instead of starting with a generic product, we start with you.
               </p>
@@ -147,18 +147,18 @@ const TBNMethod = () => {
 
             {/* Step 3 */}
             <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#7a2a33]/5 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-              <span className="text-[#7a2a33] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">03</span>
-              <h3 className="text-2xl font-bold text-[#7a2a33] mb-2 font-playfair">Step 3: Transform</h3>
-              <p className="text-[#7a2a33] font-medium mb-6">Practical support. Ongoing review.</p>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#9f1e13]/5 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+              <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">03</span>
+              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">Step 3: Transform</h3>
+              <p className="text-[#9f1e13] font-medium mb-6">Practical support. Ongoing review.</p>
               <p className="text-gray-600 mb-6 text-sm leading-relaxed">
                 TBN protocols are designed to support clients with practical next steps. The focus is education, consistency and measurable progress.
               </p>
               <p className="text-gray-600 mb-6 text-sm leading-relaxed">
                 Clients are encouraged to retest and review their pathway so they can understand what has changed, track progress and refine their next steps.
               </p>
-              <div className="bg-[#fcfaf7] p-4 rounded-xl border border-gray-100">
-                <p className="text-sm font-semibold text-[#7a2a33] mb-2">Measurable Progress In:</p>
+              <div className="bg-[#f9f5f2] p-4 rounded-xl border border-gray-100">
+                <p className="text-sm font-semibold text-[#9f1e13] mb-2">Measurable Progress In:</p>
                 <p className="text-xs text-gray-500 leading-relaxed">
                   Cellular Health • Energy • Recovery • Skin Health • Women's Health • Performance • Blood Sugar • Inflammation • Nervous System
                 </p>
@@ -172,28 +172,28 @@ const TBNMethod = () => {
       <section id="for-businesses" className="py-24 bg-white border-t border-gray-100">
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
-            <span className="text-[#7a2a33] uppercase tracking-[0.2em] font-bold text-sm">For Businesses</span>
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#7a2a33] mt-4">Learn. Launch. Lead.</h2>
+            <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">For Businesses</span>
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13] mt-4">Learn. Launch. Lead.</h2>
             <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
               A complete integration model for clinics, pharmacies, health clubs, academies, resorts and wellness businesses. We help you build a commercially sustainable pathway.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4 p-8 border border-[#7a2a33] rounded-3xl bg-[#fcfaf7]">
-              <h3 className="text-xl font-bold font-playfair text-[#7a2a33]">Phase 1: Learn</h3>
+            <div className="text-center space-y-4 p-8 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2]">
+              <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 1: Learn</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Train your team in the TBN Method, testing ecosystem, consultation pathway, and compliance-conscious communication. Give your business the confidence to introduce test-based nutrition professionally.
               </p>
             </div>
-            <div className="text-center space-y-4 p-8 border border-[#7a2a33] rounded-3xl bg-[#fcfaf7]">
-              <h3 className="text-xl font-bold font-playfair text-[#7a2a33]">Phase 2: Launch</h3>
+            <div className="text-center space-y-4 p-8 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2]">
+              <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 2: Launch</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Bring test-based nutrition into your real-world service model through consultations, test days, workshops, or screening pathways. The TBN Method becomes part of your business, not an add-on.
               </p>
             </div>
-            <div className="text-center space-y-4 p-8 border border-[#7a2a33] rounded-3xl bg-[#fcfaf7]">
-              <h3 className="text-xl font-bold font-playfair text-[#7a2a33]">Phase 3: Lead</h3>
+            <div className="text-center space-y-4 p-8 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2]">
+              <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 3: Lead</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Become known for personalised preventative health. Build stronger client engagement, new revenue streams, and recurring wellness programmes with regional visibility.
               </p>
@@ -203,17 +203,17 @@ const TBNMethod = () => {
       </section>
 
       {/* The Science & Specialists Section */}
-      <section id="science" className="py-24 bg-[#fcfaf7] text-gray-900 border-t border-gray-100">
+      <section id="science" className="py-24 bg-[#f9f5f2] text-gray-900 border-t border-gray-100">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
-              <span className="text-[#7a2a33] uppercase tracking-[0.2em] font-bold text-sm">The Science Behind TBN</span>
+              <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">The Science Behind TBN</span>
               <h2 className="text-4xl md:text-5xl font-playfair font-bold">We follow the research as it unfolds.</h2>
               <p className="text-gray-600 leading-relaxed text-lg">
                 TBN is built on the belief that the future of health must become more personalised, preventative and evidence-informed. We translate complex science into practical, accessible education.
               </p>
-              <div className="space-y-4 border-l-2 border-[#7a2a33] pl-6 py-2">
-                <p className="text-[#7a2a33] italic text-lg">"Science alone is not enough if clients cannot understand it. Testing alone is not enough if businesses do not know how to integrate it."</p>
+              <div className="space-y-4 border-l-2 border-[#9f1e13] pl-6 py-2">
+                <p className="text-[#9f1e13] italic text-lg">"Science alone is not enough if clients cannot understand it. Testing alone is not enough if businesses do not know how to integrate it."</p>
               </div>
               <p className="text-gray-600 leading-relaxed">
                 We bring together current research, specialist insight, client education, testing systems and practitioner training to create clear, usable pathways for real-world settings.
@@ -222,7 +222,7 @@ const TBNMethod = () => {
 
             <div className="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm">
               <div className="flex items-center gap-4 mb-8">
-                <Users className="w-8 h-8 text-[#7a2a33]" />
+                <Users className="w-8 h-8 text-[#9f1e13]" />
                 <h3 className="text-2xl font-bold font-playfair">Our Specialist Collective</h3>
               </div>
               <p className="text-gray-600 mb-8 leading-relaxed">
@@ -237,7 +237,7 @@ const TBNMethod = () => {
                   "Metabolic Health", "Longevity"
                 ].map((specialty, i) => (
                   <div key={i} className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#7a2a33]" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]" />
                     <span className="text-sm text-gray-600">{specialty}</span>
                   </div>
                 ))}
@@ -248,7 +248,7 @@ const TBNMethod = () => {
       </section>
 
       {/* Academy Section */}
-      <section id="academy" className="py-24 bg-[#7a2a33] text-white overflow-hidden relative">
+      <section id="academy" className="py-24 bg-[#9f1e13] text-white overflow-hidden relative">
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           {/* Subtle background pattern */}
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -262,25 +262,25 @@ const TBNMethod = () => {
         </div>
         
         <div className="container max-w-4xl text-center relative z-10">
-          <Brain className="w-16 h-16 mx-auto text-[#fcfaf7] mb-6" />
+          <Brain className="w-16 h-16 mx-auto text-[#f9f5f2] mb-6" />
           <h2 className="text-4xl md:text-6xl font-playfair font-bold mb-6">TBN Academy</h2>
-          <p className="text-xl md:text-2xl font-light mb-8 text-[#fcfaf7]/90">
+          <p className="text-xl md:text-2xl font-light mb-8 text-[#f9f5f2]/90">
             Launching September. Register your interest now.
           </p>
           <p className="text-lg leading-relaxed text-white/80 mb-10 max-w-2xl mx-auto">
             Our professional education and training platform for clinics, practitioners, health clubs, pharmacies, academies, coaches and wellness businesses that want to integrate test-based nutrition into their work.
           </p>
-          <Button size="lg" className="bg-[#fcfaf7] hover:bg-white text-[#7a2a33] font-bold px-8 rounded-full">
+          <Button size="lg" className="bg-[#f9f5f2] hover:bg-white text-[#9f1e13] font-bold px-8 rounded-full">
             Register Your Interest
           </Button>
         </div>
       </section>
 
       {/* Summary / Comparison */}
-      <section className="py-24 bg-[#fcfaf7]">
+      <section className="py-24 bg-[#f9f5f2]">
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#7a2a33]">Why TBN?</h2>
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13]">Why TBN?</h2>
             <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
               Because clients deserve more than guesswork — and businesses deserve more than disconnected tools.
             </p>
@@ -288,23 +288,23 @@ const TBNMethod = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
-              <h3 className="text-2xl font-bold text-[#7a2a33] mb-6 font-playfair border-b pb-4">Why Clients Choose TBN</h3>
+              <h3 className="text-2xl font-bold text-[#9f1e13] mb-6 font-playfair border-b pb-4">Why Clients Choose TBN</h3>
               <ul className="space-y-4">
-                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#7a2a33]" /> A clearer starting point</li>
-                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#7a2a33]" /> Personalised testing pathways</li>
-                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#7a2a33]" /> Education-led support</li>
-                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#7a2a33]" /> Specialist-backed insight</li>
-                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#7a2a33]" /> Ongoing review and retesting</li>
+                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> A clearer starting point</li>
+                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> Personalised testing pathways</li>
+                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> Education-led support</li>
+                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> Specialist-backed insight</li>
+                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> Ongoing review and retesting</li>
               </ul>
             </div>
             <div className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
-              <h3 className="text-2xl font-bold text-[#7a2a33] mb-6 font-playfair border-b pb-4">Why Businesses Choose TBN</h3>
+              <h3 className="text-2xl font-bold text-[#9f1e13] mb-6 font-playfair border-b pb-4">Why Businesses Choose TBN</h3>
               <ul className="space-y-4">
-                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#7a2a33]" /> A complete integration system</li>
-                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#7a2a33]" /> Rapid screening pathways</li>
-                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#7a2a33]" /> Certified training & marketing support</li>
-                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#7a2a33]" /> Commercial revenue models</li>
-                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#7a2a33]" /> Recurring income opportunities</li>
+                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> A complete integration system</li>
+                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> Rapid screening pathways</li>
+                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> Certified training & marketing support</li>
+                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> Commercial revenue models</li>
+                <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> Recurring income opportunities</li>
               </ul>
             </div>
           </div>
@@ -312,17 +312,17 @@ const TBNMethod = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-[#7a2a33] text-white text-center">
+      <section className="py-24 bg-[#9f1e13] text-white text-center">
         <div className="container max-w-3xl">
           <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-8">Ready to experience the TBN Method?</h2>
           <p className="text-xl text-gray-300 mb-10">
             Whether you are a client looking for a more personalised health pathway, or a business ready to integrate test-based nutrition into your services.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="bg-[#fcfaf7] hover:bg-white text-[#7a2a33] font-bold w-full sm:w-auto px-8 rounded-full">
+            <Button size="lg" className="bg-[#f9f5f2] hover:bg-white text-[#9f1e13] font-bold w-full sm:w-auto px-8 rounded-full">
               Start Your TBN Journey
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-[#7a2a33] hover:border-[#7a2a33] hover:text-white w-full sm:w-auto px-8 rounded-full">
+            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-[#9f1e13] hover:border-[#9f1e13] hover:text-white w-full sm:w-auto px-8 rounded-full">
               Partner With TBN
             </Button>
           </div>

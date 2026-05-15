@@ -99,7 +99,7 @@ const megaMenuData = [
   { 
     heading: "Neurodivergence", 
     href: "/treatments/neurodivergence",
-    subtitle: "Built by neuro specialists with lived experience",
+    subtitle: "",
     items: ["Neuro Curious", "Diagnosed", "Neuro Mums", "Women (Perimenopause & Menopause)", "Men", "Children", "Teen Girls", "Teen Boys"] 
   },
   { 
@@ -375,7 +375,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 {/* Directory Dropdown */}
                 <MenubarMenu>
                   <MenubarTrigger className={triggerClass}>
-                    Directory
+                    Our Collective
                   </MenubarTrigger>
                   <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
                     {clinicsMenuItems.map((item) => (
@@ -530,7 +530,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 className="flex items-center justify-between text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
                 onClick={() => setMobileClinicsOpen(!mobileClinicsOpen)}
               >
-                Directory
+                Our Collective
                 <ChevronDown className={`w-4 h-4 transition-transform ${mobileClinicsOpen ? "rotate-180" : ""}`} />
               </button>
               {mobileClinicsOpen && (

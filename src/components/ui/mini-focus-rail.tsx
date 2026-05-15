@@ -194,7 +194,7 @@ export function MiniFocusRail({
                   className="space-y-1.5"
                 >
                   {activeItem.meta && (
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#7a2a33] leading-tight block">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#9f1e13] leading-tight block">
                       {activeItem.meta}
                     </span>
                   )}
@@ -233,7 +233,7 @@ export function MiniFocusRail({
             {activeItem?.href && (
               <Link
                 to={activeItem.href}
-                className="group flex w-full justify-center items-center gap-2 rounded-full bg-white border border-[#7a2a33]/30 text-[#7a2a33] hover:bg-[#7a2a33] hover:text-white px-4 py-2 text-[13px] font-bold transition-all active:scale-95 shadow-sm"
+                className="group flex w-full justify-center items-center gap-2 rounded-full bg-white border border-[#9f1e13]/30 text-[#9f1e13] hover:bg-[#9f1e13] hover:text-white px-4 py-2 text-[13px] font-bold transition-all active:scale-95 shadow-sm"
               >
                 View Profile
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

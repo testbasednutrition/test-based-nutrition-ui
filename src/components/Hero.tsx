@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import { useQuiz } from "@/components/QuizContext";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -15,17 +16,18 @@ const slides = [
     action: "quiz"
   },
   {
-    videoUrl: "/videos/hero-bg.mp4",
-    heading1: "Transform Your Health,",
-    heading2: "Client Examples",
-    subheading: "See how test-based nutrition has changed the lives of our clients.",
-    cta: "View Client Stories",
-    action: "scroll"
+    videoUrl: "/videos/whatsapp-hero.mp4",
+    heading1: "The World's First Test-Based",
+    heading2: "Integration System",
+    subheading: "Transform your clinic, health club or resort with advanced testing, practitioner training, workshops and personalised programmes.",
+    cta: "Partner With Us",
+    action: "partner"
   }
 ];
 
 const Hero = () => {
   const { openQuiz } = useQuiz();
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -40,6 +42,8 @@ const Hero = () => {
   const handleCta = () => {
     if (slide.action === "quiz") {
       openQuiz();
+    } else if (slide.action === "partner") {
+      navigate("/partner-with-us");
     } else {
       document.getElementById("transformations")?.scrollIntoView({ behavior: "smooth" });
     }
