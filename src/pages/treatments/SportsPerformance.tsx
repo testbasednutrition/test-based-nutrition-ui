@@ -106,23 +106,23 @@ const SportsPerformance = () => {
       </div>
 
       {/* TRUST BAR */}
-      <div className="w-full bg-[#dbd4c9] py-3 border-y border-[#dbd4c9] md:py-4 overflow-hidden">
+      <div className="w-full bg-background py-3 border-y border-[#dbd4c9]/40 md:py-4 overflow-hidden">
         <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 shrink-0">
             <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
-            Rapid Performance Testing
+            Foundational Testing
           </span>
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 shrink-0">
             <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
-            Real-Time Intelligence
+            Rapid Point-of-Care Testing
           </span>
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 shrink-0">
             <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
-            Guided by Elite Specialists
+            Expert-Led Protocols
           </span>
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 shrink-0">
             <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
-            Measurable Performance Gains
+            Personalised Preventative Programmes
           </span>
         </div>
       </div>

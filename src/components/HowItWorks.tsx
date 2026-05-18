@@ -68,8 +68,14 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="py-24 md:py-32 bg-secondary border-t border-border">
-      <div className="container px-6 max-w-7xl mx-auto">
+    <section id="how-it-works" className="relative py-24 md:py-32 bg-secondary">
+      {/* Top Fade Transition */}
+      <div className="absolute top-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-b from-background to-transparent pointer-events-none" />
+      
+      {/* Bottom Fade Transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+
+      <div className="container px-6 max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
           
           {/* Left: Sticky Header Panel */}

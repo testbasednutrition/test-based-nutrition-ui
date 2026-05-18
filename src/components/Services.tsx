@@ -61,14 +61,17 @@ const servicesData: Gallery4Props = {
 
 const Services = () => {
   return (
-    <div className="bg-secondary pb-16 md:pb-24 pt-16">
-      <Gallery4 
-        title={servicesData.title}
-        description={servicesData.description}
-        items={servicesData.items}
-        compact={true}
-      />
-      <div className="container mx-auto px-4 sm:px-6 mt-0 md:mt-2 text-center max-w-4xl flex flex-col items-center">
+    <div className="w-full bg-background pt-16 pb-16 md:pb-24 flex flex-col">
+      <div className="pb-10 md:pb-14">
+        <Gallery4 
+          title={servicesData.title}
+          description={servicesData.description}
+          items={servicesData.items}
+          compact={true}
+        />
+      </div>
+      
+      <div className="container mx-auto px-4 sm:px-6 text-center max-w-4xl flex flex-col items-center">
         <h3 className="text-xl md:text-2xl lg:text-3xl font-bold font-playfair font-heading mb-4 text-foreground">
           Every pathway begins with personalised testing
         </h3>

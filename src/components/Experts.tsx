@@ -27,8 +27,14 @@ const experts = [
 
 const Experts = () => {
   return (
-    <section id="experts" className="py-20 md:py-32 bg-secondary">
-      <div className="container mx-auto px-4 md:px-6 max-w-[1300px]">
+    <section id="experts" className="relative py-20 md:py-32 bg-secondary">
+      {/* Top Fade Transition */}
+      <div className="absolute top-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-b from-background to-transparent pointer-events-none" />
+      
+      {/* Bottom Fade Transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+
+      <div className="container mx-auto px-4 md:px-6 max-w-[1300px] relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
           
           {/* Left Column: Team Grid */}
