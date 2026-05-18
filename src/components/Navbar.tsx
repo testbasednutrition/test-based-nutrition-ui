@@ -143,7 +143,7 @@ const clinicsMenuItems = [
 ];
 
 const partnerMenuItems = [
-  { label: "Host a TBN Hub", href: "/partner-with-us" },
+  { label: "Host a TBN Hub", href: "/partner-with-us-2" },
   { label: "Clinics & Practitioners", href: "/partner-with-us" },
   { label: "Health Clubs", href: "/partner-with-us" },
   { label: "Events & Workshops", href: "/partner-with-us" },
