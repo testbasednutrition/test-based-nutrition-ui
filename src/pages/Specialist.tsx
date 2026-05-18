@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, MapPin, Phone, Mail, Quote } from "lucide-react";
+import { ArrowLeft, MapPin, Phone, Mail, Quote, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const clientResults = [
@@ -76,13 +76,12 @@ const Specialist = () => {
               </div>
             </div>
 
-            {/* Right: Image placeholder */}
             <div className="relative">
-              <div className="aspect-[4/5] rounded-2xl bg-muted overflow-hidden">
+              <div className="aspect-[4/5] rounded-3xl overflow-hidden border-[3px] border-secondary shadow-sm">
                 <img
                   src="https://test-basednutrition.com/assets/images/optimise-gallery-9-1256x852.jpeg"
                   alt="Neil Parsley celebrating with trophy"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="absolute -bottom-4 -left-4 bg-card border border-border rounded-xl p-4 shadow-lg">
@@ -115,22 +114,26 @@ const Specialist = () => {
       </section>
 
       {/* Credentials */}
-      <section className="py-16 md:py-24">
-        <div className="container px-6">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
-            Credentials & Expertise
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-10">
-            Qualifications<span className="text-primary">.</span>
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <section className="py-16 bg-background">
+        <div className="container px-4 md:px-6 lg:px-8 max-w-7xl">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-3">
+              Credentials & Expertise
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+              Qualifications
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {credentials.map((cred) => (
               <div
                 key={cred}
-                className="bg-card border border-border rounded-xl p-5 hover:shadow-md transition-shadow"
+                className="bg-background border border-border/60 rounded-2xl p-5 flex items-center gap-4 hover:border-primary/30 transition-colors"
               >
-                <div className="w-2 h-2 rounded-full bg-primary mb-3" />
-                <p className="font-medium text-sm">{cred}</p>
+                <div className="w-10 h-10 shrink-0 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center">
+                  <CheckCircle2 className="w-5 h-5 text-primary" />
+                </div>
+                <p className="font-medium text-muted-foreground text-sm leading-snug">{cred}</p>
               </div>
             ))}
           </div>

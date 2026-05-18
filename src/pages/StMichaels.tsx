@@ -29,7 +29,7 @@ const StMichaels = () => {
         
         <div className="relative z-20 text-center px-4 md:px-6 max-w-4xl mx-auto mt-20">
           <div className="flex items-center justify-center gap-6 mb-6">
-            <img src="/logos/test-based-logotype-460x92.png" alt="TBN" className="h-6 md:h-8 object-contain brightness-0 invert" />
+            <img src="/logos/test-based-logo-new.png" alt="TBN" className="h-10 md:h-12 object-contain brightness-0 invert" />
             <span className="text-white text-xl font-light">×</span>
             {/* St Michaels Logo Placeholder (using text if logo not available) */}
             <h2 className="text-white font-playfair text-2xl md:text-3xl font-bold tracking-wider uppercase">St Michaels Resort</h2>

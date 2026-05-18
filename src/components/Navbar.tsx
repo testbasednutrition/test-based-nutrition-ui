@@ -263,10 +263,10 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
 
   const isSolid = alwaysSolid || isScrolled || mobileOpen;
 
-  const navBgClass = isSolid ? "bg-stone-50 shadow-md border-b border-border/20" : "bg-transparent pb-4 pt-2"; // add padding when transparent so it feels like it "drops down" on scroll
+  const navBgClass = isSolid ? "bg-stone-50 shadow-md border-b border-border/20" : "bg-transparent";
   const linkClass = "text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors " + (isSolid ? "text-black/80 hover:text-black" : "text-white/90 hover:text-white drop-shadow-md");
   const triggerClass = "cursor-pointer border-none outline-none focus:bg-transparent data-[state=open]:bg-transparent " + linkClass + " data-[state=open]:!text-black";
-  const logoClass = "h-8 md:h-10 object-contain transition-all duration-300 " + (!isSolid ? "brightness-0 invert" : "");
+  const logoClass = "h-14 md:h-[4.5rem] object-contain transition-all duration-300 " + (!isSolid ? "brightness-0 invert" : "");
   const btnOutlineClass = "bg-transparent border-[1.5px] transition-colors " + (isSolid ? "border-primary text-primary hover:bg-primary/5 hover:text-primary" : "border-white/80 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm");
   const btnGhostClass = "transition-colors " + (isSolid ? "text-black/80 hover:text-black hover:bg-black/10" : "text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm");
   const mobileToggleClass = "lg:hidden p-2 transition-colors " + (isSolid ? "text-black" : "text-white drop-shadow-md");
@@ -279,7 +279,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
           {/* Logo */}
           <a href="/" className="flex items-center">
             <img 
-              src="/logos/test-based-logotype-460x92.png" 
+              src="/logos/test-based-logo-new.png" 
               alt="Test-Based Nutrition" 
               className={logoClass}
             />

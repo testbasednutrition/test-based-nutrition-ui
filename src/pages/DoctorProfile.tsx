@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, MapPin, Phone, Mail, Quote, GraduationCap, Award, Stethoscope, BookOpen } from "lucide-react";
+import { ArrowLeft, MapPin, Phone, Mail, Quote, GraduationCap, Award, Stethoscope, BookOpen, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const specialisations = [
@@ -136,23 +136,29 @@ const DoctorProfile = () => {
       </section>
 
       {/* Qualifications */}
-      <section className="py-16 md:py-24">
-        <div className="container px-6">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
-            Medical Qualifications
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-10">
-            Credentials<span className="text-primary">.</span>
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <section className="py-16 bg-background">
+        <div className="container px-4 md:px-6 lg:px-8 max-w-7xl">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-3">
+              Medical Qualifications
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+              Credentials
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {qualifications.map((q) => (
               <div
                 key={q.title}
-                className="bg-card border border-border rounded-xl p-5 hover:shadow-md transition-shadow"
+                className="bg-background border border-border/60 rounded-2xl p-5 flex items-center gap-4 hover:border-primary/30 transition-colors"
               >
-                <GraduationCap className="w-5 h-5 text-primary mb-3" />
-                <p className="font-bold text-sm">{q.title}</p>
-                <p className="text-xs text-muted-foreground mt-1">{q.subtitle}</p>
+                <div className="w-10 h-10 shrink-0 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center">
+                  <CheckCircle2 className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-bold text-foreground text-sm leading-snug">{q.title}</span>
+                  <span className="font-medium text-muted-foreground text-xs leading-snug mt-0.5">{q.subtitle}</span>
+                </div>
               </div>
             ))}
           </div>

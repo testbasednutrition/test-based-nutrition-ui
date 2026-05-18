@@ -30,7 +30,7 @@ export const StructuredTesting: React.FC<StructuredTestingProps> = ({ foundation
             {foundational.map((test, idx) => (
               <div key={idx} className="bg-white border border-[#dbd4c9] rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-[#9f1e13]/30 transition-all">
                 <div className="w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden">
-                  <img src={test.logo} alt={test.name} className="w-full h-full object-contain scale-[1.15]" />
+                  <img src={test.logo} alt={test.name} className={`w-full h-full object-contain ${test.name === 'FSH' ? 'scale-[1.8]' : 'scale-[1.15]'}`} />
                 </div>
                 <span className="font-bold text-gray-900 text-[15px]">{test.name}</span>
               </div>
@@ -50,7 +50,7 @@ export const StructuredTesting: React.FC<StructuredTestingProps> = ({ foundation
             {baseline.map((test, idx) => (
               <div key={idx} className="bg-white border border-[#dbd4c9] rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-[#9f1e13]/30 transition-all">
                 <div className="w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden">
-                  <img src={test.logo} alt={test.name} className="w-full h-full object-contain scale-[1.15]" />
+                  <img src={test.logo} alt={test.name} className={`w-full h-full object-contain ${test.name === 'FSH' ? 'scale-[1.8]' : 'scale-[1.15]'}`} />
                 </div>
                 <span className="font-bold text-gray-900 text-[15px]">{test.name}</span>
               </div>
@@ -70,7 +70,7 @@ export const StructuredTesting: React.FC<StructuredTestingProps> = ({ foundation
             {advanced.map((test, idx) => (
               <div key={idx} className="bg-white border border-[#dbd4c9] rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-[#9f1e13]/30 transition-all">
                 <div className="w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden">
-                  <img src={test.logo} alt={test.name} className="w-full h-full object-contain scale-[1.15]" />
+                  <img src={test.logo} alt={test.name} className={`w-full h-full object-contain ${test.name === 'FSH' ? 'scale-[1.8]' : 'scale-[1.15]'}`} />
                 </div>
                 <span className="font-bold text-gray-900 text-[15px]">{test.name}</span>
               </div>

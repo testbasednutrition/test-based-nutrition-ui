@@ -19,9 +19,9 @@ const NewsNavbar = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <img 
-            src="/logos/test-based-logotype-460x92.png" 
+            src="/logos/test-based-logo-new.png" 
             alt="Test-Based Nutrition" 
-            className="h-6 md:h-8 object-contain"
+            className="h-12 md:h-14 object-contain"
           />
           <div className="leading-tight border-l border-border pl-2 ml-1">
             <span className="font-semibold text-xs whitespace-nowrap">News Hub</span>
