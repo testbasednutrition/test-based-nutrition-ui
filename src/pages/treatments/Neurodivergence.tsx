@@ -123,35 +123,6 @@ const Neurodivergence = () => {
 
       <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pb-8 md:pb-16 mb-16">
 
-        {/* SECTION 3 — SPECIALIST LEADS */}
-        <div className="mb-20 xl:mb-24 px-4 lg:px-0 mt-16">
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#9f1e13]/20 border-t border-gray-100 pt-10">
-              {/* Specialist 1 */}
-              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
-                 <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-[4/5] sm:aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50 bg-gray-50">
-                    <img src="/experts/jennifer-kirton.jpg" alt="Dr Jennifer Kirton" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
-                 </div>
-                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
-                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-0">Dr Jennifer Kirton</h3>
-                   <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">BSc, MSc, PhD</p>
-                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#9f1e13] uppercase tracking-widest mb-4">Autism & Neurodivergence Research Specialist<br/>University of Liverpool Autism Hub Co-Founder<br/>Late Diagnosed ADHD</div>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Research increasingly highlights the importance of understanding wider health factors in neurodivergent individuals — including gut health, nutritional status, inflammation, and the systems influencing cognitive and emotional wellbeing."</p>
-                 </div>
-              </div>
-              
-              {/* Specialist 2 */}
-              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pl-4 lg:pl-14">
-                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
-                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-1">Emma-Louise Pannell</h3>
-                   <div className="font-sans text-[9px] lg:text-[10px] font-semibold text-gray-900 uppercase tracking-widest mb-1 mt-1">F.Y.I.P Founder & CEO</div>
-                   <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#9f1e13] uppercase tracking-widest mb-4">Lived Experience: Late Diagnosed ADHD, ADD, OCD & Autism<br/>Mother of a Neurodivergent Child | 14+ Years in Mental Health & System Leadership</div>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Many neurodivergent individuals spend years trying to cope without understanding how factors like nervous system load, gut health, nutrient deficiencies, inflammation, and hormonal health may be influencing how they feel, function, and regulate day to day."</p>
-                 </div>
-              </div>
-          </div>
-        </div>
-
         {/* SECTION 2 — EXPLORE YOUR PATHWAY */}
         <div id="pathways" className="mb-12 xl:mb-20">
           <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] mb-8">
@@ -208,6 +179,33 @@ const Neurodivergence = () => {
           </div>
         </div>
 
+        {/* SECTION 3 — SPECIALIST LEADS */}
+        <div className="mb-20 xl:mb-24 px-4 lg:px-0 mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#9f1e13]/20 border-t border-gray-100 pt-10">
+              {/* Specialist 1 */}
+              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
+                 <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-[4/5] sm:aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50 bg-gray-50">
+                    <img src="/experts/jennifer-kirton.jpg" alt="Dr Jennifer Kirton" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
+                 </div>
+                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
+                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-0">Dr Jennifer Kirton</h3>
+                   <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">BSc, MSc, PhD</p>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#9f1e13] uppercase tracking-widest mb-4">Autism & Neurodivergence Research Specialist<br/>University of Liverpool Autism Hub Co-Founder<br/>Late Diagnosed ADHD</div>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Research increasingly highlights the importance of understanding wider health factors in neurodivergent individuals — including gut health, nutritional status, inflammation, and the systems influencing cognitive and emotional wellbeing."</p>
+                 </div>
+              </div>
+              
+              {/* Specialist 2 */}
+              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pl-4 lg:pl-14">
+                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
+                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-1">Emma-Louise Pannell</h3>
+                   <div className="font-sans text-[9px] lg:text-[10px] font-semibold text-gray-900 uppercase tracking-widest mb-1 mt-1">F.Y.I.P Founder & CEO</div>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#9f1e13] uppercase tracking-widest mb-4">Lived Experience: Late Diagnosed ADHD, ADD, OCD & Autism<br/>Mother of a Neurodivergent Child | 14+ Years in Mental Health & System Leadership</div>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Many neurodivergent individuals spend years trying to cope without understanding how factors like nervous system load, gut health, nutrient deficiencies, inflammation, and hormonal health may be influencing how they feel, function, and regulate day to day."</p>
+                 </div>
+              </div>
+          </div>
+        </div>
 
         {/* SECTION 7.5 — THE SCIENCE BEHIND NEURODIVERGENCE */}
         <div className="w-full mt-16 lg:mt-24 max-w-6xl mx-auto px-4">
