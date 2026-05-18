@@ -61,7 +61,7 @@ const servicesData: Gallery4Props = {
 
 const Services = () => {
   return (
-    <div className="bg-background pb-16 md:pb-24">
+    <div className="bg-secondary pb-16 md:pb-24 pt-16">
       <Gallery4 
         title={servicesData.title}
         description={servicesData.description}

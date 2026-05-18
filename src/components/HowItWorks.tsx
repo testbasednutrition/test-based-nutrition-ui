@@ -68,7 +68,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="py-24 md:py-32 bg-stone-50/50 border-t border-border">
+    <section id="how-it-works" className="py-24 md:py-32 bg-secondary border-t border-border">
       <div className="container px-6 max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
           

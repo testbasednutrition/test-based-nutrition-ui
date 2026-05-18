@@ -169,7 +169,7 @@ const TBNMethod = () => {
       </section>
 
       {/* For Businesses Section */}
-      <section id="for-businesses" className="py-24 bg-white border-t border-gray-100">
+      <section id="for-businesses" className="py-24 bg-[#dbd4c9] border-y border-[#dbd4c9]">
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
             <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">For Businesses</span>

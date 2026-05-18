@@ -100,7 +100,7 @@ const Neurodivergence = () => {
       </div>
 
       {/* TRUST BAR */}
-      <div className="w-full bg-[#f9f5f2] border-y border-gray-200 py-3 md:py-4 mb-2 overflow-hidden">
+      <div className="w-full bg-[#dbd4c9] py-3 border-y border-[#dbd4c9] md:py-4 mb-2 overflow-hidden">
         <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
@@ -161,7 +161,7 @@ const Neurodivergence = () => {
 
         {/* SECTION 2 — EXPLORE YOUR PATHWAY */}
         <div id="pathways" className="mb-12 xl:mb-20">
-          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-2 md:pt-4">
+          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-12 pb-16 bg-[#dbd4c9] mt-8 mb-8">
             <Gallery4 
               subtitle="Neurodivergence Pathways"
               title="Personalised support"

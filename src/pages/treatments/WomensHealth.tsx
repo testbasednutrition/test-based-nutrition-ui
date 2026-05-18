@@ -95,33 +95,12 @@ const WomensHealth = () => {
         </div>
       </div>
 
-      {/* TRUST BAR */}
-      <div className="w-full bg-[#f9f5f2] border-y border-gray-200 py-3 md:py-4 mb-2 overflow-hidden">
-        <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
-            Advanced Biomarker Testing
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
-            Led by Clinical Specialists
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
-            Personalised Protocols
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
-            Measurable Health Outcomes
-          </span>
-        </div>
-      </div>
 
       <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pb-8 md:pb-16 mb-16">
 
         {/* SECTION 2 — EXPLORE YOUR PATHWAY */}
         <div id="pathways" className="mb-12 xl:mb-20">
-          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-2 md:pt-4">
+          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-12 pb-16 bg-[#dbd4c9] mt-8 mb-8">
             <Gallery4 
               subtitle="Women's Health Pathways"
               title="Explore Your Women's Health Pathway"
@@ -179,9 +158,6 @@ const WomensHealth = () => {
                 }
               ]}
             />
-            <div className="text-center mt-6">
-              <p className="font-bold text-[#9f1e13] text-[14px]">Each pathway is supported through structured testing and specialist insight</p>
-            </div>
           </div>
         </div>
 
