@@ -40,11 +40,11 @@ const MensHealth = () => {
   }));
 
   return (
-    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#fdfdf9] font-montserrat">
+    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#f9f5f2] font-montserrat">
       <Navbar alwaysSolid />
       
       {/* FULL BLEED HERO SECTION */}
-      <div className="w-full relative bg-[#fdfdf9] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
+      <div className="w-full relative bg-[#f9f5f2] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
         {/* Background Image spanning the right side */}
         <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
           <img src={heroImg} alt="Men's Health" className="w-full h-full object-cover object-[center_20%]" />
@@ -53,7 +53,7 @@ const MensHealth = () => {
           <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
           {/* Blend image and black gradient into the left text container background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#fdfdf9] via-[#fdfdf9]/70 lg:via-[#fdfdf9]/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#f9f5f2] via-[#f9f5f2]/70 lg:via-[#f9f5f2]/20 to-transparent"></div>
         </div>
 
         {/* Content Container Aligned inside normal max-width margins */}
@@ -73,7 +73,7 @@ const MensHealth = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button 
                   onClick={() => openQuiz()}
-                  className="bg-[#9f1e13] hover:bg-[#80180f] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
+                  className="bg-[#9f1e13] hover:bg-[#9f1e13] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2">
                   Start Your Journey <ArrowRight className="w-4 h-4" />
                 </button>
                 <button 
@@ -103,7 +103,7 @@ const MensHealth = () => {
       </div>
 
       {/* TRUST BAR */}
-      <div className="w-full bg-[#f5f5f5] border-y border-gray-200 py-3 md:py-4 mb-2 overflow-hidden">
+      <div className="w-full bg-[#f9f5f2] border-y border-gray-200 py-3 md:py-4 mb-2 overflow-hidden">
         <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
@@ -292,7 +292,7 @@ const MensHealth = () => {
 
            <div className="mt-12 bg-[#9f1e13] text-white p-8 md:p-10 rounded-3xl shadow-xl text-center space-y-4 max-w-4xl mx-auto">
              <p className="font-playfair italic text-[20px] md:text-[24px] font-bold">"What we apply in elite sport — identifying and supporting the root drivers of performance — becomes even more important as men age and the demands on the body change."</p>
-             <p className="font-sans text-[14px] uppercase tracking-widest text-[#d0bfae] font-bold">— Dr Ishtiaq Rehman</p>
+             <p className="font-sans text-[14px] uppercase tracking-widest text-[#dbd4c9] font-bold">— Dr Ishtiaq Rehman</p>
            </div>
         </div>
 
@@ -363,7 +363,7 @@ const MensHealth = () => {
 
             {/* Box 2: Foundations */}
             <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
-               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#9f1e13] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#8c353f] whitespace-nowrap">Most Popular</div>
+               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#9f1e13] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#9f1e13] whitespace-nowrap">Most Popular</div>
                
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Men's Health Foundations</h3>
@@ -389,7 +389,7 @@ const MensHealth = () => {
                      <p className="text-[13px] text-gray-500 font-medium flex items-center gap-1.5">+ £39/mo optional support</p>
                    </div>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#8c353f] transition-colors shadow-md mb-6">
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6">
                    Start Foundations
                  </button>
                  <div className="flex-grow">
@@ -424,7 +424,7 @@ const MensHealth = () => {
                      </div>
                    </div>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#8c353f] transition-colors shadow-md mb-6">
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6">
                    Book Advanced Review
                  </button>
                  <div className="flex-grow flex flex-col justify-between">
@@ -437,19 +437,19 @@ const MensHealth = () => {
 
             {/* Box 4: Elite Consultation */}
             <div className="bg-[#9f1e13] border border-white/10 p-8 rounded-[2rem] shadow-xl hover:shadow-2xl flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-all duration-300 transform-gpu will-change-transform isolate">
-               <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#d0bfae] opacity-10 blur-3xl rounded-full pointer-events-none group-hover:opacity-20 transition-opacity duration-500"></div>
+               <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#dbd4c9] opacity-10 blur-3xl rounded-full pointer-events-none group-hover:opacity-20 transition-opacity duration-500"></div>
                
                <div className="h-[100px] shrink-0 mb-2 relative z-10 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-white leading-tight mb-2">TBN Elite Consultation</h3>
-                 <p className="text-[11px] font-bold text-[#d0bfae] uppercase tracking-widest">Private 1:1 with Doctor or Elite Coach</p>
+                 <p className="text-[11px] font-bold text-[#dbd4c9] uppercase tracking-widest">Private 1:1 with Doctor or Elite Coach</p>
                </div>
                
                <div className="flex-grow mb-6 space-y-3 relative z-10">
                  <p className="font-bold text-[11px] text-white/40 uppercase tracking-widest mb-3">Includes</p>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Full Results Review</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Personalised Strategy</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Bespoke Protocol</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Follow-Up & Retest</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#dbd4c9] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Full Results Review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#dbd4c9] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Personalised Strategy</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#dbd4c9] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Bespoke Protocol</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#dbd4c9] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Follow-Up & Retest</span></div>
                </div>
 
                <div className="h-[360px] shrink-0 pt-6 border-t border-white/10 flex flex-col relative z-10">
@@ -460,7 +460,7 @@ const MensHealth = () => {
                      </div>
                    </div>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#d0bfae] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6">
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#dbd4c9] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6">
                    Apply for Elite Support
                  </button>
                  <div className="flex-grow flex flex-col justify-between">
@@ -468,8 +468,8 @@ const MensHealth = () => {
                      Work directly with:
                    </p>
                    <div className="bg-white/5 p-3.5 rounded-xl border border-white/10 w-full mt-auto">
-                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#d0bfae] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Dr Ishtiaq Rehman <span className="text-white/50 font-normal">(Medical Director)</span></p></div>
-                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#d0bfae] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Neil Parsley <span className="text-white/50 font-normal">(Elite Coach)</span></p></div>
+                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#dbd4c9] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Dr Ishtiaq Rehman <span className="text-white/50 font-normal">(Medical Director)</span></p></div>
+                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#dbd4c9] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Neil Parsley <span className="text-white/50 font-normal">(Elite Coach)</span></p></div>
                    </div>
                  </div>
                </div>
@@ -511,7 +511,7 @@ const MensHealth = () => {
                          <div className="mt-auto">
                             <p className="font-bold text-gray-900 text-[13px] uppercase tracking-widest mb-4">Partner With TBN</p>
                             <div className="flex flex-col sm:flex-row gap-3">
-                               <button className="flex-1 bg-[#9f1e13] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#80180f] transition-colors shadow-sm text-center">
+                               <button className="flex-1 bg-[#9f1e13] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-sm text-center">
                                  Become a Partner
                                </button>
                                <button className="flex-1 bg-white border border-gray-200 text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm text-center">
@@ -570,7 +570,7 @@ const MensHealth = () => {
                     </div>
                     
                     <div className="mt-auto w-full relative z-10">
-                       <button className="w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#80180f] transition-colors shadow-md">
+                       <button className="w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-md">
                           Explore Clinic Directory
                        </button>
                     </div>
@@ -667,7 +667,7 @@ const MensHealth = () => {
             <p className="text-[18px] text-[#9f1e13] font-bold mb-2">From fatigue and burnout to performance and longevity —</p>
             <p className="text-[16px] text-gray-600 mb-8 font-medium">this is a structured, measurable way to understand and support your health.<br/><br/>Test-Based. Specialist-Led. Precision-Driven.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-               <button onClick={() => openQuiz()} className="bg-[#9f1e13] text-white px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-[#80180f] transition-colors shadow-sm">
+               <button onClick={() => openQuiz()} className="bg-[#9f1e13] text-white px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-sm">
                  Start Your Journey
                </button>
                <button className="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm">

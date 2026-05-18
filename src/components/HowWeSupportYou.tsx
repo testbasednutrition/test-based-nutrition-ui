@@ -29,7 +29,7 @@ const HowWeSupportYou = () => {
           <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 max-w-3xl mx-auto">
             {steps.map((step, index) => (
               <React.Fragment key={index}>
-                <div className="bg-[#9f1e13] border border-[#80180f] px-4 py-1.5 rounded-full text-white font-semibold text-[13px] uppercase tracking-widest shadow-sm">
+                <div className="bg-[#9f1e13] border border-[#9f1e13] px-4 py-1.5 rounded-full text-white font-semibold text-[13px] uppercase tracking-widest shadow-sm">
                   {step}
                 </div>
                 {index < steps.length - 1 && (
@@ -51,7 +51,7 @@ const HowWeSupportYou = () => {
             {includes.map((item, index) => {
               const Icon = item.icon;
               return (
-                <div key={index} className="bg-[#9f1e13] hover:bg-[#80180f] transition-colors duration-300 rounded-xl p-4 flex items-center gap-4 shadow-sm group">
+                <div key={index} className="bg-[#9f1e13] hover:bg-[#9f1e13] transition-colors duration-300 rounded-xl p-4 flex items-center gap-4 shadow-sm group">
                   <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
                     <Icon className="w-4 h-4 text-white" strokeWidth={2} />
                   </div>

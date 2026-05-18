@@ -51,7 +51,7 @@ const PartnerWithUs = () => {
               <p>This is a complete integration solution for businesses ready to educate, empower and transform client outcomes.</p>
             </div>
             <div className="pt-4">
-              <Button size="lg" className="bg-[#9f1e13] hover:bg-[#80180f] text-white px-8 rounded-full shadow-lg" asChild>
+              <Button size="lg" className="bg-[#9f1e13] hover:bg-[#9f1e13] text-white px-8 rounded-full shadow-lg" asChild>
                 <a href="#apply">
                   Apply to Partner With TBN <ArrowRight className="ml-2 w-4 h-4" />
                 </a>
@@ -496,7 +496,7 @@ const PartnerWithUs = () => {
               </div>
 
               <div className="pt-6">
-                <Button type="submit" size="lg" className="w-full h-16 text-sm font-bold tracking-widest bg-[#9f1e13] hover:bg-[#80180f] text-white rounded-xl">
+                <Button type="submit" size="lg" className="w-full h-16 text-sm font-bold tracking-widest bg-[#9f1e13] hover:bg-[#9f1e13] text-white rounded-xl">
                   APPLY TO PARTNER WITH TBN
                 </Button>
                 <p className="text-xs text-center text-white/50 mt-4">

@@ -33,7 +33,7 @@ const TBNMethod = () => {
               A science-led, personalised approach to preventative health, built around testing, education, specialist insight and measurable client pathways.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button size="lg" className="bg-[#9f1e13] hover:bg-[#80180f] text-white px-8 rounded-full">
+              <Button size="lg" className="bg-[#9f1e13] hover:bg-[#9f1e13] text-white px-8 rounded-full">
                 Start Your TBN Journey <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
               <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-[#9f1e13] hover:border-[#9f1e13] hover:text-white rounded-full">

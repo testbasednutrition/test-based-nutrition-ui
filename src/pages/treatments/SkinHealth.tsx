@@ -63,11 +63,11 @@ const SkinHealth = () => {
   }));
 
   return (
-    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#fdfcfb] font-montserrat">
+    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#f9f5f2] font-montserrat">
       <Navbar alwaysSolid />
       
       {/* FULL BLEED HERO SECTION */}
-      <div className="w-full relative bg-[#fdfcfb] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
+      <div className="w-full relative bg-[#f9f5f2] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
          {/* Background Image spanning the right side */}
          <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
            <img 
@@ -81,7 +81,7 @@ const SkinHealth = () => {
            <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
            {/* Blend image and black gradient into the left text container background */}
-           <div className="absolute inset-0 bg-gradient-to-r from-[#fdfcfb] via-[#fdfcfb]/70 lg:via-[#fdfcfb]/20 to-transparent"></div>
+           <div className="absolute inset-0 bg-gradient-to-r from-[#f9f5f2] via-[#f9f5f2]/70 lg:via-[#f9f5f2]/20 to-transparent"></div>
          </div>
          
          {/* Content Container Aligned inside normal max-width margins */}
@@ -104,7 +104,7 @@ const SkinHealth = () => {
                <p className="font-semibold uppercase tracking-widest text-[#9f1e13] text-[13px] mb-8">Test. Target. Transform.</p>
                
                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                 <button className="bg-[#9f1e13] hover:bg-[#80180f] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2 shadow-md">
+                 <button className="bg-[#9f1e13] hover:bg-[#9f1e13] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2 shadow-md">
                    Start Your Journey <ArrowRight className="w-4 h-4" />
                  </button>
                </div>
@@ -125,7 +125,7 @@ const SkinHealth = () => {
       </div>
       
       {/* TRUST BAR */}
-      <div className="w-full bg-[#f5f5f5] border-y border-gray-200 py-3 md:py-4 mb-2 overflow-hidden">
+      <div className="w-full bg-[#f9f5f2] border-y border-gray-200 py-3 md:py-4 mb-2 overflow-hidden">
         <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
@@ -342,7 +342,7 @@ const SkinHealth = () => {
              <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#dbd4c9]/40 rounded-full -ml-32 -mb-32 blur-[60px]"></div>
              
              {/* Key Drivers Grid - Dashed Layout */}
-             <div className="relative z-10 bg-[#f9f8f4] pt-8 lg:pt-12">
+             <div className="relative z-10 bg-[#f9f5f2] pt-8 lg:pt-12">
                <h2 className="max-w-3xl mx-auto text-center font-playfair font-bold text-[28px] sm:text-[36px] lg:text-[42px] leading-tight text-gray-900 mb-10 uppercase tracking-wider px-4">
                  Key Drivers We Assess
                </h2>
@@ -405,7 +405,7 @@ const SkinHealth = () => {
              </div>
 
              {/* CORE PRINCIPLE & QUOTE */}
-             <div className="border-t border-dashed border-[#dbd4c9] p-8 lg:p-12 relative z-10 bg-[#fefdfb]">
+             <div className="border-t border-dashed border-[#dbd4c9] p-8 lg:p-12 relative z-10 bg-[#f9f5f2]">
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center lg:items-center justify-between">
                    {/* Core Principle */}
                    <div className="lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
@@ -470,7 +470,7 @@ const SkinHealth = () => {
               <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 max-w-3xl mx-auto">
                 {["Test", "Understand", "Apply", "Retest", "Evolve"].map((step, index) => (
                   <React.Fragment key={index}>
-                    <div className="bg-[#9f1e13] border border-[#80180f] px-4 py-1.5 rounded-full text-white font-semibold text-[13px] uppercase tracking-widest shadow-sm">
+                    <div className="bg-[#9f1e13] border border-[#9f1e13] px-4 py-1.5 rounded-full text-white font-semibold text-[13px] uppercase tracking-widest shadow-sm">
                       {step}
                     </div>
                     {index < 4 && (
@@ -499,7 +499,7 @@ const SkinHealth = () => {
                 ].map((item, index) => {
                   const Icon = item.icon;
                   return (
-                    <div key={index} className="bg-[#9f1e13] hover:bg-[#80180f] transition-colors duration-300 rounded-xl p-4 flex items-center gap-4 shadow-sm group">
+                    <div key={index} className="bg-[#9f1e13] hover:bg-[#9f1e13] transition-colors duration-300 rounded-xl p-4 flex items-center gap-4 shadow-sm group">
                       <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
                         <Icon className="w-4 h-4 text-white" strokeWidth={2} />
                       </div>
@@ -561,7 +561,7 @@ const SkinHealth = () => {
 
             {/* Box 2: TBN Skin Foundations */}
             <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
-               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#9f1e13] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#80180f] whitespace-nowrap">Most Popular</div>
+               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#9f1e13] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#9f1e13] whitespace-nowrap">Most Popular</div>
                
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Skin Foundations</h3>
@@ -585,7 +585,7 @@ const SkinHealth = () => {
                     </div>
                     <p className="text-[13px] text-[#9f1e13] font-bold">+ £39/month optional support</p>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#80180f] transition-colors shadow-md mb-6">
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6">
                    Start Foundations
                  </button>
                </div>
@@ -609,7 +609,7 @@ const SkinHealth = () => {
                  <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
                      <span className="text-[32px] font-bold text-gray-900 leading-none mb-1">£85 <span className="text-[14px] text-gray-500 font-bold tracking-widest uppercase mb-0.5">Add-on</span></span>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#80180f] transition-colors shadow-md mb-6">
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6">
                    Book Advanced Review
                  </button>
                </div>
@@ -617,20 +617,20 @@ const SkinHealth = () => {
 
             {/* Box 4: Elite Consultation */}
             <div className="bg-[#9f1e13] border border-white/10 p-8 rounded-[2rem] shadow-xl hover:shadow-2xl flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-all duration-300 transform-gpu will-change-transform isolate">
-               <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#d0bfae] opacity-10 blur-3xl rounded-full pointer-events-none group-hover:opacity-20 transition-opacity duration-500"></div>
+               <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#dbd4c9] opacity-10 blur-3xl rounded-full pointer-events-none group-hover:opacity-20 transition-opacity duration-500"></div>
                
                <div className="h-[100px] shrink-0 mb-2 relative z-10 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-white leading-tight mb-2">TBN Elite Skin Consultation</h3>
-                 <p className="text-[11px] font-bold text-[#d0bfae] uppercase tracking-widest">Private 1:1 with Doctor or Specialist</p>
+                 <p className="text-[11px] font-bold text-[#dbd4c9] uppercase tracking-widest">Private 1:1 with Doctor or Specialist</p>
                </div>
                
                {/* Body Zone */}
                <div className="flex-grow mb-6 space-y-3 relative z-10">
                  <p className="font-bold text-[11px] text-white/40 uppercase tracking-widest mb-3">Includes</p>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Full Results Review</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Personalised Strategy</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Bespoke Protocol</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Follow-Up &amp; Retest</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#dbd4c9] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Full Results Review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#dbd4c9] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Personalised Strategy</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#dbd4c9] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Bespoke Protocol</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#dbd4c9] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Follow-Up &amp; Retest</span></div>
                </div>
 
                {/* Footer Zone */}
@@ -638,7 +638,7 @@ const SkinHealth = () => {
                  <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
                      <span className="text-[32px] font-bold text-white leading-none">£185</span>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#d0bfae] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6">
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#dbd4c9] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6">
                    Apply for Elite Support
                  </button>
                </div>
@@ -683,7 +683,7 @@ const SkinHealth = () => {
                          <div className="mt-auto">
                             <p className="font-bold text-gray-900 text-[13px] uppercase tracking-widest mb-4">Partner With TBN</p>
                             <div className="flex flex-col sm:flex-row gap-3">
-                               <button className="flex-1 bg-[#9f1e13] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#80180f] transition-colors shadow-sm text-center">
+                               <button className="flex-1 bg-[#9f1e13] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-sm text-center">
                                  Become a Partner
                                </button>
                                <button className="flex-1 bg-white border border-gray-200 text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm text-center">
@@ -747,7 +747,7 @@ const SkinHealth = () => {
                     </div>
                     
                     <div className="mt-auto w-full relative z-10">
-                       <button className="w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#80180f] transition-colors shadow-md">
+                       <button className="w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-md">
                           Explore Directory
                        </button>
                     </div>
@@ -802,7 +802,7 @@ const SkinHealth = () => {
                  className="flex-1 bg-white hover:bg-gray-100 text-[#9f1e13] px-6 py-4 rounded-xl font-bold text-[15px] shadow-lg flex justify-center items-center gap-2 group transition-all">
                  Start Your Journey <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
                </button>
-               <Link to="/clinics" className="flex-1 bg-[#80180f] hover:bg-[#5a3a2d] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
+               <Link to="/clinics" className="flex-1 bg-[#9f1e13] hover:bg-[#dbd4c9] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
                  Find a Clinic <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
                </Link>
              </div>

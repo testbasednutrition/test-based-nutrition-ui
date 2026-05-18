@@ -51,7 +51,7 @@ const PartnerWithUs2 = () => {
               Bring the world’s first test-based nutrition integration solution into your clinic, pharmacy, health club, or wellness business.
             </p>
             <div className="pt-4">
-              <Button size="lg" className="bg-[#9f1e13] hover:bg-[#80180f] text-white px-8 h-14 text-base font-bold tracking-wide rounded-full shadow-lg" asChild>
+              <Button size="lg" className="bg-[#9f1e13] hover:bg-[#9f1e13] text-white px-8 h-14 text-base font-bold tracking-wide rounded-full shadow-lg" asChild>
                 <a href="#apply">
                   Apply to Partner With TBN <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
@@ -373,7 +373,7 @@ const PartnerWithUs2 = () => {
               </div>
 
               <div className="pt-6">
-                <Button type="submit" size="lg" className="w-full h-16 text-sm font-bold tracking-widest bg-[#9f1e13] hover:bg-[#80180f] text-white rounded-xl uppercase">
+                <Button type="submit" size="lg" className="w-full h-16 text-sm font-bold tracking-widest bg-[#9f1e13] hover:bg-[#9f1e13] text-white rounded-xl uppercase">
                   Apply to Partner With TBN Today
                 </Button>
               </div>

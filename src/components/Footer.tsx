@@ -64,7 +64,7 @@ const Footer = () => {
               href="https://calendar.app.google/CDYDAvjFmMvJP3S88"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md bg-[#9f1e13] text-white px-6 py-2.5 text-sm font-bold hover:bg-[#80180f] transition-colors w-full"
+              className="inline-flex items-center justify-center rounded-md bg-[#9f1e13] text-white px-6 py-2.5 text-sm font-bold hover:bg-[#9f1e13] transition-colors w-full"
             >
               Book Now
             </a>

@@ -58,7 +58,7 @@ const TestingPage = () => {
                   onClick={() => {
                     document.getElementById('foundations')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="bg-[#9f1e13] hover:bg-[#80180f] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2 shadow-lg">
+                  className="bg-[#9f1e13] hover:bg-[#9f1e13] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2 shadow-lg">
                   Order My Balance Test Kit <ArrowRight className="w-4 h-4" />
                 </button>
                 <button 
@@ -319,7 +319,7 @@ const TestingPage = () => {
                   <strong>Why it matters:</strong> Digestive function can influence how nutrients are absorbed and utilised.
                 </p>
               </div>
-              <button className="w-full py-4 rounded-xl border-2 border-[#9f1e13] bg-[#9f1e13] text-white font-bold uppercase tracking-widest text-[13px] hover:bg-[#80180f] hover:border-[#80180f] transition-colors shadow-md">
+              <button className="w-full py-4 rounded-xl border-2 border-[#9f1e13] bg-[#9f1e13] text-white font-bold uppercase tracking-widest text-[13px] hover:bg-[#9f1e13] hover:border-[#9f1e13] transition-colors shadow-md">
                 Order Gut Health Kit
               </button>
             </div>
@@ -514,7 +514,7 @@ const TestingPage = () => {
 
             {/* Box 2: Foundations */}
             <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
-               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#9f1e13] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#8c353f] whitespace-nowrap">Most Popular</div>
+               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#9f1e13] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#9f1e13] whitespace-nowrap">Most Popular</div>
                
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Foundations</h3>
@@ -541,7 +541,7 @@ const TestingPage = () => {
                      <p className="text-[13px] text-gray-500 font-medium flex items-center gap-1.5">+ £39/mo <span className="text-[#9f1e13] font-bold">(Save 29%)</span></p>
                    </div>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#8c353f] transition-colors shadow-md mb-6">
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6">
                    Start Foundations
                  </button>
                  <div className="flex-grow flex flex-col justify-between">
@@ -589,19 +589,19 @@ const TestingPage = () => {
 
             {/* Box 4: Elite Consultation */}
             <div className="bg-[#9f1e13] border border-white/10 p-8 rounded-[2rem] shadow-xl hover:shadow-2xl flex flex-col relative overflow-hidden group hover:-translate-y-2 transition-all duration-300 transform-gpu will-change-transform isolate">
-               <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#d0bfae] opacity-10 blur-3xl rounded-full pointer-events-none group-hover:opacity-20 transition-opacity duration-500"></div>
+               <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#dbd4c9] opacity-10 blur-3xl rounded-full pointer-events-none group-hover:opacity-20 transition-opacity duration-500"></div>
                
                <div className="h-[100px] shrink-0 mb-2 relative z-10 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-white leading-tight mb-2">TBN Elite Consultation</h3>
-                 <p className="text-[11px] font-bold text-[#d0bfae] uppercase tracking-widest">Private 1:1 with Specialist</p>
+                 <p className="text-[11px] font-bold text-[#dbd4c9] uppercase tracking-widest">Private 1:1 with Specialist</p>
                </div>
                
                <div className="flex-grow mb-6 space-y-3 relative z-10">
                  <p className="font-bold text-[11px] text-white/40 uppercase tracking-widest mb-3">Includes</p>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Private 1:1 consultation</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Full results review</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Bespoke protocol development</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#d0bfae] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Follow-up test review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#dbd4c9] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Private 1:1 consultation</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#dbd4c9] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Full results review</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#dbd4c9] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Bespoke protocol development</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#dbd4c9] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-white/90 font-medium leading-snug">Follow-up test review</span></div>
                </div>
 
                <div className="h-[360px] shrink-0 pt-6 border-t border-white/10 flex flex-col relative z-10">
@@ -612,7 +612,7 @@ const TestingPage = () => {
                      </div>
                    </div>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#d0bfae] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6">
+                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#dbd4c9] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6">
                    Enquire for Elite
                  </button>
                  <div className="flex-grow flex flex-col justify-between">
@@ -672,7 +672,7 @@ const TestingPage = () => {
                <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <button onClick={() => {
                     document.getElementById('foundations')?.scrollIntoView({ behavior: 'smooth' });
-                  }} className="bg-[#9f1e13] text-white px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-[#80180f] transition-colors shadow-lg">
+                  }} className="bg-[#9f1e13] text-white px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-lg">
                     Order My Balance Test Kit
                   </button>
                   <Link to="/collectives" className="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm">
