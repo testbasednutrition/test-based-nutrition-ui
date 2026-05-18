@@ -100,7 +100,7 @@ const WomensHealth = () => {
 
         {/* SECTION 2 — EXPLORE YOUR PATHWAY */}
         <div id="pathways" className="mb-12 xl:mb-20">
-          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-12 pb-16 bg-[#dbd4c9] mt-8 mb-8">
+          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] mb-8">
             <Gallery4 
               subtitle="Women's Health Pathways"
               title="Explore Your Women's Health Pathway"
@@ -163,10 +163,7 @@ const WomensHealth = () => {
 
         {/* SECTION 3 — SPECIALIST LEADS */}
         <div className="mb-20 xl:mb-24 px-4 lg:px-0">
-          <div className="mb-16 text-center flex flex-col items-center justify-center max-w-3xl mx-auto">
-             <p className="text-[12px] font-bold tracking-widest uppercase text-[#9f1e13] mb-3">Led by Leading Specialists</p>
-             <h2 className="font-playfair text-[28px] md:text-[36px] text-gray-900 font-bold tracking-wider mb-4 leading-tight">Working across women’s health, clinical practice, and functional medicine</h2>
-          </div>
+
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#9f1e13]/20">
               {/* Vian */}

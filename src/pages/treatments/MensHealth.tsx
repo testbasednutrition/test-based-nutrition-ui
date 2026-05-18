@@ -103,7 +103,7 @@ const MensHealth = () => {
       </div>
 
       {/* TRUST BAR */}
-      <div className="w-full bg-[#dbd4c9] py-3 border-y border-[#dbd4c9] md:py-4 mb-2 overflow-hidden">
+      <div className="w-full bg-[#dbd4c9] py-3 border-y border-[#dbd4c9] md:py-4 overflow-hidden">
         <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
@@ -128,7 +128,7 @@ const MensHealth = () => {
 
         {/* SECTION 2 — EXPLORE YOUR PATHWAY */}
         <div id="pathways" className="mb-12 xl:mb-20">
-          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-12 pb-16 bg-[#dbd4c9] mt-8 mb-8">
+          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] mb-8">
             <Gallery4 
               subtitle="Men's Health Pathways"
               title="Explore Your Men's Health Pathway"
@@ -179,18 +179,12 @@ const MensHealth = () => {
                 }
               ]}
             />
-            <div className="text-center mt-6">
-              <p className="font-bold text-[#9f1e13] text-[14px]">Each pathway is delivered through structured testing, specialist insight, and measurable progression.</p>
-            </div>
           </div>
         </div>
 
         {/* SECTION 3 — SPECIALIST LEADS */}
         <div className="mb-20 xl:mb-24 px-4 lg:px-0">
-          <div className="mb-16 text-center flex flex-col items-center justify-center max-w-3xl mx-auto">
-             <p className="text-[12px] font-bold tracking-widest uppercase text-[#9f1e13] mb-3">Led by Leading Specialists</p>
-             <h2 className="font-playfair text-[28px] md:text-[36px] text-gray-900 font-bold tracking-wider mb-4 leading-tight">Built by those working at the highest level of men’s health, performance, and clinical insight.</h2>
-          </div>
+
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#9f1e13]/20">
               {/* Ishtiaq */}

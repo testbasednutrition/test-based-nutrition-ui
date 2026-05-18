@@ -106,7 +106,7 @@ const SportsPerformance = () => {
       </div>
 
       {/* TRUST BAR */}
-      <div className="w-full bg-[#dbd4c9] py-3 border-y border-[#dbd4c9] md:py-4 mb-2 overflow-hidden">
+      <div className="w-full bg-[#dbd4c9] py-3 border-y border-[#dbd4c9] md:py-4 overflow-hidden">
         <div className="w-full px-4 sm:px-8 flex flex-nowrap justify-start sm:justify-center gap-6 md:gap-12 text-[12px] sm:text-[13px] md:text-sm tracking-tight sm:tracking-normal text-gray-500 whitespace-nowrap overflow-x-auto mx-auto max-w-[1440px] font-sans">
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#9f1e13]" />
@@ -131,7 +131,7 @@ const SportsPerformance = () => {
 
         {/* SECTION 2 — EXPLORE YOUR PATHWAY */}
         <div className="mb-12 xl:mb-20">
-          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-12 pb-16 bg-[#dbd4c9] mt-8 mb-8">
+          <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] mb-8">
             <Gallery4 
               subtitle="Performance Pathways"
               title="Personalised Performance Support"
@@ -187,14 +187,7 @@ const SportsPerformance = () => {
 
 {/* SECTION 3 — SPECIALIST LEADS */}
         <div className="mb-20 xl:mb-24 px-4 lg:px-0">
-          <div className="mb-16 text-center flex flex-col items-center justify-center max-w-3xl mx-auto">
-             <p className="text-[12px] font-bold tracking-widest uppercase text-[#9f1e13] mb-3">Our Specialists</p>
-             <h2 className="font-playfair text-[28px] md:text-[36px] text-gray-900 font-bold tracking-wider mb-4 leading-tight">Meet the TBN Collective</h2>
-             <p className="font-montserrat text-[14px] leading-relaxed text-gray-600 max-w-2xl mx-auto">
-               A specialist-led performance network across coaching, health, and recovery — built to support athletes, teams, and environments at scale.
-             </p>
-          </div>
-          
+
           <div className="mb-10 lg:mb-12 text-center sm:text-left border-t border-gray-100 pt-10">
              <h3 className="font-playfair text-[15px] lg:text-[16px] text-gray-900 font-bold tracking-[0.2em] uppercase">Built by those working at the highest level of sport</h3>
           </div>
