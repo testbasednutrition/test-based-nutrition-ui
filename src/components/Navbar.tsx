@@ -279,7 +279,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
           {/* Logo */}
           <a href="/" className="flex items-center">
             <img 
-              src="/logos/test-based-logo-new.png" 
+              src="/logos/tbn-official-logo.png" 
               alt="Test-Based Nutrition" 
               className={logoClass}
             />

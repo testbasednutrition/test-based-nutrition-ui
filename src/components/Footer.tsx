@@ -9,9 +9,9 @@ const Footer = () => {
           <div className="lg:pr-4">
             <div className="flex items-center gap-2 mb-4">
               <img 
-                src="/logos/test-based-logo-new.png" 
+                src="/logos/tbn-official-logo.png" 
                 alt="Test-Based Nutrition" 
-                className="h-16 object-contain"
+                className="h-10 md:h-[3.25rem] object-contain"
               />
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
