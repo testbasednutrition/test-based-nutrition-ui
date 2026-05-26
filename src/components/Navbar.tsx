@@ -91,7 +91,7 @@ const megaMenuData = [
     items: ["Testosterone & Hormones", "Male Fertility", "Weight, Pre-Diabetes & Type 2 Diabetes", "Stress & Burnout", "Healthy Ageing", "Gut Health"] 
   },
   { 
-    heading: "Children & Teen Health", 
+    heading: "Children & Teen", 
     href: "/treatments/childrens-health",
     subtitle: "",
     items: ["Early Development", "Gut Health", "Neurodivergent Children", "Immunity & Growth", "Teen Girls", "Teen Boys", "Emotional Wellbeing"] 
@@ -115,7 +115,7 @@ const megaMenuData = [
     items: ["Youth Performance", "Athletes", "Competition Prep", "Coaches & Teams", "Cognitive & Gaming", "Performance & Longevity"] 
   },
   {
-    heading: "Pain, Fatigue & Inflammation",
+    heading: "Pain & Fatigue",
     href: "/treatments/pain-fatigue",
     subtitle: "",
     items: ["Chronic Pain", "Fibromyalgia", "Hormonal Pain", "Joint Pain", "Injury & Recovery", "Surgery Support", "Gut & Inflammation"]
@@ -299,12 +299,12 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                         {col.href ? (
                           <a 
                             href={col.href} 
-                            className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors border-b border-primary/20 pb-1.5 mb-1.5 block w-full outline-none"
+                            className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors border-b border-primary/20 pb-1.5 mb-1.5 block w-full outline-none whitespace-nowrap"
                           >
                             {col.heading}
                           </a>
                         ) : (
-                          <h4 className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground border-b border-primary/20 pb-1.5 mb-1.5">
+                          <h4 className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground border-b border-primary/20 pb-1.5 mb-1.5 whitespace-nowrap">
                             {col.heading}
                           </h4>
                         )}
