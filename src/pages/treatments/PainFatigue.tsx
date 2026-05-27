@@ -1,8 +1,10 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
+import PartnerLeadForm from "@/components/PartnerLeadForm";
 import { Gallery4 } from "@/components/ui/gallery4";
 import Footer from "@/components/Footer";
 import HowWeSupportYou from "@/components/HowWeSupportYou";
+import { StructuredTesting } from "@/components/StructuredTesting";
 import { Link } from "react-router-dom";
 import { useQuiz } from "@/components/QuizContext";
 import { FocusRail } from "@/components/ui/focus-rail";
@@ -173,17 +175,14 @@ const PainFatigue = () => {
                 }
               ]}
             />
-            <div className="text-center mt-6">
-              <p className="font-montserrat font-bold text-gray-700">Each pathway is supported through structured testing and personalised protocols.</p>
-            </div>
           </div>
         </div>
 
         {/* SECTION 3 — SPECIALIST LEADS */}
         <div className="mb-20 xl:mb-24 px-4 lg:px-0">
-
-          <div className="mb-10 lg:mb-12 text-center sm:text-left border-t border-gray-100 pt-10">
-             <h3 className="font-playfair text-[15px] lg:text-[16px] text-gray-900 font-bold tracking-[0.2em] uppercase">Built by those working at the highest level of care</h3>
+          <div className="text-center mb-12 border-t border-gray-100 pt-10">
+             <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">LEADING SPECIALISTS IN PAIN, FATIGUE & INFLAMMATION</h2>
+             <p className="font-bold text-[#9f1e13] text-[13px] uppercase tracking-widest flex items-center justify-center gap-2"><span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /> Built by those working at the highest level of care <span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /></p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#9f1e13]/20">
@@ -303,206 +302,28 @@ const PainFatigue = () => {
            </div>
         </div>
 
-        {/* SECTION 7.7 — START WITH THE FOUNDATIONS */}
-        <div className="w-full mt-20 lg:mt-24 max-w-6xl mx-auto px-4">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <p className="font-bold text-[#9f1e13] text-[13px] uppercase tracking-widest mb-3">At home or in clinic</p>
-            <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">START WITH THE FOUNDATIONS</h2>
-            <p className="font-montserrat text-[15px] font-medium leading-relaxed text-gray-600 max-w-2xl mx-auto">
-              Every pain and recovery pathway starts at a cellular level
-            </p>
-          </div>
-
-          {/* Foundation Tests */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
-            <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
-              <div className="flex items-center gap-5 mb-5">
-                <div className="w-16 h-16 flex items-center justify-center mb-6 overflow-hidden p-0">
-                  <img src="/images/test-logos/omega3balance.png" alt="Omega Balance Test" className="w-full h-full object-contain scale-[1.15]" />
-                </div>
-                <h3 className="font-playfair font-bold text-[22px] text-gray-900 leading-tight">Omega Balance<br/>Test</h3>
-              </div>
-              <p className="font-montserrat text-[14px] leading-relaxed text-gray-600 font-medium">Measures cellular health, inflammatory balance, and recovery efficiency.</p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group">
-              <div className="flex items-center gap-5 mb-5">
-                <div className="w-16 h-16 flex items-center justify-center mb-6 overflow-hidden p-0">
-                  <img src="/images/test-logos/guthealth1.png" alt="Gut Microbiome Test" className="w-full h-full object-contain scale-[1.15]" />
-                </div>
-                <h3 className="font-playfair font-bold text-[22px] text-gray-900 leading-tight">Gut Microbiome<br/>Test</h3>
-              </div>
-              <p className="font-montserrat text-[14px] leading-relaxed text-gray-600 font-medium">Assesses absorption, immune interaction, and gut-driven inflammation.</p>
-            </div>
-          </div>
-
-          {/* 15-MINUTE PAIN & RECOVERY INSIGHT */}
-          <div className="bg-white border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden">
-            {/* Background Accent */}
-            <div className="absolute top-0 right-0 w-full h-2 bg-gradient-to-r from-red-600 to-[#9f1e13]"></div>
-            
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center justify-center gap-2 bg-red-50 text-red-700 px-4 py-1.5 rounded-full font-bold text-[13px] uppercase tracking-widest mb-6">
-                <div className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></div> 15-Minute Pain & Recovery Insight
-              </div>
-              <h3 className="font-playfair text-[26px] md:text-[32px] font-bold text-gray-900 mb-4 uppercase tracking-wider">Advanced Point-of-Care Screening</h3>
-              <p className="font-montserrat text-[15px] font-medium text-gray-600 max-w-2xl mx-auto">
-                Fast, targeted screening to highlight key drivers of pain, inflammation, fatigue, and recovery. Screening is determined by consultation-find your clinic!
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-              {/* Left Column: Finger Prick */}
-              <div className="lg:col-span-8">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center -ml-2">
-                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-red-600"></div>
-                  </div>
-                  <h4 className="font-bold text-gray-900 text-[18px] uppercase tracking-widest">Finger Prick</h4>
-                </div>
-                <p className="text-[13px] font-bold text-red-600/80 uppercase tracking-widest mb-8 pl-9">Immediate in-clinic insight</p>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Vitamin D */}
-                  <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
-                       <img src="/images/test-logos/vitamind.png" alt="Vitamin D" className="w-full h-full object-contain rounded-full scale-[1.15]" />
-                     </div>
-                     <div className="flex-1 min-w-0">
-                       <p className="font-bold text-gray-900 text-[14px] mb-1">Vitamin D</p>
-                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Musculoskeletal function + immune support</p>
-                     </div>
-                  </div>
-                  
-                  {/* HbA1c */}
-                  <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
-                       <img src="/images/test-logos/hba1c.png" alt="HbA1c" className="w-full h-full object-contain rounded-full scale-[1.15]" />
-                     </div>
-                     <div className="flex-1 min-w-0">
-                       <p className="font-bold text-gray-900 text-[14px] mb-1">HbA1c</p>
-                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Blood sugar balance + energy regulation</p>
-                     </div>
-                  </div>
-                  
-                  {/* Ferritin */}
-                  <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
-                       <img src="/images/test-logos/ferritin.png" alt="Ferritin" className="w-full h-full object-contain rounded-full scale-[1.15]" />
-                     </div>
-                     <div className="flex-1 min-w-0">
-                       <p className="font-bold text-gray-900 text-[14px] mb-1">Ferritin</p>
-                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Oxygen transport + fatigue</p>
-                     </div>
-                  </div>
-                  
-                  {/* CRP / hs-CRP */}
-                  <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
-                       <img src="/images/test-logos/crp.png" alt="CRP / hs-CRP" className="w-full h-full object-contain rounded-full scale-[1.15]" />
-                     </div>
-                     <div className="flex-1 min-w-0">
-                       <p className="font-bold text-gray-900 text-[14px] mb-1">CRP / hs-CRP</p>
-                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Inflammatory activity</p>
-                     </div>
-                  </div>
-
-                  {/* RF */}
-                  <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
-                       <img src="/images/test-logos/inflammation.png" alt="RF" className="w-full h-full object-contain rounded-full scale-[1.15]" />
-                     </div>
-                     <div className="flex-1 min-w-0">
-                       <p className="font-bold text-gray-900 text-[14px] mb-1">RF</p>
-                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Autoimmune-related inflammation</p>
-                     </div>
-                  </div>
-                  
-                  {/* Cortisol */}
-                  <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
-                       <img src="/images/test-logos/cortisol.png" alt="Cortisol" className="w-full h-full object-contain rounded-full scale-[1.15]" />
-                     </div>
-                     <div className="flex-1 min-w-0">
-                       <p className="font-bold text-gray-900 text-[14px] mb-1">Cortisol</p>
-                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Stress load + recovery capacity</p>
-                     </div>
-                  </div>
-                  
-                  {/* Folate */}
-                  <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
-                       <img src="/images/test-logos/folate.png" alt="Folate" className="w-full h-full object-contain rounded-full scale-[1.15]" />
-                     </div>
-                     <div className="flex-1 min-w-0">
-                       <p className="font-bold text-gray-900 text-[14px] mb-1">Folate</p>
-                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Cellular repair</p>
-                     </div>
-                  </div>
-                  
-                  {/* Cystatin C */}
-                  <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-4 rounded-2xl hover:border-red-600/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
-                       <img src="/images/test-logos/cystatin.png" alt="Cystatin C" className="w-full h-full object-contain rounded-full scale-[1.15]" />
-                     </div>
-                     <div className="flex-1 min-w-0">
-                       <p className="font-bold text-gray-900 text-[14px] mb-1">Cystatin C</p>
-                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Metabolic stress + recovery load</p>
-                     </div>
-                  </div>
-
-                </div>
-              </div>
-              
-              {/* Right Column: Phlebotomy */}
-              <div className="lg:col-span-4 lg:border-l lg:border-gray-100 lg:pl-10 mt-8 lg:mt-0">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 rounded-full bg-[#9f1e13]/10 flex items-center justify-center -ml-2">
-                    <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-[#9f1e13]"></div>
-                  </div>
-                  <h4 className="font-bold text-gray-900 text-[18px] uppercase tracking-widest">Phlebotomy Required</h4>
-                </div>
-                <p className="text-[13px] font-bold text-[#9f1e13]/80 uppercase tracking-widest mb-8 pl-9">Deeper biomarkers</p>
-                
-                <div className="flex flex-col gap-4">
-                  {/* Testosterone */}
-                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-[#9f1e13]/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-[#9f1e13]/5 border border-[#9f1e13]/20 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
-                       <img src="/images/test-logos/testosterone.png" alt="Testosterone" className="w-full h-full object-contain rounded-full scale-[1.15]" />
-                     </div>
-                     <div className="flex-1 min-w-0">
-                       <p className="font-bold text-gray-900 text-[14px] mb-1">Testosterone</p>
-                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Recovery signalling + repair</p>
-                     </div>
-                  </div>
-                  
-                  {/* Vitamin B12 */}
-                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-[#9f1e13]/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-[#9f1e13]/5 border border-[#9f1e13]/20 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
-                       <img src="/images/test-logos/vitaminb12.png" alt="Vitamin B12" className="w-full h-full object-contain rounded-full scale-[1.15]" />
-                     </div>
-                     <div className="flex-1 min-w-0">
-                       <p className="font-bold text-gray-900 text-[14px] mb-1">Vitamin B12</p>
-                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Nervous system + fatigue</p>
-                     </div>
-                  </div>
-                  
-                  {/* TSH */}
-                  <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm hover:border-[#9f1e13]/30 transition-colors flex items-start gap-3 relative">
-                     <div className="w-12 h-12 rounded-full bg-[#9f1e13]/5 border border-[#9f1e13]/20 flex items-center justify-center shrink-0 shadow-sm overflow-hidden p-0">
-                       <img src="/images/test-logos/tsh.png" alt="TSH" className="w-full h-full object-contain rounded-full scale-[1.15]" />
-                     </div>
-                     <div className="flex-1 min-w-0">
-                       <p className="font-bold text-gray-900 text-[14px] mb-1">TSH</p>
-                       <p className="text-[12px] text-gray-600 font-medium leading-tight pr-1">Metabolic function + energy</p>
-                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* STRUCTURED TESTING */}
+        <StructuredTesting
+          foundational={[
+            { name: "Omega Balance", logo: "/images/test-logos/omega3balance.png" },
+            { name: "Gut Microbiome", logo: "/images/test-logos/guthealth1.png" }
+          ]}
+          baseline={[
+            { name: "Vitamin D", logo: "/images/test-logos/vitamind.png" },
+            { name: "HbA1c", logo: "/images/test-logos/hba1c.png" },
+            { name: "Ferritin", logo: "/images/test-logos/ferritin.png" },
+            { name: "CRP / hs-CRP", logo: "/images/test-logos/crp.png" },
+            { name: "RF", logo: "/images/test-logos/inflammation.png" },
+            { name: "Cortisol", logo: "/images/test-logos/cortisol.png" },
+            { name: "Folate", logo: "/images/test-logos/folate.png" },
+            { name: "Cystatin C", logo: "/images/test-logos/cystatin.png" }
+          ]}
+          advanced={[
+            { name: "Testosterone", logo: "/images/test-logos/testosterone.png" },
+            { name: "Vitamin B12", logo: "/images/test-logos/vitaminb12.png" },
+            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.png" }
+          ]}
+        />
 
         {/* SECTION 7.8 — HOW WE SUPPORT YOU */}
         <HowWeSupportYou />
@@ -519,7 +340,7 @@ const PainFatigue = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 items-stretch">
             
             {/* Box 1: Free Consultation */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#bdae97] hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="h-[100px] shrink-0 mb-2">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight">Free Consultation</h3>
                </div>
@@ -581,7 +402,7 @@ const PainFatigue = () => {
             </div>
 
             {/* Box 3: Advanced Review */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#bdae97] hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Advanced Pain & Recovery Review</h3>
                  <p className="text-[11px] font-bold text-[#9f1e13] uppercase tracking-widest">1:1 Strategic Review</p>
@@ -652,60 +473,51 @@ const PainFatigue = () => {
           </div>
         </div>
 
-
         {/* SECTION 8 — PARTNER WITH US & DIRECTORY */}
         <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4 mb-24">
-           {/* Centered Section Heading */}
            <div className="max-w-[800px] mx-auto text-center mb-16">
              <h2 className="font-playfair text-[32px] md:text-[40px] font-bold text-gray-900 leading-tight mb-4 uppercase">
                PARTNER WITH US
              </h2>
              <p className="font-bold text-[#9f1e13] text-[13px] md:text-[14px] uppercase tracking-widest leading-snug">
-               Integrated into clinics, rehabilitation environments, and recovery settings
+               Integrated into clinics, health clubs, and wellness environments
              </p>
            </div>
            
            <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
-              
               {/* Left Column: Partner With Us */}
               <div className="w-full lg:flex-1 bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
                   <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-[#9f1e13] -mr-16 -mt-16"/></div>
                   
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 relative z-10 flex-grow">
-                     {/* Left side of the Partner box */}
-                     <div className="flex flex-col justify-between">
+                  <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 relative z-10 flex-grow">
+                     <div className="xl:col-span-8 flex flex-col justify-between">
                          <div>
                              <h3 className="font-playfair text-[24px] md:text-[28px] xl:text-[32px] font-bold text-gray-900 leading-tight mb-4">
                                 TBN operates inside real environments
                              </h3>
-                             <p className="font-montserrat text-[15px] leading-relaxed text-gray-600 mb-10">
+                             <p className="font-montserrat text-[15px] leading-relaxed text-gray-600 mb-6">
                                 — embedding structured testing, specialist insight, and performance systems into existing services.
+                             </p>
+                             <p className="font-montserrat text-[15px] leading-relaxed text-gray-600 mb-10 font-medium">
+                                For purpose-driven practitioners, medically led clinics, health clubs and wellness venues ready to integrate test-based nutrition or host specialist events.
                              </p>
                          </div>
                          
                          <div className="mt-auto">
-                            <p className="font-bold text-gray-900 text-[13px] uppercase tracking-widest mb-4">Partner With TBN</p>
-                            <div className="flex flex-col sm:flex-row gap-3">
-                               <button className="flex-1 bg-[#9f1e13] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-sm text-center">
-                                 Become a Pain & Recovery Partner
-                               </button>
-                               <button className="flex-1 bg-white border border-gray-200 text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm text-center">
-                                 Invite Us to Your Clinic
-                               </button>
-                            </div>
+                             <PartnerLeadForm sourcePage="Pain & Fatigue" />
                          </div>
                      </div>
 
                      {/* Right side of the Partner box */}
-                     <div className="flex flex-col xl:pl-8">
+                     <div className="xl:col-span-4 flex flex-col xl:pl-8">
                          <h3 className="font-playfair text-[20px] font-bold text-gray-900 mb-6 xl:mt-1">What This Delivers</h3>
                          <ul className="space-y-4">
                             {[
-                              "Advanced practitioner training",
-                              "Integrated testing systems",
-                              "Specialist-led insight",
-                              "Enhanced recovery pathways",
-                              "Scalable services",
+                              "Advanced training for coaches and practitioners",
+                              "Integrated testing systems within your environment",
+                              "Ongoing access to specialist-led insight",
+                              "Enhanced client journeys",
+                              "Scalable testing services",
                               "New revenue opportunities"
                             ].map((item, idx) => (
                               <li key={idx} className="flex items-start gap-4">
@@ -718,21 +530,15 @@ const PainFatigue = () => {
                   </div>
               </div>
 
-              {/* Right Column: Stacked Boxes */}
+              {/* Right Column: Directory */}
               <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 flex flex-col gap-6 lg:gap-8">
-                 {/* Directory Access */}
                  <div className="w-full bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
                     <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#9f1e13] -mr-12 -mb-12"/></div>
-
 
                     <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
                        Access TBN-approved clinics across the UK.
                     </h2>
-                    <p className="text-[13px] text-gray-600 mb-8 font-medium leading-relaxed relative z-10">
-                       Access TBN through a growing network of specialist-led clinics.
-                    </p>
                     
-                    {/* Directory Flicker / Focus Rail */}
                     <div className="w-[calc(100%+4rem)] md:w-[calc(100%+5rem)] -mx-8 md:-mx-10 mb-6 relative z-10 overflow-hidden shrink-0">
                        {isSpecialistsLoading || expertItems.length === 0 ? (
                           <div className="h-[380px] flex items-center justify-center">
@@ -751,17 +557,14 @@ const PainFatigue = () => {
                     </div>
                     
                     <div className="mt-auto w-full relative z-10">
-                       <button className="w-full mb-3 text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-md">
+                       <button className="w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-md">
                           Explore Directory
                        </button>
-                       <button className="w-full text-center bg-white text-[#9f1e13] border border-[#9f1e13]/20 px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm">
-                          Find a Clinic Near You
-                       </button>
                     </div>
-                  </div>
+                 </div>
               </div>
-            </div>
-         </div>
+           </div>
+        </div>
       </main>
       
       <Footer />

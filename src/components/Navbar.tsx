@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   Menubar,
   MenubarContent,
@@ -91,7 +91,7 @@ const megaMenuData = [
     items: ["Testosterone & Hormones", "Male Fertility", "Weight, Pre-Diabetes & Type 2 Diabetes", "Stress & Burnout", "Healthy Ageing", "Gut Health"] 
   },
   { 
-    heading: "Children & Teen Health", 
+    heading: "Children & Teen", 
     href: "/treatments/childrens-health",
     subtitle: "",
     items: ["Early Development", "Gut Health", "Neurodivergent Children", "Immunity & Growth", "Teen Girls", "Teen Boys", "Emotional Wellbeing"] 
@@ -115,7 +115,7 @@ const megaMenuData = [
     items: ["Youth Performance", "Athletes", "Competition Prep", "Coaches & Teams", "Cognitive & Gaming", "Performance & Longevity"] 
   },
   {
-    heading: "Pain, Fatigue & Inflammation",
+    heading: "Pain & Fatigue",
     href: "/treatments/pain-fatigue",
     subtitle: "",
     items: ["Chronic Pain", "Fibromyalgia", "Hormonal Pain", "Joint Pain", "Injury & Recovery", "Surgery Support", "Gut & Inflammation"]
@@ -138,8 +138,10 @@ const tbnMethodMenuItems = [
 ];
 
 const clinicsMenuItems = [
-  { label: "Find a Specialist", href: "/specialists" },
-  { label: "Find a Collective", href: "/collectives" },
+  { label: "A Specialist", href: "/specialists" },
+  { label: "A Collective", href: "/collectives" },
+  { label: "A Health Club", href: "/collectives" },
+  { label: "A Clinic", href: "/collectives" },
 ];
 
 const partnerMenuItems = [
@@ -264,8 +266,63 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
   const isSolid = alwaysSolid || isScrolled || mobileOpen;
 
   const navBgClass = isSolid ? "bg-stone-50 shadow-md border-b border-border/20" : "bg-transparent";
-  const linkClass = "text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors " + (isSolid ? "text-black/80 hover:text-black" : "text-white/90 hover:text-white drop-shadow-md");
-  const triggerClass = "cursor-pointer border-none outline-none focus:bg-transparent data-[state=open]:bg-transparent " + linkClass + " data-[state=open]:!text-black";
+  
+  const currentPath = location.pathname;
+
+  const isPathwaysActive = currentPath.startsWith("/treatments");
+  const isTestingActive = currentPath.startsWith("/testing");
+  const isMethodActive = currentPath.startsWith("/tbn-method");
+  const isCollectiveActive = currentPath === "/specialists" || currentPath === "/collectives";
+  const isNewsActive = currentPath.startsWith("/news");
+
+  const isRouteActive = (href: string) => {
+    if (href.includes("#")) {
+      const [path, hash] = href.split("#");
+      return location.pathname === path && location.hash === "#" + hash;
+    }
+    return location.pathname === href;
+  };
+
+  const getDropdownItemClass = (href: string) => {
+    const active = isRouteActive(href);
+    return `font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] transition-colors py-1 px-2 rounded block w-full outline-none ${
+      active 
+        ? "text-black font-extrabold bg-black/5" 
+        : "text-muted-foreground hover:text-black focus:text-black"
+    }`;
+  };
+
+  const getMegaMenuSubItemClass = (label: string) => {
+    const href = treatmentRoutes[label];
+    const active = href ? isRouteActive(href) : false;
+    return `cursor-pointer py-1 px-1.5 -mx-1 text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] transition-colors leading-snug whitespace-normal break-words rounded block w-full ${
+      active
+        ? "text-black font-extrabold bg-black/5"
+        : "text-muted-foreground hover:text-black focus:text-black focus:bg-black/5"
+    }`;
+  };
+
+  const getMegaMenuHeadingClass = (href: string | undefined) => {
+    const active = href && currentPath === href;
+    return `font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest transition-colors border-b border-primary/20 pb-1.5 mb-1.5 block w-full outline-none ${
+      active ? "text-black font-extrabold" : "text-foreground hover:text-primary"
+    }`;
+  };
+
+  const getTriggerClass = (active: boolean) => {
+    const activeColorClass = isSolid ? "text-black border-black font-extrabold" : "text-white border-white font-extrabold";
+    const inactiveColorClass = isSolid ? "text-black/70 hover:text-black border-transparent" : "text-white/80 hover:text-white border-transparent drop-shadow-md";
+    return "cursor-pointer border-none bg-transparent outline-none focus:bg-transparent data-[state=open]:bg-transparent text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors pb-1 border-b-2 " +
+      (active ? activeColorClass : inactiveColorClass) + 
+      " data-[state=open]:!text-black";
+  };
+
+  const getLinkClass = (active: boolean) => {
+    const activeColorClass = isSolid ? "text-black border-black font-extrabold" : "text-white border-white font-extrabold";
+    const inactiveColorClass = isSolid ? "text-black/70 hover:text-black border-transparent" : "text-white/80 hover:text-white border-transparent drop-shadow-md";
+    return "text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors pb-1 border-b-2 " +
+      (active ? activeColorClass : inactiveColorClass);
+  };
   const logoClass = "h-14 md:h-[4.5rem] object-contain transition-all duration-300 " + (!isSolid ? "brightness-0 invert" : "");
   const btnOutlineClass = "bg-transparent border-[1.5px] transition-colors " + (isSolid ? "border-primary text-primary hover:bg-primary/5 hover:text-primary" : "border-white/80 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm");
   const btnGhostClass = "transition-colors " + (isSolid ? "text-black/80 hover:text-black hover:bg-black/10" : "text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm");
@@ -289,7 +346,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
           <div className="hidden lg:flex items-center">
             <Menubar className="border-none bg-transparent p-0 space-x-0">
               <MenubarMenu>
-                <MenubarTrigger className={triggerClass}>
+                <MenubarTrigger className={getTriggerClass(isPathwaysActive)}>
                   TBN Pathways
                 </MenubarTrigger>
                 <MenubarContent align="start" alignOffset={-250} sideOffset={24} className="p-4 md:p-6 w-[98vw] max-w-[1400px] max-h-[85vh] overflow-y-auto shadow-2xl bg-background border border-border rounded-xl">
@@ -299,7 +356,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                         {col.href ? (
                           <a 
                             href={col.href} 
-                            className="font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors border-b border-primary/20 pb-1.5 mb-1.5 block w-full outline-none"
+                            className={getMegaMenuHeadingClass(col.href)}
                           >
                             {col.heading}
                           </a>
@@ -320,7 +377,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                                   const route = treatmentRoutes[item];
                                   if (route) navigate(route);
                                 }}
-                                className="cursor-pointer py-1 px-1 -mx-1 text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] text-muted-foreground hover:text-primary focus:bg-primary/5 focus:text-primary transition-colors leading-snug whitespace-normal break-words"
+                                className={getMegaMenuSubItemClass(item)}
                               >
                                 {item}
                               </MenubarItem>
@@ -341,7 +398,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 {/* Testing Dropdown */}
                 <MenubarMenu>
                   <MenubarTrigger 
-                    className={triggerClass}
+                    className={getTriggerClass(isTestingActive)}
                     onClick={() => navigate('/testing')}
                   >
                     Testing
@@ -349,7 +406,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                   <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
                     {testingMenuItems.map((item) => (
                       <MenubarItem key={item.label} className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
-                        <a href={item.href} className="font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] text-foreground hover:!text-primary focus:!text-primary transition-colors py-1 block w-full outline-none">{item.label}</a>
+                        <a href={item.href} className={getDropdownItemClass(item.href)}>{item.label}</a>
                       </MenubarItem>
                     ))}
                   </MenubarContent>
@@ -358,7 +415,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 {/* TBN Method Dropdown */}
                 <MenubarMenu>
                   <MenubarTrigger 
-                    className={triggerClass}
+                    className={getTriggerClass(isMethodActive)}
                     onClick={() => navigate('/tbn-method')}
                   >
                     The TBN Method
@@ -366,7 +423,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                   <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
                     {tbnMethodMenuItems.map((item) => (
                       <MenubarItem key={item.label} className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
-                        <a href={item.href} className="font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] text-foreground hover:!text-primary focus:!text-primary transition-colors py-1 block w-full outline-none">{item.label}</a>
+                        <a href={item.href} className={getDropdownItemClass(item.href)}>{item.label}</a>
                       </MenubarItem>
                     ))}
                   </MenubarContent>
@@ -374,38 +431,47 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
 
                 {/* Directory Dropdown */}
                 <MenubarMenu>
-                  <MenubarTrigger className={triggerClass}>
+                  <MenubarTrigger className={getTriggerClass(isCollectiveActive)}>
                     Our Collective
                   </MenubarTrigger>
                   <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
+                    <div className="px-2 py-1 text-[10px] font-extrabold uppercase tracking-widest text-[#9f1e13]">
+                      Find a:
+                    </div>
                     {clinicsMenuItems.map((item) => (
                       <MenubarItem key={item.label} className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
-                        <a href={item.href} className="font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] text-foreground hover:!text-primary focus:!text-primary transition-colors py-1 block w-full outline-none">{item.label}</a>
+                        <a href={item.href} className={`${getDropdownItemClass(item.href)} pl-5`}>{item.label}</a>
                       </MenubarItem>
                     ))}
                   </MenubarContent>
                 </MenubarMenu>
-              </Menubar>
 
-              <a
-                href="/news"
-                className={linkClass}
-              >
-                News
-              </a>
+                {/* News */}
+                <MenubarMenu>
+                  <MenubarTrigger 
+                    className={getTriggerClass(isNewsActive)}
+                    onClick={() => navigate('/news')}
+                  >
+                    News
+                  </MenubarTrigger>
+                </MenubarMenu>
+              </Menubar>
             </div>
           </div>
 
           <div className="hidden lg:flex items-center gap-3">
             <Menubar className="border-none bg-transparent p-0 space-x-0">
               <MenubarMenu>
-                <MenubarTrigger className={"cursor-pointer border-[1.5px] rounded-md px-4 py-1.5 text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors outline-none focus:bg-transparent data-[state=open]:bg-transparent " + (isSolid ? "border-black text-black hover:bg-black/5 data-[state=open]:!text-black" : "border-white/80 text-white hover:bg-white/10 backdrop-blur-sm data-[state=open]:!text-black")}>
+                <MenubarTrigger 
+                  className={"cursor-pointer border-[1.5px] rounded-md px-4 py-1.5 text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors outline-none focus:bg-transparent data-[state=open]:bg-transparent " + (isSolid ? "border-black text-black hover:bg-black/5 data-[state=open]:!text-black" : "border-white/80 text-white hover:bg-white/10 backdrop-blur-sm data-[state=open]:!text-black")}
+                  onClick={() => navigate('/partner-with-us-2')}
+                >
                   Partner With Us
                 </MenubarTrigger>
                 <MenubarContent align="end" sideOffset={24} className="min-w-[220px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
                   {partnerMenuItems.map((item) => (
                     <MenubarItem key={item.label} className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
-                      <a href={item.href} className="font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] text-foreground hover:!text-primary focus:!text-primary transition-colors py-1 block w-full outline-none">{item.label}</a>
+                      <a href={item.href} className={getDropdownItemClass(item.href)}>{item.label}</a>
                     </MenubarItem>
                   ))}
                 </MenubarContent>
@@ -434,7 +500,11 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
             <div className="container py-6 flex flex-col gap-4">
               {/* Mobile Treatments Accordion */}
               <button
-                className="flex items-center justify-between text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
+                className={`flex items-center justify-between text-[11px] uppercase font-montserrat font-semibold tracking-wider py-2 transition-colors ${
+                  isPathwaysActive 
+                    ? "text-black font-extrabold border-b border-black" 
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
                 onClick={() => setMobileMegaOpen(!mobileMegaOpen)}
               >
                 TBN Pathways
@@ -444,26 +514,35 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 <div className="pl-4 pb-2 grid grid-cols-2 gap-4">
                   {megaMenuData.map((col) => (
                     <div key={col.heading}>
-                      <h4 className="text-xs font-bold uppercase tracking-widest text-foreground mb-2">
+                      <h4 className={`text-xs font-bold uppercase tracking-widest mb-2 ${
+                        col.href && currentPath === col.href ? "text-black font-extrabold" : "text-foreground"
+                      }`}>
                         {col.heading}
                       </h4>
                       {col.items.length > 0 ? (
                         <ul className="space-y-1.5">
-                          {col.items.map((item) => (
-                            <li key={item}>
-                              <button
-                                className="text-sm text-muted-foreground hover:text-primary transition-colors text-left"
-                                onClick={() => {
-                                  setMobileOpen(false);
-                                  setMobileMegaOpen(false);
-                                  const route = treatmentRoutes[item];
-                                  if (route) navigate(route);
-                                }}
-                              >
-                                {item}
-                              </button>
-                            </li>
-                          ))}
+                          {col.items.map((item) => {
+                            const route = treatmentRoutes[item];
+                            const active = route ? isRouteActive(route) : false;
+                            return (
+                              <li key={item}>
+                                <button
+                                  className={`text-sm text-left transition-colors ${
+                                    active
+                                      ? "text-black font-extrabold"
+                                      : "text-muted-foreground hover:text-primary"
+                                  }`}
+                                  onClick={() => {
+                                    setMobileOpen(false);
+                                    setMobileMegaOpen(false);
+                                    if (route) navigate(route);
+                                  }}
+                                >
+                                  {item}
+                                </button>
+                              </li>
+                            );
+                          })}
                         </ul>
                       ) : (
                         <p className="text-xs text-muted-foreground italic">Coming soon</p>
@@ -476,7 +555,11 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
               {/* Mobile Testing Accordion */}
               <div className="flex items-center justify-between py-2">
                 <button
-                  className="text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground"
+                  className={`text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors ${
+                    isTestingActive 
+                      ? "text-black font-extrabold border-b border-black" 
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                   onClick={() => {
                     setMobileOpen(false);
                     navigate('/testing');
@@ -494,7 +577,18 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
               {mobileTestingOpen && (
                 <div className="pl-4 pb-2 flex flex-col gap-2">
                   {testingMenuItems.map((item) => (
-                    <a key={item.label} href={item.href} className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors block" onClick={() => setMobileOpen(false)}>{item.label}</a>
+                    <a 
+                      key={item.label} 
+                      href={item.href} 
+                      className={`text-sm font-semibold transition-colors block ${
+                        isRouteActive(item.href)
+                          ? "text-black font-extrabold"
+                          : "text-muted-foreground hover:text-primary"
+                      }`} 
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.label}
+                    </a>
                   ))}
                 </div>
               )}
@@ -502,7 +596,11 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
               {/* Mobile TBN Method Accordion */}
               <div className="flex items-center justify-between py-2">
                 <button
-                  className="text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground"
+                  className={`text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors ${
+                    isMethodActive 
+                      ? "text-black font-extrabold border-b border-black" 
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                   onClick={() => {
                     setMobileOpen(false);
                     navigate('/tbn-method');
@@ -520,14 +618,29 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
               {mobileTbnMethodOpen && (
                 <div className="pl-4 pb-2 flex flex-col gap-2">
                   {tbnMethodMenuItems.map((item) => (
-                    <a key={item.label} href={item.href} className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors block" onClick={() => setMobileOpen(false)}>{item.label}</a>
+                    <a 
+                      key={item.label} 
+                      href={item.href} 
+                      className={`text-sm font-semibold transition-colors block ${
+                        isRouteActive(item.href)
+                          ? "text-black font-extrabold"
+                          : "text-muted-foreground hover:text-primary"
+                      }`} 
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.label}
+                    </a>
                   ))}
                 </div>
               )}
 
               {/* Mobile Directory Accordion */}
               <button
-                className="flex items-center justify-between text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
+                className={`flex items-center justify-between text-[11px] uppercase font-montserrat font-semibold tracking-wider py-2 transition-colors ${
+                  isCollectiveActive 
+                    ? "text-black font-extrabold border-b border-black" 
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
                 onClick={() => setMobileClinicsOpen(!mobileClinicsOpen)}
               >
                 Our Collective
@@ -535,15 +648,33 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
               </button>
               {mobileClinicsOpen && (
                 <div className="pl-4 pb-2 flex flex-col gap-2">
+                  <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#9f1e13] px-1 py-1">
+                    Find a:
+                  </div>
                   {clinicsMenuItems.map((item) => (
-                    <a key={item.label} href={item.href} className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors block" onClick={() => setMobileOpen(false)}>{item.label}</a>
+                    <a 
+                      key={item.label} 
+                      href={item.href} 
+                      className={`text-sm font-semibold transition-colors block pl-4 ${
+                        isRouteActive(item.href)
+                          ? "text-black font-extrabold"
+                          : "text-muted-foreground hover:text-primary"
+                      }`} 
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.label}
+                    </a>
                   ))}
                 </div>
               )}
 
               <a
                 href="/news"
-                className="text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
+                className={`text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors py-2 block ${
+                  isNewsActive 
+                    ? "text-black font-extrabold border-b border-black w-max" 
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
                 onClick={() => setMobileOpen(false)}
               >
                 News
@@ -551,7 +682,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
 
               {/* Mobile Partner With Us Accordion */}
               <button
-                className="flex items-center justify-between text-[11px] uppercase font-montserrat font-semibold tracking-wider text-primary py-2 mt-2 border-t border-border pt-4"
+                className="flex items-center justify-between text-[11px] uppercase font-montserrat font-semibold tracking-wider text-primary py-2 mt-2 border-t border-border pt-4 w-full"
                 onClick={() => setMobilePartnerOpen(!mobilePartnerOpen)}
               >
                 Partner With Us
@@ -560,7 +691,18 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
               {mobilePartnerOpen && (
                 <div className="pl-4 pb-2 flex flex-col gap-2">
                   {partnerMenuItems.map((item) => (
-                    <a key={item.label} href={item.href} className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors block" onClick={() => setMobileOpen(false)}>{item.label}</a>
+                    <a 
+                      key={item.label} 
+                      href={item.href} 
+                      className={`text-sm font-semibold transition-colors block ${
+                        isRouteActive(item.href)
+                          ? "text-black font-extrabold"
+                          : "text-muted-foreground hover:text-primary"
+                      }`} 
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.label}
+                    </a>
                   ))}
                 </div>
               )}

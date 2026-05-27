@@ -65,6 +65,7 @@ const Services = () => {
       <div className="pb-10 md:pb-14">
         <Gallery4 
           title={servicesData.title}
+          subtitle=""
           description={servicesData.description}
           items={servicesData.items}
           compact={true}

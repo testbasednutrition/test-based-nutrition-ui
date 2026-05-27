@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useQuiz } from "@/components/QuizContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const links = [
   { label: "Home", href: "/" },
@@ -12,6 +12,15 @@ const links = [
 const NewsNavbar = () => {
   const [open, setOpen] = useState(false);
   const { openQuiz } = useQuiz();
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const isLinkActive = (href: string) => {
+    if (href === "/") {
+      return currentPath === "/";
+    }
+    return currentPath.startsWith(href);
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -34,12 +43,16 @@ const NewsNavbar = () => {
             <Link
               key={l.label}
               to={l.href}
-              className="text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+              className={`text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors pb-1 border-b-2 ${
+                isLinkActive(l.href)
+                  ? "text-black border-black font-extrabold"
+                  : "text-muted-foreground hover:text-black border-transparent"
+              }`}
             >
               {l.label}
             </Link>
           ))}
-          <button className="text-muted-foreground hover:text-foreground transition-colors">
+          <button className="text-muted-foreground hover:text-black transition-colors">
             <Search className="w-4 h-4" />
           </button>
           <Button size="sm" onClick={() => openQuiz()}>
@@ -60,7 +73,11 @@ const NewsNavbar = () => {
               <Link
                 key={l.label}
                 to={l.href}
-                className="text-[11px] uppercase font-montserrat font-semibold tracking-wider text-muted-foreground hover:text-foreground py-2"
+                className={`text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors py-2 block w-max ${
+                  isLinkActive(l.href)
+                    ? "text-black font-extrabold border-b border-black"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
                 onClick={() => setOpen(false)}
               >
                 {l.label}

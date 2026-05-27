@@ -128,7 +128,7 @@ const Specialist = () => {
             {credentials.map((cred) => (
               <div
                 key={cred}
-                className="bg-background border border-border/60 rounded-2xl p-5 flex items-center gap-4 hover:border-primary/30 transition-colors"
+                className="bg-background border border-border/60 rounded-2xl p-5 flex items-center gap-4 hover:border-[#bdae97] transition-colors"
               >
                 <div className="w-10 h-10 shrink-0 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center">
                   <CheckCircle2 className="w-5 h-5 text-primary" />

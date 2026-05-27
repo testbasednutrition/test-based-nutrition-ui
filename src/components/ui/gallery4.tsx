@@ -109,9 +109,11 @@ const Gallery4 = ({
       <div className="container mx-auto px-4 md:px-6">
         {compact ? (
           <div className="text-center max-w-4xl mx-auto mb-12 flex flex-col items-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
-              {subtitle}
-            </p>
+            {subtitle && (
+              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
+                {subtitle}
+              </p>
+            )}
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair font-heading mb-2">
               {typeof title === 'string' ? (
                 <>{title}<span className="text-primary">.</span></>

@@ -103,7 +103,7 @@ const PartnerWithUs = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4 p-8 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2]">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2]">
               <div className="w-16 h-16 mx-auto bg-[#9f1e13] rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-md">1</div>
               <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Learn</h3>
               <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">Train in the TBN Method</h4>
@@ -115,7 +115,7 @@ const PartnerWithUs = () => {
               </div>
             </div>
 
-            <div className="text-center space-y-4 p-8 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2]">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2]">
               <div className="w-16 h-16 mx-auto bg-[#9f1e13] rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-md">2</div>
               <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Launch</h3>
               <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">Bring it into real-world service</h4>
@@ -127,7 +127,7 @@ const PartnerWithUs = () => {
               </div>
             </div>
 
-            <div className="text-center space-y-4 p-8 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2]">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2]">
               <div className="w-16 h-16 mx-auto bg-[#9f1e13] rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-md">3</div>
               <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Lead</h3>
               <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">Become known for prevention</h4>
@@ -212,7 +212,7 @@ const PartnerWithUs = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             {/* Host a TBN Hub */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors">
               <Building2 className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Host a TBN Hub</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Become a recognised local destination for test-based nutrition.</p>
@@ -225,7 +225,7 @@ const PartnerWithUs = () => {
             </div>
 
             {/* Clinics & Practitioners */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors">
               <Stethoscope className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Clinics & Practitioners</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Add test-based nutrition without building the system yourself.</p>
@@ -238,7 +238,7 @@ const PartnerWithUs = () => {
             </div>
 
             {/* Pharmacies */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors">
               <Store className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Pharmacies</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Bring personalised preventative health into community pharmacy.</p>
@@ -251,7 +251,7 @@ const PartnerWithUs = () => {
             </div>
 
             {/* Health Clubs & Gyms */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors">
               <HeartPulse className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Health Clubs & Gyms</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Lead the next era of full-body health optimisation.</p>
@@ -264,7 +264,7 @@ const PartnerWithUs = () => {
             </div>
 
             {/* Academies */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors">
               <BookOpen className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Academies & CPD</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Train the practitioners of the future.</p>
@@ -277,7 +277,7 @@ const PartnerWithUs = () => {
             </div>
 
             {/* Retreats */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors">
               <ShieldCheck className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Retreats & Resorts</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Premium test-based wellness experiences.</p>
@@ -290,7 +290,7 @@ const PartnerWithUs = () => {
             </div>
 
             {/* Events */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors">
               <Presentation className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Events & Workshops</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Educate first. Build trust. Create demand.</p>
@@ -303,7 +303,7 @@ const PartnerWithUs = () => {
             </div>
 
             {/* Certified Consultant */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors">
+            <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors">
               <UserCheck className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-2">Certified Consultant</h3>
               <p className="text-sm text-gray-700 font-medium mb-4">Learn the method. Launch your pathway.</p>

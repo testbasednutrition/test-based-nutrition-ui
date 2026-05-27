@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
+import PartnerLeadForm from "@/components/PartnerLeadForm";
 import { Gallery4 } from "@/components/ui/gallery4";
 import Footer from "@/components/Footer";
 import HowWeSupportYou from "@/components/HowWeSupportYou";
@@ -183,7 +184,10 @@ const WomensHealth = () => {
 
         {/* SECTION 3 — SPECIALIST LEADS */}
         <div className="mb-20 xl:mb-24 px-4 lg:px-0">
-
+          <div className="text-center mb-12 border-t border-gray-100 pt-10">
+             <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">LEADING SPECIALISTS IN WOMEN'S HEALTH</h2>
+             <p className="font-bold text-[#9f1e13] text-[13px] uppercase tracking-widest flex items-center justify-center gap-2"><span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /> Built by those redefining modern women's health <span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /></p>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#9f1e13]/20">
               {/* Vian */}
@@ -192,10 +196,10 @@ const WomensHealth = () => {
                     <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800" alt="Dr Vian Hurle" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
-                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-0">Dr Vian Hurle</h3>
-                   <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">MBBCh, MRCGP, DRCOG, DFFP, DipOccMed, BSLM</p>
-                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#9f1e13] uppercase tracking-widest mb-4">Women’s Health Specialist Lead</div>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Women are often managing symptoms without investigating what may be driving them."</p>
+                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-0">Dr Vian Hurle</h3>
+                    <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">MBBCh, MRCGP, DRCOG, DFFP, DipOccMed, BSLM</p>
+                    <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#9f1e13] uppercase tracking-widest mb-4">Women’s Health Specialist Lead</div>
+                    <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Women are often managing symptoms without investigating what may be driving them."</p>
                  </div>
               </div>
               
@@ -205,17 +209,12 @@ const WomensHealth = () => {
                     <img src="/experts/ishtiaq-rehman-new.jpg" alt="Dr Ishtiaq Rehman" className="w-full h-full object-cover object-[center_top] group-hover:scale-[1.03] transition-transform duration-700 ease-in-out" />
                  </div>
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
-                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-1">Dr Ishtiaq Rehman</h3>
-                   <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">MBChB, MFSEM</p>
-                   <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#9f1e13] uppercase tracking-widest mb-4">TBN Co-Founder & Medical Director</div>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Women’s health is influenced by the systems behind it — not just the symptoms you see."</p>
+                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-1">Dr Ishtiaq Rehman</h3>
+                    <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">MBChB, MFSEM</p>
+                    <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#9f1e13] uppercase tracking-widest mb-4">TBN Co-Founder & Medical Director</div>
+                    <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Women’s health is influenced by the systems behind it — not just the symptoms you see."</p>
                  </div>
               </div>
-          </div>
-          
-          <div className="mt-12 text-center max-w-2xl mx-auto border-t border-gray-100 pt-8">
-            <h4 className="font-playfair text-[20px] font-bold text-gray-900 mb-2">The TBN Collective</h4>
-            <p className="text-sm font-medium text-gray-600">A specialist network across hormones, gut health, metabolic health, and recovery — supporting women at every life stage.</p>
           </div>
         </div>
 
@@ -290,17 +289,6 @@ const WomensHealth = () => {
            </div>
         </div>
 
-        {/* SECTION 7.7 — START WITH THE FOUNDATIONS */}
-        <div className="w-full mt-20 lg:mt-24 max-w-6xl mx-auto px-4">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <p className="font-bold text-[#9f1e13] text-[13px] uppercase tracking-widest mb-3">At home or in clinic</p>
-            <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-4 uppercase">START WITH THE FOUNDATIONS</h2>
-            <p className="font-montserrat text-[15px] font-medium leading-relaxed text-gray-600 max-w-2xl mx-auto">
-              Every women's health pathway starts at a cellular level.
-            </p>
-          </div>
-
         {/* STRUCTURED TESTING */}
         <StructuredTesting
           foundational={[
@@ -323,7 +311,6 @@ const WomensHealth = () => {
             { name: "Cortisol", logo: "/images/test-logos/cortisol.png" }
           ]}
         />
-        </div>
 
         {/* SECTION 7.8 — HOW WE SUPPORT YOU */}
         <HowWeSupportYou />
@@ -340,7 +327,7 @@ const WomensHealth = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 items-stretch">
             
             {/* Box 1: Free Consultation */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#bdae97] hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="h-[100px] shrink-0 mb-2">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight">Free Consultation</h3>
                </div>
@@ -409,7 +396,7 @@ const WomensHealth = () => {
             </div>
 
             {/* Box 3: Advanced Review */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#bdae97] hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Advanced Women's Health Review</h3>
                  <p className="text-[11px] font-bold text-[#9f1e13] uppercase tracking-widest">1:1 Strategic Review</p>
@@ -502,8 +489,8 @@ const WomensHealth = () => {
               <div className="w-full lg:flex-1 bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
                   <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-[#9f1e13] -mr-16 -mt-16"/></div>
                   
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 relative z-10 flex-grow">
-                     <div className="flex flex-col justify-between">
+                  <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 relative z-10 flex-grow">
+                     <div className="xl:col-span-8 flex flex-col justify-between">
                          <div>
                              <h3 className="font-playfair text-[24px] md:text-[28px] xl:text-[32px] font-bold text-gray-900 leading-tight mb-4">
                                 TBN operates inside real environments
@@ -517,20 +504,12 @@ const WomensHealth = () => {
                          </div>
                          
                          <div className="mt-auto">
-                            <p className="font-bold text-gray-900 text-[13px] uppercase tracking-widest mb-4">Partner With TBN</p>
-                            <div className="flex flex-col sm:flex-row gap-3">
-                               <button className="flex-1 bg-[#9f1e13] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-sm text-center">
-                                 Become a Partner
-                               </button>
-                               <button className="flex-1 bg-white border border-gray-200 text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm text-center">
-                                 Invite Us to Your Clinic
-                               </button>
-                            </div>
+                             <PartnerLeadForm sourcePage="Women's Health" />
                          </div>
                      </div>
 
                      {/* Right side of the Partner box */}
-                     <div className="flex flex-col xl:pl-8">
+                     <div className="xl:col-span-4 flex flex-col xl:pl-8">
                          <h3 className="font-playfair text-[20px] font-bold text-gray-900 mb-6 xl:mt-1">What This Delivers</h3>
                          <ul className="space-y-4">
                             {[

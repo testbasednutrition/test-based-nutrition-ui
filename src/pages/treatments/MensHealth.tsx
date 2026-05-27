@@ -462,7 +462,7 @@ const MensHealth = () => {
                      Work directly with:
                    </p>
                    <div className="bg-white/5 p-3.5 rounded-xl border border-white/10 w-full mt-auto">
-                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#dbd4c9] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Dr Ishtiaq Rehman <span className="text-white/50 font-normal">(Medical Director)</span></p></div>
+                <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#dbd4c9] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Dr Ishtiaq Rehman <span className="text-white/50 font-normal">(Medical Director)</span></p></div>
                      <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#dbd4c9] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Neil Parsley <span className="text-white/50 font-normal">(Elite Coach)</span></p></div>
                    </div>
                  </div>
@@ -476,10 +476,10 @@ const MensHealth = () => {
         <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4 mb-24">
            <div className="max-w-[800px] mx-auto text-center mb-16">
              <h2 className="font-playfair text-[32px] md:text-[40px] font-bold text-gray-900 leading-tight mb-4 uppercase">
-               PARTNER WITH TBN
+               PARTNER WITH US
              </h2>
              <p className="font-bold text-[#9f1e13] text-[13px] md:text-[14px] uppercase tracking-widest leading-snug">
-               Built for clinics, health clubs, and performance environments.
+               Integrated into clinics, health clubs, and wellness environments
              </p>
            </div>
            
@@ -488,8 +488,8 @@ const MensHealth = () => {
               <div className="w-full lg:flex-1 bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
                   <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-[#9f1e13] -mr-16 -mt-16"/></div>
                   
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 relative z-10 flex-grow">
-                     <div className="flex flex-col justify-between">
+                  <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 relative z-10 flex-grow">
+                     <div className="xl:col-span-8 flex flex-col justify-between">
                          <div>
                              <h3 className="font-playfair text-[24px] md:text-[28px] xl:text-[32px] font-bold text-gray-900 leading-tight mb-4">
                                 TBN operates inside real environments
@@ -503,20 +503,12 @@ const MensHealth = () => {
                          </div>
                          
                          <div className="mt-auto">
-                            <p className="font-bold text-gray-900 text-[13px] uppercase tracking-widest mb-4">Partner With TBN</p>
-                            <div className="flex flex-col sm:flex-row gap-3">
-                               <button className="flex-1 bg-[#9f1e13] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-sm text-center">
-                                 Become a Partner
-                               </button>
-                               <button className="flex-1 bg-white border border-gray-200 text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm text-center">
-                                 Invite Us to Your Facility
-                               </button>
-                            </div>
+                             <PartnerLeadForm sourcePage="Men's Health" />
                          </div>
                      </div>
 
                      {/* Right side of the Partner box */}
-                     <div className="flex flex-col xl:pl-8">
+                     <div className="xl:col-span-4 flex flex-col xl:pl-8">
                          <h3 className="font-playfair text-[20px] font-bold text-gray-900 mb-6 xl:mt-1">What This Delivers</h3>
                          <ul className="space-y-4">
                             {[
@@ -543,7 +535,7 @@ const MensHealth = () => {
                     <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#9f1e13] -mr-12 -mb-12"/></div>
 
                     <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
-                       Find a Men's Health Clinic / Hub
+                       Access TBN-approved clinics across the UK.
                     </h2>
                     
                     <div className="w-[calc(100%+4rem)] md:w-[calc(100%+5rem)] -mx-8 md:-mx-10 mb-6 relative z-10 overflow-hidden shrink-0">
@@ -565,13 +557,13 @@ const MensHealth = () => {
                     
                     <div className="mt-auto w-full relative z-10">
                        <button className="w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-md">
-                          Explore Clinic Directory
+                          Explore Directory
                        </button>
                     </div>
                   </div>
               </div>
-            </div>
-         </div>
+           </div>
+        </div>
 
          {/* FAQ SECTION */}
          <div className="w-full mt-24 max-w-4xl mx-auto px-4 mb-24">

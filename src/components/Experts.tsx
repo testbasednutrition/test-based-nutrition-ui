@@ -12,14 +12,14 @@ const experts = [
   {
     name: "Dr Ishtiaq Rehman",
     role: "Co-Founder\nMedical Director",
-    org: "Current England FA Doctor. Leads the medical development of TBN, guiding our clinical principles through elite sports medicine.",
+    org: "Current England FA Doctor and specialist in sports and lifestyle medicine. Dr Rehman leads the clinical, educational and preventative health framework behind TBN, supporting practitioners, clinics and performance environments through science-led testing and personalised health strategies.",
     link: "/specialists/dr-ishtiaq-rehman",
     image: "/experts/ishtiaq-rehman-new.jpg",
   },
   {
     name: "Neil Parsley",
     role: "Co-Founder\nPerformance Director",
-    org: "Former Team GB coach. Brings extensive experience integrating test-based nutrition strategies within high-performance environments.",
+    org: "Former Team GB, England FA and Manchester City performance coach specialising in performance physiology, recovery and optimisation strategies. As founder of UTS Gym, Neil also leads TBN’s gym integration, sports performance and wellness optimisation pathways.",
     link: "/specialists/neil-parsley",
     image: "/experts/neil-parsley-new.jpg",
   },
@@ -93,21 +93,30 @@ const Experts = () => {
              <div className="max-w-xl mx-auto lg:mx-0 lg:pl-6 xl:pl-10">
                <p className="text-[12px] font-bold tracking-widest uppercase text-primary mb-4">Our Story</p>
                <h2 className="text-[32px] md:text-4xl xl:text-[46px] font-bold font-playfair font-heading mb-8 leading-[1.15] tracking-tight">
-                 Our Purpose-Driven Mission<span className="text-primary">.</span>
+                 A Purpose-Driven Movement Transforming Preventative Health<span className="text-primary">.</span>
                </h2>
                
                <div className="space-y-6 font-montserrat text-[14px] md:text-[15px] leading-[1.8] text-muted-foreground">
-                 <p>
-                   Born from personal transformation and developed with world-leading medical and performance expertise, Test-Based Nutrition (TBN) was created to bridge the gap between reactive treatment and proactive health.
+                 <p className="font-semibold text-foreground/90">
+                   Supporting clinics, practitioners, health clubs and performance environments through science-led testing, education and integration systems.
                  </p>
                  <p>
-                   What began as a personal journey to find answers has evolved into a clinical framework used by leading practitioners, aesthetic clinics, and elite sports teams to deliver personalised preventative healthcare.
+                   Born from personal transformation and built alongside leading specialists in medicine, performance and nutritional science, Test-Based Nutrition (TBN) was created to bridge the gap between reactive healthcare and personalised preventative wellness.
+                 </p>
+                 <p>
+                   Today, TBN supports clinics, practitioners, coaches and wellness environments through world-leading Omega Balance, Gut Health and rapid point-of-care biomarker testing — combined with expert-led protocols, workshops, live events and academy education pathways.
+                 </p>
+                 <p>
+                   Through the TBN Collective, we are building regional preventative health ecosystems powered by testing, education and practitioner collaboration — helping professionals better understand the science of symptoms and deliver more personalised foundational health support.
+                 </p>
+                 <p>
+                   From elite sports performance events and CPD-accredited training to clinic integration and health club optimisation, TBN is redefining how preventative healthcare is delivered in modern wellness environments.
                  </p>
                </div>
                
                <div className="mt-12 pt-8 border-t border-border">
                  <a href="/tbn-method" className="inline-flex items-center font-bold text-[13px] uppercase tracking-widest text-foreground hover:text-primary transition-colors group">
-                   Explore Our Method
+                   Discover The TBN Method
                    <ArrowRight className="ml-3 size-4 transition-transform group-hover:translate-x-1" />
                  </a>
                </div>

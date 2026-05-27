@@ -70,6 +70,21 @@ export function FocusRail({
   const lastWheelTime = React.useRef<number>(0);
   const navigate = useNavigate();
 
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = React.useState(0);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined" || !containerRef.current) return;
+
+    const observer = new ResizeObserver((entries) => {
+      if (!entries || entries.length === 0) return;
+      setContainerWidth(entries[0].contentRect.width);
+    });
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   const count = items.length;
   // Handle empty array gracefully
   if (count === 0) {
@@ -145,11 +160,47 @@ export function FocusRail({
 
   const visibleIndices = [-2, -1, 0, 1, 2];
 
+  // Determine sizes dynamically based on container width
+  let cardWidthClass = "w-[260px] md:w-[300px]";
+  let stageHeightClass = "h-[360px]";
+  let containerHeightClass = "h-[600px]";
+  let xOffsetValue = 320;
+
+  if (compact) {
+    cardWidthClass = "w-[150px] md:w-[170px]";
+    stageHeightClass = "h-[220px]";
+    containerHeightClass = "h-[380px]";
+    xOffsetValue = 160;
+  } else if (containerWidth > 0) {
+    if (containerWidth < 450) {
+      cardWidthClass = "w-[180px]";
+      stageHeightClass = "h-[260px]";
+      containerHeightClass = "h-[450px]";
+      xOffsetValue = 150;
+    } else if (containerWidth < 650) {
+      cardWidthClass = "w-[220px]";
+      stageHeightClass = "h-[320px]";
+      containerHeightClass = "h-[500px]";
+      xOffsetValue = 190;
+    } else if (containerWidth < 900) {
+      cardWidthClass = "w-[260px]";
+      stageHeightClass = "h-[370px]";
+      containerHeightClass = "h-[550px]";
+      xOffsetValue = 240;
+    } else {
+      cardWidthClass = "w-[300px]";
+      stageHeightClass = "h-[420px]";
+      containerHeightClass = "h-[600px]";
+      xOffsetValue = 320;
+    }
+  }
+
   return (
     <div
+      ref={containerRef}
       className={cn(
         "group relative flex w-full flex-col overflow-hidden bg-transparent text-foreground outline-none select-none overflow-x-hidden rounded-3xl",
-        compact ? "h-[380px]" : "h-[600px]",
+        containerHeightClass,
         className
       )}
       onMouseEnter={() => setIsHovering(true)}
@@ -164,7 +215,7 @@ export function FocusRail({
         <motion.div
           className={cn(
             "relative mx-auto flex w-full max-w-6xl items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing",
-            compact ? "h-[220px]" : "h-[360px]"
+            stageHeightClass
           )}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -183,7 +234,7 @@ export function FocusRail({
             const dist = Math.abs(offset);
 
             // Dynamic transforms
-            const xOffset = offset * (compact ? 160 : 320);
+            const xOffset = offset * xOffsetValue;
             const zOffset = -dist * 180;
             const scale = isCenter ? 1 : 0.85;
             const rotateY = offset * -20;
@@ -197,7 +248,7 @@ export function FocusRail({
                 key={absIndex}
                 className={cn(
                   "absolute aspect-[3/4] rounded-2xl border-t border-black/5 bg-white shadow-xl transition-shadow duration-300",
-                  compact ? "w-[150px] md:w-[170px]" : "w-[260px] md:w-[300px]",
+                  cardWidthClass,
                   isCenter ? "z-20 shadow-black/10 cursor-pointer" : "z-10"
                 )}
                 initial={false}

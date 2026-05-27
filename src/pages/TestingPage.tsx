@@ -273,7 +273,7 @@ const TestingPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {/* Omega Test */}
-            <div className="bg-white p-10 lg:p-12 rounded-[2.5rem] border border-gray-100 shadow-lg hover:shadow-xl hover:border-[#9f1e13]/20 transition-all group flex flex-col relative overflow-hidden">
+            <div className="bg-white p-10 lg:p-12 rounded-[2.5rem] border border-gray-100 shadow-lg hover:shadow-xl hover:border-[#bdae97] transition-all group flex flex-col relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#9f1e13]/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
               <div className="flex items-center gap-5 mb-8 relative z-10">
                 <div className="w-20 h-20 flex items-center justify-center shrink-0">
@@ -300,7 +300,7 @@ const TestingPage = () => {
             </div>
             
             {/* Gut Health */}
-            <div className="bg-[#f9f5f2] p-10 lg:p-12 rounded-[2.5rem] border border-[#dbd4c9] shadow-lg hover:shadow-xl hover:border-[#9f1e13]/30 transition-all group flex flex-col relative overflow-hidden">
+            <div className="bg-[#f9f5f2] p-10 lg:p-12 rounded-[2.5rem] border border-[#dbd4c9] shadow-lg hover:shadow-xl hover:border-[#bdae97] transition-all group flex flex-col relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#9f1e13]/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
               <div className="flex items-center gap-5 mb-8 relative z-10">
                 <div className="w-20 h-20 flex items-center justify-center shrink-0">
@@ -335,7 +335,7 @@ const TestingPage = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
              {/* Rapid */}
-             <div className="bg-white p-10 md:p-12 border border-gray-200 rounded-[2rem] shadow-sm flex flex-col hover:shadow-xl hover:border-[#9f1e13]/30 transition-all">
+             <div className="bg-white p-10 md:p-12 border border-gray-200 rounded-[2rem] shadow-sm flex flex-col hover:shadow-xl hover:border-[#bdae97] transition-all">
                 <div className="w-16 h-16 shrink-0 flex items-center justify-center relative overflow-hidden bg-[#f9f5f2] rounded-2xl mb-6">
                   <Zap className="w-8 h-8 text-[#9f1e13]" />
                 </div>
@@ -361,7 +361,7 @@ const TestingPage = () => {
              </div>
 
              {/* Advanced */}
-             <div className="bg-[#f9f5f2] p-10 md:p-12 border border-[#dbd4c9] rounded-[2rem] shadow-sm flex flex-col hover:shadow-xl hover:border-[#9f1e13]/30 transition-all">
+             <div className="bg-[#f9f5f2] p-10 md:p-12 border border-[#dbd4c9] rounded-[2rem] shadow-sm flex flex-col hover:shadow-xl hover:border-[#bdae97] transition-all">
                 <div className="w-16 h-16 bg-white border border-gray-200 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
                   <TestTube2 className="w-8 h-8 text-[#9f1e13]" />
                 </div>
@@ -482,7 +482,7 @@ const TestingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 items-stretch">
             
             {/* Box 1: Free Consultation */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#bdae97] hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">Free Consultation</h3>
                  <p className="font-bold text-[11px] text-[#9f1e13] uppercase tracking-widest">Start with clarity</p>
@@ -553,7 +553,7 @@ const TestingPage = () => {
             </div>
 
             {/* Box 3: Advanced Review */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#bdae97] hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Advanced Review</h3>
                  <p className="text-[11px] font-bold text-[#9f1e13] uppercase tracking-widest">1:1 Strategic Review</p>

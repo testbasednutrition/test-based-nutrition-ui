@@ -30,6 +30,7 @@ import PartnerWithUs from "./pages/PartnerWithUs";
 import PartnerWithUs2 from "./pages/PartnerWithUs2";
 import StMichaels from "./pages/StMichaels";
 import TBNMethod from "./pages/TBNMethod";
+import AdminLeads from "./pages/AdminLeads";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,7 @@ const App = () => (
             <Route path="/testing" element={<TestingPage />} />
             <Route path="/tbn-method" element={<TBNMethod />} />
             <Route path="/retreats/st-michaels" element={<StMichaels />} />
+            <Route path="/admin/leads" element={<AdminLeads />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

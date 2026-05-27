@@ -76,13 +76,12 @@ export const specialists: Specialist[] = [
   {
     slug: "dr-ishtiaq-rehman",
     name: "Dr. Ishtiaq Rehman",
-    role: "Consulting Doctor — England FA",
+    role: "Co-Founder & Medical Director",
     category: "Women's Health",
     image: "/experts/ishtiaq-rehman-new.jpg",
     secondaryImage: "https://test-basednutrition.com/assets/images/ish2-634x434.jpeg",
     bio: [
-      "Dr. Ishtiaq Rehman is a renowned figure in the field of sports medicine, with a career that spans consulting for elite organisations such as the England FA and Sunderland FC. His passion for performance optimisation has led him to become a Partner of test-basednutrition.com, using science-backed methods to improve the health and well-being of clients.",
-      "Dr. Rehman has a deep understanding of how chronic inflammation and omega imbalance affect performance and health, and he uses objective testing to demonstrate these effects. He continues to work with elite athletes and individuals, guiding them towards improved performance through tailored nutrition.",
+      "Current England FA Doctor and specialist in sports and lifestyle medicine. Dr Rehman leads the clinical, educational and preventative health framework behind TBN, supporting practitioners, clinics and performance environments through science-led testing and personalised health strategies.",
     ],
     quote:
       "Launching Test-Based Nutrition is crucial because it allows us to bring objective, evidence-based approaches to health. Our mission is to educate people on the importance of omega balance and to show them, through measurable tests, the profound impact this balance can have on their health and performance.",
@@ -168,12 +167,11 @@ export const specialists: Specialist[] = [
   {
     slug: "neil-parsley",
     name: "Neil Parsley",
-    role: "Consulting Performance Coach — England FA & Manchester City",
+    role: "Co-Founder & Performance Director",
     category: "Sports Performance",
     image: "/experts/neil-parsley-new.jpg",
     bio: [
-      "Neil Parsley is a passionate elite performance coach, having worked with Olympic and professional athletes. He is currently consulting to England FA and Manchester City. Neil also privately trains numerous English Premiership footballers over the last 5 seasons; both in season and abroad on multiple training camps.",
-      "With over 25 years of dedicated experience in the world of sports, his expertise lies in connecting with athletes, coaches, leaders, and key stakeholders at a high level. Neil's experience extends to the international stage, having coached senior podium athletes across multiple Summer and Winter Olympic cycles, international rugby, and international football.",
+      "Former Team GB, England FA and Manchester City performance coach specialising in performance physiology, recovery and optimisation strategies. As founder of UTS Gym, Neil also leads TBN’s gym integration, sports performance and wellness optimisation pathways.",
     ],
     quote:
       "If You're Not Assessing, You're Guessing — This principle has guided my training and coaching philosophy throughout my 25 year career. It reflects my commitment to precision and individualised approaches.",
