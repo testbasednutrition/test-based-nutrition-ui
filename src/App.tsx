@@ -30,6 +30,7 @@ import PartnerWithUs from "./pages/PartnerWithUs";
 import PartnerWithUs2 from "./pages/PartnerWithUs2";
 import StMichaels from "./pages/StMichaels";
 import TBNMethod from "./pages/TBNMethod";
+import PartnerPortal2 from "./pages/PartnerPortal2";
 
 const queryClient = new QueryClient();
 
@@ -63,6 +64,7 @@ const App = () => (
             <Route path="/news/:id" element={<NewsArticle />} />
             <Route path="/partner-with-us" element={<PartnerWithUs />} />
             <Route path="/partner-with-us-2" element={<PartnerWithUs2 />} />
+            <Route path="/partner-portal-2" element={<PartnerPortal2 />} />
             <Route path="/testing" element={<TestingPage />} />
             <Route path="/tbn-method" element={<TBNMethod />} />
             <Route path="/retreats/st-michaels" element={<StMichaels />} />

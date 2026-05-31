@@ -9,6 +9,7 @@ import { FocusRail } from "@/components/ui/focus-rail";
 import { StructuredTesting } from "@/components/StructuredTesting";
 import { useQuery } from "@tanstack/react-query";
 import { fetchSpecialists } from "@/lib/api";
+import PartnerLeadForm from "@/components/PartnerLeadForm";
 import {
   Accordion,
   AccordionContent,
@@ -225,7 +226,7 @@ const MensHealth = () => {
         <div className="w-full mt-16 lg:mt-24 max-w-6xl mx-auto px-4">
            <div className="text-center mb-12">
               <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">The Science Behind Men’s Health</h2>
-              <p className="font-bold text-[#9f1e13] text-[13px] uppercase tracking-widest flex items-center justify-center gap-2"><div className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /> Key drivers we assess <div className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /></p>
+              <div className="font-bold text-[#9f1e13] text-[13px] uppercase tracking-widest flex items-center justify-center gap-2"><div className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /> Key drivers we assess <div className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /></div>
            </div>
            
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
