@@ -139,7 +139,6 @@ const tbnMethodMenuItems = [
 
 const clinicsMenuItems = [
   { label: "A Specialist", href: "/specialists" },
-  { label: "A Collective", href: "/collectives" },
   { label: "A Health Club", href: "/collectives" },
   { label: "A Clinic", href: "/collectives" },
 ];
@@ -432,7 +431,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 {/* Directory Dropdown */}
                 <MenubarMenu>
                   <MenubarTrigger className={getTriggerClass(isCollectiveActive)}>
-                    Our Collective
+                    Directory
                   </MenubarTrigger>
                   <MenubarContent align="center" sideOffset={24} className="min-w-[200px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
                     <div className="px-2 py-1 text-[10px] font-extrabold uppercase tracking-widest text-[#9f1e13]">
@@ -643,7 +642,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 }`}
                 onClick={() => setMobileClinicsOpen(!mobileClinicsOpen)}
               >
-                Our Collective
+                Directory
                 <ChevronDown className={`w-4 h-4 transition-transform ${mobileClinicsOpen ? "rotate-180" : ""}`} />
               </button>
               {mobileClinicsOpen && (
