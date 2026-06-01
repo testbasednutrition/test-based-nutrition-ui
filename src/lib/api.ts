@@ -16,9 +16,9 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
 
     if (error || !data || data.length === 0) {
       if (error) {
-        console.warn('Supabase fetch failed or table missing. Falling back to static specialists data:', error.message);
+        console.warn('Supabase fetch failed:', error.message);
       }
-      return staticSpecialists;
+      return [];
     }
 
     // Parse strings and map to Specialist interface
