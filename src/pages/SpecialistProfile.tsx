@@ -279,7 +279,7 @@ const SpecialistProfile = () => {
               {specialist.quote && (
                  <div className="bg-background border border-border/80 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.05)] rounded-3xl p-10 relative">
                     <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-3 relative z-10">Test-Based Nutrition Journey</p>
-                    <h3 className="text-xl md:text-2xl font-bold mb-6 relative z-10">Why I test instead of guess.</h3>
+                    <h3 className="text-xl md:text-2xl font-bold mb-6 relative z-10">This is why I partnered with TBN.</h3>
                     <div className="relative">
                       <span className="text-5xl font-serif text-border absolute -top-4 -left-4">"</span>
                       <p className="text-muted-foreground leading-relaxed italic relative z-10 text-sm">
