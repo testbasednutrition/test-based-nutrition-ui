@@ -298,9 +298,9 @@ const SpecialistsDirectory = () => {
 
               {/* Specialist Cards list */}
               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 sm:gap-6">
-                {paginatedSpecialists.map((specialist) => (
+                {paginatedSpecialists.map((specialist, index) => (
                   <div 
-                    key={specialist.slug}
+                    key={`${specialist.slug}-${index}`}
                     className="flex flex-col overflow-hidden bg-background border border-border rounded-2xl shadow-sm hover:shadow-md transition-shadow relative"
                   >
                     {/* Top Image Box */}

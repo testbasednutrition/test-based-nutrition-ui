@@ -132,9 +132,9 @@ const ClinicProfile = () => {
              </div>
 
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 md:gap-8">
-               {linkedSpecialists.map((specialist) => (
+               {linkedSpecialists.map((specialist, index) => (
                  <div
-                   key={specialist.slug}
+                   key={`${specialist.slug}-${index}`}
                    className="bg-background rounded-3xl border border-border overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col h-full relative"
                  >
                    <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5 rounded-full z-10 shadow-sm">
