@@ -276,7 +276,7 @@ const SpecialistsDirectory = () => {
               {/* Results Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-bold">{specialists.length * 10}+ Top-rated Specialists</h2>
+                  <h2 className="text-xl font-bold">{specialists.length} Top-rated Specialists</h2>
                   <p className="text-sm text-muted-foreground">
                     Showing results for your health profile
                   </p>
