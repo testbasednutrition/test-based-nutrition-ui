@@ -276,7 +276,7 @@ const SpecialistsDirectory = () => {
               {/* Results Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-bold">{specialists.length} Top-rated Specialists</h2>
+                  <h2 className="text-xl font-bold">{specialists.length} Leading TBN Specialists</h2>
                   <p className="text-sm text-muted-foreground">
                     Showing results for your health profile
                   </p>
@@ -309,6 +309,7 @@ const SpecialistsDirectory = () => {
                         src={specialist.image}
                         alt={specialist.name}
                         className="w-full h-full object-cover origin-top transition-transform duration-300 group-hover:scale-105"
+                        style={{ objectPosition: specialist.imagePosition || 'center top' }}
                         loading="lazy"
                       />
                       <div className="absolute top-4 right-4 bg-primary text-primary-foreground p-1.5 rounded-full shadow-md border border-primary/20">
@@ -323,9 +324,16 @@ const SpecialistsDirectory = () => {
                         <div className="flex justify-between items-start gap-4">
                           <div className="pr-1">
                             <h3 className="text-[13px] sm:text-xl font-bold line-clamp-1">{specialist.name}</h3>
-                            <p className="text-[10px] sm:text-[13px] font-semibold text-primary mt-0.5 sm:mt-1 line-clamp-1">
-                              {specialist.category} {specialist.role && `• ${specialist.role.split("—")[0].trim()}`}
-                            </p>
+                            <div className="flex flex-col gap-1.5 mt-1.5">
+                              <span className="inline-block w-max max-w-full text-[10px] sm:text-[12px] font-semibold text-[#9f1e13] bg-[#9f1e13]/10 px-2.5 py-0.5 rounded-full truncate">
+                                {specialist.category}
+                              </span>
+                              {specialist.role && (
+                                <p className="text-[10px] sm:text-[13px] font-medium text-muted-foreground line-clamp-1">
+                                  {specialist.role.split("—")[0].trim()}
+                                </p>
+                              )}
+                            </div>
                           </div>
                           
                           {/* Rating Badge */}
@@ -342,14 +350,6 @@ const SpecialistsDirectory = () => {
                           <div className="flex items-center gap-2">
                             <MapPin className="w-4 h-4 text-primary shrink-0" />
                             <span className="line-clamp-1">{specialist.location || "London, UK"}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Video className="w-4 h-4 text-primary shrink-0" />
-                            <span className="line-clamp-1">{specialist.consultationType || "Online & In-person"}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <RefreshCcw className="w-4 h-4 text-primary shrink-0" />
-                            <span className="line-clamp-1">{specialist.experience || "10+ Years Exp."}</span>
                           </div>
                         </div>
                       </div>

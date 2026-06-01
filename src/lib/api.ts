@@ -30,8 +30,17 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
         return [];
       };
 
+      const slug = generateSlug(row.first_name || row.clinic_name || 'partner', row.last_name || '');
+      const customPositions: Record<string, string> = {
+        "lynne-matthews": "center 20%",
+        "sarah-abell": "center 30%",
+        "charan-chana": "center 15%",
+        "trevor-ford": "center 20%",
+      };
+      const imagePosition = customPositions[slug] || "center top";
+
       return {
-        slug: generateSlug(row.first_name || row.clinic_name || 'partner', row.last_name || ''),
+        slug,
         name: `${row.first_name || ''} ${row.last_name || ''}`.trim() || row.clinic_name || 'Unnamed Partner',
         role: row.professional_title || '',
         category: (row.primary_category as SpecialistCategory) || 'All',
@@ -42,6 +51,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
         
         // Image Handling
         image: row.profile_picture_url || 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800',
+        imagePosition,
         gallery_image_urls: parseArray(row.gallery_image_urls),
         secondaryImage: parseArray(row.gallery_image_urls)[0], // Use first gallery image as secondary if available
 
@@ -58,7 +68,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
         phone_number: row.phone_number,
         address: row.address,
         clinic_name: row.clinic_name,
-        location: row.address, // For simpler filtering based on existing mock logic
+        location: row.town_city || row.address || '',
         is_approved: row.is_approved,
 
         // Other properties mapped best-effort

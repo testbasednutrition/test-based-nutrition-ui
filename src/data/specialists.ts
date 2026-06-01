@@ -37,6 +37,7 @@ export interface Specialist {
   reviewCount?: number;
   languages?: string[];
   testingExpertise?: string[];
+  imagePosition?: string;
   
   // New TBN listing fields
   tbnFocusTags?: string[];
@@ -349,6 +350,7 @@ export const specialists: Specialist[] = [
     category: "Men's Health",
     image: "https://test-basednutrition.com/assets/images/trevor-ford-1-1125x1500.jpg",
     secondaryImage: "https://test-basednutrition.com/assets/images/trevor-ford-3-698x465.jpeg",
+    imagePosition: "center 20%",
     bio: [
       "With 18 years of experience as a personal trainer, Trevor has led a team of trainers at David Lloyd, one of the UK's premier fitness clubs. His role as manager involves developing comprehensive training programmes that cater to a broad clientele, from young athletes to seniors seeking vitality and strength.",
       "Trevor's holistic approach integrates targeted nutrition with personalised training programmes, focusing on inflammation reduction, mental clarity, and cellular health optimisation.",

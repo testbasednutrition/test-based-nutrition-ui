@@ -65,7 +65,8 @@ const SpecialistProfile = () => {
                 <img
                   src={activeImage || specialist.image}
                   alt={specialist.name}
-                  className="w-full h-full object-cover object-top transition-all duration-300"
+                  className="w-full h-full object-cover transition-all duration-300"
+                  style={{ objectPosition: specialist.imagePosition || 'center top' }}
                 />
                 {/* Acceptance Badge overlay */}
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-max bg-background border border-border rounded-full px-5 py-2.5 shadow-md flex items-center gap-2">
@@ -76,48 +77,50 @@ const SpecialistProfile = () => {
                 </div>
               </div>
 
-              {/* Thumbnails / Mini Images */}
-              {(() => {
-                const uniqueImages = Array.from(
-                  new Set(
-                    [
-                      specialist.image,
-                      ...(specialist.gallery_image_urls || []),
-                      specialist.secondaryImage,
-                    ].filter((url): url is string => !!url)
-                  )
-                );
-                
-                if (uniqueImages.length <= 1) return null;
-
-                return (
-                  <div 
-                    className="grid gap-3 mt-4 w-full"
-                    style={{ gridTemplateColumns: `repeat(${uniqueImages.length}, minmax(0, 1fr))` }}
-                  >
-                    {uniqueImages.map((url, idx) => {
-                      const isActive = activeImage === url || (!activeImage && url === specialist.image);
-                      return (
-                        <button 
-                          key={url}
-                          onClick={() => setActiveImage(url)}
-                          className={`w-full aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5] rounded-xl overflow-hidden border-2 transition-all duration-300 ${
-                            isActive 
-                              ? 'border-[#9f1e13] scale-[1.02] shadow-md ring-2 ring-[#9f1e13]/10' 
-                              : 'border-border opacity-70 hover:opacity-100 hover:scale-[1.01]'
-                          }`}
-                        >
-                          <img 
-                            src={url} 
-                            alt={`${specialist.name} gallery image ${idx + 1}`} 
-                            className="w-full h-full object-cover object-top" 
-                          />
-                        </button>
-                      );
-                    })}
+              {/* Slick Single-Row Balance Impact Bar */}
+              {(specialist.first_balance_result || specialist.second_balance_result) && (
+                <div className="bg-background border border-border/80 shadow-[0_2px_8px_rgba(0,0,0,0.02)] rounded-xl p-3 mt-3 flex flex-wrap items-center justify-between gap-3">
+                  {/* Left side: branding/topic */}
+                  <div className="flex items-center gap-2.5 shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-[#9f1e13]/10 flex items-center justify-center border border-[#9f1e13]/10">
+                      <Activity className="w-3.5 h-3.5 text-[#9f1e13]" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[11px] font-bold text-gray-900 tracking-wider font-montserrat uppercase leading-none">
+                        Omega 6:3 Balance
+                      </span>
+                      <span className="text-[9px] text-muted-foreground tracking-wide font-medium mt-1 leading-none">
+                        Diagnostic Impact
+                      </span>
+                    </div>
                   </div>
-                );
-              })()}
+                  
+                  {/* Right side: values flow */}
+                  <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
+                    {specialist.first_balance_result && (
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[9px] uppercase tracking-wider text-muted-foreground font-bold">Initial</span>
+                        <span className="text-xs font-extrabold text-gray-900 bg-muted/30 border border-border/60 px-2 py-0.5 rounded-md font-mono">
+                          {specialist.first_balance_result}
+                        </span>
+                      </div>
+                    )}
+                    
+                    {specialist.first_balance_result && specialist.second_balance_result && (
+                      <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/40 shrink-0" />
+                    )}
+                    
+                    {specialist.second_balance_result && (
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[9px] uppercase tracking-wider text-emerald-800 font-bold">After</span>
+                        <span className="text-xs font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-md font-mono">
+                          {specialist.second_balance_result}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Info Side - Right */}
@@ -152,45 +155,7 @@ const SpecialistProfile = () => {
                 </div>
               </div>
 
-              {/* Balance Impact Card */}
-              {(specialist.first_balance_result || specialist.second_balance_result) && (
-                <div className="bg-background border border-border/80 shadow-sm rounded-2xl p-6 mb-8">
-                  <div className="flex justify-between items-center mb-6">
-                    <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Omega 6:3 Balance Impact</p>
-                    <Activity className="w-5 h-5 text-primary/40" />
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    {specialist.first_balance_result && (
-                      <div className="text-center flex-1">
-                        <p className="text-xs text-muted-foreground mb-2 font-medium">Initial Test</p>
-                        <p className="text-4xl font-bold text-black">{specialist.first_balance_result}</p>
-                      </div>
-                    )}
-                    
-                    {specialist.first_balance_result && specialist.second_balance_result && (
-                      <div className="flex-shrink-0 px-4">
-                        <ArrowLeft className="w-6 h-6 text-muted-foreground/30 rotate-180" />
-                      </div>
-                    )}
-                    
-                    {specialist.second_balance_result && (
-                      <div className="text-center flex-1">
-                        <p className="text-xs text-muted-foreground mb-2 font-medium">After Protocol</p>
-                        <p className="text-4xl font-bold text-black">{specialist.second_balance_result}</p>
-                      </div>
-                    )}
 
-                    {/* Chart Graphic representation */}
-                    <div className="hidden sm:flex flex-1 items-end justify-end gap-1 h-12 ml-4">
-                      <div className="w-4 bg-destructive/30 rounded-sm" style={{height: '100%'}}></div>
-                      <div className="w-4 bg-destructive/50 rounded-sm" style={{height: '80%'}}></div>
-                      <div className="w-4 bg-emerald-500/50 rounded-sm" style={{height: '30%'}}></div>
-                      <div className="w-4 bg-emerald-500 rounded-sm" style={{height: '15%'}}></div>
-                    </div>
-                  </div>
-                </div>
-              )}
 
               {/* Quote Block */}
               {specialist.why_joined_tbn && (
@@ -374,6 +339,59 @@ const SpecialistProfile = () => {
           </div>
         </section>
       )}
+
+      {/* Gallery Section placed at bottom below Client Results */}
+      {(() => {
+        const uniqueImages = Array.from(
+          new Set(
+            [
+              specialist.image,
+              ...(specialist.gallery_image_urls || []),
+              specialist.secondaryImage,
+            ].filter((url): url is string => !!url)
+          )
+        );
+        
+        if (uniqueImages.length <= 1) return null;
+
+        return (
+          <section className="py-16 md:py-24 bg-background border-t border-border/40">
+            <div className="container px-4 md:px-6 lg:px-8 max-w-7xl">
+              <div className="text-center max-w-2xl mx-auto mb-12">
+                <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-3">
+                  Gallery
+                </p>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                  Specialist & Practice Gallery
+                </h2>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                {uniqueImages.map((url, idx) => (
+                  <div 
+                    key={url}
+                    className="group relative aspect-[4/5] md:aspect-[3/4] rounded-2xl overflow-hidden border border-border bg-secondary shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
+                    onClick={() => {
+                      setActiveImage(url);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    <img 
+                      src={url} 
+                      alt={`${specialist.name} gallery image ${idx + 1}`} 
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" 
+                    />
+                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <span className="text-white text-xs font-bold uppercase tracking-widest bg-black/60 px-4 py-2 rounded-full backdrop-blur-sm">
+                        View Profile Photo
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* Contact */}
       <section id="contact" className="py-16 bg-background">

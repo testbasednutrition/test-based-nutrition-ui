@@ -143,12 +143,12 @@ const clinicsMenuItems = [
   { label: "A Clinic", href: "/collectives" },
 ];
 
-const partnerMenuItems = [
+const partnerMenuItems: { label: string; href: string | null }[] = [
   { label: "Host a TBN Hub", href: "/partner-with-us-2" },
   { label: "Clinics & Practitioners", href: "/partner-with-us" },
   { label: "Health Clubs", href: "/partner-with-us" },
-  { label: "Events & Workshops", href: "/partner-with-us" },
-  { label: "Retreats", href: "/retreats/st-michaels" },
+  { label: "Events & Workshops", href: null },
+  { label: "Retreats", href: null },
 ];
 
 interface NavbarProps {
@@ -469,8 +469,21 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 </MenubarTrigger>
                 <MenubarContent align="end" sideOffset={24} className="min-w-[220px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
                   {partnerMenuItems.map((item) => (
-                    <MenubarItem key={item.label} className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
-                      <a href={item.href} className={getDropdownItemClass(item.href)}>{item.label}</a>
+                    <MenubarItem 
+                      key={item.label} 
+                      className={`p-0 focus:bg-transparent data-[highlighted]:bg-transparent ${item.href ? 'cursor-pointer' : 'cursor-default'}`} 
+                      asChild
+                    >
+                      {item.href ? (
+                        <a href={item.href} className={getDropdownItemClass(item.href)}>{item.label}</a>
+                      ) : (
+                        <span className="font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] py-1 px-2 rounded block w-full outline-none text-muted-foreground/40 select-none cursor-default">
+                          {item.label}{" "}
+                          <span className="text-[10px] normal-case font-normal text-muted-foreground/50 ml-1">
+                            (coming soon)
+                          </span>
+                        </span>
+                      )}
                     </MenubarItem>
                   ))}
                 </MenubarContent>
@@ -689,20 +702,32 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
               </button>
               {mobilePartnerOpen && (
                 <div className="pl-4 pb-2 flex flex-col gap-2">
-                  {partnerMenuItems.map((item) => (
-                    <a 
-                      key={item.label} 
-                      href={item.href} 
-                      className={`text-sm font-semibold transition-colors block ${
-                        isRouteActive(item.href)
-                          ? "text-black font-extrabold"
-                          : "text-muted-foreground hover:text-primary"
-                      }`} 
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
+                  {partnerMenuItems.map((item) => 
+                    item.href ? (
+                      <a 
+                        key={item.label} 
+                        href={item.href} 
+                        className={`text-sm font-semibold transition-colors block ${
+                          isRouteActive(item.href)
+                            ? "text-black font-extrabold"
+                            : "text-muted-foreground hover:text-primary"
+                        }`} 
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      <span 
+                        key={item.label} 
+                        className="text-sm font-semibold text-muted-foreground/40 block select-none cursor-default"
+                      >
+                        {item.label}{" "}
+                        <span className="text-xs normal-case font-normal text-muted-foreground/50 ml-1">
+                          (coming soon)
+                        </span>
+                      </span>
+                    )
+                  )}
                 </div>
               )}
               <PartnerLoginModal>

@@ -122,7 +122,12 @@ const AreaProfile = () => {
                    </div>
                    
                    <div className="aspect-[4/3] overflow-hidden relative bg-background border-b border-border">
-                     <img src={specialist.image} alt={specialist.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out" />
+                     <img 
+                       src={specialist.image} 
+                       alt={specialist.name} 
+                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+                       style={{ objectPosition: specialist.imagePosition || 'center top' }}
+                     />
                    </div>
    
                    <div className="relative p-6 md:p-8 flex flex-col flex-grow">

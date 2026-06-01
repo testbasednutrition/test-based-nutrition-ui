@@ -39,7 +39,14 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link to="/tbn-method" className="hover:text-foreground transition-colors">The TBN Method</Link></li>
               <li><Link to="/testing" className="hover:text-foreground transition-colors">Testing Pathways</Link></li>
-              <li><Link to="/retreats/st-michaels" className="hover:text-foreground transition-colors">Retreats</Link></li>
+              <li>
+                <span className="text-muted-foreground/45 select-none cursor-default">
+                  Retreats{" "}
+                  <span className="text-[11px] normal-case font-normal text-muted-foreground/50 ml-1">
+                    (coming soon)
+                  </span>
+                </span>
+              </li>
               <li><Link to="/news" className="hover:text-foreground transition-colors">News Hub</Link></li>
             </ul>
           </div>

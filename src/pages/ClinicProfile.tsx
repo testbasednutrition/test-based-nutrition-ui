@@ -145,7 +145,8 @@ const ClinicProfile = () => {
                      <img
                        src={specialist.image}
                        alt={specialist.name}
-                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                       style={{ objectPosition: specialist.imagePosition || 'center top' }}
                      />
                      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80" />
                    </div>
