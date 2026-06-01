@@ -122,13 +122,23 @@ const SpecialistProfile = () => {
 
             {/* Info Side - Right */}
             <div className="flex flex-col pt-2 lg:pt-6">
-              <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-3">
-                {specialist.category} {specialist.specificTitle && `• ${specialist.specificTitle}`}
-              </p>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-8">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-3">
                 {specialist.name}
               </h1>
+
+              {/* Category Badge */}
+              <div className="mb-3">
+                <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                  {specialist.category}
+                </span>
+              </div>
+
+              {/* Professional Title/Role */}
+              {specialist.role && (
+                <p className="text-base md:text-lg font-semibold text-muted-foreground mb-6">
+                  {specialist.role}
+                </p>
+              )}
 
               {/* Location & Experience Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
