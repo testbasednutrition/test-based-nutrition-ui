@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -17,6 +18,14 @@ const SpecialistProfile = () => {
   });
 
   const specialist = specialists.find((s) => s.slug === slug);
+
+  const [activeImage, setActiveImage] = useState<string>("");
+
+  useEffect(() => {
+    if (specialist) {
+      setActiveImage(specialist.image);
+    }
+  }, [specialist]);
 
   if (isLoading) {
     return (
@@ -51,25 +60,70 @@ const SpecialistProfile = () => {
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start relative z-10">
             
             {/* Image Side - Left */}
-            <div className="relative w-full aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5] rounded-3xl overflow-hidden border-[3px] border-secondary shadow-sm">
-              <img
-                src={specialist.image}
-                alt={specialist.name}
-                className="w-full h-full object-cover object-top"
-              />
-              {/* Acceptance Badge overlay */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-max bg-background border border-border rounded-full px-5 py-2.5 shadow-md flex items-center gap-2">
-                <span className={`w-2.5 h-2.5 rounded-full ${specialist.accepting_new_clients !== false ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`}></span>
-                <span className="text-sm font-bold tracking-wide">
-                  {specialist.accepting_new_clients !== false ? 'Accepting New Clients' : 'Waitlist Only'}
-                </span>
+            <div className="flex flex-col gap-4 w-full">
+              <div className="relative w-full aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5] rounded-3xl overflow-hidden border-[3px] border-secondary shadow-sm">
+                <img
+                  src={activeImage || specialist.image}
+                  alt={specialist.name}
+                  className="w-full h-full object-cover object-top transition-all duration-300"
+                />
+                {/* Acceptance Badge overlay */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-max bg-background border border-border rounded-full px-5 py-2.5 shadow-md flex items-center gap-2">
+                  <span className={`w-2.5 h-2.5 rounded-full ${specialist.accepting_new_clients !== false ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`}></span>
+                  <span className="text-sm font-bold tracking-wide">
+                    {specialist.accepting_new_clients !== false ? 'Accepting New Clients' : 'Waitlist Only'}
+                  </span>
+                </div>
               </div>
+
+              {/* Thumbnails / Mini Images */}
+              {(() => {
+                const uniqueImages = Array.from(
+                  new Set(
+                    [
+                      specialist.image,
+                      ...(specialist.gallery_image_urls || []),
+                      specialist.secondaryImage,
+                    ].filter((url): url is string => !!url)
+                  )
+                );
+                
+                if (uniqueImages.length <= 1) return null;
+
+                return (
+                  <div 
+                    className="grid gap-3 mt-4 w-full"
+                    style={{ gridTemplateColumns: `repeat(${uniqueImages.length}, minmax(0, 1fr))` }}
+                  >
+                    {uniqueImages.map((url, idx) => {
+                      const isActive = activeImage === url || (!activeImage && url === specialist.image);
+                      return (
+                        <button 
+                          key={url}
+                          onClick={() => setActiveImage(url)}
+                          className={`w-full aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5] rounded-xl overflow-hidden border-2 transition-all duration-300 ${
+                            isActive 
+                              ? 'border-[#9f1e13] scale-[1.02] shadow-md ring-2 ring-[#9f1e13]/10' 
+                              : 'border-border opacity-70 hover:opacity-100 hover:scale-[1.01]'
+                          }`}
+                        >
+                          <img 
+                            src={url} 
+                            alt={`${specialist.name} gallery image ${idx + 1}`} 
+                            className="w-full h-full object-cover object-top" 
+                          />
+                        </button>
+                      );
+                    })}
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Info Side - Right */}
             <div className="flex flex-col pt-2 lg:pt-6">
               <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-3">
-                {specialist.category} {specialist.specific_title && `• ${specialist.specific_title}`}
+                {specialist.category} {specialist.specificTitle && `• ${specialist.specificTitle}`}
               </p>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-8">
@@ -100,7 +154,7 @@ const SpecialistProfile = () => {
                     {specialist.first_balance_result && (
                       <div className="text-center flex-1">
                         <p className="text-xs text-muted-foreground mb-2 font-medium">Initial Test</p>
-                        <p className="text-4xl font-bold text-destructive">{specialist.first_balance_result}</p>
+                        <p className="text-4xl font-bold text-black">{specialist.first_balance_result}</p>
                       </div>
                     )}
                     
@@ -113,7 +167,7 @@ const SpecialistProfile = () => {
                     {specialist.second_balance_result && (
                       <div className="text-center flex-1">
                         <p className="text-xs text-muted-foreground mb-2 font-medium">After Protocol</p>
-                        <p className="text-4xl font-bold text-emerald-500">{specialist.second_balance_result}</p>
+                        <p className="text-4xl font-bold text-black">{specialist.second_balance_result}</p>
                       </div>
                     )}
 
@@ -129,10 +183,10 @@ const SpecialistProfile = () => {
               )}
 
               {/* Quote Block */}
-              {specialist.quote && (
+              {specialist.why_joined_tbn && (
                 <div className="relative pl-6 mb-10 mt-4">
                   <blockquote className="text-muted-foreground italic text-lg leading-relaxed border-l-2 border-primary/20 pl-5">
-                    "{specialist.quote}"
+                    "{specialist.why_joined_tbn}"
                   </blockquote>
                 </div>
               )}
@@ -219,21 +273,21 @@ const SpecialistProfile = () => {
             
             {/* "Why TBN" OR Secondary Image */}
             <div className="space-y-8 mt-4 lg:mt-0">
-              {specialist.why_joined_tbn && (
+              {specialist.quote && (
                  <div className="bg-background border border-border/80 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.05)] rounded-3xl p-10 relative">
                     <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-3 relative z-10">Test-Based Nutrition Journey</p>
                     <h3 className="text-xl md:text-2xl font-bold mb-6 relative z-10">Why I test instead of guess.</h3>
                     <div className="relative">
                       <span className="text-5xl font-serif text-border absolute -top-4 -left-4">"</span>
                       <p className="text-muted-foreground leading-relaxed italic relative z-10 text-sm">
-                        {specialist.why_joined_tbn}
+                        {specialist.quote}
                       </p>
                       <span className="text-5xl font-serif text-border absolute -bottom-8 -right-2">"</span>
                     </div>
                  </div>
               )}
 
-              {specialist.secondaryImage && !specialist.why_joined_tbn && (
+              {specialist.secondaryImage && !specialist.quote && (
                 <div className="aspect-[4/3] rounded-3xl overflow-hidden border-[3px] border-secondary shadow-sm">
                   <img
                     src={specialist.secondaryImage}
@@ -266,7 +320,7 @@ const SpecialistProfile = () => {
               .map((cred, idx) => (
               <div
                 key={`${cred}-${idx}`}
-                className="bg-background border border-border/60 rounded-2xl p-5 flex items-center gap-4 hover:border-primary/30 transition-colors"
+                className="bg-background border border-border/60 rounded-2xl p-5 flex items-center gap-4 hover:border-[#bdae97] transition-colors"
               >
                 <div className="w-10 h-10 shrink-0 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center">
                   <CheckCircle2 className="w-5 h-5 text-primary" />
@@ -278,30 +332,7 @@ const SpecialistProfile = () => {
         </div>
       </section>
 
-      {/* Gallery Section */}
-      {specialist.gallery_image_urls && specialist.gallery_image_urls.length > 0 && (
-        <section className="py-16 bg-background">
-          <div className="container px-4 md:px-6 lg:px-8 max-w-7xl">
-            <div className="flex items-center gap-3 mb-8">
-              <ImageIcon className="w-5 h-5 text-primary" />
-              <h2 className="text-xl md:text-2xl font-bold text-foreground">Clinic Gallery</h2>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-               {specialist.gallery_image_urls.map((url, idx) => (
-                 <div key={idx} className="aspect-square rounded-2xl overflow-hidden border border-border shadow-sm group">
-                    <img src={url} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                 </div>
-               ))}
-               {/* Pad with secondary image if we only have a few, just to look nice */}
-               {specialist.gallery_image_urls.length < 3 && specialist.secondaryImage && (
-                 <div className="aspect-square rounded-2xl overflow-hidden border border-border shadow-sm group">
-                    <img src={specialist.secondaryImage} alt="Clinic Area" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                 </div>
-               )}
-            </div>
-          </div>
-        </section>
-      )}
+
 
       {/* Testimonials */}
       {specialist.testimonials && specialist.testimonials.length > 0 && (
@@ -345,50 +376,72 @@ const SpecialistProfile = () => {
       <section id="contact" className="py-16 bg-background">
         <div className="container px-4 md:px-6 lg:px-8 max-w-7xl">
           <div className="bg-primary rounded-3xl p-8 md:p-12 w-full mx-auto shadow-xl">
-            <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+            <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-stretch">
               
-              {/* Left: Text & CTA */}
-              <div className="md:col-span-5 text-center md:text-left">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary/80 mb-2">Get in Touch</p>
-                <h2 className="text-2xl md:text-3xl font-bold mb-3 text-white">Book a Consultation</h2>
-                <p className="text-white/80 text-sm mb-6 leading-relaxed max-w-md mx-auto md:mx-0">
-                  Ready to optimize your health with {specialist.name}? Contact their clinic directly using the details below.
-                </p>
-                {specialist.bookingUrl && (
-                  <Button asChild className="bg-secondary text-primary hover:bg-white font-semibold px-8 py-5 h-auto rounded-xl transition-colors w-full sm:w-auto shadow-sm">
-                    <a href={specialist.bookingUrl} target="_blank" rel="noopener noreferrer">
-                      {specialist.bookingLabel || "Book Consultation Now"}
+              {/* Left: Text, CTA & Details */}
+              <div className="md:col-span-6 flex flex-col justify-between gap-8 text-center md:text-left">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary/80 mb-2">Get in Touch</p>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-3 text-white">Book a Consultation</h2>
+                  <p className="text-white/80 text-sm mb-6 leading-relaxed max-w-md mx-auto md:mx-0">
+                    Ready to optimize your health with {specialist.name}? Contact their clinic directly using the details below.
+                  </p>
+                  {specialist.bookingUrl && (
+                    <Button asChild className="bg-secondary text-primary hover:bg-white font-semibold px-8 py-5 h-auto rounded-xl transition-colors w-full sm:w-auto shadow-sm">
+                      <a href={specialist.bookingUrl} target="_blank" rel="noopener noreferrer">
+                        {specialist.bookingLabel || "Book Consultation Now"}
+                      </a>
+                    </Button>
+                  )}
+                </div>
+
+                <div className="border-t border-white/10 pt-6 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-2 mb-2 text-secondary">
+                      <MapPin className="w-4 h-4 shrink-0" />
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-white/50">Location</span>
+                    </div>
+                    <p className="text-sm font-semibold text-white">{specialist.clinic_name || specialist.currentOrg || "Private Clinic"}</p>
+                    <p className="text-xs text-white/70 mt-1 whitespace-pre-wrap leading-relaxed">{specialist.address || specialist.location}</p>
+                  </div>
+
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-2 mb-2 text-secondary">
+                      <Phone className="w-4 h-4 shrink-0" />
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-white/50">Phone</span>
+                    </div>
+                    <a href={`tel:${specialist.phone_number || "+440000000000"}`} className="text-sm font-semibold text-white hover:text-secondary transition-colors block mt-0.5 leading-normal break-words">
+                      {specialist.phone_number || "Website Contact"}
                     </a>
-                  </Button>
-                )}
+                  </div>
+
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-2 mb-2 text-secondary">
+                      <Mail className="w-4 h-4 shrink-0" />
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-white/50">Email</span>
+                    </div>
+                    <a href={`mailto:${specialist.email_address || "info@testbased.com"}`} className="text-sm font-semibold text-white hover:text-secondary transition-colors block mt-0.5 leading-normal break-all">
+                      {specialist.email_address || "Unavailable"}
+                    </a>
+                  </div>
+                </div>
               </div>
 
-              {/* Right: Contact Details */}
-              <div className="md:col-span-7 grid sm:grid-cols-12 gap-6 pt-8 md:pt-0 border-t md:border-t-0 md:border-l border-white/10 md:pl-10">
-                
-                <div className="sm:col-span-4 flex flex-col items-center md:items-start text-center md:text-left">
-                  <MapPin className="w-5 h-5 text-secondary mb-3" />
-                  <p className="text-[10px] font-bold text-white/50 uppercase tracking-[0.15em] mb-1">Location</p>
-                  <p className="text-sm font-semibold text-white">{specialist.clinic_name || specialist.currentOrg || "Private Clinic"}</p>
-                  <p className="text-xs text-white/70 mt-1 whitespace-pre-wrap leading-relaxed">{specialist.address || specialist.location}</p>
-                </div>
-
-                <div className="sm:col-span-3 flex flex-col items-center md:items-start text-center md:text-left">
-                  <Phone className="w-5 h-5 text-secondary mb-3" />
-                  <p className="text-[10px] font-bold text-white/50 uppercase tracking-[0.15em] mb-1">Phone</p>
-                  <a href={`tel:${specialist.phone_number || "+440000000000"}`} className="text-sm font-semibold text-white hover:text-secondary transition-colors block mt-1">
-                    {specialist.phone_number || "Contact via Website"}
-                  </a>
-                </div>
-
-                <div className="sm:col-span-5 flex flex-col items-center md:items-start text-center md:text-left">
-                  <Mail className="w-5 h-5 text-secondary mb-3" />
-                  <p className="text-[10px] font-bold text-white/50 uppercase tracking-[0.15em] mb-1">Email</p>
-                  <a href={`mailto:${specialist.email_address || "info@testbased.com"}`} className="text-sm font-semibold text-white hover:text-secondary transition-colors block mt-1 whitespace-nowrap">
-                    {specialist.email_address || "Unavailable"}
-                  </a>
-                </div>
-
+              {/* Right: Google Map */}
+              <div className="md:col-span-6 w-full h-full min-h-[300px] md:min-h-[380px] self-stretch flex items-stretch">
+                {(specialist.address || specialist.location) && (
+                  <div className="w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-lg relative bg-white/5 flex flex-1">
+                    <iframe
+                      title="Clinic Map Location"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0, minHeight: '300px', height: '100%' }}
+                      loading="lazy"
+                      allowFullScreen
+                      src={`https://maps.google.com/maps?q=${encodeURIComponent(specialist.address || specialist.location)}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
+                    />
+                  </div>
+                )}
               </div>
 
             </div>

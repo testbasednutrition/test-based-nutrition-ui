@@ -129,12 +129,12 @@ const HowItWorks = () => {
                 return (
                   <div key={step.id} className="relative flex gap-6 md:gap-8 group">
                     {/* Step Node (Timeline circle) */}
-                    <div className="hidden sm:flex shrink-0 w-20 h-20 rounded-full bg-background border-2 border-border/60 items-center justify-center relative z-10 group-hover:border-primary group-hover:bg-primary/5 group-hover:shadow-[0_0_20px_rgba(182,143,101,0.15)] transition-all duration-500">
+                    <div className="hidden sm:flex shrink-0 w-20 h-20 rounded-full bg-background border-2 border-border/60 items-center justify-center relative z-10 group-hover:border-[#bdae97] group-hover:bg-primary/5 group-hover:shadow-[0_0_20px_rgba(182,143,101,0.15)] transition-all duration-500">
                       <span className="text-xl font-serif font-bold text-primary mr-1">{step.id}</span>
                     </div>
                     
                     {/* Content Card */}
-                    <div className="flex-1 bg-background border border-border/50 rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-500 group-hover:border-primary/30 group-hover:-translate-y-1 origin-bottom">
+                    <div className="flex-1 bg-background border border-border/50 rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-500 group-hover:border-[#bdae97] group-hover:-translate-y-1 origin-bottom">
                       <div className="flex items-center gap-3 mb-4">
                         <span className="sm:hidden text-2xl font-serif font-bold text-primary/40 leading-none">
                           {step.id}.

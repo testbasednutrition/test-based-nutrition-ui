@@ -1,11 +1,52 @@
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, ChevronRight, BookOpen, Users, Brain, Beaker } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 
 const heroImg = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200";
 
 const TBNMethod = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [academyOptIn, setAcademyOptIn] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const { error } = await supabase
+        .from('academy_registrations')
+        .insert([{ 
+          name, 
+          email, 
+          academy_opt_in: academyOptIn,
+          created_at: new Date().toISOString()
+        }]);
+      if (error) throw error;
+      toast.success("Interest registered successfully!");
+    } catch (err) {
+      console.warn("Supabase submission failed, falling back to local storage:", err);
+      const localData = JSON.parse(localStorage.getItem('academy_registrations') || '[]');
+      localData.push({ name, email, academyOptIn, date: new Date().toISOString() });
+      localStorage.setItem('academy_registrations', JSON.stringify(localData));
+      toast.success("Interest registered locally!");
+    }
+
+    const mailtoUrl = `mailto:thinkjsk@gmail.com?subject=${encodeURIComponent(
+      "TBN Academy - New Registration of Interest"
+    )}&body=${encodeURIComponent(
+      `Hello Admin,\n\nA new user has registered interest in the TBN Academy.\n\nDetails:\n- Name: ${name}\n- Email: ${email}\n- Academy Tick Box: ${academyOptIn ? "Checked" : "Unchecked"}\n\nDate: ${new Date().toLocaleDateString()}\n\nKind regards,\nTBN System`
+    )}`;
+    window.location.href = mailtoUrl;
+
+    setIsSubmitted(true);
+    setName("");
+    setEmail("");
+  };
+
   return (
     <div className="min-h-screen bg-[#f9f5f2]">
       <Navbar alwaysSolid={false} />
@@ -180,19 +221,19 @@ const TBNMethod = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4 p-8 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2]">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2]">
               <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 1: Learn</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Train your team in the TBN Method, testing ecosystem, consultation pathway, and compliance-conscious communication. Give your business the confidence to introduce test-based nutrition professionally.
               </p>
             </div>
-            <div className="text-center space-y-4 p-8 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2]">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2]">
               <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 2: Launch</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Bring test-based nutrition into your real-world service model through consultations, test days, workshops, or screening pathways. The TBN Method becomes part of your business, not an add-on.
               </p>
             </div>
-            <div className="text-center space-y-4 p-8 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2]">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2]">
               <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 3: Lead</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Become known for personalised preventative health. Build stronger client engagement, new revenue streams, and recurring wellness programmes with regional visibility.
@@ -270,9 +311,73 @@ const TBNMethod = () => {
           <p className="text-lg leading-relaxed text-white/80 mb-10 max-w-2xl mx-auto">
             Our professional education and training platform for clinics, practitioners, health clubs, pharmacies, academies, coaches and wellness businesses that want to integrate test-based nutrition into their work.
           </p>
-          <Button size="lg" className="bg-[#f9f5f2] hover:bg-white text-[#9f1e13] font-bold px-8 rounded-full">
-            Register Your Interest
-          </Button>
+          {!isSubmitted ? (
+            <form onSubmit={handleSubmit} className="w-full max-w-4xl mx-auto bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/20 shadow-xl mt-8 flex flex-col gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+                <div className="md:col-span-4 space-y-2 text-left">
+                  <label htmlFor="academyName" className="text-[10px] font-bold uppercase tracking-wider text-[#f9f5f2]/80 pl-1">Full Name</label>
+                  <input 
+                    type="text" 
+                    id="academyName" 
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your Name"
+                    className="w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-white/40 transition-all text-sm"
+                  />
+                </div>
+
+                <div className="md:col-span-4 space-y-2 text-left">
+                  <label htmlFor="academyEmail" className="text-[10px] font-bold uppercase tracking-wider text-[#f9f5f2]/80 pl-1">Email Address</label>
+                  <input 
+                    type="email" 
+                    id="academyEmail" 
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    className="w-full h-12 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-white/40 transition-all text-sm"
+                  />
+                </div>
+
+                <div className="md:col-span-4">
+                  <Button 
+                    type="submit" 
+                    className="w-full h-12 bg-[#f9f5f2] hover:bg-white text-[#9f1e13] font-bold text-sm uppercase tracking-wider rounded-xl transition-all shadow-md"
+                  >
+                    Register Interest
+                  </Button>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 py-1 text-left">
+                <input 
+                  type="checkbox" 
+                  id="academyOptIn" 
+                  checked={academyOptIn}
+                  onChange={(e) => setAcademyOptIn(e.target.checked)}
+                  className="w-5 h-5 rounded border-white/20 bg-white/10 text-[#9f1e13] focus:ring-0 focus:ring-offset-0 accent-[#9f1e13] cursor-pointer shrink-0"
+                />
+                <label htmlFor="academyOptIn" className="text-xs font-semibold text-[#f9f5f2] select-none cursor-pointer">
+                  Academy Tick Box (I am interested in TBN Academy updates)
+                </label>
+              </div>
+            </form>
+          ) : (
+            <div className="max-w-md mx-auto bg-white/15 backdrop-blur-md p-8 rounded-3xl border border-white/25 shadow-xl space-y-4 text-center mt-8">
+              <CheckCircle2 className="w-16 h-16 mx-auto text-[#f9f5f2] animate-pulse" />
+              <h3 className="text-2xl font-bold font-playfair text-[#f9f5f2]">Thank You!</h3>
+              <p className="text-sm text-white/95 leading-relaxed">
+                Your interest has been registered. We have saved your details locally and initiated an email template for the admin.
+              </p>
+              <Button 
+                onClick={() => setIsSubmitted(false)}
+                className="bg-transparent border border-white/40 text-white hover:bg-white/10 rounded-xl px-6 h-10"
+              >
+                Register Another
+              </Button>
+            </div>
+          )}
         </div>
       </section>
 

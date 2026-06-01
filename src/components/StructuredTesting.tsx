@@ -23,12 +23,15 @@ export const StructuredTesting: React.FC<StructuredTestingProps> = ({ foundation
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Column 1 */}
         <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-3 mb-2 border-l-4 border-[#9f1e13] pl-3">
-            <h3 className="font-playfair text-[20px] font-bold text-gray-900 uppercase tracking-widest leading-none mt-1">FOUNDATIONAL TESTING</h3>
+          <div>
+            <div className="flex items-center gap-3 mb-2 border-l-4 border-[#9f1e13] pl-3">
+              <h3 className="font-playfair text-[20px] font-bold text-gray-900 uppercase tracking-widest leading-none mt-1">FOUNDATIONAL TESTING</h3>
+            </div>
+            <p className="text-[#9f1e13] font-bold text-[11px] uppercase tracking-widest mt-3">IN-CLINIC OR ONLINE</p>
           </div>
           <div className="flex flex-col gap-4">
             {foundational.map((test, idx) => (
-              <div key={idx} className="bg-white border border-[#dbd4c9] rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-[#9f1e13]/30 transition-all">
+              <div key={idx} className="bg-white border border-[#dbd4c9] rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-[#bdae97] transition-all">
                 <div className="w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden">
                   <img src={test.logo} alt={test.name} className={`w-full h-full object-contain ${test.name === 'FSH' ? 'scale-[1.8]' : 'scale-[1.15]'}`} />
                 </div>
@@ -48,7 +51,7 @@ export const StructuredTesting: React.FC<StructuredTestingProps> = ({ foundation
           </div>
           <div className="flex flex-col gap-4">
             {baseline.map((test, idx) => (
-              <div key={idx} className="bg-white border border-[#dbd4c9] rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-[#9f1e13]/30 transition-all">
+              <div key={idx} className="bg-white border border-[#dbd4c9] rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-[#bdae97] transition-all">
                 <div className="w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden">
                   <img src={test.logo} alt={test.name} className={`w-full h-full object-contain ${test.name === 'FSH' ? 'scale-[1.8]' : 'scale-[1.15]'}`} />
                 </div>
@@ -68,7 +71,7 @@ export const StructuredTesting: React.FC<StructuredTestingProps> = ({ foundation
           </div>
           <div className="flex flex-col gap-4">
             {advanced.map((test, idx) => (
-              <div key={idx} className="bg-white border border-[#dbd4c9] rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-[#9f1e13]/30 transition-all">
+              <div key={idx} className="bg-white border border-[#dbd4c9] rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-[#bdae97] transition-all">
                 <div className="w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden">
                   <img src={test.logo} alt={test.name} className={`w-full h-full object-contain ${test.name === 'FSH' ? 'scale-[1.8]' : 'scale-[1.15]'}`} />
                 </div>

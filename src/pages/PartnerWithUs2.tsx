@@ -86,7 +86,7 @@ const PartnerWithUs2 = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4 p-10 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2] hover:shadow-xl transition-shadow">
+            <div className="text-center space-y-4 p-10 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2] hover:shadow-xl transition-shadow">
               <h3 className="text-3xl font-bold font-playfair text-[#9f1e13] mb-4">Learn</h3>
               <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b border-gray-200 pb-4 mb-4">Master the TBN Method</h4>
               <p className="text-gray-700 leading-relaxed text-left">
@@ -94,7 +94,7 @@ const PartnerWithUs2 = () => {
               </p>
             </div>
 
-            <div className="text-center space-y-4 p-10 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2] hover:shadow-xl transition-shadow">
+            <div className="text-center space-y-4 p-10 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2] hover:shadow-xl transition-shadow">
               <h3 className="text-3xl font-bold font-playfair text-[#9f1e13] mb-4">Launch</h3>
               <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b border-gray-200 pb-4 mb-4">Deploy with Confidence</h4>
               <p className="text-gray-700 leading-relaxed text-left">
@@ -102,7 +102,7 @@ const PartnerWithUs2 = () => {
               </p>
             </div>
 
-            <div className="text-center space-y-4 p-10 border border-[#9f1e13] rounded-3xl bg-[#f9f5f2] hover:shadow-xl transition-shadow">
+            <div className="text-center space-y-4 p-10 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2] hover:shadow-xl transition-shadow">
               <h3 className="text-3xl font-bold font-playfair text-[#9f1e13] mb-4">Lead</h3>
               <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b border-gray-200 pb-4 mb-4">Become the Authority</h4>
               <p className="text-gray-700 leading-relaxed text-left">
@@ -125,7 +125,7 @@ const PartnerWithUs2 = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors cursor-pointer">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors cursor-pointer">
               <Building2 className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-3">Clinics & Practitioners</h3>
               <p className="text-gray-600 leading-relaxed flex-1 mb-6">
@@ -136,7 +136,7 @@ const PartnerWithUs2 = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors cursor-pointer">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors cursor-pointer">
               <Store className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-3">Pharmacies</h3>
               <p className="text-gray-600 leading-relaxed flex-1 mb-6">
@@ -147,7 +147,7 @@ const PartnerWithUs2 = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors cursor-pointer">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors cursor-pointer">
               <HeartPulse className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-3">Gyms & Health Clubs</h3>
               <p className="text-gray-600 leading-relaxed flex-1 mb-6">
@@ -158,7 +158,7 @@ const PartnerWithUs2 = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors cursor-pointer">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors cursor-pointer">
               <BookOpen className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-3">Academies & CPD</h3>
               <p className="text-gray-600 leading-relaxed flex-1 mb-6">
@@ -169,7 +169,7 @@ const PartnerWithUs2 = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors cursor-pointer">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors cursor-pointer">
               <ShieldCheck className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-3">Retreats & Resorts</h3>
               <p className="text-gray-600 leading-relaxed flex-1 mb-6">
@@ -180,7 +180,7 @@ const PartnerWithUs2 = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#9f1e13] transition-colors cursor-pointer">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm flex flex-col h-full group hover:border-[#bdae97] transition-colors cursor-pointer">
               <UserCheck className="w-10 h-10 text-[#9f1e13] mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-[#9f1e13] mb-3">Certified Consultants</h3>
               <p className="text-gray-600 leading-relaxed flex-1 mb-6">

@@ -68,4 +68,3 @@ describe("MensHealth Component", () => {
     expect(specialistName).toBeTruthy();
   });
 });
-

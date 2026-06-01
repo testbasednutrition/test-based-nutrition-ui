@@ -46,7 +46,7 @@ const Pillars = () => {
             return (
               <div
                 key={foundation.title}
-                className="group relative bg-white rounded-2xl p-4 sm:p-6 border border-border shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col"
+                className="group relative bg-white rounded-2xl p-4 sm:p-6 border border-border shadow-sm hover:shadow-xl hover:border-[#bdae97] transition-all duration-500 hover:-translate-y-1 overflow-hidden flex flex-col"
                 style={{ animationDelay: `${i * 0.15}s` }}
               >
                 {/* Decorative background gradient on hover */}

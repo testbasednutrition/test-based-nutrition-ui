@@ -1013,7 +1013,7 @@ export default function PartnerPortal2() {
                                   </div>
                                 </div>
 
-                                {/* Resource Action Buttons */}
+                                {/* Action Buttons */}
                                 <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
                                   {adminMode && (
                                     <button 

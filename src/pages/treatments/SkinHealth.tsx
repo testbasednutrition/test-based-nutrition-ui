@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
+import PartnerLeadForm from "@/components/PartnerLeadForm";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Gallery4 } from "@/components/ui/gallery4";
@@ -208,9 +209,9 @@ const SkinHealth = () => {
 
         {/* OUR SPECIALISTS */}
         <div className="mt-8 mb-12 lg:mb-16 max-w-[1200px] mx-auto px-4 md:px-8">
-
-          <div className="mb-10 lg:mb-12 text-center sm:text-left border-t border-gray-100 pt-10">
-             <h3 className="font-playfair text-[15px] lg:text-[16px] text-gray-900 font-bold tracking-[0.2em] uppercase">Built by those redefining modern skin health</h3>
+          <div className="text-center mb-12 border-t border-gray-100 pt-10">
+             <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">LEADING SPECIALISTS IN SKIN HEALTH</h2>
+             <p className="font-bold text-[#9f1e13] text-[13px] uppercase tracking-widest flex items-center justify-center gap-2"><span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /> Built by those redefining modern skin health <span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /></p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#9f1e13]/20">
@@ -531,7 +532,7 @@ const SkinHealth = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch">
             
             {/* Box 1: Free Consultation */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#bdae97] hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="h-[100px] shrink-0 mb-2">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight">Free Consultation</h3>
                </div>
@@ -584,7 +585,7 @@ const SkinHealth = () => {
             </div>
 
             {/* Box 3: Advanced Review */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#bdae97] hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Advanced Skin Review</h3>
                  <p className="text-[11px] font-bold text-[#9f1e13] uppercase tracking-widest">1:1 Strategic Review</p>
@@ -641,25 +642,22 @@ const SkinHealth = () => {
 
         {/* SECTION — PARTNER WITH US & DIRECTORY */}
         <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4 mb-24">
-           {/* Centered Section Heading */}
            <div className="max-w-[800px] mx-auto text-center mb-16">
              <h2 className="font-playfair text-[32px] md:text-[40px] font-bold text-gray-900 leading-tight mb-4 uppercase">
                PARTNER WITH US
              </h2>
              <p className="font-bold text-[#9f1e13] text-[13px] md:text-[14px] uppercase tracking-widest leading-snug">
-               Integrated into hand-selected clinics, health clubs, gyms, and performance settings
+               Integrated into clinics, health clubs, and wellness environments
              </p>
            </div>
            
            <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
-              
               {/* Left Column: Partner With Us */}
               <div className="w-full lg:flex-1 bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
                   <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-[#9f1e13] -mr-16 -mt-16"/></div>
                   
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 relative z-10 flex-grow">
-                     {/* Left side of the Partner box */}
-                     <div className="flex flex-col justify-between">
+                  <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 relative z-10 flex-grow">
+                     <div className="xl:col-span-8 flex flex-col justify-between">
                          <div>
                              <h3 className="font-playfair text-[24px] md:text-[28px] xl:text-[32px] font-bold text-gray-900 leading-tight mb-4">
                                 TBN operates inside real environments
@@ -673,20 +671,12 @@ const SkinHealth = () => {
                          </div>
                          
                          <div className="mt-auto">
-                            <p className="font-bold text-gray-900 text-[13px] uppercase tracking-widest mb-4">Partner With TBN</p>
-                            <div className="flex flex-col sm:flex-row gap-3">
-                               <button className="flex-1 bg-[#9f1e13] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-sm text-center">
-                                 Become a Partner
-                               </button>
-                               <button className="flex-1 bg-white border border-gray-200 text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm text-center">
-                                 Invite Us to Your Clinic
-                               </button>
-                            </div>
+                             <PartnerLeadForm sourcePage="Skin Health" />
                          </div>
                      </div>
 
                      {/* Right side of the Partner box */}
-                     <div className="flex flex-col xl:pl-8">
+                     <div className="xl:col-span-4 flex flex-col xl:pl-8">
                          <h3 className="font-playfair text-[20px] font-bold text-gray-900 mb-6 xl:mt-1">What This Delivers</h3>
                          <ul className="space-y-4">
                             {[
@@ -707,20 +697,15 @@ const SkinHealth = () => {
                   </div>
               </div>
 
-              {/* Right Column: Stacked Boxes */}
+              {/* Right Column: Directory */}
               <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 flex flex-col gap-6 lg:gap-8">
-                 {/* Directory Access */}
                  <div className="w-full bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
                     <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#9f1e13] -mr-12 -mb-12"/></div>
 
                     <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
                        Access TBN-approved clinics across the UK.
                     </h2>
-                    <p className="text-[13px] text-gray-600 mb-8 font-medium leading-relaxed relative z-10">
-                       Find specialist TBN practitioners. Discover cutting-edge support near you.
-                    </p>
                     
-                    {/* Directory Flicker / Focus Rail */}
                     <div className="w-[calc(100%+4rem)] md:w-[calc(100%+5rem)] -mx-8 md:-mx-10 mb-6 relative z-10 overflow-hidden shrink-0">
                        {isSpecialistsLoading || expertItems.length === 0 ? (
                           <div className="h-[380px] flex items-center justify-center">
@@ -743,10 +728,10 @@ const SkinHealth = () => {
                           Explore Directory
                        </button>
                     </div>
-                  </div>
+                 </div>
               </div>
-            </div>
-         </div>
+           </div>
+        </div>
 
         {/* LATEST INSIGHTS HORIZONTAL GALLERY */}
         <div className="w-full mt-8 max-w-[1400px] mx-auto px-4 mb-8">

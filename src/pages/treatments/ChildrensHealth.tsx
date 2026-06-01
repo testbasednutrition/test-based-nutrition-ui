@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
+import PartnerLeadForm from "@/components/PartnerLeadForm";
 import { Gallery4 } from "@/components/ui/gallery4";
 import Footer from "@/components/Footer";
 import HowWeSupportYou from "@/components/HowWeSupportYou";
@@ -111,36 +112,6 @@ const ChildrensHealth = () => {
       </div>
 
       <main className="flex-grow w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pb-8 md:pb-16 mb-16">
-
-        {/* SECTION 3 — SPECIALIST LEADS */}
-        <div className="mb-20 xl:mb-24 px-4 lg:px-0 mt-16">
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#9f1e13]/20 border-t border-gray-100 pt-10">
-              {/* Specialist 1 */}
-              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
-                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
-                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-0">Dr Ishtiaq Rehman</h3>
-                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#9f1e13] uppercase tracking-widest mb-4 mt-2">TBN Co-Founder & Medical Director<br/>England FA Doctor</div>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Many of the health challenges children and teenagers face today are influenced by wider lifestyle, nutritional, inflammatory, and metabolic factors that are often overlooked."</p>
-                 </div>
-              </div>
-              
-              {/* Specialist 2 */}
-              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pl-4 lg:pl-14">
-                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
-                   <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-1">Jenny Mocock</h3>
-                   <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#9f1e13] uppercase tracking-widest mb-4 mt-2">Naturopathic Nutritional Therapist<br/>Healthy Healing Health & Wellbeing Specialists</div>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Children’s nutrition, gut health, inflammatory balance, and nervous system resilience may all influence emotional wellbeing, focus, immunity, and development during key stages of growth."</p>
-                 </div>
-              </div>
-          </div>
-
-          <div className="mt-12 text-center flex flex-col items-center justify-center max-w-2xl mx-auto border-t border-gray-100 pt-10">
-            <h3 className="font-playfair text-[20px] font-bold text-[#111827] mb-2 uppercase tracking-widest">The TBN Collective</h3>
-            <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">A specialist-led network supporting children, teens, and families through structured testing, education, lifestyle support, and personalised pathways.</p>
-          </div>
-        </div>
-
         {/* SECTION 2 — EXPLORE YOUR PATHWAY */}
         <div id="pathways" className="mb-12 xl:mb-20">
           <div className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] mb-8">
@@ -194,6 +165,34 @@ const ChildrensHealth = () => {
                 }
               ]}
             />
+          </div>
+        </div>
+
+        {/* SECTION 3 — SPECIALIST LEADS */}
+        <div className="mb-20 xl:mb-24 px-4 lg:px-0 mt-16">
+          <div className="text-center mb-12 border-t border-gray-100 pt-10">
+             <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">LEADING SPECIALISTS IN CHILDREN & TEEN HEALTH</h2>
+             <p className="font-bold text-[#9f1e13] text-[13px] uppercase tracking-widest flex items-center justify-center gap-2"><span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /> Built by those redefining family wellbeing <span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /></p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#9f1e13]/20">
+              {/* Specialist 1 */}
+              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
+                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
+                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-0">Dr Ishtiaq Rehman</h3>
+                    <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#9f1e13] uppercase tracking-widest mb-4 mt-2">TBN Co-Founder & Medical Director<br/>England FA Doctor</div>
+                    <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Many of the health challenges children and teenagers face today are influenced by wider lifestyle, nutritional, inflammatory, and metabolic factors that are often overlooked."</p>
+                 </div>
+              </div>
+              
+              {/* Specialist 2 */}
+              <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pl-4 lg:pl-14">
+                 <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
+                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-1">Jenny Mocock</h3>
+                    <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#9f1e13] uppercase tracking-widest mb-4 mt-2">Naturopathic Nutritional Therapist<br/>Healthy Healing Health & Wellbeing Specialists</div>
+                    <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Children’s nutrition, gut health, inflammatory balance, and nervous system resilience may all influence emotional wellbeing, focus, immunity, and development during key stages of growth."</p>
+                 </div>
+              </div>
           </div>
         </div>
 
@@ -318,7 +317,7 @@ const ChildrensHealth = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 items-stretch">
             
             {/* Box 1: Free Consultation */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#bdae97] hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="h-[100px] shrink-0 mb-2">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight">Free Consultation</h3>
                </div>
@@ -380,7 +379,7 @@ const ChildrensHealth = () => {
             </div>
 
             {/* Box 3: Advanced Review */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#bdae97] hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Advanced Children’s Review</h3>
                  <p className="text-[11px] font-bold text-[#9f1e13] uppercase tracking-widest">1:1 Strategic Review</p>
@@ -460,7 +459,6 @@ const ChildrensHealth = () => {
           </div>
         </div>
 
-
         {/* SECTION 8 — PARTNER WITH US & DIRECTORY */}
         <div className="w-full mt-24 lg:mt-32 max-w-[1400px] mx-auto px-4 mb-24">
            <div className="max-w-[800px] mx-auto text-center mb-16">
@@ -468,18 +466,17 @@ const ChildrensHealth = () => {
                PARTNER WITH US
              </h2>
              <p className="font-bold text-[#9f1e13] text-[13px] md:text-[14px] uppercase tracking-widest leading-snug">
-               Integrated into clinics, schools, family support services, and child wellbeing environments.
+               Integrated into clinics, health clubs, and wellness environments
              </p>
            </div>
            
            <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
-              
+              {/* Left Column: Partner With Us */}
               <div className="w-full lg:flex-1 bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
                   <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-[#9f1e13] -mr-16 -mt-16"/></div>
                   
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 relative z-10 flex-grow">
-                     {/* Left side of the Partner box */}
-                     <div className="flex flex-col justify-between">
+                  <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 relative z-10 flex-grow">
+                     <div className="xl:col-span-8 flex flex-col justify-between">
                          <div>
                              <h3 className="font-playfair text-[24px] md:text-[28px] xl:text-[32px] font-bold text-gray-900 leading-tight mb-4">
                                 TBN operates inside real environments
@@ -493,20 +490,12 @@ const ChildrensHealth = () => {
                          </div>
                          
                          <div className="mt-auto">
-                            <p className="font-bold text-gray-900 text-[13px] uppercase tracking-widest mb-4">Partner With TBN</p>
-                            <div className="flex flex-col sm:flex-row gap-3">
-                               <button className="flex-1 bg-[#9f1e13] text-white px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-sm text-center">
-                                 Become a Partner
-                               </button>
-                               <button className="flex-1 bg-white border border-gray-200 text-gray-900 px-5 py-4 rounded-xl font-bold text-[12px] md:text-[13px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm text-center">
-                                 Invite Us to Your Clinic
-                               </button>
-                            </div>
+                             <PartnerLeadForm sourcePage="Children's Health" />
                          </div>
                      </div>
 
                      {/* Right side of the Partner box */}
-                     <div className="flex flex-col xl:pl-8">
+                     <div className="xl:col-span-4 flex flex-col xl:pl-8">
                          <h3 className="font-playfair text-[20px] font-bold text-gray-900 mb-6 xl:mt-1">What This Delivers</h3>
                          <ul className="space-y-4">
                             {[
@@ -527,24 +516,41 @@ const ChildrensHealth = () => {
                   </div>
               </div>
 
+              {/* Right Column: Directory */}
               <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 flex flex-col gap-6 lg:gap-8">
-                  <div className="w-full bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg mt-0">
-                    <h2 className="font-playfair text-[20px] font-bold text-gray-900 leading-snug mb-4 relative z-10 uppercase">
-                       FIND A TBN CHILDREN’S HEALTH CLINIC
+                 <div className="w-full bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
+                    <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#9f1e13] -mr-12 -mb-12"/></div>
+
+                    <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
+                       Access TBN-approved clinics across the UK.
                     </h2>
-                    <p className="text-[13px] text-gray-600 mb-8 font-medium leading-relaxed relative z-10">
-                       Access TBN through a growing network of specialist-led clinics and support environments.
-                    </p>
+                    
+                    <div className="w-[calc(100%+4rem)] md:w-[calc(100%+5rem)] -mx-8 md:-mx-10 mb-6 relative z-10 overflow-hidden shrink-0">
+                       {isSpecialistsLoading || expertItems.length === 0 ? (
+                          <div className="h-[380px] flex items-center justify-center">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#9f1e13]"></div>
+                          </div>
+                       ) : (
+                          <FocusRail 
+                            items={expertItems} 
+                            autoPlay={true} 
+                            interval={4000}
+                            loop={true} 
+                            compact={true}
+                            className="bg-transparent h-auto !w-full"
+                          />
+                       )}
+                    </div>
                     
                     <div className="mt-auto w-full relative z-10">
                        <button className="w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-md">
-                          Find a Clinic Near You
+                          Explore Directory
                        </button>
                     </div>
-                  </div>
+                 </div>
               </div>
-            </div>
-         </div>
+           </div>
+        </div>
 
         {/* FINAL CTA */}
         <div className="mt-16 lg:mt-24">
