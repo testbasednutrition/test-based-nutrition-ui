@@ -212,53 +212,46 @@ const SpecialistProfile = () => {
         </div>
       </section>
 
-      {/* Expertise & Testing Modalities */}
-      {(specialist.specialization_tags?.length || specialist.primary_testing_methods?.length) && (
-        <section className="py-16 bg-background border-y border-border/50">
+      {/* Conditions & Support Section */}
+      {specialist.specialization_tags && specialist.specialization_tags.length > 0 && (
+        <section className="py-16 bg-background border-b border-border/50">
           <div className="container px-4 md:px-6 lg:px-8 max-w-7xl">
-             <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-start">
-                
-                {/* Specializations */}
-                {specialist.specialization_tags && specialist.specialization_tags.length > 0 && (
-                  <div>
-                    <div className="flex items-center gap-3 mb-6">
-                      <CheckCircle2 className="w-5 h-5 text-primary" />
-                      <h2 className="text-xl md:text-2xl font-bold text-foreground">Conditions & Support</h2>
-                    </div>
-                    <div className="flex flex-wrap gap-2.5">
-                       {specialist.specialization_tags.map(tag => (
-                         <span key={tag} className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-transparent text-muted-foreground border border-border/80">
-                           {tag}
-                         </span>
-                       ))}
-                    </div>
-                  </div>
-                )}
+            <div className="flex items-center gap-3 mb-8">
+              <CheckCircle2 className="w-5 h-5 text-primary" />
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">Conditions & Support</h2>
+            </div>
+            <div className="flex flex-wrap gap-2.5 max-w-5xl">
+               {specialist.specialization_tags.map((tag, index) => (
+                 <span key={`${tag}-${index}`} className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-transparent text-muted-foreground border border-border/80">
+                   {tag}
+                 </span>
+               ))}
+            </div>
+          </div>
+        </section>
+      )}
 
-                {/* Testing Methods */}
-                {specialist.primary_testing_methods && specialist.primary_testing_methods.length > 0 && (
-                  <div>
-                    <div className="flex items-center gap-3 mb-6">
-                      <TestTube2 className="w-5 h-5 text-primary" />
-                      <h2 className="text-xl md:text-2xl font-bold text-foreground">Testing & Diagnostics</h2>
-                    </div>
-                    <div className="flex flex-wrap gap-2.5 mb-4">
-                       {specialist.primary_testing_methods.map(method => (
-                         <span key={method} className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/20">
-                           <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-50" />
-                           {method}
-                         </span>
-                       ))}
-                    </div>
-                    {specialist.other_blood_tests && (
-                      <p className="text-xs text-muted-foreground mt-4 leading-relaxed max-w-sm">
-                        * {specialist.other_blood_tests}
-                      </p>
-                    )}
-                  </div>
-                )}
-
-             </div>
+      {/* Testing & Diagnostics Section */}
+      {specialist.primary_testing_methods && specialist.primary_testing_methods.length > 0 && (
+        <section className="py-16 bg-background border-b border-border/50">
+          <div className="container px-4 md:px-6 lg:px-8 max-w-7xl">
+            <div className="flex items-center gap-3 mb-8">
+              <TestTube2 className="w-5 h-5 text-primary" />
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">Testing & Diagnostics</h2>
+            </div>
+            <div className="flex flex-wrap gap-2.5 max-w-5xl mb-4">
+               {specialist.primary_testing_methods.map((method, index) => (
+                 <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/20">
+                   <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-50" />
+                   {method}
+                 </span>
+               ))}
+            </div>
+            {specialist.other_blood_tests && (
+              <p className="text-xs text-muted-foreground mt-4 leading-relaxed max-w-2xl">
+                * {specialist.other_blood_tests}
+              </p>
+            )}
           </div>
         </section>
       )}
