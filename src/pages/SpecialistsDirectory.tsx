@@ -109,7 +109,7 @@ const SpecialistsDirectory = () => {
     return matchesCategory && matchesLocation;
   });
 
-  const ITEMS_PER_PAGE = 6;
+  const ITEMS_PER_PAGE = 21;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const paginatedSpecialists = filtered.slice(startIndex, endIndex);

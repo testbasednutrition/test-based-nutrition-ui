@@ -28,7 +28,12 @@ const createQueryClient = () => new QueryClient({
 
 describe("SpecialistsDirectory Pagination", () => {
   it("renders specialists on page 1, 2, and 3 dynamically", async () => {
-    mockFetchSpecialists.mockResolvedValue(mockSpecialists);
+    const testSpecialists = Array.from({ length: 50 }, (_, i) => ({
+      ...mockSpecialists[0],
+      slug: `specialist-${i}`,
+      name: `Specialist-${i}`,
+    }));
+    mockFetchSpecialists.mockResolvedValue(testSpecialists);
     const queryClient = createQueryClient();
     render(
       <QueryClientProvider client={queryClient}>
@@ -40,8 +45,8 @@ describe("SpecialistsDirectory Pagination", () => {
       </QueryClientProvider>
     );
 
-    // Verify first page is active and shows first specialist (Dr. Ishtiaq Rehman)
-    const specialistOnPage1 = await screen.findByText("Dr. Ishtiaq Rehman");
+    // Verify first page is active and shows first specialist (Specialist-0)
+    const specialistOnPage1 = await screen.findByText("Specialist-0");
     expect(specialistOnPage1).toBeInTheDocument();
 
     // Verify page numbers are rendered
@@ -53,13 +58,13 @@ describe("SpecialistsDirectory Pagination", () => {
     // Click page 2 button
     fireEvent.click(page2Button);
 
-    // Dr. Ishtiaq Rehman is on page 1, so he should not be displayed on page 2
-    expect(screen.queryByText("Dr. Ishtiaq Rehman")).not.toBeInTheDocument();
+    // Specialist-0 is on page 1, so they should not be displayed on page 2
+    expect(screen.queryByText("Specialist-0")).not.toBeInTheDocument();
 
     // Click page 3 button
     fireEvent.click(page3Button);
 
     // Verify we are on page 3
-    expect(screen.queryByText("Dr. Ishtiaq Rehman")).not.toBeInTheDocument();
+    expect(screen.queryByText("Specialist-0")).not.toBeInTheDocument();
   });
 });
