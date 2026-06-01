@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -63,6 +63,12 @@ const SearchField = ({
 const SpecialistsDirectory = () => {
   const [activeCategory, setActiveCategory] = useState<SpecialistCategory>("All");
   const [locationSearch, setLocationSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory, locationSearch]);
   
   const { data: specialists = [], isLoading, error } = useQuery({
     queryKey: ['specialists'],
@@ -102,6 +108,12 @@ const SpecialistsDirectory = () => {
     
     return matchesCategory && matchesLocation;
   });
+
+  const ITEMS_PER_PAGE = 6;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedSpecialists = filtered.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
 
   return (
     <div className="min-h-screen bg-secondary/30 font-sans">
@@ -286,7 +298,7 @@ const SpecialistsDirectory = () => {
 
               {/* Specialist Cards list */}
               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 sm:gap-6">
-                {filtered.map((specialist) => (
+                {paginatedSpecialists.map((specialist) => (
                   <div 
                     key={specialist.slug}
                     className="flex flex-col overflow-hidden bg-background border border-border rounded-2xl shadow-sm hover:shadow-md transition-shadow relative"
@@ -359,27 +371,49 @@ const SpecialistsDirectory = () => {
               </div>
 
               {/* Pagination */}
-              {filtered.length > 0 && (
+              {totalPages > 1 && (
                 <div className="pt-8 flex items-center justify-center gap-2">
-                  <Button variant="outline" size="icon" className="w-8 h-8 rounded-md border-border text-muted-foreground hover:bg-secondary">
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="w-8 h-8 rounded-md border-border text-muted-foreground hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={currentPage === 1}
+                    onClick={() => {
+                      setCurrentPage(prev => Math.max(prev - 1, 1));
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
                     <ChevronLeft className="w-4 h-4" />
                   </Button>
-                  <Button className="w-8 h-8 rounded-md bg-primary text-primary-foreground hover:bg-primary/90">
-                    1
-                  </Button>
-                  <Button variant="outline" className="w-8 h-8 rounded-md border-border hover:bg-secondary">
-                    2
-                  </Button>
-                  <Button variant="outline" className="w-8 h-8 rounded-md border-border hover:bg-secondary">
-                    3
-                  </Button>
-                  <div className="w-8 h-8 flex items-center justify-center text-muted-foreground">
-                    ...
-                  </div>
-                  <Button variant="outline" className="w-8 h-8 rounded-md border-border hover:bg-secondary">
-                    12
-                  </Button>
-                  <Button variant="outline" size="icon" className="w-8 h-8 rounded-md border-border text-muted-foreground hover:bg-secondary">
+
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <Button
+                      key={page}
+                      onClick={() => {
+                        setCurrentPage(page);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className={`w-8 h-8 rounded-md ${
+                        currentPage === page 
+                          ? "bg-primary text-primary-foreground hover:bg-primary/90" 
+                          : "border-border hover:bg-secondary text-foreground bg-transparent"
+                      }`}
+                      variant={currentPage === page ? "default" : "outline"}
+                    >
+                      {page}
+                    </Button>
+                  ))}
+
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="w-8 h-8 rounded-md border-border text-muted-foreground hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={currentPage === totalPages}
+                    onClick={() => {
+                      setCurrentPage(prev => Math.min(prev + 1, totalPages));
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
                     <ChevronRight className="w-4 h-4" />
                   </Button>
                 </div>
