@@ -97,8 +97,8 @@ const InstagramFeed = () => {
 
   useEffect(() => {
     const fetchInstagramFeed = async () => {
-      // Check for feed URL from environment variables
-      const beholdFeedUrl = import.meta.env.VITE_BEHOLD_FEED_URL;
+      // Check for feed URL from environment variables or use the default user feed
+      const beholdFeedUrl = import.meta.env.VITE_BEHOLD_FEED_URL || "https://feeds.behold.so/a55tKoQfQyeYujIFqXae";
       
       if (!beholdFeedUrl) {
         // No feed configured, use fallback curated posts
