@@ -146,36 +146,26 @@ const InstagramFeed = () => {
   }, []);
 
   return (
-    <section className="py-20 md:py-28 bg-[#fdfcfb] border-t border-border/40">
+    <section className="py-10 md:py-14 bg-[#fdfcfb] border-t border-border/40">
       <div className="container px-6 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#9f1e13] mb-3">
-              Social Feed
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold font-playfair text-foreground tracking-tight mb-2">
-              Inside Test-Based Nutrition
-            </h2>
-            <p className="text-muted-foreground text-[15px] max-w-xl leading-relaxed">
-              Follow our journey on Instagram for cellular health insights, practitioner stories, academy updates, and science-led nutrition protocols.
-            </p>
-          </div>
+        <div className="flex items-center justify-between gap-4 mb-8">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#9f1e13] leading-none">
+            Social Feed
+          </p>
           
-          <div className="flex items-center gap-4 shrink-0">
-            <a 
-              href={profileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-border shadow-sm hover:border-[#bdae97] hover:shadow-md transition-all duration-300"
-            >
-              <Instagram className="w-4 h-4 text-[#9f1e13]" />
-              <span className="text-sm font-bold text-gray-800 group-hover:text-[#9f1e13] transition-colors">
-                @testbasedltd
-              </span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
-          </div>
+          <a 
+            href={profileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-border shadow-sm hover:border-[#bdae97] hover:shadow-md transition-all duration-300 shrink-0"
+          >
+            <Instagram className="w-3.5 h-3.5 text-[#9f1e13]" />
+            <span className="text-xs font-bold text-gray-800 group-hover:text-[#9f1e13] transition-colors font-sans">
+              @testbasedltd
+            </span>
+            <ArrowUpRight className="w-3 h-3 text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </a>
         </div>
 
         {/* Feed Grid */}
