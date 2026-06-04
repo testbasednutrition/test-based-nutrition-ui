@@ -12,6 +12,7 @@ import ClientLogos from "@/components/ClientLogos";
 import Footer from "@/components/Footer";
 import { HeroGeometric } from "@/components/ui/shape-landing-hero";
 import { ModernBackgroundDemo } from "@/components/ModernBackgroundDemo";
+import InstagramFeed from "@/components/InstagramFeed";
 
 const Index = () => {
   return (
@@ -43,6 +44,7 @@ const Index = () => {
         title1="Undecided how we can Help?"
         title2="Click the Personal Protocol Quiz"
       />
+      <InstagramFeed />
       <Footer />
     </div>
   );
