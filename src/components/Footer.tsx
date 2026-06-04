@@ -14,8 +14,11 @@ const Footer = () => {
                 className="h-10 md:h-[3.25rem] object-contain"
               />
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Uniting elite experts in health and performance. Science-led, results-driven.
+            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+              A New Era in Nutritional Preventative Healthcare.
+            </p>
+            <p className="text-xs font-bold tracking-widest text-[#9f1e13] uppercase font-sans">
+              Test. Target. Transform.™
             </p>
           </div>
 
