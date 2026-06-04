@@ -146,10 +146,10 @@ const InstagramFeed = () => {
   }, []);
 
   return (
-    <section className="py-10 md:py-14 bg-[#fdfcfb] border-t border-border/40">
+    <section className="py-6 md:py-8 bg-[#fdfcfb] border-t border-border/40">
       <div className="container px-6 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between gap-4 mb-8">
+        <div className="flex items-center justify-between gap-4 mb-6">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#9f1e13] leading-none">
             Social Feed
           </p>
