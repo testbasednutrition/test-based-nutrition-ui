@@ -19,7 +19,7 @@ const experts = [
   {
     name: "Neil Parsley",
     role: "Co-Founder\nPerformance Director",
-    org: "Former Team GB, England FA and Manchester City performance coach specialising in performance physiology, recovery and optimisation strategies. As founder of UTS Gym, Neil also leads TBN’s gym integration, sports performance and wellness optimisation pathways.",
+    org: "Former Team GB, England FA and Manchester City performance coach. As founder of UTS Gym, Neil also leads TBN’s gym integration and sports performance pathways.",
     link: "/specialists/neil-parsley",
     image: "/experts/neil-parsley-new.jpg",
   },
