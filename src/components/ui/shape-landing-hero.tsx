@@ -59,10 +59,10 @@ function ElegantShape({
                         "absolute inset-0 rounded-full",
                         "bg-gradient-to-r to-transparent",
                         gradient,
-                        "backdrop-blur-[2px] border-2 border-white/[0.15]",
-                        "shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]",
+                        "backdrop-blur-[2px] border-[1.5px] border-black/[0.04]",
+                        "shadow-[0_8px_32px_0_rgba(159,30,19,0.02)]",
                         "after:absolute after:inset-0 after:rounded-full",
-                        "after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]"
+                        "after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.4),transparent_70%)]"
                     )}
                 />
             </motion.div>
@@ -94,8 +94,8 @@ function HeroGeometric({
     };
 
     return (
-        <div className="relative py-16 md:py-24 w-full flex items-center justify-center overflow-hidden bg-[#030303]">
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
+        <div className="relative py-24 md:py-32 w-full flex items-center justify-center overflow-hidden bg-background">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#9f1e13]/[0.05] via-transparent to-black/[0.03] blur-3xl" />
 
             <div className="absolute inset-0 overflow-hidden">
                 <ElegantShape
@@ -103,7 +103,7 @@ function HeroGeometric({
                     width={600}
                     height={140}
                     rotate={12}
-                    gradient="from-indigo-500/[0.15]"
+                    gradient="from-[#9f1e13]/[0.10]"
                     className="left-[-10%] md:left-[-5%] top-[15%] md:top-[20%]"
                 />
 
@@ -112,7 +112,7 @@ function HeroGeometric({
                     width={500}
                     height={120}
                     rotate={-15}
-                    gradient="from-rose-500/[0.15]"
+                    gradient="from-black/[0.06]"
                     className="right-[-5%] md:right-[0%] top-[70%] md:top-[75%]"
                 />
 
@@ -121,7 +121,7 @@ function HeroGeometric({
                     width={300}
                     height={80}
                     rotate={-8}
-                    gradient="from-violet-500/[0.15]"
+                    gradient="from-white/[0.35]"
                     className="left-[5%] md:left-[10%] bottom-[5%] md:bottom-[10%]"
                 />
 
@@ -130,7 +130,7 @@ function HeroGeometric({
                     width={200}
                     height={60}
                     rotate={20}
-                    gradient="from-amber-500/[0.15]"
+                    gradient="from-[#9f1e13]/[0.12]"
                     className="right-[15%] md:right-[20%] top-[10%] md:top-[15%]"
                 />
 
@@ -139,7 +139,7 @@ function HeroGeometric({
                     width={150}
                     height={40}
                     rotate={-25}
-                    gradient="from-cyan-500/[0.15]"
+                    gradient="from-black/[0.05]"
                     className="left-[20%] md:left-[25%] top-[5%] md:top-[10%]"
                 />
             </div>
@@ -152,10 +152,10 @@ function HeroGeometric({
                             variants={fadeUpVariants}
                             initial="hidden"
                             animate="visible"
-                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-6 md:mb-8"
+                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#9f1e13]/5 border border-[#9f1e13]/12 mb-6 md:mb-8"
                         >
-                            <Circle className="h-2 w-2 fill-rose-500/80" />
-                            <span className="text-sm text-white/60 tracking-wide">
+                            <Circle className="h-2 w-2 fill-[#9f1e13]" />
+                            <span className="text-sm text-[#9f1e13] font-semibold tracking-wide">
                                 {badge}
                             </span>
                         </motion.div>
@@ -168,14 +168,14 @@ function HeroGeometric({
                         animate="visible"
                     >
                         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">
+                            <span className="text-gray-900 font-playfair font-extrabold leading-none">
                                 {title1}
                             </span>
                             <br />
                             <span
                                 className={cn(
-                                    "bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white/90 to-rose-300",
-                                    "text-2xl sm:text-3xl md:text-4xl lg:text-5xl block mt-2"
+                                    "bg-clip-text text-transparent bg-gradient-to-r from-[#9f1e13] via-[#b52a1d] to-[#9f1e13]",
+                                    "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black block mt-3"
                                 )}
                             >
                                 {title2}
@@ -192,7 +192,7 @@ function HeroGeometric({
                     >
                         <Button 
                             size="lg"
-                            className="text-base font-semibold px-8 py-6 rounded-md bg-white text-black hover:bg-white/90 hover:scale-105 transition-all shadow-xl"
+                            className="text-base font-semibold px-8 py-6 rounded-md bg-[#9f1e13] text-white hover:bg-[#85160e] hover:scale-105 transition-all shadow-lg border border-[#9f1e13]/25"
                             onClick={() => openQuiz()}
                         >
                             Take the Quiz
@@ -201,7 +201,9 @@ function HeroGeometric({
                 </div>
             </div>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/80 pointer-events-none" />
+            {/* Fade Transitions to blend with main page */}
+            <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" />
         </div>
     );
 }
