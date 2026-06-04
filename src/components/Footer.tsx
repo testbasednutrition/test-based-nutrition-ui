@@ -17,7 +17,7 @@ const Footer = () => {
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">
               A New Era in Nutritional Preventative Healthcare.
             </p>
-            <p className="text-xs font-bold tracking-widest text-[#9f1e13] uppercase font-sans">
+            <p className="text-xs font-bold tracking-widest text-[#9f1e13] uppercase font-sans whitespace-nowrap">
               Test. Target. Transform.™
             </p>
           </div>
