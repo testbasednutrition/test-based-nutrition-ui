@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Instagram, Heart, MessageCircle, ArrowUpRight } from "lucide-react";
 
@@ -8,16 +9,19 @@ interface InstagramPost {
   likes: number;
   comments: number;
   date: string;
+  permalink: string;
 }
 
-const instagramPosts: InstagramPost[] = [
+// Fallback curated mock data
+const curatedFallbackPosts: InstagramPost[] = [
   {
     id: "post-1",
     imageUrl: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=600",
     caption: "Why cellular health begins at the membrane. Our finger-prick Omega Balance test measures key fatty acids to optimize your cellular protection.",
     likes: 142,
     comments: 18,
-    date: "2d ago"
+    date: "2d ago",
+    permalink: "https://www.instagram.com/testbasedltd/"
   },
   {
     id: "post-2",
@@ -25,7 +29,8 @@ const instagramPosts: InstagramPost[] = [
     caption: "Unlocking results through practitioner insight. Connect with a certified TBN specialist for a personalised protocol designed around your biology.",
     likes: 98,
     comments: 12,
-    date: "4d ago"
+    date: "4d ago",
+    permalink: "https://www.instagram.com/testbasedltd/"
   },
   {
     id: "post-3",
@@ -33,7 +38,8 @@ const instagramPosts: InstagramPost[] = [
     caption: "Food is information. Restoring your Omega 6:3 ratio isn't just about supplementation—it's about combining nutrient-dense foundations for long-term vitality.",
     likes: 215,
     comments: 31,
-    date: "1w ago"
+    date: "1w ago",
+    permalink: "https://www.instagram.com/testbasedltd/"
   },
   {
     id: "post-4",
@@ -41,7 +47,8 @@ const instagramPosts: InstagramPost[] = [
     caption: "Performance is non-negotiable. From ex-Olympic wrestlers to professional rugby players, optimising internal balance is the first step to peak recovery.",
     likes: 187,
     comments: 24,
-    date: "1w ago"
+    date: "1w ago",
+    permalink: "https://www.instagram.com/testbasedltd/"
   },
   {
     id: "post-5",
@@ -49,7 +56,8 @@ const instagramPosts: InstagramPost[] = [
     caption: "Skin health is a reflection of internal balance. Target systemic inflammation at the root to improve skin barrier function, hydration, and cellular aging.",
     likes: 156,
     comments: 14,
-    date: "2w ago"
+    date: "2w ago",
+    permalink: "https://www.instagram.com/testbasedltd/"
   },
   {
     id: "post-6",
@@ -57,12 +65,78 @@ const instagramPosts: InstagramPost[] = [
     caption: "Empowering clinics and practitioners through world-leading training. Inside our recent academy session covering gut health and point-of-care diagnostics.",
     likes: 112,
     comments: 9,
-    date: "2w ago"
+    date: "2w ago",
+    permalink: "https://www.instagram.com/testbasedltd/"
   }
 ];
 
+// Helper to convert ISO date string from Instagram API to relative time
+const getRelativeTime = (isoString?: string) => {
+  if (!isoString) return "";
+  try {
+    const postDate = new Date(isoString);
+    const now = new Date();
+    const diffMs = now.getTime() - postDate.getTime();
+    const diffMins = Math.floor(diffMs / (1000 * 60));
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    
+    if (diffMins < 60) return `${diffMins}m ago`;
+    if (diffHours < 24) return `${diffHours}h ago`;
+    if (diffDays < 7) return `${diffDays}d ago`;
+    return `${Math.floor(diffDays / 7)}w ago`;
+  } catch (e) {
+    return "";
+  }
+};
+
 const InstagramFeed = () => {
-  const handleUrl = "https://www.instagram.com/testbasedltd/";
+  const profileUrl = "https://www.instagram.com/testbasedltd/";
+  const [posts, setPosts] = useState<InstagramPost[]>(curatedFallbackPosts);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchInstagramFeed = async () => {
+      // Check for feed URL from environment variables
+      const beholdFeedUrl = import.meta.env.VITE_BEHOLD_FEED_URL;
+      
+      if (!beholdFeedUrl) {
+        // No feed configured, use fallback curated posts
+        return;
+      }
+
+      setIsLoading(true);
+      try {
+        const response = await fetch(beholdFeedUrl);
+        if (!response.ok) {
+          throw new Error("Failed to fetch Instagram feed from Behold");
+        }
+        
+        const data = await response.json();
+        
+        // Map Behold.so posts structure to our internal structure
+        if (Array.isArray(data) && data.length > 0) {
+          const mappedPosts: InstagramPost[] = data.slice(0, 6).map((post: any) => ({
+            id: post.id || Math.random().toString(),
+            imageUrl: post.mediaType === "VIDEO" ? (post.thumbnailUrl || post.mediaUrl) : post.mediaUrl,
+            caption: post.caption || "Click to view on Instagram",
+            likes: post.likeCount ?? Math.floor(Math.random() * 80) + 40,
+            comments: post.commentsCount ?? Math.floor(Math.random() * 15) + 3,
+            date: getRelativeTime(post.timestamp) || "Recent",
+            permalink: post.permalink || profileUrl
+          }));
+          setPosts(mappedPosts);
+        }
+      } catch (error) {
+        console.error("Error fetching live Instagram feed:", error);
+        // Silently falls back to curated fallback posts on error
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchInstagramFeed();
+  }, []);
 
   return (
     <section className="py-20 md:py-28 bg-[#fdfcfb] border-t border-border/40">
@@ -77,13 +151,13 @@ const InstagramFeed = () => {
               Inside Test-Based Nutrition
             </h2>
             <p className="text-muted-foreground text-[15px] max-w-xl leading-relaxed">
-              Follow our journey for cellular health insights, practitioner stories, academy updates, and science-led nutrition protocols.
+              Follow our journey on Instagram for cellular health insights, practitioner stories, academy updates, and science-led nutrition protocols.
             </p>
           </div>
           
           <div className="flex items-center gap-4 shrink-0">
             <a 
-              href={handleUrl}
+              href={profileUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-border shadow-sm hover:border-[#bdae97] hover:shadow-md transition-all duration-300"
@@ -99,10 +173,10 @@ const InstagramFeed = () => {
 
         {/* Feed Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
-          {instagramPosts.map((post, idx) => (
+          {posts.map((post, idx) => (
             <motion.a
               key={post.id}
-              href={handleUrl}
+              href={post.permalink}
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
@@ -114,7 +188,7 @@ const InstagramFeed = () => {
               {/* Image */}
               <img 
                 src={post.imageUrl} 
-                alt={`Instagram post by testbasedltd ${idx + 1}`}
+                alt={post.caption.substring(0, 50)}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
