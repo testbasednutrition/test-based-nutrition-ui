@@ -114,9 +114,16 @@ const InstagramFeed = () => {
         
         const data = await response.json();
         
-        // Map Behold.so posts structure to our internal structure
-        if (Array.isArray(data) && data.length > 0) {
-          const mappedPosts: InstagramPost[] = data.slice(0, 6).map((post: any) => ({
+        // Extract posts array (Behold returns posts either as a direct array or wrapped in a 'posts' key)
+        let postsArray = [];
+        if (Array.isArray(data)) {
+          postsArray = data;
+        } else if (data && Array.isArray(data.posts)) {
+          postsArray = data.posts;
+        }
+        
+        if (postsArray.length > 0) {
+          const mappedPosts: InstagramPost[] = postsArray.slice(0, 6).map((post: any) => ({
             id: post.id || Math.random().toString(),
             imageUrl: post.mediaType === "VIDEO" ? (post.thumbnailUrl || post.mediaUrl) : post.mediaUrl,
             caption: post.caption || "Click to view on Instagram",
