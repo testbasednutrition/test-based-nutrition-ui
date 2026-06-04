@@ -82,7 +82,7 @@ export const specialists: Specialist[] = [
     image: "/experts/ishtiaq-rehman-new.jpg",
     secondaryImage: "https://test-basednutrition.com/assets/images/ish2-634x434.jpeg",
     bio: [
-      "Current England FA Doctor and specialist in sports and lifestyle medicine. Dr Rehman leads the clinical, educational and preventative health framework behind TBN, supporting practitioners, clinics and performance environments through science-led testing and personalised health strategies.",
+      "Current England FA Doctor and specialist in sports and lifestyle medicine. Dr Rehman leads the clinical, educational and preventative health framework behind TBN.",
     ],
     quote:
       "Launching Test-Based Nutrition is crucial because it allows us to bring objective, evidence-based approaches to health. Our mission is to educate people on the importance of omega balance and to show them, through measurable tests, the profound impact this balance can have on their health and performance.",

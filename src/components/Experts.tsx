@@ -12,7 +12,7 @@ const experts = [
   {
     name: "Dr Ishtiaq Rehman",
     role: "Co-Founder\nMedical Director",
-    org: "Current England FA Doctor and specialist in sports and lifestyle medicine. Dr Rehman leads the clinical, educational and preventative health framework behind TBN, supporting practitioners, clinics and performance environments through science-led testing and personalised health strategies.",
+    org: "Current England FA Doctor and specialist in sports and lifestyle medicine. Dr Rehman leads the clinical, educational and preventative health framework behind TBN.",
     link: "/specialists/dr-ishtiaq-rehman",
     image: "/experts/ishtiaq-rehman-new.jpg",
   },
