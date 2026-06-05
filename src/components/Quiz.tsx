@@ -3,6 +3,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useQuiz } from "@/components/QuizContext";
+import { supabase } from "@/lib/supabase";
 import { specialists } from "@/data/specialists";
 import { GOALS, QUIZ_DATA } from "@/data/quiz-data";
 import {
@@ -25,6 +26,7 @@ import {
   ChevronRight,
   BarChart3,
   Info,
+  Stethoscope,
 } from "lucide-react";
 
 // Removed GOALS from here since they are now in quiz-data.ts
@@ -36,6 +38,8 @@ const GOAL_TO_CATEGORY: Record<string, string[]> = {
   "anti-ageing": ["Health & Wellness", "Medical & Clinical"],
   "fertility": ["Medical & Clinical", "Health & Wellness"],
   "childrens-health": ["Fitness & Coaching", "Medical & Clinical"],
+  "sports-performance": ["Fitness & Coaching", "Medical & Clinical"],
+  "pain-fatigue": ["Medical & Clinical", "Health & Wellness"],
 };
 
 // Activity levels, sleep, and concerns removed because Questions are now entirely dynamic per GOAL
@@ -128,8 +132,9 @@ const Quiz = () => {
       if (!selectedGoal) return false;
       const quiz = QUIZ_DATA[selectedGoal];
       if (!quiz) return true;
-      const qStart = step === 1 ? 0 : 3;
-      const qEnd = step === 1 ? 3 : quiz.questions.length;
+      const halfSplit = Math.ceil(quiz.questions.length / 2);
+      const qStart = step === 1 ? 0 : halfSplit;
+      const qEnd = step === 1 ? halfSplit : quiz.questions.length;
       return quiz.questions.slice(qStart, qEnd).every(q => {
         const ans = answers[q.id];
         if (q.type === "multiple") return Array.isArray(ans) && ans.length > 0;
@@ -142,23 +147,66 @@ const Quiz = () => {
   };
 
   const handleSubmit = () => {
-    console.log("Quiz submitted:", {
-      goal: selectedGoal,
-      answers,
+    const referrerCode = localStorage.getItem("tbn_referrer_code");
+    const newQuizLead = {
       name: name.trim(),
       email: email.trim(),
       phone: phone.trim(),
+      goal: selectedGoal,
+      answers,
       specialist: assignedSpecialist.name,
       date: selectedDate,
       time: selectedTime,
-    });
+      referrerCode: referrerCode || null,
+      created_at: new Date().toISOString(),
+    };
+
+    // Save to local storage as fallback
+    try {
+      const existing = JSON.parse(localStorage.getItem("quiz_leads") || "[]");
+      existing.push(newQuizLead);
+      localStorage.setItem("quiz_leads", JSON.stringify(existing));
+    } catch (e) {
+      console.error("Failed to save quiz lead locally", e);
+    }
+
+    // Submit to Supabase database quiz_leads table
+    try {
+      supabase
+        .from("quiz_leads")
+        .insert([
+          {
+            name: name.trim(),
+            email: email.trim(),
+            phone: phone.trim(),
+            goal: selectedGoal,
+            answers,
+            specialist: assignedSpecialist.name,
+            date: selectedDate,
+            time: selectedTime,
+            referrer_code: referrerCode || null,
+            created_at: new Date().toISOString(),
+          },
+        ])
+        .then(({ error }) => {
+          if (error) {
+            console.warn("Supabase quiz lead insert failed:", error.message);
+          } else {
+            console.log("Quiz lead successfully submitted to Supabase.");
+          }
+        });
+    } catch (dbErr) {
+      console.warn("Error submitting quiz lead to Supabase:", dbErr);
+    }
+
+    console.log("Quiz submitted:", newQuizLead);
     setSubmitted(true);
   };
 
   const totalSteps = 5;
   const progress = ((step + 1) / totalSteps) * 100;
 
-  const stepLabels = ["Health Goals", "Assessment Part 1", "Assessment Part 2", "Your Details", "Book Specialist"];
+  const stepLabels = ["Health Goals", "Assessment Part 1", "Assessment Part 2", "Your Details", "Book TBN Doctor"];
 
   if (submitted) {
     return (
@@ -215,9 +263,9 @@ const Quiz = () => {
           {/* Step 1: Goals */}
           {step === 0 && (
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-2">What is your primary health goal?</h2>
-              <p className="text-muted-foreground mb-8">Select one category so we can tailor your assessment accurately.</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <h2 className="text-xl md:text-3xl font-bold mb-2">What is your primary health goal?</h2>
+              <p className="text-sm text-muted-foreground mb-6">Select one category so we can tailor your assessment accurately.</p>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 {GOALS.map((goal) => {
                   const Icon = goal.icon;
                   const selected = selectedGoal === goal.id;
@@ -225,20 +273,20 @@ const Quiz = () => {
                     <button
                       key={goal.id}
                       onClick={() => setSelectedGoal(goal.id)}
-                      className={`relative p-5 rounded-xl border-2 text-left transition-all duration-200 ${
+                      className={`relative p-3.5 sm:p-5 rounded-xl border-2 text-left transition-all duration-200 ${
                         selected
                           ? "border-primary bg-primary/5"
                           : "border-border hover:border-muted-foreground/30 bg-card"
                       }`}
                     >
                       {selected && (
-                        <CheckCircle2 className="absolute top-3 right-3 w-5 h-5 text-primary" />
+                        <CheckCircle2 className="absolute top-2.5 right-2.5 w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                       )}
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                        <Icon className="w-5 h-5 text-primary" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-2.5 sm:mb-3">
+                        <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                       </div>
-                      <h3 className="font-semibold text-sm">{goal.label}</h3>
-                      <p className="text-xs text-muted-foreground mt-1">{goal.desc}</p>
+                      <h3 className="font-semibold text-xs sm:text-sm leading-snug">{goal.label}</h3>
+                      <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 leading-normal">{goal.desc}</p>
                     </button>
                   );
                 })}
@@ -253,46 +301,52 @@ const Quiz = () => {
               <p className="text-muted-foreground mb-4 text-sm">Help us understand your specific situation to personalise your protocol.</p>
               
               <div className="space-y-5">
-                {QUIZ_DATA[selectedGoal].questions.slice(step === 1 ? 0 : 3, step === 1 ? 3 : QUIZ_DATA[selectedGoal].questions.length).map((q, idx) => {
-                   const ans = answers[q.id];
-                   const overallIdx = (step === 1 ? 0 : 3) + idx;
-                   return (
-                     <div key={q.id}>
-                       <div className="flex items-start gap-2 mb-2">
-                         <span className="w-5 h-5 shrink-0 rounded-full bg-primary text-primary-foreground text-[10px] flex items-center justify-center font-bold mt-0.5">{overallIdx + 1}</span>
-                         <div>
-                           <h3 className="font-semibold text-sm leading-tight">{q.label}</h3>
-                           {q.type === "multiple" && <p className="text-[10px] text-muted-foreground">Select all that apply</p>}
+                {(() => {
+                  const quiz = QUIZ_DATA[selectedGoal];
+                  const halfSplit = Math.ceil(quiz.questions.length / 2);
+                  const qStart = step === 1 ? 0 : halfSplit;
+                  const qEnd = step === 1 ? halfSplit : quiz.questions.length;
+                  return quiz.questions.slice(qStart, qEnd).map((q, idx) => {
+                     const ans = answers[q.id];
+                     const overallIdx = qStart + idx;
+                     return (
+                       <div key={q.id}>
+                         <div className="flex items-start gap-2 mb-2">
+                           <span className="w-5 h-5 shrink-0 rounded-full bg-primary text-primary-foreground text-[10px] flex items-center justify-center font-bold mt-0.5">{overallIdx + 1}</span>
+                           <div>
+                             <h3 className="font-semibold text-sm leading-tight">{q.label}</h3>
+                             {q.type === "multiple" && <p className="text-[10px] text-muted-foreground">Select all that apply</p>}
+                           </div>
+                         </div>
+                         
+                         <div className="flex flex-wrap gap-2 pl-7">
+                           {q.options.map((opt) => {
+                             const isSelected = q.type === "multiple" 
+                               ? (Array.isArray(ans) && ans.includes(opt))
+                               : ans === opt;
+                               
+                             return (
+                               <button
+                                 key={opt}
+                                 onClick={() => handleAnswer(q.id, opt, q.type)}
+                                 className={`px-2.5 py-1.5 rounded-md border hover:scale-[1.02] active:scale-95 text-left transition-all duration-200 ${
+                                   isSelected
+                                     ? "border-primary bg-primary/10 text-primary font-medium"
+                                     : "border-border hover:border-muted-foreground/30 bg-card text-muted-foreground"
+                                 }`}
+                               >
+                                  <div className="flex items-center gap-1.5">
+                                    {isSelected && <CheckCircle2 className="w-3 h-3 shrink-0" />}
+                                    <span className="text-[11px] sm:text-xs leading-tight">{opt}</span>
+                                  </div>
+                               </button>
+                             )
+                           })}
                          </div>
                        </div>
-                       
-                       <div className="flex flex-wrap gap-2 pl-7">
-                         {q.options.map((opt) => {
-                           const isSelected = q.type === "multiple" 
-                             ? (Array.isArray(ans) && ans.includes(opt))
-                             : ans === opt;
-                             
-                           return (
-                             <button
-                               key={opt}
-                               onClick={() => handleAnswer(q.id, opt, q.type)}
-                               className={`px-2.5 py-1.5 rounded-md border hover:scale-[1.02] active:scale-95 text-left transition-all duration-200 ${
-                                 isSelected
-                                   ? "border-primary bg-primary/10 text-primary font-medium"
-                                   : "border-border hover:border-muted-foreground/30 bg-card text-muted-foreground"
-                               }`}
-                             >
-                                <div className="flex items-center gap-1.5">
-                                  {isSelected && <CheckCircle2 className="w-3 h-3 shrink-0" />}
-                                  <span className="text-[11px] sm:text-xs leading-tight">{opt}</span>
-                                </div>
-                             </button>
-                           )
-                         })}
-                       </div>
-                     </div>
-                   );
-                })}
+                     );
+                  });
+                })()}
               </div>
             </div>
           )}
@@ -339,7 +393,7 @@ const Quiz = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-xs">Expert Review</h4>
-                      <p className="text-xs text-muted-foreground mt-1">A specialist will personally review your responses and reach out within 24 hours.</p>
+                      <p className="text-xs text-muted-foreground mt-1">A TBN Doctor will personally review your responses and reach out within 24 hours.</p>
                     </div>
                   </div>
                 </div>
@@ -348,11 +402,11 @@ const Quiz = () => {
           )}
 
           {/* Step 4: Specialist Booking */}
-          {step === 3 && (
+          {step === 4 && (
             <div>
               {/* Hero banner */}
               <div className="bg-secondary rounded-xl p-6 mb-6">
-                <h2 className="text-2xl md:text-3xl font-bold mb-1">Discuss Your Protocol with a Specialist</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-1">Discuss Your Protocol with a TBN Doctor</h2>
                 <p className="text-muted-foreground text-sm">Review your personalised health roadmap with a certified expert.</p>
               </div>
 
@@ -566,7 +620,7 @@ const Quiz = () => {
 
             <div className="flex items-center gap-3">
               <span className="text-xs text-muted-foreground hidden sm:block">
-                {step === 0 ? "Next: Assessment Part 1" : step === 1 ? "Next: Assessment Part 2" : step === 2 ? "Next: Your Details" : step === 3 ? "Next: Book Specialist" : ""}
+                {step === 0 ? "Next: Assessment Part 1" : step === 1 ? "Next: Assessment Part 2" : step === 2 ? "Next: Your Details" : step === 3 ? "Next: Book TBN Doctor" : ""}
               </span>
               <Button
                 onClick={() => setStep(step + 1)}

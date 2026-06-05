@@ -19,10 +19,10 @@ async function main() {
   if (user) {
     const { data, error } = await supabase.auth.admin.updateUserById(
       user.id,
-      { password: 'password123', email_confirm: true }
+      { password: 'Madrid2014!', email_confirm: true }
     );
     if (error) console.error("Error resetting:", error.message);
-    else console.log("Successfully reset password strictly to password123!");
+    else console.log("Successfully reset password strictly to Madrid2014!");
   }
 }
 main();

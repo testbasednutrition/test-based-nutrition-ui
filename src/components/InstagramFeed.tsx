@@ -53,7 +53,7 @@ const curatedFallbackPosts: InstagramPost[] = [
   {
     id: "post-5",
     imageUrl: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=600",
-    caption: "Skin health is a reflection of internal balance. Target systemic inflammation at the root to improve skin barrier function, hydration, and cellular aging.",
+    caption: "Skin health is a reflection of internal balance. Target systemic inflammation at the root to improve skin barrier function, hydration, and cellular ageing.",
     likes: 156,
     comments: 14,
     date: "2w ago",

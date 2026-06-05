@@ -190,7 +190,7 @@ const Gallery4 = ({
                   </div>
 
                   {/* Back Side */}
-                  <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-xl overflow-hidden bg-[#f9f5f2] border-[0.5px] border-[#dbd4c9] px-2.5 md:px-3 pt-3 pb-3 md:pt-4 md:pb-3 flex flex-col items-center justify-between text-center">
+                  <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-xl overflow-hidden bg-[#faf8f5] border-[0.5px] border-[#dbd4c9] px-2.5 md:px-3 pt-3 pb-3 md:pt-4 md:pb-3 flex flex-col items-center justify-between text-center">
                     <div className="font-bold font-montserrat text-[13px] xl:text-[14px] text-stone-900 leading-snug shrink-0">
                       {item.title}
                     </div>

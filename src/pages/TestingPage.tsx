@@ -29,15 +29,15 @@ const TestingPage = () => {
   }, [location]);
   
   return (
-    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#f9f5f2] font-montserrat">
+    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#faf8f5] font-montserrat">
       <Navbar alwaysSolid />
       
       {/* 1. HERO SECTION */}
-      <div className="w-full relative bg-[#f9f5f2] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
+      <div className="w-full relative bg-[#faf8f5] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
         <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
           <img src={heroImg} alt="Test Based Nutrition Testing" className="w-full h-full object-cover object-[center_20%]" />
-          <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-[#f9f5f2] via-[#f9f5f2]/60 to-transparent lg:hidden"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f9f5f2] via-[#f9f5f2]/90 lg:via-[#f9f5f2]/40 to-transparent"></div>
+          <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-[#faf8f5] via-[#faf8f5]/60 to-transparent lg:hidden"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f5] via-[#faf8f5]/90 lg:via-[#faf8f5]/40 to-transparent"></div>
         </div>
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 pt-12 pb-12 lg:py-0 justify-between flex-grow">
@@ -80,7 +80,7 @@ const TestingPage = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-[#f9f5f2] rounded-full flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-[#faf8f5] rounded-full flex items-center justify-center mb-6">
                 <Home className="w-6 h-6 text-[#9f1e13]" />
               </div>
               <h3 className="font-bold text-gray-900 text-[15px] uppercase tracking-wider mb-3">At-Home Testing</h3>
@@ -90,7 +90,7 @@ const TestingPage = () => {
             </div>
             
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-[#f9f5f2] rounded-full flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-[#faf8f5] rounded-full flex items-center justify-center mb-6">
                 <Zap className="w-6 h-6 text-[#9f1e13]" />
               </div>
               <h3 className="font-bold text-gray-900 text-[15px] uppercase tracking-wider mb-3">Rapid Screening</h3>
@@ -100,7 +100,7 @@ const TestingPage = () => {
             </div>
 
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-[#f9f5f2] rounded-full flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-[#faf8f5] rounded-full flex items-center justify-center mb-6">
                 <Microscope className="w-6 h-6 text-[#9f1e13]" />
               </div>
               <h3 className="font-bold text-gray-900 text-[15px] uppercase tracking-wider mb-3">Advanced Testing</h3>
@@ -110,7 +110,7 @@ const TestingPage = () => {
             </div>
 
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-[#f9f5f2] rounded-full flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-[#faf8f5] rounded-full flex items-center justify-center mb-6">
                 <Activity className="w-6 h-6 text-[#9f1e13]" />
               </div>
               <h3 className="font-bold text-gray-900 text-[15px] uppercase tracking-wider mb-3">Ongoing Monitoring</h3>
@@ -152,7 +152,7 @@ const TestingPage = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center md:flex-row-reverse">
-            <div className="bg-[#f9f5f2] p-8 rounded-[2rem] border border-[#dbd4c9] shadow-sm md:order-2">
+            <div className="bg-[#faf8f5] p-8 rounded-[2rem] border border-[#dbd4c9] shadow-sm md:order-2">
               <h3 className="font-playfair text-xl font-bold text-[#9f1e13] mb-4">We aim to:</h3>
               <ul className="space-y-3">
                  <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-[#9f1e13] shrink-0" /><span className="text-[15px] font-medium text-gray-700">Highlight factors that may be contributing to how you feel</span></li>
@@ -177,7 +177,7 @@ const TestingPage = () => {
         {/* 4. HOW TESTING LINKS TO HOW YOU FEEL */}
         <div className="w-full mt-24 mb-24 max-w-5xl mx-auto px-4">
           <div className="bg-white rounded-[2rem] p-10 md:p-16 relative overflow-hidden shadow-xl border border-gray-200 text-center">
-            <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-[#9f1e13]/5 to-transparent pointer-events-none"></div>
+            <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-[#dbd4c9]/30 to-transparent pointer-events-none"></div>
 
             <div className="relative z-10 mb-10">
               <p className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] mb-4">What you experience may reflect internal imbalances</p>
@@ -188,11 +188,11 @@ const TestingPage = () => {
               </p>
               
               <div className="flex flex-wrap justify-center gap-4 mb-10">
-                <span className="bg-[#f9f5f2] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200 shadow-sm">Nutrient imbalances</span>
-                <span className="bg-[#f9f5f2] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200 shadow-sm">Inflammation levels</span>
-                <span className="bg-[#f9f5f2] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200 shadow-sm">Metabolic function</span>
-                <span className="bg-[#f9f5f2] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200 shadow-sm">Gut health & absorption</span>
-                <span className="bg-[#f9f5f2] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200 shadow-sm">Stress & recovery balance</span>
+                <span className="bg-[#faf8f5] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200 shadow-sm">Nutrient imbalances</span>
+                <span className="bg-[#faf8f5] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200 shadow-sm">Inflammation levels</span>
+                <span className="bg-[#faf8f5] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200 shadow-sm">Metabolic function</span>
+                <span className="bg-[#faf8f5] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200 shadow-sm">Gut health & absorption</span>
+                <span className="bg-[#faf8f5] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200 shadow-sm">Stress & recovery balance</span>
               </div>
             </div>
 
@@ -217,7 +217,7 @@ const TestingPage = () => {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 bg-white border-2 border-[#9f1e13] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#9f1e13]/10">
+                <div className="w-20 h-20 bg-white border-2 border-[#9f1e13] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#dbd4c9]/30">
                   <Search className="w-8 h-8 text-[#9f1e13]" />
                 </div>
                 <h3 className="font-bold text-[18px] text-gray-900 mb-2">1. Test</h3>
@@ -225,7 +225,7 @@ const TestingPage = () => {
               </div>
 
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 bg-white border-2 border-[#9f1e13] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#9f1e13]/10">
+                <div className="w-20 h-20 bg-white border-2 border-[#9f1e13] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#dbd4c9]/30">
                   <BrainCircuit className="w-8 h-8 text-[#9f1e13]" />
                 </div>
                 <h3 className="font-bold text-[18px] text-gray-900 mb-2">2. Understand</h3>
@@ -233,7 +233,7 @@ const TestingPage = () => {
               </div>
 
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 bg-white border-2 border-[#9f1e13] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#9f1e13]/10">
+                <div className="w-20 h-20 bg-white border-2 border-[#9f1e13] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#dbd4c9]/30">
                   <ShieldCheck className="w-8 h-8 text-[#9f1e13]" />
                 </div>
                 <h3 className="font-bold text-[18px] text-gray-900 mb-2">3. Support</h3>
@@ -241,7 +241,7 @@ const TestingPage = () => {
               </div>
 
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 bg-white border-2 border-[#9f1e13] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#9f1e13]/10">
+                <div className="w-20 h-20 bg-white border-2 border-[#9f1e13] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#dbd4c9]/30">
                   <ActivitySquare className="w-8 h-8 text-[#9f1e13]" />
                 </div>
                 <h3 className="font-bold text-[18px] text-gray-900 mb-2">4. Retest</h3>
@@ -249,7 +249,7 @@ const TestingPage = () => {
               </div>
 
               <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 bg-[#9f1e13] border-2 border-[#9f1e13] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#9f1e13]/30 text-white">
+                <div className="w-20 h-20 bg-[#9f1e13] border-2 border-[#9f1e13] rounded-full flex items-center justify-center mb-6 shadow-md shadow-lg text-white">
                   <ArrowRight className="w-8 h-8" />
                 </div>
                 <h3 className="font-bold text-[18px] text-[#9f1e13] mb-2">5. Progress</h3>
@@ -274,7 +274,7 @@ const TestingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {/* Omega Test */}
             <div className="bg-white p-10 lg:p-12 rounded-[2.5rem] border border-gray-100 shadow-lg hover:shadow-xl hover:border-[#bdae97] transition-all group flex flex-col relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#9f1e13]/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
               <div className="flex items-center gap-5 mb-8 relative z-10">
                 <div className="w-20 h-20 flex items-center justify-center shrink-0">
                   <img src="/images/test-logos/omega3balance.png" alt="Omega Balance Test" className="w-full h-full object-contain scale-[1.15]" />
@@ -300,8 +300,8 @@ const TestingPage = () => {
             </div>
             
             {/* Gut Health */}
-            <div className="bg-[#f9f5f2] p-10 lg:p-12 rounded-[2.5rem] border border-[#dbd4c9] shadow-lg hover:shadow-xl hover:border-[#bdae97] transition-all group flex flex-col relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#9f1e13]/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+            <div className="bg-[#faf8f5] p-10 lg:p-12 rounded-[2.5rem] border border-[#dbd4c9] shadow-lg hover:shadow-xl hover:border-[#bdae97] transition-all group flex flex-col relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/30 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
               <div className="flex items-center gap-5 mb-8 relative z-10">
                 <div className="w-20 h-20 flex items-center justify-center shrink-0">
                   <img src="/images/test-logos/guthealth1.png" alt="Gut Health Test" className="w-full h-full object-contain scale-[1.15]" />
@@ -336,7 +336,7 @@ const TestingPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
              {/* Rapid */}
              <div className="bg-white p-10 md:p-12 border border-gray-200 rounded-[2rem] shadow-sm flex flex-col hover:shadow-xl hover:border-[#bdae97] transition-all">
-                <div className="w-16 h-16 shrink-0 flex items-center justify-center relative overflow-hidden bg-[#f9f5f2] rounded-2xl mb-6">
+                <div className="w-16 h-16 shrink-0 flex items-center justify-center relative overflow-hidden bg-[#faf8f5] rounded-2xl mb-6">
                   <Zap className="w-8 h-8 text-[#9f1e13]" />
                 </div>
                 <p className="font-bold text-gray-400 text-[12px] uppercase tracking-widest mb-3">Results in minutes</p>
@@ -361,7 +361,7 @@ const TestingPage = () => {
              </div>
 
              {/* Advanced */}
-             <div className="bg-[#f9f5f2] p-10 md:p-12 border border-[#dbd4c9] rounded-[2rem] shadow-sm flex flex-col hover:shadow-xl hover:border-[#bdae97] transition-all">
+             <div className="bg-[#faf8f5] p-10 md:p-12 border border-[#dbd4c9] rounded-[2rem] shadow-sm flex flex-col hover:shadow-xl hover:border-[#bdae97] transition-all">
                 <div className="w-16 h-16 bg-white border border-gray-200 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
                   <TestTube2 className="w-8 h-8 text-[#9f1e13]" />
                 </div>
@@ -459,10 +459,10 @@ const TestingPage = () => {
               Our specialists and doctors support you with personalised, functional lifestyle strategies aligned to your results. This may include:
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <span className="bg-[#f9f5f2] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200">Nutrition Guidance</span>
-              <span className="bg-[#f9f5f2] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200">Lifestyle Adjustments</span>
-              <span className="bg-[#f9f5f2] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200">Structured Protocols</span>
-              <span className="bg-[#f9f5f2] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200">Supplement Support</span>
+              <span className="bg-[#faf8f5] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200">Nutrition Guidance</span>
+              <span className="bg-[#faf8f5] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200">Lifestyle Adjustments</span>
+              <span className="bg-[#faf8f5] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200">Structured Protocols</span>
+              <span className="bg-[#faf8f5] px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider text-gray-800 border border-gray-200">Supplement Support</span>
             </div>
             <p className="text-[13px] text-gray-500 font-medium uppercase tracking-wider italic">
               All guidance is provided for educational and wellbeing support.
@@ -513,7 +513,7 @@ const TestingPage = () => {
             </div>
 
             {/* Box 2: Foundations */}
-            <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-[#faf8f5] border border-[#dbd4c9] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#9f1e13] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#9f1e13] whitespace-nowrap">Most Popular</div>
                
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
@@ -536,7 +536,7 @@ const TestingPage = () => {
                      <div className="flex items-end gap-3 mb-1.5 align-bottom">
                        <span className="text-[32px] font-bold text-gray-900 leading-none">£189</span>
                        <span className="text-gray-400 line-through text-[14px] leading-snug">£482</span>
-                       <span className="text-[#9f1e13] font-bold text-[11px] uppercase bg-[#9f1e13]/10 px-2 py-0.5 rounded ml-auto">Save 61%</span>
+                       <span className="text-[#9f1e13] font-bold text-[11px] uppercase bg-[#dbd4c9]/30 px-2 py-0.5 rounded ml-auto">Save 61%</span>
                      </div>
                      <p className="text-[13px] text-gray-500 font-medium flex items-center gap-1.5">+ £39/mo <span className="text-[#9f1e13] font-bold">(Save 29%)</span></p>
                    </div>
@@ -593,7 +593,7 @@ const TestingPage = () => {
                
                <div className="h-[100px] shrink-0 mb-2 relative z-10 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-white leading-tight mb-2">TBN Elite Consultation</h3>
-                 <p className="text-[11px] font-bold text-[#dbd4c9] uppercase tracking-widest">Private 1:1 with Specialist</p>
+                 <p className="text-[11px] font-bold text-[#dbd4c9] uppercase tracking-widest">Private 1:1 with Doctor</p>
                </div>
                
                <div className="flex-grow mb-6 space-y-3 relative z-10">
@@ -638,11 +638,11 @@ const TestingPage = () => {
                <h2 className="font-playfair text-[28px] font-bold text-gray-900 mb-2 uppercase">BUILT FOR CLINICS & PERFORMANCE</h2>
                <p className="text-[16px] text-gray-600 font-medium leading-relaxed mb-6">A structured system for integration designed for:</p>
                <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                  <span className="bg-[#f9f5f2] px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest text-gray-800">Clinics</span>
-                  <span className="bg-[#f9f5f2] px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest text-gray-800">Health Clubs</span>
-                  <span className="bg-[#f9f5f2] px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest text-gray-800">Gyms</span>
-                  <span className="bg-[#f9f5f2] px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest text-gray-800">Coaches</span>
-                  <span className="bg-[#f9f5f2] px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest text-gray-800">Performance Teams</span>
+                  <span className="bg-[#faf8f5] px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest text-gray-800">Clinics</span>
+                  <span className="bg-[#faf8f5] px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest text-gray-800">Health Clubs</span>
+                  <span className="bg-[#faf8f5] px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest text-gray-800">Gyms</span>
+                  <span className="bg-[#faf8f5] px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest text-gray-800">Coaches</span>
+                  <span className="bg-[#faf8f5] px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest text-gray-800">Performance Teams</span>
                </div>
              </div>
              <div className="shrink-0 text-center">

@@ -45,11 +45,11 @@ const Neurodivergence = () => {
   }));
 
   return (
-    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#f9f5f2] font-montserrat">
+    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#faf8f5] font-montserrat">
       <Navbar alwaysSolid />
       
       {/* FULL BLEED HERO SECTION */}
-      <div className="w-full relative bg-[#f9f5f2] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
+      <div className="w-full relative bg-[#faf8f5] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
         {/* Background Image spanning the right side */}
         <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
           <img src={heroImg} alt="Neurodivergence" className="w-full h-full object-cover object-[center_20%]" />
@@ -58,7 +58,7 @@ const Neurodivergence = () => {
           <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
           {/* Blend image and black gradient into the left text container background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f9f5f2] via-[#f9f5f2]/70 lg:via-[#f9f5f2]/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f5] via-[#faf8f5]/70 lg:via-[#faf8f5]/20 to-transparent"></div>
         </div>
 
         {/* Content Container Aligned inside normal max-width margins */}
@@ -183,11 +183,11 @@ const Neurodivergence = () => {
         {/* SECTION 3 — SPECIALIST LEADS */}
         <div className="mb-20 xl:mb-24 px-4 lg:px-0 mt-16">
           <div className="text-center mb-12 border-t border-gray-100 pt-10">
-             <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">LEADING SPECIALISTS IN NEURODIVERGENCE</h2>
+             <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">LEADERS IN NEURODIVERGENCE</h2>
              <p className="font-bold text-[#9f1e13] text-[13px] uppercase tracking-widest flex items-center justify-center gap-2"><span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /> Built by those redefining neurodivergent support <span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /></p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#9f1e13]/20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#dbd4c9]">
               {/* Specialist 1 */}
               <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
                  <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-[4/5] sm:aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50 bg-gray-50">
@@ -197,7 +197,7 @@ const Neurodivergence = () => {
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-0">Dr Jennifer Kirton</h3>
                    <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">BSc, MSc, PhD</p>
                    <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#9f1e13] uppercase tracking-widest mb-4">Autism & Neurodivergence Research Specialist<br/>University of Liverpool Autism Hub Co-Founder<br/>Late Diagnosed ADHD</div>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Research increasingly highlights the importance of understanding wider health factors in neurodivergent individuals — including gut health, nutritional status, inflammation, and the systems influencing cognitive and emotional wellbeing."</p>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13] pl-3">"Research increasingly highlights the importance of understanding wider health factors in neurodivergent individuals — including gut health, nutritional status, inflammation, and the systems influencing cognitive and emotional wellbeing."</p>
                  </div>
               </div>
               
@@ -207,7 +207,7 @@ const Neurodivergence = () => {
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-1">Emma-Louise Pannell</h3>
                    <div className="font-sans text-[9px] lg:text-[10px] font-semibold text-gray-900 uppercase tracking-widest mb-1 mt-1">F.Y.I.P Founder & CEO</div>
                    <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#9f1e13] uppercase tracking-widest mb-4">Lived Experience: Late Diagnosed ADHD, ADD, OCD & Autism<br/>Mother of a Neurodivergent Child | 14+ Years in Mental Health & System Leadership</div>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Many neurodivergent individuals spend years trying to cope without understanding how factors like nervous system load, gut health, nutrient deficiencies, inflammation, and hormonal health may be influencing how they feel, function, and regulate day to day."</p>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13] pl-3">"Many neurodivergent individuals spend years trying to cope without understanding how factors like nervous system load, gut health, nutrient deficiencies, inflammation, and hormonal health may be influencing how they feel, function, and regulate day to day."</p>
                  </div>
               </div>
           </div>
@@ -279,7 +279,7 @@ const Neurodivergence = () => {
 
         {/* SECTION 7.6 — EXPERT QUOTE */}
         <div className="w-full mt-16 lg:mt-20 max-w-6xl mx-auto px-4">
-           <div className="bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm w-full hover:shadow-md transition-shadow duration-300">
+           <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm w-full hover:shadow-md transition-shadow duration-300">
               
               <div className="flex flex-col items-center lg:items-end max-w-[1050px] mx-auto w-full gap-5">
                  <div className="flex items-center gap-4 w-full justify-center lg:justify-start">
@@ -316,7 +316,7 @@ const Neurodivergence = () => {
           advanced={[
             { name: "Vitamin B12", logo: "/images/test-logos/vitaminb12.png" },
             { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.png" },
-            { name: "FSH", logo: "/images/test-logos/fsh.png" },
+            { name: "FSH", logo: "/images/test-logos/fsh-v2.png" },
             { name: "Testosterone", logo: "/images/test-logos/testosterone.png" }
           ]}
         />
@@ -361,7 +361,7 @@ const Neurodivergence = () => {
             </div>
 
             {/* Box 2: Foundations */}
-            <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-[#faf8f5] border border-[#dbd4c9] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#9f1e13] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#9f1e13] whitespace-nowrap">Most Popular</div>
                
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
@@ -377,7 +377,7 @@ const Neurodivergence = () => {
                  <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#9f1e13] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">6-Month Protocol</span></div>
                  <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#9f1e13] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Retest Included</span></div>
                  <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#9f1e13] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Ongoing Support</span></div>
-                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#9f1e13] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">Access to TBN Community</span></div>
+                 <div className="flex items-start gap-3"><CheckCircle2 className="w-4 h-4 text-[#9f1e13] shrink-0 mt-0.5" strokeWidth={2.5}/><span className="text-[13px] text-gray-700 font-medium leading-snug">TBN Facebook Support Group</span></div>
                </div>
 
                <div className="h-[360px] shrink-0 pt-6 border-t border-[#dbd4c9] flex flex-col">
@@ -386,7 +386,7 @@ const Neurodivergence = () => {
                      <div className="flex items-end gap-3 mb-1.5 align-bottom">
                        <span className="text-[32px] font-bold text-gray-900 leading-none">£189</span>
                        <span className="text-gray-400 line-through text-[14px] leading-snug">£482</span>
-                       <span className="text-[#9f1e13] font-bold text-[11px] uppercase bg-[#9f1e13]/10 px-2 py-0.5 rounded ml-auto">Save 61%</span>
+                       <span className="text-[#9f1e13] font-bold text-[11px] uppercase bg-[#dbd4c9] px-2 py-0.5 rounded ml-auto">Save 61%</span>
                      </div>
                      <p className="text-[13px] text-gray-500 font-medium flex items-center gap-1.5">+ £39/mo <span className="text-gray-400 font-normal">optional support</span></p>
                    </div>
@@ -438,7 +438,7 @@ const Neurodivergence = () => {
                
                <div className="h-[100px] shrink-0 mb-2 relative z-10 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-white leading-tight mb-2">TBN Elite Neuro Consultation</h3>
-                 <p className="text-[11px] font-bold text-[#dbd4c9] uppercase tracking-widest">Private 1:1 with Specialist</p>
+                 <p className="text-[11px] font-bold text-[#dbd4c9] uppercase tracking-widest">Private 1:1 with Doctor</p>
                </div>
                
                <div className="flex-grow mb-6 space-y-3 relative z-10">
@@ -492,7 +492,7 @@ const Neurodivergence = () => {
            
            <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
               {/* Left Column: Partner With Us */}
-              <div className="w-full lg:flex-1 bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
+              <div className="w-full lg:flex-1 bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
                   <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-[#9f1e13] -mr-16 -mt-16"/></div>
                   
                   <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 relative z-10 flex-grow">
@@ -538,7 +538,7 @@ const Neurodivergence = () => {
 
               {/* Right Column: Directory */}
               <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 flex flex-col gap-6 lg:gap-8">
-                 <div className="w-full bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
+                 <div className="w-full bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
                     <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#9f1e13] -mr-12 -mb-12"/></div>
 
                     <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
@@ -563,9 +563,9 @@ const Neurodivergence = () => {
                     </div>
                     
                     <div className="mt-auto w-full relative z-10">
-                       <button className="w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-md">
+                       <Link to="/specialists" className="block w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#9f1e13]/90 transition-colors shadow-md">
                           Explore Directory
-                       </button>
+                       </Link>
                     </div>
                  </div>
               </div>
@@ -596,7 +596,7 @@ const Neurodivergence = () => {
                  className="flex-1 bg-white hover:bg-gray-100 text-[#9f1e13] px-6 py-4 rounded-xl font-bold text-[15px] shadow-lg flex justify-center items-center gap-2 group transition-all">
                  Start Your Journey <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
                </button>
-               <Link to="/directory" className="flex-1 bg-[#9f1e13] hover:bg-[#9f1e13] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
+               <Link to="/specialists" className="flex-1 bg-[#9f1e13] hover:bg-[#9f1e13] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
                  Find a Clinic <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
                </Link>
                <Link to="/partner-with-us" className="flex-1 bg-[#9f1e13] hover:bg-[#9f1e13] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">

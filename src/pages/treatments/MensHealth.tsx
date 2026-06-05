@@ -41,11 +41,11 @@ const MensHealth = () => {
   }));
 
   return (
-    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#f9f5f2] font-montserrat">
+    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#faf8f5] font-montserrat">
       <Navbar alwaysSolid />
       
       {/* FULL BLEED HERO SECTION */}
-      <div className="w-full relative bg-[#f9f5f2] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
+      <div className="w-full relative bg-[#faf8f5] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
         {/* Background Image spanning the right side */}
         <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
           <img src={heroImg} alt="Men's Health" className="w-full h-full object-cover object-[center_20%]" />
@@ -54,7 +54,7 @@ const MensHealth = () => {
           <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
           {/* Blend image and black gradient into the left text container background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f9f5f2] via-[#f9f5f2]/70 lg:via-[#f9f5f2]/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f5] via-[#faf8f5]/70 lg:via-[#faf8f5]/20 to-transparent"></div>
         </div>
 
         {/* Content Container Aligned inside normal max-width margins */}
@@ -141,42 +141,42 @@ const MensHealth = () => {
                   title: "Testosterone & Hormonal Health",
                   description: "Low testosterone is increasingly reported in men across all ages\nExplore how hormonal balance, nutrient status, and metabolic function may influence energy, strength, mood, and recovery.",
                   href: "#",
-                  image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=800",
+                  image: "/images/treatments/mens-testosterone.jpg",
                 },
                 {
                   id: "fertility",
                   title: "Male Fertility",
                   description: "Sperm health is influenced by lifestyle, inflammation, and nutrient status\nUnderstand how oxidative stress, hormones, and cellular health may impact fertility and reproductive function.",
                   href: "#",
-                  image: "https://images.unsplash.com/photo-1518104593124-ac2ea0c0ee8b?auto=format&fit=crop&q=80&w=800",
+                  image: "/images/treatments/mens-fertility.jpg",
                 },
                 {
                   id: "weight",
                   title: "Weight Loss, Pre-Diabetes & Type 2 Diabetes",
                   description: "Blood sugar dysregulation often develops gradually — and can go unnoticed\nAssess how insulin response, inflammation, and metabolism may influence weight gain, energy crashes, and long-term health risk.",
                   href: "#",
-                  image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&q=80&w=800",
+                  image: "/images/treatments/mens-diabetes.jpg",
                 },
                 {
                   id: "stress",
                   title: "Stress, Mood & Burnout",
                   description: "Chronic stress can impact hormones, energy, and mental clarity\nExplore how cortisol patterns, nutrient levels, and metabolic health may influence mood, focus, and resilience.",
                   href: "#",
-                  image: "https://images.unsplash.com/photo-1499540633125-484965b60031?auto=format&fit=crop&q=80&w=800",
+                  image: "/images/treatments/mens-stress.jpg",
                 },
                 {
                   id: "ageing",
                   title: "Healthy Ageing for Men",
                   description: "Ageing is influenced by hormonal, metabolic, and cellular changes\nUnderstand how inflammation, nutrient status, and internal health markers may impact longevity, strength, and vitality over time.",
                   href: "#",
-                  image: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80&w=800",
+                  image: "/images/treatments/mens-ageing.jpg",
                 },
                 {
                   id: "gut",
                   title: "Gut Health Issues",
                   description: "Gut health influences nutrient absorption, inflammation, and overall wellbeing\nAssess microbiome balance and digestive function to understand how gut health may be contributing to wider symptoms.",
                   href: "#",
-                  image: "https://images.unsplash.com/photo-1505553258544-245842838965?auto=format&fit=crop&q=80&w=800",
+                  image: "/images/treatments/mens-gut.jpg",
                 }
               ]}
             />
@@ -185,9 +185,12 @@ const MensHealth = () => {
 
         {/* SECTION 3 — SPECIALIST LEADS */}
         <div className="mb-20 xl:mb-24 px-4 lg:px-0">
-
+          <div className="text-center mb-12 border-t border-gray-100 pt-10">
+             <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">LEADERS IN MEN'S HEALTH</h2>
+             <p className="font-bold text-[#9f1e13] text-[13px] uppercase tracking-widest flex items-center justify-center gap-2"><span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /> Built by those redefining modern men's health <span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /></p>
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#9f1e13]/20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#dbd4c9]">
               {/* Ishtiaq */}
               <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
                  <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-[4/5] sm:aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
@@ -197,7 +200,7 @@ const MensHealth = () => {
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-1">Dr Ishtiaq Rehman</h3>
                    <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">MBChB, MFSEM</p>
                    <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#9f1e13] uppercase tracking-widest mb-4">TBN Co-Founder & Medical Director | England FA Doctor</div>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Men’s health is often managed at the symptom level — but real change comes from understanding what’s driving it beneath the surface."</p>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13] pl-3">"Men’s health is often managed at the symptom level — but real change comes from understanding what’s driving it beneath the surface."</p>
                  </div>
               </div>
               
@@ -210,15 +213,12 @@ const MensHealth = () => {
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-1">Neil Parsley</h3>
                    <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">Elite Performance Coach</p>
                    <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#9f1e13] uppercase tracking-widest mb-4">Former Manchester City, Team GB, England Rugby</div>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">"Energy, resilience, and performance are driven by internal systems — once identified, they can be supported with precision."</p>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13] pl-3">"Energy, resilience, and performance are driven by internal systems — once identified, they can be supported with precision."</p>
                  </div>
               </div>
           </div>
           
-          <div className="mt-12 text-center max-w-2xl mx-auto border-t border-gray-100 pt-8">
-            <h4 className="font-playfair text-[20px] font-bold text-gray-900 mb-2">The TBN Collective</h4>
-            <p className="text-sm font-medium text-gray-600">A specialist-led network across men’s health, hormones, metabolism, mental performance, and recovery — delivering structured, test-based support at scale.</p>
-          </div>
+
         </div>
 
 
@@ -328,7 +328,7 @@ const MensHealth = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 items-stretch">
             
             {/* Box 1: Free Consultation */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13] hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="h-[100px] shrink-0 mb-2">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight">Free Consultation</h3>
                </div>
@@ -357,7 +357,7 @@ const MensHealth = () => {
             </div>
 
             {/* Box 2: Foundations */}
-            <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-[#faf8f5] border border-[#dbd4c9] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#9f1e13] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#9f1e13] whitespace-nowrap">Most Popular</div>
                
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
@@ -396,7 +396,7 @@ const MensHealth = () => {
             </div>
 
             {/* Box 3: Advanced Review */}
-            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13]/30 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-white border border-gray-100 p-8 rounded-[2rem] shadow-sm flex flex-col hover:border-[#9f1e13] hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-gray-900 leading-tight mb-2">TBN Advanced Results Review</h3>
                  <p className="text-[11px] font-bold text-[#9f1e13] uppercase tracking-widest">1:1 Strategic Review</p>
@@ -486,7 +486,7 @@ const MensHealth = () => {
            
            <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
               {/* Left Column: Partner With Us */}
-              <div className="w-full lg:flex-1 bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
+              <div className="w-full lg:flex-1 bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
                   <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-[#9f1e13] -mr-16 -mt-16"/></div>
                   
                   <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 relative z-10 flex-grow">
@@ -532,7 +532,7 @@ const MensHealth = () => {
 
               {/* Right Column: Directory */}
               <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 flex flex-col gap-6 lg:gap-8">
-                 <div className="w-full bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
+                 <div className="w-full bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
                     <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#9f1e13] -mr-12 -mb-12"/></div>
 
                     <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
@@ -557,9 +557,9 @@ const MensHealth = () => {
                     </div>
                     
                     <div className="mt-auto w-full relative z-10">
-                       <button className="w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-md">
+                       <Link to="/specialists" className="w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#9f1e13]/90 transition-colors shadow-md block">
                           Explore Directory
-                       </button>
+                       </Link>
                     </div>
                   </div>
               </div>
@@ -657,9 +657,9 @@ const MensHealth = () => {
                <button onClick={() => openQuiz()} className="bg-[#9f1e13] text-white px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-sm">
                  Start Your Journey
                </button>
-               <button className="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm">
+               <Link to="/specialists" className="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-xl font-bold text-[14px] uppercase tracking-wider hover:bg-gray-50 transition-colors shadow-sm text-center">
                  Find a Clinic
-               </button>
+               </Link>
             </div>
          </div>
 

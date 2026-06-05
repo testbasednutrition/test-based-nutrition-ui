@@ -1,6 +1,4 @@
 import { Gallery4, Gallery4Props } from "@/components/ui/gallery4";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
 const servicesData: Gallery4Props = {
   title: "Personalised Health Pathways",
@@ -61,7 +59,7 @@ const servicesData: Gallery4Props = {
 
 const Services = () => {
   return (
-    <div className="w-full bg-background pt-16 pb-16 md:pb-24 flex flex-col">
+    <div className="w-full bg-background pt-16 pb-12 md:pb-16 flex flex-col">
       <div className="pb-10 md:pb-14">
         <Gallery4 
           title={servicesData.title}
@@ -71,27 +69,19 @@ const Services = () => {
           compact={true}
         />
       </div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 text-center max-w-4xl flex flex-col items-center">
         <h3 className="text-xl md:text-2xl lg:text-3xl font-bold font-playfair font-heading mb-4 text-foreground">
           Every pathway begins with personalised testing
         </h3>
-        <p className="font-montserrat text-[14px] leading-relaxed text-muted-foreground max-w-3xl mb-8">
+        <p className="font-montserrat text-[14px] leading-relaxed text-muted-foreground max-w-3xl mb-0">
           Your practitioner will review your health history and recommend a tailored blood testing profile, followed by a complimentary consultation to design your personalised nutrition protocol.
         </p>
-        <Button 
-          variant="outline" 
-          className="border-primary text-primary hover:bg-primary/5 hover:text-primary transition-colors bg-transparent border-[1.5px] rounded-sm px-8 py-6 text-sm font-semibold uppercase tracking-wider group" 
-          asChild
-        >
-          <a href="/treatments">
-            Explore Pathway 
-            <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </a>
-        </Button>
       </div>
     </div>
   );
 };
 
 export default Services;
+
+

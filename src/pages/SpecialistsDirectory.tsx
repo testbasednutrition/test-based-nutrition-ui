@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { type SpecialistCategory } from "@/data/specialists";
@@ -60,9 +60,55 @@ const SearchField = ({
   </div>
 );
 
+const extractTown = (address?: string): string => {
+  if (!address) return '';
+  let cleanAddress = address.replace(/\b(UK|United Kingdom|England|Wales|Scotland)\b/ig, '').trim();
+  let parts = cleanAddress.split(/[,\n]/).map(p => p.trim()).filter(Boolean);
+  
+  if (parts.length === 1 && parts[0].split(' ').length > 2) {
+    const postcodeRegex = /[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9]\s*[A-Z]{2}/i;
+    let singleClean = parts[0].replace(postcodeRegex, '').trim();
+    const words = singleClean.split(' ').map(w => w.trim()).filter(Boolean);
+    if (words.length > 0) {
+      parts = [words[words.length - 1]];
+    }
+  }
+
+  const postcodeRegex = /[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9]\s*[A-Z]{2}/i;
+  const cleanedParts = parts.map(p => {
+    let clean = p.replace(postcodeRegex, '').trim();
+    clean = clean.replace(/^[\s,.:;/-]+|[\s,.:;/-]+$/g, '').trim();
+    return clean;
+  }).filter(Boolean);
+  
+  if (cleanedParts.length === 0) return parts[parts.length - 1] || '';
+
+  const counties = new Set([
+    'essex', 'herts', 'hertfordshire', 'dorset', 'wirral', 'kent', 'surrey', 'hampshire',
+    'cornwall', 'devon', 'cheshire', 'yorkshire', 'sussex', 'east sussex', 'west sussex',
+    'lancashire', 'gloucestershire'
+  ]);
+
+  for (let i = cleanedParts.length - 1; i >= 0; i--) {
+    const part = cleanedParts[i];
+    const partLower = part.toLowerCase();
+    if (counties.has(partLower)) continue;
+    
+    const streetIndicators = /\b(road|rd|street|st|lane|ln|drive|dr|ave|avenue|way|court|ct|walk|wharf|buildings|house|suite|floor|apartment|apartments|close|cl)\b/i;
+    if (streetIndicators.test(partLower)) {
+      if (i > 0) continue;
+    }
+    return part;
+  }
+  return cleanedParts[cleanedParts.length - 1];
+};
+
 const SpecialistsDirectory = () => {
-  const [activeCategory, setActiveCategory] = useState<SpecialistCategory>("All");
-  const [locationSearch, setLocationSearch] = useState("");
+  const location = useLocation();
+  const state = location.state as { category?: SpecialistCategory; search?: string } | null;
+
+  const [activeCategory, setActiveCategory] = useState<SpecialistCategory>(state?.category || "All");
+  const [locationSearch, setLocationSearch] = useState(state?.search || "");
   const [currentPage, setCurrentPage] = useState(1);
 
   // Reset page when filters change
@@ -297,7 +343,7 @@ const SpecialistsDirectory = () => {
               </div>
 
               {/* Specialist Cards list */}
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 sm:gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-6">
                 {paginatedSpecialists.map((specialist, index) => (
                   <div 
                     key={`${specialist.slug}-${index}`}
@@ -312,58 +358,52 @@ const SpecialistsDirectory = () => {
                         style={{ objectPosition: specialist.imagePosition || 'center top' }}
                         loading="lazy"
                       />
-                      <div className="absolute top-4 right-4 bg-primary text-primary-foreground p-1.5 rounded-full shadow-md border border-primary/20">
-                         <BadgeCheck className="w-4 h-4" />
-                      </div>
                     </Link>
 
                     {/* Bottom Info Box */}
                     <div className="flex-1 flex flex-col justify-between p-3 sm:p-5">
-                      <div className="space-y-3">
+                      <div className="space-y-2">
                         {/* Title Row */}
-                        <div className="flex justify-between items-start gap-4">
-                          <div className="pr-1">
-                            <h3 className="text-[13px] sm:text-xl font-bold line-clamp-1">{specialist.name}</h3>
-                            <div className="flex flex-col gap-1.5 mt-1.5">
-                              <span className="inline-block w-max max-w-full text-[10px] sm:text-[12px] font-semibold text-[#9f1e13] bg-[#9f1e13]/10 px-2.5 py-0.5 rounded-full truncate">
-                                {specialist.category}
-                              </span>
-                              {specialist.role && (
-                                <p className="text-[10px] sm:text-[13px] font-medium text-muted-foreground line-clamp-1">
-                                  {specialist.role.split("—")[0].trim()}
-                                </p>
-                              )}
-                            </div>
+                        <div className="flex justify-between items-start gap-2.5">
+                          <div className="pr-1 flex-1">
+                            <h3 className="text-[12px] sm:text-[14px] font-bold tracking-wide uppercase line-clamp-2 leading-tight text-foreground">
+                              {specialist.name}
+                            </h3>
+                            {specialist.role && (
+                              <p className="text-[10px] sm:text-[12px] font-semibold text-zinc-500 mt-1 leading-snug line-clamp-2">
+                                {specialist.role.split("—")[0].trim()}
+                              </p>
+                            )}
                           </div>
                           
                           {/* Rating Badge */}
                           {specialist.rating && (
-                            <div className="flex items-center gap-1 sm:gap-1.5 px-1.5 py-0.5 sm:px-2 sm:py-1 bg-secondary rounded-md text-[10px] sm:text-sm font-bold shrink-0">
-                              <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-primary text-primary" />
+                            <div className="flex items-center gap-1 px-1.5 py-0.5 bg-secondary rounded text-[9px] sm:text-[11px] font-bold shrink-0">
+                              <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-primary text-primary" />
                               <span>{specialist.rating}</span>
                             </div>
                           )}
                         </div>
 
-                        {/* Details Row with Icons */}
-                        <div className="hidden sm:flex flex-col gap-2.5 text-xs text-muted-foreground font-medium pt-2">
-                          <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-primary shrink-0" />
-                            <span className="line-clamp-1">{specialist.location || "London, UK"}</span>
-                          </div>
+                        {/* Details Row with Icons (Always visible now to show Town) */}
+                        <div className="flex items-start gap-1 text-[10px] sm:text-xs text-muted-foreground font-medium pt-1">
+                          <MapPin className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                          <span className="line-clamp-1 leading-snug">
+                            {extractTown(specialist.location) || "London"}
+                          </span>
                         </div>
                       </div>
 
-                      {/* Action buttons */}
-                      <div className="flex flex-col items-center gap-1.5 sm:gap-3 mt-3 sm:mt-6 pt-3 sm:pt-5 border-t border-border/50">
+                      {/* Category Badge & View Profile button */}
+                      <div className="flex flex-col items-center gap-2 mt-4 pt-3 border-t border-border/50">
+                        <span className="inline-block max-w-full text-[9px] sm:text-[10px] font-bold text-[#9f1e13] uppercase tracking-wider whitespace-normal break-words leading-tight w-fit text-center">
+                          {specialist.category}
+                        </span>
                         <Link to={`/specialists/${specialist.slug}`} className="w-full text-center">
-                          <Button variant="outline" className="w-full font-semibold px-2 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-sm h-auto border-border hover:bg-secondary">
+                          <Button variant="outline" className="w-full font-semibold px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs h-auto border-border hover:bg-secondary">
                             View Profile
                           </Button>
                         </Link>
-                        <Button className="w-full font-semibold bg-primary hover:bg-primary/90 text-primary-foreground px-2 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-sm h-auto shadow-sm">
-                          Book
-                        </Button>
                       </div>
                     </div>
                   </div>

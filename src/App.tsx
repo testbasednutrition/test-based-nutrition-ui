@@ -32,6 +32,10 @@ import PartnerWithUs2 from "./pages/PartnerWithUs2";
 import TBNMethod from "./pages/TBNMethod";
 import AdminLeads from "./pages/AdminLeads";
 import PartnerPortal2 from "./pages/PartnerPortal2";
+import CopyProtection from "@/components/CopyProtection";
+import ReferralTracker from "@/components/ReferralTracker";
+import AdminAffiliates from "./pages/AdminAffiliates";
+import TrafficTracker from "@/components/TrafficTracker";
 
 const queryClient = new QueryClient();
 
@@ -41,10 +45,13 @@ const App = () => (
       <QuizProvider>
         <Toaster />
         <Sonner />
+        <CopyProtection />
         <Quiz />
         <FloatingQuizCTA />
         <BrowserRouter>
           <ScrollToTop />
+          <ReferralTracker />
+          <TrafficTracker />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/specialists" element={<SpecialistsDirectory />} />
@@ -63,13 +70,14 @@ const App = () => (
             <Route path="/treatments/fertility" element={<Fertility />} />
             <Route path="/news" element={<NewsHub />} />
             <Route path="/news/:id" element={<NewsArticle />} />
-            <Route path="/partner-with-us" element={<PartnerWithUs />} />
-            <Route path="/partner-with-us-2" element={<PartnerWithUs2 />} />
+            <Route path="/partner-with-us" element={<PartnerWithUs2 />} />
+            <Route path="/partner-with-us-2" element={<PartnerWithUs />} />
             <Route path="/partner-portal-2" element={<PartnerPortal2 />} />
             <Route path="/testing" element={<TestingPage />} />
             <Route path="/tbn-method" element={<TBNMethod />} />
 
             <Route path="/admin/leads" element={<AdminLeads />} />
+            <Route path="/admin/affiliates" element={<AdminAffiliates />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

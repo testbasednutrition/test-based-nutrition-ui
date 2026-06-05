@@ -144,9 +144,9 @@ const clinicsMenuItems = [
 ];
 
 const partnerMenuItems: { label: string; href: string | null }[] = [
-  { label: "Host a TBN Hub", href: "/partner-with-us-2" },
-  { label: "Clinics & Practitioners", href: "/partner-with-us" },
-  { label: "Health Clubs", href: "/partner-with-us" },
+  { label: "Host a TBN Hub", href: "/partner-with-us" },
+  { label: "Clinics & Practitioners", href: "/partner-with-us-2" },
+  { label: "Health Clubs", href: "/partner-with-us-2" },
   { label: "Events & Workshops", href: null },
   { label: "Retreats", href: null },
 ];
@@ -463,7 +463,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
               <MenubarMenu>
                 <MenubarTrigger 
                   className={"cursor-pointer border-[1.5px] rounded-md px-4 py-1.5 text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors outline-none focus:bg-transparent data-[state=open]:bg-transparent " + (isSolid ? "border-black text-black hover:bg-black/5 data-[state=open]:!text-black" : "border-white/80 text-white hover:bg-white/10 backdrop-blur-sm data-[state=open]:!text-black")}
-                  onClick={() => navigate('/partner-with-us-2')}
+                  onClick={() => navigate('/partner-with-us')}
                 >
                   Partner With Us
                 </MenubarTrigger>

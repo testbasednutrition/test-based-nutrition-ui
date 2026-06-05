@@ -13,7 +13,7 @@ const heroImg = "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?au
 
 const PartnerWithUs = () => {
   return (
-    <div className="min-h-screen bg-[#f9f5f2]">
+    <div className="min-h-screen bg-[#faf8f5]">
       <Navbar alwaysSolid={false} />
 
       {/* Hero Section */}
@@ -29,7 +29,7 @@ const PartnerWithUs = () => {
 
         <div className="container relative z-10 text-white">
           <div className="max-w-3xl space-y-8 animate-fade-in">
-            <span className="text-[#f9f5f2] uppercase tracking-[0.2em] font-semibold text-sm">
+            <span className="text-[#faf8f5] uppercase tracking-[0.2em] font-semibold text-sm">
               PARTNER WITH TEST-BASED NUTRITION
             </span>
             <h1 className="text-5xl md:text-7xl font-playfair font-bold leading-tight">
@@ -44,7 +44,7 @@ const PartnerWithUs = () => {
             <p className="text-base text-gray-300 leading-relaxed max-w-2xl hidden md:block">
               We support clinics, pharmacies, health clubs, gyms, resorts, training academies, practitioners, coaches and specialists to bring test-based nutrition into real-world practice — with the training, systems, marketing and specialist support to launch confidently and grow sustainably.
             </p>
-            <div className="space-y-2 text-[#f9f5f2] font-medium border-l-2 border-[#9f1e13] pl-4 italic">
+            <div className="space-y-2 text-[#faf8f5] font-medium border-l-2 border-[#9f1e13] pl-4 italic">
               <p>This is not just a test.</p>
               <p>This is not just a product.</p>
               <p>This is not another wellness trend.</p>
@@ -62,7 +62,7 @@ const PartnerWithUs = () => {
       </section>
 
       {/* Why Partner With TBN */}
-      <section className="py-24 bg-[#f9f5f2]">
+      <section className="py-24 bg-[#faf8f5]">
         <div className="container max-w-4xl text-center space-y-8">
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13]">Why Partner With TBN?</h2>
           <p className="text-xl md:text-2xl font-light text-gray-800 leading-relaxed max-w-3xl mx-auto">
@@ -103,7 +103,7 @@ const PartnerWithUs = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2]">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5]">
               <div className="w-16 h-16 mx-auto bg-[#9f1e13] rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-md">1</div>
               <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Learn</h3>
               <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">Train in the TBN Method</h4>
@@ -115,7 +115,7 @@ const PartnerWithUs = () => {
               </div>
             </div>
 
-            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2]">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5]">
               <div className="w-16 h-16 mx-auto bg-[#9f1e13] rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-md">2</div>
               <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Launch</h3>
               <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">Bring it into real-world service</h4>
@@ -127,7 +127,7 @@ const PartnerWithUs = () => {
               </div>
             </div>
 
-            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2]">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5]">
               <div className="w-16 h-16 mx-auto bg-[#9f1e13] rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-md">3</div>
               <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Lead</h3>
               <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-widest">Become known for prevention</h4>
@@ -143,7 +143,7 @@ const PartnerWithUs = () => {
       </section>
 
       {/* What We Help You Integrate */}
-      <section className="py-24 bg-[#9f1e13] text-[#f9f5f2]">
+      <section className="py-24 bg-[#9f1e13] text-[#faf8f5]">
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-playfair font-bold">What We Help You Integrate</h2>
@@ -199,7 +199,7 @@ const PartnerWithUs = () => {
       </section>
 
       {/* Pathways Grid */}
-      <section className="py-24 bg-[#f9f5f2]">
+      <section className="py-24 bg-[#faf8f5]">
         <div className="container max-w-7xl">
           <div className="text-center mb-16">
             <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">Who Can Partner With TBN?</span>
@@ -316,7 +316,7 @@ const PartnerWithUs = () => {
             </div>
 
             {/* Specialist Collective */}
-            <div className="bg-[#9f1e13] rounded-3xl p-8 border border-[#9f1e13] shadow-md flex flex-col h-full group text-[#f9f5f2]">
+            <div className="bg-[#9f1e13] rounded-3xl p-8 border border-[#9f1e13] shadow-md flex flex-col h-full group text-[#faf8f5]">
               <Brain className="w-10 h-10 text-white mb-4" />
               <h3 className="text-2xl font-playfair font-bold text-white mb-2">Specialist Collective</h3>
               <p className="text-sm text-white/90 font-medium mb-4">Support the movement. Shape the education.</p>
@@ -341,7 +341,7 @@ const PartnerWithUs = () => {
             <p className="text-gray-600 leading-relaxed text-lg">
               TBN is designed to seamlessly integrate into your existing business model, sitting perfectly alongside osteopathy, pharmacy, aesthetics, PT, retreats, and more.
             </p>
-            <div className="bg-[#f9f5f2] border border-gray-200 rounded-3xl p-6">
+            <div className="bg-[#faf8f5] border border-gray-200 rounded-3xl p-6">
               <h4 className="font-bold text-[#9f1e13] mb-3">Revenue Opportunities Include:</h4>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm text-gray-700">
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#9f1e13]" /> Rapid screening appts</li>
@@ -355,7 +355,7 @@ const PartnerWithUs = () => {
             <p className="text-sm text-gray-600 font-medium">TBN helps you build longer-term client pathways that combine education, testing, and ongoing support. This means stronger retention and sustainable growth.</p>
           </div>
 
-          <div className="bg-[#9f1e13] text-[#f9f5f2] rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
+          <div className="bg-[#9f1e13] text-[#faf8f5] rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -translate-y-10 translate-x-10 blur-xl"></div>
             <span className="text-white/80 uppercase tracking-widest text-xs font-bold mb-2 block">Available for selected partners during rollout phase</span>
             <h3 className="text-3xl font-playfair font-bold text-white mb-8">Free Training & Marketing Package</h3>
@@ -364,17 +364,17 @@ const PartnerWithUs = () => {
               <div className="border-l-2 border-white/20 pl-4">
                 <h4 className="font-bold text-white mb-1">Free Certified TBN Training</h4>
                 <p className="text-sm text-white/80 mb-1">Training in the TBN Method, testing ecosystem, consultation pathway and client education process.</p>
-                <p className="text-xs font-bold text-[#f9f5f2]/60 uppercase tracking-wider">Value: £2,000</p>
+                <p className="text-xs font-bold text-[#faf8f5]/60 uppercase tracking-wider">Value: £2,000</p>
               </div>
               <div className="border-l-2 border-white/20 pl-4">
                 <h4 className="font-bold text-white mb-1">Free Marketing Support & Launch Assets</h4>
                 <p className="text-sm text-white/80 mb-1">Campaign copy, event assets, test day support, and positioning.</p>
-                <p className="text-xs font-bold text-[#f9f5f2]/60 uppercase tracking-wider">Value: £2,500</p>
+                <p className="text-xs font-bold text-[#faf8f5]/60 uppercase tracking-wider">Value: £2,500</p>
               </div>
               <div className="border-l-2 border-white/20 pl-4">
                 <h4 className="font-bold text-white mb-1">Free Annual Microsite Listing</h4>
                 <p className="text-sm text-white/80 mb-1">A featured presence on Test-BasedNutrition.com to support visibility.</p>
-                <p className="text-xs font-bold text-[#f9f5f2]/60 uppercase tracking-wider">Value: £1,500</p>
+                <p className="text-xs font-bold text-[#faf8f5]/60 uppercase tracking-wider">Value: £1,500</p>
               </div>
             </div>
             <div className="mt-8 pt-6 border-t border-white/20">
@@ -386,7 +386,7 @@ const PartnerWithUs = () => {
       </section>
 
       {/* Difference & Who we look for */}
-      <section className="py-24 bg-[#f9f5f2]">
+      <section className="py-24 bg-[#faf8f5]">
         <div className="container max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="space-y-6">
             <h2 className="text-3xl md:text-4xl font-playfair font-bold text-[#9f1e13]">Who We Are Looking For</h2>

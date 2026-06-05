@@ -4,6 +4,7 @@ import PartnerLeadForm from "@/components/PartnerLeadForm";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Gallery4 } from "@/components/ui/gallery4";
+import HowWeSupportYou from "@/components/HowWeSupportYou";
 
 import { FocusRail } from "@/components/ui/focus-rail";
 import { StructuredTesting } from "@/components/StructuredTesting";
@@ -64,11 +65,11 @@ const SkinHealth = () => {
   }));
 
   return (
-    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#f9f5f2] font-montserrat">
+    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#faf8f5] font-montserrat">
       <Navbar alwaysSolid />
       
       {/* FULL BLEED HERO SECTION */}
-      <div className="w-full relative bg-[#f9f5f2] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
+      <div className="w-full relative bg-[#faf8f5] flex flex-col overflow-hidden min-h-[600px] lg:min-h-[700px] lg:h-[calc(100vh-96px)]">
          {/* Background Image spanning the right side */}
          <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
            <img 
@@ -82,7 +83,7 @@ const SkinHealth = () => {
            <div className="absolute inset-x-0 bottom-0 h-[60%] lg:h-[40%] bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
            {/* Blend image and black gradient into the left text container background */}
-           <div className="absolute inset-0 bg-gradient-to-r from-[#f9f5f2] via-[#f9f5f2]/70 lg:via-[#f9f5f2]/20 to-transparent"></div>
+           <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f5] via-[#faf8f5]/70 lg:via-[#faf8f5]/20 to-transparent"></div>
          </div>
          
          {/* Content Container Aligned inside normal max-width margins */}
@@ -100,7 +101,7 @@ const SkinHealth = () => {
                  Breakouts. Sensitivity. Premature ageing.
                </p>
                <p className="text-[14px] xl:text-[15px] text-gray-900 lg:text-gray-800 leading-relaxed max-w-[480px] mx-auto lg:mx-0 mb-6 font-medium">
-                 Our personalized, test-based nutrition programs target the root causes of inflammation and cellular health, aligning your gut health with a radiant complexion from the inside out.
+                 Our personalised, test-based nutrition programmes target the root causes of inflammation and cellular health, aligning your gut health with a radiant complexion from the inside out.
                </p>
                <p className="font-semibold uppercase tracking-widest text-[#9f1e13] text-[13px] mb-8">Test. Target. Transform.</p>
                
@@ -210,11 +211,11 @@ const SkinHealth = () => {
         {/* OUR SPECIALISTS */}
         <div className="mt-8 mb-12 lg:mb-16 max-w-[1200px] mx-auto px-4 md:px-8">
           <div className="text-center mb-12 border-t border-gray-100 pt-10">
-             <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">LEADING SPECIALISTS IN SKIN HEALTH</h2>
+             <h2 className="font-playfair text-[28px] md:text-[36px] font-bold text-gray-900 tracking-wider mb-3 uppercase">LEADERS IN SKIN HEALTH</h2>
              <p className="font-bold text-[#9f1e13] text-[13px] uppercase tracking-widest flex items-center justify-center gap-2"><span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /> Built by those redefining modern skin health <span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full" /></p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#9f1e13]/20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-4 lg:gap-0 md:divide-x divide-[#dbd4c9]">
               {/* Yazmin */}
               <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
                  <div className="w-[120px] sm:w-[140px] xl:w-[150px] shrink-0 aspect-[4/5] sm:aspect-square overflow-hidden rounded-sm shadow-sm border border-gray-100/50">
@@ -223,7 +224,7 @@ const SkinHealth = () => {
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-0">Yazmin Oukhellou</h3>
                    <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#9f1e13] uppercase tracking-widest mb-4 mt-1">Founder — Show Off Clinic</div>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">&quot;Skin confidence starts beneath the surface — not just in the treatment room.&quot;</p>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13] pl-3">&quot;Skin confidence starts beneath the surface — not just in the treatment room.&quot;</p>
                  </div>
               </div>
               
@@ -235,7 +236,7 @@ const SkinHealth = () => {
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-1">Dr Hennessy, BDS</h3>
                    <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#9f1e13] uppercase tracking-widest mb-4 mt-1">Advanced Aesthetic Doctor — My Aesthetics Manchester</div>
-                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13]/30 pl-3">&quot;The best results come from combining advanced treatments with a deeper understanding of what&apos;s driving skin from within.&quot;</p>
+                   <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13] pl-3">&quot;The best results come from combining advanced treatments with a deeper understanding of what&apos;s driving skin from within.&quot;</p>
                  </div>
               </div>
           </div>
@@ -287,7 +288,7 @@ const SkinHealth = () => {
                    <img src="/images/test-logos/metabolic.png" alt="Hormonal Signalling" className="w-full h-full object-contain scale-[1.15]" />
                 </div>
                 <h3 className="font-playfair font-bold text-[20px] text-gray-900 mb-4">Hormonal Signalling</h3>
-                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Fluctuations in androgens and estrogens that can aggressively drive excess sebum production and cyclic issues.</p>
+                <p className="font-montserrat text-[14px] leading-relaxed text-gray-600">Fluctuations in androgens and oestrogens that can aggressively drive excess sebum production and cyclic issues.</p>
               </div>
 
               {/* Box 5 */}
@@ -303,7 +304,7 @@ const SkinHealth = () => {
 
         {/* EXPERT QUOTE */}
         <div className="w-full mt-16 lg:mt-20 max-w-6xl mx-auto px-4">
-           <div className="bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm w-full hover:shadow-md transition-shadow duration-300">
+           <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm w-full hover:shadow-md transition-shadow duration-300">
               
               <div className="flex flex-col items-center lg:items-end max-w-[1050px] mx-auto w-full gap-5">
                  <div className="flex items-center gap-4 w-full justify-center lg:justify-start">
@@ -330,12 +331,12 @@ const SkinHealth = () => {
 
         {/* KEY DRIVERS WE ASSESS */}
         <div className="w-full max-w-[1200px] mx-auto px-4 md:px-8 mt-20 lg:mt-32 pb-6">
-           <div className="bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2rem] shadow-xl relative overflow-hidden pt-12 lg:pt-20">
-             <div className="absolute top-0 right-0 w-80 h-80 bg-[#9f1e13]/[0.02] rounded-full -mr-32 -mt-32 blur-[60px]"></div>
+           <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2rem] shadow-xl relative overflow-hidden pt-12 lg:pt-20">
+             <div className="absolute top-0 right-0 w-80 h-80 bg-[#dbd4c9]/20 rounded-full -mr-32 -mt-32 blur-[60px]"></div>
              <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#dbd4c9]/40 rounded-full -ml-32 -mb-32 blur-[60px]"></div>
              
              {/* Key Drivers Grid - Dashed Layout */}
-             <div className="relative z-10 bg-[#f9f5f2] pt-8 lg:pt-12">
+             <div className="relative z-10 bg-[#faf8f5] pt-8 lg:pt-12">
                <h2 className="max-w-3xl mx-auto text-center font-playfair font-bold text-[28px] sm:text-[36px] lg:text-[42px] leading-tight text-gray-900 mb-10 uppercase tracking-wider px-4">
                  Key Drivers We Assess
                </h2>
@@ -398,7 +399,7 @@ const SkinHealth = () => {
              </div>
 
              {/* CORE PRINCIPLE & QUOTE */}
-             <div className="border-t border-dashed border-[#dbd4c9] p-8 lg:p-12 relative z-10 bg-[#f9f5f2]">
+             <div className="border-t border-dashed border-[#dbd4c9] p-8 lg:p-12 relative z-10 bg-[#faf8f5]">
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center lg:items-center justify-between">
                    {/* Core Principle */}
                    <div className="lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
@@ -450,62 +451,7 @@ const SkinHealth = () => {
         />
 
         {/* HOW WE SUPPORT YOU */}
-        <div className="w-full mt-24 mb-8 max-w-6xl mx-auto px-4">
-          <div className="bg-[#f9f5f2] rounded-[2rem] p-8 md:p-10 relative overflow-hidden shadow-sm border border-[#dbd4c9]">
-            <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#9f1e13]/5 to-transparent pointer-events-none"></div>
-
-            <div className="text-center relative z-10 mb-10">
-              <p className="font-bold text-[#9f1e13] text-[12px] uppercase tracking-widest mb-3">A structured system — not isolated treatments</p>
-              <h2 className="font-playfair text-[26px] md:text-[32px] font-bold text-gray-900 tracking-wider mb-8 uppercase">
-                How We Support You
-              </h2>
-
-              <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 max-w-3xl mx-auto">
-                {["Test", "Understand", "Apply", "Retest", "Evolve"].map((step, index) => (
-                  <React.Fragment key={index}>
-                    <div className="bg-[#9f1e13] border border-[#9f1e13] px-4 py-1.5 rounded-full text-white font-semibold text-[13px] uppercase tracking-widest shadow-sm">
-                      {step}
-                    </div>
-                    {index < 4 && (
-                      <ArrowRight className="w-4 h-4 text-[#9f1e13] shrink-0" strokeWidth={2} />
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative z-10 max-w-5xl mx-auto">
-              <div className="flex items-center justify-center gap-4 mb-6">
-                <div className="w-8 h-[1px] bg-[#9f1e13]/20"></div>
-                <h3 className="font-bold text-[11px] text-[#9f1e13] uppercase tracking-widest">What this includes</h3>
-                <div className="w-8 h-[1px] bg-[#9f1e13]/20"></div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
-                {[
-                  { title: "Skin Driver Testing", icon: Activity },
-                  { title: "Specialist Results Review", icon: Search },
-                  { title: "Personalised Skin Protocols", icon: Settings },
-                  { title: "Structured Retesting", icon: RefreshCw },
-                  { title: "Ongoing Support", icon: MessageCircle },
-                  { title: "Access to Skin Specialists", icon: Stethoscope },
-                ].map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={index} className="bg-[#9f1e13] hover:bg-[#9f1e13] transition-colors duration-300 rounded-xl p-4 flex items-center gap-4 shadow-sm group">
-                      <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
-                        <Icon className="w-4 h-4 text-white" strokeWidth={2} />
-                      </div>
-                      <span className="font-bold text-[14px] text-white/95">
-                        {item.title}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
+        <HowWeSupportYou />
 
         {/* A MORE COMPLETE APPROACH block */}
         <div className="w-full max-w-4xl mx-auto px-4 mt-20 mb-20 text-center">
@@ -514,9 +460,9 @@ const SkinHealth = () => {
                 Advanced treatments refine the skin. Internal support helps influence:
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-               <span className="font-bold text-[#9f1e13] text-[13px] md:text-[14px] uppercase tracking-widest bg-[#9f1e13]/5 border border-[#9f1e13]/20 px-6 py-3 rounded-full flex items-center gap-2 shadow-sm"><div className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]"></div> Consistency</span>
-               <span className="font-bold text-[#9f1e13] text-[13px] md:text-[14px] uppercase tracking-widest bg-[#9f1e13]/5 border border-[#9f1e13]/20 px-6 py-3 rounded-full flex items-center gap-2 shadow-sm"><div className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]"></div> Response</span>
-               <span className="font-bold text-[#9f1e13] text-[13px] md:text-[14px] uppercase tracking-widest bg-[#9f1e13]/5 border border-[#9f1e13]/20 px-6 py-3 rounded-full flex items-center gap-2 shadow-sm"><div className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]"></div> Long-Term Results</span>
+               <span className="font-bold text-[#9f1e13] text-[13px] md:text-[14px] uppercase tracking-widest bg-[#dbd4c9] border border-[#9f1e13]/20 px-6 py-3 rounded-full flex items-center gap-2 shadow-sm"><div className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]"></div> Consistency</span>
+               <span className="font-bold text-[#9f1e13] text-[13px] md:text-[14px] uppercase tracking-widest bg-[#dbd4c9] border border-[#9f1e13]/20 px-6 py-3 rounded-full flex items-center gap-2 shadow-sm"><div className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]"></div> Response</span>
+               <span className="font-bold text-[#9f1e13] text-[13px] md:text-[14px] uppercase tracking-widest bg-[#dbd4c9] border border-[#9f1e13]/20 px-6 py-3 rounded-full flex items-center gap-2 shadow-sm"><div className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]"></div> Long-Term Results</span>
             </div>
         </div>
 
@@ -553,7 +499,7 @@ const SkinHealth = () => {
             </div>
 
             {/* Box 2: TBN Skin Foundations */}
-            <div className="bg-[#f9f5f2] border border-[#dbd4c9] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
+            <div className="bg-[#faf8f5] border border-[#dbd4c9] p-8 rounded-[2rem] shadow-md flex flex-col relative hover:-translate-y-2 hover:shadow-xl transition-all duration-300 transform-gpu will-change-transform">
                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#9f1e13] text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm border border-[#9f1e13] whitespace-nowrap">Most Popular</div>
                
                <div className="h-[100px] shrink-0 mb-2 flex flex-col">
@@ -614,7 +560,7 @@ const SkinHealth = () => {
                
                <div className="h-[100px] shrink-0 mb-2 relative z-10 flex flex-col">
                  <h3 className="font-playfair text-[24px] font-bold text-white leading-tight mb-2">TBN Elite Skin Consultation</h3>
-                 <p className="text-[11px] font-bold text-[#dbd4c9] uppercase tracking-widest">Private 1:1 with Doctor or Specialist</p>
+                 <p className="text-[11px] font-bold text-[#dbd4c9] uppercase tracking-widest">Private 1:1 with Doctor</p>
                </div>
                
                {/* Body Zone */}
@@ -653,7 +599,7 @@ const SkinHealth = () => {
            
            <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
               {/* Left Column: Partner With Us */}
-              <div className="w-full lg:flex-1 bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
+              <div className="w-full lg:flex-1 bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-sm relative overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
                   <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none"><Users className="w-64 h-64 text-[#9f1e13] -mr-16 -mt-16"/></div>
                   
                   <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 relative z-10 flex-grow">
@@ -699,7 +645,7 @@ const SkinHealth = () => {
 
               {/* Right Column: Directory */}
               <div className="w-full lg:w-[320px] xl:w-[350px] shrink-0 flex flex-col gap-6 lg:gap-8">
-                 <div className="w-full bg-[#f9f5f2] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
+                 <div className="w-full bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-10 shadow-md text-center lg:text-left flex flex-col items-center lg:items-start relative overflow-hidden transition-shadow hover:shadow-lg">
                     <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none"><Search className="w-48 h-48 text-[#9f1e13] -mr-12 -mb-12"/></div>
 
                     <h2 className="font-playfair text-[24px] font-bold text-gray-900 leading-snug mb-4 relative z-10">
@@ -724,9 +670,9 @@ const SkinHealth = () => {
                     </div>
                     
                     <div className="mt-auto w-full relative z-10">
-                       <button className="w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#9f1e13] transition-colors shadow-md">
+                       <Link to="/specialists" className="block w-full text-center bg-[#9f1e13] text-white px-4 py-4 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#9f1e13]/90 transition-colors shadow-md">
                           Explore Directory
-                       </button>
+                       </Link>
                     </div>
                  </div>
               </div>
@@ -779,7 +725,7 @@ const SkinHealth = () => {
                  className="flex-1 bg-white hover:bg-gray-100 text-[#9f1e13] px-6 py-4 rounded-xl font-bold text-[15px] shadow-lg flex justify-center items-center gap-2 group transition-all">
                  Start Your Journey <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
                </button>
-               <Link to="/clinics" className="flex-1 bg-[#9f1e13] hover:bg-[#dbd4c9] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
+               <Link to="/specialists" className="flex-1 bg-[#9f1e13] hover:bg-[#dbd4c9] text-white border border-white/20 px-6 py-4 rounded-xl font-bold text-[15px] shadow-sm flex justify-center items-center gap-2 group transition-all">
                  Find a Clinic <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
                </Link>
              </div>

@@ -6,6 +6,17 @@ import { BrowserRouter } from "react-router-dom";
 import { QuizProvider } from "@/components/QuizContext";
 import PartnerPortal2 from "../pages/PartnerPortal2";
 
+// Mock Supabase client to prevent actual network calls during testing
+vi.mock("@/lib/supabase", () => ({
+  supabase: {
+    from: vi.fn().mockReturnValue({
+      select: vi.fn().mockReturnValue({
+        order: vi.fn().mockResolvedValue({ data: [], error: null })
+      })
+    })
+  }
+}));
+
 beforeAll(() => {
   if (typeof window !== "undefined") {
     window.URL.createObjectURL = vi.fn().mockReturnValue("blob:http://localhost/mock-file");
@@ -137,5 +148,41 @@ describe("PartnerPortal2 Component", () => {
     // 11. Verify new resource card is displayed in the list
     expect(screen.getByText("test-manual")).toBeInTheDocument();
     expect(screen.getByText("A new custom document uploaded from local disk")).toBeInTheDocument();
+  });
+
+  it("reveals CRM tab in Super Admin Mode and can switch to CRM board view", async () => {
+    const queryClient = createQueryClient();
+    render(
+      <QueryClientProvider client={queryClient}>
+        <QuizProvider>
+          <BrowserRouter>
+            <PartnerPortal2 />
+          </BrowserRouter>
+        </QuizProvider>
+      </QueryClientProvider>
+    );
+
+    // 1. CRM tab should not be present initially
+    expect(screen.queryByRole("button", { name: /Manage Leads & CRM/i })).not.toBeInTheDocument();
+
+    // 2. Toggle Admin Mode
+    const adminToggle = screen.getByRole("button", { name: "" });
+    fireEvent.click(adminToggle);
+
+    // 3. CRM tab should be visible now
+    const crmTab = screen.getByRole("button", { name: /Manage Leads & CRM/i });
+    expect(crmTab).toBeInTheDocument();
+
+    // 4. Click the CRM tab
+    fireEvent.click(crmTab);
+
+    // 5. CRM headers should be visible
+    expect(screen.getByText("Lead Sales Pipeline & CRM")).toBeInTheDocument();
+    expect(screen.getByText("Total Inquiries")).toBeInTheDocument();
+    expect(screen.getByText("New Leads")).toBeInTheDocument();
+
+    // 6. Verification of pipeline columns in Kanban view
+    expect(await screen.findByText("New Inquiries")).toBeInTheDocument();
+    expect(await screen.findByText("Contacted / Nurturing")).toBeInTheDocument();
   });
 });

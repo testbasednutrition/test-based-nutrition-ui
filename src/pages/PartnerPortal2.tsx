@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   Folder, BookOpen, Layers, Award, Users, TrendingUp, Share2, Clipboard, 
   HelpCircle, Settings, Plus, Search, FileText, CheckCircle2, ChevronRight, 
   ArrowLeft, Copy, UserCheck, ShieldAlert, BookMarked, Download, Info, Video, 
-  Check, Lock, PlayCircle, Eye, Star, PlusCircle, AlertCircle, Trash2, Upload
+  Check, Lock, PlayCircle, Eye, Star, PlusCircle, AlertCircle, Trash2, Upload,
+  Briefcase, MessageSquare, Filter, Grid, List, Calendar, ArrowRight, UserPlus
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 
 // Interface Definitions
 interface ResourceItem {
@@ -489,6 +492,30 @@ const initialFolders: FolderSection[] = [
   }
 ];
 
+interface LocalLead {
+  name: string;
+  email: string;
+  mobile?: string;
+  leadType?: string;
+  lead_type?: string;
+  sourcePage?: string;
+  source_page?: string;
+  date?: string;
+  created_at?: string;
+  academyOptIn?: boolean;
+  academy_opt_in?: boolean;
+  isAcademy?: boolean;
+}
+
+interface LeadCRMInfo {
+  status: string;        // "New" | "Contacted" | "Meeting Scheduled" | "Proposal Sent" | "Onboarded" | "Lost"
+  assignedTo: string;    // "Unassigned" | "Dr Ishtiaq Rehman" | "Dr Vian Hurle" | "Neil Parsley"
+  notes: Array<{
+    date: string;
+    text: string;
+  }>;
+}
+
 export default function PartnerPortal2() {
   const [folders, setFolders] = useState<FolderSection[]>(initialFolders);
   const [activeTab, setActiveTab] = useState<string>("all");
@@ -496,6 +523,152 @@ export default function PartnerPortal2() {
   const [adminMode, setAdminMode] = useState<boolean>(false);
   const [selectedFolder, setSelectedFolder] = useState<FolderSection | null>(null);
   const [selectedSubFolder, setSelectedSubFolder] = useState<SubFolder | null>(null);
+
+  // CRM States
+  const [leads, setLeads] = useState<LocalLead[]>([]);
+  const [crmMetadata, setCrmMetadata] = useState<Record<string, LeadCRMInfo>>({});
+  const [crmView, setCrmView] = useState<"pipeline" | "table">("pipeline");
+  const [selectedLeadForNotes, setSelectedLeadForNotes] = useState<LocalLead | null>(null);
+  const [newNoteText, setNewNoteText] = useState<string>("");
+  const [crmStatusFilter, setCrmStatusFilter] = useState<string>("All");
+  const [crmAssigneeFilter, setCrmAssigneeFilter] = useState<string>("All");
+  const [isLeadsLoading, setIsLeadsLoading] = useState<boolean>(false);
+
+  // Load CRM Metadata and Leads
+  useEffect(() => {
+    try {
+      const storedCrm = localStorage.getItem("tbn_crm_metadata");
+      if (storedCrm) {
+        setCrmMetadata(JSON.parse(storedCrm));
+      }
+    } catch (e) {
+      console.error("Failed to load CRM metadata", e);
+    }
+    
+    fetchLeads();
+  }, []);
+
+  const fetchLeads = async () => {
+    setIsLeadsLoading(true);
+    let allLeads: LocalLead[] = [];
+
+    // Local fallback leads
+    let localPartner: LocalLead[] = [];
+    let localAcademy: LocalLead[] = [];
+    try {
+      localPartner = JSON.parse(localStorage.getItem("partner_leads") || "[]");
+      localAcademy = JSON.parse(localStorage.getItem("academy_registrations") || "[]");
+    } catch (e) {
+      console.error("Failed to load local leads fallback", e);
+    }
+
+    try {
+      const { data: partners, error: pError } = await supabase
+        .from("partner_leads")
+        .select("*")
+        .order("created_at", { ascending: false });
+      
+      const { data: academies, error: aError } = await supabase
+        .from("academy_registrations")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      const dbPartners = (!pError && partners) ? partners : [];
+      const dbAcademies = (!aError && academies) ? academies : [];
+
+      const combinedPartners = [...dbPartners, ...localPartner];
+      const combinedAcademies = [...dbAcademies, ...localAcademy];
+
+      // Mapped combined leads
+      const mappedPartners = combinedPartners.map(p => ({
+        ...p,
+        lead_type: p.lead_type || p.leadType || "Partner Inquiry",
+        source_page: p.source_page || p.sourcePage || "General",
+        created_at: p.created_at || p.date || new Date().toISOString(),
+        isAcademy: false
+      }));
+
+      const mappedAcademies = combinedAcademies.map(a => ({
+        ...a,
+        lead_type: "Academy Registration",
+        source_page: "Academy",
+        created_at: a.created_at || a.date || new Date().toISOString(),
+        isAcademy: true
+      }));
+
+      allLeads = [...mappedPartners, ...mappedAcademies].sort((a, b) => {
+        return new Date(b.created_at || "").getTime() - new Date(a.created_at || "").getTime();
+      });
+    } catch (err) {
+      console.warn("Could not fetch Supabase leads, fallback to local storage:", err);
+      const mappedPartners = localPartner.map(p => ({
+        ...p,
+        lead_type: p.lead_type || p.leadType || "Partner Inquiry",
+        source_page: p.source_page || p.sourcePage || "General",
+        created_at: p.created_at || p.date || new Date().toISOString(),
+        isAcademy: false
+      }));
+      const mappedAcademies = localAcademy.map(a => ({
+        ...a,
+        lead_type: "Academy Registration",
+        source_page: "Academy",
+        created_at: a.created_at || a.date || new Date().toISOString(),
+        isAcademy: true
+      }));
+      allLeads = [...mappedPartners, ...mappedAcademies].sort((a, b) => {
+        return new Date(b.created_at || "").getTime() - new Date(a.created_at || "").getTime();
+      });
+    }
+
+    setLeads(allLeads);
+    setIsLeadsLoading(false);
+  };
+
+  // CRM Helper methods
+  const getLeadId = (lead: LocalLead) => {
+    return `${lead.email}_${lead.created_at || lead.date || ""}`;
+  };
+
+  const getLeadCrm = (lead: LocalLead): LeadCRMInfo => {
+    const id = getLeadId(lead);
+    return crmMetadata[id] || {
+      status: "New",
+      assignedTo: "Unassigned",
+      notes: []
+    };
+  };
+
+  const updateLeadCrm = (lead: LocalLead, updates: Partial<LeadCRMInfo>) => {
+    const id = getLeadId(lead);
+    const current = getLeadCrm(lead);
+    const updated = {
+      ...current,
+      ...updates
+    };
+
+    const newMetadata = {
+      ...crmMetadata,
+      [id]: updated
+    };
+
+    setCrmMetadata(newMetadata);
+    localStorage.setItem("tbn_crm_metadata", JSON.stringify(newMetadata));
+  };
+
+  const handleAddNote = (lead: LocalLead) => {
+    if (!newNoteText.trim()) return;
+    const current = getLeadCrm(lead);
+    const newNote = {
+      date: new Date().toISOString(),
+      text: newNoteText.trim()
+    };
+    
+    updateLeadCrm(lead, {
+      notes: [...current.notes, newNote]
+    });
+    setNewNoteText("");
+    toast.success("Note added successfully!");
+  };
   
   // LMS/Academy states
   const [activeCourseStep, setActiveCourseStep] = useState<ResourceItem | null>(null);
@@ -640,7 +813,7 @@ export default function PartnerPortal2() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#f9f5f2] font-montserrat antialiased">
+    <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#faf8f5] font-montserrat antialiased">
       <Navbar alwaysSolid />
       
       {/* HEADER BANNER */}
@@ -675,7 +848,7 @@ export default function PartnerPortal2() {
       <div className="bg-white border-b border-[#dbd4c9]/40 py-6 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto">
           {/* CORE PROCESS FLOW BANNER */}
-          <div className="mb-8 bg-[#f9f5f2] border border-[#dbd4c9] p-4 rounded-2xl flex flex-col xl:flex-row justify-between items-center gap-4">
+          <div className="mb-8 bg-[#faf8f5] border border-[#dbd4c9] p-4 rounded-2xl flex flex-col xl:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-3 shrink-0">
               <Award className="w-5 h-5 text-[#9f1e13]" />
               <span className="font-bold text-xs uppercase tracking-widest text-gray-900">Partner Journey Flow:</span>
@@ -691,28 +864,28 @@ export default function PartnerPortal2() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-[#f9f5f2] p-4 rounded-xl border border-gray-100 flex items-center gap-3.5">
+            <div className="bg-[#faf8f5] p-4 rounded-xl border border-gray-100 flex items-center gap-3.5">
               <div className="w-10 h-10 rounded-lg bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] shrink-0"><UserCheck className="w-5 h-5"/></div>
               <div>
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none">Partner Profile</p>
                 <p className="font-playfair font-bold text-base mt-1 text-gray-900">Elite Practitioner</p>
               </div>
             </div>
-            <div className="bg-[#f9f5f2] p-4 rounded-xl border border-gray-100 flex items-center gap-3.5">
+            <div className="bg-[#faf8f5] p-4 rounded-xl border border-gray-100 flex items-center gap-3.5">
               <div className="w-10 h-10 rounded-lg bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] shrink-0"><BookMarked className="w-5 h-5"/></div>
               <div>
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none">Onboarding Progress</p>
                 <p className="font-playfair font-bold text-base mt-1 text-gray-900">{getFolderCompletionPercent(folders[0])}% Completed</p>
               </div>
             </div>
-            <div className="bg-[#f9f5f2] p-4 rounded-xl border border-gray-100 flex items-center gap-3.5">
+            <div className="bg-[#faf8f5] p-4 rounded-xl border border-gray-100 flex items-center gap-3.5">
               <div className="w-10 h-10 rounded-lg bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] shrink-0"><TrendingUp className="w-5 h-5"/></div>
               <div>
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none">Active Clients</p>
                 <p className="font-playfair font-bold text-base mt-1 text-gray-900">42 Monitored</p>
               </div>
             </div>
-            <div className="bg-[#f9f5f2] p-4 rounded-xl border border-gray-100 flex items-center gap-3.5">
+            <div className="bg-[#faf8f5] p-4 rounded-xl border border-gray-100 flex items-center gap-3.5">
               <div className="w-10 h-10 rounded-lg bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] shrink-0"><Lock className="w-5 h-5"/></div>
               <div>
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none">Compliance Level</p>
@@ -725,144 +898,530 @@ export default function PartnerPortal2() {
 
       {/* MAIN CONTAINER */}
       <main className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-8 py-10">
-        
         {!selectedFolder ? (
-          <>
-            {/* SUB-HEADER & FILTERBAR */}
-            <div className="flex flex-col md:flex-row gap-5 justify-between items-center mb-8">
-              {/* Category Tabs */}
-              <div className="flex flex-wrap gap-2 w-full md:w-auto">
-                {[
-                  { id: "all", label: "All Sections" },
-                  { id: "onboarding", label: "Start Here" },
-                  { id: "academy", label: "Academy" },
-                  { id: "hubs", label: "Hubs" },
-                  { id: "growth", label: "Growth" },
-                  { id: "operations", label: "Operations" },
-                  { id: "marketing", label: "Marketing" }
-                ].map(tab => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-lg transition-all border ${
-                      activeTab === tab.id 
-                        ? "bg-[#9f1e13] border-[#9f1e13] text-white shadow-md" 
-                        : "bg-white border-[#dbd4c9] text-gray-700 hover:bg-gray-50"
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
+          activeTab === "crm" ? (
+            /* CRM VIEW PORTAL */
+            <div className="space-y-8 animate-in fade-in duration-200">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#dbd4c9]/60 pb-6">
+                <div>
+                  <h2 className="font-playfair text-[28px] font-bold text-gray-900">Lead Sales Pipeline & CRM</h2>
+                  <p className="font-sans text-xs text-gray-500 mt-1">Super Admin Dashboard: Track client inquiries, assign leads, and log sales progress.</p>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  {/* View Toggles */}
+                  <div className="flex bg-gray-100 p-1 rounded-xl border border-gray-200 shadow-inner">
+                    <button 
+                      onClick={() => setCrmView("pipeline")}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${crmView === "pipeline" ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-950"}`}
+                    >
+                      <Grid className="w-3.5 h-3.5" /> Board
+                    </button>
+                    <button 
+                      onClick={() => setCrmView("table")}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${crmView === "table" ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-950"}`}
+                    >
+                      <List className="w-3.5 h-3.5" /> Sheet
+                    </button>
+                  </div>
+                </div>
               </div>
 
-              {/* Search input */}
-              <div className="relative w-full md:w-[320px] shrink-0">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input 
-                  type="text"
-                  placeholder="Search resources, folders, biomarkers..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2.5 text-xs bg-white border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] focus:border-[#9f1e13] font-medium"
-                />
+              {/* CRM KPI CARDS */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-white p-4 rounded-xl border border-[#dbd4c9]/50 shadow-sm">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none">Total Inquiries</span>
+                  <p className="font-playfair font-bold text-2xl mt-1.5 text-gray-900">{leads.length}</p>
+                </div>
+                <div className="bg-white p-4 rounded-xl border border-[#dbd4c9]/50 shadow-sm">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none">New Leads</span>
+                  <p className="font-playfair font-bold text-2xl mt-1.5 text-[#9f1e13]">{leads.filter(l => getLeadCrm(l).status === "New").length}</p>
+                </div>
+                <div className="bg-white p-4 rounded-xl border border-[#dbd4c9]/50 shadow-sm">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none">In Pipeline</span>
+                  <p className="font-playfair font-bold text-2xl mt-1.5 text-amber-600">{leads.filter(l => ["Contacted", "Meeting Scheduled", "Proposal Sent"].includes(getLeadCrm(l).status)).length}</p>
+                </div>
+                <div className="bg-white p-4 rounded-xl border border-[#dbd4c9]/50 shadow-sm">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none">Onboarded (Won)</span>
+                  <p className="font-playfair font-bold text-2xl mt-1.5 text-green-600">{leads.filter(l => getLeadCrm(l).status === "Onboarded").length}</p>
+                </div>
               </div>
-            </div>
 
-            {/* DIRECTORY GRID */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredFolders.map((folder) => {
-                const completedPercent = getFolderCompletionPercent(folder);
-                const fileCount = folder.subFolders.flatMap(sf => sf.resources).length;
-                return (
-                  <div 
-                    key={folder.id}
-                    onClick={() => {
-                      setSelectedFolder(folder);
-                      setSelectedSubFolder(folder.subFolders[0]);
-                      setFolderSearch("");
-                    }}
-                    className="group bg-white rounded-2xl overflow-hidden border border-[#dbd4c9]/60 hover:border-[#9f1e13]/40 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col relative"
-                  >
-                    {/* Dummy image backdrop with title text overlay */}
-                    <div className="h-[140px] w-full relative overflow-hidden shrink-0 bg-stone-900">
-                      <img 
-                        src={folder.image} 
-                        alt={folder.title} 
-                        className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                      
-                      {/* Section Badge */}
-                      <span className="absolute top-3 left-3 bg-[#9f1e13] text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
-                        Folder {folder.number}
-                      </span>
+              {/* SEARCH & FILTERS BAR */}
+              <div className="bg-white border border-[#dbd4c9] rounded-2xl p-4 shadow-sm flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
+                <div className="relative flex-grow">
+                  <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-gray-400" />
+                  <input 
+                    type="text"
+                    placeholder="Search leads by name, email, or option chosen..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full h-11 pl-10 pr-4 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#9f1e13] focus:ring-1 focus:ring-[#9f1e13] transition-all text-xs"
+                  />
+                </div>
+                
+                <div className="flex flex-wrap gap-3 items-center">
+                  <div className="flex items-center gap-2 bg-[#faf8f5] px-3.5 py-2 border border-[#dbd4c9] rounded-xl">
+                    <Filter className="w-3.5 h-3.5 text-gray-500" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Stage:</span>
+                    <select
+                      value={crmStatusFilter}
+                      onChange={(e) => setCrmStatusFilter(e.target.value)}
+                      className="bg-transparent text-xs font-bold text-gray-800 focus:outline-none select-none cursor-pointer"
+                    >
+                      <option value="All">All Stages</option>
+                      <option value="New">New</option>
+                      <option value="Contacted">Contacted</option>
+                      <option value="Meeting Scheduled">Meeting Scheduled</option>
+                      <option value="Proposal Sent">Proposal Sent</option>
+                      <option value="Onboarded">Onboarded</option>
+                      <option value="Lost">Lost</option>
+                    </select>
+                  </div>
 
-                      {/* File count indicator */}
-                      <span className="absolute top-3 right-3 bg-black/40 backdrop-blur-md text-white text-[9px] font-bold px-2.5 py-1 rounded-lg flex items-center gap-1">
-                        <Folder className="w-3 h-3" /> {folder.subFolders.length} Folders
-                      </span>
+                  <div className="flex items-center gap-2 bg-[#faf8f5] px-3.5 py-2 border border-[#dbd4c9] rounded-xl">
+                    <Users className="w-3.5 h-3.5 text-gray-500" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Assignee:</span>
+                    <select
+                      value={crmAssigneeFilter}
+                      onChange={(e) => setCrmAssigneeFilter(e.target.value)}
+                      className="bg-transparent text-xs font-bold text-gray-800 focus:outline-none select-none cursor-pointer"
+                    >
+                      <option value="All">All Assignees</option>
+                      <option value="Unassigned">Unassigned</option>
+                      <option value="Dr Ishtiaq Rehman">Dr Ishtiaq Rehman</option>
+                      <option value="Dr Vian Hurle">Dr Vian Hurle</option>
+                      <option value="Neil Parsley">Neil Parsley</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
 
-                      <div className="absolute bottom-3 left-4 right-4">
-                        <h3 className="font-playfair text-lg font-bold text-white leading-tight uppercase tracking-wide">
-                          {folder.title}
-                        </h3>
-                        <p className="text-white/70 text-[10px] font-medium mt-0.5 tracking-wider truncate">
-                          {folder.subtitle}
-                        </p>
+              {/* CORE LEADS CONTAINER */}
+              {isLeadsLoading ? (
+                <div className="p-12 text-center text-gray-400 italic font-medium">Loading CRM Leads...</div>
+              ) : (
+                (() => {
+                  const filteredLeads = leads.filter(lead => {
+                    const crm = getLeadCrm(lead);
+                    const query = searchQuery.toLowerCase();
+                    
+                    const matchesSearch = lead.name.toLowerCase().includes(query) || 
+                                          lead.email.toLowerCase().includes(query) ||
+                                          (lead.mobile || "").toLowerCase().includes(query) ||
+                                          (lead.lead_type || "").toLowerCase().includes(query);
+                    
+                    const matchesStatus = crmStatusFilter === "All" || crm.status === crmStatusFilter;
+                    const matchesAssignee = crmAssigneeFilter === "All" || crm.assignedTo === crmAssigneeFilter;
+
+                    return matchesSearch && matchesStatus && matchesAssignee;
+                  });
+
+                  if (crmView === "table") {
+                    return (
+                      <div className="bg-white border border-[#dbd4c9] rounded-2xl overflow-hidden shadow-sm">
+                        <div className="overflow-x-auto">
+                          <table className="w-full text-left border-collapse">
+                            <thead>
+                              <tr className="bg-gray-50 border-b border-[#dbd4c9]/60 text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                                <th className="px-6 py-4">Client Name</th>
+                                <th className="px-6 py-4">Contact Info</th>
+                                <th className="px-6 py-4">Intent & Source</th>
+                                <th className="px-6 py-4">Assigned To</th>
+                                <th className="px-6 py-4">Deal Stage</th>
+                                <th className="px-6 py-4 text-center">Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-100 font-montserrat text-xs text-gray-700">
+                              {filteredLeads.length === 0 ? (
+                                <tr>
+                                  <td colSpan={6} className="px-6 py-12 text-center text-gray-450 italic">No leads matching filters found.</td>
+                                </tr>
+                              ) : (
+                                filteredLeads.map((lead, idx) => {
+                                  const crm = getLeadCrm(lead);
+                                  return (
+                                  <tr key={idx} className="hover:bg-gray-50/30 transition-colors">
+                                    <td className="px-6 py-4">
+                                      <p className="font-playfair font-bold text-gray-900 text-sm">{lead.name}</p>
+                                      <p className="text-[10px] text-gray-400 font-medium mt-0.5">{new Date(lead.created_at || "").toLocaleDateString()}</p>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                      <p className="font-medium text-gray-700">{lead.email}</p>
+                                      <p className="text-[10px] text-gray-400 font-medium mt-0.5">{lead.mobile || "No phone"}</p>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                      <span className="px-2.5 py-1 text-[9.5px] font-bold rounded-full bg-[#9f1e13]/10 text-[#9f1e13] border border-[#9f1e13]/20">
+                                        {lead.lead_type}
+                                      </span>
+                                      <p className="text-[9.5px] font-bold text-gray-400 uppercase tracking-widest mt-1.5">{lead.source_page || "General"}</p>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                      <select
+                                        value={crm.assignedTo}
+                                        onChange={(e) => updateLeadCrm(lead, { assignedTo: e.target.value })}
+                                        className="bg-gray-50 border border-gray-200 rounded-xl px-2.5 py-1.5 font-bold text-gray-800 text-[11px] focus:outline-none focus:border-[#9f1e13] cursor-pointer"
+                                      >
+                                        <option value="Unassigned">Unassigned</option>
+                                        <option value="Dr Ishtiaq Rehman">Dr Ishtiaq Rehman</option>
+                                        <option value="Dr Vian Hurle">Dr Vian Hurle</option>
+                                        <option value="Neil Parsley">Neil Parsley</option>
+                                      </select>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                      <select
+                                        value={crm.status}
+                                        onChange={(e) => updateLeadCrm(lead, { status: e.target.value })}
+                                        className={`border rounded-xl px-2.5 py-1.5 font-bold text-[11px] focus:outline-none focus:ring-1 focus:ring-[#9f1e13] cursor-pointer ${
+                                          crm.status === "New" ? "bg-red-50 text-[#9f1e13] border-red-200" :
+                                          crm.status === "Contacted" ? "bg-blue-50 text-blue-700 border-blue-200" :
+                                          crm.status === "Meeting Scheduled" ? "bg-amber-50 text-amber-700 border-amber-200" :
+                                          crm.status === "Proposal Sent" ? "bg-purple-50 text-purple-700 border-purple-200" :
+                                          crm.status === "Onboarded" ? "bg-green-50 text-green-700 border-green-200" :
+                                          "bg-gray-100 text-gray-600 border-gray-200"
+                                        }`}
+                                      >
+                                        <option value="New">New</option>
+                                        <option value="Contacted">Contacted</option>
+                                        <option value="Meeting Scheduled">Meeting Scheduled</option>
+                                        <option value="Proposal Sent">Proposal Sent</option>
+                                        <option value="Onboarded">Onboarded</option>
+                                        <option value="Lost">Lost</option>
+                                      </select>
+                                    </td>
+                                    <td className="px-6 py-4 text-center">
+                                      <button
+                                        onClick={() => setSelectedLeadForNotes(lead)}
+                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 border border-gray-200 hover:border-gray-300 font-bold text-[10px] text-gray-700 uppercase tracking-wider rounded-xl transition-all"
+                                      >
+                                        <MessageSquare className="w-3.5 h-3.5 text-gray-500" />
+                                        Notes ({crm.notes.length})
+                                      </button>
+                                    </td>
+                                  </tr>
+                                );
+                              }))}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
-                    </div>
+                    );
+                  }
 
-                    {/* Card Body */}
-                    <div className="p-5 flex-grow flex flex-col justify-between gap-4">
-                      <p className="text-[11.5px] leading-relaxed text-gray-500 font-medium">
-                        {folder.description}
-                      </p>
+                  // Render Kanban Board view
+                  const columns = [
+                    { id: "New", title: "New Inquiries", bg: "bg-stone-50 border-stone-200 text-stone-700" },
+                    { id: "Contacted", title: "Contacted / Nurturing", bg: "bg-blue-50/40 border-blue-100 text-blue-800" },
+                    { id: "Meeting Scheduled", title: "Meeting Scheduled", bg: "bg-amber-50/40 border-amber-100 text-amber-800" },
+                    { id: "Proposal Sent", title: "Proposal Sent", bg: "bg-purple-50/40 border-purple-100 text-purple-800" },
+                    { id: "Onboarded", title: "Onboarded (Won)", bg: "bg-green-50/40 border-green-100 text-green-800" },
+                    { id: "Lost", title: "Archived / Lost", bg: "bg-gray-100 border-gray-200 text-gray-500" }
+                  ];
 
-                      {/* Content quick overview list */}
-                      <div className="border-t border-gray-100 pt-3">
-                        <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-2">Folder Sections</p>
-                        <div className="space-y-1">
-                          {folder.subFolders.slice(0, 3).map(sf => (
-                            <div key={sf.id} className="flex items-center gap-1.5 text-[10px] text-gray-700 font-bold">
-                              <span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full shrink-0" />
-                              <span className="truncate">{sf.name}</span>
+                  return (
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-5 items-stretch overflow-x-auto pb-4">
+                      {columns.map(col => {
+                        const colLeads = filteredLeads.filter(l => getLeadCrm(l).status === col.id);
+                        return (
+                          <div key={col.id} className="flex flex-col bg-[#faf8f5] border border-[#dbd4c9]/60 rounded-2xl p-4 min-w-[260px] flex-grow">
+                            {/* Column Header */}
+                            <div className={`p-2.5 rounded-xl border mb-4 font-bold text-[11px] uppercase tracking-wider flex items-center justify-between ${col.bg}`}>
+                              <span>{col.title}</span>
+                              <span className="bg-white/90 border border-current px-2 py-0.5 rounded-full text-[10px]">{colLeads.length}</span>
                             </div>
-                          ))}
-                          {folder.subFolders.length > 3 && (
-                            <span className="text-[9px] text-gray-400 font-bold block mt-1">+ {folder.subFolders.length - 3} more sub-folders</span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
 
-                    {/* Progress tracking foot */}
-                    <div className="bg-[#f9f5f2] border-t border-gray-100 px-5 py-3 shrink-0 flex items-center justify-between">
-                      <div className="flex items-center gap-1.5 text-[10.5px] text-gray-600 font-bold">
-                        <FileText className="w-3.5 h-3.5 text-gray-400" />
-                        <span>{fileCount} Resources</span>
-                      </div>
-                      
-                      {folder.category === "academy" || folder.category === "onboarding" ? (
-                        <div className="flex items-center gap-2">
-                          <div className="w-[60px] h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                            <div className="bg-green-600 h-full transition-all" style={{ width: `${completedPercent}%` }} />
+                            {/* Cards Stack */}
+                            <div className="flex-grow space-y-3.5 max-h-[600px] overflow-y-auto pr-1">
+                              {colLeads.length === 0 ? (
+                                <div className="text-center py-10 text-[10.5px] italic text-gray-400 bg-white/40 border border-dashed border-gray-200 rounded-xl">No leads here</div>
+                              ) : (
+                                colLeads.map((lead, idx) => {
+                                  const crm = getLeadCrm(lead);
+                                  return (
+                                    <div key={idx} className="bg-white border border-gray-100 hover:border-[#9f1e13]/20 p-4 rounded-xl shadow-sm hover:shadow-md transition-all group flex flex-col justify-between gap-3 relative">
+                                      {/* Header badges */}
+                                      <div className="flex justify-between items-start gap-2">
+                                        <span className="text-[9px] font-bold px-2 py-0.5 rounded-md bg-stone-100 text-stone-600 truncate max-w-[140px]" title={lead.lead_type}>
+                                          {lead.lead_type}
+                                        </span>
+                                        <span className="text-[8.5px] text-gray-400 shrink-0 font-medium">{new Date(lead.created_at || "").toLocaleDateString()}</span>
+                                      </div>
+
+                                      {/* Contact Details */}
+                                      <div>
+                                        <h4 className="font-playfair font-bold text-sm text-gray-900 group-hover:text-[#9f1e13] transition-colors">{lead.name}</h4>
+                                        <p className="text-[10px] text-gray-500 font-medium truncate mt-0.5">{lead.email}</p>
+                                        {lead.mobile && <p className="text-[10px] text-gray-400 font-medium mt-0.5">{lead.mobile}</p>}
+                                      </div>
+
+                                      {/* Source */}
+                                      <div className="border-t border-gray-100 pt-2 flex items-center justify-between text-[9px] text-gray-400 font-semibold">
+                                        <span>SOURCE PAGE:</span>
+                                        <span className="text-[#9f1e13] uppercase font-bold">{lead.source_page}</span>
+                                      </div>
+
+                                      {/* Assignee select */}
+                                      <div className="bg-gray-50/80 p-2 rounded-lg border border-gray-100 flex items-center justify-between gap-1.5 mt-1">
+                                        <UserPlus className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+                                        <select
+                                          value={crm.assignedTo}
+                                          onChange={(e) => updateLeadCrm(lead, { assignedTo: e.target.value })}
+                                          className="bg-transparent font-bold text-gray-700 text-[10px] focus:outline-none w-full cursor-pointer select-none"
+                                        >
+                                          <option value="Unassigned">Unassigned</option>
+                                          <option value="Dr Ishtiaq Rehman">Dr Ishtiaq Rehman</option>
+                                          <option value="Dr Vian Hurle">Dr Vian Hurle</option>
+                                          <option value="Neil Parsley">Neil Parsley</option>
+                                        </select>
+                                      </div>
+
+                                      {/* Action buttons */}
+                                      <div className="flex justify-between items-center gap-2 border-t border-gray-100 pt-2.5">
+                                        {/* Shift status selectors */}
+                                        <div className="flex gap-1.5">
+                                          <select
+                                            value={crm.status}
+                                            onChange={(e) => updateLeadCrm(lead, { status: e.target.value })}
+                                            className="bg-white border border-gray-200 rounded-lg py-1 px-1.5 text-[9.5px] font-bold text-gray-700 focus:outline-none focus:border-[#9f1e13]"
+                                          >
+                                            <option value="New">New</option>
+                                            <option value="Contacted">Contacted</option>
+                                            <option value="Meeting Scheduled">Meet</option>
+                                            <option value="Proposal Sent">Proposal</option>
+                                            <option value="Onboarded">Won</option>
+                                            <option value="Lost">Lost</option>
+                                          </select>
+                                        </div>
+
+                                        {/* Notes Button */}
+                                        <button
+                                          onClick={() => setSelectedLeadForNotes(lead)}
+                                          className="flex items-center gap-1 text-[9.5px] font-bold text-gray-500 hover:text-gray-950"
+                                        >
+                                          <MessageSquare className="w-3.5 h-3.5 text-gray-400" />
+                                          ({crm.notes.length})
+                                        </button>
+                                      </div>
+                                    </div>
+                                  );
+                                })
+                              )}
+                            </div>
                           </div>
-                          <span className="text-[9.5px] font-bold text-green-600">{completedPercent}%</span>
-                        </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })()
+              )}
+
+              {/* CRM NOTES MODAL OVERLAY */}
+              {selectedLeadForNotes && (
+                <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+                  <div className="bg-white border border-[#dbd4c9] w-full max-w-[480px] rounded-2xl overflow-hidden shadow-2xl p-6 relative">
+                    {/* Close Button */}
+                    <button
+                      onClick={() => {
+                        setSelectedLeadForNotes(null);
+                        setNewNoteText("");
+                      }}
+                      className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition-colors p-1.5 rounded-full hover:bg-gray-100/50"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+
+                    <h3 className="font-playfair text-[20px] font-bold text-gray-900 mb-1 uppercase tracking-wide">
+                      Lead Activity & CRM Notes
+                    </h3>
+                    <p className="text-gray-400 text-xs font-semibold mb-4">
+                      Lead Name: <span className="text-[#9f1e13] font-bold">{selectedLeadForNotes.name}</span> • {selectedLeadForNotes.email}
+                    </p>
+
+                    {/* Conversation Log list */}
+                    <div className="space-y-3 max-h-[220px] overflow-y-auto border border-gray-100 rounded-xl p-3 bg-stone-50/50 mb-4 pr-2">
+                      {getLeadCrm(selectedLeadForNotes).notes.length === 0 ? (
+                        <p className="text-center py-6 text-xs text-gray-400 italic font-medium">No sales logs or notes recorded yet.</p>
                       ) : (
-                        <span className="text-[9.5px] font-bold text-[#9f1e13] uppercase tracking-wider flex items-center gap-1">Access Active <Check className="w-3 h-3" /></span>
+                        getLeadCrm(selectedLeadForNotes).notes.map((note, idx) => (
+                          <div key={idx} className="bg-white border border-gray-100 p-3 rounded-lg shadow-sm">
+                            <p className="text-[10px] text-gray-400 font-bold mb-1">{new Date(note.date).toLocaleString()}</p>
+                            <p className="text-xs text-gray-700 font-medium leading-relaxed whitespace-pre-wrap">{note.text}</p>
+                          </div>
+                        ))
                       )}
                     </div>
+
+                    {/* Add New Note form */}
+                    <div className="space-y-3">
+                      <label className="block text-[9.5px] font-bold text-gray-400 uppercase tracking-widest pl-0.5">Add internal meeting logs / updates</label>
+                      <textarea
+                        rows={3}
+                        placeholder="Type your notes here..."
+                        value={newNoteText}
+                        onChange={(e) => setNewNoteText(e.target.value)}
+                        className="w-full px-3.5 py-2 text-xs bg-[#faf8f5] border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] font-medium"
+                      />
+                      <div className="flex justify-end gap-2.5 pt-2">
+                        <button
+                          onClick={() => {
+                            setSelectedLeadForNotes(null);
+                            setNewNoteText("");
+                          }}
+                          className="px-4 py-2 border border-gray-200 hover:bg-gray-50 text-gray-800 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors"
+                        >
+                          Close
+                        </button>
+                        <button
+                          onClick={() => handleAddNote(selectedLeadForNotes)}
+                          className="px-5 py-2 bg-[#9f1e13] hover:bg-[#861910] text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md"
+                        >
+                          Save Note
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                );
-              })}
+                </div>
+              )}
             </div>
-          </>
+          ) : (
+            <>
+              {/* SUB-HEADER & FILTERBAR */}
+              <div className="flex flex-col md:flex-row gap-5 justify-between items-center mb-8">
+                {/* Category Tabs */}
+                <div className="flex flex-wrap gap-2 w-full md:w-auto">
+                  {[
+                    { id: "all", label: "All Sections" },
+                    { id: "onboarding", label: "Start Here" },
+                    { id: "academy", label: "Academy" },
+                    { id: "hubs", label: "Hubs" },
+                    { id: "growth", label: "Growth" },
+                    { id: "operations", label: "Operations" },
+                    { id: "marketing", label: "Marketing" },
+                    ...(adminMode ? [{ id: "crm", label: "Manage Leads & CRM" }] : [])
+                  ].map(tab => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-lg transition-all border ${
+                        activeTab === tab.id 
+                          ? "bg-[#9f1e13] border-[#9f1e13] text-white shadow-md" 
+                          : "bg-white border-[#dbd4c9] text-gray-700 hover:bg-gray-50"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Search input */}
+                <div className="relative w-full md:w-[320px] shrink-0">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <input 
+                    type="text"
+                    placeholder="Search resources, folders, biomarkers..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-9 pr-4 py-2.5 text-xs bg-white border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] focus:border-[#9f1e13] font-medium"
+                  />
+                </div>
+              </div>
+
+              {/* DIRECTORY GRID */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredFolders.map((folder) => {
+                  const completedPercent = getFolderCompletionPercent(folder);
+                  const fileCount = folder.subFolders.flatMap(sf => sf.resources).length;
+                  return (
+                    <div 
+                      key={folder.id}
+                      onClick={() => {
+                        setSelectedFolder(folder);
+                        setSelectedSubFolder(folder.subFolders[0]);
+                        setFolderSearch("");
+                      }}
+                      className="group bg-white rounded-2xl overflow-hidden border border-[#dbd4c9]/60 hover:border-[#9f1e13]/40 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col relative"
+                    >
+                      {/* Dummy image backdrop with title text overlay */}
+                      <div className="h-[140px] w-full relative overflow-hidden shrink-0 bg-stone-900">
+                        <img 
+                          src={folder.image} 
+                          alt={folder.title} 
+                          className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                        
+                        {/* Section Badge */}
+                        <span className="absolute top-3 left-3 bg-[#9f1e13] text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                          Folder {folder.number}
+                        </span>
+
+                        {/* File count indicator */}
+                        <span className="absolute top-3 right-3 bg-black/40 backdrop-blur-md text-white text-[9px] font-bold px-2.5 py-1 rounded-lg flex items-center gap-1">
+                          <Folder className="w-3 h-3" /> {folder.subFolders.length} Folders
+                        </span>
+
+                        <div className="absolute bottom-3 left-4 right-4">
+                          <h3 className="font-playfair text-lg font-bold text-white leading-tight uppercase tracking-wide">
+                            {folder.title}
+                          </h3>
+                          <p className="text-white/70 text-[10px] font-medium mt-0.5 tracking-wider truncate">
+                            {folder.subtitle}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Card Body */}
+                      <div className="p-5 flex-grow flex flex-col justify-between gap-4">
+                        <p className="text-[11.5px] leading-relaxed text-gray-500 font-medium">
+                          {folder.description}
+                        </p>
+
+                        {/* Content quick overview list */}
+                        <div className="border-t border-gray-100 pt-3">
+                          <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400 mb-2">Folder Sections</p>
+                          <div className="space-y-1">
+                            {folder.subFolders.slice(0, 3).map(sf => (
+                              <div key={sf.id} className="flex items-center gap-1.5 text-[10px] text-gray-700 font-bold">
+                                <span className="w-1.5 h-1.5 bg-[#9f1e13] rounded-full shrink-0" />
+                                <span className="truncate">{sf.name}</span>
+                              </div>
+                            ))}
+                            {folder.subFolders.length > 3 && (
+                              <span className="text-[9px] text-gray-400 font-bold block mt-1">+ {folder.subFolders.length - 3} more sub-folders</span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Progress tracking foot */}
+                      <div className="bg-[#faf8f5] border-t border-gray-100 px-5 py-3 shrink-0 flex items-center justify-between">
+                        <div className="flex items-center gap-1.5 text-[10.5px] text-gray-600 font-bold">
+                          <FileText className="w-3.5 h-3.5 text-gray-400" />
+                          <span>{fileCount} Resources</span>
+                        </div>
+                        
+                        {folder.category === "academy" || folder.category === "onboarding" ? (
+                          <div className="flex items-center gap-2">
+                            <div className="w-[60px] h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                              <div className="bg-green-600 h-full transition-all" style={{ width: `${completedPercent}%` }} />
+                            </div>
+                            <span className="text-[9.5px] font-bold text-green-600">{completedPercent}%</span>
+                          </div>
+                        ) : (
+                          <span className="text-[9.5px] font-bold text-[#9f1e13] uppercase tracking-wider flex items-center gap-1">Access Active <Check className="w-3 h-3" /></span>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )
         ) : (
           /* SECTION DETAIL WORKSPACE VIEW */
           <div className="bg-white border border-[#dbd4c9] rounded-2xl overflow-hidden shadow-xl flex flex-col lg:flex-row min-h-[680px]">
             {/* LEFT BAR: SUBFOLDERS LIST & WORKSPACE NAV */}
-            <div className="w-full lg:w-[280px] shrink-0 border-r border-[#dbd4c9] bg-[#f9f5f2] flex flex-col justify-between">
+            <div className="w-full lg:w-[280px] shrink-0 border-r border-[#dbd4c9] bg-[#faf8f5] flex flex-col justify-between">
               <div>
                 <div className="p-4 border-b border-[#dbd4c9] flex items-center gap-2">
                   <button 
@@ -952,7 +1511,7 @@ export default function PartnerPortal2() {
                       placeholder="Search inside folder..."
                       value={folderSearch}
                       onChange={(e) => setFolderSearch(e.target.value)}
-                      className="w-full pl-8 pr-4 py-2 text-[11px] bg-[#f9f5f2] border border-[#dbd4c9] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#9f1e13] focus:border-[#9f1e13] font-medium"
+                      className="w-full pl-8 pr-4 py-2 text-[11px] bg-[#faf8f5] border border-[#dbd4c9] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#9f1e13] focus:border-[#9f1e13] font-medium"
                     />
                   </div>
                 </div>
@@ -1028,7 +1587,7 @@ export default function PartnerPortal2() {
                                   {resource.type === "prompt" && resource.content && (
                                     <button 
                                       onClick={() => handleCopyText(resource.content || "", resource.id)}
-                                      className="bg-[#f9f5f2] hover:bg-gray-100 border border-[#dbd4c9] text-gray-800 text-[10px] font-bold uppercase tracking-wider px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-sm"
+                                      className="bg-[#faf8f5] hover:bg-gray-100 border border-[#dbd4c9] text-gray-800 text-[10px] font-bold uppercase tracking-wider px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-sm"
                                     >
                                       {copiedId === resource.id ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5" />}
                                       {copiedId === resource.id ? "Copied" : "Copy Prompt"}
@@ -1064,7 +1623,7 @@ export default function PartnerPortal2() {
 
                 {/* INTERACTIVE COURSE LMS PLAYER PANEL */}
                 {activeCourseStep && selectedFolder.category === "academy" && (
-                  <div className="mt-8 border border-[#dbd4c9] rounded-2xl p-6 bg-[#f9f5f2] relative shadow-md">
+                  <div className="mt-8 border border-[#dbd4c9] rounded-2xl p-6 bg-[#faf8f5] relative shadow-md">
                     <button 
                       onClick={() => setActiveCourseStep(null)}
                       className="absolute top-4 right-4 text-gray-400 hover:text-gray-700"
@@ -1152,7 +1711,7 @@ export default function PartnerPortal2() {
 
             <form onSubmit={handleUploadSubmit} className="space-y-4">
               {/* Upload Source Selector */}
-              <div className="flex bg-[#f9f5f2] p-1 rounded-xl border border-[#dbd4c9] mb-4">
+              <div className="flex bg-[#faf8f5] p-1 rounded-xl border border-[#dbd4c9] mb-4">
                 <button
                   type="button"
                   onClick={() => {
@@ -1222,7 +1781,7 @@ export default function PartnerPortal2() {
                   placeholder="e.g. Clinical Menopause Script V2"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  className="w-full px-3.5 py-2 text-xs bg-[#f9f5f2] border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] font-medium"
+                  className="w-full px-3.5 py-2 text-xs bg-[#faf8f5] border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] font-medium"
                 />
               </div>
 
@@ -1232,7 +1791,7 @@ export default function PartnerPortal2() {
                   <select 
                     value={newType}
                     onChange={(e) => setNewType(e.target.value as any)}
-                    className="w-full px-3.5 py-2 text-xs bg-[#f9f5f2] border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] font-bold text-gray-700"
+                    className="w-full px-3.5 py-2 text-xs bg-[#faf8f5] border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] font-bold text-gray-700"
                   >
                     <option value="pdf">PDF Document</option>
                     <option value="video">Video Webinar</option>
@@ -1253,7 +1812,7 @@ export default function PartnerPortal2() {
                     placeholder={uploadSource === "computer" ? "Generated local blob URL" : "https://tbn.com/files/..."}
                     value={uploadSource === "computer" ? (uploadedFile ? "Local File: " + uploadedFile.name : "") : newUrl}
                     onChange={(e) => setNewUrl(e.target.value)}
-                    className="w-full px-3.5 py-2 text-xs bg-[#f9f5f2] border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] font-medium disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full px-3.5 py-2 text-xs bg-[#faf8f5] border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] font-medium disabled:opacity-60 disabled:cursor-not-allowed"
                   />
                 </div>
               </div>
@@ -1266,7 +1825,7 @@ export default function PartnerPortal2() {
                     placeholder="Enter the copyable prompt text for partners..."
                     value={newPromptContent}
                     onChange={(e) => setNewPromptContent(e.target.value)}
-                    className="w-full px-3.5 py-2 text-xs bg-[#f9f5f2] border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] font-medium"
+                    className="w-full px-3.5 py-2 text-xs bg-[#faf8f5] border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] font-medium"
                   />
                 </div>
               )}
@@ -1279,7 +1838,7 @@ export default function PartnerPortal2() {
                   placeholder="Explain what this file provides to the partners..."
                   value={newDesc}
                   onChange={(e) => setNewDesc(e.target.value)}
-                  className="w-full px-3.5 py-2 text-xs bg-[#f9f5f2] border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] font-medium"
+                  className="w-full px-3.5 py-2 text-xs bg-[#faf8f5] border border-[#dbd4c9] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#9f1e13] font-medium"
                 />
               </div>
 
@@ -1307,7 +1866,7 @@ export default function PartnerPortal2() {
         </div>
       )}
 
-      <Footer />
+      <Footer hideInstagram={true} />
     </div>
   );
 }

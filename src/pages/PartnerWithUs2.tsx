@@ -22,7 +22,7 @@ const PartnerWithUs2 = () => {
     { label: "300+", clients: "300+ Clients", value: "£50,000+", desc: "Monthly Recurring Revenue" }
   ];
   return (
-    <div className="min-h-screen bg-[#f9f5f2]">
+    <div className="min-h-screen bg-[#faf8f5]">
       <Navbar alwaysSolid={false} />
 
       {/* 1. Hero Section */}
@@ -38,7 +38,7 @@ const PartnerWithUs2 = () => {
 
         <div className="container relative z-10 text-white">
           <div className="max-w-3xl space-y-8 animate-fade-in">
-            <span className="text-[#f9f5f2] uppercase tracking-[0.2em] font-bold text-sm">
+            <span className="text-[#faf8f5] uppercase tracking-[0.2em] font-bold text-sm">
               PARTNER WITH TEST-BASED NUTRITION
             </span>
             <h1 className="text-5xl md:text-7xl font-playfair font-bold leading-tight">
@@ -62,7 +62,7 @@ const PartnerWithUs2 = () => {
       </section>
 
       {/* 2. The Hook */}
-      <section className="py-24 bg-[#f9f5f2]">
+      <section className="py-24 bg-[#faf8f5]">
         <div className="container max-w-4xl text-center space-y-8">
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13]">The Future of Wellness is Not a Guessing Game</h2>
           <p className="text-xl md:text-2xl font-light text-gray-800 leading-relaxed max-w-3xl mx-auto">
@@ -86,7 +86,7 @@ const PartnerWithUs2 = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4 p-10 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2] hover:shadow-xl transition-shadow">
+            <div className="text-center space-y-4 p-10 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5] hover:shadow-xl transition-shadow">
               <h3 className="text-3xl font-bold font-playfair text-[#9f1e13] mb-4">Learn</h3>
               <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b border-gray-200 pb-4 mb-4">Master the TBN Method</h4>
               <p className="text-gray-700 leading-relaxed text-left">
@@ -94,7 +94,7 @@ const PartnerWithUs2 = () => {
               </p>
             </div>
 
-            <div className="text-center space-y-4 p-10 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2] hover:shadow-xl transition-shadow">
+            <div className="text-center space-y-4 p-10 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5] hover:shadow-xl transition-shadow">
               <h3 className="text-3xl font-bold font-playfair text-[#9f1e13] mb-4">Launch</h3>
               <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b border-gray-200 pb-4 mb-4">Deploy with Confidence</h4>
               <p className="text-gray-700 leading-relaxed text-left">
@@ -102,7 +102,7 @@ const PartnerWithUs2 = () => {
               </p>
             </div>
 
-            <div className="text-center space-y-4 p-10 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2] hover:shadow-xl transition-shadow">
+            <div className="text-center space-y-4 p-10 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5] hover:shadow-xl transition-shadow">
               <h3 className="text-3xl font-bold font-playfair text-[#9f1e13] mb-4">Lead</h3>
               <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest border-b border-gray-200 pb-4 mb-4">Become the Authority</h4>
               <p className="text-gray-700 leading-relaxed text-left">
@@ -114,7 +114,7 @@ const PartnerWithUs2 = () => {
       </section>
 
       {/* 4. Select Integration Pathway */}
-      <section className="py-24 bg-[#f9f5f2]">
+      <section className="py-24 bg-[#faf8f5]">
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13]">Select Your Integration Pathway</h2>
@@ -207,17 +207,17 @@ const PartnerWithUs2 = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-[#f9f5f2] p-8 rounded-2xl border border-gray-200 text-center">
+            <div className="bg-[#faf8f5] p-8 rounded-2xl border border-gray-200 text-center">
               <Zap className="w-12 h-12 text-[#9f1e13] mx-auto mb-6" />
               <h3 className="text-xl font-bold mb-3 text-[#9f1e13]">Rapid Screening</h3>
               <p className="text-gray-600">Results in &lt;15 minutes to spark instant client engagement.</p>
             </div>
-            <div className="bg-[#f9f5f2] p-8 rounded-2xl border border-gray-200 text-center">
+            <div className="bg-[#faf8f5] p-8 rounded-2xl border border-gray-200 text-center">
               <Repeat className="w-12 h-12 text-[#9f1e13] mx-auto mb-6" />
               <h3 className="text-xl font-bold mb-3 text-[#9f1e13]">Recurring Income</h3>
               <p className="text-gray-600">Built-in retesting cycles and protocol subscriptions.</p>
             </div>
-            <div className="bg-[#f9f5f2] p-8 rounded-2xl border border-gray-200 text-center">
+            <div className="bg-[#faf8f5] p-8 rounded-2xl border border-gray-200 text-center">
               <Users className="w-12 h-12 text-[#9f1e13] mx-auto mb-6" />
               <h3 className="text-xl font-bold mb-3 text-[#9f1e13]">Specialist Support</h3>
               <p className="text-gray-600">Access our Collective of doctors and experts for complex cases.</p>
@@ -227,7 +227,7 @@ const PartnerWithUs2 = () => {
       </section>
 
       {/* 6. LIMITED OFFER Package */}
-      <section className="py-24 bg-[#9f1e13] text-[#f9f5f2] overflow-hidden">
+      <section className="py-24 bg-[#9f1e13] text-[#faf8f5] overflow-hidden">
         <div className="container max-w-5xl relative z-10 text-center">
           <span className="inline-block px-4 py-1.5 rounded-full bg-white text-[#9f1e13] font-bold tracking-widest uppercase text-xs mb-8">
             LIMITED OFFER
@@ -262,7 +262,7 @@ const PartnerWithUs2 = () => {
       </section>
 
       {/* Earnings Calculator */}
-      <section className="py-20 bg-[#f9f5f2] border-y border-gray-200">
+      <section className="py-20 bg-[#faf8f5] border-y border-gray-200">
         <div className="container max-w-6xl">
           <div className="text-center mb-12">
             <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm block mb-4">Calculate Your Potential</span>

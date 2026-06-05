@@ -1,14 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, ChevronRight, BookOpen, Users, Brain, Beaker } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
+import { useQuiz } from "@/components/QuizContext";
 
 const heroImg = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200";
 
 const TBNMethod = () => {
+  const navigate = useNavigate();
+  const { openQuiz } = useQuiz();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [academyOptIn, setAcademyOptIn] = useState(true);
@@ -16,6 +20,7 @@ const TBNMethod = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const referrerCode = localStorage.getItem("tbn_referrer_code");
     try {
       const { error } = await supabase
         .from('academy_registrations')
@@ -23,6 +28,7 @@ const TBNMethod = () => {
           name, 
           email, 
           academy_opt_in: academyOptIn,
+          referrer_code: referrerCode || null,
           created_at: new Date().toISOString()
         }]);
       if (error) throw error;
@@ -30,7 +36,13 @@ const TBNMethod = () => {
     } catch (err) {
       console.warn("Supabase submission failed, falling back to local storage:", err);
       const localData = JSON.parse(localStorage.getItem('academy_registrations') || '[]');
-      localData.push({ name, email, academyOptIn, date: new Date().toISOString() });
+      localData.push({ 
+        name, 
+        email, 
+        academyOptIn, 
+        referrerCode: referrerCode || null, 
+        date: new Date().toISOString() 
+      });
       localStorage.setItem('academy_registrations', JSON.stringify(localData));
       toast.success("Interest registered locally!");
     }
@@ -38,7 +50,7 @@ const TBNMethod = () => {
     const mailtoUrl = `mailto:thinkjsk@gmail.com?subject=${encodeURIComponent(
       "TBN Academy - New Registration of Interest"
     )}&body=${encodeURIComponent(
-      `Hello Admin,\n\nA new user has registered interest in the TBN Academy.\n\nDetails:\n- Name: ${name}\n- Email: ${email}\n- Academy Tick Box: ${academyOptIn ? "Checked" : "Unchecked"}\n\nDate: ${new Date().toLocaleDateString()}\n\nKind regards,\nTBN System`
+      `Hello Admin,\n\nA new user has registered interest in the TBN Academy.\n\nDetails:\n- Name: ${name}\n- Email: ${email}\n- Academy Tick Box: ${academyOptIn ? "Checked" : "Unchecked"}\n- Referrer Partner: ${referrerCode || "None"}\n\nDate: ${new Date().toLocaleDateString()}\n\nKind regards,\nTBN System`
     )}`;
     window.location.href = mailtoUrl;
 
@@ -48,7 +60,7 @@ const TBNMethod = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f9f5f2]">
+    <div className="min-h-screen bg-[#faf8f5]">
       <Navbar alwaysSolid={false} />
 
       {/* Hero Section */}
@@ -64,7 +76,7 @@ const TBNMethod = () => {
 
         <div className="container relative z-10 text-white">
           <div className="max-w-3xl space-y-8 animate-fade-in">
-            <span className="text-[#f9f5f2] uppercase tracking-[0.2em] font-semibold text-sm">
+            <span className="text-[#faf8f5] uppercase tracking-[0.2em] font-semibold text-sm">
               The TBN Method
             </span>
             <h1 className="text-5xl md:text-7xl font-playfair font-bold leading-tight">
@@ -74,10 +86,19 @@ const TBNMethod = () => {
               A science-led, personalised approach to preventative health, built around testing, education, specialist insight and measurable client pathways.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button size="lg" className="bg-[#9f1e13] hover:bg-[#9f1e13] text-white px-8 rounded-full">
+              <Button 
+                onClick={openQuiz}
+                size="lg" 
+                className="bg-[#9f1e13] hover:bg-[#9f1e13]/90 text-white px-8 rounded-full cursor-pointer"
+              >
                 Start Your TBN Journey <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
-              <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-[#9f1e13] hover:border-[#9f1e13] hover:text-white rounded-full">
+              <Button 
+                onClick={() => navigate("/partner-with-us")}
+                size="lg" 
+                variant="outline" 
+                className="bg-transparent border-white text-white hover:bg-[#9f1e13] hover:border-[#9f1e13] hover:text-white rounded-full cursor-pointer"
+              >
                 Partner With TBN
               </Button>
             </div>
@@ -86,7 +107,7 @@ const TBNMethod = () => {
       </section>
 
       {/* Intro Section */}
-      <section className="py-24 bg-[#9f1e13] text-[#f9f5f2]">
+      <section className="py-24 bg-[#9f1e13] text-[#faf8f5]">
         <div className="container max-w-4xl text-center space-y-8">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold">A New Era in Personalised Preventative Health</h2>
           <p className="text-lg md:text-xl font-light leading-relaxed">
@@ -105,12 +126,12 @@ const TBNMethod = () => {
               </ul>
             </div>
             <div className="space-y-4">
-              <h3 className="font-bold text-xl mb-4 text-[#f9f5f2]">The TBN Method</h3>
+              <h3 className="font-bold text-xl mb-4 text-[#faf8f5]">The TBN Method</h3>
               <ul className="space-y-3 font-medium">
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#f9f5f2]" /> Instead of guessing, we test.</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#f9f5f2]" /> Instead of generic advice, we educate.</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#f9f5f2]" /> Instead of isolated treatments, we build pathways.</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#f9f5f2]" /> Instead of short-term fixes, we build foundations.</li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#faf8f5]" /> Instead of guessing, we test.</li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#faf8f5]" /> Instead of generic advice, we educate.</li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#faf8f5]" /> Instead of isolated treatments, we build pathways.</li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#faf8f5]" /> Instead of short-term fixes, we build foundations.</li>
               </ul>
             </div>
           </div>
@@ -121,7 +142,7 @@ const TBNMethod = () => {
       </section>
 
       {/* For Clients Section */}
-      <section id="how-it-works" className="py-24 bg-[#f9f5f2]">
+      <section id="how-it-works" className="py-24 bg-[#faf8f5]">
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
             <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">For Clients</span>
@@ -134,7 +155,7 @@ const TBNMethod = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Step 1 */}
             <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#9f1e13]/5 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
               <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">01</span>
               <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">Step 1: Test</h3>
               <p className="text-[#9f1e13] font-medium mb-6">Insight before action.</p>
@@ -172,7 +193,7 @@ const TBNMethod = () => {
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
               <span className="text-white font-bold text-6xl opacity-10 absolute top-8 right-8 font-playfair">02</span>
               <h3 className="text-2xl font-bold mb-2 font-playfair">Step 2: Target</h3>
-              <p className="text-[#f9f5f2] font-medium mb-6 opacity-80">Turning insight into a personalised pathway.</p>
+              <p className="text-[#faf8f5] font-medium mb-6 opacity-80">Turning insight into a personalised pathway.</p>
               <p className="text-gray-300 mb-6 text-sm leading-relaxed">
                 Once we understand your goals and test insights, we help create a targeted education and support pathway. Instead of starting with a generic product, we start with you.
               </p>
@@ -188,7 +209,7 @@ const TBNMethod = () => {
 
             {/* Step 3 */}
             <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#9f1e13]/5 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
               <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">03</span>
               <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">Step 3: Transform</h3>
               <p className="text-[#9f1e13] font-medium mb-6">Practical support. Ongoing review.</p>
@@ -198,7 +219,7 @@ const TBNMethod = () => {
               <p className="text-gray-600 mb-6 text-sm leading-relaxed">
                 Clients are encouraged to retest and review their pathway so they can understand what has changed, track progress and refine their next steps.
               </p>
-              <div className="bg-[#f9f5f2] p-4 rounded-xl border border-gray-100">
+              <div className="bg-[#faf8f5] p-4 rounded-xl border border-gray-100">
                 <p className="text-sm font-semibold text-[#9f1e13] mb-2">Measurable Progress In:</p>
                 <p className="text-xs text-gray-500 leading-relaxed">
                   Cellular Health • Energy • Recovery • Skin Health • Women's Health • Performance • Blood Sugar • Inflammation • Nervous System
@@ -221,19 +242,19 @@ const TBNMethod = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2]">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5]">
               <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 1: Learn</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Train your team in the TBN Method, testing ecosystem, consultation pathway, and compliance-conscious communication. Give your business the confidence to introduce test-based nutrition professionally.
               </p>
             </div>
-            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2]">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5]">
               <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 2: Launch</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Bring test-based nutrition into your real-world service model through consultations, test days, workshops, or screening pathways. The TBN Method becomes part of your business, not an add-on.
               </p>
             </div>
-            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#f9f5f2]">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5]">
               <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 3: Lead</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Become known for personalised preventative health. Build stronger client engagement, new revenue streams, and recurring wellness programmes with regional visibility.
@@ -244,7 +265,7 @@ const TBNMethod = () => {
       </section>
 
       {/* The Science & Specialists Section */}
-      <section id="science" className="py-24 bg-[#f9f5f2] text-gray-900 border-t border-gray-100">
+      <section id="science" className="py-24 bg-[#faf8f5] text-gray-900 border-t border-gray-100">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
@@ -303,9 +324,9 @@ const TBNMethod = () => {
         </div>
         
         <div className="container max-w-4xl text-center relative z-10">
-          <Brain className="w-16 h-16 mx-auto text-[#f9f5f2] mb-6" />
+          <Brain className="w-16 h-16 mx-auto text-[#faf8f5] mb-6" />
           <h2 className="text-4xl md:text-6xl font-playfair font-bold mb-6">TBN Academy</h2>
-          <p className="text-xl md:text-2xl font-light mb-8 text-[#f9f5f2]/90">
+          <p className="text-xl md:text-2xl font-light mb-8 text-[#faf8f5]/90">
             Launching September. Register your interest now.
           </p>
           <p className="text-lg leading-relaxed text-white/80 mb-10 max-w-2xl mx-auto">
@@ -315,7 +336,7 @@ const TBNMethod = () => {
             <form onSubmit={handleSubmit} className="w-full max-w-4xl mx-auto bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/20 shadow-xl mt-8 flex flex-col gap-6">
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
                 <div className="md:col-span-4 space-y-2 text-left">
-                  <label htmlFor="academyName" className="text-[10px] font-bold uppercase tracking-wider text-[#f9f5f2]/80 pl-1">Full Name</label>
+                  <label htmlFor="academyName" className="text-[10px] font-bold uppercase tracking-wider text-[#faf8f5]/80 pl-1">Full Name</label>
                   <input 
                     type="text" 
                     id="academyName" 
@@ -328,7 +349,7 @@ const TBNMethod = () => {
                 </div>
 
                 <div className="md:col-span-4 space-y-2 text-left">
-                  <label htmlFor="academyEmail" className="text-[10px] font-bold uppercase tracking-wider text-[#f9f5f2]/80 pl-1">Email Address</label>
+                  <label htmlFor="academyEmail" className="text-[10px] font-bold uppercase tracking-wider text-[#faf8f5]/80 pl-1">Email Address</label>
                   <input 
                     type="email" 
                     id="academyEmail" 
@@ -343,7 +364,7 @@ const TBNMethod = () => {
                 <div className="md:col-span-4">
                   <Button 
                     type="submit" 
-                    className="w-full h-12 bg-[#f9f5f2] hover:bg-white text-[#9f1e13] font-bold text-sm uppercase tracking-wider rounded-xl transition-all shadow-md"
+                    className="w-full h-12 bg-[#faf8f5] hover:bg-white text-[#9f1e13] font-bold text-sm uppercase tracking-wider rounded-xl transition-all shadow-md"
                   >
                     Register Interest
                   </Button>
@@ -358,15 +379,15 @@ const TBNMethod = () => {
                   onChange={(e) => setAcademyOptIn(e.target.checked)}
                   className="w-5 h-5 rounded border-white/20 bg-white/10 text-[#9f1e13] focus:ring-0 focus:ring-offset-0 accent-[#9f1e13] cursor-pointer shrink-0"
                 />
-                <label htmlFor="academyOptIn" className="text-xs font-semibold text-[#f9f5f2] select-none cursor-pointer">
+                <label htmlFor="academyOptIn" className="text-xs font-semibold text-[#faf8f5] select-none cursor-pointer">
                   Academy Tick Box (I am interested in TBN Academy updates)
                 </label>
               </div>
             </form>
           ) : (
             <div className="max-w-md mx-auto bg-white/15 backdrop-blur-md p-8 rounded-3xl border border-white/25 shadow-xl space-y-4 text-center mt-8">
-              <CheckCircle2 className="w-16 h-16 mx-auto text-[#f9f5f2] animate-pulse" />
-              <h3 className="text-2xl font-bold font-playfair text-[#f9f5f2]">Thank You!</h3>
+              <CheckCircle2 className="w-16 h-16 mx-auto text-[#faf8f5] animate-pulse" />
+              <h3 className="text-2xl font-bold font-playfair text-[#faf8f5]">Thank You!</h3>
               <p className="text-sm text-white/95 leading-relaxed">
                 Your interest has been registered. We have saved your details locally and initiated an email template for the admin.
               </p>
@@ -382,7 +403,7 @@ const TBNMethod = () => {
       </section>
 
       {/* Summary / Comparison */}
-      <section className="py-24 bg-[#f9f5f2]">
+      <section className="py-24 bg-[#faf8f5]">
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13]">Why TBN?</h2>
@@ -424,10 +445,19 @@ const TBNMethod = () => {
             Whether you are a client looking for a more personalised health pathway, or a business ready to integrate test-based nutrition into your services.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="bg-[#f9f5f2] hover:bg-white text-[#9f1e13] font-bold w-full sm:w-auto px-8 rounded-full">
+            <Button 
+              onClick={openQuiz}
+              size="lg" 
+              className="bg-[#faf8f5] hover:bg-white text-[#9f1e13] font-bold w-full sm:w-auto px-8 rounded-full cursor-pointer"
+            >
               Start Your TBN Journey
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-[#9f1e13] hover:border-[#9f1e13] hover:text-white w-full sm:w-auto px-8 rounded-full">
+            <Button 
+              onClick={() => navigate("/partner-with-us")}
+              size="lg" 
+              variant="outline" 
+              className="bg-transparent border-white text-white hover:bg-[#9f1e13] hover:border-[#9f1e13] hover:text-white w-full sm:w-auto px-8 rounded-full cursor-pointer"
+            >
               Partner With TBN
             </Button>
           </div>

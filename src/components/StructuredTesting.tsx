@@ -33,7 +33,7 @@ export const StructuredTesting: React.FC<StructuredTestingProps> = ({ foundation
             {foundational.map((test, idx) => (
               <div key={idx} className="bg-white border border-[#dbd4c9] rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-[#bdae97] transition-all">
                 <div className="w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden">
-                  <img src={test.logo} alt={test.name} className={`w-full h-full object-contain ${test.name === 'FSH' ? 'scale-[1.8]' : 'scale-[1.15]'}`} />
+                  <img src={test.logo} alt={test.name} className="w-full h-full object-contain scale-[1.15]" />
                 </div>
                 <span className="font-bold text-gray-900 text-[15px]">{test.name}</span>
               </div>
@@ -53,7 +53,7 @@ export const StructuredTesting: React.FC<StructuredTestingProps> = ({ foundation
             {baseline.map((test, idx) => (
               <div key={idx} className="bg-white border border-[#dbd4c9] rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-[#bdae97] transition-all">
                 <div className="w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden">
-                  <img src={test.logo} alt={test.name} className={`w-full h-full object-contain ${test.name === 'FSH' ? 'scale-[1.8]' : 'scale-[1.15]'}`} />
+                  <img src={test.logo} alt={test.name} className="w-full h-full object-contain scale-[1.15]" />
                 </div>
                 <span className="font-bold text-gray-900 text-[15px]">{test.name}</span>
               </div>
@@ -73,14 +73,14 @@ export const StructuredTesting: React.FC<StructuredTestingProps> = ({ foundation
             {advanced.map((test, idx) => (
               <div key={idx} className="bg-white border border-[#dbd4c9] rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md hover:border-[#bdae97] transition-all">
                 <div className="w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden">
-                  <img src={test.logo} alt={test.name} className={`w-full h-full object-contain ${test.name === 'FSH' ? 'scale-[1.8]' : 'scale-[1.15]'}`} />
+                  <img src={test.logo} alt={test.name} className="w-full h-full object-contain scale-[1.15]" />
                 </div>
                 <span className="font-bold text-gray-900 text-[15px]">{test.name}</span>
               </div>
             ))}
             
             {/* Consultation Box */}
-            <div className="bg-[#f9f5f2] border border-[#dbd4c9] rounded-2xl p-6 flex items-center justify-center shadow-inner mt-2">
+            <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-2xl p-6 flex items-center justify-center shadow-inner mt-2">
               <p className="text-center font-bold text-[11px] text-gray-600 uppercase tracking-widest leading-relaxed">
                 SCREENING IS DETERMINED BY<br/>CONSULTATION
               </p>

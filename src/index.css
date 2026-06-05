@@ -6,13 +6,13 @@
 
 @layer base {
   :root {
-    --background: 249 245 242;
+    --background: 250 248 245;
     --foreground: 0 0% 10%;
 
-    --card: 249 245 242;
+    --card: 250 248 245;
     --card-foreground: 0 0% 10%;
 
-    --popover: 249 245 242;
+    --popover: 250 248 245;
     --popover-foreground: 0 0% 10%;
 
     --primary: 159 30 19;
@@ -86,6 +86,26 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  input, textarea, select, [contenteditable="true"] {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+
+  img {
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   h1, h2, h3, h4, .font-heading {

@@ -40,6 +40,7 @@ export default function PartnerLeadForm({
     setIsLoading(true);
 
     const chosenOption = leadType === "partner" ? partnerLabel : inviteLabel;
+    const referrerCode = localStorage.getItem("tbn_referrer_code");
 
     try {
       const { error } = await supabase.from("partner_leads").insert([
@@ -49,6 +50,7 @@ export default function PartnerLeadForm({
           mobile,
           lead_type: chosenOption,
           source_page: sourcePage,
+          referrer_code: referrerCode || null,
           created_at: new Date().toISOString(),
         },
       ]);
@@ -65,6 +67,7 @@ export default function PartnerLeadForm({
           mobile,
           leadType: chosenOption,
           sourcePage,
+          referrerCode: referrerCode || null,
           date: new Date().toISOString(),
         });
         localStorage.setItem("partner_leads", JSON.stringify(localData));
@@ -81,7 +84,7 @@ export default function PartnerLeadForm({
     const mailtoUrl = `mailto:thinkjsk@gmail.com?subject=${encodeURIComponent(
       `TBN Partnership Inquiry - ${chosenOption}`
     )}&body=${encodeURIComponent(
-      `Hello Admin,\n\nWe have received a new partnership lead.\n\nDetails:\n- Name: ${name}\n- Email: ${email}\n- Mobile: ${mobile}\n- Selection: ${chosenOption}\n- Source Page: ${sourcePage}\n\nDate: ${new Date().toLocaleDateString()}\n\nKind regards,\nTBN System`
+      `Hello Admin,\n\nWe have received a new partnership lead.\n\nDetails:\n- Name: ${name}\n- Email: ${email}\n- Mobile: ${mobile}\n- Selection: ${chosenOption}\n- Source Page: ${sourcePage}\n- Referrer Partner: ${referrerCode || "None"}\n\nDate: ${new Date().toLocaleDateString()}\n\nKind regards,\nTBN System`
     )}`;
     
     // Smooth delay before triggering mailto so the user sees the success state
@@ -115,7 +118,7 @@ export default function PartnerLeadForm({
           <div className="absolute inset-0" onClick={handleClose} />
 
           {/* Modal Content */}
-          <div className="bg-[#f9f5f2] border border-[#dbd4c9] rounded-3xl p-6 md:p-8 w-full max-w-md relative z-10 shadow-2xl animate-in fade-in zoom-in duration-250">
+          <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-3xl p-6 md:p-8 w-full max-w-md relative z-10 shadow-2xl animate-in fade-in zoom-in duration-250">
             {/* Close Button */}
             <button
               onClick={handleClose}
