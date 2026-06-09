@@ -27,10 +27,10 @@ const SearchField = ({
   value?: string;
   onChange?: (val: string) => void;
 }) => (
-  <div className="flex bg-background items-center gap-2.5 px-4 py-2 flex-1 min-w-[200px] border-b md:border-b-0 md:border-r border-border last:border-0 hover:bg-secondary/30 transition-colors">
-    <Icon className="w-4 h-4 text-muted-foreground" />
-    <div className="flex flex-col w-full gap-0.5">
-      <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
+  <div className="flex bg-background items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 flex-1 min-w-0 hover:bg-secondary/35 transition-colors">
+    <Icon className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+    <div className="flex flex-col w-full gap-0 min-w-0">
+      <span className="text-[8px] font-bold uppercase tracking-widest text-muted-foreground/85 leading-none hidden md:block">
         {label}
       </span>
       <input 
@@ -38,7 +38,7 @@ const SearchField = ({
         value={value}
         onChange={(e) => onChange && onChange(e.target.value)}
         placeholder={placeholder} 
-        className="text-sm font-semibold bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground/50 w-full p-0 h-5"
+        className="text-xs md:text-sm font-semibold bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground/50 w-full p-0 h-5 min-w-0"
       />
     </div>
   </div>
@@ -90,43 +90,45 @@ const ClinicsDirectory = () => {
           </div>
 
           {/* Search Bar container */}
-          <div className="flex flex-col md:flex-row items-stretch bg-background border border-border rounded-xl shadow-sm overflow-hidden transition-shadow focus-within:shadow-md focus-within:border-primary/20 max-w-4xl">
-            <div className="flex bg-background items-center gap-2.5 px-4 py-2 flex-1 min-w-[200px] border-b md:border-b-0 md:border-r border-border hover:bg-secondary/30 transition-colors">
-              <Search className="w-4 h-4 text-muted-foreground" />
-              <div className="flex flex-col w-full gap-0.5">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
-                  TBN Pathway
-                </span>
-                <Select value={activeCategory} onValueChange={(val) => setActiveCategory(val as SpecialistCategory)}>
-                  <SelectTrigger className="h-5 p-0 border-none bg-transparent shadow-none focus:ring-0 text-sm font-semibold px-0 text-foreground text-left">
-                    <SelectValue placeholder="Select Pathway" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="All">All Pathways</SelectItem>
-                    <SelectItem value="Women's Health">Women's Health</SelectItem>
-                    <SelectItem value="Men's Health">Men's Health</SelectItem>
-                    <SelectItem value="Children's Health">Children's Health</SelectItem>
-                    <SelectItem value="Neurodivergence">Neurodivergence</SelectItem>
-                    <SelectItem value="Skin Health">Skin Health</SelectItem>
-                    <SelectItem value="Sports Performance">Sports Performance</SelectItem>
-                    <SelectItem value="Pain, Fatigue & Inflammation">Pain, Fatigue & Inflammation</SelectItem>
-                  </SelectContent>
-                </Select>
+          <div className="flex flex-col md:flex-row items-stretch bg-background border border-border rounded-2xl md:rounded-xl shadow-sm overflow-hidden md:h-14 max-w-4xl">
+            <div className="flex flex-row flex-1 border-b md:border-b-0 border-border h-12 md:h-auto">
+              <div className="flex bg-background items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 flex-1 min-w-0 border-r border-border hover:bg-secondary/35 transition-colors">
+                <Search className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                <div className="flex flex-col w-full gap-0 min-w-0">
+                  <span className="text-[8px] font-bold uppercase tracking-widest text-muted-foreground/85 leading-none hidden md:block">
+                    TBN Pathway
+                  </span>
+                  <Select value={activeCategory} onValueChange={(val) => setActiveCategory(val as SpecialistCategory)}>
+                    <SelectTrigger className="h-5 p-0 border-none bg-transparent shadow-none focus:ring-0 text-xs md:text-sm font-semibold px-0 text-foreground text-left min-w-0 truncate">
+                      <SelectValue placeholder="Select Pathway" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="All">All Pathways</SelectItem>
+                      <SelectItem value="Women's Health">Women's Health</SelectItem>
+                      <SelectItem value="Men's Health">Men's Health</SelectItem>
+                      <SelectItem value="Children's Health">Children's Health</SelectItem>
+                      <SelectItem value="Neurodivergence">Neurodivergence</SelectItem>
+                      <SelectItem value="Skin Health">Skin Health</SelectItem>
+                      <SelectItem value="Sports Performance">Sports Performance</SelectItem>
+                      <SelectItem value="Pain, Fatigue & Inflammation">Pain, Fatigue & Inflammation</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
+              
+              <SearchField 
+                icon={MapPin} 
+                label="Location" 
+                placeholder="e.g. Essex" 
+                value={locationSearch}
+                onChange={setLocationSearch}
+              />
             </div>
-            
-            <SearchField 
-              icon={MapPin} 
-              label="Location" 
-              placeholder="e.g. Essex" 
-              value={locationSearch}
-              onChange={setLocationSearch}
-            />
 
-            <div className="p-1.5 flex items-center bg-background border-t md:border-t-0 md:border-l md:border-border">
-              <Button className="w-full md:w-auto px-6 py-3 md:py-0 h-full md:h-10 text-[14px] font-bold whitespace-nowrap bg-primary hover:bg-primary/90 text-primary-foreground rounded-md shadow-sm flex gap-2">
+            <div className="p-1 flex items-center bg-background shrink-0 w-full md:w-auto h-12 md:h-full md:border-l md:border-border">
+              <Button className="w-full md:w-auto h-full px-5 text-xs md:text-sm font-bold whitespace-nowrap bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-sm flex items-center justify-center gap-1.5">
                 <Search className="w-3.5 h-3.5" />
-                Search
+                <span>Search</span>
               </Button>
             </div>
           </div>
