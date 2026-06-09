@@ -34,7 +34,9 @@ export default function ExpertsFocusRail({
   }
 
   // Filter out any specialists that might be missing an image or profile info just in case
-  const expertItems: FocusRailItem[] = specialists.map((s, index) => ({
+  const expertItems: FocusRailItem[] = specialists
+    .filter(s => s.is_approved === true)
+    .map((s, index) => ({
     id: s.slug || `expert-${index}`,
     title: s.name,
     description: s.bio[0] || 'Health & Wellness Expert',

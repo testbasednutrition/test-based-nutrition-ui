@@ -84,7 +84,7 @@ const SpecialistProfile = () => {
     queryFn: fetchSpecialists
   });
 
-  const specialist = specialists.find((s) => s.slug === slug);
+  const specialist = specialists.find((s) => s.slug === slug && s.is_approved === true);
 
   const [activeImage, setActiveImage] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<SpecialistCategory>("All");

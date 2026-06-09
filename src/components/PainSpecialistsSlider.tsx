@@ -23,7 +23,7 @@ export default function PainSpecialistsSlider() {
   
   // Try to find them in the specialists data
   const expertItems: FocusRailItem[] = targetNames.map((name, index) => {
-    const s = specialists.find(spec => spec.name.toLowerCase() === name.toLowerCase());
+    const s = specialists.find(spec => spec.name.toLowerCase() === name.toLowerCase() && spec.is_approved === true);
     
     if (s) {
       return {

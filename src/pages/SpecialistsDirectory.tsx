@@ -167,7 +167,7 @@ const SpecialistsDirectory = () => {
   });
 
   // Apply a basic filter just for show (only show approved profiles in the grid)
-  const approvedSpecialists = specialists.filter(s => s.is_approved !== false);
+  const approvedSpecialists = specialists.filter(s => s.is_approved === true);
   const filtered = approvedSpecialists.filter((s) => {
     let matchesCategory = true;
     

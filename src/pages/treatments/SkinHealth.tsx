@@ -56,13 +56,15 @@ const SkinHealth = () => {
     queryFn: fetchSpecialists
   });
 
-  const expertItems = specialists.map((s, index) => ({
-    id: s.slug || `expert-${index}`,
-    title: s.name,
-    description: s.bio && s.bio.length > 0 ? s.bio[0] : 'Health & Wellness Expert',
-    meta: s.role,
-    imageSrc: s.image || "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800"
-  }));
+  const expertItems = specialists
+    .filter(s => s.is_approved === true)
+    .map((s, index) => ({
+      id: s.slug || `expert-${index}`,
+      title: s.name,
+      description: s.bio && s.bio.length > 0 ? s.bio[0] : 'Health & Wellness Expert',
+      meta: s.role,
+      imageSrc: s.image || "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800"
+    }));
 
   return (
     <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#faf8f5] font-montserrat">

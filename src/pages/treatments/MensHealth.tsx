@@ -32,7 +32,9 @@ const MensHealth = () => {
     queryFn: fetchSpecialists
   });
 
-  const expertItems = specialists.map((s, index) => ({
+  const expertItems = specialists
+    .filter(s => s.is_approved === true)
+    .map((s, index) => ({
     id: s.slug || `expert-${index}`,
     title: s.name,
     description: s.bio && s.bio.length > 0 ? s.bio[0] : 'Health & Wellness Expert',
