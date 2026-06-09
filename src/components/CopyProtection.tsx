@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShieldAlert, Lock, X } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+
+// Toggle to false to temporarily disable the screenshot blank screen overlay (until going live)
+const ENABLE_SCREENSHOT_BLANK = false;
 
 export default function CopyProtection() {
   const [showWarning, setShowWarning] = useState(false);
   const [warningCount, setWarningCount] = useState(0);
   const [isBlurred, setIsBlurred] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const triggerWarning = useCallback(() => {
     setShowWarning(true);
@@ -16,6 +21,58 @@ export default function CopyProtection() {
   const dismissWarning = useCallback(() => {
     setShowWarning(false);
   }, []);
+
+  // Resolve admin status on mount and on auth changes
+  useEffect(() => {
+    const checkAdmin = async () => {
+      // 1. Local session check (admin leads portal password login)
+      if (sessionStorage.getItem("tbn_admin_auth") === "true") {
+        setIsAdmin(true);
+        return;
+      }
+
+      // 2. Supabase role check
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        const user = session?.user;
+        if (user) {
+          const { data: profile } = await supabase
+            .from("profiles")
+            .select("role")
+            .eq("id", user.id)
+            .single();
+          setIsAdmin(profile?.role === "admin");
+        } else {
+          setIsAdmin(false);
+        }
+      } catch (err) {
+        console.warn("[CopyProtection] Failed to fetch user role from Supabase:", err);
+        setIsAdmin(false);
+      }
+    };
+
+    checkAdmin();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
+      checkAdmin();
+    });
+
+    // Poll sessionStorage for dynamic updates without reload
+    const storageInterval = setInterval(() => {
+      if (sessionStorage.getItem("tbn_admin_auth") === "true") {
+        setIsAdmin(true);
+      }
+    }, 1000);
+
+    return () => {
+      subscription.unsubscribe();
+      clearInterval(storageInterval);
+    };
+  }, []);
+
+  const isUserAdmin = useCallback(() => {
+    return isAdmin || sessionStorage.getItem("tbn_admin_auth") === "true";
+  }, [isAdmin]);
 
   // Auto-dismiss after 4 seconds
   useEffect(() => {
@@ -29,7 +86,9 @@ export default function CopyProtection() {
 
   // Window blur and focus event listeners to prevent screenshots
   useEffect(() => {
+    if (!ENABLE_SCREENSHOT_BLANK) return;
     const handleBlur = () => {
+      if (isUserAdmin()) return;
       setIsBlurred(true);
     };
     const handleFocus = () => {
@@ -43,7 +102,7 @@ export default function CopyProtection() {
       window.removeEventListener("blur", handleBlur);
       window.removeEventListener("focus", handleFocus);
     };
-  }, []);
+  }, [isUserAdmin]);
 
   useEffect(() => {
     const isFormInputActive = () => {
@@ -58,6 +117,7 @@ export default function CopyProtection() {
     };
 
     const handleContextMenu = (e: MouseEvent) => {
+      if (isUserAdmin()) return;
       // Allow context menu in inputs (e.g. for spellcheck, copy-paste inside fields)
       if (isFormInputActive()) return;
       e.preventDefault();
@@ -65,18 +125,21 @@ export default function CopyProtection() {
     };
 
     const handleCopy = (e: ClipboardEvent) => {
+      if (isUserAdmin()) return;
       if (isFormInputActive()) return;
       e.preventDefault();
       triggerWarning();
     };
 
     const handleCut = (e: ClipboardEvent) => {
+      if (isUserAdmin()) return;
       if (isFormInputActive()) return;
       e.preventDefault();
       triggerWarning();
     };
 
     const handleDragStart = (e: DragEvent) => {
+      if (isUserAdmin()) return;
       const target = e.target as HTMLElement;
       if (target && target.tagName === "IMG") {
         e.preventDefault();
@@ -84,17 +147,20 @@ export default function CopyProtection() {
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (isUserAdmin()) return;
       const isMeta = e.ctrlKey || e.metaKey;
       
       // Proactive screenshot shortcut detection:
       // If the user holds Cmd+Shift (Mac) or Win+Shift (Win), turn the screen white immediately
       // before they can trigger the screenshot capture (e.g., Cmd+Shift+4)
-      if (isMeta && e.shiftKey) {
+      if (ENABLE_SCREENSHOT_BLANK && isMeta && e.shiftKey) {
         setIsBlurred(true);
       }
 
       if (e.key === "PrintScreen") {
-        setIsBlurred(true);
+        if (ENABLE_SCREENSHOT_BLANK) {
+          setIsBlurred(true);
+        }
         triggerWarning();
         e.preventDefault();
         return;
@@ -145,6 +211,11 @@ export default function CopyProtection() {
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
+      if (!ENABLE_SCREENSHOT_BLANK) return;
+      if (isUserAdmin()) {
+        setIsBlurred(false);
+        return;
+      }
       // Remove white overlay when they release the shortcut modifier keys
       if (e.key === "Meta" || e.key === "Control" || e.key === "Shift") {
         setIsBlurred(false);
@@ -167,11 +238,11 @@ export default function CopyProtection() {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [triggerWarning]);
+  }, [triggerWarning, isUserAdmin]);
 
   return (
     <>
-      {isBlurred && (
+      {ENABLE_SCREENSHOT_BLANK && isBlurred && (
         <div className="fixed inset-0 z-[100000] bg-white dark:bg-zinc-950" />
       )}
       <AnimatePresence>

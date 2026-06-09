@@ -205,19 +205,31 @@ const SpecialistProfile = () => {
               {/* Testing Expertise */}
               <div className="space-y-4">
                 <h4 className="font-semibold text-sm">Testing Expertise</h4>
-                <div className="space-y-3">
-                  {["Functional Labs", "Microbiome Analysis", "Genomic Testing"].map((exp) => (
-                    <div className="flex items-center space-x-3" key={exp}>
+                <div className="space-y-4">
+                  {[
+                    { id: "foundational", title: "Foundational Testing", subtext: "In-clinic or online" },
+                    { id: "baseline", title: "Baseline Screening", subtext: "Rapid finger-prick point-of-care" },
+                    { id: "advanced", title: "Advanced Screening", subtext: "Phlebotomy (where required)" }
+                  ].map((exp) => (
+                    <div className="flex items-start space-x-3" key={exp.id}>
                       <Checkbox 
-                        id={`exp-${exp}`} 
-                        className="rounded border-border data-[state=checked]:bg-primary data-[state=checked]:text-white" 
+                        id={`exp-${exp.id}`} 
+                        className="rounded border-border mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:text-white" 
                         onCheckedChange={() => {
                           navigate("/specialists", { state: { category: selectedCategory, search: searchLocation } });
                         }}
                       />
-                      <Label htmlFor={`exp-${exp}`} className="text-sm font-normal text-muted-foreground cursor-pointer">
-                        {exp}
-                      </Label>
+                      <div className="grid gap-1 leading-none">
+                        <Label 
+                          htmlFor={`exp-${exp.id}`} 
+                          className="text-xs font-bold uppercase tracking-wider text-foreground cursor-pointer"
+                        >
+                          {exp.title}
+                        </Label>
+                        <p className="text-[11px] text-muted-foreground font-medium">
+                          {exp.subtext}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -530,7 +542,7 @@ const SpecialistProfile = () => {
 
                 return (
                   <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
-                    <div className="text-center max-w-xl mx-auto mb-8">
+                    <div className="mb-6">
                       <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
                         Gallery
                       </p>

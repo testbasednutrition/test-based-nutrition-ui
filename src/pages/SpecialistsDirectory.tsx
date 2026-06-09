@@ -155,7 +155,7 @@ const SpecialistsDirectory = () => {
     return matchesCategory && matchesLocation;
   });
 
-  const ITEMS_PER_PAGE = 21;
+  const ITEMS_PER_PAGE = 24;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const paginatedSpecialists = filtered.slice(startIndex, endIndex);
@@ -275,13 +275,28 @@ const SpecialistsDirectory = () => {
               {/* Testing Expertise */}
               <div className="space-y-4">
                 <h4 className="font-semibold text-sm">Testing Expertise</h4>
-                <div className="space-y-3">
-                  {["Functional Labs", "Microbiome Analysis", "Genomic Testing"].map((exp) => (
-                    <div className="flex items-center space-x-3" key={exp}>
-                      <Checkbox id={`exp-${exp}`} className="rounded border-border data-[state=checked]:bg-primary data-[state=checked]:text-white" />
-                      <Label htmlFor={`exp-${exp}`} className="text-sm font-normal text-muted-foreground cursor-pointer">
-                        {exp}
-                      </Label>
+                <div className="space-y-4">
+                  {[
+                    { id: "foundational", title: "Foundational Testing", subtext: "In-clinic or online" },
+                    { id: "baseline", title: "Baseline Screening", subtext: "Rapid finger-prick point-of-care" },
+                    { id: "advanced", title: "Advanced Screening", subtext: "Phlebotomy (where required)" }
+                  ].map((exp) => (
+                    <div className="flex items-start space-x-3" key={exp.id}>
+                      <Checkbox 
+                        id={`exp-${exp.id}`} 
+                        className="rounded border-border mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:text-white" 
+                      />
+                      <div className="grid gap-1 leading-none">
+                        <Label 
+                          htmlFor={`exp-${exp.id}`} 
+                          className="text-xs font-bold uppercase tracking-wider text-foreground cursor-pointer"
+                        >
+                          {exp.title}
+                        </Label>
+                        <p className="text-[11px] text-muted-foreground font-medium">
+                          {exp.subtext}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
