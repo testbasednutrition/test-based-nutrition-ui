@@ -131,6 +131,26 @@ const SpecialistProfile = () => {
     }
   }, [specialist]);
 
+  // Automatic scrolling for gallery
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (sliderRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 15) {
+          sliderRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          sliderRef.current.scrollTo({
+            left: scrollLeft + 300,
+            behavior: 'smooth'
+          });
+        }
+      }
+    }, 4500);
+
+    return () => clearInterval(interval);
+  }, [specialist]);
+
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-secondary/30 flex items-center justify-center">
