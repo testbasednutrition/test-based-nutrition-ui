@@ -698,7 +698,7 @@ const SpecialistProfile = () => {
                               </div>
                               <div className="grid grid-cols-2 gap-2">
                                 {foundationalMethods.map((method, index) => (
-                                  <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
+                                  <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-secondary/15 text-muted-foreground border border-secondary/30 justify-start">
                                     <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
                                     <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
                                   </span>
@@ -716,7 +716,7 @@ const SpecialistProfile = () => {
                               </div>
                               <div className="grid grid-cols-2 gap-2">
                                 {baselineMethods.map((method, index) => (
-                                  <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
+                                  <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-secondary/15 text-muted-foreground border border-secondary/30 justify-start">
                                     <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
                                     <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
                                   </span>
@@ -734,7 +734,7 @@ const SpecialistProfile = () => {
                               </div>
                               <div className="grid grid-cols-2 gap-2">
                                 {advancedMethods.map((method, index) => (
-                                  <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
+                                  <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-secondary/15 text-muted-foreground border border-secondary/30 justify-start">
                                     <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
                                     <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
                                   </span>
@@ -773,7 +773,7 @@ const SpecialistProfile = () => {
                         key={`${cred}-${idx}`}
                         className="bg-background border border-border/60 rounded-xl p-4 flex items-center gap-3 hover:border-[#bdae97] transition-colors"
                       >
-                        <div className="w-8 h-8 shrink-0 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center">
+                        <div className="w-8 h-8 shrink-0 rounded-full bg-secondary/15 border border-secondary/30 flex items-center justify-center">
                           <CheckCircle2 className="w-4 h-4 text-primary" />
                         </div>
                         <p className="font-medium text-muted-foreground text-xs leading-snug">{cred}</p>
