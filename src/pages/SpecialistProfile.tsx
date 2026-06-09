@@ -197,63 +197,63 @@ const SpecialistProfile = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             
             {/* Sidebar Filters */}
-            <aside className="hidden lg:block w-full lg:w-64 shrink-0 space-y-8">
-              <div className="flex items-center justify-between pb-4 border-b border-border">
-                <h3 className="font-semibold text-sm tracking-widest uppercase">Filters</h3>
-                <button 
-                  onClick={() => navigate("/specialists")} 
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <RefreshCcw className="w-4 h-4" />
-                </button>
-              </div>
-
-              {/* TBN Pathways filter */}
-              <div className="space-y-4">
-                <h4 className="font-semibold text-sm">TBN Pathways</h4>
-                <div className="space-y-3">
-                  {[
-                    "All",
-                    "Women's Health", 
-                    "Men's Health", 
-                    "Children's Health", 
-                    "Neurodivergence",
-                    "Skin Health",
-                    "Sports Performance",
-                    "Pain, Fatigue & Inflammation"
-                  ].map((category) => (
-                    <div className="flex items-center space-x-3" key={category}>
-                      <Checkbox 
-                        id={`spec-${category}`} 
-                        className="rounded border-border data-[state=checked]:bg-primary data-[state=checked]:text-white" 
-                        checked={selectedCategory === category}
-                        onCheckedChange={() => handleCategorySelect(category as SpecialistCategory)}
-                      />
-                      <Label htmlFor={`spec-${category}`} className="text-sm font-normal text-muted-foreground cursor-pointer">
-                        {category}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Location filter */}
-              <div className="space-y-4">
-                <h4 className="font-semibold text-sm">Location</h4>
-                <Input 
-                  placeholder="Enter city or region" 
-                  className="bg-background border-border text-sm h-10" 
-                  value={searchLocation}
-                  onChange={(e) => setSearchLocation(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") handleSearchSubmit();
-                  }}
-                />
-              </div>
-
-              {/* Testing Expertise */}
-              <div className="space-y-4">
-                <h4 className="font-semibold text-sm">Testing Expertise</h4>
+             <aside className="hidden lg:block w-full lg:w-64 shrink-0 space-y-8">
+               <div className="flex items-center justify-between pb-4 border-b border-border">
+                 <h3 className="font-semibold text-sm tracking-widest uppercase">FILTERS</h3>
+                 <button 
+                   onClick={() => navigate("/specialists")} 
+                   className="text-muted-foreground hover:text-primary transition-colors"
+                 >
+                   <RefreshCcw className="w-4 h-4" />
+                 </button>
+               </div>
+ 
+               {/* TBN Pathways filter */}
+               <div className="space-y-4">
+                 <h4 className="font-bold text-xs uppercase tracking-wider text-foreground">TBN PATHWAYS</h4>
+                 <div className="space-y-3">
+                   {[
+                     "All",
+                     "Women's Health", 
+                     "Men's Health", 
+                     "Children's Health", 
+                     "Neurodivergence",
+                     "Skin Health",
+                     "Sports Performance",
+                     "Pain, Fatigue & Inflammation"
+                   ].map((category) => (
+                     <div className="flex items-center space-x-3" key={category}>
+                       <Checkbox 
+                         id={`spec-${category}`} 
+                         className="rounded border-border data-[state=checked]:bg-primary data-[state=checked]:text-white" 
+                         checked={selectedCategory === category}
+                         onCheckedChange={() => handleCategorySelect(category as SpecialistCategory)}
+                       />
+                       <Label htmlFor={`spec-${category}`} className="text-sm font-normal text-muted-foreground cursor-pointer">
+                         {category}
+                       </Label>
+                     </div>
+                   ))}
+                 </div>
+               </div>
+ 
+               {/* Location filter */}
+               <div className="space-y-4">
+                 <h4 className="font-bold text-xs uppercase tracking-wider text-foreground">LOCATION</h4>
+                 <Input 
+                   placeholder="Enter city or region" 
+                   className="bg-background border-border text-sm h-10" 
+                   value={searchLocation}
+                   onChange={(e) => setSearchLocation(e.target.value)}
+                   onKeyDown={(e) => {
+                     if (e.key === "Enter") handleSearchSubmit();
+                   }}
+                 />
+               </div>
+ 
+               {/* Testing Expertise */}
+               <div className="space-y-4">
+                 <h4 className="font-bold text-xs uppercase tracking-wider text-foreground">TESTING EXPERTISE</h4>
                 <div className="space-y-4">
                   {[
                     { id: "foundational", title: "Foundational Testing", subtext: "In-clinic or online", tests: ["Omega Balance", "Gut Microbiome", "Intolerance Testing"] },
@@ -510,9 +510,9 @@ const SpecialistProfile = () => {
                 <div className="grid md:grid-cols-2 gap-8 items-start">
                   {/* Main Bio */}
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">About specialist</p>
-                    <h2 className="text-xl md:text-2xl font-bold mb-6 text-foreground">
-                      Professional Bio
+                    <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">ABOUT SPECIALIST</p>
+                    <h2 className="text-xl md:text-2xl font-bold mb-6 text-foreground uppercase tracking-wider">
+                      PROFESSIONAL BIO
                     </h2>
                     <div className="space-y-4 text-muted-foreground leading-relaxed text-sm">
                       {specialist.bio.map((p, i) => (
@@ -521,44 +521,57 @@ const SpecialistProfile = () => {
                     </div>
                   </div>
                   
-                  {/* "Why TBN" OR Secondary Image */}
-                  <div className="space-y-6 mt-4 md:mt-0">
-                    {specialist.quote && (
-                       <div className="bg-secondary/15 border border-border/40 rounded-2xl p-6 relative">
-                          <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2 relative z-10">Test-Based Nutrition Journey</p>
-                          <h3 className="text-lg font-bold mb-4 relative z-10">This is why I partnered with TBN.</h3>
-                          <div className="relative">
-                            <span className="text-4xl font-serif text-border/60 absolute -top-4 -left-3">"</span>
-                            <p className="text-muted-foreground leading-relaxed italic relative z-10 text-sm">
-                              {summarizeQuote(specialist.quote, 50)}
-                            </p>
-                            <span className="text-4xl font-serif text-border/60 absolute -bottom-6 -right-1">"</span>
-                          </div>
-                       </div>
-                    )}
+                  {/* First gallery photo (or fallback placeholder) */}
+                  <div className="mt-4 md:mt-0">
+                    {(() => {
+                      const firstGalleryPhoto = (specialist.gallery_image_urls && specialist.gallery_image_urls.length > 0)
+                        ? specialist.gallery_image_urls[0]
+                        : (specialist.secondaryImage || "/placeholder.svg");
 
-                    {specialist.secondaryImage && !specialist.quote && (
-                      <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-secondary shadow-sm">
-                        <img
-                          src={specialist.secondaryImage}
-                          alt={`${specialist.name} in action`}
-                          className="w-full h-full object-cover object-top"
-                        />
-                      </div>
-                    )}
+                      return (
+                        <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border/85 bg-secondary flex items-center justify-center shadow-sm">
+                          <img
+                            src={firstGalleryPhoto}
+                            alt={`${specialist.name} uploaded photo`}
+                            className="w-full h-full object-cover object-top"
+                          />
+                        </div>
+                      );
+                    })()}
                   </div>
                 </div>
               </div>
+
+              {/* Test-Based Nutrition Journey Panel */}
+              {specialist.quote && (
+                <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
+                  <div className="mb-6">
+                    <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
+                      TEST-BASED NUTRITION JOURNEY
+                    </p>
+                    <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
+                      THIS IS WHY I PARTNERED WITH TBN
+                    </h2>
+                  </div>
+                  <div className="bg-secondary/15 border border-border/40 rounded-2xl p-6 relative">
+                    <span className="text-4xl font-serif text-border/60 absolute -top-4 -left-3">"</span>
+                    <p className="text-muted-foreground leading-relaxed italic relative z-10 text-sm">
+                      {specialist.quote}
+                    </p>
+                    <span className="text-4xl font-serif text-border/60 absolute -bottom-6 -right-1">"</span>
+                  </div>
+                </div>
+              )}
 
               {/* Testimonials Panel */}
               {specialist.testimonials && specialist.testimonials.length > 0 && (
                 <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
                   <div className="mb-6">
                     <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
-                      Client Results
+                      CLIENT RESULTS
                     </p>
-                    <h2 className="text-xl md:text-2xl font-bold text-foreground">
-                      Proven Impact
+                    <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
+                      PROVEN IMPACT
                     </h2>
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">
@@ -590,7 +603,7 @@ const SpecialistProfile = () => {
                 <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
                   <div className="flex items-center gap-3 mb-6">
                     <CheckCircle2 className="w-5 h-5 text-primary" />
-                    <h2 className="text-xl md:text-2xl font-bold text-foreground">Conditions & Support</h2>
+                    <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">CONDITIONS & SUPPORT</h2>
                   </div>
                   <div className="flex flex-wrap gap-2.5">
                      {specialist.specialization_tags.map((tag, index) => (
@@ -618,7 +631,7 @@ const SpecialistProfile = () => {
                   <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
                     <div className="flex items-center gap-3 mb-8 border-b border-border/50 pb-4">
                       <TestTube2 className="w-5 h-5 text-primary" />
-                      <h2 className="text-xl md:text-2xl font-bold text-foreground">Testing & Diagnostics</h2>
+                      <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">TESTING & DIAGNOSTICS</h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
@@ -696,10 +709,10 @@ const SpecialistProfile = () => {
               <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
                 <div className="mb-6">
                   <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
-                    Credentials & Expertise
+                    CREDENTIALS & EXPERTISE
                   </p>
-                  <h2 className="text-xl md:text-2xl font-bold text-foreground">
-                    Qualifications
+                  <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
+                    QUALIFICATIONS
                   </h2>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4 max-w-3xl">
@@ -738,10 +751,10 @@ const SpecialistProfile = () => {
                   <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
                     <div className="mb-6">
                       <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
-                        Gallery
+                        GALLERY
                       </p>
-                      <h2 className="text-xl md:text-2xl font-bold text-foreground">
-                        Specialist & Practice Gallery
+                      <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
+                        SPECIALIST & PRACTICE GALLERY
                       </h2>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -782,8 +795,8 @@ const SpecialistProfile = () => {
                   {/* Left: Text, CTA & Details */}
                   <div className="md:col-span-6 flex flex-col justify-between gap-6 text-center md:text-left">
                     <div>
-                      <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-secondary/80 mb-2">Get in Touch</p>
-                      <h2 className="text-xl md:text-2xl font-bold mb-3 text-white">Book a Consultation</h2>
+                      <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-secondary/80 mb-2">GET IN TOUCH</p>
+                      <h2 className="text-xl md:text-2xl font-bold mb-3 text-white uppercase tracking-wider">BOOK A CONSULTATION</h2>
                       <p className="text-white/80 text-xs mb-6 leading-relaxed max-w-sm mx-auto md:mx-0">
                         Ready to optimize your health with {specialist.name}? Contact their clinic directly using the details below.
                       </p>
