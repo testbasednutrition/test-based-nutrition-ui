@@ -627,6 +627,18 @@ const SpecialistProfile = () => {
               <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm space-y-8 md:space-y-10">
                 {/* Hero Profile Panel */}
                 <div>
+                  {/* Mobile Profile Header (Visible on mobile only, above the photo) */}
+                  <div className="flex flex-col items-center text-center md:hidden mb-6">
+                    <h1 className="text-2xl font-extrabold tracking-tight text-foreground uppercase mb-2">
+                      {specialist.name}
+                    </h1>
+                    <div>
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-[#9f1e13] border border-primary/20">
+                        {specialist.category}
+                      </span>
+                    </div>
+                  </div>
+
                   <div className="grid md:grid-cols-[280px_1fr] gap-8 items-start relative z-10">
                     {/* Image Side - Left */}
                     <div className="flex flex-col gap-4 w-full">
@@ -649,12 +661,12 @@ const SpecialistProfile = () => {
 
                     {/* Info Side - Right */}
                     <div className="flex flex-col pt-2 md:pt-0">
-                      <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-foreground uppercase mb-2">
+                      <h1 className="hidden md:block text-2xl md:text-3xl font-extrabold tracking-tight text-foreground uppercase mb-2">
                         {specialist.name}
                       </h1>
 
                       {/* Category Badge */}
-                      <div className="mb-3">
+                      <div className="hidden md:block mb-3">
                         <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-[#9f1e13] border border-primary/20">
                           {specialist.category}
                         </span>
@@ -662,7 +674,7 @@ const SpecialistProfile = () => {
 
                       {/* Professional Title/Role */}
                       {specialist.role && (
-                        <p className="text-sm md:text-base font-bold text-black uppercase tracking-wider mb-4">
+                        <p className="text-sm md:text-base font-bold text-black uppercase tracking-wider mb-4 text-center md:text-left">
                           {specialist.role}
                         </p>
                       )}
@@ -729,7 +741,7 @@ const SpecialistProfile = () => {
                       )}
 
                       {/* Contact Button */}
-                      <div className="mt-4">
+                      <div className="mt-4 flex justify-center md:justify-start">
                         <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2.5 h-10 text-xs font-bold tracking-wider uppercase rounded-lg shadow-sm w-max cursor-pointer">
                           <a href="#contact">Contact Clinic</a>
                         </Button>
