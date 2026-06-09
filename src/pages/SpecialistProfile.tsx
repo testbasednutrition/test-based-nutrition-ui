@@ -902,7 +902,6 @@ const SpecialistProfile = () => {
                       <div className="border-t border-border/60" />
                       <div>
                         <div className="flex items-center gap-3 mb-8 border-b border-border/50 pb-4">
-                          <TestTube2 className="w-5 h-5 text-primary hidden md:block" />
                           <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">TESTING & DIAGNOSTICS</h2>
                         </div>
 
