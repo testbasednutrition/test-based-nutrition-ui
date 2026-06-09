@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, MapPin, Phone, Mail, Quote, Award, BadgeCheck, Video, RefreshCcw, Star, Activity, CheckCircle2, ChevronRight, TestTube2, Search, Image as ImageIcon } from "lucide-react";
+import { ArrowLeft, MapPin, Phone, Mail, Quote, Award, BadgeCheck, Video, RefreshCcw, Star, Activity, CheckCircle2, ChevronRight, TestTube2, Search, Image as ImageIcon, X, ChevronLeft } from "lucide-react";
 import NotFound from "./NotFound";
 import { useQuery } from "@tanstack/react-query";
 import { fetchSpecialists } from "@/lib/api";
@@ -90,6 +90,19 @@ const SpecialistProfile = () => {
   const [selectedCategory, setSelectedCategory] = useState<SpecialistCategory>("All");
   const [searchLocation, setSearchLocation] = useState("");
   const [selectedTestingTiers, setSelectedTestingTiers] = useState<string[]>([]);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const scrollSlider = (direction: 'left' | 'right') => {
+    if (sliderRef.current) {
+      const { scrollLeft, clientWidth } = sliderRef.current;
+      const scrollAmount = clientWidth * 0.75;
+      sliderRef.current.scrollTo({
+        left: direction === 'left' ? scrollLeft - scrollAmount : scrollLeft + scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const handleCategorySelect = (category: SpecialistCategory) => {
     setSelectedCategory(category);
@@ -748,27 +761,58 @@ const SpecialistProfile = () => {
                 if (uniqueImages.length <= 1) return null;
 
                 return (
-                  <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
-                    <div className="mb-6">
-                      <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
-                        GALLERY
-                      </p>
-                      <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
-                        SPECIALIST & PRACTICE GALLERY
-                      </h2>
+                  <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm relative group/slider">
+                    <div className="mb-6 flex justify-between items-end">
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
+                          GALLERY
+                        </p>
+                        <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
+                          SPECIALIST & PRACTICE GALLERY
+                        </h2>
+                      </div>
+                      
+                      {/* Navigation buttons */}
+                      <div className="flex gap-2">
+                        <Button 
+                          variant="outline" 
+                          size="icon" 
+                          className="w-8 h-8 rounded-full border border-border bg-background hover:bg-secondary flex items-center justify-center shrink-0"
+                          onClick={() => scrollSlider('left')}
+                        >
+                          <ChevronLeft className="w-4 h-4 text-foreground" />
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="icon" 
+                          className="w-8 h-8 rounded-full border border-border bg-background hover:bg-secondary flex items-center justify-center shrink-0"
+                          onClick={() => scrollSlider('right')}
+                        >
+                          <ChevronRight className="w-4 h-4 text-foreground" />
+                        </Button>
+                      </div>
                     </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    
+                    <div 
+                      ref={sliderRef}
+                      className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-2"
+                      style={{ scrollbarWidth: 'none' }}
+                    >
                       {uniqueImages.map((url, idx) => (
                         <div 
                           key={url}
-                          className="group relative aspect-[4/5] rounded-xl overflow-hidden border border-border bg-secondary shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
+                          className="flex-shrink-0 w-[240px] sm:w-[280px] aspect-[4/5] rounded-xl overflow-hidden border border-border bg-secondary shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer snap-start group relative"
                           onClick={() => {
-                            setActiveImage(url);
-                            const headerEl = document.getElementById('search-header');
-                            if (headerEl) {
-                              headerEl.scrollIntoView({ behavior: 'smooth' });
+                            if (uniqueImages.length > 5) {
+                              setLightboxImage(url);
                             } else {
-                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                              setActiveImage(url);
+                              const headerEl = document.getElementById('search-header');
+                              if (headerEl) {
+                                headerEl.scrollIntoView({ behavior: 'smooth' });
+                              } else {
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                              }
                             }
                           }}
                         >
@@ -779,7 +823,7 @@ const SpecialistProfile = () => {
                           />
                           <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                             <span className="text-white text-[9px] font-bold uppercase tracking-widest bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-sm">
-                              View Photo
+                              {uniqueImages.length > 5 ? "Zoom Photo" : "View Photo"}
                             </span>
                           </div>
                         </div>
@@ -793,11 +837,11 @@ const SpecialistProfile = () => {
               <div id="contact" className="bg-primary rounded-2xl p-6 md:p-8 shadow-lg text-white">
                 <div className="grid md:grid-cols-12 gap-8 items-stretch">
                   {/* Left: Text, CTA & Details */}
-                  <div className="md:col-span-6 flex flex-col justify-between gap-6 text-center md:text-left">
+                  <div className="md:col-span-8 flex flex-col justify-between gap-6 text-center md:text-left">
                     <div>
                       <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-secondary/80 mb-2">GET IN TOUCH</p>
                       <h2 className="text-xl md:text-2xl font-bold mb-3 text-white uppercase tracking-wider">BOOK A CONSULTATION</h2>
-                      <p className="text-white/80 text-xs mb-6 leading-relaxed max-w-sm mx-auto md:mx-0">
+                      <p className="text-white/80 text-xs mb-6 leading-relaxed max-w-md mx-auto md:mx-0">
                         Ready to optimize your health with {specialist.name}? Contact their clinic directly using the details below.
                       </p>
                       {specialist.bookingUrl && (
@@ -842,7 +886,7 @@ const SpecialistProfile = () => {
                   </div>
 
                   {/* Right: Google Map */}
-                  <div className="md:col-span-6 w-full min-h-[250px] flex items-stretch">
+                  <div className="md:col-span-4 w-full min-h-[250px] flex items-stretch">
                     {(specialist.address || specialist.location) && (
                       <div className="w-full rounded-xl overflow-hidden border border-white/10 shadow-lg relative bg-white/5 flex flex-1">
                         <iframe
@@ -864,6 +908,29 @@ const SpecialistProfile = () => {
           </div>
         </div>
       </section>
+
+      {lightboxImage && (
+        <div 
+          className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4 animate-in fade-in duration-200"
+          onClick={() => setLightboxImage(null)}
+        >
+          <button 
+            className="absolute top-4 right-4 text-white hover:text-primary transition-colors bg-white/10 p-2 rounded-full backdrop-blur-md"
+            onClick={() => setLightboxImage(null)}
+          >
+            <X className="w-6 h-6" />
+          </button>
+          
+          <div className="relative max-w-5xl max-h-[85vh] w-full h-full flex items-center justify-center">
+            <img 
+              src={lightboxImage} 
+              alt="Full view" 
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
