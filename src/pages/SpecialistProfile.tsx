@@ -569,7 +569,7 @@ const SpecialistProfile = () => {
                           TEST-BASED NUTRITION JOURNEY
                         </p>
                         <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
-                          THIS IS WHY I PARTNERED WITH TBN
+                          WHY I PARTNERED WITH TBN
                         </h2>
                       </div>
                       <div className="bg-secondary/15 border border-border/40 rounded-2xl p-6 relative">
