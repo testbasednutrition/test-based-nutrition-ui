@@ -293,10 +293,7 @@ const WomensHealth = () => {
         <StructuredTesting
           foundational={[
             { name: "Omega Balance", logo: "/images/test-logos/omega3balance.png" },
-            { name: "Gut Microbiome", logo: "/images/test-logos/guthealth1.png" },
-            { name: "Progesterone", logo: "/images/test-logos/hormone.png" },
-            { name: "Cortisol", logo: "/images/test-logos/cortisol.png" },
-            { name: "FSH", logo: "/images/test-logos/fsh-v2.png" }
+            { name: "Cortisol", logo: "/images/test-logos/cortisol.png" }
           ]}
           baseline={[
             { name: "Vitamin D", logo: "/images/test-logos/vitamind.png" },
@@ -304,12 +301,15 @@ const WomensHealth = () => {
             { name: "Ferritin", logo: "/images/test-logos/ferritin.png" },
             { name: "CRP / hs-CRP", logo: "/images/test-logos/crp.png" },
             { name: "Folate", logo: "/images/test-logos/folate.png" },
-            { name: "Cystatin C", logo: "/images/test-logos/cystatin.png" }
+            { name: "Cystatin C", logo: "/images/test-logos/cystatin.png" },
+            { name: "Gut Microbiome", logo: "/images/test-logos/guthealth1.png" },
+            { name: "Progesterone", logo: "/images/test-logos/hormone.png" }
           ]}
           advanced={[
             { name: "Testosterone", logo: "/images/test-logos/testosterone.png" },
             { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.png" },
-            { name: "Vitamin B12", logo: "/images/test-logos/vitaminb12.png" }
+            { name: "Vitamin B12", logo: "/images/test-logos/vitaminb12.png" },
+            { name: "FSH", logo: "/images/test-logos/fsh-v2.png" }
           ]}
         />
 
