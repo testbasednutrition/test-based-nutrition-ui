@@ -95,9 +95,9 @@ const Footer = ({ hideInstagram = false }: FooterProps) => {
       {!hideInstagram && <InstagramFeed />}
       <footer className="bg-card border-t border-border py-16">
       <div className="container px-6">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
-          <div className="lg:pr-4">
+          <div className="col-span-2 lg:col-span-1 lg:pr-4">
             <div className="flex items-center gap-2 mb-4">
               <img 
                 src="/logos/tbn-official-logo.png" 
