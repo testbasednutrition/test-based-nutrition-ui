@@ -654,6 +654,19 @@ const SpecialistProfile = () => {
                     ADVANCED_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
                   );
 
+                  const hasFoundational = foundationalMethods.length > 0;
+                  const hasBaseline = baselineMethods.length > 0;
+                  const hasAdvanced = advancedMethods.length > 0;
+
+                  const colsCount = [hasFoundational, hasBaseline, hasAdvanced].filter(Boolean).length;
+                  if (colsCount === 0) return null;
+
+                  const gridColsClass = colsCount === 3 
+                    ? "grid-cols-1 md:grid-cols-3" 
+                    : colsCount === 2 
+                      ? "grid-cols-1 md:grid-cols-2" 
+                      : "grid-cols-1 max-w-md";
+
                   return (
                     <>
                       <div className="border-t border-border/60" />
@@ -663,66 +676,60 @@ const SpecialistProfile = () => {
                           <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">TESTING & DIAGNOSTICS</h2>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                        <div className={`grid ${gridColsClass} gap-8 items-start`}>
                           {/* Foundational Testing */}
-                          <div className="space-y-4">
-                            <div className="border-b border-primary/20 pb-2">
-                              <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Foundational Testing</h3>
-                              <p className="text-[10px] text-muted-foreground mt-0.5">In-clinic or online</p>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                              {foundationalMethods.length > 0 ? (
-                                foundationalMethods.map((method, index) => (
+                          {hasFoundational && (
+                            <div className="space-y-4">
+                              <div className="border-b border-primary/20 pb-2">
+                                <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Foundational Testing</h3>
+                                <p className="text-[10px] text-muted-foreground mt-0.5">In-clinic or online</p>
+                              </div>
+                              <div className="flex flex-col gap-2">
+                                {foundationalMethods.map((method, index) => (
                                   <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
                                     <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
                                     <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
                                   </span>
-                                ))
-                              ) : (
-                                <span className="text-xs text-muted-foreground italic pl-1">None specified</span>
-                              )}
+                                ))}
+                              </div>
                             </div>
-                          </div>
+                          )}
 
                           {/* Baseline Screening */}
-                          <div className="space-y-4">
-                            <div className="border-b border-primary/20 pb-2">
-                              <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Baseline Screening</h3>
-                              <p className="text-[10px] text-muted-foreground mt-0.5">Rapid finger-prick point-of-care</p>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                              {baselineMethods.length > 0 ? (
-                                baselineMethods.map((method, index) => (
+                          {hasBaseline && (
+                            <div className="space-y-4">
+                              <div className="border-b border-primary/20 pb-2">
+                                <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Baseline Screening</h3>
+                                <p className="text-[10px] text-muted-foreground mt-0.5">Rapid finger-prick point-of-care</p>
+                              </div>
+                              <div className="flex flex-col gap-2">
+                                {baselineMethods.map((method, index) => (
                                   <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
                                     <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
                                     <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
                                   </span>
-                                ))
-                              ) : (
-                                <span className="text-xs text-muted-foreground italic pl-1">None specified</span>
-                              )}
+                                ))}
+                              </div>
                             </div>
-                          </div>
+                          )}
 
                           {/* Advanced Screening */}
-                          <div className="space-y-4">
-                            <div className="border-b border-primary/20 pb-2">
-                              <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Advanced Screening</h3>
-                              <p className="text-[10px] text-muted-foreground mt-0.5">Phlebotomy (where required)</p>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                              {advancedMethods.length > 0 ? (
-                                advancedMethods.map((method, index) => (
+                          {hasAdvanced && (
+                            <div className="space-y-4">
+                              <div className="border-b border-primary/20 pb-2">
+                                <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Advanced Screening</h3>
+                                <p className="text-[10px] text-muted-foreground mt-0.5">Phlebotomy (where required)</p>
+                              </div>
+                              <div className="flex flex-col gap-2">
+                                {advancedMethods.map((method, index) => (
                                   <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
                                     <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
                                     <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
                                   </span>
-                                ))
-                              ) : (
-                                <span className="text-xs text-muted-foreground italic pl-1">None specified</span>
-                              )}
+                                ))}
+                              </div>
                             </div>
-                          </div>
+                          )}
                         </div>
 
                         {specialist.other_blood_tests && (
