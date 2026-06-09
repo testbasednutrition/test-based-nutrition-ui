@@ -145,13 +145,15 @@ const TIER_MAPPINGS: Record<string, string[]> = {
 
 const SpecialistsDirectory = () => {
   const location = useLocation();
-  const state = location.state as { category?: SpecialistCategory; search?: string; testingTier?: string } | null;
+  const state = location.state as { category?: SpecialistCategory; search?: string; testingTier?: string; testingTiers?: string[] } | null;
 
   const [activeCategory, setActiveCategory] = useState<SpecialistCategory>(state?.category || "All");
   const [locationSearch, setLocationSearch] = useState(state?.search || "");
-  const [selectedTestingTiers, setSelectedTestingTiers] = useState<string[]>(
-    state?.testingTier ? [state.testingTier] : []
-  );
+  const [selectedTestingTiers, setSelectedTestingTiers] = useState<string[]>(() => {
+    if (state?.testingTiers) return state.testingTiers;
+    if (state?.testingTier) return [state.testingTier];
+    return [];
+  });
   const [currentPage, setCurrentPage] = useState(1);
 
   // Reset page when filters change

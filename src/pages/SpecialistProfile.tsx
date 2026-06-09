@@ -27,6 +27,54 @@ const summarizeQuote = (text?: string, maxWords = 50): string => {
   return words.slice(0, maxWords).join(" ") + "...";
 };
 
+const FOUNDATIONAL_TESTS = [
+  "Foundational Testing",
+  "Omega Balance",
+  "Gut Microbiome",
+  "Intolerance Testing",
+  "Finger Prick Balance Testing (Omega 6:3)",
+  "Finger Prick Gut Health Testing"
+];
+
+const BASELINE_TESTS = [
+  "Baseline Screening",
+  "Vitamin D",
+  "Vitamin D Levels (FP)",
+  "HbA1c",
+  "HbA1c - Diabetes (FP)",
+  "hS-CRP Heart Screening (FP)",
+  "CRP / hs-CRP",
+  "CRP Inflammation (FP)",
+  "RF Rheumatoid Screening (FP)",
+  "Cortisol Stress Hormone (FP)",
+  "Ferritin",
+  "Ferritin Iron Levels (FP)",
+  "Cystatin C",
+  "Cystatin C Kidney Screening (FP)",
+  "HCG+B Pregnancy Indication (FP)",
+  "AMH Ovarian Reserve (FP)",
+  "Progesterone",
+  "Progesterone Ovulation (FP)",
+  "Folate",
+  "Folate (FP)",
+  "NT-proBNP Heart Monitoring (VBD)",
+  "TSH Thyroid Screening (VBD)",
+  "FSH Menopause (VBD)",
+  "FSH",
+  "Vitamin B12 Levels (VBD+C)",
+  "Testosterone (VBD+C)",
+  "RSV/Influenza A/B (NS)"
+];
+
+const ADVANCED_TESTS = [
+  "Advanced Screening",
+  "Testosterone",
+  "Thyroid (TSH)",
+  "Vitamin B12",
+  "FSH Menopause",
+  "FSH"
+];
+
 const SpecialistProfile = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -41,6 +89,7 @@ const SpecialistProfile = () => {
   const [activeImage, setActiveImage] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<SpecialistCategory>("All");
   const [searchLocation, setSearchLocation] = useState("");
+  const [selectedTestingTiers, setSelectedTestingTiers] = useState<string[]>([]);
 
   const handleCategorySelect = (category: SpecialistCategory) => {
     setSelectedCategory(category);
@@ -207,31 +256,107 @@ const SpecialistProfile = () => {
                 <h4 className="font-semibold text-sm">Testing Expertise</h4>
                 <div className="space-y-4">
                   {[
-                    { id: "foundational", title: "Foundational Testing", subtext: "In-clinic or online" },
-                    { id: "baseline", title: "Baseline Screening", subtext: "Rapid finger-prick point-of-care" },
-                    { id: "advanced", title: "Advanced Screening", subtext: "Phlebotomy (where required)" }
+                    { id: "foundational", title: "Foundational Testing", subtext: "In-clinic or online", tests: ["Omega Balance", "Gut Microbiome", "Intolerance Testing"] },
+                    { 
+                      id: "baseline", 
+                      title: "Baseline Screening", 
+                      subtext: "Rapid finger-prick point-of-care", 
+                      tests: [
+                        "Vitamin D Levels (FP)",
+                        "HbA1c - Diabetes (FP)",
+                        "hS-CRP Heart Screening (FP)",
+                        "CRP Inflammation (FP)",
+                        "RF Rheumatoid Screening (FP)",
+                        "Cortisol Stress Hormone (FP)",
+                        "Ferritin Iron Levels (FP)",
+                        "Cystatin C Kidney Screening (FP)",
+                        "HCG+B Pregnancy Indication (FP)",
+                        "AMH Ovarian Reserve (FP)",
+                        "Progesterone Ovulation (FP)",
+                        "Folate (FP)",
+                        "NT-proBNP Heart Monitoring (VBD)",
+                        "TSH Thyroid Screening (VBD)",
+                        "FSH Menopause (VBD)",
+                        "Vitamin B12 Levels (VBD+C)",
+                        "Testosterone (VBD+C)",
+                        "RSV/Influenza A/B (NS)"
+                      ] 
+                    },
+                    { id: "advanced", title: "Advanced Screening", subtext: "Phlebotomy (where required)", tests: ["Testosterone", "Thyroid (TSH)", "Vitamin B12", "FSH Menopause"] }
                   ].map((exp) => (
-                    <div className="flex items-start space-x-3" key={exp.id}>
-                      <Checkbox 
-                        id={`exp-${exp.id}`} 
-                        className="rounded border-border mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:text-white" 
-                        onCheckedChange={(checked) => {
-                          if (checked) {
-                            navigate("/specialists", { state: { category: selectedCategory, search: searchLocation, testingTier: exp.id } });
-                          }
-                        }}
-                      />
-                      <div className="grid gap-1 leading-none">
-                        <Label 
-                          htmlFor={`exp-${exp.id}`} 
-                          className="text-xs font-bold uppercase tracking-wider text-foreground cursor-pointer"
-                        >
-                          {exp.title}
-                        </Label>
-                        <p className="text-[11px] text-muted-foreground font-medium">
-                          {exp.subtext}
-                        </p>
+                    <div className="space-y-2" key={exp.id}>
+                      <div className="flex items-start space-x-3">
+                        <Checkbox 
+                          id={`exp-${exp.id}`} 
+                          className="rounded border-border mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:text-white" 
+                          checked={selectedTestingTiers.includes(exp.id)}
+                          onCheckedChange={(checked) => {
+                            let newTiers = [...selectedTestingTiers];
+                            if (checked) {
+                              newTiers = [...newTiers, exp.id];
+                            } else {
+                              newTiers = newTiers.filter(id => id !== exp.id && !exp.tests.includes(id));
+                            }
+                            setSelectedTestingTiers(newTiers);
+                            navigate("/specialists", { 
+                              state: { 
+                                category: selectedCategory, 
+                                search: searchLocation, 
+                                testingTiers: newTiers 
+                              } 
+                            });
+                          }}
+                        />
+                        <div className="grid gap-1 leading-none">
+                          <Label 
+                            htmlFor={`exp-${exp.id}`} 
+                            className="text-xs font-bold uppercase tracking-wider text-foreground cursor-pointer"
+                          >
+                            {exp.title}
+                          </Label>
+                          <p className="text-[11px] text-muted-foreground font-medium">
+                            {exp.subtext}
+                          </p>
+                        </div>
                       </div>
+                      
+                      {/* Sub-checkboxes */}
+                      {selectedTestingTiers.includes(exp.id) && (
+                        <div className={`pl-6 space-y-2 border-l border-border/80 ml-2 py-1 animate-[fadeIn_0.2s_ease-out] ${exp.id === 'baseline' ? 'max-h-[160px] overflow-y-auto pr-1' : ''}`}>
+                          {exp.tests.map((subtest) => (
+                            <div className="flex items-center space-x-2.5" key={subtest}>
+                              <Checkbox 
+                                id={`sub-${subtest}`}
+                                className="rounded border-border w-3.5 h-3.5 data-[state=checked]:bg-primary data-[state=checked]:text-white"
+                                checked={selectedTestingTiers.includes(subtest)}
+                                onCheckedChange={(checked) => {
+                                  let newTiers = [...selectedTestingTiers];
+                                  if (checked) {
+                                    newTiers = [...newTiers, subtest];
+                                  } else {
+                                    newTiers = newTiers.filter(id => id !== subtest);
+                                  }
+                                  setSelectedTestingTiers(newTiers);
+                                  navigate("/specialists", { 
+                                    state: { 
+                                      category: selectedCategory, 
+                                      search: searchLocation, 
+                                      testingTiers: newTiers 
+                                    } 
+                                  });
+                                }}
+                              />
+                              <Label 
+                                htmlFor={`sub-${subtest}`} 
+                                className="text-[11px] text-muted-foreground font-medium cursor-pointer whitespace-nowrap overflow-hidden text-ellipsis mr-1 max-w-[170px]"
+                                title={subtest}
+                              >
+                                {subtest.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}
+                              </Label>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -478,27 +603,94 @@ const SpecialistProfile = () => {
               )}
 
               {/* Testing & Diagnostics Panel */}
-              {specialist.primary_testing_methods && specialist.primary_testing_methods.length > 0 && (
-                <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
-                  <div className="flex items-center gap-3 mb-6">
-                    <TestTube2 className="w-5 h-5 text-primary" />
-                    <h2 className="text-xl md:text-2xl font-bold text-foreground">Testing & Diagnostics</h2>
+              {specialist.primary_testing_methods && specialist.primary_testing_methods.length > 0 && (() => {
+                const foundationalMethods = specialist.primary_testing_methods.filter(m => 
+                  FOUNDATIONAL_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
+                );
+                const baselineMethods = specialist.primary_testing_methods.filter(m => 
+                  BASELINE_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
+                );
+                const advancedMethods = specialist.primary_testing_methods.filter(m => 
+                  ADVANCED_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
+                );
+
+                return (
+                  <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
+                    <div className="flex items-center gap-3 mb-8 border-b border-border/50 pb-4">
+                      <TestTube2 className="w-5 h-5 text-primary" />
+                      <h2 className="text-xl md:text-2xl font-bold text-foreground">Testing & Diagnostics</h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                      {/* Foundational Testing */}
+                      <div className="space-y-4">
+                        <div className="border-b border-primary/20 pb-2">
+                          <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Foundational Testing</h3>
+                          <p className="text-[10px] text-muted-foreground mt-0.5">In-clinic or online</p>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          {foundationalMethods.length > 0 ? (
+                            foundationalMethods.map((method, index) => (
+                              <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
+                                <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
+                                <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
+                              </span>
+                            ))
+                          ) : (
+                            <span className="text-xs text-muted-foreground italic pl-1">None specified</span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Baseline Screening */}
+                      <div className="space-y-4">
+                        <div className="border-b border-primary/20 pb-2">
+                          <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Baseline Screening</h3>
+                          <p className="text-[10px] text-muted-foreground mt-0.5">Rapid finger-prick point-of-care</p>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          {baselineMethods.length > 0 ? (
+                            baselineMethods.map((method, index) => (
+                              <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
+                                <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
+                                <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
+                              </span>
+                            ))
+                          ) : (
+                            <span className="text-xs text-muted-foreground italic pl-1">None specified</span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Advanced Screening */}
+                      <div className="space-y-4">
+                        <div className="border-b border-primary/20 pb-2">
+                          <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Advanced Screening</h3>
+                          <p className="text-[10px] text-muted-foreground mt-0.5">Phlebotomy (where required)</p>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          {advancedMethods.length > 0 ? (
+                            advancedMethods.map((method, index) => (
+                              <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
+                                <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
+                                <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
+                              </span>
+                            ))
+                          ) : (
+                            <span className="text-xs text-muted-foreground italic pl-1">None specified</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {specialist.other_blood_tests && (
+                      <p className="text-xs text-muted-foreground mt-8 leading-relaxed border-t border-border/50 pt-4">
+                        * {specialist.other_blood_tests}
+                      </p>
+                    )}
                   </div>
-                  <div className="flex flex-wrap gap-2.5 mb-4">
-                     {specialist.primary_testing_methods.map((method, index) => (
-                       <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/20">
-                         <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-50" />
-                         {method}
-                       </span>
-                     ))}
-                  </div>
-                  {specialist.other_blood_tests && (
-                    <p className="text-xs text-muted-foreground mt-4 leading-relaxed">
-                      * {specialist.other_blood_tests}
-                    </p>
-                  )}
-                </div>
-              )}
+                );
+              })()}
 
               {/* Credentials Panel */}
               <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
