@@ -405,345 +405,362 @@ const SpecialistProfile = () => {
                 ))}
               </div>
 
-              {/* Hero Profile Panel */}
-              <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
-                <div className="grid md:grid-cols-[280px_1fr] gap-8 items-start relative z-10">
-                  {/* Image Side - Left */}
-                  <div className="flex flex-col gap-4 w-full">
-                    <div className="relative w-full max-w-[280px] mx-auto md:mx-0 aspect-[3/4] rounded-2xl overflow-hidden border-2 border-secondary shadow-sm bg-secondary">
-                      <img
-                        src={activeImage || specialist.image}
-                        alt={specialist.name}
-                        className="w-full h-full object-cover transition-all duration-300"
-                        style={{ objectPosition: specialist.imagePosition || 'center top' }}
-                      />
-                      {/* Acceptance Badge overlay */}
-                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-max bg-background border border-border rounded-full px-3 py-1 flex items-center gap-1.5 shadow-sm">
-                        <span className={`w-2 h-2 rounded-full ${specialist.accepting_new_clients !== false ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`}></span>
-                        <span className="text-[10px] font-bold tracking-wide uppercase text-foreground">
-                          {specialist.accepting_new_clients !== false ? 'Accepting Clients' : 'Waitlist Only'}
+              {/* Unified Profile Card - White Background from Hero to Qualifications */}
+              <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm space-y-8 md:space-y-10">
+                {/* Hero Profile Panel */}
+                <div>
+                  <div className="grid md:grid-cols-[280px_1fr] gap-8 items-start relative z-10">
+                    {/* Image Side - Left */}
+                    <div className="flex flex-col gap-4 w-full">
+                      <div className="relative w-full max-w-[280px] mx-auto md:mx-0 aspect-[3/4] rounded-2xl overflow-hidden border-2 border-secondary shadow-sm bg-secondary">
+                        <img
+                          src={activeImage || specialist.image}
+                          alt={specialist.name}
+                          className="w-full h-full object-cover transition-all duration-300"
+                          style={{ objectPosition: specialist.imagePosition || 'center top' }}
+                        />
+                        {/* Acceptance Badge overlay */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-max bg-background border border-border rounded-full px-3 py-1 flex items-center gap-1.5 shadow-sm">
+                          <span className={`w-2 h-2 rounded-full ${specialist.accepting_new_clients !== false ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`}></span>
+                          <span className="text-[10px] font-bold tracking-wide uppercase text-foreground">
+                            {specialist.accepting_new_clients !== false ? 'Accepting Clients' : 'Waitlist Only'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Info Side - Right */}
+                    <div className="flex flex-col pt-2 md:pt-0">
+                      <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-foreground uppercase mb-2">
+                        {specialist.name}
+                      </h1>
+
+                      {/* Category Badge */}
+                      <div className="mb-3">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-[#9f1e13] border border-primary/20">
+                          {specialist.category}
                         </span>
                       </div>
-                    </div>
-                  </div>
 
-                  {/* Info Side - Right */}
-                  <div className="flex flex-col pt-2 md:pt-0">
-                    <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-foreground uppercase mb-2">
-                      {specialist.name}
-                    </h1>
+                      {/* Professional Title/Role */}
+                      {specialist.role && (
+                        <p className="text-sm md:text-base font-bold text-black uppercase tracking-wider mb-4">
+                          {specialist.role}
+                        </p>
+                      )}
 
-                    {/* Category Badge */}
-                    <div className="mb-3">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-[#9f1e13] border border-primary/20">
-                        {specialist.category}
-                      </span>
-                    </div>
-
-                    {/* Professional Title/Role */}
-                    {specialist.role && (
-                      <p className="text-sm md:text-base font-bold text-black uppercase tracking-wider mb-4">
-                        {specialist.role}
-                      </p>
-                    )}
-
-                    {/* Slick Single-Row Balance Impact Bar */}
-                    {(specialist.first_balance_result || specialist.second_balance_result) && (
-                      <div className="bg-background border border-border/80 shadow-[0_1px_4px_rgba(0,0,0,0.02)] rounded-lg p-2.5 mb-5 flex flex-wrap items-center justify-between gap-3 max-w-md">
-                        <div className="flex items-center gap-2 shrink-0">
-                          <div className="w-6 h-6 rounded-full bg-[#dbd4c9] flex items-center justify-center border border-[#dbd4c9]">
-                            <Activity className="w-3 h-3 text-[#9f1e13]" />
-                          </div>
-                          <div className="flex flex-col">
-                            <span className="text-[10px] font-bold text-gray-900 tracking-wider font-montserrat uppercase leading-none">
-                              Omega 6:3 Balance
-                            </span>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center gap-2 flex-wrap text-[11px]">
-                          {specialist.first_balance_result && (
-                            <div className="flex items-center gap-1">
-                              <span className="text-[9px] uppercase tracking-wider text-muted-foreground font-bold">Initial</span>
-                              <span className="text-[11px] font-extrabold text-gray-900 bg-muted/30 border border-border/60 px-1.5 py-0.5 rounded font-mono">
-                                {specialist.first_balance_result}
+                      {/* Slick Single-Row Balance Impact Bar */}
+                      {(specialist.first_balance_result || specialist.second_balance_result) && (
+                        <div className="bg-background border border-border/80 shadow-[0_1px_4px_rgba(0,0,0,0.02)] rounded-lg p-2.5 mb-5 flex flex-wrap items-center justify-between gap-3 max-w-md">
+                          <div className="flex items-center gap-2 shrink-0">
+                            <div className="w-6 h-6 rounded-full bg-[#dbd4c9] flex items-center justify-center border border-[#dbd4c9]">
+                              <Activity className="w-3 h-3 text-[#9f1e13]" />
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-[10px] font-bold text-gray-900 tracking-wider font-montserrat uppercase leading-none">
+                                Omega 6:3 Balance
                               </span>
                             </div>
-                          )}
+                          </div>
                           
-                          {specialist.first_balance_result && specialist.second_balance_result && (
-                            <ChevronRight className="w-3 h-3 text-muted-foreground/40 shrink-0" />
-                          )}
-                          
-                          {specialist.second_balance_result && (
-                            <div className="flex items-center gap-1">
-                              <span className="text-[9px] uppercase tracking-wider text-emerald-800 font-bold">After</span>
-                              <span className="text-[11px] font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-1.5 py-0.5 rounded font-mono">
-                                {specialist.second_balance_result}
-                              </span>
+                          <div className="flex items-center gap-2 flex-wrap text-[11px]">
+                            {specialist.first_balance_result && (
+                              <div className="flex items-center gap-1">
+                                <span className="text-[9px] uppercase tracking-wider text-muted-foreground font-bold">Initial</span>
+                                <span className="text-[11px] font-extrabold text-gray-900 bg-muted/30 border border-border/60 px-1.5 py-0.5 rounded font-mono">
+                                  {specialist.first_balance_result}
+                                </span>
+                              </div>
+                            )}
+                            
+                            {specialist.first_balance_result && specialist.second_balance_result && (
+                              <ChevronRight className="w-3 h-3 text-muted-foreground/40 shrink-0" />
+                            )}
+                            
+                            {specialist.second_balance_result && (
+                              <div className="flex items-center gap-1">
+                                <span className="text-[9px] uppercase tracking-wider text-emerald-800 font-bold">After</span>
+                                <span className="text-[11px] font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-1.5 py-0.5 rounded font-mono">
+                                  {specialist.second_balance_result}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Location & Experience Cards */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 max-w-xl">
+                        <div className="flex items-center gap-3 bg-background border border-border/80 rounded-lg p-3 shadow-sm">
+                          <MapPin className="w-4 h-4 text-muted-foreground shrink-0" />
+                          <span className="text-xs font-semibold text-zinc-700">{specialist.address || specialist.location || "London, UK"}</span>
+                        </div>
+                        <div className="flex items-center gap-3 bg-background border border-border/80 rounded-lg p-3 shadow-sm">
+                          <RefreshCcw className="w-4 h-4 text-muted-foreground shrink-0" />
+                          <span className="text-xs font-semibold text-zinc-700">{specialist.experience || "10+ Years Exp."}</span>
+                        </div>
+                      </div>
+
+                      {/* Quote Block */}
+                      {specialist.why_joined_tbn && (
+                        <div className="relative pl-4 mb-6 mt-2">
+                          <blockquote className="text-zinc-650 italic text-sm leading-relaxed border-l border-primary/20 pl-4">
+                            "{summarizeQuote(specialist.why_joined_tbn, 50)}"
+                          </blockquote>
+                        </div>
+                      )}
+
+                      {/* Contact Button */}
+                      <div className="mt-4">
+                        <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2.5 h-10 text-xs font-bold tracking-wider uppercase rounded-lg shadow-sm w-max cursor-pointer">
+                          <a href="#contact">Contact Clinic</a>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="border-t border-border/60" />
+
+                {/* Bio & Journey Panel */}
+                <div>
+                  <div className="grid md:grid-cols-2 gap-8 items-start">
+                    {/* Main Bio */}
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">ABOUT SPECIALIST</p>
+                      <h2 className="text-xl md:text-2xl font-bold mb-6 text-foreground uppercase tracking-wider">
+                        PROFESSIONAL BIO
+                      </h2>
+                      <div className="space-y-4 text-muted-foreground leading-relaxed text-sm">
+                        {specialist.bio.map((p, i) => (
+                          <p key={i}>{p}</p>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* First gallery photo (or fallback placeholder) */}
+                    <div className="mt-4 md:mt-0">
+                      {(() => {
+                        const firstGalleryPhoto = (specialist.gallery_image_urls && specialist.gallery_image_urls.length > 0)
+                          ? specialist.gallery_image_urls[0]
+                          : (specialist.secondaryImage || "/placeholder.svg");
+
+                        return (
+                          <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border/85 bg-secondary flex items-center justify-center shadow-sm">
+                            <img
+                              src={firstGalleryPhoto}
+                              alt={`${specialist.name} uploaded photo`}
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Test-Based Nutrition Journey Panel */}
+                {specialist.quote && (
+                  <>
+                    <div className="border-t border-border/60" />
+                    <div>
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
+                          TEST-BASED NUTRITION JOURNEY
+                        </p>
+                        <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
+                          THIS IS WHY I PARTNERED WITH TBN
+                        </h2>
+                      </div>
+                      <div className="bg-secondary/15 border border-border/40 rounded-2xl p-6 relative">
+                        <span className="text-4xl font-serif text-border/60 absolute -top-4 -left-3">"</span>
+                        <p className="text-muted-foreground leading-relaxed italic relative z-10 text-sm">
+                          {specialist.quote}
+                        </p>
+                        <span className="text-4xl font-serif text-border/60 absolute -bottom-6 -right-1">"</span>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* Testimonials Panel */}
+                {specialist.testimonials && specialist.testimonials.length > 0 && (
+                  <>
+                    <div className="border-t border-border/60" />
+                    <div>
+                      <div className="mb-6">
+                        <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
+                          TESTIMONIALS
+                        </p>
+                        <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
+                          PROVEN IMPACT
+                        </h2>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-6">
+                        {specialist.testimonials.map((t) => (
+                          <div
+                            key={t.name}
+                            className="bg-secondary/15 border border-border/50 rounded-2xl p-6 relative flex flex-col shadow-sm"
+                          >
+                            <Quote className="absolute top-4 right-4 w-6 h-6 text-primary/10 rotate-180" />
+                            <p className="text-muted-foreground leading-relaxed italic relative z-10 mb-6 text-xs">"{t.text}"</p>
+                            
+                            <div className="mt-auto">
+                              <div className="flex items-center gap-1 mb-2">
+                                {[...Array(5)].map((_, i) => (
+                                  <Star key={i} className="w-3.5 h-3.5 fill-primary text-primary" />
+                                ))}
+                              </div>
+                              <p className="text-[10px] font-bold text-foreground uppercase tracking-wider">{t.name}</p>
+                              {t.title && <p className="text-[10px] text-muted-foreground mt-0.5">{t.title}</p>}
                             </div>
-                          )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* Conditions & Support Panel */}
+                {specialist.specialization_tags && specialist.specialization_tags.length > 0 && (
+                  <>
+                    <div className="border-t border-border/60" />
+                    <div className="py-4 md:py-6">
+                      <div className="flex items-center gap-3 mb-6">
+                        <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+                        <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">CONDITIONS & SUPPORT</h2>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3.5 gap-x-8">
+                         {specialist.specialization_tags.map((tag, index) => (
+                           <div key={`${tag}-${index}`} className="flex items-start gap-2.5 text-[14px] text-muted-foreground leading-normal">
+                             <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                             <span>{tag}</span>
+                           </div>
+                         ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* Testing & Diagnostics Panel */}
+                {specialist.primary_testing_methods && specialist.primary_testing_methods.length > 0 && (() => {
+                  const foundationalMethods = specialist.primary_testing_methods.filter(m => 
+                    FOUNDATIONAL_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
+                  );
+                  const baselineMethods = specialist.primary_testing_methods.filter(m => 
+                    BASELINE_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
+                  );
+                  const advancedMethods = specialist.primary_testing_methods.filter(m => 
+                    ADVANCED_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
+                  );
+
+                  return (
+                    <>
+                      <div className="border-t border-border/60" />
+                      <div>
+                        <div className="flex items-center gap-3 mb-8 border-b border-border/50 pb-4">
+                          <TestTube2 className="w-5 h-5 text-primary" />
+                          <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">TESTING & DIAGNOSTICS</h2>
                         </div>
-                      </div>
-                    )}
 
-                    {/* Location & Experience Cards */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 max-w-xl">
-                      <div className="flex items-center gap-3 bg-background border border-border/80 rounded-lg p-3 shadow-sm">
-                        <MapPin className="w-4 h-4 text-muted-foreground shrink-0" />
-                        <span className="text-xs font-semibold text-zinc-700">{specialist.address || specialist.location || "London, UK"}</span>
-                      </div>
-                      <div className="flex items-center gap-3 bg-background border border-border/80 rounded-lg p-3 shadow-sm">
-                        <RefreshCcw className="w-4 h-4 text-muted-foreground shrink-0" />
-                        <span className="text-xs font-semibold text-zinc-700">{specialist.experience || "10+ Years Exp."}</span>
-                      </div>
-                    </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                          {/* Foundational Testing */}
+                          <div className="space-y-4">
+                            <div className="border-b border-primary/20 pb-2">
+                              <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Foundational Testing</h3>
+                              <p className="text-[10px] text-muted-foreground mt-0.5">In-clinic or online</p>
+                            </div>
+                            <div className="flex flex-col gap-2">
+                              {foundationalMethods.length > 0 ? (
+                                foundationalMethods.map((method, index) => (
+                                  <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
+                                    <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
+                                    <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
+                                  </span>
+                                ))
+                              ) : (
+                                <span className="text-xs text-muted-foreground italic pl-1">None specified</span>
+                              )}
+                            </div>
+                          </div>
 
-                    {/* Quote Block */}
-                    {specialist.why_joined_tbn && (
-                      <div className="relative pl-4 mb-6 mt-2">
-                        <blockquote className="text-zinc-650 italic text-sm leading-relaxed border-l border-primary/20 pl-4">
-                          "{summarizeQuote(specialist.why_joined_tbn, 50)}"
-                        </blockquote>
-                      </div>
-                    )}
+                          {/* Baseline Screening */}
+                          <div className="space-y-4">
+                            <div className="border-b border-primary/20 pb-2">
+                              <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Baseline Screening</h3>
+                              <p className="text-[10px] text-muted-foreground mt-0.5">Rapid finger-prick point-of-care</p>
+                            </div>
+                            <div className="flex flex-col gap-2">
+                              {baselineMethods.length > 0 ? (
+                                baselineMethods.map((method, index) => (
+                                  <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
+                                    <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
+                                    <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
+                                  </span>
+                                ))
+                              ) : (
+                                <span className="text-xs text-muted-foreground italic pl-1">None specified</span>
+                              )}
+                            </div>
+                          </div>
 
-                    {/* Contact Button */}
-                    <div className="mt-4">
-                      <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2.5 h-10 text-xs font-bold tracking-wider uppercase rounded-lg shadow-sm w-max cursor-pointer">
-                        <a href="#contact">Contact Clinic</a>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bio & Journey Panel */}
-              <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
-                <div className="grid md:grid-cols-2 gap-8 items-start">
-                  {/* Main Bio */}
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">ABOUT SPECIALIST</p>
-                    <h2 className="text-xl md:text-2xl font-bold mb-6 text-foreground uppercase tracking-wider">
-                      PROFESSIONAL BIO
-                    </h2>
-                    <div className="space-y-4 text-muted-foreground leading-relaxed text-sm">
-                      {specialist.bio.map((p, i) => (
-                        <p key={i}>{p}</p>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  {/* First gallery photo (or fallback placeholder) */}
-                  <div className="mt-4 md:mt-0">
-                    {(() => {
-                      const firstGalleryPhoto = (specialist.gallery_image_urls && specialist.gallery_image_urls.length > 0)
-                        ? specialist.gallery_image_urls[0]
-                        : (specialist.secondaryImage || "/placeholder.svg");
-
-                      return (
-                        <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border/85 bg-secondary flex items-center justify-center shadow-sm">
-                          <img
-                            src={firstGalleryPhoto}
-                            alt={`${specialist.name} uploaded photo`}
-                            className="w-full h-full object-contain"
-                          />
+                          {/* Advanced Screening */}
+                          <div className="space-y-4">
+                            <div className="border-b border-primary/20 pb-2">
+                              <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Advanced Screening</h3>
+                              <p className="text-[10px] text-muted-foreground mt-0.5">Phlebotomy (where required)</p>
+                            </div>
+                            <div className="flex flex-col gap-2">
+                              {advancedMethods.length > 0 ? (
+                                advancedMethods.map((method, index) => (
+                                  <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
+                                    <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
+                                    <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
+                                  </span>
+                                ))
+                              ) : (
+                                <span className="text-xs text-muted-foreground italic pl-1">None specified</span>
+                              )}
+                            </div>
+                          </div>
                         </div>
-                      );
-                    })()}
-                  </div>
-                </div>
-              </div>
 
-              {/* Test-Based Nutrition Journey Panel */}
-              {specialist.quote && (
-                <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
+                        {specialist.other_blood_tests && (
+                          <p className="text-xs text-muted-foreground mt-8 leading-relaxed border-t border-border/50 pt-4">
+                            * {specialist.other_blood_tests}
+                          </p>
+                        )}
+                      </div>
+                    </>
+                  );
+                })()}
+
+                {/* Credentials Panel */}
+                <div className="border-t border-border/60 pt-2">
                   <div className="mb-6">
                     <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
-                      TEST-BASED NUTRITION JOURNEY
+                      CREDENTIALS & EXPERTISE
                     </p>
                     <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
-                      THIS IS WHY I PARTNERED WITH TBN
+                      QUALIFICATIONS
                     </h2>
                   </div>
-                  <div className="bg-secondary/15 border border-border/40 rounded-2xl p-6 relative">
-                    <span className="text-4xl font-serif text-border/60 absolute -top-4 -left-3">"</span>
-                    <p className="text-muted-foreground leading-relaxed italic relative z-10 text-sm">
-                      {specialist.quote}
-                    </p>
-                    <span className="text-4xl font-serif text-border/60 absolute -bottom-6 -right-1">"</span>
-                  </div>
-                </div>
-              )}
-
-              {/* Testimonials Panel */}
-              {specialist.testimonials && specialist.testimonials.length > 0 && (
-                <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
-                  <div className="mb-6">
-                    <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
-                      TESTIMONIALS
-                    </p>
-                    <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
-                      PROVEN IMPACT
-                    </h2>
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {specialist.testimonials.map((t) => (
+                  <div className="grid sm:grid-cols-2 gap-4 max-w-3xl">
+                    {specialist.credentials
+                      .flatMap(cred => cred.split(/[•,]/).map(c => c.trim()))
+                      .filter(Boolean)
+                      .map((cred, idx) => (
                       <div
-                        key={t.name}
-                        className="bg-secondary/15 border border-border/50 rounded-2xl p-6 relative flex flex-col shadow-sm"
+                        key={`${cred}-${idx}`}
+                        className="bg-background border border-border/60 rounded-xl p-4 flex items-center gap-3 hover:border-[#bdae97] transition-colors"
                       >
-                        <Quote className="absolute top-4 right-4 w-6 h-6 text-primary/10 rotate-180" />
-                        <p className="text-muted-foreground leading-relaxed italic relative z-10 mb-6 text-xs">"{t.text}"</p>
-                        
-                        <div className="mt-auto">
-                          <div className="flex items-center gap-1 mb-2">
-                            {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="w-3.5 h-3.5 fill-primary text-primary" />
-                            ))}
-                          </div>
-                          <p className="text-[10px] font-bold text-foreground uppercase tracking-wider">{t.name}</p>
-                          {t.title && <p className="text-[10px] text-muted-foreground mt-0.5">{t.title}</p>}
+                        <div className="w-8 h-8 shrink-0 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center">
+                          <CheckCircle2 className="w-4 h-4 text-primary" />
                         </div>
+                        <p className="font-medium text-muted-foreground text-xs leading-snug">{cred}</p>
                       </div>
                     ))}
                   </div>
-                </div>
-              )}
-
-              {/* Conditions & Support Panel */}
-              {specialist.specialization_tags && specialist.specialization_tags.length > 0 && (
-                <div className="py-4 md:py-6">
-                  <div className="flex items-center gap-3 mb-6">
-                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                    <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">CONDITIONS & SUPPORT</h2>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3.5 gap-x-8">
-                     {specialist.specialization_tags.map((tag, index) => (
-                       <div key={`${tag}-${index}`} className="flex items-start gap-2.5 text-[14px] text-muted-foreground leading-normal">
-                         <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                         <span>{tag}</span>
-                       </div>
-                     ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Testing & Diagnostics Panel */}
-              {specialist.primary_testing_methods && specialist.primary_testing_methods.length > 0 && (() => {
-                const foundationalMethods = specialist.primary_testing_methods.filter(m => 
-                  FOUNDATIONAL_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
-                );
-                const baselineMethods = specialist.primary_testing_methods.filter(m => 
-                  BASELINE_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
-                );
-                const advancedMethods = specialist.primary_testing_methods.filter(m => 
-                  ADVANCED_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
-                );
-
-                return (
-                  <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
-                    <div className="flex items-center gap-3 mb-8 border-b border-border/50 pb-4">
-                      <TestTube2 className="w-5 h-5 text-primary" />
-                      <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">TESTING & DIAGNOSTICS</h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-                      {/* Foundational Testing */}
-                      <div className="space-y-4">
-                        <div className="border-b border-primary/20 pb-2">
-                          <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Foundational Testing</h3>
-                          <p className="text-[10px] text-muted-foreground mt-0.5">In-clinic or online</p>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          {foundationalMethods.length > 0 ? (
-                            foundationalMethods.map((method, index) => (
-                              <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
-                                <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
-                                <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
-                              </span>
-                            ))
-                          ) : (
-                            <span className="text-xs text-muted-foreground italic pl-1">None specified</span>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Baseline Screening */}
-                      <div className="space-y-4">
-                        <div className="border-b border-primary/20 pb-2">
-                          <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Baseline Screening</h3>
-                          <p className="text-[10px] text-muted-foreground mt-0.5">Rapid finger-prick point-of-care</p>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          {baselineMethods.length > 0 ? (
-                            baselineMethods.map((method, index) => (
-                              <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
-                                <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
-                                <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
-                              </span>
-                            ))
-                          ) : (
-                            <span className="text-xs text-muted-foreground italic pl-1">None specified</span>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Advanced Screening */}
-                      <div className="space-y-4">
-                        <div className="border-b border-primary/20 pb-2">
-                          <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Advanced Screening</h3>
-                          <p className="text-[10px] text-muted-foreground mt-0.5">Phlebotomy (where required)</p>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          {advancedMethods.length > 0 ? (
-                            advancedMethods.map((method, index) => (
-                              <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
-                                <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
-                                <span className="truncate" title={method}>{method.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}</span>
-                              </span>
-                            ))
-                          ) : (
-                            <span className="text-xs text-muted-foreground italic pl-1">None specified</span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {specialist.other_blood_tests && (
-                      <p className="text-xs text-muted-foreground mt-8 leading-relaxed border-t border-border/50 pt-4">
-                        * {specialist.other_blood_tests}
-                      </p>
-                    )}
-                  </div>
-                );
-              })()}
-
-              {/* Credentials Panel */}
-              <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
-                <div className="mb-6">
-                  <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
-                    CREDENTIALS & EXPERTISE
-                  </p>
-                  <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
-                    QUALIFICATIONS
-                  </h2>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4 max-w-3xl">
-                  {specialist.credentials
-                    .flatMap(cred => cred.split(/[•,]/).map(c => c.trim()))
-                    .filter(Boolean)
-                    .map((cred, idx) => (
-                    <div
-                      key={`${cred}-${idx}`}
-                      className="bg-background border border-border/60 rounded-xl p-4 flex items-center gap-3 hover:border-[#bdae97] transition-colors"
-                    >
-                      <div className="w-8 h-8 shrink-0 rounded-full bg-primary/5 border border-primary/10 flex items-center justify-center">
-                        <CheckCircle2 className="w-4 h-4 text-primary" />
-                      </div>
-                      <p className="font-medium text-muted-foreground text-xs leading-snug">{cred}</p>
-                    </div>
-                  ))}
                 </div>
               </div>
 
