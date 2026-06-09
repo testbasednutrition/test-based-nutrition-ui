@@ -613,16 +613,17 @@ const SpecialistProfile = () => {
 
               {/* Conditions & Support Panel */}
               {specialist.specialization_tags && specialist.specialization_tags.length > 0 && (
-                <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
+                <div className="py-4 md:py-6">
                   <div className="flex items-center gap-3 mb-6">
-                    <CheckCircle2 className="w-5 h-5 text-primary" />
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
                     <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">CONDITIONS & SUPPORT</h2>
                   </div>
-                  <div className="flex flex-wrap gap-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3.5 gap-x-8">
                      {specialist.specialization_tags.map((tag, index) => (
-                       <span key={`${tag}-${index}`} className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-transparent text-muted-foreground border border-border/80">
-                         {tag}
-                       </span>
+                       <div key={`${tag}-${index}`} className="flex items-start gap-2.5 text-[14px] text-muted-foreground leading-normal">
+                         <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                         <span>{tag}</span>
+                       </div>
                      ))}
                   </div>
                 </div>
