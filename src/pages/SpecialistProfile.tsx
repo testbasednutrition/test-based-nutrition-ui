@@ -642,7 +642,7 @@ const SpecialistProfile = () => {
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
                         <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">CONDITIONS & SUPPORT</h2>
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3.5 gap-x-8">
+                      <div className="grid grid-cols-2 gap-y-3.5 gap-x-8">
                          {specialist.specialization_tags.map((tag, index) => (
                            <div key={`${tag}-${index}`} className="flex items-start gap-2.5 text-[14px] text-muted-foreground leading-normal">
                              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
@@ -696,7 +696,7 @@ const SpecialistProfile = () => {
                                 <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Foundational Testing</h3>
                                 <p className="text-[10px] text-muted-foreground mt-0.5">In-clinic or online</p>
                               </div>
-                              <div className="flex flex-col gap-2">
+                              <div className="grid grid-cols-2 gap-2">
                                 {foundationalMethods.map((method, index) => (
                                   <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
                                     <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
@@ -714,7 +714,7 @@ const SpecialistProfile = () => {
                                 <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Baseline Screening</h3>
                                 <p className="text-[10px] text-muted-foreground mt-0.5">Rapid finger-prick point-of-care</p>
                               </div>
-                              <div className="flex flex-col gap-2">
+                              <div className="grid grid-cols-2 gap-2">
                                 {baselineMethods.map((method, index) => (
                                   <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
                                     <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
@@ -732,7 +732,7 @@ const SpecialistProfile = () => {
                                 <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Advanced Screening</h3>
                                 <p className="text-[10px] text-muted-foreground mt-0.5">Phlebotomy (where required)</p>
                               </div>
-                              <div className="flex flex-col gap-2">
+                              <div className="grid grid-cols-2 gap-2">
                                 {advancedMethods.map((method, index) => (
                                   <span key={`${method}-${index}`} className="inline-flex items-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary/5 text-muted-foreground border border-primary/10 justify-start">
                                     <TestTube2 className="w-3.5 h-3.5 mr-2 opacity-60 text-primary shrink-0" />
