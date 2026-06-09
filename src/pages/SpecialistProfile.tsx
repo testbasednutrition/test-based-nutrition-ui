@@ -590,10 +590,10 @@ const SpecialistProfile = () => {
                     <div>
                       <div className="mb-6">
                         <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
-                          TESTIMONIALS
+                          CLIENT RESULTS
                         </p>
                         <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
-                          PROVEN IMPACT
+                          TESTIMONIALS
                         </h2>
                       </div>
                       <div className="grid md:grid-cols-2 gap-6">
