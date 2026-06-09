@@ -568,7 +568,7 @@ const SpecialistProfile = () => {
                 <div className="bg-background border border-border/85 rounded-2xl p-6 md:p-8 shadow-sm">
                   <div className="mb-6">
                     <p className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
-                      CLIENT RESULTS
+                      TESTIMONIALS
                     </p>
                     <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">
                       PROVEN IMPACT
