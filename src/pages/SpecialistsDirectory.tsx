@@ -195,12 +195,18 @@ const SpecialistsDirectory = () => {
       (s.location && s.location.toLowerCase().includes(locationSearch.toLowerCase())) ||
       (s.address && s.address.toLowerCase().includes(locationSearch.toLowerCase()));
     
-    const matchesTestingTiers = selectedTestingTiers.length === 0 || selectedTestingTiers.some(tier => {
-      const mappedTests = TIER_MAPPINGS[tier] || [];
-      return s.primary_testing_methods && s.primary_testing_methods.some(method => {
-        const cleanMethod = method.trim().toLowerCase();
-        return mappedTests.some(testName => testName.toLowerCase() === cleanMethod);
-      });
+    const matchesTestingTiers = selectedTestingTiers.length === 0 || selectedTestingTiers.some(tierOrTest => {
+      if (tierOrTest === "foundational" || tierOrTest === "baseline" || tierOrTest === "advanced") {
+        const mappedTests = TIER_MAPPINGS[tierOrTest] || [];
+        return s.primary_testing_methods && s.primary_testing_methods.some(method => {
+          const cleanMethod = method.trim().toLowerCase();
+          return mappedTests.some(testName => testName.toLowerCase() === cleanMethod);
+        });
+      } else {
+        return s.primary_testing_methods && s.primary_testing_methods.some(method => {
+          return method.trim().toLowerCase() === tierOrTest.toLowerCase();
+        });
+      }
     });
 
     return matchesCategory && matchesLocation && matchesTestingTiers;
@@ -336,34 +342,89 @@ const SpecialistsDirectory = () => {
                 <h4 className="font-semibold text-sm">Testing Expertise</h4>
                 <div className="space-y-4">
                   {[
-                    { id: "foundational", title: "Foundational Testing", subtext: "In-clinic or online" },
-                    { id: "baseline", title: "Baseline Screening", subtext: "Rapid finger-prick point-of-care" },
-                    { id: "advanced", title: "Advanced Screening", subtext: "Phlebotomy (where required)" }
+                    { id: "foundational", title: "Foundational Testing", subtext: "In-clinic or online", tests: ["Omega Balance", "Gut Microbiome", "Intolerance Testing"] },
+                    { 
+                      id: "baseline", 
+                      title: "Baseline Screening", 
+                      subtext: "Rapid finger-prick point-of-care", 
+                      tests: [
+                        "Vitamin D Levels (FP)",
+                        "HbA1c - Diabetes (FP)",
+                        "hS-CRP Heart Screening (FP)",
+                        "CRP Inflammation (FP)",
+                        "RF Rheumatoid Screening (FP)",
+                        "Cortisol Stress Hormone (FP)",
+                        "Ferritin Iron Levels (FP)",
+                        "Cystatin C Kidney Screening (FP)",
+                        "HCG+B Pregnancy Indication (FP)",
+                        "AMH Ovarian Reserve (FP)",
+                        "Progesterone Ovulation (FP)",
+                        "Folate (FP)",
+                        "NT-proBNP Heart Monitoring (VBD)",
+                        "TSH Thyroid Screening (VBD)",
+                        "FSH Menopause (VBD)",
+                        "Vitamin B12 Levels (VBD+C)",
+                        "Testosterone (VBD+C)",
+                        "RSV/Influenza A/B (NS)"
+                      ] 
+                    },
+                    { id: "advanced", title: "Advanced Screening", subtext: "Phlebotomy (where required)", tests: ["Testosterone", "Thyroid (TSH)", "Vitamin B12", "FSH Menopause"] }
                   ].map((exp) => (
-                    <div className="flex items-start space-x-3" key={exp.id}>
-                      <Checkbox 
-                        id={`exp-${exp.id}`} 
-                        className="rounded border-border mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:text-white" 
-                        checked={selectedTestingTiers.includes(exp.id)}
-                        onCheckedChange={(checked) => {
-                          if (checked) {
-                            setSelectedTestingTiers(prev => [...prev, exp.id]);
-                          } else {
-                            setSelectedTestingTiers(prev => prev.filter(id => id !== exp.id));
-                          }
-                        }}
-                      />
-                      <div className="grid gap-1 leading-none">
-                        <Label 
-                          htmlFor={`exp-${exp.id}`} 
-                          className="text-xs font-bold uppercase tracking-wider text-foreground cursor-pointer"
-                        >
-                          {exp.title}
-                        </Label>
-                        <p className="text-[11px] text-muted-foreground font-medium">
-                          {exp.subtext}
-                        </p>
+                    <div className="space-y-2" key={exp.id}>
+                      <div className="flex items-start space-x-3">
+                        <Checkbox 
+                          id={`exp-${exp.id}`} 
+                          className="rounded border-border mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:text-white" 
+                          checked={selectedTestingTiers.includes(exp.id)}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              setSelectedTestingTiers(prev => [...prev, exp.id]);
+                            } else {
+                              setSelectedTestingTiers(prev => prev.filter(id => id !== exp.id && !exp.tests.includes(id)));
+                            }
+                          }}
+                        />
+                        <div className="grid gap-1 leading-none">
+                          <Label 
+                            htmlFor={`exp-${exp.id}`} 
+                            className="text-xs font-bold uppercase tracking-wider text-foreground cursor-pointer"
+                          >
+                            {exp.title}
+                          </Label>
+                          <p className="text-[11px] text-muted-foreground font-medium">
+                            {exp.subtext}
+                          </p>
+                        </div>
                       </div>
+                      
+                      {/* Sub-checkboxes */}
+                      {selectedTestingTiers.includes(exp.id) && (
+                        <div className={`pl-6 space-y-2 border-l border-border/80 ml-2 py-1 animate-[fadeIn_0.2s_ease-out] ${exp.id === 'baseline' ? 'max-h-[160px] overflow-y-auto pr-1' : ''}`}>
+                          {exp.tests.map((subtest) => (
+                            <div className="flex items-center space-x-2.5" key={subtest}>
+                              <Checkbox 
+                                id={`sub-${subtest}`}
+                                className="rounded border-border w-3.5 h-3.5 data-[state=checked]:bg-primary data-[state=checked]:text-white"
+                                checked={selectedTestingTiers.includes(subtest)}
+                                onCheckedChange={(checked) => {
+                                  if (checked) {
+                                    setSelectedTestingTiers(prev => [...prev, subtest]);
+                                  } else {
+                                    setSelectedTestingTiers(prev => prev.filter(id => id !== subtest));
+                                  }
+                                }}
+                              />
+                              <Label 
+                                htmlFor={`sub-${subtest}`} 
+                                className="text-[11px] text-muted-foreground font-medium cursor-pointer whitespace-nowrap overflow-hidden text-ellipsis mr-1 max-w-[170px]"
+                                title={subtest}
+                              >
+                                {subtest.replace(/ \((FP|VBD|VBD\+C|NS)\)$/, '')}
+                              </Label>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
