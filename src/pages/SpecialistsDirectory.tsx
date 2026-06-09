@@ -143,6 +143,30 @@ const TIER_MAPPINGS: Record<string, string[]> = {
   ]
 };
 
+const TEST_EQUIVALENTS: Record<string, string[]> = {
+  "Omega Balance": ["Omega Balance", "Finger Prick Balance Testing (Omega 6:3)"],
+  "Finger Prick Balance Testing (Omega 6:3)": ["Omega Balance", "Finger Prick Balance Testing (Omega 6:3)"],
+  "Gut Microbiome": ["Gut Microbiome", "Finger Prick Gut Health Testing"],
+  "Finger Prick Gut Health Testing": ["Gut Microbiome", "Finger Prick Gut Health Testing"],
+  "Vitamin D Levels (FP)": ["Vitamin D Levels (FP)", "Vitamin D"],
+  "Vitamin D": ["Vitamin D Levels (FP)", "Vitamin D"],
+  "HbA1c - Diabetes (FP)": ["HbA1c - Diabetes (FP)", "HbA1c"],
+  "HbA1c": ["HbA1c - Diabetes (FP)", "HbA1c"],
+  "CRP Inflammation (FP)": ["CRP Inflammation (FP)", "CRP / hs-CRP", "CRP/hs-CRP", "CRP"],
+  "CRP / hs-CRP": ["CRP Inflammation (FP)", "CRP / hs-CRP", "CRP/hs-CRP", "CRP"],
+  "CRP/hs-CRP": ["CRP Inflammation (FP)", "CRP / hs-CRP", "CRP/hs-CRP", "CRP"],
+  "CRP": ["CRP Inflammation (FP)", "CRP / hs-CRP", "CRP/hs-CRP", "CRP"],
+  "hS-CRP Heart Screening (FP)": ["hS-CRP Heart Screening (FP)", "CRP / hs-CRP", "CRP/hs-CRP"],
+  "Ferritin Iron Levels (FP)": ["Ferritin Iron Levels (FP)", "Ferritin"],
+  "Ferritin": ["Ferritin Iron Levels (FP)", "Ferritin"],
+  "Cystatin C Kidney Screening (FP)": ["Cystatin C Kidney Screening (FP)", "Cystatin C"],
+  "Cystatin C": ["Cystatin C Kidney Screening (FP)", "Cystatin C"],
+  "Progesterone Ovulation (FP)": ["Progesterone Ovulation (FP)", "Progesterone"],
+  "Progesterone": ["Progesterone Ovulation (FP)", "Progesterone"],
+  "Folate (FP)": ["Folate (FP)", "Folate"],
+  "Folate": ["Folate (FP)", "Folate"]
+};
+
 const SpecialistsDirectory = () => {
   const location = useLocation();
   const state = location.state as { category?: SpecialistCategory; search?: string; testingTier?: string; testingTiers?: string[] } | null;
@@ -205,8 +229,10 @@ const SpecialistsDirectory = () => {
           return mappedTests.some(testName => testName.toLowerCase() === cleanMethod);
         });
       } else {
+        const equivalents = TEST_EQUIVALENTS[tierOrTest] || [tierOrTest];
+        const lowerEquivalents = equivalents.map(e => e.toLowerCase().trim());
         return s.primary_testing_methods && s.primary_testing_methods.some(method => {
-          return method.trim().toLowerCase() === tierOrTest.toLowerCase();
+          return lowerEquivalents.includes(method.trim().toLowerCase());
         });
       }
     });
