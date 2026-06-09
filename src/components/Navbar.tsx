@@ -252,6 +252,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
   const [mobileTbnMethodOpen, setMobileTbnMethodOpen] = useState(false);
   const [mobileClinicsOpen, setMobileClinicsOpen] = useState(false);
   const [mobilePartnerOpen, setMobilePartnerOpen] = useState(false);
+  const [mobileActivePathwaySection, setMobileActivePathwaySection] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -523,44 +524,67 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 <ChevronDown className={`w-4 h-4 transition-transform ${mobileMegaOpen ? "rotate-180" : ""}`} />
               </button>
               {mobileMegaOpen && (
-                <div className="pl-4 pb-2 grid grid-cols-2 gap-4">
-                  {megaMenuData.map((col) => (
-                    <div key={col.heading}>
-                      <h4 className={`text-xs font-bold uppercase tracking-widest mb-2 ${
-                        col.href && currentPath === col.href ? "text-black font-extrabold" : "text-foreground"
-                      }`}>
-                        {col.heading}
-                      </h4>
-                      {col.items.length > 0 ? (
-                        <ul className="space-y-1.5">
-                          {col.items.map((item) => {
-                            const route = treatmentRoutes[item];
-                            const active = route ? isRouteActive(route) : false;
-                            return (
-                              <li key={item}>
-                                <button
-                                  className={`text-sm text-left transition-colors ${
-                                    active
-                                      ? "text-black font-extrabold"
-                                      : "text-muted-foreground hover:text-primary"
-                                  }`}
-                                  onClick={() => {
-                                    setMobileOpen(false);
-                                    setMobileMegaOpen(false);
-                                    if (route) navigate(route);
-                                  }}
-                                >
-                                  {item}
-                                </button>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      ) : (
-                        <p className="text-xs text-muted-foreground italic">Coming soon</p>
-                      )}
-                    </div>
-                  ))}
+                <div className="pl-4 pb-2 flex flex-col gap-3 border-l border-border/80 ml-1">
+                  {megaMenuData.map((col) => {
+                    const isSectionOpen = mobileActivePathwaySection === col.heading;
+                    return (
+                      <div key={col.heading} className="flex flex-col gap-1.5">
+                        <button
+                          onClick={() => setMobileActivePathwaySection(isSectionOpen ? null : col.heading)}
+                          className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-foreground hover:text-primary py-1 text-left w-full"
+                        >
+                          <span>{col.heading}</span>
+                          <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform ${isSectionOpen ? "rotate-180" : ""}`} />
+                        </button>
+                        
+                        {isSectionOpen && (
+                          <div className="pl-3 pb-1.5 flex flex-col gap-2 border-l border-border/50 ml-1 mt-0.5 animate-[fadeIn_0.2s_ease-out]">
+                            {/* Main pathway overview link */}
+                            {col.href && (
+                              <button
+                                className="text-[13px] text-left font-medium transition-colors text-primary hover:underline"
+                                onClick={() => {
+                                  setMobileOpen(false);
+                                  setMobileMegaOpen(false);
+                                  setMobileActivePathwaySection(null);
+                                  navigate(col.href);
+                                }}
+                              >
+                                View Pathway Overview
+                              </button>
+                            )}
+                            
+                            {col.items.length > 0 ? (
+                              col.items.map((item) => {
+                                const route = treatmentRoutes[item];
+                                const active = route ? isRouteActive(route) : false;
+                                return (
+                                  <button
+                                    key={item}
+                                    className={`text-[13px] text-left transition-colors ${
+                                      active
+                                        ? "text-black font-extrabold"
+                                        : "text-muted-foreground hover:text-primary"
+                                    }`}
+                                    onClick={() => {
+                                      setMobileOpen(false);
+                                      setMobileMegaOpen(false);
+                                      setMobileActivePathwaySection(null);
+                                      if (route) navigate(route);
+                                    }}
+                                  >
+                                    {item}
+                                  </button>
+                                );
+                              })
+                            ) : (
+                              <span className="text-xs text-muted-foreground italic pl-1">Coming soon</span>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
 

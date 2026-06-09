@@ -15,7 +15,18 @@ import {
   LucideIcon,
   ChevronLeft,
   ChevronRight,
-  MoreHorizontal
+  MoreHorizontal,
+  ChevronDown,
+  Check,
+  Brain,
+  Heart,
+  Activity,
+  Shield,
+  Sparkles,
+  Zap,
+  Smile,
+  Flame,
+  TestTube2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,6 +39,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuCheckboxItem,
+} from "@/components/ui/dropdown-menu";
 import { Label } from "@/components/ui/label";
 
 const SearchField = ({ 
@@ -167,6 +187,28 @@ const TEST_EQUIVALENTS: Record<string, string[]> = {
   "Folate": ["Folate (FP)", "Folate"]
 };
 
+const CATEGORY_ICONS: Record<string, LucideIcon> = {
+  "All": Activity,
+  "Women's Health": Heart,
+  "Men's Health": Shield,
+  "Children's Health": Smile,
+  "Neurodivergence": Brain,
+  "Skin Health": Sparkles,
+  "Sports Performance": Zap,
+  "Pain, Fatigue & Inflammation": Flame,
+};
+
+const getTestingButtonLabel = (selected: string[]) => {
+  const activeTiers = selected.filter(id => id === "foundational" || id === "baseline" || id === "advanced");
+  if (activeTiers.length === 0) return "ALL TESTING";
+  if (activeTiers.length === 1) {
+    if (activeTiers[0] === "foundational") return "FOUNDATIONAL";
+    if (activeTiers[0] === "baseline") return "BASELINE";
+    if (activeTiers[0] === "advanced") return "ADVANCED";
+  }
+  return `${activeTiers.length} TIERS SELECTED`;
+};
+
 const SpecialistsDirectory = () => {
   const location = useLocation();
   const state = location.state as { category?: SpecialistCategory; search?: string; testingTier?: string; testingTiers?: string[] } | null;
@@ -180,10 +222,43 @@ const SpecialistsDirectory = () => {
   });
   const [currentPage, setCurrentPage] = useState(1);
 
+  const handleTestingTierToggle = (tierId: string) => {
+    const isSelected = selectedTestingTiers.includes(tierId);
+    if (!isSelected) {
+      setSelectedTestingTiers(prev => [...prev, tierId]);
+    } else {
+      const testsToRemove = tierId === "foundational" 
+        ? ["Omega Balance", "Gut Microbiome", "Intolerance Testing"]
+        : tierId === "baseline"
+        ? [
+            "Vitamin D Levels (FP)",
+            "HbA1c - Diabetes (FP)",
+            "hS-CRP Heart Screening (FP)",
+            "CRP Inflammation (FP)",
+            "RF Rheumatoid Screening (FP)",
+            "Cortisol Stress Hormone (FP)",
+            "Ferritin Iron Levels (FP)",
+            "Cystatin C Kidney Screening (FP)",
+            "HCG+B Pregnancy Indication (FP)",
+            "AMH Ovarian Reserve (FP)",
+            "Progesterone Ovulation (FP)",
+            "Folate (FP)",
+            "NT-proBNP Heart Monitoring (VBD)",
+            "TSH Thyroid Screening (VBD)",
+            "FSH Menopause (VBD)",
+            "Vitamin B12 Levels (VBD+C)",
+            "Testosterone (VBD+C)",
+            "RSV/Influenza A/B (NS)"
+          ]
+        : ["Testosterone", "Thyroid (TSH)", "Vitamin B12", "FSH Menopause"];
+      setSelectedTestingTiers(prev => prev.filter(id => id !== tierId && !testsToRemove.includes(id)));
+    }
+  };
+
   // Reset page when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [activeCategory, locationSearch]);
+  }, [activeCategory, locationSearch, selectedTestingTiers]);
   
   const { data: specialists = [], isLoading, error } = useQuery({
     queryKey: ['specialists'],
@@ -253,8 +328,8 @@ const SpecialistsDirectory = () => {
       {/* Header & Search Area */}
       <section className="pt-24 md:pt-32 pb-8 bg-background border-b border-border">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8">
-            Find the right specialist for your health journey
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8 text-center">
+            Find the right TBN Specialist <br /> for your health journey.
           </h1>
 
           {/* Search Bar container */}
@@ -464,30 +539,113 @@ const SpecialistsDirectory = () => {
             {/* Results Grid */}
             <div className="flex-1 space-y-6 overflow-hidden">
               
-              {/* Mobile Filter Tabs */}
-              <div className="flex lg:hidden flex-wrap pb-2 gap-2 w-full border-b border-border">
-                {[
-                  "All",
-                  "Women's Health", 
-                  "Men's Health", 
-                  "Children's Health", 
-                  "Neurodivergence",
-                  "Skin Health",
-                  "Sports Performance",
-                  "Pain, Fatigue & Inflammation"
-                ].map((spec) => (
-                  <button
-                    key={spec}
-                    onClick={() => setActiveCategory(spec as SpecialistCategory)}
-                    className={`whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                      activeCategory === spec 
-                        ? "bg-primary text-primary-foreground" 
-                        : "bg-background text-muted-foreground hover:bg-secondary border border-border"
-                    }`}
-                  >
-                    {spec}
-                  </button>
-                ))}
+              {/* Mobile Filter Dropdowns */}
+              <div className="flex lg:hidden pb-3 border-b border-border w-full gap-2">
+                {/* Left: Pathway Dropdown */}
+                <div className="flex-1 min-w-0">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="w-full flex items-center justify-between px-2.5 py-1.5 h-9 bg-background border-border text-foreground font-semibold text-[10px] sm:text-xs tracking-wider uppercase rounded-lg hover:bg-secondary/20 shadow-sm transition-all"
+                      >
+                        <div className="flex items-center gap-1.5 min-w-0 truncate">
+                          {(() => {
+                            const IconComponent = CATEGORY_ICONS[activeCategory] || Activity;
+                            return <IconComponent className="w-3.5 h-3.5 text-primary shrink-0" />;
+                          })()}
+                          <span className="truncate">
+                            {activeCategory === "All" ? "ALL PATHWAYS" : activeCategory.toUpperCase()}
+                          </span>
+                        </div>
+                        <ChevronDown className="w-3 h-3 text-muted-foreground shrink-0 ml-1" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="w-[var(--radix-dropdown-menu-trigger-width)] bg-background border border-border p-1.5 rounded-xl shadow-md z-50">
+                      <DropdownMenuLabel className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase px-2.5 py-1.5">
+                        Select Pathway
+                      </DropdownMenuLabel>
+                      <DropdownMenuSeparator className="bg-border/60 my-1" />
+                      {[
+                        "All",
+                        "Women's Health", 
+                        "Men's Health", 
+                        "Children's Health", 
+                        "Neurodivergence",
+                        "Skin Health",
+                        "Sports Performance",
+                        "Pain, Fatigue & Inflammation"
+                      ].map((spec) => {
+                        const IconComponent = CATEGORY_ICONS[spec] || Activity;
+                        const isSelected = activeCategory === spec;
+                        return (
+                          <DropdownMenuItem
+                            key={spec}
+                            onClick={() => setActiveCategory(spec as SpecialistCategory)}
+                            className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
+                              isSelected 
+                                ? "bg-primary/10 text-primary" 
+                                : "text-muted-foreground hover:bg-secondary/40 hover:text-foreground"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <IconComponent className={`w-3.5 h-3.5 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
+                              <span>{spec === "All" ? "All Pathways" : spec}</span>
+                            </div>
+                            {isSelected && <Check className="w-3.5 h-3.5 text-primary shrink-0" />}
+                          </DropdownMenuItem>
+                        );
+                      })}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+
+                {/* Right: Testing Categories Dropdown */}
+                <div className="flex-1 min-w-0">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="w-full flex items-center justify-between px-2.5 py-1.5 h-9 bg-background border-border text-foreground font-semibold text-[10px] sm:text-xs tracking-wider uppercase rounded-lg hover:bg-secondary/20 shadow-sm transition-all"
+                      >
+                        <div className="flex items-center gap-1.5 min-w-0 truncate">
+                          <TestTube2 className="w-3.5 h-3.5 text-primary shrink-0" />
+                          <span className="truncate">
+                            {getTestingButtonLabel(selectedTestingTiers)}
+                          </span>
+                        </div>
+                        <ChevronDown className="w-3 h-3 text-muted-foreground shrink-0 ml-1" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-[var(--radix-dropdown-menu-trigger-width)] bg-background border border-border p-1.5 rounded-xl shadow-md z-50">
+                      <DropdownMenuLabel className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase px-2.5 py-1.5">
+                        Testing Categories
+                      </DropdownMenuLabel>
+                      <DropdownMenuSeparator className="bg-border/60 my-1" />
+                      {[
+                        { id: "foundational", title: "Foundational Testing" },
+                        { id: "baseline", title: "Baseline Screening" },
+                        { id: "advanced", title: "Advanced Screening" }
+                      ].map((tier) => {
+                        const isSelected = selectedTestingTiers.includes(tier.id);
+                        return (
+                          <DropdownMenuCheckboxItem
+                            key={tier.id}
+                            checked={isSelected}
+                            onCheckedChange={() => handleTestingTierToggle(tier.id)}
+                            className={`flex items-center px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
+                              isSelected 
+                                ? "bg-primary/10 text-primary focus:bg-primary/10 focus:text-primary" 
+                                : "text-muted-foreground hover:bg-secondary/40 hover:text-foreground"
+                            }`}
+                          >
+                            <span>{tier.title}</span>
+                          </DropdownMenuCheckboxItem>
+                        );
+                      })}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
               </div>
 
               {/* Results Header */}
@@ -521,7 +679,7 @@ const SpecialistsDirectory = () => {
                     className="flex flex-col overflow-hidden bg-background border border-border rounded-2xl shadow-sm hover:shadow-md transition-shadow relative"
                   >
                     {/* Top Image Box */}
-                    <Link to={`/specialists/${specialist.slug}`} className="block w-full h-32 sm:h-56 bg-secondary relative group cursor-pointer overflow-hidden">
+                    <Link to={`/specialists/${specialist.slug}`} className="block w-full aspect-[3/4] bg-secondary relative group cursor-pointer overflow-hidden">
                       <img
                         src={specialist.image}
                         alt={specialist.name}

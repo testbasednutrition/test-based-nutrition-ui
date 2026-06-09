@@ -3,7 +3,35 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, MapPin, Phone, Mail, Quote, Award, BadgeCheck, Video, RefreshCcw, Star, Activity, CheckCircle2, ChevronRight, TestTube2, Search, Image as ImageIcon, X, ChevronLeft } from "lucide-react";
+import { 
+  ArrowLeft, 
+  MapPin, 
+  Phone, 
+  Mail, 
+  Quote, 
+  Award, 
+  BadgeCheck, 
+  Video, 
+  RefreshCcw, 
+  Star, 
+  Activity, 
+  CheckCircle2, 
+  ChevronRight, 
+  TestTube2, 
+  Search, 
+  Image as ImageIcon, 
+  X, 
+  ChevronLeft,
+  ChevronDown,
+  Check,
+  Brain,
+  Heart,
+  Shield,
+  Sparkles,
+  Zap,
+  Smile,
+  Flame
+} from "lucide-react";
 import NotFound from "./NotFound";
 import { useQuery } from "@tanstack/react-query";
 import { fetchSpecialists } from "@/lib/api";
@@ -18,6 +46,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuCheckboxItem,
+} from "@/components/ui/dropdown-menu";
 
 
 const summarizeQuote = (text?: string, maxWords = 50): string => {
@@ -87,6 +124,28 @@ const formatExperience = (exp?: string | number) => {
   return trimmed;
 };
 
+const CATEGORY_ICONS: Record<string, React.ComponentType<any>> = {
+  "All": Activity,
+  "Women's Health": Heart,
+  "Men's Health": Shield,
+  "Children's Health": Smile,
+  "Neurodivergence": Brain,
+  "Skin Health": Sparkles,
+  "Sports Performance": Zap,
+  "Pain, Fatigue & Inflammation": Flame,
+};
+
+const getTestingButtonLabel = (selected: string[]) => {
+  const activeTiers = selected.filter(id => id === "foundational" || id === "baseline" || id === "advanced");
+  if (activeTiers.length === 0) return "ALL TESTING";
+  if (activeTiers.length === 1) {
+    if (activeTiers[0] === "foundational") return "FOUNDATIONAL";
+    if (activeTiers[0] === "baseline") return "BASELINE";
+    if (activeTiers[0] === "advanced") return "ADVANCED";
+  }
+  return `${activeTiers.length} TIERS SELECTED`;
+};
+
 const SpecialistProfile = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -119,6 +178,48 @@ const SpecialistProfile = () => {
   const handleCategorySelect = (category: SpecialistCategory) => {
     setSelectedCategory(category);
     navigate("/specialists", { state: { category, search: searchLocation } });
+  };
+
+  const handleTestingTierToggle = (tierId: string) => {
+    const isSelected = selectedTestingTiers.includes(tierId);
+    let newTiers = [...selectedTestingTiers];
+    if (!isSelected) {
+      newTiers = [...newTiers, tierId];
+    } else {
+      const testsToRemove = tierId === "foundational" 
+        ? ["Omega Balance", "Gut Microbiome", "Intolerance Testing"]
+        : tierId === "baseline"
+        ? [
+            "Vitamin D Levels (FP)",
+            "HbA1c - Diabetes (FP)",
+            "hS-CRP Heart Screening (FP)",
+            "CRP Inflammation (FP)",
+            "RF Rheumatoid Screening (FP)",
+            "Cortisol Stress Hormone (FP)",
+            "Ferritin Iron Levels (FP)",
+            "Cystatin C Kidney Screening (FP)",
+            "HCG+B Pregnancy Indication (FP)",
+            "AMH Ovarian Reserve (FP)",
+            "Progesterone Ovulation (FP)",
+            "Folate (FP)",
+            "NT-proBNP Heart Monitoring (VBD)",
+            "TSH Thyroid Screening (VBD)",
+            "FSH Menopause (VBD)",
+            "Vitamin B12 Levels (VBD+C)",
+            "Testosterone (VBD+C)",
+            "RSV/Influenza A/B (NS)"
+          ]
+        : ["Testosterone", "Thyroid (TSH)", "Vitamin B12", "FSH Menopause"];
+      newTiers = newTiers.filter(id => id !== tierId && !testsToRemove.includes(id));
+    }
+    setSelectedTestingTiers(newTiers);
+    navigate("/specialists", { 
+      state: { 
+        category: selectedCategory, 
+        search: searchLocation, 
+        testingTiers: newTiers 
+      } 
+    });
   };
 
   const handleSearchSubmit = () => {
@@ -177,59 +278,61 @@ const SpecialistProfile = () => {
               Back to Specialists Directory
             </button>
           </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8">
-            Find the right specialist for your health journey
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8 text-center">
+            Find the right TBN Specialist <br /> for your health journey.
           </h1>
 
           {/* Search Bar container */}
-          <div className="flex flex-col md:flex-row items-stretch bg-background border border-border rounded-xl shadow-sm overflow-hidden transition-shadow focus-within:shadow-md focus-within:border-primary/20">
-            <div className="flex bg-background items-center gap-2.5 px-4 py-2 flex-1 min-w-[200px] border-b md:border-b-0 md:border-r border-border hover:bg-secondary/30 transition-colors">
-              <Search className="w-4 h-4 text-muted-foreground" />
-              <div className="flex flex-col w-full gap-0.5">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
-                  TBN Pathway
-                </span>
-                <Select value={selectedCategory} onValueChange={(val) => handleCategorySelect(val as SpecialistCategory)}>
-                  <SelectTrigger className="h-5 p-0 border-none bg-transparent shadow-none focus:ring-0 text-sm font-semibold px-0 text-foreground text-left">
-                    <SelectValue placeholder="Select Pathway" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="All">All Pathways</SelectItem>
-                    <SelectItem value="Women's Health">Women's Health</SelectItem>
-                    <SelectItem value="Men's Health">Men's Health</SelectItem>
-                    <SelectItem value="Children's Health">Children's Health</SelectItem>
-                    <SelectItem value="Neurodivergence">Neurodivergence</SelectItem>
-                    <SelectItem value="Skin Health">Skin Health</SelectItem>
-                    <SelectItem value="Sports Performance">Sports Performance</SelectItem>
-                    <SelectItem value="Pain, Fatigue & Inflammation">Pain, Fatigue & Inflammation</SelectItem>
-                  </SelectContent>
-                </Select>
+          <div className="flex flex-col md:flex-row items-stretch bg-background border border-border rounded-2xl md:rounded-xl shadow-sm overflow-hidden md:h-14">
+            <div className="flex flex-row flex-1 border-b md:border-b-0 border-border h-12 md:h-auto">
+              <div className="flex bg-background items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 flex-1 min-w-0 border-r border-border hover:bg-secondary/35 transition-colors">
+                <Search className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                <div className="flex flex-col w-full gap-0 min-w-0">
+                  <span className="text-[8px] font-bold uppercase tracking-widest text-muted-foreground/85 leading-none hidden md:block">
+                    TBN Pathway
+                  </span>
+                  <Select value={selectedCategory} onValueChange={(val) => handleCategorySelect(val as SpecialistCategory)}>
+                    <SelectTrigger className="h-5 p-0 border-none bg-transparent shadow-none focus:ring-0 text-xs md:text-sm font-semibold px-0 text-foreground text-left min-w-0 truncate">
+                      <SelectValue placeholder="Select Pathway" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="All">All Pathways</SelectItem>
+                      <SelectItem value="Women's Health">Women's Health</SelectItem>
+                      <SelectItem value="Men's Health">Men's Health</SelectItem>
+                      <SelectItem value="Children's Health">Children's Health</SelectItem>
+                      <SelectItem value="Neurodivergence">Neurodivergence</SelectItem>
+                      <SelectItem value="Skin Health">Skin Health</SelectItem>
+                      <SelectItem value="Sports Performance">Sports Performance</SelectItem>
+                      <SelectItem value="Pain, Fatigue & Inflammation">Pain, Fatigue & Inflammation</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-            </div>
-            
-            <div className="flex bg-background items-center gap-2.5 px-4 py-2 flex-1 min-w-[200px] border-b md:border-b-0 md:border-r border-border hover:bg-secondary/30 transition-colors">
-              <MapPin className="w-4 h-4 text-muted-foreground" />
-              <div className="flex flex-col w-full gap-0.5">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
-                  Location
-                </span>
-                <input 
-                  type="text" 
-                  value={searchLocation}
-                  onChange={(e) => setSearchLocation(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") handleSearchSubmit();
-                  }}
-                  placeholder="e.g. Essex" 
-                  className="text-sm font-semibold bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground/50 w-full p-0 h-5"
-                />
+              
+              <div className="flex bg-background items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 flex-1 min-w-0 hover:bg-secondary/35 transition-colors">
+                <MapPin className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                <div className="flex flex-col w-full gap-0 min-w-0">
+                  <span className="text-[8px] font-bold uppercase tracking-widest text-muted-foreground/85 leading-none hidden md:block">
+                    Location
+                  </span>
+                  <input 
+                    type="text" 
+                    value={searchLocation}
+                    onChange={(e) => setSearchLocation(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleSearchSubmit();
+                    }}
+                    placeholder="e.g. Essex" 
+                    className="text-xs md:text-sm font-semibold bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground/50 w-full p-0 h-5 min-w-0"
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="p-1.5 flex items-center bg-background border-t md:border-t-0 md:border-l md:border-border">
-              <Button onClick={handleSearchSubmit} className="w-full md:w-auto px-6 py-3 md:py-0 h-full md:h-10 text-[14px] font-bold whitespace-nowrap bg-primary hover:bg-primary/90 text-primary-foreground rounded-md shadow-sm flex gap-2">
+            <div className="p-1 flex items-center bg-background shrink-0 w-full md:w-auto h-12 md:h-full md:border-l md:border-border">
+              <Button onClick={handleSearchSubmit} className="w-full md:w-auto h-full px-5 text-xs md:text-sm font-bold whitespace-nowrap bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-sm flex items-center justify-center gap-1.5">
                 <Search className="w-3.5 h-3.5" />
-                Search
+                <span>Search</span>
               </Button>
             </div>
           </div>
@@ -411,30 +514,113 @@ const SpecialistProfile = () => {
             {/* Right Column: Specialist Profile Content */}
             <div className="flex-1 space-y-8 overflow-hidden">
               
-              {/* Mobile Filter Tabs */}
-              <div className="flex lg:hidden overflow-x-auto pb-4 gap-2 no-scrollbar w-full border-b border-border">
-                {[
-                  "All",
-                  "Women's Health", 
-                  "Men's Health", 
-                  "Children's Health", 
-                  "Neurodivergence",
-                  "Skin Health",
-                  "Sports Performance",
-                  "Pain, Fatigue & Inflammation"
-                ].map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => handleCategorySelect(category as SpecialistCategory)}
-                    className={`whitespace-nowrap px-4 py-2 rounded-full text-[13px] font-semibold transition-colors ${
-                      selectedCategory === category 
-                        ? "bg-primary text-primary-foreground" 
-                        : "bg-background text-muted-foreground hover:bg-secondary border border-border transition-all"
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
+              {/* Mobile Filter Dropdowns */}
+              <div className="flex lg:hidden pb-3 border-b border-border w-full gap-2">
+                {/* Left: Pathway Dropdown */}
+                <div className="flex-1 min-w-0">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="w-full flex items-center justify-between px-2.5 py-1.5 h-9 bg-background border-border text-foreground font-semibold text-[10px] sm:text-xs tracking-wider uppercase rounded-lg hover:bg-secondary/20 shadow-sm transition-all"
+                      >
+                        <div className="flex items-center gap-1.5 min-w-0 truncate">
+                          {(() => {
+                            const IconComponent = CATEGORY_ICONS[selectedCategory] || Activity;
+                            return <IconComponent className="w-3.5 h-3.5 text-primary shrink-0" />;
+                          })()}
+                          <span className="truncate">
+                            {selectedCategory === "All" ? "ALL PATHWAYS" : selectedCategory.toUpperCase()}
+                          </span>
+                        </div>
+                        <ChevronDown className="w-3 h-3 text-muted-foreground shrink-0 ml-1" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="w-[var(--radix-dropdown-menu-trigger-width)] bg-background border border-border p-1.5 rounded-xl shadow-md z-50">
+                      <DropdownMenuLabel className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase px-2.5 py-1.5">
+                        Select Pathway
+                      </DropdownMenuLabel>
+                      <DropdownMenuSeparator className="bg-border/60 my-1" />
+                      {[
+                        "All",
+                        "Women's Health", 
+                        "Men's Health", 
+                        "Children's Health", 
+                        "Neurodivergence",
+                        "Skin Health",
+                        "Sports Performance",
+                        "Pain, Fatigue & Inflammation"
+                      ].map((spec) => {
+                        const IconComponent = CATEGORY_ICONS[spec] || Activity;
+                        const isSelected = selectedCategory === spec;
+                        return (
+                          <DropdownMenuItem
+                            key={spec}
+                            onClick={() => handleCategorySelect(spec as SpecialistCategory)}
+                            className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
+                              isSelected 
+                                ? "bg-primary/10 text-primary" 
+                                : "text-muted-foreground hover:bg-secondary/40 hover:text-foreground"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <IconComponent className={`w-3.5 h-3.5 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
+                              <span>{spec === "All" ? "All Pathways" : spec}</span>
+                            </div>
+                            {isSelected && <Check className="w-3.5 h-3.5 text-primary shrink-0" />}
+                          </DropdownMenuItem>
+                        );
+                      })}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+
+                {/* Right: Testing Categories Dropdown */}
+                <div className="flex-1 min-w-0">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="w-full flex items-center justify-between px-2.5 py-1.5 h-9 bg-background border-border text-foreground font-semibold text-[10px] sm:text-xs tracking-wider uppercase rounded-lg hover:bg-secondary/20 shadow-sm transition-all"
+                      >
+                        <div className="flex items-center gap-1.5 min-w-0 truncate">
+                          <TestTube2 className="w-3.5 h-3.5 text-primary shrink-0" />
+                          <span className="truncate">
+                            {getTestingButtonLabel(selectedTestingTiers)}
+                          </span>
+                        </div>
+                        <ChevronDown className="w-3 h-3 text-muted-foreground shrink-0 ml-1" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-[var(--radix-dropdown-menu-trigger-width)] bg-background border border-border p-1.5 rounded-xl shadow-md z-50">
+                      <DropdownMenuLabel className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase px-2.5 py-1.5">
+                        Testing Categories
+                      </DropdownMenuLabel>
+                      <DropdownMenuSeparator className="bg-border/60 my-1" />
+                      {[
+                        { id: "foundational", title: "Foundational Testing" },
+                        { id: "baseline", title: "Baseline Screening" },
+                        { id: "advanced", title: "Advanced Screening" }
+                      ].map((tier) => {
+                        const isSelected = selectedTestingTiers.includes(tier.id);
+                        return (
+                          <DropdownMenuCheckboxItem
+                            key={tier.id}
+                            checked={isSelected}
+                            onCheckedChange={() => handleTestingTierToggle(tier.id)}
+                            className={`flex items-center px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
+                              isSelected 
+                                ? "bg-primary/10 text-primary focus:bg-primary/10 focus:text-primary" 
+                                : "text-muted-foreground hover:bg-secondary/40 hover:text-foreground"
+                            }`}
+                          >
+                            <span>{tier.title}</span>
+                          </DropdownMenuCheckboxItem>
+                        );
+                      })}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
               </div>
 
               {/* Unified Profile Card - White Background from Hero to Qualifications */}
