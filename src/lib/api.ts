@@ -79,6 +79,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
           { text: row.testimonial_3, name: 'Client' },
         ].filter(t => !!t.text),
         accepting_new_clients: row.accepting_new_clients,
+        experience: row.experience,
         newsHubContributions: row.news_hub_article_interest,
       };
     });

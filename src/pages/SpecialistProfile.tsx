@@ -75,6 +75,18 @@ const ADVANCED_TESTS = [
   "FSH"
 ];
 
+const formatExperience = (exp?: string | number) => {
+  if (!exp) return "10+ Years Exp.";
+  const trimmed = String(exp).trim();
+  if (/^\d+$/.test(trimmed)) {
+    return `${trimmed}+ Years Exp.`;
+  }
+  if (/^\d+\+$/.test(trimmed)) {
+    return `${trimmed} Years Exp.`;
+  }
+  return trimmed;
+};
+
 const SpecialistProfile = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -497,7 +509,7 @@ const SpecialistProfile = () => {
                         </div>
                         <div className="flex items-center gap-3 bg-background border border-border/80 rounded-lg p-3 shadow-sm">
                           <RefreshCcw className="w-4 h-4 text-muted-foreground shrink-0" />
-                          <span className="text-xs font-semibold text-zinc-700">{specialist.experience || "10+ Years Exp."}</span>
+                          <span className="text-xs font-semibold text-zinc-700">{formatExperience(specialist.experience)}</span>
                         </div>
                       </div>
 
