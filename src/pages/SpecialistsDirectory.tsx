@@ -103,12 +103,55 @@ const extractTown = (address?: string): string => {
   return cleanedParts[cleanedParts.length - 1];
 };
 
+const TIER_MAPPINGS: Record<string, string[]> = {
+  foundational: ["Foundational Testing", "Omega Balance", "Gut Microbiome", "Intolerance Testing"],
+  baseline: [
+    "Baseline Screening",
+    "Vitamin D",
+    "Vitamin D Levels (FP)",
+    "HbA1c",
+    "HbA1c - Diabetes (FP)",
+    "hS-CRP Heart Screening (FP)",
+    "CRP / hs-CRP",
+    "CRP Inflammation (FP)",
+    "RF Rheumatoid Screening (FP)",
+    "Cortisol Stress Hormone (FP)",
+    "Ferritin",
+    "Ferritin Iron Levels (FP)",
+    "Cystatin C",
+    "Cystatin C Kidney Screening (FP)",
+    "HCG+B Pregnancy Indication (FP)",
+    "AMH Ovarian Reserve (FP)",
+    "Progesterone",
+    "Progesterone Ovulation (FP)",
+    "Folate",
+    "Folate (FP)",
+    "NT-proBNP Heart Monitoring (VBD)",
+    "TSH Thyroid Screening (VBD)",
+    "FSH Menopause (VBD)",
+    "FSH",
+    "Vitamin B12 Levels (VBD+C)",
+    "Testosterone (VBD+C)",
+    "RSV/Influenza A/B (NS)"
+  ],
+  advanced: [
+    "Advanced Screening",
+    "Testosterone",
+    "Thyroid (TSH)",
+    "Vitamin B12",
+    "FSH Menopause"
+  ]
+};
+
 const SpecialistsDirectory = () => {
   const location = useLocation();
-  const state = location.state as { category?: SpecialistCategory; search?: string } | null;
+  const state = location.state as { category?: SpecialistCategory; search?: string; testingTier?: string } | null;
 
   const [activeCategory, setActiveCategory] = useState<SpecialistCategory>(state?.category || "All");
   const [locationSearch, setLocationSearch] = useState(state?.search || "");
+  const [selectedTestingTiers, setSelectedTestingTiers] = useState<string[]>(
+    state?.testingTier ? [state.testingTier] : []
+  );
   const [currentPage, setCurrentPage] = useState(1);
 
   // Reset page when filters change
@@ -152,7 +195,15 @@ const SpecialistsDirectory = () => {
       (s.location && s.location.toLowerCase().includes(locationSearch.toLowerCase())) ||
       (s.address && s.address.toLowerCase().includes(locationSearch.toLowerCase()));
     
-    return matchesCategory && matchesLocation;
+    const matchesTestingTiers = selectedTestingTiers.length === 0 || selectedTestingTiers.some(tier => {
+      const mappedTests = TIER_MAPPINGS[tier] || [];
+      return s.primary_testing_methods && s.primary_testing_methods.some(method => {
+        const cleanMethod = method.trim().toLowerCase();
+        return mappedTests.some(testName => testName.toLowerCase() === cleanMethod);
+      });
+    });
+
+    return matchesCategory && matchesLocation && matchesTestingTiers;
   });
 
   const ITEMS_PER_PAGE = 24;
@@ -227,7 +278,15 @@ const SpecialistsDirectory = () => {
             <aside className="hidden lg:block w-full lg:w-64 shrink-0 space-y-8">
               <div className="flex items-center justify-between pb-4 border-b border-border">
                 <h3 className="font-semibold text-sm tracking-widest uppercase">Filters</h3>
-                <button className="text-muted-foreground hover:text-primary transition-colors">
+                <button 
+                  onClick={() => {
+                    setActiveCategory("All");
+                    setLocationSearch("");
+                    setSelectedTestingTiers([]);
+                  }}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  title="Clear all filters"
+                >
                   <RefreshCcw className="w-4 h-4" />
                 </button>
               </div>
@@ -285,6 +344,14 @@ const SpecialistsDirectory = () => {
                       <Checkbox 
                         id={`exp-${exp.id}`} 
                         className="rounded border-border mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:text-white" 
+                        checked={selectedTestingTiers.includes(exp.id)}
+                        onCheckedChange={(checked) => {
+                          if (checked) {
+                            setSelectedTestingTiers(prev => [...prev, exp.id]);
+                          } else {
+                            setSelectedTestingTiers(prev => prev.filter(id => id !== exp.id));
+                          }
+                        }}
                       />
                       <div className="grid gap-1 leading-none">
                         <Label 

@@ -215,8 +215,10 @@ const SpecialistProfile = () => {
                       <Checkbox 
                         id={`exp-${exp.id}`} 
                         className="rounded border-border mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:text-white" 
-                        onCheckedChange={() => {
-                          navigate("/specialists", { state: { category: selectedCategory, search: searchLocation } });
+                        onCheckedChange={(checked) => {
+                          if (checked) {
+                            navigate("/specialists", { state: { category: selectedCategory, search: searchLocation, testingTier: exp.id } });
+                          }
                         }}
                       />
                       <div className="grid gap-1 leading-none">
