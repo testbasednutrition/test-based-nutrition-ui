@@ -362,7 +362,7 @@ const SpecialistsDirectory = () => {
               <SearchField 
                 icon={MapPin} 
                 label="Location" 
-                placeholder="e.g. Essex" 
+                placeholder="County" 
                 value={locationSearch}
                 onChange={setLocationSearch}
               />
@@ -433,7 +433,7 @@ const SpecialistsDirectory = () => {
               <div className="space-y-4">
                 <h4 className="font-semibold text-sm">Location</h4>
                 <Input 
-                  placeholder="Enter city or region" 
+                  placeholder="County" 
                   className="bg-background border-border text-sm h-10" 
                   value={locationSearch}
                   onChange={(e) => setLocationSearch(e.target.value)}

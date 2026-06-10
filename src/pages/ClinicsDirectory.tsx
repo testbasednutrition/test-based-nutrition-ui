@@ -119,7 +119,7 @@ const ClinicsDirectory = () => {
               <SearchField 
                 icon={MapPin} 
                 label="Location" 
-                placeholder="e.g. Essex" 
+                placeholder="County" 
                 value={locationSearch}
                 onChange={setLocationSearch}
               />

@@ -322,7 +322,7 @@ const SpecialistProfile = () => {
                     onKeyDown={(e) => {
                       if (e.key === "Enter") handleSearchSubmit();
                     }}
-                    placeholder="e.g. Essex" 
+                    placeholder="County" 
                     className="text-xs md:text-sm font-semibold bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground/50 w-full p-0 h-5 min-w-0"
                   />
                 </div>
@@ -389,7 +389,7 @@ const SpecialistProfile = () => {
                <div className="space-y-4">
                  <h4 className="font-bold text-xs uppercase tracking-wider text-foreground">LOCATION</h4>
                  <Input 
-                   placeholder="Enter city or region" 
+                   placeholder="County" 
                    className="bg-background border-border text-sm h-10" 
                    value={searchLocation}
                    onChange={(e) => setSearchLocation(e.target.value)}
