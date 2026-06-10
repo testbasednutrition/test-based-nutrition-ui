@@ -163,6 +163,7 @@ const SpecialistProfile = () => {
   const [selectedTestingTiers, setSelectedTestingTiers] = useState<string[]>([]);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const testimonialScrollRef = useRef<HTMLDivElement>(null);
 
   const scrollSlider = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
@@ -242,6 +243,30 @@ const SpecialistProfile = () => {
         } else {
           sliderRef.current.scrollTo({
             left: scrollLeft + 300,
+            behavior: 'smooth'
+          });
+        }
+      }
+    }, 4500);
+
+    return () => clearInterval(interval);
+  }, [specialist]);
+
+  // Automatic scrolling for testimonials
+  useEffect(() => {
+    if (!specialist?.testimonials || specialist.testimonials.length <= 1) return;
+
+    const interval = setInterval(() => {
+      if (testimonialScrollRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = testimonialScrollRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 15) {
+          testimonialScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          const card = testimonialScrollRef.current.firstElementChild as HTMLElement;
+          const cardWidth = card ? card.offsetWidth : clientWidth;
+          const gap = 24; // gap-6 is 24px
+          testimonialScrollRef.current.scrollTo({
+            left: scrollLeft + cardWidth + gap,
             behavior: 'smooth'
           });
         }
@@ -826,11 +851,15 @@ const SpecialistProfile = () => {
                           TESTIMONIALS
                         </h2>
                       </div>
-                      <div className="grid md:grid-cols-2 gap-6">
-                        {specialist.testimonials.map((t) => (
+                      <div 
+                        ref={testimonialScrollRef}
+                        className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-4"
+                        style={{ scrollbarWidth: 'none' }}
+                      >
+                        {specialist.testimonials.map((t, idx) => (
                           <div
-                            key={t.name}
-                            className="bg-secondary/15 border border-border/50 rounded-2xl p-6 relative flex flex-col shadow-sm"
+                            key={`${t.name}-${idx}`}
+                            className="w-[280px] sm:w-[350px] md:w-[450px] shrink-0 bg-secondary/15 border border-border/50 rounded-2xl p-6 relative flex flex-col shadow-sm snap-start"
                           >
                             <Quote className="absolute top-4 right-4 w-6 h-6 text-primary/10 rotate-180" />
                             <p className="text-muted-foreground leading-relaxed italic relative z-10 mb-6 text-xs">"{t.text}"</p>
