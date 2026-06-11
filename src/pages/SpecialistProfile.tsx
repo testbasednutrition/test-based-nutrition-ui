@@ -662,18 +662,21 @@ const SpecialistProfile = () => {
                     <h1 className="text-2xl font-extrabold tracking-tight text-foreground uppercase mb-2">
                       {specialist.name}
                     </h1>
-                    {specialist.specificTitle && (
-                      <div className="flex flex-wrap justify-center gap-2">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-[#9f1e13] border border-primary/20">
+                    <div className="flex flex-wrap justify-center gap-2">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-[#9f1e13] border border-primary/20">
+                        {specialist.category}
+                      </span>
+                      {specialist.specificTitle && (
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary text-secondary-foreground border border-border">
                           {specialist.specificTitle}
                         </span>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
 
                   <div className="grid md:grid-cols-[280px_1fr] gap-8 items-start relative z-10">
                     {/* Image Side - Left */}
-                    <div className="flex flex-col gap-6 w-full">
+                    <div className="flex flex-col gap-4 w-full">
                       <div className="relative w-full max-w-[280px] mx-auto md:mx-0 aspect-[3/4] rounded-2xl overflow-hidden border-2 border-secondary shadow-sm bg-secondary">
                         <img
                           src={activeImage || specialist.image}
@@ -689,39 +692,6 @@ const SpecialistProfile = () => {
                           </span>
                         </div>
                       </div>
-
-                      {/* Profession Section */}
-                      <div className="bg-secondary/15 border border-border/70 rounded-2xl p-4.5 space-y-3.5 max-w-[280px] mx-auto md:mx-0 w-full shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
-                        <div>
-                          <p className="text-[9px] font-bold uppercase tracking-[0.15em] text-primary/75 mb-0.5">PRACTITIONER</p>
-                          <h3 className="text-xs font-extrabold text-foreground uppercase tracking-wider font-montserrat">Profession</h3>
-                        </div>
-                        <div className="space-y-1.5">
-                          {[
-                            "Medical & Clinical Specialists",
-                            "Allied Health & Clinical Practitioners",
-                            "Functional, Preventative & Holistic Health",
-                            "Health, Lifestyle, Mindset & Beauty",
-                            "Mental Health & Neuro-Specialists",
-                            "Sports Performance & Rehabilitation",
-                            "TBN Leadership Team"
-                          ].map((cat) => {
-                            const isCurrent = specialist.category === cat;
-                            return (
-                              <div 
-                                key={cat}
-                                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border transition-all duration-200 ${
-                                  isCurrent
-                                    ? "bg-primary/10 text-primary border-primary/20 shadow-sm"
-                                    : "bg-transparent text-muted-foreground/50 border-transparent"
-                                }`}
-                              >
-                                <span className="truncate" title={cat}>{cat}</span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
                     </div>
 
                     {/* Info Side - Right */}
@@ -730,14 +700,17 @@ const SpecialistProfile = () => {
                         {specialist.name}
                       </h1>
 
-                      {/* Specific Title badge at the top */}
-                      {specialist.specificTitle && (
-                        <div className="hidden md:flex items-center gap-2 mb-3">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-[#9f1e13] border border-primary/20">
+                      {/* Category Badge & Specific Title */}
+                      <div className="hidden md:flex items-center gap-2 mb-3">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-[#9f1e13] border border-primary/20">
+                          {specialist.category}
+                        </span>
+                        {specialist.specificTitle && (
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary text-secondary-foreground border border-border">
                             {specialist.specificTitle}
                           </span>
-                        </div>
-                      )}
+                        )}
+                      </div>
 
                       {/* Professional Title/Role */}
                       {specialist.role && (

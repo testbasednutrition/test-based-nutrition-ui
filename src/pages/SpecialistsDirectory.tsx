@@ -216,6 +216,7 @@ const SpecialistsDirectory = () => {
   const state = location.state as { category?: SpecialistCategory; search?: string; testingTier?: string; testingTiers?: string[] } | null;
 
   const [activeCategory, setActiveCategory] = useState<SpecialistCategory>(state?.category || "All");
+  const [activeProfession, setActiveProfession] = useState<string>("All");
   const [locationSearch, setLocationSearch] = useState(state?.search || "");
   const [selectedTestingTiers, setSelectedTestingTiers] = useState<string[]>(() => {
     if (state?.testingTiers) return state.testingTiers;
@@ -260,7 +261,7 @@ const SpecialistsDirectory = () => {
   // Reset page when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [activeCategory, locationSearch, selectedTestingTiers]);
+  }, [activeCategory, activeProfession, locationSearch, selectedTestingTiers]);
   
   const { data: specialists = [], isLoading, error } = useQuery({
     queryKey: ['specialists'],
@@ -293,6 +294,11 @@ const SpecialistsDirectory = () => {
       const catMatch = s.category && s.category === activeCategory;
       matchesCategory = !!(catMatch || tagsMatch);
     }
+
+    let matchesProfession = true;
+    if (activeProfession !== "All") {
+      matchesProfession = !!(s.category && s.category === activeProfession);
+    }
       
     const matchesLocation = !locationSearch || 
       (s.location && s.location.toLowerCase().includes(locationSearch.toLowerCase())) ||
@@ -314,7 +320,7 @@ const SpecialistsDirectory = () => {
       }
     });
 
-    return matchesCategory && matchesLocation && matchesTestingTiers;
+    return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers;
   });
 
   const ITEMS_PER_PAGE = 24;
@@ -356,7 +362,6 @@ const SpecialistsDirectory = () => {
                       <SelectItem value="Skin Health">Skin Health</SelectItem>
                       <SelectItem value="Sports Performance">Sports Performance</SelectItem>
                       <SelectItem value="Pain, Fatigue & Inflammation">Pain, Fatigue & Inflammation</SelectItem>
-                      <SelectItem value="TBN Leadership Team">TBN Leadership Team</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -393,6 +398,7 @@ const SpecialistsDirectory = () => {
                 <button 
                   onClick={() => {
                     setActiveCategory("All");
+                    setActiveProfession("All");
                     setLocationSearch("");
                     setSelectedTestingTiers([]);
                   }}
@@ -415,8 +421,7 @@ const SpecialistsDirectory = () => {
                     "Neurodivergence",
                     "Skin Health",
                     "Sports Performance",
-                    "Pain, Fatigue & Inflammation",
-                    "TBN Leadership Team"
+                    "Pain, Fatigue & Inflammation"
                   ].map((spec) => (
                     <div className="flex items-center space-x-3" key={spec}>
                       <Checkbox 
@@ -427,6 +432,35 @@ const SpecialistsDirectory = () => {
                       />
                       <Label htmlFor={`spec-${spec}`} className="text-sm font-normal text-muted-foreground cursor-pointer">
                         {spec}
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Profession filter */}
+              <div className="space-y-4">
+                <h4 className="font-semibold text-sm">Profession</h4>
+                <div className="space-y-3">
+                  {[
+                    "All",
+                    "Medical & Clinical Specialists",
+                    "Allied Health & Clinical Practitioners",
+                    "Functional, Preventative & Holistic Health",
+                    "Health, Lifestyle, Mindset & Beauty",
+                    "Mental Health & Neuro-Specialists",
+                    "Sports Performance & Rehabilitation",
+                    "TBN Leadership Team"
+                  ].map((prof) => (
+                    <div className="flex items-center space-x-3" key={prof}>
+                      <Checkbox 
+                        id={`prof-${prof}`} 
+                        className="rounded border-border data-[state=checked]:bg-primary data-[state=checked]:text-white" 
+                        checked={activeProfession === prof}
+                        onCheckedChange={() => setActiveProfession(prof)}
+                      />
+                      <Label htmlFor={`prof-${prof}`} className="text-sm font-normal text-muted-foreground cursor-pointer">
+                        {prof}
                       </Label>
                     </div>
                   ))}
@@ -578,8 +612,7 @@ const SpecialistsDirectory = () => {
                         "Neurodivergence",
                         "Skin Health",
                         "Sports Performance",
-                        "Pain, Fatigue & Inflammation",
-                        "TBN Leadership Team"
+                        "Pain, Fatigue & Inflammation"
                       ].map((spec) => {
                         const IconComponent = CATEGORY_ICONS[spec] || Activity;
                         const isSelected = activeCategory === spec;
@@ -596,6 +629,60 @@ const SpecialistsDirectory = () => {
                             <div className="flex items-center gap-2.5">
                               <IconComponent className={`w-3.5 h-3.5 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
                               <span>{spec === "All" ? "All Pathways" : spec}</span>
+                            </div>
+                            {isSelected && <Check className="w-3.5 h-3.5 text-primary shrink-0" />}
+                          </DropdownMenuItem>
+                        );
+                      })}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+
+                {/* Middle: Profession Dropdown */}
+                <div className="flex-1 min-w-0">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="w-full flex items-center justify-between px-2.5 py-1.5 h-9 bg-background border-border text-foreground font-semibold text-[10px] sm:text-xs tracking-wider uppercase rounded-lg hover:bg-secondary/20 shadow-sm transition-all"
+                      >
+                        <div className="flex items-center gap-1.5 min-w-0 truncate">
+                          <Users className="w-3.5 h-3.5 text-primary shrink-0" />
+                          <span className="truncate">
+                            {activeProfession === "All" ? "ALL PROFESSIONS" : activeProfession.toUpperCase()}
+                          </span>
+                        </div>
+                        <ChevronDown className="w-3 h-3 text-muted-foreground shrink-0 ml-1" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="center" className="w-[var(--radix-dropdown-menu-trigger-width)] bg-background border border-border p-1.5 rounded-xl shadow-md z-50">
+                      <DropdownMenuLabel className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase px-2.5 py-1.5">
+                        Select Profession
+                      </DropdownMenuLabel>
+                      <DropdownMenuSeparator className="bg-border/60 my-1" />
+                      {[
+                        "All",
+                        "Medical & Clinical Specialists",
+                        "Allied Health & Clinical Practitioners",
+                        "Functional, Preventative & Holistic Health",
+                        "Health, Lifestyle, Mindset & Beauty",
+                        "Mental Health & Neuro-Specialists",
+                        "Sports Performance & Rehabilitation",
+                        "TBN Leadership Team"
+                      ].map((prof) => {
+                        const isSelected = activeProfession === prof;
+                        return (
+                          <DropdownMenuItem
+                            key={prof}
+                            onClick={() => setActiveProfession(prof)}
+                            className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
+                              isSelected 
+                                ? "bg-primary/10 text-primary" 
+                                : "text-muted-foreground hover:bg-secondary/40 hover:text-foreground"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <span>{prof === "All" ? "All Professions" : prof}</span>
                             </div>
                             {isSelected && <Check className="w-3.5 h-3.5 text-primary shrink-0" />}
                           </DropdownMenuItem>
