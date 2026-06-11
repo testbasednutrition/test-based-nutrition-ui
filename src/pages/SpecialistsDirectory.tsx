@@ -26,7 +26,8 @@ import {
   Zap,
   Smile,
   Flame,
-  TestTube2
+  TestTube2,
+  Users
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -196,6 +197,7 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
   "Skin Health": Sparkles,
   "Sports Performance": Zap,
   "Pain, Fatigue & Inflammation": Flame,
+  "TBN Leadership Team": Users,
 };
 
 const getTestingButtonLabel = (selected: string[]) => {
@@ -354,6 +356,7 @@ const SpecialistsDirectory = () => {
                       <SelectItem value="Skin Health">Skin Health</SelectItem>
                       <SelectItem value="Sports Performance">Sports Performance</SelectItem>
                       <SelectItem value="Pain, Fatigue & Inflammation">Pain, Fatigue & Inflammation</SelectItem>
+                      <SelectItem value="TBN Leadership Team">TBN Leadership Team</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -412,7 +415,8 @@ const SpecialistsDirectory = () => {
                     "Neurodivergence",
                     "Skin Health",
                     "Sports Performance",
-                    "Pain, Fatigue & Inflammation"
+                    "Pain, Fatigue & Inflammation",
+                    "TBN Leadership Team"
                   ].map((spec) => (
                     <div className="flex items-center space-x-3" key={spec}>
                       <Checkbox 
@@ -574,7 +578,8 @@ const SpecialistsDirectory = () => {
                         "Neurodivergence",
                         "Skin Health",
                         "Sports Performance",
-                        "Pain, Fatigue & Inflammation"
+                        "Pain, Fatigue & Inflammation",
+                        "TBN Leadership Team"
                       ].map((spec) => {
                         const IconComponent = CATEGORY_ICONS[spec] || Activity;
                         const isSelected = activeCategory === spec;

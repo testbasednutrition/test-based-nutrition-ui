@@ -6,7 +6,8 @@ export type SpecialistCategory =
   | "Neurodivergence"
   | "Skin Health"
   | "Sports Performance"
-  | "Pain, Fatigue & Inflammation";
+  | "Pain, Fatigue & Inflammation"
+  | "TBN Leadership Team";
 
 export interface Testimonial {
   name: string;
@@ -71,6 +72,7 @@ export const categories: SpecialistCategory[] = [
   "Skin Health",
   "Sports Performance",
   "Pain, Fatigue & Inflammation",
+  "TBN Leadership Team",
 ];
 
 export const specialists: Specialist[] = [

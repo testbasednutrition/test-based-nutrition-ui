@@ -30,7 +30,8 @@ import {
   Sparkles,
   Zap,
   Smile,
-  Flame
+  Flame,
+  Users
 } from "lucide-react";
 import NotFound from "./NotFound";
 import { useQuery } from "@tanstack/react-query";
@@ -133,6 +134,7 @@ const CATEGORY_ICONS: Record<string, React.ComponentType<any>> = {
   "Skin Health": Sparkles,
   "Sports Performance": Zap,
   "Pain, Fatigue & Inflammation": Flame,
+  "TBN Leadership Team": Users,
 };
 
 const getTestingButtonLabel = (selected: string[]) => {
@@ -329,6 +331,7 @@ const SpecialistProfile = () => {
                       <SelectItem value="Skin Health">Skin Health</SelectItem>
                       <SelectItem value="Sports Performance">Sports Performance</SelectItem>
                       <SelectItem value="Pain, Fatigue & Inflammation">Pain, Fatigue & Inflammation</SelectItem>
+                      <SelectItem value="TBN Leadership Team">TBN Leadership Team</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -393,7 +396,8 @@ const SpecialistProfile = () => {
                      "Neurodivergence",
                      "Skin Health",
                      "Sports Performance",
-                     "Pain, Fatigue & Inflammation"
+                     "Pain, Fatigue & Inflammation",
+                     "TBN Leadership Team"
                    ].map((category) => (
                      <div className="flex items-center space-x-3" key={category}>
                        <Checkbox 
@@ -574,7 +578,8 @@ const SpecialistProfile = () => {
                         "Neurodivergence",
                         "Skin Health",
                         "Sports Performance",
-                        "Pain, Fatigue & Inflammation"
+                        "Pain, Fatigue & Inflammation",
+                        "TBN Leadership Team"
                       ].map((spec) => {
                         const IconComponent = CATEGORY_ICONS[spec] || Activity;
                         const isSelected = selectedCategory === spec;
