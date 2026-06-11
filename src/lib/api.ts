@@ -23,10 +23,19 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
 
     // Parse strings and map to Specialist interface
     return data.map((row) => {
-      // some comma-separated arrays are returned as single strings, some as real arrays
       const parseArray = (val: any): string[] => {
         if (Array.isArray(val)) return val;
-        if (typeof val === 'string') return val.split(';').map(s => s.trim()).filter(Boolean);
+        if (typeof val === 'string') {
+          const trimmed = val.trim();
+          if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+            try {
+              const parsed = JSON.parse(trimmed);
+              if (Array.isArray(parsed)) return parsed;
+            } catch (e) {}
+          }
+          const delimiter = val.includes(';') ? ';' : ',';
+          return val.split(delimiter).map(s => s.trim()).filter(Boolean);
+        }
         return [];
       };
 
