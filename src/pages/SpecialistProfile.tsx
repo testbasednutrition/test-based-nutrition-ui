@@ -657,10 +657,15 @@ const SpecialistProfile = () => {
                     <h1 className="text-2xl font-extrabold tracking-tight text-foreground uppercase mb-2">
                       {specialist.name}
                     </h1>
-                    <div>
+                    <div className="flex flex-wrap justify-center gap-2">
                       <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-[#9f1e13] border border-primary/20">
                         {specialist.category}
                       </span>
+                      {specialist.specificTitle && (
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary text-secondary-foreground border border-border">
+                          {specialist.specificTitle}
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -690,11 +695,16 @@ const SpecialistProfile = () => {
                         {specialist.name}
                       </h1>
 
-                      {/* Category Badge */}
-                      <div className="hidden md:block mb-3">
+                      {/* Category Badge & Specific Title */}
+                      <div className="hidden md:flex items-center gap-2 mb-3">
                         <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-[#9f1e13] border border-primary/20">
                           {specialist.category}
                         </span>
+                        {specialist.specificTitle && (
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary text-secondary-foreground border border-border">
+                            {specialist.specificTitle}
+                          </span>
+                        )}
                       </div>
 
                       {/* Professional Title/Role */}
