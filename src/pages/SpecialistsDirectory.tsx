@@ -125,50 +125,67 @@ const extractTown = (address?: string): string => {
 };
 
 const TIER_MAPPINGS: Record<string, string[]> = {
-  foundational: ["Foundational Testing", "Omega Balance", "Gut Microbiome", "Intolerance Testing"],
+  foundational: [
+    "Foundational Testing",
+    "Omega Balance Ratio",
+    "Gut Health Test",
+    "Omega Balance",
+    "Gut Microbiome",
+    "Intolerance Testing",
+    "Finger Prick Balance Testing (Omega 6:3)",
+    "Finger Prick Gut Health Testing"
+  ],
   baseline: [
     "Baseline Screening",
-    "Vitamin D",
     "Vitamin D Levels (FP)",
-    "HbA1c",
     "HbA1c - Diabetes (FP)",
     "hS-CRP Heart Screening (FP)",
-    "CRP / hs-CRP",
     "CRP Inflammation (FP)",
+    "RF Rheumatoid Screening Arthritis (FP)",
+    "Cortisol Screening Stress Hormone (FP)",
+    "Ferritin Iron Levels (FP)",
+    "Cystatin C Levels Kidney Screening (FP)",
+    "HCG+ß Pregnancy Indication (FP)",
+    "AMH Ovarian Reserve Level (FP)",
+    "Progesterone Ovulation (FP)",
+    "Folate (FP)",
+    "NT-proBNP Heart Monitoring (VBD)",
+    "RSV/Influenza A/B (NS)",
+    "Vitamin D",
+    "HbA1c",
+    "CRP / hs-CRP",
     "RF Rheumatoid Screening (FP)",
     "Cortisol Stress Hormone (FP)",
     "Ferritin",
-    "Ferritin Iron Levels (FP)",
     "Cystatin C",
     "Cystatin C Kidney Screening (FP)",
     "HCG+B Pregnancy Indication (FP)",
     "AMH Ovarian Reserve (FP)",
     "Progesterone",
-    "Progesterone Ovulation (FP)",
-    "Folate",
-    "Folate (FP)",
-    "NT-proBNP Heart Monitoring (VBD)",
-    "TSH Thyroid Screening (VBD)",
-    "FSH Menopause (VBD)",
-    "FSH",
-    "Vitamin B12 Levels (VBD+C)",
-    "Testosterone (VBD+C)",
-    "RSV/Influenza A/B (NS)"
+    "Folate"
   ],
   advanced: [
     "Advanced Screening",
+    "Testosterone (VBD + C)",
+    "Vitamin B12 Levels (VBD + C)",
+    "FSH Menopause (VBD)",
+    "TSH Thyroid Screening (VBD)",
     "Testosterone",
     "Thyroid (TSH)",
     "Vitamin B12",
-    "FSH Menopause"
+    "FSH Menopause",
+    "Vitamin B12 Levels (VBD+C)",
+    "Testosterone (VBD+C)"
   ]
 };
 
 const TEST_EQUIVALENTS: Record<string, string[]> = {
-  "Omega Balance": ["Omega Balance", "Finger Prick Balance Testing (Omega 6:3)"],
-  "Finger Prick Balance Testing (Omega 6:3)": ["Omega Balance", "Finger Prick Balance Testing (Omega 6:3)"],
-  "Gut Microbiome": ["Gut Microbiome", "Finger Prick Gut Health Testing"],
-  "Finger Prick Gut Health Testing": ["Gut Microbiome", "Finger Prick Gut Health Testing"],
+  "Omega Balance Ratio": ["Omega Balance Ratio", "Omega Balance", "Finger Prick Balance Testing (Omega 6:3)"],
+  "Omega Balance": ["Omega Balance Ratio", "Omega Balance", "Finger Prick Balance Testing (Omega 6:3)"],
+  "Finger Prick Balance Testing (Omega 6:3)": ["Omega Balance Ratio", "Omega Balance", "Finger Prick Balance Testing (Omega 6:3)"],
+  "Gut Health Test": ["Gut Health Test", "Gut Microbiome", "Finger Prick Gut Health Testing"],
+  "Gut Microbiome": ["Gut Health Test", "Gut Microbiome", "Finger Prick Gut Health Testing"],
+  "Finger Prick Gut Health Testing": ["Gut Health Test", "Gut Microbiome", "Finger Prick Gut Health Testing"],
   "Vitamin D Levels (FP)": ["Vitamin D Levels (FP)", "Vitamin D"],
   "Vitamin D": ["Vitamin D Levels (FP)", "Vitamin D"],
   "HbA1c - Diabetes (FP)": ["HbA1c - Diabetes (FP)", "HbA1c"],
@@ -178,14 +195,34 @@ const TEST_EQUIVALENTS: Record<string, string[]> = {
   "CRP/hs-CRP": ["CRP Inflammation (FP)", "CRP / hs-CRP", "CRP/hs-CRP", "CRP"],
   "CRP": ["CRP Inflammation (FP)", "CRP / hs-CRP", "CRP/hs-CRP", "CRP"],
   "hS-CRP Heart Screening (FP)": ["hS-CRP Heart Screening (FP)", "CRP / hs-CRP", "CRP/hs-CRP"],
+  "RF Rheumatoid Screening Arthritis (FP)": ["RF Rheumatoid Screening Arthritis (FP)", "RF Rheumatoid Screening (FP)"],
+  "RF Rheumatoid Screening (FP)": ["RF Rheumatoid Screening Arthritis (FP)", "RF Rheumatoid Screening (FP)"],
+  "Cortisol Screening Stress Hormone (FP)": ["Cortisol Screening Stress Hormone (FP)", "Cortisol Stress Hormone (FP)"],
+  "Cortisol Stress Hormone (FP)": ["Cortisol Screening Stress Hormone (FP)", "Cortisol Stress Hormone (FP)"],
   "Ferritin Iron Levels (FP)": ["Ferritin Iron Levels (FP)", "Ferritin"],
   "Ferritin": ["Ferritin Iron Levels (FP)", "Ferritin"],
-  "Cystatin C Kidney Screening (FP)": ["Cystatin C Kidney Screening (FP)", "Cystatin C"],
-  "Cystatin C": ["Cystatin C Kidney Screening (FP)", "Cystatin C"],
+  "Cystatin C Levels Kidney Screening (FP)": ["Cystatin C Levels Kidney Screening (FP)", "Cystatin C Kidney Screening (FP)", "Cystatin C"],
+  "Cystatin C Kidney Screening (FP)": ["Cystatin C Levels Kidney Screening (FP)", "Cystatin C Kidney Screening (FP)", "Cystatin C"],
+  "Cystatin C": ["Cystatin C Levels Kidney Screening (FP)", "Cystatin C Kidney Screening (FP)", "Cystatin C"],
+  "HCG+ß Pregnancy Indication (FP)": ["HCG+ß Pregnancy Indication (FP)", "HCG+B Pregnancy Indication (FP)"],
+  "HCG+B Pregnancy Indication (FP)": ["HCG+ß Pregnancy Indication (FP)", "HCG+B Pregnancy Indication (FP)"],
+  "AMH Ovarian Reserve Level (FP)": ["AMH Ovarian Reserve Level (FP)", "AMH Ovarian Reserve (FP)"],
+  "AMH Ovarian Reserve (FP)": ["AMH Ovarian Reserve Level (FP)", "AMH Ovarian Reserve (FP)"],
   "Progesterone Ovulation (FP)": ["Progesterone Ovulation (FP)", "Progesterone"],
   "Progesterone": ["Progesterone Ovulation (FP)", "Progesterone"],
   "Folate (FP)": ["Folate (FP)", "Folate"],
-  "Folate": ["Folate (FP)", "Folate"]
+  "Folate": ["Folate (FP)", "Folate"],
+  "Testosterone (VBD + C)": ["Testosterone (VBD + C)", "Testosterone (VBD+C)", "Testosterone"],
+  "Testosterone (VBD+C)": ["Testosterone (VBD + C)", "Testosterone (VBD+C)", "Testosterone"],
+  "Testosterone": ["Testosterone (VBD + C)", "Testosterone (VBD+C)", "Testosterone"],
+  "Vitamin B12 Levels (VBD + C)": ["Vitamin B12 Levels (VBD + C)", "Vitamin B12 Levels (VBD+C)", "Vitamin B12"],
+  "Vitamin B12 Levels (VBD+C)": ["Vitamin B12 Levels (VBD + C)", "Vitamin B12 Levels (VBD+C)", "Vitamin B12"],
+  "Vitamin B12": ["Vitamin B12 Levels (VBD + C)", "Vitamin B12 Levels (VBD+C)", "Vitamin B12"],
+  "FSH Menopause (VBD)": ["FSH Menopause (VBD)", "FSH Menopause", "FSH"],
+  "FSH Menopause": ["FSH Menopause (VBD)", "FSH Menopause", "FSH"],
+  "FSH": ["FSH Menopause (VBD)", "FSH Menopause", "FSH"],
+  "TSH Thyroid Screening (VBD)": ["TSH Thyroid Screening (VBD)", "Thyroid (TSH)"],
+  "Thyroid (TSH)": ["TSH Thyroid Screening (VBD)", "Thyroid (TSH)"]
 };
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
@@ -483,33 +520,44 @@ const SpecialistsDirectory = () => {
                 <h4 className="font-semibold text-sm">Testing Expertise</h4>
                 <div className="space-y-4">
                   {[
-                    { id: "foundational", title: "Foundational Testing", subtext: "In-clinic or online", tests: ["Omega Balance", "Gut Microbiome", "Intolerance Testing"] },
+                    { 
+                      id: "foundational", 
+                      title: "FOUNDATIONAL FINGER PRICK IN CLINIC OR AT HOME", 
+                      subtext: "In-clinic or online", 
+                      tests: ["Omega Balance Ratio", "Gut Health Test"] 
+                    },
                     { 
                       id: "baseline", 
-                      title: "Baseline Screening", 
-                      subtext: "Rapid finger-prick point-of-care", 
+                      title: "BASELINE POINT OF CARE SCREENING FINGER PRICK IN CLINIC", 
+                      subtext: "15 Minute Test Results - Point of Care Testing", 
                       tests: [
                         "Vitamin D Levels (FP)",
                         "HbA1c - Diabetes (FP)",
                         "hS-CRP Heart Screening (FP)",
                         "CRP Inflammation (FP)",
-                        "RF Rheumatoid Screening (FP)",
-                        "Cortisol Stress Hormone (FP)",
+                        "RF Rheumatoid Screening Arthritis (FP)",
+                        "Cortisol Screening Stress Hormone (FP)",
                         "Ferritin Iron Levels (FP)",
-                        "Cystatin C Kidney Screening (FP)",
-                        "HCG+B Pregnancy Indication (FP)",
-                        "AMH Ovarian Reserve (FP)",
+                        "Cystatin C Levels Kidney Screening (FP)",
+                        "HCG+ß Pregnancy Indication (FP)",
+                        "AMH Ovarian Reserve Level (FP)",
                         "Progesterone Ovulation (FP)",
                         "Folate (FP)",
                         "NT-proBNP Heart Monitoring (VBD)",
-                        "TSH Thyroid Screening (VBD)",
-                        "FSH Menopause (VBD)",
-                        "Vitamin B12 Levels (VBD+C)",
-                        "Testosterone (VBD+C)",
                         "RSV/Influenza A/B (NS)"
                       ] 
                     },
-                    { id: "advanced", title: "Advanced Screening", subtext: "Phlebotomy (where required)", tests: ["Testosterone", "Thyroid (TSH)", "Vitamin B12", "FSH Menopause"] }
+                    { 
+                      id: "advanced", 
+                      title: "ADVANCED POINT OF CARE SCREENING PHLEBOTOMY/BLOOD DRAW IN CLINIC", 
+                      subtext: "15 Minute Test Results - Point of Care Testing", 
+                      tests: [
+                        "Testosterone (VBD + C)",
+                        "Vitamin B12 Levels (VBD + C)",
+                        "FSH Menopause (VBD)",
+                        "TSH Thyroid Screening (VBD)"
+                      ] 
+                    }
                   ].map((exp) => (
                     <div className="space-y-2" key={exp.id}>
                       <div className="flex items-start space-x-3">

@@ -67,6 +67,8 @@ const summarizeQuote = (text?: string, maxWords = 50): string => {
 
 const FOUNDATIONAL_TESTS = [
   "Foundational Testing",
+  "Omega Balance Ratio",
+  "Gut Health Test",
   "Omega Balance",
   "Gut Microbiome",
   "Intolerance Testing",
@@ -76,42 +78,49 @@ const FOUNDATIONAL_TESTS = [
 
 const BASELINE_TESTS = [
   "Baseline Screening",
-  "Vitamin D",
   "Vitamin D Levels (FP)",
-  "HbA1c",
   "HbA1c - Diabetes (FP)",
   "hS-CRP Heart Screening (FP)",
-  "CRP / hs-CRP",
   "CRP Inflammation (FP)",
+  "RF Rheumatoid Screening Arthritis (FP)",
+  "Cortisol Screening Stress Hormone (FP)",
+  "Ferritin Iron Levels (FP)",
+  "Cystatin C Levels Kidney Screening (FP)",
+  "HCG+ß Pregnancy Indication (FP)",
+  "AMH Ovarian Reserve Level (FP)",
+  "Progesterone Ovulation (FP)",
+  "Folate (FP)",
+  "NT-proBNP Heart Monitoring (VBD)",
+  "RSV/Influenza A/B (NS)",
+  "Vitamin D",
+  "HbA1c",
+  "CRP / hs-CRP",
   "RF Rheumatoid Screening (FP)",
   "Cortisol Stress Hormone (FP)",
   "Ferritin",
-  "Ferritin Iron Levels (FP)",
   "Cystatin C",
   "Cystatin C Kidney Screening (FP)",
   "HCG+B Pregnancy Indication (FP)",
   "AMH Ovarian Reserve (FP)",
   "Progesterone",
-  "Progesterone Ovulation (FP)",
   "Folate",
-  "Folate (FP)",
-  "NT-proBNP Heart Monitoring (VBD)",
-  "TSH Thyroid Screening (VBD)",
-  "FSH Menopause (VBD)",
-  "FSH",
-  "Vitamin B12 Levels (VBD+C)",
-  "Testosterone (VBD+C)",
-  "RSV/Influenza A/B (NS)"
+  "FSH"
 ];
 
 const ADVANCED_TESTS = [
   "Advanced Screening",
+  "Testosterone (VBD + C)",
+  "Vitamin B12 Levels (VBD + C)",
+  "FSH Menopause (VBD)",
+  "TSH Thyroid Screening (VBD)",
   "Testosterone",
   "Thyroid (TSH)",
   "Vitamin B12",
   "FSH Menopause",
-  "FSH"
+  "Vitamin B12 Levels (VBD+C)",
+  "Testosterone (VBD+C)"
 ];
+
 
 const formatExperience = (exp?: string | number) => {
   if (!exp) return "10+ Years Exp.";
@@ -466,34 +475,45 @@ const SpecialistProfile = () => {
                  <h4 className="font-bold text-xs uppercase tracking-wider text-foreground">TESTING EXPERTISE</h4>
                 <div className="space-y-4">
                   {[
-                    { id: "foundational", title: "Foundational Testing", subtext: "In-clinic or online", tests: ["Omega Balance", "Gut Microbiome", "Intolerance Testing"] },
-                    { 
-                      id: "baseline", 
-                      title: "Baseline Screening", 
-                      subtext: "Rapid finger-prick point-of-care", 
-                      tests: [
-                        "Vitamin D Levels (FP)",
-                        "HbA1c - Diabetes (FP)",
-                        "hS-CRP Heart Screening (FP)",
-                        "CRP Inflammation (FP)",
-                        "RF Rheumatoid Screening (FP)",
-                        "Cortisol Stress Hormone (FP)",
-                        "Ferritin Iron Levels (FP)",
-                        "Cystatin C Kidney Screening (FP)",
-                        "HCG+B Pregnancy Indication (FP)",
-                        "AMH Ovarian Reserve (FP)",
-                        "Progesterone Ovulation (FP)",
-                        "Folate (FP)",
-                        "NT-proBNP Heart Monitoring (VBD)",
-                        "TSH Thyroid Screening (VBD)",
-                        "FSH Menopause (VBD)",
-                        "Vitamin B12 Levels (VBD+C)",
-                        "Testosterone (VBD+C)",
-                        "RSV/Influenza A/B (NS)"
-                      ] 
-                    },
-                    { id: "advanced", title: "Advanced Screening", subtext: "Phlebotomy (where required)", tests: ["Testosterone", "Thyroid (TSH)", "Vitamin B12", "FSH Menopause"] }
-                  ].map((exp) => (
+                     { 
+                       id: "foundational", 
+                       title: "FOUNDATIONAL FINGER PRICK IN CLINIC OR AT HOME", 
+                       subtext: "In-clinic or online", 
+                       tests: ["Omega Balance Ratio", "Gut Health Test"] 
+                     },
+                     { 
+                       id: "baseline", 
+                       title: "BASELINE POINT OF CARE SCREENING FINGER PRICK IN CLINIC", 
+                       subtext: "15 Minute Test Results - Point of Care Testing", 
+                       tests: [
+                         "Vitamin D Levels (FP)",
+                         "HbA1c - Diabetes (FP)",
+                         "hS-CRP Heart Screening (FP)",
+                         "CRP Inflammation (FP)",
+                         "RF Rheumatoid Screening Arthritis (FP)",
+                         "Cortisol Screening Stress Hormone (FP)",
+                         "Ferritin Iron Levels (FP)",
+                         "Cystatin C Levels Kidney Screening (FP)",
+                         "HCG+ß Pregnancy Indication (FP)",
+                         "AMH Ovarian Reserve Level (FP)",
+                         "Progesterone Ovulation (FP)",
+                         "Folate (FP)",
+                         "NT-proBNP Heart Monitoring (VBD)",
+                         "RSV/Influenza A/B (NS)"
+                       ] 
+                     },
+                     { 
+                       id: "advanced", 
+                       title: "ADVANCED POINT OF CARE SCREENING PHLEBOTOMY/BLOOD DRAW IN CLINIC", 
+                       subtext: "15 Minute Test Results - Point of Care Testing", 
+                       tests: [
+                         "Testosterone (VBD + C)",
+                         "Vitamin B12 Levels (VBD + C)",
+                         "FSH Menopause (VBD)",
+                         "TSH Thyroid Screening (VBD)"
+                       ] 
+                     }
+                   ].map((exp) => (
                     <div className="space-y-2" key={exp.id}>
                       <div className="flex items-start space-x-3">
                         <Checkbox 
@@ -982,7 +1002,7 @@ const SpecialistProfile = () => {
                       <div className="border-t border-border/60" />
                       <div>
                         <div className="flex items-center gap-3 mb-8 border-b border-border/50 pb-4">
-                          <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">TESTING & DIAGNOSTICS</h2>
+                          <h2 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">15 MINUTE TEST RESULTS - POINT OF CARE TESTING</h2>
                         </div>
 
                         <div className={`grid ${gridColsClass} gap-8 items-start`}>
@@ -990,7 +1010,7 @@ const SpecialistProfile = () => {
                           {hasFoundational && (
                             <div className="space-y-4">
                               <div className="border-b border-primary/20 pb-2">
-                                <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Foundational Testing</h3>
+                                <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">FOUNDATIONAL FINGER PRICK IN CLINIC OR AT HOME</h3>
                                 <p className="text-[10px] text-muted-foreground mt-0.5">In-clinic or online</p>
                               </div>
                               <div className="grid grid-cols-2 gap-2">
@@ -1008,7 +1028,7 @@ const SpecialistProfile = () => {
                           {hasBaseline && (
                             <div className="space-y-4">
                               <div className="border-b border-primary/20 pb-2">
-                                <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Baseline Screening</h3>
+                                <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">BASELINE POINT OF CARE SCREENING FINGER PRICK IN CLINIC</h3>
                                 <p className="text-[10px] text-muted-foreground mt-0.5">Rapid finger-prick point-of-care</p>
                               </div>
                               <div className="grid grid-cols-2 gap-2">
@@ -1026,7 +1046,7 @@ const SpecialistProfile = () => {
                           {hasAdvanced && (
                             <div className="space-y-4">
                               <div className="border-b border-primary/20 pb-2">
-                                <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">Advanced Screening</h3>
+                                <h3 className="text-xs font-bold text-primary uppercase tracking-wider font-montserrat">ADVANCED POINT OF CARE SCREENING PHLEBOTOMY/BLOOD DRAW IN CLINIC</h3>
                                 <p className="text-[10px] text-muted-foreground mt-0.5">Phlebotomy (where required)</p>
                               </div>
                               <div className="grid grid-cols-2 gap-2">
