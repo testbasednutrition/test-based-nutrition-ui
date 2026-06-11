@@ -1154,47 +1154,64 @@ const SpecialistProfile = () => {
                     </div>
 
                     <div className="border-t border-white/15 pt-6 flex flex-col sm:flex-row flex-wrap gap-x-8 gap-y-6 text-left">
-                      <div className="flex items-start gap-3 min-w-[200px] max-w-[280px]">
-                        <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-secondary shrink-0">
-                          <MapPin className="w-4 h-4" />
+                      {/* Location Block */}
+                      {(specialist.address || specialist.location || specialist.clinic_name || specialist.currentOrg) && (
+                        <div className="flex items-start gap-3 min-w-[200px] max-w-[280px]">
+                          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-secondary shrink-0">
+                            <MapPin className="w-4 h-4" />
+                          </div>
+                          <div className="min-w-0">
+                            <span className="text-[9px] font-bold uppercase tracking-wider text-white/40 block mb-0.5">Location</span>
+                            <p className="text-xs font-bold text-white truncate" title={specialist.clinic_name || specialist.currentOrg}>{specialist.clinic_name || specialist.currentOrg || "Private Clinic"}</p>
+                            {(specialist.address || specialist.location) && (
+                              <p className="text-[10px] text-white/70 mt-0.5 leading-relaxed break-words">{specialist.address || specialist.location}</p>
+                            )}
+                          </div>
                         </div>
-                        <div className="min-w-0">
-                          <span className="text-[9px] font-bold uppercase tracking-wider text-white/40 block mb-0.5">Location</span>
-                          <p className="text-xs font-bold text-white truncate" title={specialist.clinic_name || specialist.currentOrg}>{specialist.clinic_name || specialist.currentOrg || "Private Clinic"}</p>
-                          <p className="text-[10px] text-white/70 mt-0.5 leading-relaxed break-words">{specialist.address || specialist.location}</p>
-                        </div>
-                      </div>
+                      )}
 
-                      <div className="flex items-start gap-3 min-w-[180px]">
-                        <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-secondary shrink-0">
-                          <Phone className="w-4 h-4" />
+                      {/* Phone Block */}
+                      {specialist.phone_number && 
+                       specialist.phone_number.trim() !== "" && 
+                       specialist.phone_number.trim().toLowerCase() !== "add number later" && 
+                       specialist.phone_number.trim().toLowerCase() !== "website contact" && (
+                        <div className="flex items-start gap-3 min-w-[180px]">
+                          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-secondary shrink-0">
+                            <Phone className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <span className="text-[9px] font-bold uppercase tracking-wider text-white/40 block mb-0.5">Phone</span>
+                            <a 
+                              href={`tel:${specialist.phone_number}`} 
+                              className="text-xs font-bold text-white hover:text-secondary transition-colors block mt-0.5 whitespace-nowrap"
+                            >
+                              {specialist.phone_number}
+                            </a>
+                          </div>
                         </div>
-                        <div>
-                          <span className="text-[9px] font-bold uppercase tracking-wider text-white/40 block mb-0.5">Phone</span>
-                          <a 
-                            href={`tel:${specialist.phone_number || "+440000000000"}`} 
-                            className="text-xs font-bold text-white hover:text-secondary transition-colors block mt-0.5 whitespace-nowrap"
-                          >
-                            {specialist.phone_number || "Website Contact"}
-                          </a>
-                        </div>
-                      </div>
+                      )}
 
-                      <div className="flex items-start gap-3 min-w-[240px]">
-                        <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-secondary shrink-0">
-                          <Mail className="w-4 h-4" />
+                      {/* Email Block */}
+                      {specialist.email_address && 
+                       specialist.email_address.trim() !== "" && 
+                       specialist.email_address.trim().toLowerCase() !== "unavailable" && 
+                       specialist.email_address.trim().toLowerCase() !== "info@testbased.com" && (
+                        <div className="flex items-start gap-3 min-w-[240px]">
+                          <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-secondary shrink-0">
+                            <Mail className="w-4 h-4" />
+                          </div>
+                          <div className="min-w-0">
+                            <span className="text-[9px] font-bold uppercase tracking-wider text-white/40 block mb-0.5">Email</span>
+                            <a 
+                              href={`mailto:${specialist.email_address}`} 
+                              className="text-xs font-bold text-white hover:text-secondary transition-colors block mt-0.5 whitespace-nowrap"
+                              title={specialist.email_address}
+                            >
+                              {specialist.email_address}
+                            </a>
+                          </div>
                         </div>
-                        <div className="min-w-0">
-                          <span className="text-[9px] font-bold uppercase tracking-wider text-white/40 block mb-0.5">Email</span>
-                          <a 
-                            href={`mailto:${specialist.email_address || "info@testbased.com"}`} 
-                            className="text-xs font-bold text-white hover:text-secondary transition-colors block mt-0.5 whitespace-nowrap"
-                            title={specialist.email_address}
-                          >
-                            {specialist.email_address || "Unavailable"}
-                          </a>
-                        </div>
-                      </div>
+                      )}
                     </div>
                   </div>
 
