@@ -213,10 +213,10 @@ const getTestingButtonLabel = (selected: string[]) => {
 
 const SpecialistsDirectory = () => {
   const location = useLocation();
-  const state = location.state as { category?: SpecialistCategory; search?: string; testingTier?: string; testingTiers?: string[] } | null;
+  const state = location.state as { category?: SpecialistCategory; profession?: string; search?: string; testingTier?: string; testingTiers?: string[] } | null;
 
   const [activeCategory, setActiveCategory] = useState<SpecialistCategory>(state?.category || "All");
-  const [activeProfession, setActiveProfession] = useState<string>("All");
+  const [activeProfession, setActiveProfession] = useState<string>(state?.profession || "All");
   const [locationSearch, setLocationSearch] = useState(state?.search || "");
   const [selectedTestingTiers, setSelectedTestingTiers] = useState<string[]>(() => {
     if (state?.testingTiers) return state.testingTiers;

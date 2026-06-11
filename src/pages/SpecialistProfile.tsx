@@ -161,6 +161,7 @@ const SpecialistProfile = () => {
 
   const [activeImage, setActiveImage] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<SpecialistCategory>("All");
+  const [selectedProfession, setSelectedProfession] = useState<string>("All");
   const [searchLocation, setSearchLocation] = useState("");
   const [selectedTestingTiers, setSelectedTestingTiers] = useState<string[]>([]);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
@@ -180,7 +181,12 @@ const SpecialistProfile = () => {
 
   const handleCategorySelect = (category: SpecialistCategory) => {
     setSelectedCategory(category);
-    navigate("/specialists", { state: { category, search: searchLocation } });
+    navigate("/specialists", { state: { category, profession: selectedProfession, search: searchLocation } });
+  };
+
+  const handleProfessionSelect = (profession: string) => {
+    setSelectedProfession(profession);
+    navigate("/specialists", { state: { category: selectedCategory, profession, search: searchLocation } });
   };
 
   const handleTestingTierToggle = (tierId: string) => {
@@ -331,7 +337,6 @@ const SpecialistProfile = () => {
                       <SelectItem value="Skin Health">Skin Health</SelectItem>
                       <SelectItem value="Sports Performance">Sports Performance</SelectItem>
                       <SelectItem value="Pain, Fatigue & Inflammation">Pain, Fatigue & Inflammation</SelectItem>
-                      <SelectItem value="TBN Leadership Team">TBN Leadership Team</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -396,8 +401,7 @@ const SpecialistProfile = () => {
                      "Neurodivergence",
                      "Skin Health",
                      "Sports Performance",
-                     "Pain, Fatigue & Inflammation",
-                     "TBN Leadership Team"
+                     "Pain, Fatigue & Inflammation"
                    ].map((category) => (
                      <div className="flex items-center space-x-3" key={category}>
                        <Checkbox 
@@ -408,6 +412,35 @@ const SpecialistProfile = () => {
                        />
                        <Label htmlFor={`spec-${category}`} className="text-sm font-normal text-muted-foreground cursor-pointer">
                          {category}
+                       </Label>
+                     </div>
+                   ))}
+                 </div>
+               </div>
+
+               {/* Profession filter */}
+               <div className="space-y-4">
+                 <h4 className="font-bold text-xs uppercase tracking-wider text-foreground">PROFESSION</h4>
+                 <div className="space-y-3">
+                   {[
+                     "All",
+                     "Medical & Clinical Specialists",
+                     "Allied Health & Clinical Practitioners",
+                     "Functional, Preventative & Holistic Health",
+                     "Health, Lifestyle, Mindset & Beauty",
+                     "Mental Health & Neuro-Specialists",
+                     "Sports Performance & Rehabilitation",
+                     "TBN Leadership Team"
+                   ].map((prof) => (
+                     <div className="flex items-center space-x-3" key={prof}>
+                       <Checkbox 
+                         id={`prof-${prof}`} 
+                         className="rounded border-border data-[state=checked]:bg-primary data-[state=checked]:text-white" 
+                         checked={selectedProfession === prof}
+                         onCheckedChange={() => handleProfessionSelect(prof)}
+                       />
+                       <Label htmlFor={`prof-${prof}`} className="text-sm font-normal text-muted-foreground cursor-pointer">
+                         {prof}
                        </Label>
                      </div>
                    ))}
