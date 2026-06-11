@@ -919,12 +919,15 @@ const SpecialistProfile = () => {
                 {/* Testing & Diagnostics Panel */}
                 {specialist.primary_testing_methods && specialist.primary_testing_methods.length > 0 && (() => {
                   const foundationalMethods = specialist.primary_testing_methods.filter(m => 
+                    m.trim().toLowerCase() !== "foundational testing" &&
                     FOUNDATIONAL_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
                   );
                   const baselineMethods = specialist.primary_testing_methods.filter(m => 
+                    m.trim().toLowerCase() !== "baseline screening" &&
                     BASELINE_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
                   );
                   const advancedMethods = specialist.primary_testing_methods.filter(m => 
+                    m.trim().toLowerCase() !== "advanced screening" &&
                     ADVANCED_TESTS.some(t => t.toLowerCase() === m.trim().toLowerCase())
                   );
 
