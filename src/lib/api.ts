@@ -46,7 +46,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
         category: (row.primary_category as SpecialistCategory) || 'All',
         specificTitle: row.specific_title,
         bio: row.professional_bio ? [row.professional_bio] : [],
-        quote: row.testimonial_1 || '',
+        quote: row.why_partnered_tbn || '',
         credentials: parseArray(row.credentials).map(c => c.replace(/^- /, '')), // Remove leading dashes if exist
         
         // Image Handling
@@ -61,6 +61,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
         first_balance_result: row.first_balance_result,
         second_balance_result: row.second_balance_result,
         why_joined_tbn: row.why_joined_tbn,
+        why_partnered_tbn: row.why_partnered_tbn || '',
         other_blood_tests: row.other_blood_tests,
         
         // Contact & Location

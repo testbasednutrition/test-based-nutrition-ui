@@ -51,6 +51,7 @@ export interface Specialist {
   first_balance_result?: string;
   second_balance_result?: string;
   why_joined_tbn?: string;
+  why_partnered_tbn?: string;
   other_blood_tests?: string;
   gallery_image_urls?: string[];
   accepting_new_clients?: boolean;
