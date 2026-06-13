@@ -4,7 +4,7 @@ import { ShieldAlert, Lock, X } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 // Toggle to false to temporarily disable the screenshot blank screen overlay (until going live)
-const ENABLE_SCREENSHOT_BLANK = false;
+const ENABLE_SCREENSHOT_BLANK = true;
 
 export default function CopyProtection() {
   const [showWarning, setShowWarning] = useState(false);
