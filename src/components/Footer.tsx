@@ -181,9 +181,6 @@ const Footer = ({ hideInstagram = false }: FooterProps) => {
             </p>
           </div>
 
-          <p className="text-[11px] text-muted-foreground font-medium">
-            © {new Date().getFullYear()} Test-Based Nutrition. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>
