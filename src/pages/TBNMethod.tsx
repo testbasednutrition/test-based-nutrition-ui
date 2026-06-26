@@ -17,6 +17,7 @@ const TBNMethod = () => {
   const [email, setEmail] = useState("");
   const [academyOptIn, setAcademyOptIn] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [activeStep, setActiveStep] = useState(3);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -156,90 +157,89 @@ const TBNMethod = () => {
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-sm font-bold text-[#9f1e13] mb-12 bg-white border border-[#dbd4c9] px-6 py-3 rounded-2xl shadow-sm w-fit mx-auto">
             {["Discover", "Test", "Target", "Transform", "Retest", "Escalate"].map((flow, i) => (
               <React.Fragment key={i}>
-                {i > 0 && <span className="text-[#dbd4c9]">→</span>}
-                <span className={i === 3 ? "underline decoration-2 underline-offset-4" : ""}>{flow}</span>
+                {i > 0 && <span className="text-[#dbd4c9] mx-1">→</span>}
+                <button
+                  onClick={() => setActiveStep(i)}
+                  className={`transition-all duration-200 focus:outline-none ${
+                    activeStep === i 
+                      ? "underline decoration-[#9f1e13] decoration-2 underline-offset-4 font-bold text-[#9f1e13]" 
+                      : "text-[#9f1e13]/60 hover:text-[#9f1e13] font-medium"
+                  }`}
+                >
+                  {flow}
+                </button>
               </React.Fragment>
             ))}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Step 1: Discover */}
-            <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-              <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">01</span>
-              <div className="w-12 h-12 rounded-2xl bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] mb-6">
-                <Compass className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">1. Discover</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mt-4">
-                Begin with a personalised consultation to understand your symptoms, concerns, health goals and lifestyle.
-              </p>
-            </div>
+            {[
+              {
+                title: "DISCOVER",
+                stepNum: "01",
+                desc: "Begin with a personalised consultation to understand your symptoms, concerns, health goals and lifestyle."
+              },
+              {
+                title: "TEST",
+                stepNum: "02",
+                desc: "Use foundational testing and, where appropriate, rapid point-of-care screening to create a clearer picture of your health."
+              },
+              {
+                title: "TARGET",
+                stepNum: "03",
+                desc: "Identify the most relevant health priorities and create a personalised nutrition and lifestyle pathway."
+              },
+              {
+                title: "TRANSFORM",
+                stepNum: "04",
+                desc: "Follow a structured support plan designed to help you make measurable, sustainable changes."
+              },
+              {
+                title: "RETEST",
+                stepNum: "05",
+                desc: "Track progress, review changes and refine your pathway using follow-up testing where appropriate."
+              },
+              {
+                title: "ESCALATE",
+                stepNum: "06",
+                desc: "Where screening results or concerns require further investigation, access private GP support or specialist referral pathways."
+              }
+            ].map((item, idx) => {
+              const isActive = activeStep === idx;
+              return (
+                <div 
+                  key={idx}
+                  onClick={() => setActiveStep(idx)}
+                  className={`p-10 rounded-3xl shadow-lg border relative overflow-hidden transition-all duration-300 cursor-pointer ${
+                    isActive 
+                      ? "bg-[#9f1e13] text-white border-transparent scale-[1.03] z-10" 
+                      : "bg-white text-zinc-950 border-gray-100 hover:shadow-xl hover:scale-[1.01]"
+                  }`}
+                >
+                  <div className={`absolute top-0 right-0 w-32 h-32 rounded-bl-full -z-10 transition-transform ${
+                    isActive ? "bg-white/5" : "bg-[#dbd4c9]/20"
+                  }`}></div>
+                  
+                  <span className={`font-bold text-6xl absolute top-8 right-8 font-playfair ${
+                    isActive ? "text-white opacity-10" : "text-[#9f1e13] opacity-20"
+                  }`}>
+                    {item.stepNum}
+                  </span>
 
-            {/* Step 2: Test */}
-            <div className="bg-[#9f1e13] text-white p-10 rounded-3xl shadow-lg relative overflow-hidden group hover:shadow-xl transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-              <span className="text-white font-bold text-6xl opacity-10 absolute top-8 right-8 font-playfair">02</span>
-              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-white mb-6">
-                <Microscope className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold mb-2 font-playfair">2. Test</h3>
-              <p className="text-[#faf8f5] text-sm leading-relaxed mt-4 opacity-90">
-                Use foundational testing and, where appropriate, rapid point-of-care screening to create a clearer picture of your health.
-              </p>
-            </div>
-
-            {/* Step 3: Target */}
-            <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-              <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">03</span>
-              <div className="w-12 h-12 rounded-2xl bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] mb-6">
-                <Target className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">3. Target</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mt-4">
-                Identify the most relevant health priorities and create a personalised nutrition and lifestyle pathway.
-              </p>
-            </div>
-
-            {/* Step 4: Transform */}
-            <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-              <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">04</span>
-              <div className="w-12 h-12 rounded-2xl bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] mb-6">
-                <Zap className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">4. Transform</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mt-4">
-                Follow a structured support plan designed to help you make measurable, sustainable changes.
-              </p>
-            </div>
-
-            {/* Step 5: Retest */}
-            <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-              <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">05</span>
-              <div className="w-12 h-12 rounded-2xl bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] mb-6">
-                <Activity className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">5. Retest</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mt-4">
-                Track progress, review changes and refine your pathway using follow-up testing where appropriate.
-              </p>
-            </div>
-
-            {/* Step 6: Escalate */}
-            <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-              <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">06</span>
-              <div className="w-12 h-12 rounded-2xl bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] mb-6">
-                <TrendingUp className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">6. Escalate</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mt-4">
-                Where screening results or concerns require further investigation, access private GP support or specialist referral pathways.
-              </p>
-            </div>
+                  <h3 className={`text-2xl font-bold font-playfair tracking-widest uppercase mb-4 ${
+                    isActive ? "text-white" : "text-[#9f1e13]"
+                  }`}>
+                    {item.title}
+                  </h3>
+                  
+                  <p className={`text-sm leading-relaxed mt-4 ${
+                    isActive ? "text-[#faf8f5]/95 font-light" : "text-gray-600 font-medium"
+                  }`}>
+                    {item.desc}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
