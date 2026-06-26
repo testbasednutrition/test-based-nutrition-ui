@@ -45,6 +45,7 @@ const TestingPageV2 = () => {
   const location = useLocation();
   
   const [showAllMarkers, setShowAllMarkers] = useState(false);
+  const [activeStep, setActiveStep] = useState(3);
 
   useEffect(() => {
     if (location.hash) {
@@ -234,56 +235,94 @@ const TestingPageV2 = () => {
               </p>
             </div>
 
+            {/* Horizontal Pathway Indicator */}
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-sm font-bold text-[#9f1e13] mb-12 bg-white border border-[#dbd4c9] px-6 py-3 rounded-2xl shadow-sm w-fit mx-auto">
+              {["Discover", "Test", "Target", "Transform", "Retest", "Escalate"].map((flow, i) => (
+                <React.Fragment key={i}>
+                  {i > 0 && <span className="text-[#dbd4c9] mx-1">→</span>}
+                  <button
+                    onClick={() => setActiveStep(i)}
+                    className={`transition-all duration-200 focus:outline-none ${
+                      activeStep === i 
+                        ? "underline decoration-[#9f1e13] decoration-2 underline-offset-4 font-bold text-[#9f1e13]" 
+                        : "text-[#9f1e13]/60 hover:text-[#9f1e13] font-medium"
+                    }`}
+                  >
+                    {flow}
+                  </button>
+                </React.Fragment>
+              ))}
+            </div>
+
             {/* Stepper Flow Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { step: "1", title: "Discover", desc: "Begin with your story, symptoms and goals.", icon: Compass },
-                { step: "2", title: "Test", desc: "Choose the most relevant testing or screening options.", icon: Microscope },
-                { step: "3", title: "Target", desc: "Build a personalised lifestyle and nutrition pathway.", icon: ArrowRight }, // wait target icon or pointer
-                { step: "4", title: "Transform", desc: "Take practical steps with practitioner-led support.", icon: Zap },
-                { step: "5", title: "Retest", desc: "Measure progress and refine your next step.", icon: Activity },
-                { step: "6", title: "Escalate", desc: "Access further investigation where appropriate.", icon: TrendingUp }
+                {
+                  title: "DISCOVER",
+                  stepNum: "01",
+                  desc: "Begin with a personalised consultation to understand your symptoms, concerns, health goals and lifestyle."
+                },
+                {
+                  title: "TEST",
+                  stepNum: "02",
+                  desc: "Use foundational testing and, where appropriate, rapid point-of-care screening to create a clearer picture of your health."
+                },
+                {
+                  title: "TARGET",
+                  stepNum: "03",
+                  desc: "Identify the most relevant health priorities and create a personalised nutrition and lifestyle pathway."
+                },
+                {
+                  title: "TRANSFORM",
+                  stepNum: "04",
+                  desc: "Follow a structured support plan designed to help you make measurable, sustainable changes."
+                },
+                {
+                  title: "RETEST",
+                  stepNum: "05",
+                  desc: "Track progress, review changes and refine your pathway using follow-up testing where appropriate."
+                },
+                {
+                  title: "ESCALATE",
+                  stepNum: "06",
+                  desc: "Where screening results or concerns require further investigation, access private GP support or specialist referral pathways."
+                }
               ].map((item, idx) => {
-                const StepIcon = item.icon;
+                const isActive = activeStep === idx;
                 return (
                   <div 
-                    key={idx} 
-                    className="bg-white border border-[#dbd4c9]/60 hover:border-[#9f1e13]/30 p-8 rounded-3xl transition-all hover:shadow-xl group flex flex-col justify-between min-h-[200px]"
+                    key={idx}
+                    onClick={() => setActiveStep(idx)}
+                    className={`p-10 rounded-3xl shadow-lg border relative overflow-hidden transition-all duration-300 cursor-pointer ${
+                      isActive 
+                        ? "bg-[#9f1e13] text-white border-transparent scale-[1.03] z-10" 
+                        : "bg-white text-zinc-950 border-gray-100 hover:shadow-xl hover:scale-[1.01]"
+                    }`}
                   >
-                    <div className="flex items-start justify-between">
-                      <span className="text-xs font-bold font-sans tracking-widest text-[#9f1e13] bg-[#9f1e13]/5 border border-[#9f1e13]/10 px-3 py-1 rounded-full">
-                        STAGE {item.step}
-                      </span>
-                      <div className="w-10 h-10 rounded-xl bg-zinc-50 border border-zinc-100 flex items-center justify-center text-[#9f1e13] group-hover:bg-[#9f1e13] group-hover:text-white transition-all">
-                        <StepIcon className="w-5 h-5" />
-                      </div>
-                    </div>
-                    <div className="mt-6 space-y-2">
-                      <h4 className="text-lg font-playfair font-bold text-zinc-900 group-hover:text-[#9f1e13] transition-colors">
-                        {item.title}
-                      </h4>
-                      <p className="text-[14px] text-zinc-600 leading-relaxed font-light">
-                        {item.desc}
-                      </p>
-                    </div>
+                    <div className={`absolute top-0 right-0 w-32 h-32 rounded-bl-full -z-10 transition-transform ${
+                      isActive ? "bg-white/5" : "bg-[#dbd4c9]/20"
+                    }`}></div>
+                    
+                    <span className={`font-bold text-6xl absolute top-8 right-8 font-playfair ${
+                      isActive ? "text-white opacity-10" : "text-[#9f1e13] opacity-20"
+                    }`}>
+                      {item.stepNum}
+                    </span>
+
+                    <h3 className={`text-2xl font-bold font-playfair tracking-widest uppercase mb-4 ${
+                      isActive ? "text-white" : "text-[#9f1e13]"
+                    }`}>
+                      {item.title}
+                    </h3>
+                    
+                    <p className={`text-sm leading-relaxed mt-4 ${
+                      isActive ? "text-[#faf8f5]/95 font-light" : "text-gray-600 font-medium"
+                    }`}>
+                      {item.desc}
+                    </p>
                   </div>
                 );
               })}
-            </div>
-
-            {/* Visual flow text pathway */}
-            <div className="mt-16 bg-white border border-[#dbd4c9] rounded-2xl p-6 shadow-sm max-w-3xl mx-auto text-center flex flex-col md:flex-row items-center justify-center gap-4">
-              <span className="text-xs font-bold text-zinc-400 tracking-widest uppercase">The Pathway:</span>
-              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-sm font-bold text-zinc-800">
-                {["Discover", "Test", "Target", "Transform", "Retest", "Escalate"].map((flow, i) => (
-                  <React.Fragment key={i}>
-                    {i > 0 && <span className="text-[#9f1e13]">→</span>}
-                    <span className={`px-3 py-1 rounded-md transition-colors ${i === 3 ? "bg-[#9f1e13] text-white" : "hover:text-[#9f1e13]"}`}>
-                      {flow}
-                    </span>
-                  </React.Fragment>
-                ))}
-              </div>
             </div>
           </div>
         </section>
