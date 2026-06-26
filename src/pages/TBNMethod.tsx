@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, ChevronRight, BookOpen, Users, Brain, Beaker } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronRight, BookOpen, Users, Brain, Compass, Microscope, Target, Zap, Activity, TrendingUp } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 import { useQuiz } from "@/components/QuizContext";
@@ -152,79 +152,93 @@ const TBNMethod = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Step 1 */}
-            <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group">
+          {/* Horizontal Pathway Indicator */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-sm font-bold text-[#9f1e13] mb-12 bg-white border border-[#dbd4c9] px-6 py-3 rounded-2xl shadow-sm w-fit mx-auto">
+            {["Discover", "Test", "Target", "Transform", "Retest", "Escalate"].map((flow, i) => (
+              <React.Fragment key={i}>
+                {i > 0 && <span className="text-[#dbd4c9]">→</span>}
+                <span className={i === 3 ? "underline decoration-2 underline-offset-4" : ""}>{flow}</span>
+              </React.Fragment>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Step 1: Discover */}
+            <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
               <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">01</span>
-              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">Step 1: Test</h3>
-              <p className="text-[#9f1e13] font-medium mb-6">Insight before action.</p>
-              <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                Every TBN pathway starts by understanding the person first. We explore your goals, lifestyle, nutrition, sleep, hormones, and wellbeing to identify the right testing pathway.
+              <div className="w-12 h-12 rounded-2xl bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] mb-6">
+                <Compass className="w-6 h-6" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">1. Discover</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mt-4">
+                Begin with a personalised consultation to understand your symptoms, concerns, health goals and lifestyle.
               </p>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <Beaker className="w-5 h-5 text-[#9f1e13] shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="block text-[#9f1e13] text-sm">Foundational Testing</strong>
-                    <span className="text-gray-500 text-xs">Omega Balance & Gut Health testing to understand internal balance.</span>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Zap className="w-5 h-5 text-[#9f1e13] shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="block text-[#9f1e13] text-sm">Rapid Point-of-Care</strong>
-                    <span className="text-gray-500 text-xs">Selected biomarkers screened on-site in under 15 minutes.</span>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Activity className="w-5 h-5 text-[#9f1e13] shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="block text-[#9f1e13] text-sm">Advanced Pathways</strong>
-                    <span className="text-gray-500 text-xs">Deep insights into hormones, metabolic health, and performance.</span>
-                  </div>
-                </li>
-              </ul>
-              <p className="text-xs text-gray-500 italic mt-6 border-t pt-4">The aim is not to diagnose. The aim is to understand, educate and guide personalised next steps.</p>
             </div>
 
-            {/* Step 2 */}
-            <div className="bg-[#9f1e13] text-white p-10 rounded-3xl shadow-lg relative overflow-hidden group">
+            {/* Step 2: Test */}
+            <div className="bg-[#9f1e13] text-white p-10 rounded-3xl shadow-lg relative overflow-hidden group hover:shadow-xl transition-all duration-300">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
               <span className="text-white font-bold text-6xl opacity-10 absolute top-8 right-8 font-playfair">02</span>
-              <h3 className="text-2xl font-bold mb-2 font-playfair">Step 2: Target</h3>
-              <p className="text-[#faf8f5] font-medium mb-6 opacity-80">Turning insight into a personalised pathway.</p>
-              <p className="text-gray-300 mb-6 text-sm leading-relaxed">
-                Once we understand your goals and test insights, we help create a targeted education and support pathway. Instead of starting with a generic product, we start with you.
-              </p>
-              <div className="grid grid-cols-2 gap-y-3 gap-x-2 text-sm text-gray-300">
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white/80" /> Nutrition Education</span>
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white/80" /> Lifestyle Guidance</span>
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white/80" /> Omega Support</span>
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white/80" /> Gut Health</span>
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white/80" /> Sleep & Stress</span>
-                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-white/80" /> Specialist Referrals</span>
+              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-white mb-6">
+                <Microscope className="w-6 h-6" />
               </div>
+              <h3 className="text-2xl font-bold mb-2 font-playfair">2. Test</h3>
+              <p className="text-[#faf8f5] text-sm leading-relaxed mt-4 opacity-90">
+                Use foundational testing and, where appropriate, rapid point-of-care screening to create a clearer picture of your health.
+              </p>
             </div>
 
-            {/* Step 3 */}
-            <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group">
+            {/* Step 3: Target */}
+            <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
               <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">03</span>
-              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">Step 3: Transform</h3>
-              <p className="text-[#9f1e13] font-medium mb-6">Practical support. Ongoing review.</p>
-              <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                TBN protocols are designed to support clients with practical next steps. The focus is education, consistency and measurable progress.
-              </p>
-              <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                Clients are encouraged to retest and review their pathway so they can understand what has changed, track progress and refine their next steps.
-              </p>
-              <div className="bg-[#faf8f5] p-4 rounded-xl border border-gray-100">
-                <p className="text-sm font-semibold text-[#9f1e13] mb-2">Measurable Progress In:</p>
-                <p className="text-xs text-gray-500 leading-relaxed">
-                  Cellular Health • Energy • Recovery • Skin Health • Women's Health • Performance • Blood Sugar • Inflammation • Nervous System
-                </p>
+              <div className="w-12 h-12 rounded-2xl bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] mb-6">
+                <Target className="w-6 h-6" />
               </div>
+              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">3. Target</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mt-4">
+                Identify the most relevant health priorities and create a personalised nutrition and lifestyle pathway.
+              </p>
+            </div>
+
+            {/* Step 4: Transform */}
+            <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+              <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">04</span>
+              <div className="w-12 h-12 rounded-2xl bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] mb-6">
+                <Zap className="w-6 h-6" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">4. Transform</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mt-4">
+                Follow a structured support plan designed to help you make measurable, sustainable changes.
+              </p>
+            </div>
+
+            {/* Step 5: Retest */}
+            <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+              <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">05</span>
+              <div className="w-12 h-12 rounded-2xl bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] mb-6">
+                <Activity className="w-6 h-6" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">5. Retest</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mt-4">
+                Track progress, review changes and refine your pathway using follow-up testing where appropriate.
+              </p>
+            </div>
+
+            {/* Step 6: Escalate */}
+            <div className="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 relative overflow-hidden group hover:shadow-xl transition-all duration-300">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#dbd4c9]/20 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+              <span className="text-[#9f1e13] font-bold text-6xl opacity-20 absolute top-8 right-8 font-playfair">06</span>
+              <div className="w-12 h-12 rounded-2xl bg-[#9f1e13]/10 flex items-center justify-center text-[#9f1e13] mb-6">
+                <TrendingUp className="w-6 h-6" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#9f1e13] mb-2 font-playfair">6. Escalate</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mt-4">
+                Where screening results or concerns require further investigation, access private GP support or specialist referral pathways.
+              </p>
             </div>
           </div>
         </div>
