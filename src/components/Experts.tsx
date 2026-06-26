@@ -11,14 +11,14 @@ const experts = [
   },
   {
     name: "Dr Ishtiaq Rehman",
-    role: "Co-Founder\nMedical Director",
+    role: "Co-Director\nMedical Director",
     org: "Current England FA Doctor and specialist in sports and lifestyle medicine. Dr Rehman leads the clinical, educational and preventative health framework behind TBN.",
     link: "/specialists/dr-ishtiaq-rehman",
     image: "/experts/ishtiaq-rehman-new.jpg",
   },
   {
     name: "Neil Parsley",
-    role: "Co-Founder\nPerformance Director",
+    role: "Co-Director\nPerformance Director",
     org: "Former Team GB, England FA and Manchester City performance coach. As founder of UTS Gym, Neil also leads TBN’s gym integration and sports performance pathways.",
     link: "/specialists/neil-parsley",
     image: "/experts/neil-parsley-new.jpg",

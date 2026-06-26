@@ -54,7 +54,7 @@ const initialFolders: FolderSection[] = [
         id: "welcome-tbn",
         name: "Welcome to TBN",
         resources: [
-          { id: "sh-1", title: "Welcome to TBN Video Walkthrough", type: "video", description: "A message from the co-founders.", url: "#" },
+          { id: "sh-1", title: "Welcome to TBN Video Walkthrough", type: "video", description: "A message from the co-directors.", url: "#" },
           { id: "sh-2", title: "TBN Story & History", type: "pdf", description: "Our timeline and evolution of test-based care.", url: "#" },
           { id: "sh-3", title: "TBN Mission Document", type: "pdf", description: "Aligning on core vision and customer care.", url: "#" },
           { id: "sh-4", title: "Meet the Team", type: "link", description: "Meet our board, medical directors, and specialists.", url: "#" }

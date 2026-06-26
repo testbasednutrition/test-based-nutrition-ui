@@ -14,6 +14,7 @@ import ClinicsDirectory from "./pages/ClinicsDirectory";
 import ClinicProfile from "./pages/ClinicProfile";
 import AreaProfile from "./pages/AreaProfile";
 import TestingPage from "./pages/TestingPage";
+import TestingPageV2 from "./pages/TestingPageV2";
 import NotFound from "./pages/NotFound";
 import NewsHub from "./pages/NewsHub";
 import NewsArticle from "./pages/NewsArticle";
@@ -28,6 +29,7 @@ import SportsPerformance from "./pages/treatments/SportsPerformance";
 import PainFatigue from "./pages/treatments/PainFatigue";
 import PartnerWithUs from "./pages/PartnerWithUs";
 import PartnerWithUs2 from "./pages/PartnerWithUs2";
+import PartnerWithUs3 from "./pages/PartnerWithUs3";
 
 import TBNMethod from "./pages/TBNMethod";
 import AdminLeads from "./pages/AdminLeads";
@@ -72,8 +74,10 @@ const App = () => (
             <Route path="/news/:id" element={<NewsArticle />} />
             <Route path="/partner-with-us" element={<PartnerWithUs2 />} />
             <Route path="/partner-with-us-2" element={<PartnerWithUs />} />
+            <Route path="/partner-with-us-3" element={<PartnerWithUs3 />} />
             <Route path="/partner-portal-2" element={<PartnerPortal2 />} />
             <Route path="/testing" element={<TestingPage />} />
+            <Route path="/testing-v2" element={<TestingPageV2 />} />
             <Route path="/tbn-method" element={<TBNMethod />} />
 
             <Route path="/admin/leads" element={<AdminLeads />} />

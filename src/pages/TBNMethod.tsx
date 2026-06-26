@@ -79,11 +79,11 @@ const TBNMethod = () => {
             <span className="text-[#faf8f5] uppercase tracking-[0.2em] font-semibold text-sm">
               The TBN Method
             </span>
-            <h1 className="text-5xl md:text-7xl font-playfair font-bold leading-tight">
-              Test. Target.<br />Transform.
+            <h1 className="text-4xl md:text-6xl font-playfair font-bold leading-tight">
+              Discover. Test. Target.<br />Transform. Retest. Escalate.
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 font-light leading-relaxed max-w-2xl">
-              A science-led, personalised approach to preventative health, built around testing, education, specialist insight and measurable client pathways.
+              A clear, measurable pathway from your first consultation to personalised support, progress tracking and specialist referral where needed.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button 

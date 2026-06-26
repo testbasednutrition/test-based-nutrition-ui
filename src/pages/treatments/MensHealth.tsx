@@ -201,7 +201,7 @@ const MensHealth = () => {
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
                    <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-1">Dr Ishtiaq Rehman</h3>
                    <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">MBChB, MFSEM</p>
-                   <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#9f1e13] uppercase tracking-widest mb-4">TBN Co-Founder & Medical Director | England FA Doctor</div>
+                   <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#9f1e13] uppercase tracking-widest mb-4">TBN Co-Director & Medical Director | England FA Doctor</div>
                    <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13] pl-3">"Men’s health is often managed at the symptom level — but real change comes from understanding what’s driving it beneath the surface."</p>
                  </div>
               </div>

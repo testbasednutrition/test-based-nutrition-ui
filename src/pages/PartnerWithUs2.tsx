@@ -42,13 +42,13 @@ const PartnerWithUs2 = () => {
               PARTNER WITH TEST-BASED NUTRITION
             </span>
             <h1 className="text-5xl md:text-7xl font-playfair font-bold leading-tight">
-              Stop Guessing. <br/>Start Testing.
+              Build The Future Of <br/>Preventative Health <br/>In Your Business
             </h1>
-            <h2 className="text-2xl md:text-3xl font-light text-white/90">
-              Lead the Personalised Health Revolution.
+            <h2 className="text-xl md:text-2xl font-light text-white/90 leading-relaxed max-w-3xl">
+              Bring science-led testing, rapid point-of-care screening, specialist support, practitioner education and personalised health pathways into your clinic, pharmacy, health club, wellness destination or resort.
             </h2>
             <p className="text-lg md:text-xl text-gray-300 font-light leading-relaxed max-w-2xl">
-              Bring the world’s first test-based nutrition integration solution into your clinic, pharmacy, health club, or wellness business.
+              A complete Business-In-A-Box designed to help you create new revenue streams, increase client retention and deliver a premium health experience.
             </p>
             <div className="pt-4">
               <Button size="lg" className="bg-[#9f1e13] hover:bg-[#9f1e13] text-white px-8 h-14 text-base font-bold tracking-wide rounded-full shadow-lg" asChild>

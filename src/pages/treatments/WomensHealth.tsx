@@ -213,7 +213,7 @@ const WomensHealth = () => {
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
                     <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-1">Dr Ishtiaq Rehman</h3>
                     <p className="text-[11px] md:text-[12px] font-semibold text-gray-500 mb-2 tracking-wide">MBChB, MFSEM</p>
-                    <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#9f1e13] uppercase tracking-widest mb-4">TBN Co-Founder & Medical Director</div>
+                    <div className="font-sans text-[10px] lg:text-[12px] font-bold text-[#9f1e13] uppercase tracking-widest mb-4">TBN Co-Director & Medical Director</div>
                     <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13] pl-3">"Women’s health is influenced by the systems behind it — not just the symptoms you see."</p>
                  </div>
               </div>
@@ -467,7 +467,7 @@ const WomensHealth = () => {
                    </p>
                    <div className="bg-white/5 p-3.5 rounded-xl border border-white/10 w-full mt-auto">
                      <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#dbd4c9] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Dr Vian Hurle <span className="text-white/50 font-normal">(Women's Health Specialist)</span></p></div>
-                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#dbd4c9] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Dr Ishtiaq Rehman <span className="text-white/50 font-normal">(TBN Co-Founder)</span></p></div>
+                     <div className="flex items-start gap-2 mb-1.5"><div className="w-1 h-1 rounded-full bg-[#dbd4c9] shrink-0 mt-1.5"></div><p className="text-[12px] text-white font-bold leading-tight">Dr Ishtiaq Rehman <span className="text-white/50 font-normal">(TBN Co-Director)</span></p></div>
                    </div>
                  </div>
                </div>

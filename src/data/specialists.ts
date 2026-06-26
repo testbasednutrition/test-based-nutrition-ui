@@ -80,7 +80,7 @@ export const specialists: Specialist[] = [
   {
     slug: "dr-ishtiaq-rehman",
     name: "Dr. Ishtiaq Rehman",
-    role: "Co-Founder & Medical Director",
+    role: "Co-Director & Medical Director",
     category: "Women's Health",
     image: "/experts/ishtiaq-rehman-new.jpg",
     secondaryImage: "https://test-basednutrition.com/assets/images/ish2-634x434.jpeg",
@@ -171,7 +171,7 @@ export const specialists: Specialist[] = [
   {
     slug: "neil-parsley",
     name: "Neil Parsley",
-    role: "Co-Founder & Performance Director",
+    role: "Co-Director & Performance Director",
     category: "Sports Performance",
     image: "/experts/neil-parsley-new.jpg",
     bio: [

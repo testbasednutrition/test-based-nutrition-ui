@@ -182,7 +182,7 @@ const ChildrensHealth = () => {
               <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 lg:gap-8 md:pr-4 lg:pr-14">
                  <div className="flex flex-col flex-1 pl-0 pt-2 sm:pt-0">
                     <h3 className="font-playfair text-[18px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] group-hover:text-[#9f1e13] transition-colors leading-snug mb-1 sm:mb-0">Dr Ishtiaq Rehman</h3>
-                    <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#9f1e13] uppercase tracking-widest mb-4 mt-2">TBN Co-Founder & Medical Director<br/>England FA Doctor</div>
+                    <div className="font-sans text-[10px] lg:text-[12px] font-semibold text-[#9f1e13] uppercase tracking-widest mb-4 mt-2">TBN Co-Director & Medical Director<br/>England FA Doctor</div>
                     <p className="font-playfair italic text-[#111827] text-[12px] sm:text-[14px] leading-relaxed max-w-sm mx-auto sm:mx-0 opacity-80 border-l-2 border-[#9f1e13] pl-3">"Many of the health challenges children and teenagers face today are influenced by wider lifestyle, nutritional, inflammatory, and metabolic factors that are often overlooked."</p>
                  </div>
               </div>
