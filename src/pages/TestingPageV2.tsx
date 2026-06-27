@@ -104,7 +104,7 @@ const TestingPageV2 = () => {
               <div className="pt-4 flex flex-col sm:flex-row gap-4">
                 <Button 
                   onClick={() => openQuiz()}
-                  className="bg-[#9f1e13] hover:bg-[#b02216] text-white px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg shadow-red-950/20 transition-all flex items-center justify-center gap-2"
+                  className="bg-[#9f1e13] hover:bg-[#861910] text-white px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg shadow-red-950/20 transition-all flex items-center justify-center gap-2"
                 >
                   BOOK A FREE CONSULTATION <ArrowRight className="w-4 h-4" />
                 </Button>
@@ -714,7 +714,7 @@ const TestingPageV2 = () => {
                 <div className="pt-4">
                   <Button 
                     asChild 
-                    className="bg-[#9f1e13] hover:bg-[#b02216] text-white px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg transition-all"
+                    className="bg-[#9f1e13] hover:bg-[#861910] text-white px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg transition-all"
                   >
                     <Link to="/specialists">
                       EXPLORE OUR HEALTH PATHWAYS <ArrowUpRight className="ml-2 w-4 h-4" />
@@ -812,7 +812,7 @@ const TestingPageV2 = () => {
                 <div className="pt-4">
                   <Button 
                     asChild 
-                    className="bg-[#9f1e13] hover:bg-[#b02216] text-white px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg transition-all"
+                    className="bg-[#9f1e13] hover:bg-[#861910] text-white px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg transition-all"
                   >
                     <Link to="/partner-with-us-3">
                       BOOK A PARTNER DISCOVERY CALL <ArrowUpRight className="ml-2 w-4 h-4" />
@@ -874,7 +874,7 @@ const TestingPageV2 = () => {
             <div className="pt-4">
               <Button 
                 asChild
-                className="bg-[#9f1e13] hover:bg-[#b02216] text-white px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg shadow-red-950/20 transition-all"
+                className="bg-[#9f1e13] hover:bg-[#861910] text-white px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg shadow-red-950/20 transition-all"
               >
                 <Link to="/partner-with-us-3">
                   HOST A TESTING HUB DAY <Calendar className="ml-2 w-4 h-4" />
@@ -904,7 +904,7 @@ const TestingPageV2 = () => {
             <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center max-w-2xl mx-auto">
               <Button 
                 onClick={() => openQuiz()}
-                className="flex-1 bg-[#9f1e13] hover:bg-[#b02216] text-white h-14 text-xs font-bold tracking-wider rounded-xl shadow-lg transition-all"
+                className="flex-1 bg-[#9f1e13] hover:bg-[#861910] text-white h-14 text-xs font-bold tracking-wider rounded-xl shadow-lg transition-all"
               >
                 BOOK A FREE CONSULTATION
               </Button>
@@ -917,7 +917,7 @@ const TestingPageV2 = () => {
               </Button>
               <Button 
                 asChild
-                className="flex-1 bg-[#9f1e13] hover:bg-[#b02216] text-white h-14 text-xs font-bold tracking-wider rounded-xl transition-all"
+                className="flex-1 bg-[#9f1e13] hover:bg-[#861910] text-white h-14 text-xs font-bold tracking-wider rounded-xl transition-all"
               >
                 <Link to="/partner-with-us-3">
                   PARTNER WITH TBN
