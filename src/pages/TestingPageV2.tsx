@@ -64,7 +64,7 @@ const TestingPageV2 = () => {
 
       <main className="flex-grow">
         {/* 1. HERO SECTION */}
-        <section className="relative min-h-[80vh] flex items-center bg-[#faf8f5] overflow-hidden border-b border-zinc-200/50">
+        <section className="relative min-h-[80vh] flex items-center bg-[#faf8f5] overflow-hidden">
           <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] z-0">
             <img 
               src={heroImg} 
@@ -74,6 +74,8 @@ const TestingPageV2 = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f5] via-[#faf8f5]/95 lg:via-[#faf8f5]/30 to-transparent"></div>
             <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#faf8f5] to-transparent lg:hidden"></div>
           </div>
+          {/* Bottom Fade Transition */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
 
           <div className="w-full max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-24">
             <div className="max-w-xl lg:max-w-2xl space-y-6">
@@ -109,7 +111,7 @@ const TestingPageV2 = () => {
                 <Button 
                   onClick={() => openQuiz()}
                   variant="outline"
-                  className="border-zinc-200 text-zinc-800 hover:bg-zinc-50 px-8 h-14 text-sm font-bold tracking-wider rounded-xl transition-all"
+                  className="border-[#dbd4c9] text-zinc-800 hover:bg-secondary/20 px-8 h-14 text-sm font-bold tracking-wider rounded-xl transition-all"
                 >
                   FIND MY NEAREST TBN HUB
                 </Button>
@@ -119,7 +121,7 @@ const TestingPageV2 = () => {
         </section>
 
         {/* 2. WHY WE TEST SECTION */}
-        <section className="py-24 bg-white relative overflow-hidden border-b border-zinc-100">
+        <section className="py-24 bg-white relative overflow-hidden">
           <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-[#dbd4c9]/10 rounded-full blur-[80px] pointer-events-none"></div>
           
           <div className="container max-w-[1140px] mx-auto px-4 sm:px-6 relative z-10">
@@ -155,7 +157,7 @@ const TestingPageV2 = () => {
                     ].map((symptom, i) => (
                       <div 
                         key={i} 
-                        className="bg-white px-4 py-3.5 rounded-xl border border-zinc-200/50 shadow-sm flex items-center gap-2 hover:border-[#9f1e13]/30 transition-colors"
+                        className="bg-white px-4 py-3.5 rounded-xl border border-[#dbd4c9]/50 shadow-sm flex items-center gap-2 hover:border-[#9f1e13]/30 transition-colors"
                       >
                         <AlertCircle className="w-4 h-4 text-[#9f1e13]/60 shrink-0" />
                         <span className="text-xs font-bold text-zinc-800">{symptom}</span>
@@ -172,8 +174,8 @@ const TestingPageV2 = () => {
                   <p className="text-base text-zinc-700 leading-relaxed font-medium">
                     Testing and screening help your practitioner ask better questions, explore relevant markers and create a more personalised pathway around your goals.
                   </p>
-                  <div className="inline-flex items-start gap-2.5 p-4 rounded-xl bg-zinc-50 text-xs text-zinc-500 leading-relaxed border border-zinc-200/40">
-                    <Info className="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" />
+                  <div className="inline-flex items-start gap-2.5 p-4 rounded-xl bg-secondary/20 text-xs text-zinc-600 leading-relaxed border border-[#dbd4c9]/40">
+                    <Info className="w-4 h-4 text-zinc-500 shrink-0 mt-0.5" />
                     <span>
                       Testing supports more informed conversations. Screening is not a diagnosis and does not replace medical care.
                     </span>
@@ -219,7 +221,13 @@ const TestingPageV2 = () => {
         </section>
 
         {/* 3. THE TBN METHOD™ SECTION */}
-        <section className="py-24 bg-[#faf8f5] relative overflow-hidden border-b border-zinc-200/50">
+        <section className="py-24 bg-[#faf8f5] relative overflow-hidden">
+          {/* Top Fade Transition */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-10" />
+          
+          {/* Bottom Fade Transition */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
+
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#dbd4c9]/25 rounded-full blur-[100px] pointer-events-none"></div>
           
           <div className="container max-w-[1140px] mx-auto px-4 sm:px-6 relative z-10">
@@ -328,7 +336,7 @@ const TestingPageV2 = () => {
         </section>
 
         {/* 4. THE TBN TESTING FRAMEWORK SECTION */}
-        <section className="py-24 bg-white relative overflow-hidden border-b border-zinc-100">
+        <section className="py-24 bg-white relative overflow-hidden">
           <div className="container max-w-[1200px] mx-auto px-4 sm:px-6 relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
               <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
@@ -359,7 +367,7 @@ const TestingPageV2 = () => {
                     <p className="text-xs font-semibold text-zinc-500 italic">Establish your baseline.</p>
                   </div>
                   
-                  <p className="text-[13px] text-zinc-600 leading-relaxed font-light border-b border-zinc-200 pb-4">
+                  <p className="text-[13px] text-zinc-600 leading-relaxed font-light border-b border-[#dbd4c9]/50 pb-4">
                     Our Foundational Tests explore two key areas linked to wider health and wellbeing conversations.
                   </p>
 
@@ -367,7 +375,7 @@ const TestingPageV2 = () => {
                     {/* Omega Balance */}
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg overflow-hidden border border-zinc-200/50 bg-white p-1 flex items-center justify-center shrink-0">
+                        <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#dbd4c9]/40 bg-white p-1 flex items-center justify-center shrink-0">
                           <img src="/images/test-logos/omega3balance.png" alt="Omega balance test" className="object-contain" />
                         </div>
                         <h4 className="text-[14px] font-bold text-zinc-900 uppercase tracking-wide">Omega Balance Test</h4>
@@ -375,7 +383,7 @@ const TestingPageV2 = () => {
                       <p className="text-xs text-zinc-500 leading-relaxed font-light">
                         Explore your omega-6 to omega-3 balance and wider fatty-acid profile.
                       </p>
-                      <div className="bg-white/80 border border-zinc-200/60 p-3.5 rounded-2xl space-y-2">
+                      <div className="bg-white/80 border border-[#dbd4c9]/50 p-3.5 rounded-2xl space-y-2">
                         <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">Results include:</span>
                         <ul className="space-y-1.5 text-xs text-zinc-700 font-medium">
                           {["Omega-6 to omega-3 balance", "Omega-3 index", "Cell-fluidity indicator", "Protection value", "Mental-strength indicator"].map((res, i) => (
@@ -389,9 +397,9 @@ const TestingPageV2 = () => {
                     </div>
 
                     {/* Gut Health */}
-                    <div className="space-y-3 pt-3 border-t border-zinc-200/60">
+                    <div className="space-y-3 pt-3 border-t border-[#dbd4c9]/50">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg overflow-hidden border border-zinc-200/50 bg-white p-1 flex items-center justify-center shrink-0">
+                        <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#dbd4c9]/40 bg-white p-1 flex items-center justify-center shrink-0">
                           <img src="/images/test-logos/guthealth1.png" alt="Gut Health test" className="object-contain" />
                         </div>
                         <h4 className="text-[14px] font-bold text-zinc-900 uppercase tracking-wide">Gut Health Test</h4>
@@ -479,7 +487,7 @@ const TestingPageV2 = () => {
                     <p className="text-xs font-semibold text-zinc-500 italic">Point-of-care blood-draw screening.</p>
                   </div>
                   
-                  <p className="text-[13px] text-zinc-600 leading-relaxed font-light border-b border-zinc-200 pb-4">
+                  <p className="text-[13px] text-zinc-600 leading-relaxed font-light border-b border-[#dbd4c9]/50 pb-4">
                     Where deeper insight is needed, Advanced Screening may be recommended following consultation.
                   </p>
 
@@ -487,7 +495,7 @@ const TestingPageV2 = () => {
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block mb-2.5">Markers may include:</span>
                     <div className="grid grid-cols-2 gap-2">
                       {["Testosterone", "Vitamin B12", "FSH", "TSH"].map((m, i) => (
-                        <div key={i} className="bg-white border border-zinc-200/60 p-3 rounded-xl flex items-center gap-2.5">
+                        <div key={i} className="bg-white border border-[#dbd4c9]/50 p-3 rounded-xl flex items-center gap-2.5">
                           <div className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]"></div>
                           <span className="text-xs font-bold text-zinc-800">{m}</span>
                         </div>
@@ -496,7 +504,7 @@ const TestingPageV2 = () => {
                   </div>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-zinc-200 bg-zinc-50/50 -mx-8 -mb-8 p-6 rounded-b-[2.5rem]">
+                <div className="mt-8 pt-4 border-t border-[#dbd4c9]/50 bg-secondary/15 -mx-8 -mb-8 p-6 rounded-b-[2.5rem]">
                   <p className="text-[11px] text-zinc-500 leading-relaxed font-light text-center">
                     Screening is determined by consultation. Screening does not diagnose medical conditions or replace medical care.
                   </p>
@@ -507,7 +515,7 @@ const TestingPageV2 = () => {
 
             {/* Show all markers expansion list */}
             {showAllMarkers && (
-              <div className="mt-12 bg-zinc-50 border border-[#dbd4c9]/80 rounded-[2rem] p-8 shadow-inner animate-in fade-in slide-in-from-top-4 duration-300">
+              <div className="mt-12 bg-secondary/20 border border-[#dbd4c9]/80 rounded-[2rem] p-8 shadow-inner animate-in fade-in slide-in-from-top-4 duration-300">
                 <h4 className="text-lg font-playfair font-bold text-zinc-900 mb-6 flex items-center gap-2">
                   <Layers className="w-5 h-5 text-[#9f1e13]" /> Full Point-of-Care Marker List
                 </h4>
@@ -531,7 +539,7 @@ const TestingPageV2 = () => {
                     { name: "FSH", level: "Level 3", desc: "Follicle-stimulating hormone" },
                     { name: "TSH", level: "Level 3", desc: "Thyroid-stimulating hormone" }
                   ].map((m, i) => (
-                    <div key={i} className="bg-white p-4 rounded-xl border border-zinc-200/60 shadow-sm flex flex-col justify-between">
+                    <div key={i} className="bg-white p-4 rounded-xl border border-[#dbd4c9]/50 shadow-sm flex flex-col justify-between hover:border-[#9f1e13]/30 transition-colors">
                       <div>
                         <span className="text-[9px] font-bold text-[#9f1e13] uppercase tracking-wider block mb-1">
                           {m.level}
@@ -548,7 +556,13 @@ const TestingPageV2 = () => {
         </section>
 
         {/* 5. MORE THAN A TEST RESULT SECTION */}
-        <section className="py-24 bg-[#faf8f5] relative overflow-hidden border-b border-zinc-200/50">
+        <section className="py-24 bg-[#faf8f5] relative overflow-hidden">
+          {/* Top Fade Transition */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-10" />
+          
+          {/* Bottom Fade Transition */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
+
           <div className="absolute inset-y-0 right-0 w-1/3 bg-[#dbd4c9]/10 rounded-l-[100px] blur-[80px] pointer-events-none"></div>
           
           <div className="container max-w-[1140px] mx-auto px-4 sm:px-6 relative z-10">
@@ -609,7 +623,7 @@ const TestingPageV2 = () => {
         </section>
 
         {/* 6. FURTHER INVESTIGATION SECTION */}
-        <section className="py-24 bg-white relative overflow-hidden border-b border-zinc-100">
+        <section className="py-24 bg-white relative overflow-hidden">
           <div className="container max-w-[1140px] mx-auto px-4 sm:px-6 relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
               <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
@@ -631,23 +645,19 @@ const TestingPageV2 = () => {
               {/* Pathway points grid */}
               <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
                 {[
-                  { name: "In-depth laboratory testing", desc: "Exploratory testing patterns via advanced referral.", icon: Microscope },
-                  { name: "Private GP support", desc: "Integrative consultations for primary care screening.", icon: Stethoscope },
-                  { name: "Specialist referral", desc: "Direct route to clinicians inside the TBN collective.", icon: Users },
-                  { name: "Ongoing monitoring", desc: "Follow-up screen tracking to secure physical baselines.", icon: Activity }
+                  { name: "In-depth laboratory testing", desc: "Exploratory testing patterns via advanced referral." },
+                  { name: "Private GP support", desc: "Integrative consultations for primary care screening." },
+                  { name: "Specialist referral", desc: "Direct route to clinicians inside the TBN collective." },
+                  { name: "Ongoing monitoring", desc: "Follow-up screen tracking to secure physical baselines." }
                 ].map((item, idx) => {
-                  const ItemIcon = item.icon;
                   return (
                     <div 
                       key={idx} 
-                      className="bg-[#faf8f5] border border-[#dbd4c9] p-6 rounded-2xl flex flex-col justify-between hover:border-[#9f1e13]/30 transition-all shadow-sm"
+                      className="bg-white border border-[#dbd4c9]/45 hover:border-[#9f1e13]/40 p-8 rounded-[1.8rem] flex flex-col justify-between hover:-translate-y-1 hover:shadow-md transition-all duration-300 min-h-[180px]"
                     >
-                      <div className="w-10 h-10 rounded-xl bg-white border border-[#dbd4c9]/60 flex items-center justify-center text-[#9f1e13] mb-4 shadow-sm">
-                        <ItemIcon className="w-5 h-5" />
-                      </div>
-                      <div className="space-y-1">
-                        <h4 className="text-xs font-bold text-zinc-900 uppercase tracking-wider">{item.name}</h4>
-                        <p className="text-[11px] text-zinc-500 font-light leading-relaxed">{item.desc}</p>
+                      <div className="space-y-3 flex-grow flex flex-col justify-between">
+                        <h4 className="text-[15px] sm:text-[16px] font-playfair font-bold text-[#9f1e13] uppercase tracking-wider leading-snug">{item.name}</h4>
+                        <p className="text-[12px] text-zinc-500 font-light leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
                   );
@@ -666,7 +676,13 @@ const TestingPageV2 = () => {
         </section>
 
         {/* 7. THE TBN COLLECTIVE SECTION */}
-        <section className="py-24 bg-[#faf8f5] relative overflow-hidden border-b border-zinc-200/50">
+        <section className="py-24 bg-[#faf8f5] relative overflow-hidden">
+          {/* Top Fade Transition */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-10" />
+          
+          {/* Bottom Fade Transition */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
+
           <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[#dbd4c9]/20 rounded-full blur-[80px] pointer-events-none"></div>
           
           <div className="container max-w-[1140px] mx-auto px-4 sm:px-6 relative z-10">
@@ -727,7 +743,7 @@ const TestingPageV2 = () => {
         </section>
 
         {/* 8. CLIENT CTA SECTION */}
-        <section className="py-20 bg-[#9f1e13] text-white relative overflow-hidden border-b border-[#9f1e13]/85">
+        <section className="py-20 bg-[#9f1e13] text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] pointer-events-none"></div>
 
@@ -767,7 +783,7 @@ const TestingPageV2 = () => {
         </section>
 
         {/* 9. PARTNER WITH TBN SECTION */}
-        <section className="py-24 bg-white relative overflow-hidden border-b border-zinc-100">
+        <section className="py-24 bg-white relative overflow-hidden">
           <div className="container max-w-[1140px] mx-auto px-4 sm:px-6 relative z-10">
             <div className="grid lg:grid-cols-12 gap-12 items-center">
               {/* Left Column layout */}
@@ -831,7 +847,13 @@ const TestingPageV2 = () => {
         </section>
 
         {/* 10. HOST A TESTING HUB DAY SECTION */}
-        <section className="py-24 bg-[#faf8f5] relative overflow-hidden border-b border-zinc-200/50">
+        <section className="py-24 bg-[#faf8f5] relative overflow-hidden">
+          {/* Top Fade Transition */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-10" />
+          
+          {/* Bottom Fade Transition */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
+
           <div className="container max-w-[900px] mx-auto px-4 sm:px-6 relative z-10 text-center space-y-8">
             <div className="space-y-3">
               <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
@@ -889,7 +911,7 @@ const TestingPageV2 = () => {
               <Button 
                 onClick={() => openQuiz()}
                 variant="outline"
-                className="flex-1 border-zinc-200 text-zinc-800 hover:bg-zinc-50 h-14 text-xs font-bold tracking-wider rounded-xl transition-all"
+                className="flex-1 border-[#dbd4c9] text-zinc-800 hover:bg-secondary/20 h-14 text-xs font-bold tracking-wider rounded-xl transition-all"
               >
                 FIND MY NEAREST TBN HUB
               </Button>
