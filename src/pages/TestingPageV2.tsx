@@ -46,6 +46,8 @@ const TestingPageV2 = () => {
   
   const [showAllMarkers, setShowAllMarkers] = useState(false);
   const [activeStep, setActiveStep] = useState(3);
+  const [omegaExpanded, setOmegaExpanded] = useState(false);
+  const [gutExpanded, setGutExpanded] = useState(false);
 
   useEffect(() => {
     if (location.hash) {
@@ -265,7 +267,7 @@ const TestingPageV2 = () => {
                     <div className="bg-white border border-[#dbd4c9]/60 p-6 sm:p-8 rounded-3xl space-y-6 flex flex-col justify-between shadow-sm">
                       <div className="space-y-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#dbd4c9]/40 bg-white p-1 flex items-center justify-center shrink-0">
+                          <div className="w-10 h-10 overflow-hidden bg-transparent flex items-center justify-center shrink-0">
                             <img src="/images/test-logos/omega3balance.png" alt="Omega balance test" className="object-contain" />
                           </div>
                           <h4 className="text-[14px] font-bold text-zinc-900 uppercase tracking-wide">Omega Balance Test</h4>
@@ -280,23 +282,33 @@ const TestingPageV2 = () => {
                           <p className="text-zinc-600">Complete at home or in clinic.</p>
                         </div>
 
-                        <div className="border-t border-[#dbd4c9]/40 pt-4 space-y-3">
-                          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">Results include:</span>
-                          <ul className="space-y-3">
-                            {[
-                              { name: "Omega-6 to omega-3 balance", desc: "Shows whether your essential fats are balanced for healthy inflammation response." },
-                              { name: "Omega-3 Index", desc: "Shows your level of key omega-3 fats linked to heart, brain and cell health." },
-                              { name: "Cell-fluidity indicator", desc: "Helps show how flexible and responsive your cell membranes are." },
-                              { name: "Protection value", desc: "Shows the level of protective fatty acids available to support healthy cell function." },
-                              { name: "Mental-strength indicator", desc: "Looks at fatty-acid balance linked to focus, mood and brain performance." },
-                              { name: "Wider fatty-acid profile", desc: "Gives a clearer picture of your overall fat balance." }
-                            ].map((res, i) => (
-                              <li key={i} className="text-xs leading-normal">
-                                <span className="font-bold text-zinc-800 block">{res.name}</span>
-                                <span className="text-zinc-550 font-light block text-[11px] mt-0.5 leading-relaxed">{res.desc}</span>
-                              </li>
-                            ))}
-                          </ul>
+                        <div className="border-t border-[#dbd4c9]/40 pt-4">
+                          <button
+                            onClick={() => setOmegaExpanded(!omegaExpanded)}
+                            className="w-full flex items-center justify-between text-[11px] font-bold text-zinc-800 uppercase tracking-widest py-1.5 focus:outline-none"
+                          >
+                            <span>Results include:</span>
+                            {omegaExpanded ? <ChevronUp className="w-4 h-4 text-zinc-555" /> : <ChevronDown className="w-4 h-4 text-zinc-555" />}
+                          </button>
+                          {omegaExpanded && (
+                            <div className="mt-3 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
+                              <ul className="space-y-3">
+                                {[
+                                  { name: "Omega-6 to omega-3 balance", desc: "Shows whether your essential fats are balanced for healthy inflammation response." },
+                                  { name: "Omega-3 Index", desc: "Shows your level of key omega-3 fats linked to heart, brain and cell health." },
+                                  { name: "Cell-fluidity indicator", desc: "Helps show how flexible and responsive your cell membranes are." },
+                                  { name: "Protection value", desc: "Shows the level of protective fatty acids available to support healthy cell function." },
+                                  { name: "Mental-strength indicator", desc: "Looks at fatty-acid balance linked to focus, mood and brain performance." },
+                                  { name: "Wider fatty-acid profile", desc: "Gives a clearer picture of your overall fat balance." }
+                                ].map((res, i) => (
+                                  <li key={i} className="text-xs leading-normal">
+                                    <span className="font-bold text-zinc-850 block">{res.name}</span>
+                                    <span className="text-zinc-550 font-light block text-[11px] mt-0.5 leading-relaxed">{res.desc}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
                         </div>
                       </div>
 
@@ -305,7 +317,7 @@ const TestingPageV2 = () => {
                         <p className="text-xs text-zinc-600 leading-relaxed font-light">
                           Omega balance is linked to inflammation balance, brain health, heart health, joint health, skin health, recovery and long-term wellbeing.
                         </p>
-                        <p className="text-xs text-zinc-500 leading-relaxed font-light mt-2 italic">
+                        <p className="text-xs text-zinc-550 leading-relaxed font-light mt-2 italic">
                           This test helps guide more personalised nutrition and supplement support.
                         </p>
                       </div>
@@ -315,7 +327,7 @@ const TestingPageV2 = () => {
                     <div className="bg-white border border-[#dbd4c9]/60 p-6 sm:p-8 rounded-3xl space-y-6 flex flex-col justify-between shadow-sm">
                       <div className="space-y-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#dbd4c9]/40 bg-white p-1 flex items-center justify-center shrink-0">
+                          <div className="w-10 h-10 overflow-hidden bg-transparent flex items-center justify-center shrink-0">
                             <img src="/images/test-logos/guthealth1.png" alt="Gut Health test" className="object-contain" />
                           </div>
                           <h4 className="text-[14px] font-bold text-zinc-900 uppercase tracking-wide">Gut Health Test</h4>
@@ -330,24 +342,34 @@ const TestingPageV2 = () => {
                           <p className="text-zinc-600">Complete at home or in clinic.</p>
                         </div>
 
-                        <div className="border-t border-[#dbd4c9]/40 pt-4 space-y-3">
-                          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">Results include:</span>
-                          <ul className="space-y-3">
-                            {[
-                              { name: "IPA level", desc: "Shows beneficial gut-bacteria activity linked to gut-barrier and immune support." },
-                              { name: "Tryptophan level", desc: "Shows an important nutrient pathway linked to gut, brain and metabolic health." },
-                              { name: "Kynurenine level", desc: "Helps show whether tryptophan is being pushed towards immune-stress pathways." },
-                              { name: "IPA:TRP ratio", desc: "Shows how efficiently gut bacteria are converting tryptophan into beneficial compounds." },
-                              { name: "KYN:TRP ratio", desc: "Helps indicate immune activation or stress load." },
-                              { name: "IPA:KYN ratio", desc: "Shows the balance between protective gut activity and stress-driven metabolism." },
-                              { name: "Gut Health Index", desc: "A simple overview score bringing the key markers together." }
-                            ].map((res, i) => (
-                              <li key={i} className="text-xs leading-normal">
-                                <span className="font-bold text-zinc-800 block">{res.name}</span>
-                                <span className="text-zinc-550 font-light block text-[11px] mt-0.5 leading-relaxed">{res.desc}</span>
-                              </li>
-                            ))}
-                          </ul>
+                        <div className="border-t border-[#dbd4c9]/40 pt-4">
+                          <button
+                            onClick={() => setGutExpanded(!gutExpanded)}
+                            className="w-full flex items-center justify-between text-[11px] font-bold text-zinc-800 uppercase tracking-widest py-1.5 focus:outline-none"
+                          >
+                            <span>Results include:</span>
+                            {gutExpanded ? <ChevronUp className="w-4 h-4 text-zinc-555" /> : <ChevronDown className="w-4 h-4 text-zinc-555" />}
+                          </button>
+                          {gutExpanded && (
+                            <div className="mt-3 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
+                              <ul className="space-y-3">
+                                {[
+                                  { name: "IPA level", desc: "Shows beneficial gut-bacteria activity linked to gut-barrier and immune support." },
+                                  { name: "Tryptophan level", desc: "Shows an important nutrient pathway linked to gut, brain and metabolic health." },
+                                  { name: "Kynurenine level", desc: "Helps show whether tryptophan is being pushed towards immune-stress pathways." },
+                                  { name: "IPA:TRP ratio", desc: "Shows how efficiently gut bacteria are converting tryptophan into beneficial compounds." },
+                                  { name: "KYN:TRP ratio", desc: "Helps indicate immune activation or stress load." },
+                                  { name: "IPA:KYN ratio", desc: "Shows the balance between protective gut activity and stress-driven metabolism." },
+                                  { name: "Gut Health Index", desc: "A simple overview score bringing the key markers together." }
+                                ].map((res, i) => (
+                                  <li key={i} className="text-xs leading-normal">
+                                    <span className="font-bold text-zinc-800 block">{res.name}</span>
+                                    <span className="text-zinc-550 font-light block text-[11px] mt-0.5 leading-relaxed">{res.desc}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
                         </div>
                       </div>
 
