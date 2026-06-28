@@ -213,7 +213,7 @@ const TBNMethod = () => {
                   className={`p-10 rounded-3xl shadow-lg border relative overflow-hidden transition-all duration-300 cursor-pointer ${
                     isActive 
                       ? "bg-[#9f1e13] text-white border-transparent scale-[1.03] z-10" 
-                      : "bg-white text-zinc-950 border-gray-100 hover:shadow-xl hover:scale-[1.01]"
+                      : "bg-white text-zinc-950 border-[#dbd4c9]/55 hover:shadow-xl hover:scale-[1.01]"
                   }`}
                 >
                   <div className={`absolute top-0 right-0 w-32 h-32 rounded-bl-full -z-10 transition-transform ${
@@ -245,7 +245,13 @@ const TBNMethod = () => {
       </section>
 
       {/* For Businesses Section */}
-      <section id="for-businesses" className="py-24 bg-[#dbd4c9] border-y border-[#dbd4c9]">
+      <section id="for-businesses" className="py-24 bg-secondary relative overflow-hidden">
+        {/* Top Fade Transition */}
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#faf8f5] to-transparent pointer-events-none z-10" />
+        
+        {/* Bottom Fade Transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#faf8f5] to-transparent pointer-events-none z-10" />
+
         <div className="container max-w-6xl">
           <div className="text-center mb-16">
             <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">For Businesses</span>
@@ -279,7 +285,7 @@ const TBNMethod = () => {
       </section>
 
       {/* The Science & Specialists Section */}
-      <section id="science" className="py-24 bg-[#faf8f5] text-gray-900 border-t border-gray-100">
+      <section id="science" className="py-24 bg-[#faf8f5] text-gray-900 relative overflow-hidden">
         <div className="container max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
@@ -296,7 +302,7 @@ const TBNMethod = () => {
               </p>
             </div>
 
-            <div className="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm">
+            <div className="bg-white p-10 rounded-3xl border border-[#dbd4c9]/55 shadow-sm">
               <div className="flex items-center gap-4 mb-8">
                 <Users className="w-8 h-8 text-[#9f1e13]" />
                 <h3 className="text-2xl font-bold font-playfair">Our Specialist Collective</h3>
@@ -427,7 +433,7 @@ const TBNMethod = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
+            <div className="bg-white p-10 rounded-3xl shadow-sm border border-[#dbd4c9]/55">
               <h3 className="text-2xl font-bold text-[#9f1e13] mb-6 font-playfair border-b pb-4">Why Clients Choose TBN</h3>
               <ul className="space-y-4">
                 <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> A clearer starting point</li>
@@ -437,7 +443,7 @@ const TBNMethod = () => {
                 <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> Ongoing review and retesting</li>
               </ul>
             </div>
-            <div className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100">
+            <div className="bg-white p-10 rounded-3xl shadow-sm border border-[#dbd4c9]/55">
               <h3 className="text-2xl font-bold text-[#9f1e13] mb-6 font-playfair border-b pb-4">Why Businesses Choose TBN</h3>
               <ul className="space-y-4">
                 <li className="flex items-center gap-3 text-gray-600"><CheckCircle2 className="w-5 h-5 text-[#9f1e13]" /> A complete integration system</li>
