@@ -262,48 +262,102 @@ const TestingPageV2 = () => {
                   {/* Right Column (Test cards side-by-side) */}
                   <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Omega Balance */}
-                    <div className="bg-white border border-[#dbd4c9]/60 p-6 rounded-2xl space-y-3 flex flex-col justify-between shadow-sm">
-                      <div className="space-y-3">
+                    <div className="bg-white border border-[#dbd4c9]/60 p-6 sm:p-8 rounded-3xl space-y-6 flex flex-col justify-between shadow-sm">
+                      <div className="space-y-4">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#dbd4c9]/40 bg-white p-1 flex items-center justify-center shrink-0">
                             <img src="/images/test-logos/omega3balance.png" alt="Omega balance test" className="object-contain" />
                           </div>
                           <h4 className="text-[14px] font-bold text-zinc-900 uppercase tracking-wide">Omega Balance Test</h4>
                         </div>
-                        <p className="text-xs text-zinc-500 leading-relaxed font-light">
+                        
+                        <p className="text-xs text-zinc-600 leading-relaxed">
                           Explore your omega-6 to omega-3 balance and wider fatty-acid profile.
                         </p>
+
+                        <div className="bg-secondary/15 text-zinc-750 text-[11px] px-3.5 py-2.5 rounded-xl border border-[#dbd4c9]/35 font-light">
+                          <p className="font-semibold text-zinc-800">Simple finger-prick test.</p>
+                          <p className="text-zinc-600">Complete at home or in clinic.</p>
+                        </div>
+
+                        <div className="border-t border-[#dbd4c9]/40 pt-4 space-y-3">
+                          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">Results include:</span>
+                          <ul className="space-y-3">
+                            {[
+                              { name: "Omega-6 to omega-3 balance", desc: "Shows whether your essential fats are balanced for healthy inflammation response." },
+                              { name: "Omega-3 Index", desc: "Shows your level of key omega-3 fats linked to heart, brain and cell health." },
+                              { name: "Cell-fluidity indicator", desc: "Helps show how flexible and responsive your cell membranes are." },
+                              { name: "Protection value", desc: "Shows the level of protective fatty acids available to support healthy cell function." },
+                              { name: "Mental-strength indicator", desc: "Looks at fatty-acid balance linked to focus, mood and brain performance." },
+                              { name: "Wider fatty-acid profile", desc: "Gives a clearer picture of your overall fat balance." }
+                            ].map((res, i) => (
+                              <li key={i} className="text-xs leading-normal">
+                                <span className="font-bold text-zinc-800 block">{res.name}</span>
+                                <span className="text-zinc-550 font-light block text-[11px] mt-0.5 leading-relaxed">{res.desc}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
-                      <div className="bg-[#faf8f5] border border-[#dbd4c9]/50 p-3.5 rounded-2xl space-y-2 mt-4">
-                        <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">Results include:</span>
-                        <ul className="space-y-1.5 text-xs text-zinc-700 font-medium">
-                          {["Omega-6 to omega-3 balance", "Omega-3 index", "Cell-fluidity indicator", "Protection value", "Mental-strength indicator"].map((res, i) => (
-                            <li key={i} className="flex items-center gap-2">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]"></span>
-                              <span>{res}</span>
-                            </li>
-                          ))}
-                        </ul>
+
+                      <div className="border-t border-[#dbd4c9]/40 pt-4 mt-6">
+                        <span className="text-[10px] font-bold text-[#9f1e13] uppercase tracking-widest block mb-1">Why it matters:</span>
+                        <p className="text-xs text-zinc-600 leading-relaxed font-light">
+                          Omega balance is linked to inflammation balance, brain health, heart health, joint health, skin health, recovery and long-term wellbeing.
+                        </p>
+                        <p className="text-xs text-zinc-500 leading-relaxed font-light mt-2 italic">
+                          This test helps guide more personalised nutrition and supplement support.
+                        </p>
                       </div>
                     </div>
 
                     {/* Gut Health */}
-                    <div className="bg-white border border-[#dbd4c9]/60 p-6 rounded-2xl space-y-3 flex flex-col justify-between shadow-sm">
-                      <div className="space-y-3">
+                    <div className="bg-white border border-[#dbd4c9]/60 p-6 sm:p-8 rounded-3xl space-y-6 flex flex-col justify-between shadow-sm">
+                      <div className="space-y-4">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#dbd4c9]/40 bg-white p-1 flex items-center justify-center shrink-0">
                             <img src="/images/test-logos/guthealth1.png" alt="Gut Health test" className="object-contain" />
                           </div>
                           <h4 className="text-[14px] font-bold text-zinc-900 uppercase tracking-wide">Gut Health Test</h4>
                         </div>
-                        <p className="text-xs text-zinc-500 leading-relaxed font-light">
-                          Explore relevant gut-health indicators and nutritional considerations.
+                        
+                        <p className="text-xs text-zinc-600 leading-relaxed">
+                          Explore key gut-health indicators linked to digestion, immune balance, metabolism and wider wellbeing.
                         </p>
+
+                        <div className="bg-secondary/15 text-zinc-750 text-[11px] px-3.5 py-2.5 rounded-xl border border-[#dbd4c9]/35 font-light">
+                          <p className="font-semibold text-zinc-800">Simple finger-prick test. No stool sample required.</p>
+                          <p className="text-zinc-600">Complete at home or in clinic.</p>
+                        </div>
+
+                        <div className="border-t border-[#dbd4c9]/40 pt-4 space-y-3">
+                          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">Results include:</span>
+                          <ul className="space-y-3">
+                            {[
+                              { name: "IPA level", desc: "Shows beneficial gut-bacteria activity linked to gut-barrier and immune support." },
+                              { name: "Tryptophan level", desc: "Shows an important nutrient pathway linked to gut, brain and metabolic health." },
+                              { name: "Kynurenine level", desc: "Helps show whether tryptophan is being pushed towards immune-stress pathways." },
+                              { name: "IPA:TRP ratio", desc: "Shows how efficiently gut bacteria are converting tryptophan into beneficial compounds." },
+                              { name: "KYN:TRP ratio", desc: "Helps indicate immune activation or stress load." },
+                              { name: "IPA:KYN ratio", desc: "Shows the balance between protective gut activity and stress-driven metabolism." },
+                              { name: "Gut Health Index", desc: "A simple overview score bringing the key markers together." }
+                            ].map((res, i) => (
+                              <li key={i} className="text-xs leading-normal">
+                                <span className="font-bold text-zinc-800 block">{res.name}</span>
+                                <span className="text-zinc-550 font-light block text-[11px] mt-0.5 leading-relaxed">{res.desc}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
-                      <div className="border-l-2 border-[#9f1e13]/30 pl-3 pt-0.5 mt-auto bg-[#faf8f5]/50 p-3 rounded-r-xl">
-                        <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block mb-0.5">Why it matters:</span>
-                        <p className="text-xs text-zinc-600 font-light leading-relaxed">
-                          Gut health is connected to digestion, nutrient utilisation, the gut-brain axis and wider wellbeing.
+
+                      <div className="border-t border-[#dbd4c9]/40 pt-4 mt-6">
+                        <span className="text-[10px] font-bold text-[#9f1e13] uppercase tracking-widest block mb-1">Why it matters:</span>
+                        <p className="text-xs text-zinc-600 leading-relaxed font-light">
+                          Gut health is linked to digestion, nutrient utilisation, immune balance, the gut-brain axis, metabolism and wider wellbeing.
+                        </p>
+                        <p className="text-xs text-zinc-500 leading-relaxed font-light mt-2 italic">
+                          This test helps show how well your gut bacteria are functioning and how tryptophan is being used across key health pathways.
                         </p>
                       </div>
                     </div>
