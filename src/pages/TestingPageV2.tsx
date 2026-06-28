@@ -40,6 +40,16 @@ import {
 
 const heroImg = "/images/testing-hero-new.png";
 
+const exploreAreas = [
+  { title: "Nutrient status", desc: "Essential vitamins & minerals needed for optimal performance.", icon: Apple, image: "/services/childrens-health-v2.jpg" },
+  { title: "Omega balance", desc: "Ratio of fatty acids affecting cardiovascular & systemic cell health.", icon: HeartPulse, image: "/services/sports-performance-v2.jpg" },
+  { title: "Gut health", desc: "Microbial markers & environment driving nutrient utilization.", icon: ShieldCheck, image: "/services/pain-fatigue-v2.jpg" },
+  { title: "Hormone health", desc: "Endocrine balance critical for vitality, recovery, & mental clarity.", icon: Sparkles, image: "/services/womens-health-v2.jpg" },
+  { title: "Stress & recovery", desc: "Autonomic response variables & sleep-wake stress markers.", icon: Moon, image: "/services/mens-health-v2.jpg" },
+  { title: "Skin health", desc: "Dermatological markers & cell recovery indicators.", icon: Smile, image: "/services/skin-health-v2.jpg" },
+  { title: "Energy & metabolism", desc: "Vascular recovery variables & cellular energy pathways.", icon: Flame, image: "/services/neurodivergence-v2.jpg" }
+];
+
 const TestingPageV2 = () => {
   const quizContext = useQuiz();
   const openQuiz = quizContext?.openQuiz || (() => {});
@@ -49,6 +59,7 @@ const TestingPageV2 = () => {
   const [activeStep, setActiveStep] = useState(3);
   const [omegaExpanded, setOmegaExpanded] = useState(false);
   const [gutExpanded, setGutExpanded] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(2);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -157,97 +168,104 @@ const TestingPageV2 = () => {
               style={{ opacity: contentOpacity, y: contentY }}
               className="absolute inset-0 flex items-center justify-center z-10 bg-white overflow-y-auto pointer-events-auto"
             >
-              <div className="w-full max-w-[1140px] mx-auto px-4 sm:px-6 relative z-10 py-16 sm:py-24">
-                <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+              <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 relative z-10 py-12 md:py-16">
+                <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
                   <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
                     LOOK BEYOND SYMPTOMS
                   </span>
-                  <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 uppercase tracking-wider">
+                  <h2 className="text-3xl sm:text-5xl font-playfair font-bold text-zinc-900 uppercase tracking-wider">
                     WHY WE TEST
                   </h2>
-                  <p className="text-lg text-zinc-600 italic">
-                    Start With Greater Insight
+                  <p className="text-sm md:text-base text-zinc-600 font-medium max-w-2xl mx-auto leading-relaxed">
+                    Testing and screening help your practitioner ask better questions, explore relevant markers and create a more personalised pathway around your goals.
                   </p>
                 </div>
 
-                <div className="grid lg:grid-cols-12 gap-12 items-start text-left">
-                  {/* Left: Symptoms & Intro */}
-                  <div className="lg:col-span-5 space-y-8">
-                    <div className="bg-[#faf8f5] border border-[#dbd4c9]/60 p-8 rounded-3xl space-y-6">
-                      <h3 className="text-sm font-bold text-[#9f1e13] uppercase tracking-wider font-sans border-b border-zinc-200/60 pb-3">
-                        Common Experiences
-                      </h3>
+                {/* Common Experiences Pills */}
+                <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto mb-10">
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest self-center mr-2">Common Indicators:</span>
+                  {["Fatigue", "Brain fog", "Poor sleep", "Low energy", "Digestive discomfort", "Reduced recovery"].map((symptom, i) => (
+                    <div 
+                      key={i} 
+                      className="bg-secondary/15 border border-[#dbd4c9]/45 text-zinc-800 text-[10.5px] px-3.5 py-1.5 rounded-full font-medium shadow-sm hover:border-[#9f1e13]/25 transition-all"
+                    >
+                      {symptom}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Horizontal Card Deck (Inspired by Zymix) */}
+                <div className="w-full overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                  <div className="flex gap-4 md:gap-5 px-4 md:px-8 min-w-max justify-center items-center py-6">
+                    {exploreAreas.map((area, index) => {
+                      const IconComponent = area.icon;
+                      const isActive = hoveredIndex === null ? index === 2 : hoveredIndex === index;
                       
-                      {/* Symptoms grid */}
-                      <div className="grid grid-cols-2 gap-3">
-                        {[
-                          "Fatigue",
-                          "Brain fog",
-                          "Poor sleep",
-                          "Low energy",
-                          "Digestive discomfort",
-                          "Reduced recovery"
-                        ].map((symptom, i) => (
-                          <div 
-                            key={i} 
-                            className="bg-white px-4 py-3.5 rounded-xl border border-[#dbd4c9]/50 shadow-sm flex items-center gap-2 hover:border-[#9f1e13]/30 transition-colors"
-                          >
-                            <AlertCircle className="w-4 h-4 text-[#9f1e13]/60 shrink-0" />
-                            <span className="text-xs font-bold text-zinc-800">{symptom}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <p className="text-sm text-zinc-500 leading-relaxed font-light">
-                        These experiences can have multiple contributing factors.
-                      </p>
-                    </div>
-
-                    <div className="space-y-4">
-                      <p className="text-base text-zinc-700 leading-relaxed font-medium">
-                        Testing and screening help your practitioner ask better questions, explore relevant markers and create a more personalised pathway around your goals.
-                      </p>
-                      <div className="inline-flex items-start gap-2.5 p-4 rounded-xl bg-secondary/20 text-xs text-zinc-600 leading-relaxed border border-[#dbd4c9]/40">
-                        <Info className="w-4 h-4 text-zinc-500 shrink-0 mt-0.5" />
-                        <span>
-                          Testing supports more informed conversations. Screening is not a diagnosis and does not replace medical care.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right: Explore Areas list */}
-                  <div className="lg:col-span-7 bg-[#9f1e13] text-white rounded-[2rem] p-8 sm:p-10 shadow-2xl relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
-                    
-                    <h3 className="font-playfair text-2xl font-bold mb-8 text-white flex items-center gap-2">
-                      We explore areas such as:
-                    </h3>
-
-                    <div className="grid sm:grid-cols-2 gap-6">
-                      {[
-                        { title: "Nutrient status", desc: "Essential vitamins & minerals needed for optimal performance.", icon: Apple },
-                        { title: "Omega balance", desc: "Ratio of fatty acids affecting cardiovascular & systemic cell health.", icon: HeartPulse },
-                        { title: "Gut health", desc: "Microbial markers & environment driving nutrient utilization.", icon: ShieldCheck },
-                        { title: "Blood-sugar indicators", desc: "Insight into cellular energy metabolism & endocrine responses.", icon: Droplet },
-                        { title: "Inflammation-related markers", desc: "Understanding systemic physical and vascular recovery variables.", icon: Flame },
-                        { title: "Hormone health", desc: "Endocrine balance critical for vitality, recovery, & mental clarity.", icon: Sparkles },
-                        { title: "Stress and recovery", desc: "Autonomic response variables & sleep-wake stress markers.", icon: Moon }
-                      ].map((area, index) => {
-                        const IconComponent = area.icon;
-                        return (
-                          <div key={index} className="flex gap-4 p-4 rounded-2xl bg-white/10 border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all group">
-                            <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0 border border-white/20 group-hover:scale-105 transition-transform">
-                              <IconComponent className="w-5 h-5 text-white" />
+                      return (
+                        <div
+                          key={index}
+                          onMouseEnter={() => setHoveredIndex(index)}
+                          onMouseLeave={() => setHoveredIndex(null)}
+                          className={`relative rounded-3xl overflow-hidden shadow-md transition-all duration-500 ease-out transform-gpu cursor-pointer shrink-0 border ${
+                            isActive 
+                              ? "w-[240px] h-[360px] sm:w-[260px] sm:h-[400px] xl:w-[280px] xl:h-[430px] border-white/60 scale-100 shadow-2xl z-10" 
+                              : "w-[170px] h-[280px] sm:w-[190px] sm:h-[320px] xl:w-[200px] xl:h-[350px] border-[#dbd4c9]/20 opacity-65 scale-95 saturate-[65%] hover:opacity-90 hover:saturate-100"
+                          }`}
+                        >
+                          {/* Background Image */}
+                          <img
+                            src={area.image}
+                            alt={area.title}
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out"
+                          />
+                          {/* Gradient Overlay */}
+                          <div className={`absolute inset-0 transition-all duration-500 ${
+                            isActive 
+                              ? "bg-gradient-to-t from-black/95 via-black/35 to-black/15" 
+                              : "bg-gradient-to-t from-black/95 via-black/55 to-black/35"
+                          }`} />
+                          
+                          {/* Card Content */}
+                          <div className="absolute inset-0 p-5 flex flex-col justify-between z-10 text-left">
+                            {/* Icon at Top */}
+                            <div className={`w-9 h-9 rounded-xl flex items-center justify-center border transition-all duration-500 ${
+                              isActive 
+                                ? "bg-white/20 border-white/30 scale-100" 
+                                : "bg-white/10 border-white/10 scale-90"
+                            }`}>
+                              <IconComponent className="w-4.5 h-4.5 text-white" />
                             </div>
+                            
+                            {/* Text at Bottom */}
                             <div className="space-y-1">
-                              <h4 className="text-[14px] font-bold text-zinc-100 group-hover:text-white transition-colors">{area.title}</h4>
-                              <p className="text-[12px] text-zinc-200 font-light leading-relaxed">{area.desc}</p>
+                              <h4 className={`font-playfair font-bold text-white uppercase tracking-wider transition-all duration-300 ${
+                                isActive ? "text-[16px] xl:text-[17px] mb-1" : "text-[13px]"
+                              }`}>
+                                {area.title}
+                              </h4>
+                              
+                              {/* Description - expanded when active */}
+                              <p className={`text-zinc-200 font-light leading-relaxed transition-all duration-500 origin-bottom ${
+                                isActive 
+                                  ? "text-[11px] xl:text-[11.5px] opacity-100 max-h-20" 
+                                  : "text-[10px] opacity-0 max-h-0 overflow-hidden"
+                              }`}>
+                                {area.desc}
+                              </p>
                             </div>
                           </div>
-                        );
-                      })}
-                    </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="mt-8 text-center">
+                  <div className="inline-flex items-center gap-2.5 p-4 rounded-xl bg-secondary/20 text-xs text-zinc-600 leading-relaxed border border-[#dbd4c9]/45 max-w-2xl mx-auto">
+                    <Info className="w-4 h-4 text-zinc-500 shrink-0" />
+                    <span>
+                      Testing supports more informed conversations. Screening is not a diagnosis and does not replace medical care.
+                    </span>
                   </div>
                 </div>
               </div>
