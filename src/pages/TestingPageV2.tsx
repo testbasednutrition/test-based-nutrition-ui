@@ -595,27 +595,14 @@ const TestingPageV2 = () => {
               </div>
 
               {/* Right Column visual box */}
-              <div className="lg:col-span-6">
-                <div className="bg-[#9f1e13] text-white rounded-[2rem] p-8 sm:p-12 relative overflow-hidden border border-[#dbd4c9]/25 shadow-2xl flex flex-col justify-between min-h-[300px]">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
-                  
-                  <div className="space-y-6">
-                    <span className="text-[10px] font-bold text-zinc-200 uppercase tracking-widest block">CORE PHILOSOPHY</span>
-                    <h3 className="text-2xl sm:text-3xl font-playfair font-bold text-white leading-snug">
-                      "Test once for insight. <br />
-                      Retest to measure progress."
-                    </h3>
-                  </div>
-
-                  <div className="border-t border-white/15 pt-6 mt-12 flex gap-4 items-center">
-                    <div className="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center shrink-0 border border-white/20">
-                      <TrendingUp className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold">Consistent Growth</h4>
-                      <p className="text-xs text-zinc-200 font-light">Refine markers to track physiological markers year-over-year.</p>
-                    </div>
-                  </div>
+              <div className="lg:col-span-6 flex items-center">
+                <div className="w-full h-[400px] rounded-[2.5rem] overflow-hidden border border-[#dbd4c9]/45 shadow-lg relative group">
+                  <img 
+                    src="/images/diagnostic-device.jpg" 
+                    alt="TBN Point-of-Care Diagnostic Device" 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
                 </div>
               </div>
             </div>
