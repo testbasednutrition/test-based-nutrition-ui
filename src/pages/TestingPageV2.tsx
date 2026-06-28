@@ -334,7 +334,7 @@ const TestingPageV2 = () => {
                         </div>
                         
                         <p className="text-xs text-zinc-600 leading-relaxed">
-                          Explore key gut-health indicators linked to digestion, immune balance, metabolism and wider wellbeing.
+                          Explore key gut-health indicators linked to digestion, immunity and metabolism.
                         </p>
 
                         <div className="bg-secondary/15 text-zinc-750 text-[11px] px-3.5 py-2.5 rounded-xl border border-[#dbd4c9]/35 font-light">
