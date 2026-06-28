@@ -239,41 +239,47 @@ const TestingPageV2 = () => {
               </div>
             </div>
 
-            {/* Framework columns */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+            {/* Framework rows */}
+            <div className="space-y-8">
               
               {/* Level 1: Foundational Testing */}
-              <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 flex flex-col justify-between shadow-md hover:shadow-xl transition-shadow relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-[#dbd4c9]/20 rounded-full blur-2xl pointer-events-none"></div>
-                <div className="space-y-6">
-                  <div className="space-y-1">
-                    <span className="text-xs font-extrabold uppercase tracking-widest text-[#9f1e13] font-sans">LEVEL 1</span>
-                    <h3 className="text-2xl font-playfair font-bold text-zinc-900">Foundational Testing</h3>
-                    <p className="text-xs font-semibold text-zinc-500 italic">Establish your baseline.</p>
-                  </div>
-                  
-                  <p className="text-[13px] text-zinc-600 leading-relaxed font-light border-b border-[#dbd4c9]/50 pb-4">
-                    Our Foundational Tests explore two key areas linked to wider health and wellbeing conversations.
-                  </p>
-
-                  <div className="space-y-6">
-                    {/* Omega Balance */}
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#dbd4c9]/40 bg-white p-1 flex items-center justify-center shrink-0">
-                          <img src="/images/test-logos/omega3balance.png" alt="Omega balance test" className="object-contain" />
-                        </div>
-                        <h4 className="text-[14px] font-bold text-zinc-900 uppercase tracking-wide">Omega Balance Test</h4>
+              <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 sm:p-10 shadow-md hover:shadow-xl transition-all relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-[#dbd4c9]/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch relative z-10">
+                  {/* Left Column (Row Info) */}
+                  <div className="lg:col-span-4 flex flex-col justify-between py-2">
+                    <div className="space-y-4">
+                      <div className="space-y-1">
+                        <span className="text-xs font-extrabold uppercase tracking-widest text-[#9f1e13] font-sans">LEVEL 1</span>
+                        <h3 className="text-3xl font-playfair font-bold text-zinc-900">Foundational Testing</h3>
+                        <p className="text-sm font-semibold text-zinc-500 italic">Establish your baseline.</p>
                       </div>
-                      <p className="text-xs text-zinc-500 leading-relaxed font-light">
-                        Explore your omega-6 to omega-3 balance and wider fatty-acid profile.
+                      <p className="text-sm text-zinc-600 leading-relaxed font-light">
+                        Our Foundational Tests explore two key areas linked to wider health and wellbeing conversations.
                       </p>
-                      <div className="bg-white/80 border border-[#dbd4c9]/50 p-3.5 rounded-2xl space-y-2">
+                    </div>
+                  </div>
+                  {/* Right Column (Test cards side-by-side) */}
+                  <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Omega Balance */}
+                    <div className="bg-white border border-[#dbd4c9]/60 p-6 rounded-2xl space-y-3 flex flex-col justify-between shadow-sm">
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#dbd4c9]/40 bg-white p-1 flex items-center justify-center shrink-0">
+                            <img src="/images/test-logos/omega3balance.png" alt="Omega balance test" className="object-contain" />
+                          </div>
+                          <h4 className="text-[14px] font-bold text-zinc-900 uppercase tracking-wide">Omega Balance Test</h4>
+                        </div>
+                        <p className="text-xs text-zinc-500 leading-relaxed font-light">
+                          Explore your omega-6 to omega-3 balance and wider fatty-acid profile.
+                        </p>
+                      </div>
+                      <div className="bg-[#faf8f5] border border-[#dbd4c9]/50 p-3.5 rounded-2xl space-y-2 mt-4">
                         <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">Results include:</span>
                         <ul className="space-y-1.5 text-xs text-zinc-700 font-medium">
                           {["Omega-6 to omega-3 balance", "Omega-3 index", "Cell-fluidity indicator", "Protection value", "Mental-strength indicator"].map((res, i) => (
                             <li key={i} className="flex items-center gap-2">
-                              <span className="w-1 h-1 rounded-full bg-[#9f1e13]"></span>
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]"></span>
                               <span>{res}</span>
                             </li>
                           ))}
@@ -282,17 +288,19 @@ const TestingPageV2 = () => {
                     </div>
 
                     {/* Gut Health */}
-                    <div className="space-y-3 pt-3 border-t border-[#dbd4c9]/50">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#dbd4c9]/40 bg-white p-1 flex items-center justify-center shrink-0">
-                          <img src="/images/test-logos/guthealth1.png" alt="Gut Health test" className="object-contain" />
+                    <div className="bg-white border border-[#dbd4c9]/60 p-6 rounded-2xl space-y-3 flex flex-col justify-between shadow-sm">
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#dbd4c9]/40 bg-white p-1 flex items-center justify-center shrink-0">
+                            <img src="/images/test-logos/guthealth1.png" alt="Gut Health test" className="object-contain" />
+                          </div>
+                          <h4 className="text-[14px] font-bold text-zinc-900 uppercase tracking-wide">Gut Health Test</h4>
                         </div>
-                        <h4 className="text-[14px] font-bold text-zinc-900 uppercase tracking-wide">Gut Health Test</h4>
+                        <p className="text-xs text-zinc-500 leading-relaxed font-light">
+                          Explore relevant gut-health indicators and nutritional considerations.
+                        </p>
                       </div>
-                      <p className="text-xs text-zinc-500 leading-relaxed font-light">
-                        Explore relevant gut-health indicators and nutritional considerations.
-                      </p>
-                      <div className="border-l-2 border-[#9f1e13]/30 pl-3 pt-0.5">
+                      <div className="border-l-2 border-[#9f1e13]/30 pl-3 pt-0.5 mt-auto bg-[#faf8f5]/50 p-3 rounded-r-xl">
                         <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block mb-0.5">Why it matters:</span>
                         <p className="text-xs text-zinc-600 font-light leading-relaxed">
                           Gut health is connected to digestion, nutrient utilisation, the gut-brain axis and wider wellbeing.
@@ -304,95 +312,108 @@ const TestingPageV2 = () => {
               </div>
 
               {/* Level 2: Baseline Screening */}
-              <div className="bg-[#9f1e13] text-white rounded-[2.5rem] p-8 flex flex-col justify-between shadow-lg relative overflow-hidden border border-[#dbd4c9]/25">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div className="space-y-6">
-                  <div className="space-y-1">
-                    <span className="text-xs font-extrabold uppercase tracking-widest text-[#dbd4c9] font-sans">LEVEL 2</span>
-                    <h3 className="text-2xl font-playfair font-bold text-white">Baseline Screening</h3>
-                    <p className="text-xs font-semibold text-zinc-200 italic">Rapid finger-prick point-of-care screening.</p>
+              <div className="bg-[#9f1e13] text-white border border-[#dbd4c9]/25 rounded-[2.5rem] p-8 sm:p-10 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch relative z-10">
+                  {/* Left Column (Row Info) */}
+                  <div className="lg:col-span-4 flex flex-col justify-between py-2">
+                    <div className="space-y-4">
+                      <div className="space-y-1">
+                        <span className="text-xs font-extrabold uppercase tracking-widest text-[#dbd4c9] font-sans">LEVEL 2</span>
+                        <h3 className="text-3xl font-playfair font-bold text-white">Baseline Screening</h3>
+                        <p className="text-sm font-semibold text-zinc-200 italic">Rapid finger-prick point-of-care screening.</p>
+                      </div>
+                      <p className="text-sm text-zinc-100 leading-relaxed font-light">
+                        Available through selected TBN clinics and health hubs.
+                      </p>
+                    </div>
+                    <div className="mt-6 lg:mt-0">
+                      <p className="text-xs text-white font-semibold inline-flex items-center gap-1.5 bg-white/10 border border-white/20 px-3 py-1.5 rounded-xl">
+                        <Zap className="w-3.5 h-3.5" /> Selected results typically available in 3–15 minutes.
+                      </p>
+                    </div>
                   </div>
-                  
-                  <div className="space-y-3 border-b border-white/15 pb-4">
-                    <p className="text-[13px] text-zinc-100 leading-relaxed font-light">
-                      Available through selected TBN clinics and health hubs.
-                    </p>
-                    <p className="text-xs text-white font-semibold flex items-center gap-1.5 bg-white/10 border border-white/20 px-3 py-1.5 rounded-xl">
-                      <Zap className="w-3.5 h-3.5" /> Selected results typically available in 3–15 minutes.
-                    </p>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div>
-                      <span className="text-[10px] font-bold text-zinc-300 uppercase tracking-widest block mb-2">Markers may include:</span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {[
-                          "Vitamin D", "HbA1c", "CRP / hs-CRP", "Ferritin", 
-                          "Folate", "Cortisol", "Cystatin C", "Rheumatoid factor", 
-                          "HCG-β", "AMH", "Progesterone"
-                        ].map((m, i) => (
-                          <span key={i} className="text-[11px] font-bold bg-white/10 border border-white/15 text-white px-2.5 py-1 rounded-lg">
-                            {m}
-                          </span>
-                        ))}
+                  {/* Right Column (Markers & options list) */}
+                  <div className="lg:col-span-8 flex flex-col justify-between gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Markers may include */}
+                      <div className="space-y-3">
+                        <span className="text-[10px] font-bold text-zinc-300 uppercase tracking-widest block">Markers may include:</span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {[
+                            "Vitamin D", "HbA1c", "CRP / hs-CRP", "Ferritin", 
+                            "Folate", "Cortisol", "Cystatin C", "Rheumatoid factor", 
+                            "HCG-β", "AMH", "Progesterone"
+                          ].map((m, i) => (
+                            <span key={i} className="text-[11px] font-bold bg-white/10 border border-white/15 text-white px-2.5 py-1 rounded-lg">
+                              {m}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      {/* Additional point-of-care options */}
+                      <div className="space-y-3">
+                        <span className="text-[10px] font-bold text-zinc-300 uppercase tracking-widest block">Additional point-of-care options:</span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {["NT-proBNP", "RSV / Influenza A & B"].map((m, i) => (
+                            <span key={i} className="text-[11px] font-bold bg-white/20 border border-white/30 text-white px-2.5 py-1 rounded-lg">
+                              {m}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
 
-                    <div className="pt-3 border-t border-white/15">
-                      <span className="text-[10px] font-bold text-zinc-300 uppercase tracking-widest block mb-2">Additional point-of-care options:</span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {["NT-proBNP", "RSV / Influenza A & B"].map((m, i) => (
-                          <span key={i} className="text-[11px] font-bold bg-white/20 border border-white/30 text-white px-2.5 py-1 rounded-lg">
-                            {m}
-                          </span>
-                        ))}
-                      </div>
+                    <div className="pt-4 border-t border-white/15">
+                      <Button 
+                        onClick={() => setShowAllMarkers(!showAllMarkers)}
+                        className="w-full bg-white hover:bg-zinc-100 text-[#9f1e13] font-bold uppercase tracking-widest text-xs h-12 rounded-xl flex items-center justify-center gap-2"
+                      >
+                        <span>{showAllMarkers ? "HIDE MARKERS" : "VIEW ALL SCREENING MARKERS"}</span>
+                        {showAllMarkers ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                      </Button>
                     </div>
                   </div>
-                </div>
-
-                <div className="mt-8 pt-4 border-t border-white/15">
-                  <Button 
-                    onClick={() => setShowAllMarkers(!showAllMarkers)}
-                    className="w-full bg-white hover:bg-zinc-100 text-[#9f1e13] font-bold uppercase tracking-widest text-xs h-12 rounded-xl flex items-center justify-center gap-2"
-                  >
-                    <span>{showAllMarkers ? "HIDE MARKERS" : "VIEW ALL SCREENING MARKERS"}</span>
-                    {showAllMarkers ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                  </Button>
                 </div>
               </div>
 
               {/* Level 3: Advanced Screening */}
-              <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 flex flex-col justify-between shadow-md hover:shadow-xl transition-shadow relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-[#dbd4c9]/20 rounded-full blur-2xl pointer-events-none"></div>
-                <div className="space-y-6">
-                  <div className="space-y-1">
-                    <span className="text-xs font-extrabold uppercase tracking-widest text-[#9f1e13] font-sans">LEVEL 3</span>
-                    <h3 className="text-2xl font-playfair font-bold text-zinc-900">Advanced Screening</h3>
-                    <p className="text-xs font-semibold text-zinc-500 italic">Point-of-care blood-draw screening.</p>
-                  </div>
-                  
-                  <p className="text-[13px] text-zinc-600 leading-relaxed font-light border-b border-[#dbd4c9]/50 pb-4">
-                    Where deeper insight is needed, Advanced Screening may be recommended following consultation.
-                  </p>
-
-                  <div>
-                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block mb-2.5">Markers may include:</span>
-                    <div className="grid grid-cols-2 gap-2">
-                      {["Testosterone", "Vitamin B12", "FSH", "TSH"].map((m, i) => (
-                        <div key={i} className="bg-white border border-[#dbd4c9]/50 p-3 rounded-xl flex items-center gap-2.5">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]"></div>
-                          <span className="text-xs font-bold text-zinc-800">{m}</span>
-                        </div>
-                      ))}
+              <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 sm:p-10 shadow-md hover:shadow-xl transition-all relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-[#dbd4c9]/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch relative z-10">
+                  {/* Left Column (Row Info) */}
+                  <div className="lg:col-span-4 flex flex-col justify-between py-2">
+                    <div className="space-y-4">
+                      <div className="space-y-1">
+                        <span className="text-xs font-extrabold uppercase tracking-widest text-[#9f1e13] font-sans">LEVEL 3</span>
+                        <h3 className="text-3xl font-playfair font-bold text-zinc-900">Advanced Screening</h3>
+                        <p className="text-sm font-semibold text-zinc-500 italic">Point-of-care blood-draw screening.</p>
+                      </div>
+                      <p className="text-sm text-zinc-600 leading-relaxed font-light">
+                        Where deeper insight is needed, Advanced Screening may be recommended following consultation.
+                      </p>
                     </div>
                   </div>
-                </div>
-
-                <div className="mt-8 pt-4 border-t border-[#dbd4c9]/50 bg-secondary/15 -mx-8 -mb-8 p-6 rounded-b-[2.5rem]">
-                  <p className="text-[11px] text-zinc-500 leading-relaxed font-light text-center">
-                    Screening is determined by consultation. Screening does not diagnose medical conditions or replace medical care.
-                  </p>
+                  {/* Right Column (Markers list and bottom card disclaimer) */}
+                  <div className="lg:col-span-8 flex flex-col justify-between gap-6">
+                    <div className="space-y-3">
+                      <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">Markers may include:</span>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        {["Testosterone", "Vitamin B12", "FSH", "TSH"].map((m, i) => (
+                          <div key={i} className="bg-white border border-[#dbd4c9]/50 p-4 rounded-xl flex items-center gap-2.5 shadow-sm">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]"></div>
+                            <span className="text-xs font-bold text-zinc-800">{m}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="pt-4 border-t border-[#dbd4c9]/50 bg-secondary/10 -mx-8 sm:-mx-10 -mb-8 sm:-mb-10 p-6 rounded-b-[2.5rem]">
+                      <p className="text-[11px] text-zinc-500 leading-relaxed font-light text-center">
+                        Screening is determined by consultation. Screening does not diagnose medical conditions or replace medical care.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
