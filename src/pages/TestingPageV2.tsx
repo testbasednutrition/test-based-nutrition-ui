@@ -127,10 +127,10 @@ const TestingPageV2 = () => {
           <div className="container max-w-[1140px] mx-auto px-4 sm:px-6 relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
               <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
-                WHY WE TEST
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900">
                 LOOK BEYOND SYMPTOMS
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 uppercase tracking-wider">
+                WHY WE TEST
               </h2>
               <p className="text-lg text-zinc-600 italic">
                 Start With Greater Insight
@@ -220,130 +220,15 @@ const TestingPageV2 = () => {
           </div>
         </section>
 
-        {/* 3. THE TBN METHOD™ SECTION */}
-        <section className="py-24 bg-[#faf8f5] relative overflow-hidden">
-          {/* Top Fade Transition */}
-          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent pointer-events-none z-10" />
-          
-          {/* Bottom Fade Transition */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
-
-          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#dbd4c9]/25 rounded-full blur-[100px] pointer-events-none"></div>
-          
-          <div className="container max-w-[1140px] mx-auto px-4 sm:px-6 relative z-10">
-            <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-              <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
-                THE TBN METHOD™
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900">
-                A STRUCTURED PATHWAY — NOT ONE-OFF TESTING
-              </h2>
-              <p className="text-lg text-zinc-600 font-medium">
-                How TBN Works
-              </p>
-            </div>
-
-            {/* Horizontal Pathway Indicator */}
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-sm font-bold text-[#9f1e13] mb-12 bg-white border border-[#dbd4c9] px-6 py-3 rounded-2xl shadow-sm w-fit mx-auto">
-              {["Discover", "Test", "Target", "Transform", "Retest", "Escalate"].map((flow, i) => (
-                <React.Fragment key={i}>
-                  {i > 0 && <span className="text-[#dbd4c9] mx-1">→</span>}
-                  <button
-                    onClick={() => setActiveStep(i)}
-                    className={`transition-all duration-200 focus:outline-none ${
-                      activeStep === i 
-                        ? "underline decoration-[#9f1e13] decoration-2 underline-offset-4 font-bold text-[#9f1e13]" 
-                        : "text-[#9f1e13]/60 hover:text-[#9f1e13] font-medium"
-                    }`}
-                  >
-                    {flow}
-                  </button>
-                </React.Fragment>
-              ))}
-            </div>
-
-            {/* Stepper Flow Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "DISCOVER",
-                  stepNum: "01",
-                  desc: "Begin with a personalised consultation to understand your symptoms, concerns, health goals and lifestyle."
-                },
-                {
-                  title: "TEST",
-                  stepNum: "02",
-                  desc: "Use foundational testing and, where appropriate, rapid point-of-care screening to create a clearer picture of your health."
-                },
-                {
-                  title: "TARGET",
-                  stepNum: "03",
-                  desc: "Identify the most relevant health priorities and create a personalised nutrition and lifestyle pathway."
-                },
-                {
-                  title: "TRANSFORM",
-                  stepNum: "04",
-                  desc: "Follow a structured support plan designed to help you make measurable, sustainable changes."
-                },
-                {
-                  title: "RETEST",
-                  stepNum: "05",
-                  desc: "Track progress, review changes and refine your pathway using follow-up testing where appropriate."
-                },
-                {
-                  title: "ESCALATE",
-                  stepNum: "06",
-                  desc: "Where screening results or concerns require further investigation, access private GP support or specialist referral pathways."
-                }
-              ].map((item, idx) => {
-                const isActive = activeStep === idx;
-                return (
-                  <div 
-                    key={idx}
-                    onClick={() => setActiveStep(idx)}
-                    className={`p-10 rounded-3xl shadow-lg border relative overflow-hidden transition-all duration-300 cursor-pointer ${
-                      isActive 
-                        ? "bg-[#9f1e13] text-white border-transparent scale-[1.03] z-10" 
-                        : "bg-white text-zinc-950 border-gray-100 hover:shadow-xl hover:scale-[1.01]"
-                    }`}
-                  >
-                    <div className={`absolute top-0 right-0 w-32 h-32 rounded-bl-full -z-10 transition-transform ${
-                      isActive ? "bg-white/5" : "bg-[#dbd4c9]/20"
-                    }`}></div>
-                    
-                    <span className={`font-bold text-6xl absolute top-8 right-8 font-playfair ${
-                      isActive ? "text-white opacity-10" : "text-[#9f1e13] opacity-20"
-                    }`}>
-                      {item.stepNum}
-                    </span>
-
-                    <h3 className={`text-2xl font-bold font-playfair tracking-widest uppercase mb-4 ${
-                      isActive ? "text-white" : "text-[#9f1e13]"
-                    }`}>
-                      {item.title}
-                    </h3>
-                    
-                    <p className={`text-sm leading-relaxed mt-4 ${
-                      isActive ? "text-[#faf8f5]/95 font-light" : "text-gray-600 font-medium"
-                    }`}>
-                      {item.desc}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
         {/* 4. THE TBN TESTING FRAMEWORK SECTION */}
         <section className="py-24 bg-white relative overflow-hidden">
           <div className="container max-w-[1200px] mx-auto px-4 sm:px-6 relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
               <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
-                THE TBN TESTING FRAMEWORK
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900">
                 THREE LEVELS OF INSIGHT. ONE CONNECTED PATHWAY.
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 uppercase tracking-wider">
+                THE TBN TESTING FRAMEWORK
               </h2>
               <p className="text-lg text-zinc-600 font-medium">
                 Testing Shaped Around You
@@ -571,10 +456,10 @@ const TestingPageV2 = () => {
               <div className="lg:col-span-6 space-y-6">
                 <div className="inline-flex flex-col gap-1">
                   <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
-                    MORE THAN A TEST RESULT
-                  </span>
-                  <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 leading-tight">
                     TEST. SUPPORT. RETEST.
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 leading-tight uppercase tracking-wider">
+                    MORE THAN A TEST RESULT
                   </h2>
                   <p className="text-lg text-zinc-600 font-medium italic mt-1">
                     Progress Should Be Measured — Not Assumed
@@ -614,10 +499,10 @@ const TestingPageV2 = () => {
           <div className="container max-w-[1140px] mx-auto px-4 sm:px-6 relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
               <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
-                FURTHER INVESTIGATION
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900">
                 WHEN A DEEPER LEVEL OF INSIGHT IS NEEDED
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 uppercase tracking-wider">
+                FURTHER INVESTIGATION
               </h2>
               <p className="text-lg text-zinc-600 font-medium">
                 From Lifestyle Support to Medical Follow-Up
@@ -678,10 +563,10 @@ const TestingPageV2 = () => {
               <div className="lg:col-span-7 space-y-6">
                 <div className="inline-flex flex-col gap-1">
                   <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
-                    THE TBN COLLECTIVE
-                  </span>
-                  <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 leading-tight">
                     ONE COLLECTIVE. MULTIPLE AREAS OF EXPERTISE.
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 leading-tight uppercase tracking-wider">
+                    THE TBN COLLECTIVE
                   </h2>
                   <p className="text-lg text-[#9f1e13] font-semibold italic mt-1">
                     Guided by Practitioners Who Want to Go Deeper
@@ -737,10 +622,10 @@ const TestingPageV2 = () => {
           <div className="container max-w-[900px] mx-auto px-4 sm:px-6 relative z-10 text-center space-y-8">
             <div className="space-y-3">
               <span className="text-xs font-bold tracking-[0.25em] text-zinc-200 uppercase">
-                CLIENT CTA
-              </span>
-              <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-white">
                 START EARLIER. UNDERSTAND MORE.
+              </span>
+              <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-white uppercase tracking-wider">
+                PROACTIVE HEALTH
               </h2>
               <p className="text-lg text-[#dbd4c9] font-semibold italic">
                 Take a More Proactive Approach to Your Health
@@ -777,10 +662,10 @@ const TestingPageV2 = () => {
               <div className="lg:col-span-6 space-y-6">
                 <div className="inline-flex flex-col gap-1">
                   <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
-                    PARTNER WITH TBN
-                  </span>
-                  <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 leading-tight">
                     FOR CLINICS, HEALTH CLUBS, RESORTS AND WELLNESS BUSINESSES
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 leading-tight uppercase tracking-wider">
+                    PARTNER WITH TBN
                   </h2>
                   <p className="text-lg text-zinc-600 font-medium italic mt-1">
                     Bring Test-Based Nutrition Into Your Business
@@ -844,10 +729,10 @@ const TestingPageV2 = () => {
           <div className="container max-w-[900px] mx-auto px-4 sm:px-6 relative z-10 text-center space-y-8">
             <div className="space-y-3">
               <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
-                HOST A TESTING HUB DAY
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 leading-tight">
                 BRING PROACTIVE HEALTH INTO YOUR COMMUNITY
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 leading-tight uppercase tracking-wider">
+                HOST A TESTING HUB DAY
               </h2>
               <p className="text-lg text-[#9f1e13] font-semibold italic">
                 Host a TBN Testing Hub Day
@@ -878,10 +763,10 @@ const TestingPageV2 = () => {
           <div className="container max-w-[1000px] mx-auto px-4 sm:px-6 relative z-10 text-center space-y-10">
             <div className="space-y-3">
               <span className="text-xs font-bold tracking-[0.25em] text-[#9f1e13] uppercase font-sans">
-                A NEW ERA IN NUTRITIONAL HEALTHCARE
+                TEST. TARGET. TRANSFORM.™
               </span>
-              <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-zinc-900">
-                Test. Target. Transform.™
+              <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-zinc-900 uppercase tracking-wider">
+                A NEW ERA IN NUTRITIONAL HEALTHCARE
               </h2>
               <p className="text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
                 Understand your baseline. Explore the factors that may need attention. Take your next step with greater clarity.
