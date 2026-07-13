@@ -837,18 +837,18 @@ const TestingPageV2 = () => {
           <div className="container max-w-[900px] mx-auto px-4 sm:px-6 relative z-10 text-center space-y-8">
             <div className="space-y-3">
               <span className="text-xs font-bold tracking-[0.25em] text-zinc-200 uppercase">
-                START EARLIER. UNDERSTAND MORE.
+                START EARLIER. KNOW MORE.
               </span>
               <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-white uppercase tracking-wider">
-                PROACTIVE HEALTH
+                PREVENTION FIRST
               </h2>
               <p className="text-lg text-[#dbd4c9] font-semibold italic">
-                Take a More Proactive Approach to Your Health
+                Test-based insight for a more proactive life.
               </p>
             </div>
 
             <p className="text-zinc-100 font-light text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-              Begin with a consultation and explore the most relevant testing, screening and support pathway for your needs.
+              Understand key areas of imbalance earlier — and take targeted action before symptoms become your normal.
             </p>
 
             <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
