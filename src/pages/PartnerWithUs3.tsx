@@ -614,7 +614,7 @@ const PartnerWithUs3 = () => {
             <h2 className="text-3xl sm:text-5xl font-playfair font-bold mb-4 uppercase leading-tight text-[#9f1e13]">
               JOIN THE NEXT GENERATION OF<br />PREVENTATIVE HEALTH BUSINESS
             </h2>
-            <p className="text-[#9f1e13] text-sm font-bold tracking-widest uppercase">
+            <p className="text-zinc-950 text-sm font-bold tracking-widest uppercase">
               Applications for the Founding Partner Programme close 31st July 2026.
             </p>
           </div>
