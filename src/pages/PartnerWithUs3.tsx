@@ -189,7 +189,7 @@ const PartnerWithUs3 = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { title: "TRAINING", description: "Structured practitioner education and pathway training." },
               { title: "MARKETING", description: "Campaigns, social media, launch assets and growth resources." },
@@ -198,12 +198,9 @@ const PartnerWithUs3 = () => {
               { title: "AI TOOLS", description: "Ready-to-use prompts, content systems and marketing support." },
               { title: "ONGOING DEVELOPMENT", description: "Workshops, partner education and implementation support." }
             ].map((pillar, idx) => (
-              <div key={idx} className="bg-[#faf8f5] border border-[#dbd4c9] p-8 rounded-3xl hover:shadow-lg transition-all flex flex-col justify-between group">
-                <div className="space-y-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#9f1e13]/10 text-[#9f1e13] flex items-center justify-center font-mono font-bold text-sm">
-                    0{idx+1}
-                  </div>
-                  <h3 className="text-xl font-bold tracking-tight text-zinc-900 group-hover:text-[#9f1e13] transition-colors uppercase">
+              <div key={idx} className="bg-[#faf8f5] border border-[#dbd4c9] p-6 rounded-2xl hover:shadow-md transition-all flex flex-col justify-between group">
+                <div className="space-y-2.5">
+                  <h3 className="text-lg font-bold tracking-tight text-zinc-900 group-hover:text-[#9f1e13] transition-colors uppercase">
                     {pillar.title}
                   </h3>
                   <p className="text-zinc-600 leading-relaxed text-sm font-light">
@@ -224,12 +221,9 @@ const PartnerWithUs3 = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-zinc-950 uppercase">
               WHO IS TBN FOR?
             </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          </div>          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
               <div className="space-y-4">
-                <Building2 className="w-8 h-8 text-[#9f1e13]" />
                 <h3 className="text-xl font-bold text-zinc-900 uppercase">CLINICS & PRACTITIONERS</h3>
                 <p className="text-zinc-600 leading-relaxed text-sm font-light">
                   Enhance osteopathy, chiropractic, physiotherapy, aesthetics and wellness services through testing, education and personalised pathways.
@@ -242,7 +236,6 @@ const PartnerWithUs3 = () => {
 
             <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
               <div className="space-y-4">
-                <Store className="w-8 h-8 text-[#9f1e13]" />
                 <h3 className="text-xl font-bold text-zinc-900 uppercase">PHARMACIES</h3>
                 <p className="text-zinc-600 leading-relaxed text-sm font-light">
                   Move beyond reactive healthcare.
@@ -255,7 +248,6 @@ const PartnerWithUs3 = () => {
 
             <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
               <div className="space-y-4">
-                <HeartPulse className="w-8 h-8 text-[#9f1e13]" />
                 <h3 className="text-xl font-bold text-zinc-900 uppercase">HEALTH CLUBS & GYMS</h3>
                 <p className="text-zinc-600 leading-relaxed text-sm font-light">
                   Create premium performance, recovery and longevity services that increase engagement, retention and member value.
@@ -280,8 +272,7 @@ const PartnerWithUs3 = () => {
                 </h2>
                 <div className="h-1 w-16 bg-[#9f1e13]"></div>
               </div>
-              
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5">
                 {[
                   "Foundational Testing and Rapid Screening",
                   "Certified Practitioner Training",
@@ -293,11 +284,9 @@ const PartnerWithUs3 = () => {
                   "Premium Client Experiences",
                   "A Complete Business-In-A-Box"
                 ].map((val, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#9f1e13]/10 text-[#9f1e13]">
-                      <Check className="h-3.5 w-3.5" strokeWidth={3.5} />
-                    </span>
-                    <span className="text-sm font-semibold text-zinc-700 leading-snug">{val}</span>
+                  <li key={idx} className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-[#9f1e13] shrink-0" strokeWidth={3} />
+                    <span className="text-sm font-medium text-zinc-700 leading-snug">{val}</span>
                   </li>
                 ))}
               </ul>
