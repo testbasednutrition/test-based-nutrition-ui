@@ -148,7 +148,7 @@ const partnerMenuItems: { label: string; href: string | null }[] = [
   { label: "Clinics & Practitioners", href: "/partner-with-us#partner-segments" },
   { label: "Health Clubs", href: "/partner-with-us#partner-segments" },
   { label: "Events & Workshops", href: null },
-  { label: "Retreats", href: "/partner-with-us" },
+  { label: "Retreats", href: null },
 ];
 
 interface NavbarProps {
