@@ -268,37 +268,54 @@ const PartnerWithUs3 = () => {
 
       {/* 5. Why Partners Choose TBN Checklist */}
       <section className="py-24 bg-white border-y border-zinc-100">
-        <div className="container max-w-[900px] mx-auto px-4">
-          <h2 className="text-center text-3xl font-playfair font-bold text-zinc-950 uppercase mb-12">
-            WHY PARTNERS CHOOSE TBN
-          </h2>
-          
-          <div className="bg-[#faf8f5] border border-[#dbd4c9] p-8 md:p-12 rounded-[2.5rem] shadow-sm">
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                "Foundational Testing and Rapid Screening",
-                "Certified Practitioner Training",
-                "Marketing & Launch Support Included",
-                "Specialist Referral & Escalation Pathways",
-                "Workshops & Community Education Systems",
-                "AI Marketing & Content Resources",
-                "Recurring Revenue Opportunities",
-                "Premium Client Experiences",
-                "A Complete Business-In-A-Box"
-              ].map((val, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#9f1e13]/10 text-[#9f1e13]">
-                    <Check className="h-3.5 w-3.5" strokeWidth={3.5} />
-                  </span>
-                  <span className="text-sm font-semibold text-zinc-700 leading-snug">{val}</span>
-                </li>
-              ))}
-            </ul>
+        <div className="container max-w-[1100px] mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Content */}
+            <div className="lg:col-span-7 space-y-8">
+              <div className="space-y-4">
+                <span className="text-[#9f1e13] text-sm font-bold tracking-widest uppercase block">The TBN Advantage</span>
+                <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-955 uppercase tracking-tight">
+                  WHY PARTNERS CHOOSE TBN
+                </h2>
+                <div className="h-1 w-16 bg-[#9f1e13]"></div>
+              </div>
+              
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+                {[
+                  "Foundational Testing and Rapid Screening",
+                  "Certified Practitioner Training",
+                  "Marketing & Launch Support Included",
+                  "Specialist Referral & Escalation Pathways",
+                  "Workshops & Community Education Systems",
+                  "AI Marketing & Content Resources",
+                  "Recurring Revenue Opportunities",
+                  "Premium Client Experiences",
+                  "A Complete Business-In-A-Box"
+                ].map((val, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#9f1e13]/10 text-[#9f1e13]">
+                      <Check className="h-3.5 w-3.5" strokeWidth={3.5} />
+                    </span>
+                    <span className="text-sm font-semibold text-zinc-700 leading-snug">{val}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Right Image */}
+            <div className="lg:col-span-5 relative">
+              <div className="absolute -inset-4 bg-[#dbd4c9]/25 rounded-[3rem] -rotate-1 scale-[0.98] z-0 pointer-events-none"></div>
+              <img 
+                src="/images/why-choose-tbn.jpg" 
+                alt="TBN Partner Training and Support" 
+                className="relative z-10 w-full rounded-[2.5rem] border border-[#dbd4c9] shadow-lg object-cover aspect-[3/4]"
+              />
+            </div>
+
           </div>
         </div>
-      </section>
-
-      {/* 6. Limited Founding Partner Offer Section */}
+      </section>      {/* 6. Limited Founding Partner Offer Section */}
       <section className="py-24 bg-white relative overflow-hidden border-b border-zinc-100">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#9f1e13]/5 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#dbd4c9]/20 rounded-full blur-[80px] pointer-events-none"></div>
