@@ -280,122 +280,41 @@ const PartnerWithUs3 = () => {
         </div>
       </section>
 
-      {/* 5. Learn. Launch. Grow. Lead. Details Section */}
-      <section className="py-24 bg-[#faf8f5] border-y border-[#dbd4c9]/30">
-        <div className="container max-w-[1100px] mx-auto px-4 sm:px-6">
+      {/* 5. Learn. Launch. Lead. Details Section */}
+      <section className="py-24 bg-secondary relative overflow-hidden">
+        {/* Top Fade Transition */}
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#faf8f5] to-transparent pointer-events-none z-10" />
+        
+        {/* Bottom Fade Transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#faf8f5] to-transparent pointer-events-none z-10" />
+
+        <div className="container max-w-[1100px] mx-auto px-4 sm:px-6 relative z-20">
           <div className="text-center mb-16">
-            <span className="text-[#9f1e13] uppercase tracking-[0.25em] font-extrabold text-xs block mb-3">TBN ROLLOUT BLUEPRINT</span>
-            <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-zinc-950 uppercase">LEARN. LAUNCH. GROW. LEAD.</h2>
+            <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">For Businesses</span>
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13] mt-4">Learn. Launch. Lead.</h2>
+            <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
+              A complete integration model for clinics, pharmacies, health clubs, academies, resorts and wellness businesses. We help you build a commercially sustainable pathway.
+            </p>
           </div>
 
-          <div className="space-y-16">
-            {/* LEARN */}
-            <div className="bg-white border border-[#dbd4c9] rounded-[2rem] p-8 md:p-12 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-5 space-y-4">
-                <span className="text-[#9f1e13] font-mono tracking-widest text-xs font-bold uppercase">STAGE 01</span>
-                <h3 className="text-3xl font-playfair font-bold text-zinc-950 uppercase">LEARN</h3>
-                <h4 className="text-lg font-semibold text-zinc-800">Master The TBN Method™</h4>
-                <p className="text-sm font-medium text-[#9f1e13] tracking-wider uppercase">Built for real-world implementation.</p>
-              </div>
-              <div className="lg:col-span-7 bg-[#faf8f5] p-6 sm:p-8 rounded-2xl border border-zinc-100">
-                <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-4">Access certified training covering:</p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {[
-                    "Foundational Testing",
-                    "Gut Health",
-                    "Point-of-Care Screening",
-                    "Consultations & Results Reviews",
-                    "Specialist Health Pathways",
-                    "Protocol Integration",
-                    "Compliance & Best Practice"
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-zinc-700 font-medium">
-                      <ChevronRight className="w-4 h-4 text-[#9f1e13] shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5] shadow-sm">
+              <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 1: Learn</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Train your team in the TBN Method, testing ecosystem, consultation pathway, and compliance-conscious communication. Give your business the confidence to introduce test-based nutrition professionally.
+              </p>
             </div>
-
-            {/* LAUNCH */}
-            <div className="bg-white border border-[#dbd4c9] rounded-[2rem] p-8 md:p-12 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-5 space-y-4">
-                <span className="text-[#9f1e13] font-mono tracking-widest text-xs font-bold uppercase">STAGE 02</span>
-                <h3 className="text-3xl font-playfair font-bold text-zinc-950 uppercase">LAUNCH</h3>
-                <h4 className="text-lg font-semibold text-zinc-800">Everything You Need To Go Live</h4>
-                <p className="text-sm font-light text-zinc-600 leading-relaxed">
-                  Launch testing clinics, workshops, health hubs and specialist programmes with confidence.
-                </p>
-                <p className="text-sm font-medium text-[#9f1e13] tracking-wider uppercase">No need to build systems from scratch.</p>
-              </div>
-              <div className="lg:col-span-7 bg-[#faf8f5] p-6 sm:p-8 rounded-2xl border border-zinc-100">
-                <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-4">Receive:</p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {[
-                    "Marketing Campaigns",
-                    "Social Media Assets",
-                    "Workshop Frameworks",
-                    "Consultation Systems",
-                    "Results Review Templates",
-                    "AI Marketing Tools",
-                    "Launch Support"
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-zinc-700 font-medium">
-                      <ChevronRight className="w-4 h-4 text-[#9f1e13] shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5] shadow-sm">
+              <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 2: Launch</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Bring test-based nutrition into your real-world service model through consultations, test days, workshops, or screening pathways. The TBN Method becomes part of your business, not an add-on.
+              </p>
             </div>
-
-            {/* GROW */}
-            <div className="bg-white border border-[#dbd4c9] rounded-[2rem] p-8 md:p-12 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-5 space-y-4">
-                <span className="text-[#9f1e13] font-mono tracking-widest text-xs font-bold uppercase">STAGE 03</span>
-                <h3 className="text-3xl font-playfair font-bold text-zinc-950 uppercase">GROW</h3>
-                <h4 className="text-lg font-semibold text-zinc-800">Create Long-Term Client Pathways</h4>
-                <p className="text-sm font-medium text-[#9f1e13] tracking-wider uppercase">Helping increase client engagement, retention and lifetime value.</p>
-              </div>
-              <div className="lg:col-span-7 bg-[#faf8f5] p-6 sm:p-8 rounded-2xl border border-zinc-100">
-                <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-4">Generate recurring revenue through:</p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {[
-                    "Reviews",
-                    "Retesting",
-                    "Memberships",
-                    "Workshops",
-                    "Health Programmes",
-                    "Follow-Up Support"
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-zinc-700 font-medium">
-                      <ChevronRight className="w-4 h-4 text-[#9f1e13] shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* LEAD */}
-            <div className="bg-white border border-[#dbd4c9] rounded-[2rem] p-8 md:p-12 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-5 space-y-4">
-                <span className="text-[#9f1e13] font-mono tracking-widest text-xs font-bold uppercase">STAGE 04</span>
-                <h3 className="text-3xl font-playfair font-bold text-zinc-950 uppercase">LEAD</h3>
-                <h4 className="text-lg font-semibold text-zinc-800">Become The Trusted Authority</h4>
-                <p className="text-sm font-light text-zinc-600 leading-relaxed">
-                  Position your business as a recognised destination for preventative health, personalised wellbeing and measurable outcomes.
-                </p>
-                <p className="text-sm font-medium text-[#9f1e13] tracking-wider uppercase">Supported by a growing collective of doctors, specialists and practitioners.</p>
-              </div>
-              <div className="lg:col-span-7 bg-[#faf8f5] p-6 sm:p-8 rounded-2xl border border-zinc-100 flex items-center justify-center min-h-[160px]">
-                <div className="text-center max-w-sm">
-                  <UserCheck className="w-12 h-12 text-[#9f1e13] mx-auto mb-4" />
-                  <p className="text-xs font-bold uppercase tracking-widest text-zinc-400">Status</p>
-                  <p className="text-sm font-semibold text-zinc-800 mt-1">Leading Regional Provider</p>
-                </div>
-              </div>
+            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5] shadow-sm">
+              <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 3: Lead</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Become known for personalised preventative health. Build stronger client engagement, new revenue streams, and recurring wellness programmes with regional visibility.
+              </p>
             </div>
           </div>
         </div>
