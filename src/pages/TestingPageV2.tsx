@@ -574,10 +574,10 @@ const TestingPageV2 = () => {
               {/* Pathway points grid */}
               <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
                 {[
-                  { name: "In-depth laboratory testing", desc: "Exploratory testing patterns via advanced referral." },
-                  { name: "Private GP support", desc: "Integrative consultations for primary care screening." },
-                  { name: "Specialist referral", desc: "Direct route to clinicians inside the TBN collective." },
-                  { name: "Ongoing monitoring", desc: "Follow-up screen tracking to secure physical baselines." }
+                  { name: "Advanced Laboratory Testing", desc: "Explore more detailed biomarkers where greater clinical insight is needed." },
+                  { name: "Private GP Support", desc: "Fast access to experienced private GPs for further investigation and medical guidance where appropriate." },
+                  { name: "Specialist Referral", desc: "Connect with trusted doctors and specialist practitioners across the TBN Collective." },
+                  { name: "Retesting & Progress Monitoring", desc: "Track your progress, measure your results and refine your personalised pathway over time." }
                 ].map((item, idx) => {
                   return (
                     <div 
