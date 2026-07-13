@@ -10,7 +10,7 @@ import {
   Sparkles, Check, ChevronRight, Calculator, Calendar, ArrowUpRight
 } from "lucide-react";
 
-const heroImg = "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1200";
+const heroImg = "/images/partner-hero.jpg";
 
 const PartnerWithUs3 = () => {
   const [leadForm, setLeadForm] = useState({
@@ -46,7 +46,7 @@ const PartnerWithUs3 = () => {
           <img
             src={heroImg}
             alt="Partner With Test-Based Nutrition"
-            className="w-full h-full object-cover object-center scale-105 filter brightness-95"
+            className="w-full h-full object-cover object-[75%_25%] scale-105 filter brightness-95"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-transparent"></div>
           {/* Subtle grid pattern overlay */}
