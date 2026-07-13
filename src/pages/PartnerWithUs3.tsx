@@ -56,9 +56,6 @@ const PartnerWithUs3 = () => {
         <div className="container relative z-10 text-white max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl space-y-8">
             <div className="inline-flex flex-col gap-1.5">
-              <span className="text-[#dbd4c9] uppercase tracking-[0.25em] font-extrabold text-xs sm:text-sm">
-                PARTNER WITH TEST-BASED NUTRITION
-              </span>
               <span className="text-[#9f1e13] font-mono tracking-widest text-xs sm:text-sm font-semibold uppercase flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#9f1e13] animate-pulse"></span>
                 LEARN. LAUNCH. GROW. LEAD.
@@ -66,9 +63,8 @@ const PartnerWithUs3 = () => {
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-playfair font-bold leading-[1.1] tracking-tight text-white">
-              Build The Future Of <br className="hidden sm:inline" />
-              Preventative Health <br className="hidden sm:inline" />
-              In Your Business
+              Partner with <br className="hidden sm:inline" />
+              Test-Based Nutrition
             </h1>
             
             <div className="space-y-6 max-w-3xl">
