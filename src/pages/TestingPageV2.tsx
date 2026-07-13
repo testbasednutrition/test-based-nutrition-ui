@@ -190,14 +190,13 @@ const TestingPageV2 = () => {
               </div>
 
               {/* Right: Explore Areas list */}
-              <div className="lg:col-span-7 bg-[#0c0000] text-white rounded-[2.5rem] p-8 sm:p-10 shadow-2xl relative overflow-hidden border border-zinc-800/35">
+              <div className="lg:col-span-7 bg-gradient-to-br from-[#9f1e13] to-[#80140c] text-white rounded-[2.5rem] p-8 sm:p-10 shadow-2xl relative overflow-hidden">
                 {/* Subtle grids & background glows */}
-                <div className="absolute top-0 right-0 w-80 h-80 bg-[#9f1e13]/10 rounded-full blur-[100px] pointer-events-none"></div>
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
                 
                 <div className="relative z-10 space-y-6">
                   <div className="space-y-1">
-                    <span className="text-xs font-mono font-bold text-[#9f1e13] uppercase tracking-[0.25em]">PHYSIOLOGICAL PATHWAYS</span>
+                    <span className="text-xs font-mono font-bold text-[#faf8f5]/85 uppercase tracking-[0.25em]">PHYSIOLOGICAL PATHWAYS</span>
                     <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-white uppercase tracking-wide">
                       WHAT WE MEASURE
                     </h3>
@@ -217,14 +216,14 @@ const TestingPageV2 = () => {
                       return (
                         <div 
                           key={index} 
-                          className="flex gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-[#9f1e13]/30 transition-all duration-300 group"
+                          className="flex gap-4 p-5 rounded-2xl bg-white/[0.08] border border-white/[0.12] hover:bg-white/[0.14] hover:border-white/30 transition-all duration-300 group"
                         >
-                          <div className="w-10 h-10 rounded-xl bg-[#9f1e13]/10 text-[#9f1e13] flex items-center justify-center shrink-0 border border-[#9f1e13]/25 group-hover:scale-105 transition-transform duration-300">
+                          <div className="w-10 h-10 rounded-xl bg-white/15 text-white flex items-center justify-center shrink-0 border border-white/20 group-hover:scale-105 transition-transform duration-300">
                             <IconComponent className="w-5 h-5" />
                           </div>
                           <div className="space-y-1">
-                            <h4 className="text-[13px] font-montserrat font-bold text-zinc-100 group-hover:text-white transition-colors uppercase tracking-wide">{area.title}</h4>
-                            <p className="text-[11px] text-zinc-400 font-light leading-relaxed">{area.desc}</p>
+                            <h4 className="text-[13px] font-montserrat font-bold text-white group-hover:text-zinc-100 transition-colors uppercase tracking-wide">{area.title}</h4>
+                            <p className="text-[11px] text-zinc-100/90 font-light leading-relaxed">{area.desc}</p>
                           </div>
                         </div>
                       );
