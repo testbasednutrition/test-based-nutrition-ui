@@ -123,7 +123,7 @@ const TestingPageV2 = () => {
         </section>
 
         {/* 2. WHY WE TEST SECTION */}
-        <section className="py-24 bg-white relative overflow-hidden">
+        <section id="foundations" className="py-24 bg-white relative overflow-hidden">
           <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-[#dbd4c9]/10 rounded-full blur-[80px] pointer-events-none"></div>
           
           <div className="container max-w-[1140px] mx-auto px-4 sm:px-6 relative z-10">
@@ -236,7 +236,7 @@ const TestingPageV2 = () => {
         </section>
 
         {/* 4. THE TBN TESTING FRAMEWORK SECTION */}
-        <section className="py-24 bg-white relative overflow-hidden">
+        <section id="test-packages" className="py-24 bg-white relative overflow-hidden">
           <div className="container max-w-[1200px] mx-auto px-4 sm:px-6 relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
               <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
@@ -401,7 +401,7 @@ const TestingPageV2 = () => {
               </div>
 
               {/* Level 2: Baseline Screening */}
-              <div className="bg-[#9f1e13] text-white border border-[#dbd4c9]/25 rounded-[2.5rem] p-8 sm:p-10 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden">
+              <div id="rapid-screening" className="bg-[#9f1e13] text-white border border-[#dbd4c9]/25 rounded-[2.5rem] p-8 sm:p-10 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch relative z-10">
                   {/* Left Column (Row Info) */}
@@ -507,7 +507,7 @@ const TestingPageV2 = () => {
               )}
 
               {/* Level 3: Advanced Screening */}
-              <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 sm:p-10 shadow-md hover:shadow-xl transition-all relative overflow-hidden">
+              <div id="advanced-testing" className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 sm:p-10 shadow-md hover:shadow-xl transition-all relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-48 h-48 bg-[#dbd4c9]/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch relative z-10">
                   {/* Left Column (Row Info) */}

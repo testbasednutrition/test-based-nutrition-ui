@@ -76,7 +76,7 @@ const App = () => (
             <Route path="/partner-with-us-2" element={<PartnerWithUs />} />
             <Route path="/partner-with-us-3" element={<PartnerWithUs3 />} />
             <Route path="/partner-portal-2" element={<PartnerPortal2 />} />
-            <Route path="/testing" element={<TestingPage />} />
+            <Route path="/testing" element={<TestingPageV2 />} />
             <Route path="/testing-v2" element={<TestingPageV2 />} />
             <Route path="/tbn-method" element={<TBNMethod />} />
 
