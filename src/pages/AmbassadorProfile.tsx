@@ -14,15 +14,46 @@ import {
   HeartPulse, 
   Sparkles, 
   Zap,
-  Info
+  Info,
+  X,
+  Maximize2
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchSpecialists } from "@/lib/api";
 import NotFound from "./NotFound";
 
+// High-quality action and training galleries for the brand ambassadors
+const AMBASSADOR_GALLERIES: Record<string, string[]> = {
+  "mariusz-domasat": [
+    "https://test-basednutrition.com/assets/images/mariusz1-698x465.jpeg",
+    "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&q=80&w=800", // Grappling/Wrestling
+    "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800", // MMA / Combat Sports
+    "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&q=80&w=800"  // Athletic Conditioning
+  ],
+  "sonny-hardy": [
+    "https://test-basednutrition.com/assets/images/sonny-hardy-5-698x740.jpeg",
+    "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&q=80&w=800", // Boxing heavy bag
+    "https://images.unsplash.com/photo-1508215885820-4585e56135c8?auto=format&fit=crop&q=80&w=800", // Boxing focus gloves
+    "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=800"  // Fitness/strength
+  ],
+  "mike-grundy": [
+    "https://test-basednutrition.com/assets/images/mike-grundy3-477x611.jpg",
+    "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&q=80&w=800", // Wrestling match
+    "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800", // Athletic training
+    "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&q=80&w=800"  // Cardio conditioning
+  ],
+  "ross-pearce": [
+    "https://test-basednutrition.com/assets/images/ross-pearce-3-698x873.jpg",
+    "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&q=80&w=800", // Boxing ring workout
+    "https://images.unsplash.com/photo-1508215885820-4585e56135c8?auto=format&fit=crop&q=80&w=800", // Pad training
+    "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=800"  // Focus gloves
+  ]
+};
+
 const AmbassadorProfile = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   const { data: specialists = [], isLoading } = useQuery({
     queryKey: ['specialists'],
@@ -66,226 +97,293 @@ const AmbassadorProfile = () => {
   };
 
   const balanceJourney = parseResults(ambassador.omegaResults);
+  const galleryImages = AMBASSADOR_GALLERIES[ambassador.slug] || [];
 
   return (
-    <div className="min-h-screen bg-secondary/10 font-sans">
+    <div className="min-h-screen bg-[#faf8f5] font-sans">
       <Navbar alwaysSolid />
 
-      {/* Main Content container */}
-      <main className="pt-24 md:pt-32 pb-24">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-6xl">
+      <main className="pt-24 md:pt-32 pb-24 relative overflow-hidden">
+        {/* Subtle branded background elements */}
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#dbd4c9]/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute bottom-1/3 left-0 w-[300px] h-[300px] bg-[#9f1e13]/5 rounded-full blur-[80px] pointer-events-none"></div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
           {/* Back button */}
           <div className="mb-8">
             <button
               onClick={() => navigate("/specialists")}
-              className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-zinc-500 hover:text-[#9f1e13] transition-colors"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-zinc-500 hover:text-[#9f1e13] transition-colors uppercase tracking-wider"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to Specialists Directory
+              Back to Directory
             </button>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Left Column: Profile Card */}
-            <div className="lg:col-span-4 space-y-6">
-              <div className="bg-white border border-[#dbd4c9]/60 rounded-[2.5rem] p-6 sm:p-8 shadow-sm text-center relative overflow-hidden">
-                {/* Visual red line at top */}
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#9f1e13] to-[#80140c]" />
-
-                {/* Photo */}
-                <div className="relative w-full max-w-[240px] aspect-square rounded-[2rem] overflow-hidden mx-auto border-4 border-secondary shadow-md bg-secondary mb-6">
-                  <img
-                    src={ambassador.image}
-                    alt={ambassador.name}
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: ambassador.imagePosition || 'center top' }}
-                  />
-                  <div className="absolute top-3 left-3 bg-[#9f1e13] text-white text-[8px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md shadow-sm">
-                    TBN AMBASSADOR
-                  </div>
+          {/* 1. HERO PHOTO-LED MAGAZINE ROW */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-16">
+            {/* Left: Large Editorial Portrait */}
+            <div className="lg:col-span-5">
+              <div className="relative group rounded-[2.5rem] overflow-hidden border-2 border-[#dbd4c9]/60 shadow-xl bg-secondary aspect-[3/4]">
+                <img
+                  src={ambassador.image}
+                  alt={ambassador.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: ambassador.imagePosition || 'center top' }}
+                />
+                
+                {/* Photo stamp overlays */}
+                <div className="absolute top-4 left-4 bg-[#9f1e13] text-white text-[9px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg border border-[#9f1e13]/20">
+                  TBN Brand Ambassador
                 </div>
 
-                {/* Title and Badge */}
-                <div className="space-y-2">
-                  <div className="inline-flex items-center gap-1 bg-[#9f1e13]/5 text-[#9f1e13] px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-[#9f1e13]/10">
-                    <BadgeCheck className="w-3.5 h-3.5" />
-                    <span>Official Partner</span>
-                  </div>
-                  <h1 className="text-2xl font-extrabold uppercase tracking-tight text-zinc-900 font-sans">
-                    {ambassador.name}
-                  </h1>
-                  {ambassador.role && (
-                    <p className="text-xs sm:text-sm font-semibold text-[#9f1e13] uppercase tracking-wider">
-                      {ambassador.role}
-                    </p>
-                  )}
+                <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-[#faf8f5] text-[9px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full border border-white/10 flex items-center gap-1.5 shadow-md">
+                  <Activity className="w-3.5 h-3.5 text-[#dbd4c9]" />
+                  <span>Verified Athlete</span>
                 </div>
+              </div>
+            </div>
 
-                {/* Location Info */}
+            {/* Right: Big Typography Headers and Signature Quote */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-1.5 bg-[#9f1e13]/5 text-[#9f1e13] px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest border border-[#9f1e13]/10">
+                  <BadgeCheck className="w-4 h-4" />
+                  <span>Official TBN Collective Member</span>
+                </div>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-black text-zinc-900 tracking-tight leading-none uppercase">
+                  {ambassador.name}
+                </h1>
+                {ambassador.role && (
+                  <p className="text-sm font-extrabold text-[#9f1e13] uppercase tracking-widest font-sans">
+                    {ambassador.role}
+                  </p>
+                )}
+              </div>
+
+              {/* Signature Quote block where text flows around */}
+              {ambassador.quote && (
+                <div className="bg-white border-l-4 border-[#9f1e13] border-t border-r border-b border-zinc-200/50 rounded-r-3xl p-6 shadow-sm relative overflow-hidden">
+                  <Quote className="w-12 h-12 text-[#9f1e13]/5 absolute -top-1 -left-1" />
+                  <p className="text-zinc-700 italic font-medium text-sm sm:text-base relative z-10 leading-relaxed pl-4">
+                    "{ambassador.quote}"
+                  </p>
+                </div>
+              )}
+
+              {/* Location & Quick Details Row */}
+              <div className="flex flex-wrap gap-4 items-center pt-2">
                 {ambassador.location && (
-                  <div className="flex items-center justify-center gap-1.5 text-xs text-zinc-500 font-medium mt-4 pt-4 border-t border-[#dbd4c9]/40">
+                  <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-bold uppercase tracking-wider bg-zinc-100/60 border border-zinc-200/60 px-3 py-1.5 rounded-full">
                     <MapPin className="w-3.5 h-3.5 text-[#9f1e13]" />
                     <span>{ambassador.location}</span>
                   </div>
                 )}
+                {ambassador.accepting_new_clients !== false && (
+                  <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-bold uppercase tracking-wider bg-zinc-100/60 border border-zinc-200/60 px-3 py-1.5 rounded-full">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Accepting Consultations</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* 2. DYNAMIC BIO & JOURNEY LAYOUT (REVOLVING TEXT AND DATA) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
+            {/* Bio description text (revolving around) */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="bg-white border border-[#dbd4c9]/60 rounded-[2.5rem] p-8 shadow-sm space-y-6">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 font-sans border-b border-zinc-100 pb-3 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-[#9f1e13]" /> Biography & Focus
+                </h3>
+                
+                <div className="space-y-4 text-zinc-700 font-light leading-relaxed text-sm md:text-base">
+                  {ambassador.bio && ambassador.bio.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
               </div>
 
-              {/* Quick credentials details block */}
+              {/* Credentials card */}
               {ambassador.credentials && ambassador.credentials.length > 0 && (
-                <div className="bg-white border border-[#dbd4c9]/60 rounded-[2rem] p-6 sm:p-8 shadow-sm space-y-4">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 font-sans flex items-center gap-2">
-                    <Award className="w-4 h-4 text-[#9f1e13]" /> Key Credentials
+                <div className="bg-white border border-[#dbd4c9]/60 rounded-[2.5rem] p-8 shadow-sm space-y-4">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 font-sans border-b border-zinc-100 pb-3 flex items-center gap-2">
+                    <Award className="w-4 h-4 text-[#9f1e13]" /> Key Credentials & Achievements
                   </h3>
-                  <ul className="space-y-3">
+                  <div className="grid sm:grid-cols-2 gap-4 pt-1">
                     {ambassador.credentials.map((cred, idx) => (
-                      <li key={idx} className="flex gap-2.5 items-start text-xs font-medium text-zinc-700">
+                      <div key={idx} className="flex gap-2.5 items-start text-xs font-semibold text-zinc-800">
                         <CheckCircle2 className="w-4 h-4 text-[#9f1e13] shrink-0 mt-0.5" />
                         <span>{cred}</span>
-                      </li>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               )}
             </div>
 
-            {/* Right Column: Dynamic Info & Test-Based Journey */}
-            <div className="lg:col-span-8 space-y-8">
-              {/* Test-Based Journey Card (Visual Comparative Graph) */}
+            {/* Right: Balance Journey Comparison Chart */}
+            <div className="lg:col-span-5 space-y-6">
               {balanceJourney ? (
                 <div className="bg-white border border-[#dbd4c9]/60 rounded-[2.5rem] p-8 shadow-sm space-y-6 relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#9f1e13]/5 rounded-full blur-3xl pointer-events-none"></div>
                   
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-[#9f1e13]/5 text-[#9f1e13] rounded-2xl border border-[#9f1e13]/10">
-                      <HeartPulse className="w-6 h-6" />
+                  <div className="flex items-start gap-3">
+                    <div className="p-2.5 bg-[#9f1e13]/5 text-[#9f1e13] rounded-xl border border-[#9f1e13]/10">
+                      <HeartPulse className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold text-[#9f1e13] uppercase tracking-widest block">OBJECTIVE SCIENCE</span>
-                      <h2 className="text-xl sm:text-2xl font-playfair font-bold text-zinc-900 uppercase">
-                        OMEGA 6:3 BALANCE JOURNEY
-                      </h2>
+                      <span className="text-[10px] font-bold text-[#9f1e13] uppercase tracking-widest block">Objective Science</span>
+                      <h3 className="text-lg font-bold text-zinc-900 uppercase tracking-wide">
+                        OMEGA 6:3 BALANCE SHIFT
+                      </h3>
                     </div>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-zinc-600 font-light leading-relaxed">
-                    TBN brand ambassadors undergo regular finger-prick balance testing to monitor cellular inflammation parameters, optimizing recovery times and cardiovascular health parameters using evidence-based lifestyle changes.
+                  <p className="text-xs text-zinc-500 font-light leading-relaxed">
+                    Personal balance values before and after optimizing systemic lipid ratios using Test-Based Nutrition.
                   </p>
 
-                  {/* Comparative bars */}
-                  <div className="space-y-5 pt-2">
-                    {/* Initial Test Bar */}
-                    <div className="space-y-2">
+                  <div className="space-y-4 pt-2">
+                    {/* Initial Bar */}
+                    <div className="space-y-1.5">
                       <div className="flex justify-between items-center text-xs font-bold uppercase tracking-wider">
-                        <span className="text-zinc-500">Initial Test Result</span>
+                        <span className="text-zinc-400">Initial Test</span>
                         <span className="text-red-600 font-mono text-sm">{balanceJourney.initial}:1</span>
                       </div>
-                      <div className="h-4 bg-zinc-100 rounded-full overflow-hidden border border-zinc-200/50">
-                        {/* Max width corresponding to high ratio (e.g. 28:1 = 100%) */}
+                      <div className="h-3.5 bg-zinc-100 rounded-full overflow-hidden border border-zinc-200/50">
                         <div 
-                          className="h-full bg-gradient-to-r from-red-500 to-red-600 rounded-full transition-all duration-1000"
+                          className="h-full bg-gradient-to-r from-red-500 to-red-600 rounded-full"
                           style={{ width: `${Math.min((balanceJourney.initial / 28) * 100, 100)}%` }}
                         />
                       </div>
-                      <span className="text-[10px] font-medium text-red-500 block italic leading-none">
-                        High systemic inflammation & cellular stiffness indicators.
-                      </span>
                     </div>
 
-                    {/* Current Test Bar */}
+                    {/* Current Bar */}
                     {balanceJourney.current && (
-                      <div className="space-y-2 pt-2">
+                      <div className="space-y-1.5 pt-1">
                         <div className="flex justify-between items-center text-xs font-bold uppercase tracking-wider">
-                          <span className="text-zinc-500">Target Balanced Result</span>
+                          <span className="text-zinc-400">Retest Result</span>
                           <span className="text-emerald-600 font-mono text-sm">{balanceJourney.current}:1</span>
                         </div>
-                        <div className="h-4 bg-zinc-100 rounded-full overflow-hidden border border-zinc-200/50">
+                        <div className="h-3.5 bg-zinc-100 rounded-full overflow-hidden border border-zinc-200/50">
                           <div 
-                            className="h-full bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full transition-all duration-1000"
+                            className="h-full bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full"
                             style={{ width: `${(balanceJourney.current / 28) * 100}%` }}
                           />
                         </div>
-                        <span className="text-[10px] font-medium text-emerald-600 block italic leading-none">
-                          Optimal cellular membrane permeability & systemic balance achieved.
-                        </span>
                       </div>
                     )}
                   </div>
                 </div>
               ) : (
-                // Ross Pearce's Custom TBN Gym Integration Info
                 <div className="bg-white border border-[#dbd4c9]/60 rounded-[2.5rem] p-8 shadow-sm space-y-6 relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#9f1e13]/5 rounded-full blur-3xl pointer-events-none"></div>
                   
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-[#9f1e13]/5 text-[#9f1e13] rounded-2xl border border-[#9f1e13]/10">
-                      <Zap className="w-6 h-6" />
+                  <div className="flex items-start gap-3">
+                    <div className="p-2.5 bg-[#9f1e13]/5 text-[#9f1e13] rounded-xl border border-[#9f1e13]/10">
+                      <Zap className="w-5 h-5" />
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold text-[#9f1e13] uppercase tracking-widest block">COACHING INTEGRATION</span>
-                      <h2 className="text-xl sm:text-2xl font-playfair font-bold text-zinc-900 uppercase">
-                        GYM TESTING PATHWAY
-                      </h2>
+                      <span className="text-[10px] font-bold text-[#9f1e13] uppercase tracking-widest block">Coaching Integration</span>
+                      <h3 className="text-lg font-bold text-zinc-900 uppercase tracking-wide">
+                        GYM TESTING REGIMEN
+                      </h3>
                     </div>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-zinc-600 font-light leading-relaxed">
-                    Ross Pearce integrates objective balance testing directly into the elite training regimens at RJ's Boxing Gym. Fighters undergo regular screening to measure cardiorespiratory cellular recoverability, eliminating guesswork from training load management.
+                  <p className="text-xs text-zinc-500 font-light leading-relaxed">
+                    Integrating objective biomarkers and finger-prick balance testing directly into elite sports coaching.
                   </p>
 
-                  <div className="inline-flex items-start gap-3 p-4 rounded-2xl bg-[#9f1e13]/5 text-xs text-zinc-700 leading-relaxed border border-[#9f1e13]/10 max-w-xl">
+                  <div className="flex items-start gap-2.5 p-4 rounded-2xl bg-[#9f1e13]/5 border border-[#9f1e13]/10 text-xs text-zinc-700 font-medium">
                     <Info className="w-4 h-4 text-[#9f1e13] shrink-0 mt-0.5" />
                     <span>
-                      "With balance testing, we focus on real, objective metrics rather than assuming. It helps me structure optimal training cycles for professional boxers preparing for British title matches."
+                      Ross implements testing metrics across professional fighters to regulate cardiorespiratory cellular recoverability, improving performance cycles.
                     </span>
                   </div>
                 </div>
               )}
 
-              {/* Bio & Quote */}
-              <div className="bg-white border border-[#dbd4c9]/60 rounded-[2.5rem] p-8 shadow-sm space-y-6">
-                <div>
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 font-sans mb-4">
-                    Biography & Focus
-                  </h3>
-                  
-                  <div className="space-y-4 text-zinc-750 font-normal leading-relaxed text-sm">
-                    {ambassador.bio && ambassador.bio.map((para, i) => (
-                      <p key={i}>{para}</p>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Quote Block */}
-                {ambassador.quote && (
-                  <div className="bg-secondary/20 rounded-2xl p-6 relative border border-[#dbd4c9]/35">
-                    <Quote className="w-8 h-8 text-[#9f1e13]/10 absolute top-4 left-4" />
-                    <p className="text-zinc-700 italic font-medium text-xs sm:text-sm relative z-10 leading-relaxed pl-6 pt-2">
-                      {ambassador.quote}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Ambassador Statement / Why Partnered */}
+              {/* TBN statement */}
               <div className="bg-[#9f1e13] text-white rounded-[2.5rem] p-8 shadow-md relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
                 <div className="relative z-10 space-y-4">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-[#dbd4c9]" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#dbd4c9]">THE TBN CONNECTION</span>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-playfair font-bold uppercase">
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-[#dbd4c9] font-sans flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5" /> The TBN Paradigm
+                  </h4>
+                  <h3 className="text-lg font-bold uppercase tracking-wide">
                     Why I Choose Test-Based Nutrition
                   </h3>
-                  <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed font-light">
-                    {ambassador.why_joined_tbn || "Assessing and optimizing omega-3 status represents an essential, often overlooked component of an elite training regime. By replacing generic dietary patterns with objective testing, we secure optimal physical recovery, reduce joint stiffness, and enhance cognitive clarity."}
+                  <p className="text-xs text-zinc-200 leading-relaxed font-light">
+                    {ambassador.why_joined_tbn || "Eliminating generic guesses with objective biomarkers. Regular cell-membrane balance testing provides cellular-level insight, improving recoverability, cardiorespiratory balance, and overall physical agility."}
                   </p>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* 3. INTERACTIVE EDITORIAL GALLERY SECTION */}
+          {galleryImages.length > 0 && (
+            <div className="space-y-6">
+              <div>
+                <span className="text-[10px] font-bold text-[#9f1e13] uppercase tracking-widest block">PORTFOLIO</span>
+                <h3 className="text-xl sm:text-2xl font-playfair font-bold text-zinc-900 uppercase">
+                  Training & Action Gallery
+                </h3>
+              </div>
+
+              {/* Grid layout */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {galleryImages.map((imgUrl, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => setLightboxImage(imgUrl)}
+                    className="relative group rounded-2xl overflow-hidden aspect-square border border-[#dbd4c9]/60 shadow-sm cursor-pointer bg-secondary"
+                  >
+                    <img
+                      src={imgUrl}
+                      alt={`${ambassador.name} action ${idx + 1}`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="p-2.5 bg-white/95 rounded-full shadow-lg text-[#9f1e13] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                        <Maximize2 className="w-4 h-4" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </main>
+
+      {/* FULLSCREEN LIGHTBOX OVERLAY */}
+      {lightboxImage && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm animate-[fadeIn_0.2s_ease-out]"
+          onClick={() => setLightboxImage(null)}
+        >
+          <button 
+            onClick={() => setLightboxImage(null)}
+            className="absolute top-4 right-4 text-white hover:text-[#9f1e13] transition-colors p-2 bg-white/10 rounded-full"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          
+          <div className="max-w-[90vw] max-h-[85vh] overflow-hidden rounded-2xl border border-white/10 shadow-2xl relative">
+            <img
+              src={lightboxImage}
+              alt="Ambassador fullscreen action"
+              className="max-w-full max-h-[85vh] object-contain"
+            />
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
