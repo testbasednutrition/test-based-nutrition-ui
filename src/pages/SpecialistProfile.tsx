@@ -166,14 +166,18 @@ const SpecialistProfile = () => {
     queryFn: fetchSpecialists
   });
 
+  const specialist = specialists.find((s) => s.slug === slug && s.is_approved === true);
+
   // Redirect to Ambassador profile if the slug belongs to an ambassador
   useEffect(() => {
-    if (slug && AMBASSADOR_SLUGS.includes(slug)) {
-      navigate(`/ambassadors/${slug}`, { replace: true });
+    if (slug) {
+      if (AMBASSADOR_SLUGS.includes(slug)) {
+        navigate(`/ambassadors/${slug}`, { replace: true });
+      } else if (specialist && specialist.primary_category === "TBN Brand Ambassador") {
+        navigate(`/ambassadors/${slug}`, { replace: true });
+      }
     }
-  }, [slug, navigate]);
-
-  const specialist = specialists.find((s) => s.slug === slug && s.is_approved === true);
+  }, [slug, specialist, navigate]);
 
   const [activeImage, setActiveImage] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<SpecialistCategory>("All");

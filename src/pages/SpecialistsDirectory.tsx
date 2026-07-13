@@ -324,8 +324,8 @@ const SpecialistsDirectory = () => {
   const allApprovedNames = Array.from(new Set(approvedSpecialists.map(s => s.name).filter(Boolean)));
   
   // Separate into regular specialists and ambassadors
-  const regularSpecialistsOnly = approvedSpecialists.filter(s => !AMBASSADOR_SLUGS.includes(s.slug));
-  const ambassadorsOnly = approvedSpecialists.filter(s => AMBASSADOR_SLUGS.includes(s.slug));
+  const regularSpecialistsOnly = approvedSpecialists.filter(s => !AMBASSADOR_SLUGS.includes(s.slug) && s.primary_category !== "TBN Brand Ambassador");
+  const ambassadorsOnly = approvedSpecialists.filter(s => AMBASSADOR_SLUGS.includes(s.slug) || s.primary_category === "TBN Brand Ambassador");
 
   const filtered = regularSpecialistsOnly.filter((s) => {
     let matchesCategory = true;

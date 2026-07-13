@@ -66,10 +66,13 @@ const AmbassadorProfile = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (slug && !AMBASSADOR_SLUGS.includes(slug)) {
-      navigate(`/specialists/${slug}`, { replace: true });
+    if (slug) {
+      const spec = specialists.find((s) => s.slug === slug && s.is_approved === true);
+      if (spec && !AMBASSADOR_SLUGS.includes(slug) && spec.primary_category !== "TBN Brand Ambassador") {
+        navigate(`/specialists/${slug}`, { replace: true });
+      }
     }
-  }, [slug, navigate]);
+  }, [slug, specialists, navigate]);
 
   if (isLoading) {
     return (
