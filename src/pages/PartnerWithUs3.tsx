@@ -41,43 +41,40 @@ const PartnerWithUs3 = () => {
       <Navbar alwaysSolid={false} />
 
       {/* 1. Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-24 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src={heroImg}
-            alt="Partner With Test-Based Nutrition"
-            className="w-full h-full object-cover object-[75%_center] filter brightness-95"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-transparent"></div>
+      <section className="relative min-h-[90vh] flex flex-col lg:flex-row items-stretch bg-zinc-950 pt-20 lg:pt-0 overflow-hidden">
+        
+        {/* Left Column: Text Content */}
+        <div className="flex-1 flex items-center justify-center py-16 lg:py-24 px-4 sm:px-6 lg:px-12 xl:px-16 z-10 text-white relative">
           {/* Subtle grid pattern overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none"></div>
-        </div>
-
-        <div className="container relative z-10 text-white max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl space-y-8">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none"></div>
+          
+          <div className="max-w-xl xl:max-w-2xl space-y-8 relative z-10">
             <div className="inline-flex flex-col gap-1.5">
+              <span className="text-[#dbd4c9] uppercase tracking-[0.25em] font-extrabold text-xs sm:text-sm">
+                PARTNER WITH TEST-BASED NUTRITION
+              </span>
               <span className="text-[#9f1e13] font-mono tracking-widest text-xs sm:text-sm font-semibold uppercase flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#9f1e13] animate-pulse"></span>
                 LEARN. LAUNCH. GROW. LEAD.
               </span>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-playfair font-bold leading-[1.1] tracking-tight text-white">
+            <h1 className="text-4xl sm:text-5xl xl:text-6xl font-playfair font-bold leading-[1.1] tracking-tight text-white">
               Partner with <br className="hidden sm:inline" />
               Test-Based Nutrition
             </h1>
             
-            <div className="space-y-6 max-w-3xl">
-              <p className="text-lg sm:text-xl md:text-2xl font-light text-zinc-100 leading-relaxed border-l-2 border-[#9f1e13] pl-4 sm:pl-6">
+            <div className="space-y-6">
+              <p className="text-lg sm:text-xl font-light text-zinc-200 leading-relaxed border-l-2 border-[#9f1e13] pl-4 sm:pl-6">
                 Bring science-led testing, rapid point-of-care screening, specialist support, practitioner education and personalised health pathways into your clinic, pharmacy, health club, wellness destination or resort.
               </p>
-              <p className="text-base sm:text-lg text-zinc-300 font-light leading-relaxed max-w-2xl">
+              <p className="text-base text-zinc-400 font-light leading-relaxed">
                 A complete Business-In-A-Box designed to help you create new revenue streams, increase client retention and deliver a premium health experience.
               </p>
             </div>
             
-            <div className="pt-4 flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-[#9f1e13] hover:bg-[#b02216] text-white px-8 h-14 text-base font-bold tracking-wide rounded-xl shadow-lg shadow-red-950/20 active:scale-95 transition-all" asChild>
+            <div className="pt-4">
+              <Button size="lg" className="bg-[#9f1e13] hover:bg-[#861910] text-white px-8 h-14 text-base font-bold tracking-wide rounded-xl shadow-lg shadow-red-950/20 active:scale-95 transition-all" asChild>
                 <a href="#apply">
                   APPLY TO PARTNER WITH TBN <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
@@ -85,9 +82,18 @@ const PartnerWithUs3 = () => {
             </div>
           </div>
         </div>
+
+        {/* Right Column: Image */}
+        <div className="w-full lg:w-[50%] xl:w-[55%] relative shrink-0 min-h-[45vh] lg:min-h-0">
+          <img
+            src={heroImg}
+            alt="Partner With Test-Based Nutrition"
+            className="absolute inset-0 w-full h-full object-cover object-[25%_center] filter brightness-90"
+          />
+          {/* Soft overlay gradient on image for smooth transition */}
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent lg:bg-gradient-to-r lg:from-zinc-950 lg:via-transparent lg:to-transparent"></div>
+        </div>
         
-        {/* Soft bottom transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#faf8f5] to-transparent pointer-events-none"></div>
       </section>
 
       {/* 2. Limited Founding Partner Offer Section */}
