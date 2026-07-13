@@ -475,11 +475,15 @@ const SpecialistsDirectory = () => {
     return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch;
   });
 
+  const combinedDirectoryList = showAmbassadorsOnly
+    ? filteredAmbassadors
+    : [...filtered, ...filteredAmbassadors];
+
   const ITEMS_PER_PAGE = 24;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
-  const paginatedSpecialists = filtered.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const paginatedItems = combinedDirectoryList.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(combinedDirectoryList.length / ITEMS_PER_PAGE);
 
   return (
     <div className="min-h-screen bg-secondary/30 font-sans">
@@ -1025,17 +1029,22 @@ const SpecialistsDirectory = () => {
               </div>
             </div>
 
-              {/* Ambassadors Section */}
-              {filteredAmbassadors.length > 0 && (
-                <div className={showAmbassadorsOnly ? "space-y-6 animate-[fadeIn_0.3s_ease-out]" : "space-y-6 pb-10 border-b border-border/80 mb-10"}>
-                  <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-6">
-                    {filteredAmbassadors.map((specialist, index) => (
+              {/* Directory Grid - Specialists & Ambassadors */}
+              {paginatedItems.length > 0 && (
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-6 animate-[fadeIn_0.3s_ease-out]">
+                  {paginatedItems.map((specialist, index) => {
+                    const isAmbassador = AMBASSADOR_SLUGS.includes(specialist.slug) || specialist.primary_category === "TBN Brand Ambassador";
+                    
+                    return (
                       <div 
                         key={`${specialist.slug}-${index}`}
                         className="flex flex-col overflow-hidden bg-background border border-border rounded-2xl shadow-sm hover:shadow-md transition-shadow relative"
                       >
                         {/* Top Image Box */}
-                        <Link to={`/ambassadors/${specialist.slug}`} className="block w-full aspect-[3/4] bg-secondary relative group cursor-pointer overflow-hidden">
+                        <Link 
+                          to={isAmbassador ? `/ambassadors/${specialist.slug}` : `/specialists/${specialist.slug}`} 
+                          className="block w-full aspect-[3/4] bg-secondary relative group cursor-pointer overflow-hidden"
+                        >
                           <img
                             src={specialist.image}
                             alt={specialist.name}
@@ -1043,9 +1052,11 @@ const SpecialistsDirectory = () => {
                             style={{ objectPosition: specialist.imagePosition || 'center top' }}
                             loading="lazy"
                           />
-                          <div className="absolute bottom-0 left-0 right-0 bg-[#9f1e13] text-[#faf8f5] text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center py-2 shadow-inner">
-                            TBN Brand Ambassador
-                          </div>
+                          {isAmbassador && (
+                            <div className="absolute bottom-0 left-0 right-0 bg-[#9f1e13] text-[#faf8f5] text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center py-2 shadow-inner">
+                              TBN Brand Ambassador
+                            </div>
+                          )}
                         </Link>
 
                         {/* Bottom Info Box */}
@@ -1065,7 +1076,7 @@ const SpecialistsDirectory = () => {
                               </div>
                             </div>
 
-                            {/* Details Row with Icons (Always visible now to show Town) */}
+                            {/* Details Row with Icons */}
                             <div className="flex items-start gap-1 text-[10px] sm:text-xs text-muted-foreground font-medium pt-1">
                               <MapPin className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
                               <span className="line-clamp-1 leading-snug">
@@ -1079,7 +1090,7 @@ const SpecialistsDirectory = () => {
                             <span className="inline-block max-w-full text-[9px] sm:text-[10px] font-bold text-[#9f1e13] uppercase tracking-wider whitespace-normal break-words leading-tight w-fit text-center">
                               {specialist.category}
                             </span>
-                            <Link to={`/ambassadors/${specialist.slug}`} className="w-full text-center">
+                            <Link to={isAmbassador ? `/ambassadors/${specialist.slug}` : `/specialists/${specialist.slug}`} className="w-full text-center">
                               <Button variant="outline" className="w-full font-semibold px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs h-auto border-border hover:bg-secondary">
                                 View Profile
                               </Button>
@@ -1087,83 +1098,13 @@ const SpecialistsDirectory = () => {
                           </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Specialist Cards list */}
-              {!showAmbassadorsOnly && (
-                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-6 animate-[fadeIn_0.3s_ease-out]">
-                  {paginatedSpecialists.map((specialist, index) => (
-                    <div 
-                      key={`${specialist.slug}-${index}`}
-                      className="flex flex-col overflow-hidden bg-background border border-border rounded-2xl shadow-sm hover:shadow-md transition-shadow relative"
-                    >
-                      {/* Top Image Box */}
-                      <Link to={`/specialists/${specialist.slug}`} className="block w-full aspect-[3/4] bg-secondary relative group cursor-pointer overflow-hidden">
-                        <img
-                          src={specialist.image}
-                          alt={specialist.name}
-                          className="w-full h-full object-cover origin-top transition-transform duration-300 group-hover:scale-105"
-                          style={{ objectPosition: specialist.imagePosition || 'center top' }}
-                          loading="lazy"
-                        />
-                      </Link>
-
-                      {/* Bottom Info Box */}
-                      <div className="flex-1 flex flex-col justify-between p-3 sm:p-5">
-                        <div className="space-y-2">
-                          {/* Title Row */}
-                          <div className="flex justify-between items-start gap-2.5">
-                            <div className="pr-1 flex-1">
-                              <h3 className="text-[12px] sm:text-[14px] font-bold tracking-wide uppercase line-clamp-2 leading-tight text-foreground">
-                                {specialist.name}
-                              </h3>
-                              {specialist.role && (
-                                <p className="text-[10px] sm:text-[12px] font-semibold text-zinc-500 mt-1 leading-snug line-clamp-2">
-                                  {specialist.role.split("—")[0].trim()}
-                                </p>
-                              )}
-                            </div>
-                            
-                            {/* Rating Badge */}
-                            {specialist.rating && (
-                              <div className="flex items-center gap-1 px-1.5 py-0.5 bg-secondary rounded text-[9px] sm:text-[11px] font-bold shrink-0">
-                                <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-primary text-primary" />
-                                <span>{specialist.rating}</span>
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Details Row with Icons (Always visible now to show Town) */}
-                          <div className="flex items-start gap-1 text-[10px] sm:text-xs text-muted-foreground font-medium pt-1">
-                            <MapPin className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                            <span className="line-clamp-1 leading-snug">
-                              {extractTown(specialist.location) || "London"}
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Category Badge & View Profile button */}
-                        <div className="flex flex-col items-center gap-2 mt-4 pt-3 border-t border-border/50">
-                          <span className="inline-block max-w-full text-[9px] sm:text-[10px] font-bold text-[#9f1e13] uppercase tracking-wider whitespace-normal break-words leading-tight w-fit text-center">
-                            {specialist.category}
-                          </span>
-                          <Link to={`/specialists/${specialist.slug}`} className="w-full text-center">
-                            <Button variant="outline" className="w-full font-semibold px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs h-auto border-border hover:bg-secondary">
-                              View Profile
-                            </Button>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
 
               {/* Pagination */}
-              {!showAmbassadorsOnly && totalPages > 1 && (
+              {totalPages > 1 && (
                 <div className="pt-8 flex items-center justify-center gap-2">
                   <Button 
                     variant="outline" 
@@ -1211,14 +1152,14 @@ const SpecialistsDirectory = () => {
                 </div>
               )}
 
-              {!showAmbassadorsOnly && filtered.length === 0 && (
+              {!showAmbassadorsOnly && combinedDirectoryList.length === 0 && (
                 <div className="text-center py-20 bg-background border border-border rounded-xl">
                   <h3 className="text-lg font-bold mb-2">No specialists found</h3>
                   <p className="text-muted-foreground">Try adjusting your filters or search terms.</p>
                 </div>
               )}
 
-              {showAmbassadorsOnly && filteredAmbassadors.length === 0 && (
+              {showAmbassadorsOnly && combinedDirectoryList.length === 0 && (
                 <div className="text-center py-20 bg-background border border-border rounded-xl">
                   <h3 className="text-lg font-bold mb-2">No ambassadors found</h3>
                   <p className="text-muted-foreground">Try adjusting your filters or search terms.</p>
