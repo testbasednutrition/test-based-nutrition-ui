@@ -607,10 +607,11 @@ const PartnerWithUs3 = () => {
       </section>
 
       {/* 11. Final CTA Section (Form) */}
-      <section id="apply" className="py-24 bg-[#0c0c0e] text-white">
+      {/* 11. Final CTA Section (Form) */}
+      <section id="apply" className="py-24 bg-secondary text-zinc-950">
         <div className="container max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl sm:text-5xl font-playfair font-bold mb-4 uppercase leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-playfair font-bold mb-4 uppercase leading-tight text-[#9f1e13]">
               JOIN THE NEXT GENERATION OF<br />PREVENTATIVE HEALTH BUSINESSES
             </h2>
             <p className="text-[#9f1e13] text-sm font-bold tracking-widest uppercase">
@@ -618,14 +619,14 @@ const PartnerWithUs3 = () => {
             </p>
           </div>
 
-          <div className="bg-white/5 backdrop-blur-md rounded-[2rem] p-8 md:p-12 border border-white/10 shadow-2xl">
+          <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 shadow-xl">
             {submitted ? (
               <div className="text-center py-12 space-y-4 animate-fade-in">
-                <div className="w-16 h-16 bg-[#9f1e13]/20 rounded-full flex items-center justify-center mx-auto text-[#9f1e13]">
+                <div className="w-16 h-16 bg-[#9f1e13]/10 rounded-full flex items-center justify-center mx-auto text-[#9f1e13]">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold font-playfair">Thank you for your application!</h3>
-                <p className="text-zinc-300 max-w-md mx-auto text-sm leading-relaxed">
+                <h3 className="text-2xl font-bold font-playfair text-zinc-900">Thank you for your application!</h3>
+                <p className="text-zinc-600 max-w-md mx-auto text-sm leading-relaxed">
                   Our partnership team will review your application and get in touch within the next 24-48 hours.
                 </p>
               </div>
@@ -633,26 +634,26 @@ const PartnerWithUs3 = () => {
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="fullName" className="text-xs font-semibold text-white/90 uppercase tracking-wider">Full Name *</label>
+                    <label htmlFor="fullName" className="text-xs font-semibold text-zinc-700 uppercase tracking-wider">Full Name *</label>
                     <Input 
                       id="fullName" 
                       value={leadForm.fullName} 
                       onChange={handleInputChange} 
                       disabled={isLoading}
                       placeholder="Your Name" 
-                      className="h-14 bg-black/20 border-white/10 text-white placeholder:text-white/30" 
+                      className="h-14 bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13]" 
                       required 
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="companyName" className="text-xs font-semibold text-white/90 uppercase tracking-wider">Clinic / Company Name *</label>
+                    <label htmlFor="companyName" className="text-xs font-semibold text-zinc-700 uppercase tracking-wider">Clinic / Company Name *</label>
                     <Input 
                       id="companyName" 
                       value={leadForm.companyName} 
                       onChange={handleInputChange} 
                       disabled={isLoading}
                       placeholder="Your Business Name" 
-                      className="h-14 bg-black/20 border-white/10 text-white placeholder:text-white/30" 
+                      className="h-14 bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13]" 
                       required 
                     />
                   </div>
@@ -660,7 +661,7 @@ const PartnerWithUs3 = () => {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-xs font-semibold text-white/90 uppercase tracking-wider">Email Address *</label>
+                    <label htmlFor="email" className="text-xs font-semibold text-zinc-700 uppercase tracking-wider">Email Address *</label>
                     <Input 
                       id="email" 
                       type="email" 
@@ -668,34 +669,34 @@ const PartnerWithUs3 = () => {
                       onChange={handleInputChange} 
                       disabled={isLoading}
                       placeholder="email@address.com" 
-                      className="h-14 bg-black/20 border-white/10 text-white placeholder:text-white/30" 
+                      className="h-14 bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13]" 
                       required 
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="phone" className="text-xs font-semibold text-white/90 uppercase tracking-wider">Phone / Mobile Number</label>
+                    <label htmlFor="phone" className="text-xs font-semibold text-zinc-700 uppercase tracking-wider">Phone / Mobile Number</label>
                     <Input 
                       id="phone" 
                       value={leadForm.phone} 
                       onChange={handleInputChange} 
                       disabled={isLoading}
                       placeholder="Your Phone Number" 
-                      className="h-14 bg-black/20 border-white/10 text-white placeholder:text-white/30" 
+                      className="h-14 bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13]" 
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="partnershipType" className="text-xs font-semibold text-white/90 uppercase tracking-wider">Partnership Type *</label>
+                  <label htmlFor="partnershipType" className="text-xs font-semibold text-zinc-700 uppercase tracking-wider">Partnership Type *</label>
                   <select 
                     id="partnershipType" 
                     value={leadForm.partnershipType} 
                     onChange={handleInputChange} 
                     disabled={isLoading}
-                    className="flex h-14 w-full rounded-md border border-white/10 bg-[#1a1a1a] text-white px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9f1e13]" 
+                    className="flex h-14 w-full rounded-md border border-[#dbd4c9] bg-white text-zinc-900 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9f1e13]" 
                     required
                   >
-                    <option value="" disabled className="text-white/50">Select a category</option>
+                    <option value="" disabled className="text-zinc-400">Select a category</option>
                     <option value="clinic">Clinic / Private Practice</option>
                     <option value="pharmacy">Pharmacy</option>
                     <option value="healthClub">Health Club / Gym</option>
@@ -709,14 +710,14 @@ const PartnerWithUs3 = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="message" className="text-xs font-semibold text-white/90 uppercase tracking-wider">Additional details (Optional)</label>
+                  <label htmlFor="message" className="text-xs font-semibold text-zinc-700 uppercase tracking-wider">Additional details (Optional)</label>
                   <Textarea 
                     id="message" 
                     value={leadForm.message} 
                     onChange={handleInputChange} 
                     disabled={isLoading}
                     placeholder="Tell us briefly about your business goals..." 
-                    className="bg-black/20 border-white/10 text-white placeholder:text-white/30 min-h-[100px]" 
+                    className="bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13] min-h-[100px]" 
                   />
                 </div>
 
@@ -724,7 +725,7 @@ const PartnerWithUs3 = () => {
                   <Button type="submit" size="lg" disabled={isLoading} className="flex-1 h-16 text-sm font-bold tracking-widest bg-[#9f1e13] hover:bg-[#b02216] text-white rounded-xl uppercase">
                     {isLoading ? "Submitting..." : "APPLY TO PARTNER WITH TBN"}
                   </Button>
-                  <Button type="button" disabled={isLoading} onClick={() => window.open("https://calendly.com", "_blank")} size="lg" className="flex-1 h-16 text-sm font-bold tracking-widest bg-transparent hover:bg-white/5 text-white border border-white/20 rounded-xl uppercase">
+                  <Button type="button" disabled={isLoading} onClick={() => window.open("https://calendly.com", "_blank")} size="lg" className="flex-1 h-16 text-sm font-bold tracking-widest bg-transparent hover:bg-zinc-800/5 text-zinc-750 border border-[#dbd4c9] rounded-xl uppercase">
                     BOOK A PARTNER DISCOVERY CALL
                   </Button>
                 </div>
