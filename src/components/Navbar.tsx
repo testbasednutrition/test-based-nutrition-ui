@@ -314,7 +314,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
     const inactiveColorClass = isSolid ? "text-black/70 hover:text-black border-transparent" : "text-white/80 hover:text-white border-transparent drop-shadow-md";
     return "cursor-pointer border-none bg-transparent outline-none focus:bg-transparent data-[state=open]:bg-transparent text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors pb-1 border-b-2 " +
       (active ? activeColorClass : inactiveColorClass) + 
-      " data-[state=open]:!text-black";
+      (isSolid ? " data-[state=open]:!text-black" : " data-[state=open]:!text-white");
   };
 
   const getLinkClass = (active: boolean) => {
@@ -463,7 +463,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
             <Menubar className="border-none bg-transparent p-0 space-x-0">
               <MenubarMenu>
                 <MenubarTrigger 
-                  className={"cursor-pointer border-[1.5px] rounded-md px-4 py-1.5 text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors outline-none focus:bg-transparent data-[state=open]:bg-transparent " + (isSolid ? "border-black text-black hover:bg-black/5 data-[state=open]:!text-black" : "border-white/80 text-white hover:bg-white/10 backdrop-blur-sm data-[state=open]:!text-black")}
+                  className={"cursor-pointer border-[1.5px] rounded-md px-4 py-1.5 text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors outline-none focus:bg-transparent data-[state=open]:bg-transparent " + (isSolid ? "border-black text-black hover:bg-black/5 data-[state=open]:!text-black" : "border-white/80 text-white hover:bg-white/10 backdrop-blur-sm data-[state=open]:!text-white")}
                   onClick={() => navigate('/partner-with-us')}
                 >
                   Partner With Us
