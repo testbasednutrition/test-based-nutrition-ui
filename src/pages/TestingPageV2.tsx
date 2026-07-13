@@ -831,8 +831,6 @@ const TestingPageV2 = () => {
 
         {/* 11. CLIENT CTA SECTION */}
         <section className="py-24 bg-[#9f1e13] text-white relative overflow-hidden">
-          {/* Top Fade Transition from light section above */}
-          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#faf8f5] to-transparent pointer-events-none z-10" />
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] pointer-events-none"></div>
 
