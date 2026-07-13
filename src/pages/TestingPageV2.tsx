@@ -138,7 +138,6 @@ const TestingPageV2 = () => {
                 Start With Greater Insight
               </p>
             </div>
-
             <div className="grid lg:grid-cols-12 gap-12 items-start">
               {/* Left: Symptoms & Intro */}
               <div className="lg:col-span-5 space-y-8">
@@ -147,28 +146,33 @@ const TestingPageV2 = () => {
                     Common Experiences
                   </h3>
                   
-                  {/* Symptoms grid */}
-                  <div className="grid grid-cols-2 gap-3">
+                  {/* Symptoms list */}
+                  <div className="space-y-3.5">
                     {[
-                      "Fatigue",
-                      "Brain fog",
-                      "Poor sleep",
-                      "Low energy",
-                      "Digestive discomfort",
-                      "Reduced recovery"
+                      { title: "Fatigue & Low Energy", desc: "Waking up depleted, afternoon energy crashes, or relying on stimulants." },
+                      { title: "Brain Fog & Cognitive Lag", desc: "Difficulty focusing, forgetfulness, or general lack of mental clarity." },
+                      { title: "Disrupted Sleep & Recovery", desc: "Waking during the night, morning stiffness, or prolonged muscle soreness." },
+                      { title: "Digestive Discomfort", desc: "Bloating, irregular elimination, or reactions to common foods." }
                     ].map((symptom, i) => (
                       <div 
                         key={i} 
-                        className="bg-white px-4 py-3.5 rounded-xl border border-[#dbd4c9]/50 shadow-sm flex items-center gap-2 hover:border-[#9f1e13]/30 transition-colors"
+                        className="group bg-white p-5 rounded-2xl border border-[#dbd4c9]/65 hover:border-[#9f1e13]/30 hover:shadow-sm hover:shadow-zinc-100 transition-all duration-300 flex items-start gap-4"
                       >
-                        <AlertCircle className="w-4 h-4 text-[#9f1e13]/60 shrink-0" />
-                        <span className="text-xs font-bold text-zinc-800">{symptom}</span>
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#9f1e13]/30 group-hover:bg-[#9f1e13] shrink-0 mt-1.5 transition-colors" />
+                        <div className="space-y-1">
+                          <h4 className="text-xs sm:text-sm font-montserrat font-bold text-zinc-900 leading-snug group-hover:text-[#9f1e13] transition-colors">
+                            {symptom.title}
+                          </h4>
+                          <p className="text-[11px] sm:text-[12px] text-zinc-500 font-light leading-relaxed">
+                            {symptom.desc}
+                          </p>
+                        </div>
                       </div>
                     ))}
                   </div>
 
-                  <p className="text-sm text-zinc-500 leading-relaxed font-light">
-                    These experiences can have multiple contributing factors.
+                  <p className="text-xs text-zinc-550 leading-relaxed font-light italic">
+                    These experiences are complex and can have multiple contributing factors.
                   </p>
                 </div>
 
@@ -186,36 +190,46 @@ const TestingPageV2 = () => {
               </div>
 
               {/* Right: Explore Areas list */}
-              <div className="lg:col-span-7 bg-[#9f1e13] text-white rounded-[2rem] p-8 sm:p-10 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+              <div className="lg:col-span-7 bg-[#0c0000] text-white rounded-[2.5rem] p-8 sm:p-10 shadow-2xl relative overflow-hidden border border-zinc-800/35">
+                {/* Subtle grids & background glows */}
+                <div className="absolute top-0 right-0 w-80 h-80 bg-[#9f1e13]/10 rounded-full blur-[100px] pointer-events-none"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
                 
-                <h3 className="font-playfair text-2xl font-bold mb-8 text-white flex items-center gap-2">
-                  We explore areas such as:
-                </h3>
+                <div className="relative z-10 space-y-6">
+                  <div className="space-y-1">
+                    <span className="text-xs font-mono font-bold text-[#9f1e13] uppercase tracking-[0.25em]">PHYSIOLOGICAL PATHWAYS</span>
+                    <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-white uppercase tracking-wide">
+                      WHAT WE MEASURE
+                    </h3>
+                  </div>
 
-                <div className="grid sm:grid-cols-2 gap-6">
-                  {[
-                    { title: "Nutrient status", desc: "Essential vitamins & minerals needed for optimal performance.", icon: Apple },
-                    { title: "Omega balance", desc: "Ratio of fatty acids affecting cardiovascular & systemic cell health.", icon: HeartPulse },
-                    { title: "Gut health", desc: "Microbial markers & environment driving nutrient utilization.", icon: ShieldCheck },
-                    { title: "Blood-sugar indicators", desc: "Insight into cellular energy metabolism & endocrine responses.", icon: Droplet },
-                    { title: "Inflammation-related markers", desc: "Understanding systemic physical and vascular recovery variables.", icon: Flame },
-                    { title: "Hormone health", desc: "Endocrine balance critical for vitality, recovery, & mental clarity.", icon: Sparkles },
-                    { title: "Stress and recovery", desc: "Autonomic response variables & sleep-wake stress markers.", icon: Moon }
-                  ].map((area, index) => {
-                    const IconComponent = area.icon;
-                    return (
-                      <div key={index} className="flex gap-4 p-4 rounded-2xl bg-white/10 border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all group">
-                        <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0 border border-white/20 group-hover:scale-105 transition-transform">
-                          <IconComponent className="w-5 h-5 text-white" />
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {[
+                      { title: "Nutrient status", desc: "Essential vitamins & minerals needed for optimal performance.", icon: Apple },
+                      { title: "Omega balance", desc: "Ratio of fatty acids affecting cardiovascular & systemic cell health.", icon: HeartPulse },
+                      { title: "Gut health", desc: "Microbial markers & environment driving nutrient utilization.", icon: ShieldCheck },
+                      { title: "Blood-sugar indicators", desc: "Insight into cellular energy metabolism & endocrine responses.", icon: Droplet },
+                      { title: "Inflammation-related markers", desc: "Understanding systemic physical and vascular recovery variables.", icon: Flame },
+                      { title: "Hormone health", desc: "Endocrine balance critical for vitality, recovery, & mental clarity.", icon: Sparkles },
+                      { title: "Stress and recovery", desc: "Autonomic response variables & sleep-wake stress markers.", icon: Moon }
+                    ].map((area, index) => {
+                      const IconComponent = area.icon;
+                      return (
+                        <div 
+                          key={index} 
+                          className="flex gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-[#9f1e13]/30 transition-all duration-300 group"
+                        >
+                          <div className="w-10 h-10 rounded-xl bg-[#9f1e13]/10 text-[#9f1e13] flex items-center justify-center shrink-0 border border-[#9f1e13]/25 group-hover:scale-105 transition-transform duration-300">
+                            <IconComponent className="w-5 h-5" />
+                          </div>
+                          <div className="space-y-1">
+                            <h4 className="text-[13px] font-montserrat font-bold text-zinc-100 group-hover:text-white transition-colors uppercase tracking-wide">{area.title}</h4>
+                            <p className="text-[11px] text-zinc-400 font-light leading-relaxed">{area.desc}</p>
+                          </div>
                         </div>
-                        <div className="space-y-1">
-                          <h4 className="text-[14px] font-bold text-zinc-100 group-hover:text-white transition-colors">{area.title}</h4>
-                          <p className="text-[12px] text-zinc-200 font-light leading-relaxed">{area.desc}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
