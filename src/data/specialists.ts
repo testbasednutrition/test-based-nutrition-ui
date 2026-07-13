@@ -61,6 +61,7 @@ export interface Specialist {
   address?: string;
   clinic_name?: string;
   is_approved?: boolean;
+  primary_category?: string;
 }
 
 export const categories: SpecialistCategory[] = [

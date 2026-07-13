@@ -80,6 +80,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
         clinic_name: row.clinic_name,
         location: row.town_city || row.address || '',
         is_approved: row.is_approved,
+        primary_category: row.primary_category,
 
         // Other properties mapped best-effort
         consultationType: row.consultation_type,
