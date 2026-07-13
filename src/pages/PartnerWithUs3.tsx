@@ -10,7 +10,7 @@ import {
   Sparkles, Check, ChevronRight, Calculator, Calendar, ArrowUpRight
 } from "lucide-react";
 
-const heroImg = "/images/partner-hero.jpg";
+const heroImg = "/images/partner-hero-2.jpg";
 
 const PartnerWithUs3 = () => {
   const [leadForm, setLeadForm] = useState({
