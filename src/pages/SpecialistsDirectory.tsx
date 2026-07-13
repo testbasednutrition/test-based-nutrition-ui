@@ -305,12 +305,17 @@ const SpecialistsDirectory = () => {
       setSelectedTestingTiers(prev => prev.filter(id => id !== tierId && !testsToRemove.includes(id)));
     }
   };
-
   // Reset page when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [activeCategory, activeProfession, locationSearch, selectedTestingTiers]);
-
+  }, [
+    activeCategory, 
+    activeProfession, 
+    locationSearch, 
+    selectedTestingTiers, 
+    showAmbassadorsOnly, 
+    selectedNameSearch
+  ]);
   // Sync ambassadors view when query parameter changes
   useEffect(() => {
     const qParams = new URLSearchParams(location.search);
@@ -474,16 +479,16 @@ const SpecialistsDirectory = () => {
 
     return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch;
   });
-
   const combinedDirectoryList = showAmbassadorsOnly
     ? filteredAmbassadors
     : [...filtered, ...filteredAmbassadors];
 
   const ITEMS_PER_PAGE = 24;
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const totalPages = Math.ceil(combinedDirectoryList.length / ITEMS_PER_PAGE) || 1;
+  const safeCurrentPage = Math.min(Math.max(currentPage, 1), totalPages);
+  const startIndex = (safeCurrentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const paginatedItems = combinedDirectoryList.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(combinedDirectoryList.length / ITEMS_PER_PAGE);
 
   return (
     <div className="min-h-screen bg-secondary/30 font-sans">
