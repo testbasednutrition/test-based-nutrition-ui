@@ -607,9 +607,14 @@ const PartnerWithUs3 = () => {
       </section>
 
       {/* 11. Final CTA Section (Form) */}
-      {/* 11. Final CTA Section (Form) */}
-      <section id="apply" className="py-24 bg-secondary text-zinc-950">
-        <div className="container max-w-4xl mx-auto px-4 sm:px-6">
+      <section id="apply" className="py-24 bg-secondary text-zinc-950 relative overflow-hidden">
+        {/* Top Fade Transition */}
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#faf8f5] to-transparent pointer-events-none z-10" />
+        
+        {/* Bottom Fade Transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#faf8f5] to-transparent pointer-events-none z-10" />
+
+        <div className="container max-w-4xl mx-auto px-4 sm:px-6 relative z-20">
           <div className="text-center mb-12 space-y-4">
             <h2 className="text-3xl sm:text-5xl font-playfair font-bold mb-4 uppercase leading-tight text-[#9f1e13]">
               JOIN THE NEXT GENERATION OF<br />PREVENTATIVE HEALTH BUSINESS
