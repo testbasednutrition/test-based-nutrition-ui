@@ -607,25 +607,25 @@ const PartnerWithUs3 = () => {
       </section>
 
       {/* 11. Final CTA Section (Form) */}
-      <section id="apply" className="py-24 bg-[#9f1e13] text-white">
+      <section id="apply" className="py-24 bg-[#0c0c0e] text-white">
         <div className="container max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 space-y-4">
             <h2 className="text-3xl sm:text-5xl font-playfair font-bold mb-4 uppercase leading-tight">
               JOIN THE NEXT GENERATION OF<br />PREVENTATIVE HEALTH BUSINESSES
             </h2>
-            <p className="text-white/90 text-sm font-bold tracking-widest uppercase">
+            <p className="text-[#9f1e13] text-sm font-bold tracking-widest uppercase">
               Applications for the Founding Partner Programme close 31st July 2026.
             </p>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-md rounded-[2rem] p-8 md:p-12 border border-white/20 shadow-2xl">
+          <div className="bg-white/5 backdrop-blur-md rounded-[2rem] p-8 md:p-12 border border-white/10 shadow-2xl">
             {submitted ? (
               <div className="text-center py-12 space-y-4 animate-fade-in">
-                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto text-white">
+                <div className="w-16 h-16 bg-[#9f1e13]/20 rounded-full flex items-center justify-center mx-auto text-[#9f1e13]">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold font-playfair">Thank you for your application!</h3>
-                <p className="text-zinc-200 max-w-md mx-auto text-sm leading-relaxed">
+                <p className="text-zinc-300 max-w-md mx-auto text-sm leading-relaxed">
                   Our partnership team will review your application and get in touch within the next 24-48 hours.
                 </p>
               </div>
@@ -692,7 +692,7 @@ const PartnerWithUs3 = () => {
                     value={leadForm.partnershipType} 
                     onChange={handleInputChange} 
                     disabled={isLoading}
-                    className="flex h-14 w-full rounded-md border border-white/10 bg-[#1a1a1a] text-white px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white" 
+                    className="flex h-14 w-full rounded-md border border-white/10 bg-[#1a1a1a] text-white px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9f1e13]" 
                     required
                   >
                     <option value="" disabled className="text-white/50">Select a category</option>
@@ -721,7 +721,7 @@ const PartnerWithUs3 = () => {
                 </div>
 
                 <div className="pt-6 flex flex-col sm:flex-row gap-4">
-                  <Button type="submit" size="lg" disabled={isLoading} className="flex-1 h-16 text-sm font-bold tracking-widest bg-white hover:bg-zinc-100 text-[#9f1e13] rounded-xl uppercase">
+                  <Button type="submit" size="lg" disabled={isLoading} className="flex-1 h-16 text-sm font-bold tracking-widest bg-[#9f1e13] hover:bg-[#b02216] text-white rounded-xl uppercase">
                     {isLoading ? "Submitting..." : "APPLY TO PARTNER WITH TBN"}
                   </Button>
                   <Button type="button" disabled={isLoading} onClick={() => window.open("https://calendly.com", "_blank")} size="lg" className="flex-1 h-16 text-sm font-bold tracking-widest bg-transparent hover:bg-white/5 text-white border border-white/20 rounded-xl uppercase">
