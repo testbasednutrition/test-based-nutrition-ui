@@ -290,7 +290,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
 
   const getDropdownItemClass = (href: string) => {
     const active = isRouteActive(href);
-    return `font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] transition-colors py-1 px-2 rounded block w-full outline-none ${
+    return `font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] transition-colors py-1 px-2 rounded block w-full outline-none focus:!text-black hover:!text-black data-[highlighted]:!text-black ${
       active 
         ? "text-black font-extrabold bg-black/5" 
         : "text-muted-foreground hover:text-black focus:text-black"
@@ -300,7 +300,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
   const getMegaMenuSubItemClass = (label: string) => {
     const href = treatmentRoutes[label];
     const active = href ? isRouteActive(href) : false;
-    return `cursor-pointer py-1 px-1.5 -mx-1 text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] transition-colors leading-snug whitespace-normal break-words rounded block w-full ${
+    return `cursor-pointer py-1 px-1.5 -mx-1 text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] transition-colors leading-snug whitespace-normal break-words rounded block w-full focus:!text-black hover:!text-black data-[highlighted]:!text-black ${
       active
         ? "text-black font-extrabold bg-black/5"
         : "text-muted-foreground hover:text-black focus:text-black focus:bg-black/5"
@@ -309,7 +309,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
 
   const getMegaMenuHeadingClass = (href: string | undefined) => {
     const active = href && currentPath === href;
-    return `font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest transition-colors border-b border-primary/20 pb-1.5 mb-1.5 block w-full outline-none ${
+    return `font-playfair font-heading text-xs md:text-[13px] font-bold uppercase tracking-widest transition-colors border-b border-primary/20 pb-1.5 mb-1.5 block w-full outline-none focus:!text-black hover:!text-black data-[highlighted]:!text-black ${
       active ? "text-black font-extrabold" : "text-foreground hover:text-primary"
     }`;
   };
@@ -319,15 +319,17 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
     const inactiveColorClass = isSolid ? "text-black/70 hover:text-black border-transparent" : "text-white/80 hover:text-white border-transparent drop-shadow-md";
     return "cursor-pointer border-none bg-transparent outline-none focus:bg-transparent data-[state=open]:bg-transparent text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors pb-1 border-b-2 " +
       (active ? activeColorClass : inactiveColorClass) + 
-      (isSolid ? " data-[state=open]:!text-black" : " data-[state=open]:!text-white");
+      (isSolid ? " data-[state=open]:!text-black focus:!text-black hover:!text-black focus-visible:!text-black active:!text-black" : " data-[state=open]:!text-white focus:!text-white hover:!text-white focus-visible:!text-white active:!text-white");
   };
 
   const getLinkClass = (active: boolean) => {
     const activeColorClass = isSolid ? "text-black border-black font-extrabold" : "text-white border-white font-extrabold";
     const inactiveColorClass = isSolid ? "text-black/70 hover:text-black border-transparent" : "text-white/80 hover:text-white border-transparent drop-shadow-md";
     return "text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors pb-1 border-b-2 " +
-      (active ? activeColorClass : inactiveColorClass);
+      (active ? activeColorClass : inactiveColorClass) +
+      (isSolid ? " focus:!text-black hover:!text-black focus-visible:!text-black active:!text-black" : " focus:!text-white hover:!text-white focus-visible:!text-white active:!text-white");
   };
+
   const logoClass = "h-14 md:h-[4.5rem] object-contain transition-all duration-300 " + (!isSolid ? "brightness-0 invert" : "");
   const btnOutlineClass = "bg-transparent border-[1.5px] transition-colors " + (isSolid ? "border-primary text-primary hover:bg-primary/5 hover:text-primary" : "border-white/80 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm");
   const btnGhostClass = "transition-colors " + (isSolid ? "text-black/80 hover:text-black hover:bg-black/10" : "text-white/90 hover:text-white hover:bg-white/10 backdrop-blur-sm");
@@ -468,12 +470,11 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
             <Menubar className="border-none bg-transparent p-0 space-x-0">
               <MenubarMenu>
                 <MenubarTrigger 
-                  className={"cursor-pointer border-[1.5px] rounded-md px-4 py-1.5 text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors outline-none focus:bg-transparent data-[state=open]:bg-transparent " + (isSolid ? "border-black text-black hover:bg-black/5 data-[state=open]:!text-black" : "border-white/80 text-white hover:bg-white/10 backdrop-blur-sm data-[state=open]:!text-white")}
+                  className={"cursor-pointer border-[1.5px] rounded-md px-4 py-1.5 text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors outline-none focus:bg-transparent data-[state=open]:bg-transparent " + (isSolid ? "border-black text-black hover:bg-black/5 data-[state=open]:!text-black focus:!text-black hover:!text-black focus-visible:!text-black active:!text-black" : "border-white/80 text-white hover:bg-white/10 backdrop-blur-sm data-[state=open]:!text-white focus:!text-white hover:!text-white focus-visible:!text-white active:!text-white")}
                   onClick={() => navigate('/partner-with-us')}
                 >
                   Partner With Us
-                </MenubarTrigger>
-                <MenubarContent align="end" sideOffset={24} className="min-w-[220px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
+                </MenubarTrigger>                <MenubarContent align="end" sideOffset={24} className="min-w-[220px] p-3 bg-background border border-border rounded-xl shadow-xl flex flex-col gap-0.5">
                   {partnerMenuItems.map((item) => (
                     <MenubarItem 
                       key={item.label} 
