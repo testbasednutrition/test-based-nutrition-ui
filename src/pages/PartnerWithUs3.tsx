@@ -9,8 +9,25 @@ import {
   BookOpen, ShieldCheck, UserCheck, Zap, Repeat, Users,
   Sparkles, Check, ChevronRight, Calculator, Calendar, ArrowUpRight
 } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 
 const heroImg = "/images/partner-hero-2.jpg";
+
+const mapTypeToLabel = (type: string) => {
+  const mapping: Record<string, string> = {
+    clinic: "Clinic / Private Practice",
+    pharmacy: "Pharmacy",
+    healthClub: "Health Club / Gym",
+    hub: "TBN Hub",
+    academy: "Training Academy",
+    retreat: "Retreat / Resort",
+    expert: "Specialist / Consultant",
+    ambassador: "TBN Brand Ambassador",
+    other: "Other"
+  };
+  return mapping[type] || type;
+};
 
 const PartnerWithUs3 = () => {
   const [leadForm, setLeadForm] = useState({
@@ -23,12 +40,55 @@ const PartnerWithUs3 = () => {
   });
   
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate submission
-    setSubmitted(true);
-    // In a real implementation this would write to supabase table 'partner_leads'
+    setIsLoading(true);
+
+    const referrerCode = localStorage.getItem("tbn_referrer_code");
+    const chosenTypeLabel = mapTypeToLabel(leadForm.partnershipType);
+    const combinedMessage = `Business: ${leadForm.companyName}. Message: ${leadForm.message}`;
+
+    try {
+      const { error } = await supabase.from("partner_leads").insert([
+        {
+          name: leadForm.fullName,
+          email: leadForm.email,
+          mobile: leadForm.phone || null,
+          lead_type: chosenTypeLabel,
+          source_page: "Partner Onboarding Portal",
+          referrer_code: referrerCode || null,
+          created_at: new Date().toISOString(),
+        },
+      ]);
+
+      if (error) throw error;
+      
+      setSubmitted(true);
+      toast.success("Application submitted successfully!");
+    } catch (err: any) {
+      console.warn("Database insert failed, saving to local storage fallback:", err.message);
+      try {
+        const local = JSON.parse(localStorage.getItem("partner_leads") || "[]");
+        local.push({
+          id: `local-${Date.now()}`,
+          name: leadForm.fullName,
+          email: leadForm.email,
+          mobile: leadForm.phone,
+          lead_type: chosenTypeLabel,
+          source_page: "Partner Onboarding Portal",
+          created_at: new Date().toISOString()
+        });
+        localStorage.setItem("partner_leads", JSON.stringify(local));
+        setSubmitted(true);
+        toast.success("Application saved locally.");
+      } catch (lsErr) {
+        toast.error("Failed to submit form. Please check your internet connection.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -568,6 +628,7 @@ const PartnerWithUs3 = () => {
                       id="fullName" 
                       value={leadForm.fullName} 
                       onChange={handleInputChange} 
+                      disabled={isLoading}
                       placeholder="Your Name" 
                       className="h-14 bg-black/20 border-white/10 text-white placeholder:text-white/30" 
                       required 
@@ -579,6 +640,7 @@ const PartnerWithUs3 = () => {
                       id="companyName" 
                       value={leadForm.companyName} 
                       onChange={handleInputChange} 
+                      disabled={isLoading}
                       placeholder="Your Business Name" 
                       className="h-14 bg-black/20 border-white/10 text-white placeholder:text-white/30" 
                       required 
@@ -594,6 +656,7 @@ const PartnerWithUs3 = () => {
                       type="email" 
                       value={leadForm.email} 
                       onChange={handleInputChange} 
+                      disabled={isLoading}
                       placeholder="email@address.com" 
                       className="h-14 bg-black/20 border-white/10 text-white placeholder:text-white/30" 
                       required 
@@ -605,6 +668,7 @@ const PartnerWithUs3 = () => {
                       id="phone" 
                       value={leadForm.phone} 
                       onChange={handleInputChange} 
+                      disabled={isLoading}
                       placeholder="Your Phone Number" 
                       className="h-14 bg-black/20 border-white/10 text-white placeholder:text-white/30" 
                     />
@@ -617,6 +681,7 @@ const PartnerWithUs3 = () => {
                     id="partnershipType" 
                     value={leadForm.partnershipType} 
                     onChange={handleInputChange} 
+                    disabled={isLoading}
                     className="flex h-14 w-full rounded-md border border-white/10 bg-[#1a1a1a] text-white px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9f1e13]" 
                     required
                   >
@@ -628,6 +693,7 @@ const PartnerWithUs3 = () => {
                     <option value="academy">Training Academy</option>
                     <option value="retreat">Retreat / Resort</option>
                     <option value="expert">Specialist / Consultant</option>
+                    <option value="ambassador">TBN Brand Ambassador</option>
                     <option value="other">Other</option>
                   </select>
                 </div>
@@ -638,16 +704,17 @@ const PartnerWithUs3 = () => {
                     id="message" 
                     value={leadForm.message} 
                     onChange={handleInputChange} 
+                    disabled={isLoading}
                     placeholder="Tell us briefly about your business goals..." 
                     className="bg-black/20 border-white/10 text-white placeholder:text-white/30 min-h-[100px]" 
                   />
                 </div>
 
                 <div className="pt-6 flex flex-col sm:flex-row gap-4">
-                  <Button type="submit" size="lg" className="flex-1 h-16 text-sm font-bold tracking-widest bg-[#9f1e13] hover:bg-[#b02216] text-white rounded-xl uppercase">
-                    APPLY TO PARTNER WITH TBN
+                  <Button type="submit" size="lg" disabled={isLoading} className="flex-1 h-16 text-sm font-bold tracking-widest bg-[#9f1e13] hover:bg-[#b02216] text-white rounded-xl uppercase">
+                    {isLoading ? "Submitting..." : "APPLY TO PARTNER WITH TBN"}
                   </Button>
-                  <Button type="button" onClick={() => window.open("https://calendly.com", "_blank")} size="lg" className="flex-1 h-16 text-sm font-bold tracking-widest bg-transparent hover:bg-white/5 text-white border border-white/20 rounded-xl uppercase">
+                  <Button type="button" disabled={isLoading} onClick={() => window.open("https://calendly.com", "_blank")} size="lg" className="flex-1 h-16 text-sm font-bold tracking-widest bg-transparent hover:bg-white/5 text-white border border-white/20 rounded-xl uppercase">
                     BOOK A PARTNER DISCOVERY CALL
                   </Button>
                 </div>

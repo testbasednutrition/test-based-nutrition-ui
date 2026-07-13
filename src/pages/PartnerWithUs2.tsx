@@ -367,6 +367,7 @@ const PartnerWithUs2 = () => {
                     <option value="academy">Training Academy</option>
                     <option value="retreat">Retreat / Resort</option>
                     <option value="expert">Specialist / Consultant</option>
+                    <option value="ambassador">TBN Brand Ambassador</option>
                     <option value="other">Other</option>
                   </select>
                 </div>
