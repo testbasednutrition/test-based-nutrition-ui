@@ -721,16 +721,12 @@ const SpecialistsDirectory = () => {
                     <DropdownMenuTrigger asChild>
                       <Button 
                         variant="outline" 
-                        className={`flex items-center gap-1.5 px-3.5 py-1.5 h-9 border rounded-full text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
+                        className={`flex items-center gap-1.5 px-3.5 py-1.5 h-9 border rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
                           activeCategory !== "All"
                             ? "bg-[#9f1e13] border-[#9f1e13] text-white hover:bg-[#861910] hover:text-white"
                             : "bg-background border-border text-foreground hover:bg-secondary/20"
                         }`}
                       >
-                        {(() => {
-                          const IconComponent = CATEGORY_ICONS[activeCategory] || Activity;
-                          return <IconComponent className={`w-3.5 h-3.5 ${activeCategory !== "All" ? "text-white" : "text-[#9f1e13]"} shrink-0`} />;
-                        })()}
                         <span>
                           {activeCategory === "All" ? "Pathway" : activeCategory}
                         </span>
@@ -782,13 +778,12 @@ const SpecialistsDirectory = () => {
                     <DropdownMenuTrigger asChild>
                       <Button 
                         variant="outline" 
-                        className={`flex items-center gap-1.5 px-3.5 py-1.5 h-9 border rounded-full text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
+                        className={`flex items-center gap-1.5 px-3.5 py-1.5 h-9 border rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
                           activeProfession !== "All"
                             ? "bg-[#9f1e13] border-[#9f1e13] text-white hover:bg-[#861910] hover:text-white"
                             : "bg-background border-border text-foreground hover:bg-secondary/20"
                         }`}
                       >
-                        <Users className={`w-3.5 h-3.5 ${activeProfession !== "All" ? "text-white" : "text-[#9f1e13]"} shrink-0`} />
                         <span>
                           {activeProfession === "All" ? "Profession" : activeProfession}
                         </span>
@@ -838,13 +833,12 @@ const SpecialistsDirectory = () => {
                     <DropdownMenuTrigger asChild>
                       <Button 
                         variant="outline" 
-                        className={`flex items-center gap-1.5 px-3.5 py-1.5 h-9 border rounded-full text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
+                        className={`flex items-center gap-1.5 px-3.5 py-1.5 h-9 border rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
                           selectedTestingTiers.length > 0
                             ? "bg-[#9f1e13] border-[#9f1e13] text-white hover:bg-[#861910] hover:text-white"
                             : "bg-background border-border text-foreground hover:bg-secondary/20"
                         }`}
                       >
-                        <TestTube2 className={`w-3.5 h-3.5 ${selectedTestingTiers.length > 0 ? "text-white" : "text-[#9f1e13]"} shrink-0`} />
                         <span>
                           {selectedTestingTiers.length === 0 ? "Testing" : getTestingButtonLabel(selectedTestingTiers)}
                         </span>
@@ -880,21 +874,6 @@ const SpecialistsDirectory = () => {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
-
-                {/* Mobile Ambassadors Toggle */}
-                <div className="shrink-0">
-                  <Button 
-                    variant="outline" 
-                    onClick={() => setShowAmbassadorsOnly(!showAmbassadorsOnly)}
-                    className={`flex items-center gap-1.5 px-4 py-1.5 h-9 border rounded-full text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
-                      showAmbassadorsOnly 
-                        ? "bg-[#9f1e13] border-[#9f1e13] text-white hover:bg-[#861910] hover:text-white" 
-                        : "bg-background border-border text-foreground hover:bg-secondary/20"
-                    }`}
-                  >
-                    <span>Ambassadors</span>
-                  </Button>
-                </div>
               </div>
 
               {/* Results Header */}
@@ -913,10 +892,24 @@ const SpecialistsDirectory = () => {
                     Showing results matching your health profile
                   </p>
                 </div>
-                <div className="flex items-center gap-2 relative z-30">
-                  <span className="text-xs sm:text-sm text-muted-foreground font-semibold uppercase tracking-wider shrink-0">Name:</span>
-                  <div className="relative w-44 sm:w-56">
-                    <div className="flex items-center border border-border rounded-xl bg-background px-3 py-1.5 shadow-sm">
+                <div className="flex flex-wrap items-center gap-3 relative z-30">
+                  {/* Ambassadors Toggle Button */}
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setShowAmbassadorsOnly(!showAmbassadorsOnly)}
+                    className={`flex items-center gap-1.5 px-3.5 py-1.5 h-9 border rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
+                      showAmbassadorsOnly 
+                        ? "bg-[#9f1e13] border-[#9f1e13] text-white hover:bg-[#861910] hover:text-white" 
+                        : "bg-background border-border text-foreground hover:bg-secondary/20"
+                    }`}
+                  >
+                    <span>Ambassadors</span>
+                  </Button>
+
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs sm:text-sm text-muted-foreground font-semibold uppercase tracking-wider shrink-0">Name:</span>
+                    <div className="relative w-40 sm:w-48 lg:w-56">
+                      <div className="flex items-center border border-border rounded-xl bg-background px-3 py-1.5 shadow-sm">
                       <input
                         type="text"
                         placeholder="Type name..."
@@ -982,6 +975,7 @@ const SpecialistsDirectory = () => {
                   </div>
                 </div>
               </div>
+            </div>
 
               {/* Ambassadors Section */}
               {filteredAmbassadors.length > 0 && (
