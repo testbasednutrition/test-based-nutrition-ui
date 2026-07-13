@@ -68,4 +68,32 @@ describe("SpecialistsDirectory Pagination", () => {
     // Verify we are on page 3
     expect(screen.queryByText("Specialist-0")).not.toBeInTheDocument();
   });
+
+  it("allows typing in the Name search input and filtering without crashing", async () => {
+    mockFetchSpecialists.mockResolvedValue(mockSpecialists);
+    const queryClient = createQueryClient();
+    render(
+      <QueryClientProvider client={queryClient}>
+        <QuizProvider>
+          <BrowserRouter>
+            <SpecialistsDirectory />
+          </BrowserRouter>
+        </QuizProvider>
+      </QueryClientProvider>
+    );
+
+    // Wait for the page load
+    const heading = await screen.findByText(/Leading TBN Specialists/i);
+    expect(heading).toBeInTheDocument();
+
+    // Find Name input
+    const nameInput = screen.getByPlaceholderText("Type name...") as HTMLInputElement;
+    expect(nameInput).toBeInTheDocument();
+
+    // Type a letter "s"
+    fireEvent.change(nameInput, { target: { value: "s" } });
+
+    // Assert value is set
+    expect(nameInput.value).toBe("s");
+  });
 });

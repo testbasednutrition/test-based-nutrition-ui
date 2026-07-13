@@ -27,7 +27,8 @@ import {
   Smile,
   Flame,
   TestTube2,
-  Users
+  Users,
+  X
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
