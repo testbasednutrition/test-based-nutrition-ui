@@ -48,7 +48,7 @@ describe("MensHealth Component", () => {
   });
 
   it("renders when fetch succeeds with mock specialists data", async () => {
-    mockFetchSpecialists.mockResolvedValue(mockSpecialists);
+    mockFetchSpecialists.mockResolvedValue(mockSpecialists.map(s => ({ ...s, is_approved: true })));
     const queryClient = createQueryClient();
     render(
       <QueryClientProvider client={queryClient}>

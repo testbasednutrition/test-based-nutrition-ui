@@ -503,3 +503,5 @@ export function getSpecialistsByCategory(category: SpecialistCategory): Speciali
   if (category === "All") return specialists;
   return specialists.filter((s) => s.category === category);
 }
+
+export const AMBASSADOR_SLUGS = ["sonny-hardy", "ross-pearce", "mike-grundy", "mariusz-domasat"];

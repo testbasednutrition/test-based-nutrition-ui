@@ -10,6 +10,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import SpecialistsDirectory from "./pages/SpecialistsDirectory";
 import SpecialistProfile from "./pages/SpecialistProfile";
+import AmbassadorProfile from "./pages/AmbassadorProfile";
 import ClinicsDirectory from "./pages/ClinicsDirectory";
 import ClinicProfile from "./pages/ClinicProfile";
 import AreaProfile from "./pages/AreaProfile";
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/specialists" element={<SpecialistsDirectory />} />
             <Route path="/specialists/:slug" element={<SpecialistProfile />} />
+            <Route path="/ambassadors/:slug" element={<AmbassadorProfile />} />
             <Route path="/collectives" element={<ClinicsDirectory />} />
             <Route path="/collectives/:slug" element={<ClinicProfile />} />
             <Route path="/locations/:area" element={<AreaProfile />} />

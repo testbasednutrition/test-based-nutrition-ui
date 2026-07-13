@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { type SpecialistCategory } from "@/data/specialists";
+import { type SpecialistCategory, AMBASSADOR_SLUGS } from "@/data/specialists";
 import { useQuery } from "@tanstack/react-query";
 import { fetchSpecialists } from "@/lib/api";
 import { 
@@ -307,7 +307,65 @@ const SpecialistsDirectory = () => {
 
   // Apply a basic filter just for show (only show approved profiles in the grid)
   const approvedSpecialists = specialists.filter(s => s.is_approved === true);
-  const filtered = approvedSpecialists.filter((s) => {
+  
+  // Separate into regular specialists and ambassadors
+  const regularSpecialistsOnly = approvedSpecialists.filter(s => !AMBASSADOR_SLUGS.includes(s.slug));
+  const ambassadorsOnly = approvedSpecialists.filter(s => AMBASSADOR_SLUGS.includes(s.slug));
+
+  const filtered = regularSpecialistsOnly.filter((s) => {
+    let matchesCategory = true;
+    
+    if (activeCategory !== "All") {
+      const pathwayKeywords: Record<string, string[]> = {
+        "Women's Health": ["women", "pregnancy", "postnatal", "perimenopause", "menopause", "hormonal conditions", "fertility & conception", "hormonal skin", "pcos", "endometriosis"],
+        "Men's Health": ["men", "testosterone", "male"],
+        "Children's Health": ["child", "teen", "youth", "puberty", "growth & development", "paediatric"],
+        "Neurodivergence": ["neurodivergen", "adhd", "focus", "brain fog", "cognitive", "autism"],
+        "Skin Health": ["skin", "acne", "collagen", "eczema", "psoriasis"],
+        "Sports Performance": ["performance", "athlete", "competition", "coach", "sport"],
+        "Pain, Fatigue & Inflammation": ["pain", "fatigue", "inflammation", "stress", "burnout", "immunity", "gut health", "metabolic", "weight", "joint"]
+      };
+
+      const keywords = pathwayKeywords[activeCategory] || [activeCategory.toLowerCase()];
+      
+      const tagsMatch = s.specialization_tags && s.specialization_tags.some(tag => {
+        const lowerTag = tag.toLowerCase();
+        return keywords.some(kw => lowerTag.includes(kw));
+      });
+      
+      const catMatch = s.category && s.category === activeCategory;
+      matchesCategory = !!(catMatch || tagsMatch);
+    }
+
+    let matchesProfession = true;
+    if (activeProfession !== "All") {
+      matchesProfession = !!(s.category && s.category === activeProfession);
+    }
+      
+    const matchesLocation = !locationSearch || 
+      (s.location && s.location.toLowerCase().includes(locationSearch.toLowerCase())) ||
+      (s.address && s.address.toLowerCase().includes(locationSearch.toLowerCase()));
+    
+    const matchesTestingTiers = selectedTestingTiers.length === 0 || selectedTestingTiers.some(tierOrTest => {
+      if (tierOrTest === "foundational" || tierOrTest === "baseline" || tierOrTest === "advanced") {
+        const mappedTests = TIER_MAPPINGS[tierOrTest] || [];
+        return s.primary_testing_methods && s.primary_testing_methods.some(method => {
+          const cleanMethod = method.trim().toLowerCase();
+          return mappedTests.some(testName => testName.toLowerCase() === cleanMethod);
+        });
+      } else {
+        const equivalents = TEST_EQUIVALENTS[tierOrTest] || [tierOrTest];
+        const lowerEquivalents = equivalents.map(e => e.toLowerCase().trim());
+        return s.primary_testing_methods && s.primary_testing_methods.some(method => {
+          return lowerEquivalents.includes(method.trim().toLowerCase());
+        });
+      }
+    });
+
+    return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers;
+  });
+
+  const filteredAmbassadors = ambassadorsOnly.filter((s) => {
     let matchesCategory = true;
     
     if (activeCategory !== "All") {
@@ -791,7 +849,7 @@ const SpecialistsDirectory = () => {
               {/* Results Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-bold">{specialists.length} Leading TBN Specialists</h2>
+                  <h2 className="text-xl font-bold">{filtered.length} Leading TBN Specialists</h2>
                   <p className="text-sm text-muted-foreground">
                     Showing results for your health profile
                   </p>
@@ -810,6 +868,82 @@ const SpecialistsDirectory = () => {
                   </Select>
                 </div>
               </div>
+
+              {/* Ambassadors Section */}
+              {filteredAmbassadors.length > 0 && (
+                <div className="space-y-6 pb-10 border-b border-border/80 mb-10">
+                  <div>
+                    <h2 className="text-xl font-extrabold uppercase tracking-wider text-[#9f1e13]">
+                      TBN Brand Ambassadors
+                    </h2>
+                    <p className="text-xs text-muted-foreground mt-0.5 font-medium">
+                      Elite athletes & coaches representing the Test-Based movement
+                    </p>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-6">
+                    {filteredAmbassadors.map((specialist, index) => (
+                      <div 
+                        key={`${specialist.slug}-${index}`}
+                        className="flex flex-col overflow-hidden bg-background border border-border rounded-2xl shadow-sm hover:shadow-md transition-shadow relative"
+                      >
+                        {/* Top Image Box */}
+                        <Link to={`/ambassadors/${specialist.slug}`} className="block w-full aspect-[3/4] bg-secondary relative group cursor-pointer overflow-hidden">
+                          <img
+                            src={specialist.image}
+                            alt={specialist.name}
+                            className="w-full h-full object-cover origin-top transition-transform duration-300 group-hover:scale-105"
+                            style={{ objectPosition: specialist.imagePosition || 'center top' }}
+                            loading="lazy"
+                          />
+                          <div className="absolute top-2.5 left-2.5 bg-[#9f1e13] text-[#faf8f5] text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm border border-[#9f1e13]">
+                            Ambassador
+                          </div>
+                        </Link>
+
+                        {/* Bottom Info Box */}
+                        <div className="flex-1 flex flex-col justify-between p-3 sm:p-5">
+                          <div className="space-y-2">
+                            {/* Title Row */}
+                            <div className="flex justify-between items-start gap-2.5">
+                              <div className="pr-1 flex-1">
+                                <h3 className="text-[12px] sm:text-[14px] font-bold tracking-wide uppercase line-clamp-2 leading-tight text-foreground">
+                                  {specialist.name}
+                                </h3>
+                                {specialist.role && (
+                                  <p className="text-[10px] sm:text-[12px] font-semibold text-zinc-500 mt-1 leading-snug line-clamp-2">
+                                    {specialist.role.split("—")[0].trim()}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Details Row with Icons (Always visible now to show Town) */}
+                            <div className="flex items-start gap-1 text-[10px] sm:text-xs text-muted-foreground font-medium pt-1">
+                              <MapPin className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                              <span className="line-clamp-1 leading-snug">
+                                {extractTown(specialist.location) || "London"}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Category Badge & View Profile button */}
+                          <div className="flex flex-col items-center gap-2 mt-4 pt-3 border-t border-border/50">
+                            <span className="inline-block max-w-full text-[9px] sm:text-[10px] font-bold text-[#9f1e13] uppercase tracking-wider whitespace-normal break-words leading-tight w-fit text-center">
+                              {specialist.category}
+                            </span>
+                            <Link to={`/ambassadors/${specialist.slug}`} className="w-full text-center">
+                              <Button variant="outline" className="w-full font-semibold px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs h-auto border-border hover:bg-secondary">
+                                View Profile
+                              </Button>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Specialist Cards list */}
               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-6">

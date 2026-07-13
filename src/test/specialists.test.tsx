@@ -32,6 +32,7 @@ describe("SpecialistsDirectory Pagination", () => {
       ...mockSpecialists[0],
       slug: `specialist-${i}`,
       name: `Specialist-${i}`,
+      is_approved: true,
     }));
     mockFetchSpecialists.mockResolvedValue(testSpecialists);
     const queryClient = createQueryClient();

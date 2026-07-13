@@ -95,7 +95,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
     });
   } catch (err) {
     console.warn('Supabase query failed. Falling back to static specialists data:', err);
-    return staticSpecialists;
+    return staticSpecialists.map(s => ({ ...s, is_approved: s.is_approved !== false }));
   }
 }
 
