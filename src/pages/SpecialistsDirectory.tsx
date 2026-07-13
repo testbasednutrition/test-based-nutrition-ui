@@ -1173,56 +1173,63 @@ const SpecialistsDirectory = () => {
       {/* Dynamic Welcome Modal Popup */}
       {showWelcomeModal && welcomedPartner && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4 animate-[fadeIn_0.3s_ease-out]">
-          <div className="bg-[#faf8f5] border border-[#dbd4c9] text-zinc-950 rounded-3xl max-w-lg w-full p-8 relative shadow-2xl overflow-hidden animate-[scaleIn_0.3s_ease-out]">
-            {/* Subtle Gradient Accent */}
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#9f1e13] to-amber-600"></div>
-
+          <div className="bg-[#faf8f5] border border-[#dbd4c9]/60 text-zinc-950 rounded-3xl max-w-2xl w-full relative shadow-2xl overflow-hidden animate-[scaleIn_0.3s_ease-out] flex flex-col md:flex-row">
+            {/* Close Button */}
             <button 
               onClick={handleCloseWelcomeModal} 
-              className="absolute top-5 right-5 text-zinc-400 hover:text-zinc-700 transition-colors p-1 bg-white/50 hover:bg-white rounded-full border border-zinc-200"
+              className="absolute top-4 right-4 z-50 text-zinc-400 hover:text-zinc-700 transition-colors p-1.5 bg-white/80 hover:bg-white rounded-full border border-zinc-200/80 shadow-sm"
               title="Close modal"
             >
               <X className="w-4 h-4" />
             </button>
 
-            <div className="text-center pt-2 space-y-5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-[#9f1e13] bg-[#9f1e13]/10 border border-[#9f1e13]/25 animate-pulse">
-                <Sparkles className="w-3.5 h-3.5" /> Welcome To The Collective
-              </span>
+            {/* Left Column: Full-height portrait cover photo (stacks on mobile) */}
+            <div className="w-full md:w-[45%] aspect-[4/3] md:aspect-auto md:min-h-[440px] relative bg-secondary overflow-hidden shrink-0">
+              <img
+                src={welcomedPartner.image}
+                alt={welcomedPartner.name}
+                className="w-full h-full object-cover origin-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent md:hidden" />
+            </div>
 
-              <h2 className="text-2xl md:text-3xl font-playfair font-bold text-[#9f1e13] leading-tight">
-                {welcomedPartner.name}
-              </h2>
-
-              <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">
-                {welcomedPartner.slug && (AMBASSADOR_SLUGS.includes(welcomedPartner.slug) || welcomedPartner.primary_category === "TBN Brand Ambassador") 
-                  ? "TBN Brand Ambassador" 
-                  : welcomedPartner.role || "TBN Specialist"}
-              </p>
-
-              {/* Big Photo in the Middle */}
-              <div className="flex justify-center py-2">
-                <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-2xl overflow-hidden border border-zinc-200 shadow-md">
-                  <img
-                    src={welcomedPartner.image}
-                    alt={welcomedPartner.name}
-                    className="w-full h-full object-cover"
-                  />
+            {/* Right Column: Clean spacious card content */}
+            <div className="flex-1 p-6 md:p-10 flex flex-col justify-between space-y-8 bg-gradient-to-br from-background to-secondary/10">
+              <div className="space-y-5 pt-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest text-[#9f1e13] bg-[#9f1e13]/10 border border-[#9f1e13]/20">
+                  <Sparkles className="w-3 h-3 text-[#9f1e13]" /> Welcome to the Collective
+                </span>
+                
+                <div className="space-y-1">
+                  <h2 className="text-3xl md:text-4xl font-playfair font-bold text-zinc-900 leading-tight">
+                    {welcomedPartner.name}
+                  </h2>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                    {welcomedPartner.slug && (AMBASSADOR_SLUGS.includes(welcomedPartner.slug) || welcomedPartner.primary_category === "TBN Brand Ambassador") 
+                      ? "TBN Brand Ambassador" 
+                      : welcomedPartner.role || "TBN Specialist"}
+                  </p>
                 </div>
+
+                <div className="w-12 h-0.5 bg-[#9f1e13]/60 rounded-full" />
+
+                <p className="text-xs md:text-sm text-zinc-500 leading-relaxed">
+                  Join us in welcoming our newest collective member. Explore their profile to review their custom health pathways, focus methods, and achievements.
+                </p>
               </div>
 
-              {/* CTA Action Buttons */}
-              <div className="pt-4 flex flex-col sm:flex-row gap-3">
+              {/* Stacked CTA Buttons */}
+              <div className="flex flex-col gap-2 pt-2">
                 <Button 
                   onClick={handleViewWelcomeProfile}
-                  className="flex-1 h-12 text-xs font-bold tracking-widest bg-[#9f1e13] hover:bg-[#b02216] text-white rounded-xl uppercase hover:text-white"
+                  className="w-full h-11 text-xs font-bold tracking-widest bg-[#9f1e13] hover:bg-[#b02216] text-white rounded-xl uppercase hover:text-white transition-all shadow-sm"
                 >
                   View Profile
                 </Button>
                 <Button 
                   onClick={handleCloseWelcomeModal}
                   variant="outline"
-                  className="flex-1 h-12 text-xs font-bold tracking-widest border-zinc-300 hover:bg-secondary text-zinc-700 rounded-xl uppercase"
+                  className="w-full h-11 text-xs font-bold tracking-widest border-zinc-200/85 hover:bg-secondary text-zinc-700 rounded-xl uppercase transition-all"
                 >
                   Explore Directory
                 </Button>
