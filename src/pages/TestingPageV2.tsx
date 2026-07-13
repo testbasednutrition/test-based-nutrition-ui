@@ -749,50 +749,11 @@ const TestingPageV2 = () => {
           </div>
         </section>
 
-        {/* 8. CLIENT CTA SECTION */}
-        <section className="py-20 bg-[#9f1e13] text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
-          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] pointer-events-none"></div>
-
-          <div className="container max-w-[900px] mx-auto px-4 sm:px-6 relative z-10 text-center space-y-8">
-            <div className="space-y-3">
-              <span className="text-xs font-bold tracking-[0.25em] text-zinc-200 uppercase">
-                START EARLIER. UNDERSTAND MORE.
-              </span>
-              <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-white uppercase tracking-wider">
-                PROACTIVE HEALTH
-              </h2>
-              <p className="text-lg text-[#dbd4c9] font-semibold italic">
-                Take a More Proactive Approach to Your Health
-              </p>
-            </div>
-
-            <p className="text-zinc-100 font-light text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-              Begin with a consultation and explore the most relevant testing, screening and support pathway for your needs.
-            </p>
-
-            <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                onClick={() => openQuiz()}
-                className="bg-white hover:bg-zinc-50 text-[#9f1e13] px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg transition-all"
-              >
-                BOOK MY FREE CONSULTATION <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-              <Button 
-                onClick={() => openQuiz()}
-                variant="outline"
-                className="border-white/30 text-white bg-white/10 hover:bg-white/20 px-8 h-14 text-sm font-bold tracking-wider rounded-xl transition-all"
-              >
-                FIND MY NEAREST TBN HUB
-              </Button>
-            </div>
-          </div>
-        </section>
 
         {/* 9. Learn. Launch. Lead. Details Section */}
         <section className="py-24 bg-secondary relative overflow-hidden">
-          {/* Top Fade Transition from dark proactive health section above */}
-          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#0c0c0e] to-transparent pointer-events-none z-10" />
+          {/* Top Fade Transition from light section above */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#faf8f5] to-transparent pointer-events-none z-10" />
           
           {/* Bottom Fade Transition to light testing day section below */}
           <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#faf8f5] to-transparent pointer-events-none z-10" />
@@ -868,44 +829,43 @@ const TestingPageV2 = () => {
           </div>
         </section>
 
-        {/* 11. FINAL CTA SECTION */}
-        <section className="py-24 bg-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(rgba(159,30,19,0.03)_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
-          
-          <div className="container max-w-[1000px] mx-auto px-4 sm:px-6 relative z-10 text-center space-y-10">
+        {/* 11. CLIENT CTA SECTION */}
+        <section className="py-24 bg-[#9f1e13] text-white relative overflow-hidden">
+          {/* Top Fade Transition from light section above */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#faf8f5] to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+          <div className="container max-w-[900px] mx-auto px-4 sm:px-6 relative z-10 text-center space-y-8">
             <div className="space-y-3">
-              <span className="text-xs font-bold tracking-[0.25em] text-[#9f1e13] uppercase font-sans">
-                TEST. TARGET. TRANSFORM.™
+              <span className="text-xs font-bold tracking-[0.25em] text-zinc-200 uppercase">
+                START EARLIER. UNDERSTAND MORE.
               </span>
-              <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-zinc-900 uppercase tracking-wider">
-                A NEW ERA IN NUTRITIONAL HEALTHCARE
+              <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-white uppercase tracking-wider">
+                PROACTIVE HEALTH
               </h2>
-              <p className="text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
-                Understand your baseline. Explore the factors that may need attention. Take your next step with greater clarity.
+              <p className="text-lg text-[#dbd4c9] font-semibold italic">
+                Take a More Proactive Approach to Your Health
               </p>
             </div>
 
-            <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center max-w-2xl mx-auto">
+            <p className="text-zinc-100 font-light text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+              Begin with a consultation and explore the most relevant testing, screening and support pathway for your needs.
+            </p>
+
+            <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 onClick={() => openQuiz()}
-                className="flex-1 bg-[#9f1e13] hover:bg-[#861910] text-white h-14 text-xs font-bold tracking-wider rounded-xl shadow-lg transition-all"
+                className="bg-white hover:bg-zinc-50 text-[#9f1e13] px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg transition-all"
               >
-                BOOK A FREE CONSULTATION
+                BOOK MY FREE CONSULTATION <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
               <Button 
                 onClick={() => openQuiz()}
                 variant="outline"
-                className="flex-1 border-[#dbd4c9] text-zinc-800 hover:bg-secondary/20 h-14 text-xs font-bold tracking-wider rounded-xl transition-all"
+                className="border-white/30 text-white bg-white/10 hover:bg-white/20 px-8 h-14 text-sm font-bold tracking-wider rounded-xl transition-all"
               >
                 FIND MY NEAREST TBN HUB
-              </Button>
-              <Button 
-                asChild
-                className="flex-1 bg-[#9f1e13] hover:bg-[#861910] text-white h-14 text-xs font-bold tracking-wider rounded-xl transition-all"
-              >
-                <Link to="/partner-with-us">
-                  PARTNER WITH TBN
-                </Link>
               </Button>
             </div>
           </div>
