@@ -714,28 +714,30 @@ const SpecialistsDirectory = () => {
             <div className="flex-1 space-y-6 overflow-hidden">
               
               {/* Mobile Filter Dropdowns */}
-              <div className="flex lg:hidden pb-3 border-b border-border w-full gap-2">
+              <div className="flex lg:hidden pb-3 border-b border-border w-full gap-2 overflow-x-auto whitespace-nowrap -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {/* Left: Pathway Dropdown */}
-                <div className="flex-1 min-w-0">
+                <div className="shrink-0">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button 
                         variant="outline" 
-                        className="w-full flex items-center justify-between px-2.5 py-1.5 h-9 bg-background border-border text-foreground font-semibold text-[10px] sm:text-xs tracking-wider uppercase rounded-lg hover:bg-secondary/20 shadow-sm transition-all"
+                        className={`flex items-center gap-1.5 px-3.5 py-1.5 h-9 border rounded-full text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
+                          activeCategory !== "All"
+                            ? "bg-[#9f1e13] border-[#9f1e13] text-white hover:bg-[#861910] hover:text-white"
+                            : "bg-background border-border text-foreground hover:bg-secondary/20"
+                        }`}
                       >
-                        <div className="flex items-center gap-1.5 min-w-0 truncate">
-                          {(() => {
-                            const IconComponent = CATEGORY_ICONS[activeCategory] || Activity;
-                            return <IconComponent className="w-3.5 h-3.5 text-primary shrink-0" />;
-                          })()}
-                          <span className="truncate">
-                            {activeCategory === "All" ? "ALL PATHWAYS" : activeCategory.toUpperCase()}
-                          </span>
-                        </div>
-                        <ChevronDown className="w-3 h-3 text-muted-foreground shrink-0 ml-1" />
+                        {(() => {
+                          const IconComponent = CATEGORY_ICONS[activeCategory] || Activity;
+                          return <IconComponent className={`w-3.5 h-3.5 ${activeCategory !== "All" ? "text-white" : "text-[#9f1e13]"} shrink-0`} />;
+                        })()}
+                        <span>
+                          {activeCategory === "All" ? "Pathway" : activeCategory}
+                        </span>
+                        <ChevronDown className="w-3.5 h-3.5 opacity-60 ml-0.5" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start" className="w-[var(--radix-dropdown-menu-trigger-width)] bg-background border border-border p-1.5 rounded-xl shadow-md z-50">
+                    <DropdownMenuContent align="start" className="w-56 bg-background border border-border p-1.5 rounded-xl shadow-md z-50">
                       <DropdownMenuLabel className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase px-2.5 py-1.5">
                         Select Pathway
                       </DropdownMenuLabel>
@@ -775,23 +777,25 @@ const SpecialistsDirectory = () => {
                 </div>
 
                 {/* Middle: Profession Dropdown */}
-                <div className="flex-1 min-w-0">
+                <div className="shrink-0">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button 
                         variant="outline" 
-                        className="w-full flex items-center justify-between px-2.5 py-1.5 h-9 bg-background border-border text-foreground font-semibold text-[10px] sm:text-xs tracking-wider uppercase rounded-lg hover:bg-secondary/20 shadow-sm transition-all"
+                        className={`flex items-center gap-1.5 px-3.5 py-1.5 h-9 border rounded-full text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
+                          activeProfession !== "All"
+                            ? "bg-[#9f1e13] border-[#9f1e13] text-white hover:bg-[#861910] hover:text-white"
+                            : "bg-background border-border text-foreground hover:bg-secondary/20"
+                        }`}
                       >
-                        <div className="flex items-center gap-1.5 min-w-0 truncate">
-                          <Users className="w-3.5 h-3.5 text-primary shrink-0" />
-                          <span className="truncate">
-                            {activeProfession === "All" ? "ALL PROFESSIONS" : activeProfession.toUpperCase()}
-                          </span>
-                        </div>
-                        <ChevronDown className="w-3 h-3 text-muted-foreground shrink-0 ml-1" />
+                        <Users className={`w-3.5 h-3.5 ${activeProfession !== "All" ? "text-white" : "text-[#9f1e13]"} shrink-0`} />
+                        <span>
+                          {activeProfession === "All" ? "Profession" : activeProfession}
+                        </span>
+                        <ChevronDown className="w-3.5 h-3.5 opacity-60 ml-0.5" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="center" className="w-[var(--radix-dropdown-menu-trigger-width)] bg-background border border-border p-1.5 rounded-xl shadow-md z-50">
+                    <DropdownMenuContent align="center" className="w-64 bg-background border border-border p-1.5 rounded-xl shadow-md z-50">
                       <DropdownMenuLabel className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase px-2.5 py-1.5">
                         Select Profession
                       </DropdownMenuLabel>
@@ -829,23 +833,25 @@ const SpecialistsDirectory = () => {
                 </div>
 
                 {/* Right: Testing Categories Dropdown */}
-                <div className="flex-1 min-w-0">
+                <div className="shrink-0">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button 
                         variant="outline" 
-                        className="w-full flex items-center justify-between px-2.5 py-1.5 h-9 bg-background border-border text-foreground font-semibold text-[10px] sm:text-xs tracking-wider uppercase rounded-lg hover:bg-secondary/20 shadow-sm transition-all"
+                        className={`flex items-center gap-1.5 px-3.5 py-1.5 h-9 border rounded-full text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
+                          selectedTestingTiers.length > 0
+                            ? "bg-[#9f1e13] border-[#9f1e13] text-white hover:bg-[#861910] hover:text-white"
+                            : "bg-background border-border text-foreground hover:bg-secondary/20"
+                        }`}
                       >
-                        <div className="flex items-center gap-1.5 min-w-0 truncate">
-                          <TestTube2 className="w-3.5 h-3.5 text-primary shrink-0" />
-                          <span className="truncate">
-                            {getTestingButtonLabel(selectedTestingTiers)}
-                          </span>
-                        </div>
-                        <ChevronDown className="w-3 h-3 text-muted-foreground shrink-0 ml-1" />
+                        <TestTube2 className={`w-3.5 h-3.5 ${selectedTestingTiers.length > 0 ? "text-white" : "text-[#9f1e13]"} shrink-0`} />
+                        <span>
+                          {selectedTestingTiers.length === 0 ? "Testing" : getTestingButtonLabel(selectedTestingTiers)}
+                        </span>
+                        <ChevronDown className="w-3.5 h-3.5 opacity-60 ml-0.5" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-[var(--radix-dropdown-menu-trigger-width)] bg-background border border-border p-1.5 rounded-xl shadow-md z-50">
+                    <DropdownMenuContent align="end" className="w-64 bg-background border border-border p-1.5 rounded-xl shadow-md z-50">
                       <DropdownMenuLabel className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase px-2.5 py-1.5">
                         Testing Categories
                       </DropdownMenuLabel>
@@ -874,12 +880,13 @@ const SpecialistsDirectory = () => {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
+
                 {/* Mobile Ambassadors Toggle */}
-                <div className="flex-1 min-w-0">
+                <div className="shrink-0">
                   <Button 
                     variant="outline" 
                     onClick={() => setShowAmbassadorsOnly(!showAmbassadorsOnly)}
-                    className={`w-full flex items-center justify-center px-2 py-1.5 h-9 font-semibold text-[10px] sm:text-xs tracking-wider uppercase rounded-lg shadow-sm transition-all border ${
+                    className={`flex items-center gap-1.5 px-4 py-1.5 h-9 border rounded-full text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
                       showAmbassadorsOnly 
                         ? "bg-[#9f1e13] border-[#9f1e13] text-white hover:bg-[#861910] hover:text-white" 
                         : "bg-background border-border text-foreground hover:bg-secondary/20"
