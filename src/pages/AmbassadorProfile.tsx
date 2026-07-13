@@ -182,7 +182,7 @@ const AmbassadorProfile = () => {
                 {ambassador.accepting_new_clients !== false && (
                   <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-bold uppercase tracking-wider bg-zinc-100/60 border border-zinc-200/60 px-3 py-1.5 rounded-full">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>Accepting Consultations</span>
+                    <span>TBN BRAND AMBASSADOR</span>
                   </div>
                 )}
               </div>
