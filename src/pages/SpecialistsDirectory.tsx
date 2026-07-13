@@ -262,6 +262,8 @@ const SpecialistsDirectory = () => {
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [showAmbassadorsOnly, setShowAmbassadorsOnly] = useState(false);
+  const [selectedNameSearch, setSelectedNameSearch] = useState("");
+  const [nameInput, setNameInput] = useState("");
 
   const handleTestingTierToggle = (tierId: string) => {
     const isSelected = selectedTestingTiers.includes(tierId);
@@ -308,6 +310,7 @@ const SpecialistsDirectory = () => {
 
   // Apply a basic filter just for show (only show approved profiles in the grid)
   const approvedSpecialists = specialists.filter(s => s.is_approved === true);
+  const allApprovedNames = Array.from(new Set(approvedSpecialists.map(s => s.name)));
   
   // Separate into regular specialists and ambassadors
   const regularSpecialistsOnly = approvedSpecialists.filter(s => !AMBASSADOR_SLUGS.includes(s.slug));
@@ -363,7 +366,9 @@ const SpecialistsDirectory = () => {
       }
     });
 
-    return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers;
+    const matchesNameSearch = !selectedNameSearch || s.name.toLowerCase().includes(selectedNameSearch.toLowerCase());
+
+    return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch;
   });
 
   const filteredAmbassadors = ambassadorsOnly.filter((s) => {
@@ -416,7 +421,9 @@ const SpecialistsDirectory = () => {
       }
     });
 
-    return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers;
+    const matchesNameSearch = !selectedNameSearch || s.name.toLowerCase().includes(selectedNameSearch.toLowerCase());
+
+    return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch;
   });
 
   const ITEMS_PER_PAGE = 24;
@@ -898,18 +905,59 @@ const SpecialistsDirectory = () => {
                     Showing results matching your health profile
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">Sort by:</span>
-                  <Select defaultValue="recommended">
-                    <SelectTrigger className="w-36 h-8 text-sm border-none bg-transparent shadow-none focus:ring-0 font-medium px-0 gap-1">
-                      <SelectValue placeholder="Sort" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="recommended">Recommended</SelectItem>
-                      <SelectItem value="highest-rated">Highest Rated</SelectItem>
-                      <SelectItem value="most-experienced">Most Experienced</SelectItem>
-                    </SelectContent>
-                  </Select>
+                <div className="flex items-center gap-2 relative z-30">
+                  <span className="text-xs sm:text-sm text-muted-foreground font-semibold uppercase tracking-wider shrink-0">Search Name:</span>
+                  <div className="relative w-44 sm:w-56">
+                    <div className="flex items-center border border-border rounded-xl bg-background px-3 py-1.5 shadow-sm">
+                      <input
+                        type="text"
+                        placeholder="Type name..."
+                        value={nameInput}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setNameInput(val);
+                          if (!val) {
+                            setSelectedNameSearch("");
+                          }
+                        }}
+                        className="w-full text-xs font-semibold bg-transparent border-none outline-none p-0 focus:ring-0 placeholder:text-muted-foreground/60"
+                      />
+                      {nameInput && (
+                        <button
+                          onClick={() => {
+                            setNameInput("");
+                            setSelectedNameSearch("");
+                          }}
+                          className="text-muted-foreground hover:text-foreground ml-1"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Autocomplete Dropdown list */}
+                    {nameInput && !selectedNameSearch && (
+                      <div className="absolute right-0 top-full mt-2 w-full max-h-60 overflow-y-auto bg-background border border-border p-1.5 rounded-xl shadow-lg z-50">
+                        {allApprovedNames
+                          .filter(name => name.toLowerCase().includes(nameInput.toLowerCase()))
+                          .map((name) => (
+                            <button
+                              key={name}
+                              onClick={() => {
+                                setNameInput(name);
+                                setSelectedNameSearch(name);
+                              }}
+                              className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold hover:bg-secondary/40 text-foreground transition-colors"
+                            >
+                              {name}
+                            </button>
+                          ))}
+                        {allApprovedNames.filter(name => name.toLowerCase().includes(nameInput.toLowerCase())).length === 0 && (
+                          <div className="px-3 py-2 text-xs text-muted-foreground">No matches found</div>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
 
