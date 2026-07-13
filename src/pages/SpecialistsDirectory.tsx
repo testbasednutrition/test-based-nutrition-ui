@@ -897,7 +897,7 @@ const SpecialistsDirectory = () => {
                   <Button 
                     variant="outline" 
                     onClick={() => setShowAmbassadorsOnly(!showAmbassadorsOnly)}
-                    className={`flex items-center gap-1.5 px-3.5 py-1.5 h-9 border rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
+                    className={`lg:hidden flex items-center gap-1.5 px-3.5 py-1.5 h-9 border rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all shadow-sm ${
                       showAmbassadorsOnly 
                         ? "bg-[#9f1e13] border-[#9f1e13] text-white hover:bg-[#861910] hover:text-white" 
                         : "bg-background border-border text-foreground hover:bg-secondary/20"
