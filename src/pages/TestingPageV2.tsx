@@ -865,6 +865,15 @@ const TestingPageV2 = () => {
               >
                 FIND MY NEAREST TBN HUB
               </Button>
+              <Button 
+                asChild
+                variant="outline"
+                className="border-white/30 text-white bg-white/10 hover:bg-white/20 px-8 h-14 text-sm font-bold tracking-wider rounded-xl transition-all"
+              >
+                <Link to="/partner-with-us">
+                  PARTNER WITH US
+                </Link>
+              </Button>
             </div>
           </div>
         </section>
