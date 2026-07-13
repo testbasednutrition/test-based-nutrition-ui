@@ -261,6 +261,7 @@ const SpecialistsDirectory = () => {
     return [];
   });
   const [currentPage, setCurrentPage] = useState(1);
+  const [showAmbassadorsOnly, setShowAmbassadorsOnly] = useState(false);
 
   const handleTestingTierToggle = (tierId: string) => {
     const isSelected = selectedTestingTiers.includes(tierId);
@@ -496,12 +497,33 @@ const SpecialistsDirectory = () => {
                     setActiveProfession("All");
                     setLocationSearch("");
                     setSelectedTestingTiers([]);
+                    setShowAmbassadorsOnly(false);
                   }}
                   className="text-muted-foreground hover:text-primary transition-colors"
                   title="Clear all filters"
                 >
                   <RefreshCcw className="w-4 h-4" />
                 </button>
+              </div>
+
+              {/* TBN Brand Ambassadors filter */}
+              <div className="space-y-4">
+                <h4 className="font-extrabold text-xs uppercase tracking-widest text-[#9f1e13] font-sans">
+                  TBN Brand Ambassadors
+                </h4>
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <Checkbox 
+                      id="filter-ambassadors" 
+                      className="rounded border-border data-[state=checked]:bg-primary data-[state=checked]:text-white" 
+                      checked={showAmbassadorsOnly}
+                      onCheckedChange={(checked) => setShowAmbassadorsOnly(!!checked)}
+                    />
+                    <Label htmlFor="filter-ambassadors" className="text-sm font-medium text-muted-foreground cursor-pointer">
+                      View Brand Ambassadors Only
+                    </Label>
+                  </div>
+                </div>
               </div>
 
               {/* TBN Pathways filter */}
@@ -844,14 +866,36 @@ const SpecialistsDirectory = () => {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
+                {/* Mobile Ambassadors Toggle */}
+                <div className="flex-1 min-w-0">
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setShowAmbassadorsOnly(!showAmbassadorsOnly)}
+                    className={`w-full flex items-center justify-center px-2 py-1.5 h-9 font-semibold text-[10px] sm:text-xs tracking-wider uppercase rounded-lg shadow-sm transition-all border ${
+                      showAmbassadorsOnly 
+                        ? "bg-[#9f1e13] border-[#9f1e13] text-white hover:bg-[#861910] hover:text-white" 
+                        : "bg-background border-border text-foreground hover:bg-secondary/20"
+                    }`}
+                  >
+                    <span>Ambassadors</span>
+                  </Button>
+                </div>
               </div>
 
               {/* Results Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-bold">{filtered.length} Leading TBN Specialists</h2>
-                  <p className="text-sm text-muted-foreground">
-                    Showing results for your health profile
+                  <h2 className="text-xl font-bold uppercase tracking-wide">
+                    {showAmbassadorsOnly ? (
+                      <span>{filteredAmbassadors.length} TBN Brand Ambassadors</span>
+                    ) : (
+                      <span>
+                        {filtered.length} Leading TBN Specialists &amp; {filteredAmbassadors.length} TBN Brand Ambassadors
+                      </span>
+                    )}
+                  </h2>
+                  <p className="text-xs text-muted-foreground mt-0.5 font-medium">
+                    Showing results matching your health profile
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -871,16 +915,7 @@ const SpecialistsDirectory = () => {
 
               {/* Ambassadors Section */}
               {filteredAmbassadors.length > 0 && (
-                <div className="space-y-6 pb-10 border-b border-border/80 mb-10">
-                  <div>
-                    <h2 className="text-xl font-extrabold uppercase tracking-wider text-[#9f1e13]">
-                      TBN Brand Ambassadors
-                    </h2>
-                    <p className="text-xs text-muted-foreground mt-0.5 font-medium">
-                      Elite athletes & coaches representing the Test-Based movement
-                    </p>
-                  </div>
-                  
+                <div className={showAmbassadorsOnly ? "space-y-6 animate-[fadeIn_0.3s_ease-out]" : "space-y-6 pb-10 border-b border-border/80 mb-10"}>
                   <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-6">
                     {filteredAmbassadors.map((specialist, index) => (
                       <div 
@@ -946,75 +981,77 @@ const SpecialistsDirectory = () => {
               )}
 
               {/* Specialist Cards list */}
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-6">
-                {paginatedSpecialists.map((specialist, index) => (
-                  <div 
-                    key={`${specialist.slug}-${index}`}
-                    className="flex flex-col overflow-hidden bg-background border border-border rounded-2xl shadow-sm hover:shadow-md transition-shadow relative"
-                  >
-                    {/* Top Image Box */}
-                    <Link to={`/specialists/${specialist.slug}`} className="block w-full aspect-[3/4] bg-secondary relative group cursor-pointer overflow-hidden">
-                      <img
-                        src={specialist.image}
-                        alt={specialist.name}
-                        className="w-full h-full object-cover origin-top transition-transform duration-300 group-hover:scale-105"
-                        style={{ objectPosition: specialist.imagePosition || 'center top' }}
-                        loading="lazy"
-                      />
-                    </Link>
+              {!showAmbassadorsOnly && (
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-6 animate-[fadeIn_0.3s_ease-out]">
+                  {paginatedSpecialists.map((specialist, index) => (
+                    <div 
+                      key={`${specialist.slug}-${index}`}
+                      className="flex flex-col overflow-hidden bg-background border border-border rounded-2xl shadow-sm hover:shadow-md transition-shadow relative"
+                    >
+                      {/* Top Image Box */}
+                      <Link to={`/specialists/${specialist.slug}`} className="block w-full aspect-[3/4] bg-secondary relative group cursor-pointer overflow-hidden">
+                        <img
+                          src={specialist.image}
+                          alt={specialist.name}
+                          className="w-full h-full object-cover origin-top transition-transform duration-300 group-hover:scale-105"
+                          style={{ objectPosition: specialist.imagePosition || 'center top' }}
+                          loading="lazy"
+                        />
+                      </Link>
 
-                    {/* Bottom Info Box */}
-                    <div className="flex-1 flex flex-col justify-between p-3 sm:p-5">
-                      <div className="space-y-2">
-                        {/* Title Row */}
-                        <div className="flex justify-between items-start gap-2.5">
-                          <div className="pr-1 flex-1">
-                            <h3 className="text-[12px] sm:text-[14px] font-bold tracking-wide uppercase line-clamp-2 leading-tight text-foreground">
-                              {specialist.name}
-                            </h3>
-                            {specialist.role && (
-                              <p className="text-[10px] sm:text-[12px] font-semibold text-zinc-500 mt-1 leading-snug line-clamp-2">
-                                {specialist.role.split("—")[0].trim()}
-                              </p>
+                      {/* Bottom Info Box */}
+                      <div className="flex-1 flex flex-col justify-between p-3 sm:p-5">
+                        <div className="space-y-2">
+                          {/* Title Row */}
+                          <div className="flex justify-between items-start gap-2.5">
+                            <div className="pr-1 flex-1">
+                              <h3 className="text-[12px] sm:text-[14px] font-bold tracking-wide uppercase line-clamp-2 leading-tight text-foreground">
+                                {specialist.name}
+                              </h3>
+                              {specialist.role && (
+                                <p className="text-[10px] sm:text-[12px] font-semibold text-zinc-500 mt-1 leading-snug line-clamp-2">
+                                  {specialist.role.split("—")[0].trim()}
+                                </p>
+                              )}
+                            </div>
+                            
+                            {/* Rating Badge */}
+                            {specialist.rating && (
+                              <div className="flex items-center gap-1 px-1.5 py-0.5 bg-secondary rounded text-[9px] sm:text-[11px] font-bold shrink-0">
+                                <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-primary text-primary" />
+                                <span>{specialist.rating}</span>
+                              </div>
                             )}
                           </div>
-                          
-                          {/* Rating Badge */}
-                          {specialist.rating && (
-                            <div className="flex items-center gap-1 px-1.5 py-0.5 bg-secondary rounded text-[9px] sm:text-[11px] font-bold shrink-0">
-                              <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-primary text-primary" />
-                              <span>{specialist.rating}</span>
-                            </div>
-                          )}
+
+                          {/* Details Row with Icons (Always visible now to show Town) */}
+                          <div className="flex items-start gap-1 text-[10px] sm:text-xs text-muted-foreground font-medium pt-1">
+                            <MapPin className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                            <span className="line-clamp-1 leading-snug">
+                              {extractTown(specialist.location) || "London"}
+                            </span>
+                          </div>
                         </div>
 
-                        {/* Details Row with Icons (Always visible now to show Town) */}
-                        <div className="flex items-start gap-1 text-[10px] sm:text-xs text-muted-foreground font-medium pt-1">
-                          <MapPin className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                          <span className="line-clamp-1 leading-snug">
-                            {extractTown(specialist.location) || "London"}
+                        {/* Category Badge & View Profile button */}
+                        <div className="flex flex-col items-center gap-2 mt-4 pt-3 border-t border-border/50">
+                          <span className="inline-block max-w-full text-[9px] sm:text-[10px] font-bold text-[#9f1e13] uppercase tracking-wider whitespace-normal break-words leading-tight w-fit text-center">
+                            {specialist.category}
                           </span>
+                          <Link to={`/specialists/${specialist.slug}`} className="w-full text-center">
+                            <Button variant="outline" className="w-full font-semibold px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs h-auto border-border hover:bg-secondary">
+                              View Profile
+                            </Button>
+                          </Link>
                         </div>
-                      </div>
-
-                      {/* Category Badge & View Profile button */}
-                      <div className="flex flex-col items-center gap-2 mt-4 pt-3 border-t border-border/50">
-                        <span className="inline-block max-w-full text-[9px] sm:text-[10px] font-bold text-[#9f1e13] uppercase tracking-wider whitespace-normal break-words leading-tight w-fit text-center">
-                          {specialist.category}
-                        </span>
-                        <Link to={`/specialists/${specialist.slug}`} className="w-full text-center">
-                          <Button variant="outline" className="w-full font-semibold px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs h-auto border-border hover:bg-secondary">
-                            View Profile
-                          </Button>
-                        </Link>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
 
               {/* Pagination */}
-              {totalPages > 1 && (
+              {!showAmbassadorsOnly && totalPages > 1 && (
                 <div className="pt-8 flex items-center justify-center gap-2">
                   <Button 
                     variant="outline" 
@@ -1062,9 +1099,16 @@ const SpecialistsDirectory = () => {
                 </div>
               )}
 
-              {filtered.length === 0 && (
+              {!showAmbassadorsOnly && filtered.length === 0 && (
                 <div className="text-center py-20 bg-background border border-border rounded-xl">
                   <h3 className="text-lg font-bold mb-2">No specialists found</h3>
+                  <p className="text-muted-foreground">Try adjusting your filters or search terms.</p>
+                </div>
+              )}
+
+              {showAmbassadorsOnly && filteredAmbassadors.length === 0 && (
+                <div className="text-center py-20 bg-background border border-border rounded-xl">
+                  <h3 className="text-lg font-bold mb-2">No ambassadors found</h3>
                   <p className="text-muted-foreground">Try adjusting your filters or search terms.</p>
                 </div>
               )}
