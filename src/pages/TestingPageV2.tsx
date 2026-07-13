@@ -576,51 +576,42 @@ const TestingPageV2 = () => {
                 {[
                   { 
                     name: "Advanced Laboratory Testing", 
-                    desc: "Explore more detailed biomarkers where greater clinical insight is needed.",
-                    icon: <Layers className="w-5 h-5" />
+                    desc: "Explore more detailed biomarkers where greater clinical insight is needed."
                   },
                   { 
                     name: "Private GP Support", 
-                    desc: "Fast access to experienced private GPs for further investigation and medical guidance where appropriate.",
-                    icon: <Stethoscope className="w-5 h-5" />
+                    desc: "Fast access to experienced private GPs for further investigation and medical guidance where appropriate."
                   },
                   { 
                     name: "Specialist Referral", 
-                    desc: "Connect with trusted doctors and specialist practitioners across the TBN Collective.",
-                    icon: <Users className="w-5 h-5" />
+                    desc: "Connect with trusted doctors and specialist practitioners across the TBN Collective."
                   },
                   { 
                     name: "Retesting & Progress Monitoring", 
-                    desc: "Track your progress, measure your results and refine your personalised pathway over time.",
-                    icon: <Activity className="w-5 h-5" />
+                    desc: "Track your progress, measure your results and refine your personalised pathway over time."
                   }
                 ].map((item, idx) => {
                   return (
                     <div 
                       key={idx} 
-                      className="group bg-gradient-to-b from-white to-[#faf8f5] border border-[#dbd4c9]/60 hover:border-[#9f1e13]/30 p-8 rounded-[2rem] flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-lg hover:shadow-zinc-100 transition-all duration-300 min-h-[260px] relative overflow-hidden"
+                      className="group bg-gradient-to-b from-white to-[#faf8f5] border border-[#dbd4c9]/60 hover:border-[#9f1e13]/30 p-8 rounded-[2rem] flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-lg hover:shadow-zinc-100 transition-all duration-300 min-h-[210px] relative overflow-hidden"
                     >
                       {/* Subtly animated line indicator at the top of card on hover */}
                       <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#9f1e13] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                       
-                      <div className="space-y-6 flex-grow flex flex-col justify-between">
-                        <div className="flex justify-between items-start">
-                          <div className="p-3.5 rounded-2xl bg-[#9f1e13]/5 text-[#9f1e13] group-hover:bg-[#9f1e13] group-hover:text-white transition-all duration-300">
-                            {item.icon}
-                          </div>
-                          <span className="font-mono text-[10px] font-bold text-zinc-400 group-hover:text-[#9f1e13]/80 transition-colors">
+                      <div className="space-y-4 flex-grow flex flex-col justify-between">
+                        <div className="flex justify-between items-start gap-4">
+                          <h4 className="text-[14px] font-montserrat font-bold text-zinc-900 leading-snug group-hover:text-[#9f1e13] transition-colors uppercase tracking-wide">
+                            {item.name}
+                          </h4>
+                          <span className="font-mono text-[10px] font-bold text-zinc-400 group-hover:text-[#9f1e13]/80 transition-colors shrink-0 mt-0.5">
                             0{idx + 1}
                           </span>
                         </div>
                         
-                        <div className="space-y-2">
-                          <h4 className="text-[14px] font-montserrat font-bold text-zinc-900 leading-snug group-hover:text-[#9f1e13] transition-colors uppercase tracking-wide">
-                            {item.name}
-                          </h4>
-                          <p className="text-[11px] text-zinc-550 font-light leading-relaxed">
-                            {item.desc}
-                          </p>
-                        </div>
+                        <p className="text-[11px] text-zinc-550 font-light leading-relaxed flex-grow">
+                          {item.desc}
+                        </p>
                       </div>
                     </div>
                   );
