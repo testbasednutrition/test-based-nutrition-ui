@@ -157,7 +157,7 @@ const PartnerWithUs3 = () => {
       </section>
 
       {/* 4. Partner Segments (Who is TBN For) */}
-      <section className="py-24 bg-white">
+      <section id="partner-segments" className="py-24 bg-white">
         <div className="container max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="text-center mb-16 space-y-4">
             <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-xs sm:text-sm block">PARTNER SEGMENTS</span>

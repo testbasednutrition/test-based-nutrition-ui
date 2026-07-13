@@ -133,7 +133,7 @@ const Footer = ({ hideInstagram = false }: FooterProps) => {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link to="/tbn-method" className="hover:text-foreground transition-colors">The TBN Method</Link></li>
               <li><Link to="/testing" className="hover:text-foreground transition-colors">Testing Pathways</Link></li>
-              <li><Link to="/partner-with-us-3" className="hover:text-foreground transition-colors">Retreats</Link></li>
+              <li><Link to="/partner-with-us" className="hover:text-foreground transition-colors">Retreats</Link></li>
               <li><Link to="/news" className="hover:text-foreground transition-colors">News Hub</Link></li>
             </ul>
           </div>

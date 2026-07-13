@@ -145,10 +145,10 @@ const clinicsMenuItems = [
 
 const partnerMenuItems: { label: string; href: string | null }[] = [
   { label: "Host a TBN Hub", href: "/partner-with-us#host-hub" },
-  { label: "Clinics & Practitioners", href: "/partner-with-us-2" },
-  { label: "Health Clubs", href: "/partner-with-us-2" },
+  { label: "Clinics & Practitioners", href: "/partner-with-us#partner-segments" },
+  { label: "Health Clubs", href: "/partner-with-us#partner-segments" },
   { label: "Events & Workshops", href: null },
-  { label: "Retreats", href: "/partner-with-us-3" },
+  { label: "Retreats", href: "/partner-with-us" },
 ];
 
 interface NavbarProps {
