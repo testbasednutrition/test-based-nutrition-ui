@@ -783,7 +783,7 @@ const TestingPageV2 = () => {
                     asChild 
                     className="bg-[#9f1e13] hover:bg-[#861910] text-white px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg transition-all"
                   >
-                    <Link to="/partner-with-us-3">
+                    <Link to="/partner-with-us">
                       BOOK A PARTNER DISCOVERY CALL <ArrowUpRight className="ml-2 w-4 h-4" />
                     </Link>
                   </Button>
@@ -845,7 +845,7 @@ const TestingPageV2 = () => {
                 asChild
                 className="bg-[#9f1e13] hover:bg-[#861910] text-white px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg shadow-red-950/20 transition-all"
               >
-                <Link to="/partner-with-us-3">
+                <Link to="/partner-with-us">
                   HOST A TESTING HUB DAY <Calendar className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
@@ -888,7 +888,7 @@ const TestingPageV2 = () => {
                 asChild
                 className="flex-1 bg-[#9f1e13] hover:bg-[#861910] text-white h-14 text-xs font-bold tracking-wider rounded-xl transition-all"
               >
-                <Link to="/partner-with-us-3">
+                <Link to="/partner-with-us">
                   PARTNER WITH TBN
                 </Link>
               </Button>
