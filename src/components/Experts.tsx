@@ -7,7 +7,7 @@ const experts = [
     role: "Founder & Director",
     org: "Founder of TBN, Natasha brings over two decades of experience integrating preventative test-based systems into global clinics.",
     link: "/specialists/natasha-sundharawipata",
-    image: "/experts/natasha-hq.jpg",
+    image: "/experts/natasha-hq-new.png",
   },
   {
     name: "Dr Ishtiaq Rehman",
