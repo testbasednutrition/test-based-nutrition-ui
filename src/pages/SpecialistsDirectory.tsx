@@ -310,7 +310,7 @@ const SpecialistsDirectory = () => {
 
   // Apply a basic filter just for show (only show approved profiles in the grid)
   const approvedSpecialists = specialists.filter(s => s.is_approved === true);
-  const allApprovedNames = Array.from(new Set(approvedSpecialists.map(s => s.name)));
+  const allApprovedNames = Array.from(new Set(approvedSpecialists.map(s => s.name).filter(Boolean)));
   
   // Separate into regular specialists and ambassadors
   const regularSpecialistsOnly = approvedSpecialists.filter(s => !AMBASSADOR_SLUGS.includes(s.slug));
@@ -366,7 +366,7 @@ const SpecialistsDirectory = () => {
       }
     });
 
-    const matchesNameSearch = !selectedNameSearch || s.name.toLowerCase().includes(selectedNameSearch.toLowerCase());
+    const matchesNameSearch = !selectedNameSearch || (s.name && s.name.toLowerCase().includes(selectedNameSearch.toLowerCase()));
 
     return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch;
   });
@@ -421,7 +421,7 @@ const SpecialistsDirectory = () => {
       }
     });
 
-    const matchesNameSearch = !selectedNameSearch || s.name.toLowerCase().includes(selectedNameSearch.toLowerCase());
+    const matchesNameSearch = !selectedNameSearch || (s.name && s.name.toLowerCase().includes(selectedNameSearch.toLowerCase()));
 
     return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch;
   });
@@ -890,9 +890,9 @@ const SpecialistsDirectory = () => {
               </div>
 
               {/* Results Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-border/80 pb-4">
                 <div>
-                  <h2 className="text-xl font-bold uppercase tracking-wide">
+                  <h2 className="text-[11px] sm:text-xs md:text-[15px] lg:text-[17px] xl:text-lg font-bold uppercase tracking-wider whitespace-nowrap">
                     {showAmbassadorsOnly ? (
                       <span>{filteredAmbassadors.length} TBN Brand Ambassadors</span>
                     ) : (
@@ -901,12 +901,12 @@ const SpecialistsDirectory = () => {
                       </span>
                     )}
                   </h2>
-                  <p className="text-xs text-muted-foreground mt-0.5 font-medium">
+                  <p className="text-[10px] text-muted-foreground mt-0.5 font-medium">
                     Showing results matching your health profile
                   </p>
                 </div>
                 <div className="flex items-center gap-2 relative z-30">
-                  <span className="text-xs sm:text-sm text-muted-foreground font-semibold uppercase tracking-wider shrink-0">Search Name:</span>
+                  <span className="text-xs sm:text-sm text-muted-foreground font-semibold uppercase tracking-wider shrink-0">Name:</span>
                   <div className="relative w-44 sm:w-56">
                     <div className="flex items-center border border-border rounded-xl bg-background px-3 py-1.5 shadow-sm">
                       <input
@@ -918,6 +918,20 @@ const SpecialistsDirectory = () => {
                           setNameInput(val);
                           if (!val) {
                             setSelectedNameSearch("");
+                          }
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            const matches = allApprovedNames.filter(name => 
+                              name && typeof name === 'string' && name.toLowerCase().includes(nameInput.toLowerCase())
+                            );
+                            if (matches.length > 0) {
+                              setNameInput(matches[0]);
+                              setSelectedNameSearch(matches[0]);
+                            } else {
+                              setSelectedNameSearch(nameInput);
+                            }
                           }
                         }}
                         className="w-full text-xs font-semibold bg-transparent border-none outline-none p-0 focus:ring-0 placeholder:text-muted-foreground/60"
@@ -939,7 +953,7 @@ const SpecialistsDirectory = () => {
                     {nameInput && !selectedNameSearch && (
                       <div className="absolute right-0 top-full mt-2 w-full max-h-60 overflow-y-auto bg-background border border-border p-1.5 rounded-xl shadow-lg z-50">
                         {allApprovedNames
-                          .filter(name => name.toLowerCase().includes(nameInput.toLowerCase()))
+                          .filter(name => name && typeof name === 'string' && name.toLowerCase().includes(nameInput.toLowerCase()))
                           .map((name) => (
                             <button
                               key={name}
@@ -952,7 +966,7 @@ const SpecialistsDirectory = () => {
                               {name}
                             </button>
                           ))}
-                        {allApprovedNames.filter(name => name.toLowerCase().includes(nameInput.toLowerCase())).length === 0 && (
+                        {allApprovedNames.filter(name => name && typeof name === 'string' && name.toLowerCase().includes(nameInput.toLowerCase())).length === 0 && (
                           <div className="px-3 py-2 text-xs text-muted-foreground">No matches found</div>
                         )}
                       </div>
