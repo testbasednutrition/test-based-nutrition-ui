@@ -931,8 +931,8 @@ const SpecialistsDirectory = () => {
                             style={{ objectPosition: specialist.imagePosition || 'center top' }}
                             loading="lazy"
                           />
-                          <div className="absolute top-2.5 left-2.5 bg-[#9f1e13] text-[#faf8f5] text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm border border-[#9f1e13]">
-                            Ambassador
+                          <div className="absolute bottom-0 left-0 right-0 bg-[#9f1e13] text-[#faf8f5] text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center py-2 shadow-inner">
+                            TBN Brand Ambassador
                           </div>
                         </Link>
 
