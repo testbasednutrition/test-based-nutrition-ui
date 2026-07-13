@@ -789,70 +789,47 @@ const TestingPageV2 = () => {
           </div>
         </section>
 
-        {/* 9. PARTNER WITH TBN SECTION */}
-        <section className="py-24 bg-white relative overflow-hidden">
-          <div className="container max-w-[1140px] mx-auto px-4 sm:px-6 relative z-10">
-            <div className="grid lg:grid-cols-12 gap-12 items-center">
-              {/* Left Column layout */}
-              <div className="lg:col-span-6 space-y-6">
-                <div className="inline-flex flex-col gap-1">
-                  <span className="text-xs font-bold tracking-widest uppercase text-[#9f1e13] font-sans">
-                    FOR CLINICS, HEALTH CLUBS, RESORTS AND WELLNESS BUSINESSES
-                  </span>
-                  <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-900 leading-tight uppercase tracking-wider">
-                    PARTNER WITH TBN
-                  </h2>
-                  <p className="text-lg text-zinc-600 font-medium italic mt-1">
-                    Bring Test-Based Nutrition Into Your Business
-                  </p>
-                </div>
+        {/* 9. Learn. Launch. Lead. Details Section */}
+        <section className="py-24 bg-secondary relative overflow-hidden">
+          {/* Top Fade Transition from dark proactive health section above */}
+          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#0c0c0e] to-transparent pointer-events-none z-10" />
+          
+          {/* Bottom Fade Transition to light testing day section below */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#faf8f5] to-transparent pointer-events-none z-10" />
 
-                <div className="space-y-4 text-zinc-600 leading-relaxed font-light">
-                  <p className="text-zinc-800 font-medium text-base">
-                    TBN is more than a testing provider.
-                  </p>
-                  <p>
-                    We help clinics, health clubs, pharmacies, resorts and wellness businesses introduce structured pathways built around testing, screening, retesting and practitioner-led support.
-                  </p>
-                </div>
+          <div className="container max-w-[1100px] mx-auto px-4 sm:px-6 relative z-20">
+            <div className="text-center mb-16">
+              <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">For Businesses</span>
+              <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13] mt-4">Learn. Launch. Lead.</h2>
+              <p className="text-lg text-zinc-700 mt-6 max-w-2xl mx-auto font-light">
+                A complete integration model for clinics, pharmacies, health clubs, academies, resorts and wellness businesses. We help you build a commercially sustainable pathway.
+              </p>
+            </div>
 
-                <div className="pt-4">
-                  <Button 
-                    asChild 
-                    className="bg-[#9f1e13] hover:bg-[#861910] text-white px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg transition-all"
-                  >
-                    <Link to="/partner-with-us">
-                      BOOK A PARTNER DISCOVERY CALL <ArrowUpRight className="ml-2 w-4 h-4" />
-                    </Link>
-                  </Button>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5] shadow-sm">
+                <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 1: Learn</h3>
+                <p className="text-zinc-600 text-sm leading-relaxed font-light">
+                  Train your team in the TBN Method, testing ecosystem, consultation pathway, and compliance-conscious communication. Give your business the confidence to introduce test-based nutrition professionally.
+                </p>
               </div>
 
-              {/* Right Column layout steps */}
-              <div className="lg:col-span-6 space-y-4">
-                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block mb-1">LEARN. LAUNCH. GROW. LEAD.</span>
-                <div className="space-y-4">
-                  {[
-                    { step: "LEARN", text: "Build confidence through training and pathway education." },
-                    { step: "LAUNCH", text: "Introduce TBN with marketing assets, workshops and campaigns." },
-                    { step: "GROW", text: "Create longer-term pathways through follow-up and retesting." },
-                    { step: "LEAD", text: "Expand your impact through partnerships and practitioner support." }
-                  ].map((stepItem, i) => (
-                    <div key={i} className="bg-[#faf8f5] border border-[#dbd4c9]/60 hover:border-[#9f1e13]/20 p-6 rounded-2xl flex gap-4 transition-all">
-                      <span className="text-xs font-bold text-[#9f1e13] font-mono tracking-widest shrink-0 mt-0.5 w-16">
-                        {stepItem.step}
-                      </span>
-                      <p className="text-xs text-zinc-700 font-medium leading-relaxed">
-                        {stepItem.text}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+              <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5] shadow-sm">
+                <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 2: Launch</h3>
+                <p className="text-zinc-600 text-sm leading-relaxed font-light">
+                  Bring test-based nutrition into your real-world service model through consultations, test days, workshops, or screening pathways. The TBN Method becomes part of your business, not an add-on.
+                </p>
+              </div>
+
+              <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5] shadow-sm">
+                <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 3: Lead</h3>
+                <p className="text-zinc-600 text-sm leading-relaxed font-light">
+                  Become known for personalised preventative health. Build stronger client engagement, new revenue streams, and recurring wellness programmes with regional visibility.
+                </p>
               </div>
             </div>
           </div>
         </section>
-
         {/* 10. HOST A TESTING HUB DAY SECTION */}
         <section className="py-24 bg-[#faf8f5] relative overflow-hidden">
           {/* Top Fade Transition */}
