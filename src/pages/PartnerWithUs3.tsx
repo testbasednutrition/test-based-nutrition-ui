@@ -46,7 +46,7 @@ const PartnerWithUs3 = () => {
           <img
             src={heroImg}
             alt="Partner With Test-Based Nutrition"
-            className="w-full h-full object-cover object-center filter brightness-95"
+            className="w-full h-full object-cover object-[65%_center] filter brightness-95"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-transparent"></div>
           {/* Subtle grid pattern overlay */}
