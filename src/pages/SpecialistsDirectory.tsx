@@ -1201,8 +1201,8 @@ const SpecialistsDirectory = () => {
               </p>
 
               {/* Big Photo in the Middle */}
-              <div className="flex justify-center py-1">
-                <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden border border-zinc-200 shadow-md">
+              <div className="flex justify-center py-2">
+                <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-2xl overflow-hidden border border-zinc-200 shadow-md">
                   <img
                     src={welcomedPartner.image}
                     alt={welcomedPartner.name}
@@ -1210,10 +1210,6 @@ const SpecialistsDirectory = () => {
                   />
                 </div>
               </div>
-
-              <p className="text-sm text-zinc-600 leading-relaxed max-w-sm mx-auto">
-                We are thrilled to welcome them to our network of preventative health pioneers. Explore their profile to read their bio and achievements.
-              </p>
 
               {/* CTA Action Buttons */}
               <div className="pt-4 flex flex-col sm:flex-row gap-3">
