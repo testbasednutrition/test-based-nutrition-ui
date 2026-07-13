@@ -37,7 +37,7 @@ import {
   Stethoscope
 } from "lucide-react";
 
-const heroImg = "/images/testing-hero-new.png";
+const heroImg = "/images/testing-hero-new.jpg";
 
 const TestingPageV2 = () => {
   const quizContext = useQuiz();
