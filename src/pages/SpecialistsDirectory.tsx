@@ -1052,11 +1052,6 @@ const SpecialistsDirectory = () => {
                             style={{ objectPosition: specialist.imagePosition || 'center top' }}
                             loading="lazy"
                           />
-                          {isAmbassador && (
-                            <div className="absolute bottom-0 left-0 right-0 bg-[#9f1e13] text-[#faf8f5] text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center py-2 shadow-inner">
-                              TBN Brand Ambassador
-                            </div>
-                          )}
                         </Link>
 
                         {/* Bottom Info Box */}
@@ -1201,29 +1196,30 @@ const SpecialistsDirectory = () => {
               </p>
 
               {/* Profile Card Preview */}
-              <div className="bg-white/80 p-5 rounded-2xl border border-zinc-200/60 shadow-sm flex flex-col sm:flex-row items-center gap-5 text-left">
-                <div className="w-24 h-24 sm:w-20 sm:h-20 rounded-xl overflow-hidden border border-zinc-200 shrink-0 shadow-inner">
+              <div className="bg-white/80 p-6 rounded-2xl border border-zinc-200/60 shadow-sm flex flex-col items-center text-center space-y-4">
+                <div className="space-y-1">
+                  <h3 className="text-xl font-bold text-zinc-900">
+                    {welcomedPartner.name}
+                  </h3>
+                  {welcomedPartner.location && (
+                    <p className="text-xs text-zinc-500 font-semibold flex items-center justify-center gap-1">
+                      <MapPin className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
+                      <span>{welcomedPartner.location}</span>
+                    </p>
+                  )}
+                  {welcomedPartner.clinic_name && (
+                    <p className="text-xs font-bold text-[#9f1e13] uppercase tracking-wider">
+                      {welcomedPartner.clinic_name}
+                    </p>
+                  )}
+                </div>
+
+                <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border border-zinc-200 shadow-md">
                   <img
                     src={welcomedPartner.image}
                     alt={welcomedPartner.name}
                     className="w-full h-full object-cover"
                   />
-                </div>
-                <div className="flex-1 space-y-1.5 text-center sm:text-left min-w-0">
-                  <h3 className="text-lg font-bold text-zinc-900 truncate">
-                    {welcomedPartner.name}
-                  </h3>
-                  {welcomedPartner.clinic_name && (
-                    <p className="text-xs font-semibold text-[#9f1e13] truncate">
-                      {welcomedPartner.clinic_name}
-                    </p>
-                  )}
-                  {welcomedPartner.location && (
-                    <p className="text-xs text-zinc-500 font-medium flex items-center justify-center sm:justify-start gap-1">
-                      <MapPin className="w-3.5 h-3.5 shrink-0 text-zinc-400" />
-                      <span>{welcomedPartner.location}</span>
-                    </p>
-                  )}
                 </div>
               </div>
 
