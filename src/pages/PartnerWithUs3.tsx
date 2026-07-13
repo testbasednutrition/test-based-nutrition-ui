@@ -484,7 +484,7 @@ const PartnerWithUs3 = () => {
       </section>
 
       {/* 10. Host a TBN Testing Hub */}
-      <section className="py-24 bg-white">
+      <section id="host-hub" className="py-24 bg-white">
         <div className="container max-w-[1000px] mx-auto px-4 sm:px-6">
           <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-lg relative overflow-hidden flex flex-col items-center text-center">
             <span className="text-[#9f1e13] font-mono tracking-widest text-xs font-bold uppercase mb-2">TBN NETWORK EVENTS</span>

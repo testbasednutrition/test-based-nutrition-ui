@@ -144,7 +144,7 @@ const clinicsMenuItems = [
 ];
 
 const partnerMenuItems: { label: string; href: string | null }[] = [
-  { label: "Host a TBN Hub", href: "/partner-with-us" },
+  { label: "Host a TBN Hub", href: "/partner-with-us#host-hub" },
   { label: "Clinics & Practitioners", href: "/partner-with-us-2" },
   { label: "Health Clubs", href: "/partner-with-us-2" },
   { label: "Events & Workshops", href: null },
