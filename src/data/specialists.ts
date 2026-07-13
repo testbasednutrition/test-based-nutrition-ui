@@ -79,7 +79,7 @@ export const categories: SpecialistCategory[] = [
 export const specialists: Specialist[] = [
   // ── Medical & Clinical ──
   {
-    slug: "dr-ishtiaq-rehman",
+    slug: "ishtiaq-rehman",
     name: "Dr. Ishtiaq Rehman",
     role: "Co-Director & Medical Director",
     category: "Women's Health",

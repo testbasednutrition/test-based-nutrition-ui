@@ -22,7 +22,7 @@ export const clinics: Clinic[] = [
     contactEmail: "info@londonwellness.co.uk",
     contactPhone: "020 7123 4567",
     specialties: ["Functional Medicine", "Gut Health", "Metabolic Testing", "Women's Health"],
-    specialistSlugs: ["dr-ishtiaq-rehman", "neil-parsley"],
+    specialistSlugs: ["ishtiaq-rehman", "neil-parsley"],
   },
   {
     slug: "hexagon-health",
@@ -34,7 +34,7 @@ export const clinics: Clinic[] = [
     contactEmail: "vhurle@hexagon.health",
     contactPhone: "07815 753332",
     specialties: ["Longevity", "Lifestyle Medicine", "Metabolic Health", "Women's Health"],
-    specialistSlugs: ["dr-ishtiaq-rehman"], // Using our mock GP specialist from earlier
+    specialistSlugs: ["ishtiaq-rehman"], // Using our mock GP specialist from earlier
   },
   {
     slug: "optimise-performance",
