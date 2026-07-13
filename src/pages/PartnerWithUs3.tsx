@@ -91,7 +91,154 @@ const PartnerWithUs3 = () => {
         </div>
       </section>
 
-      {/* 2. Limited Founding Partner Offer Section */}
+      {/* 2. Our Vision Section */}
+      <section className="py-24 bg-[#faf8f5] border-t border-[#dbd4c9]/30">
+        <div className="container max-w-[800px] mx-auto px-4 text-center space-y-6">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#9f1e13] block">OUR VISION</span>
+          <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-zinc-950 uppercase">
+            A NEW ERA IN NUTRITIONAL HEALTHCARE
+          </h2>
+          <p className="text-lg sm:text-xl font-bold text-[#9f1e13] uppercase tracking-widest">
+            Science-Led. Preventative. Transformational.
+          </p>
+          <div className="text-zinc-700 leading-relaxed font-light text-base sm:text-lg space-y-4 max-w-2xl mx-auto">
+            <p>
+              The future belongs to businesses that can combine expertise, education and measurable health insights to create meaningful client journeys.
+            </p>
+            <p className="font-semibold text-[#9f1e13]">
+              TBN helps you deliver exactly that.
+            </p>
+            <p>
+              Through testing. Through education. Through specialist support. Through personalised pathways. And through a system designed to help both your clients and your business thrive.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. The TBN Difference (Why Partners Join TBN) */}
+      <section className="py-24 bg-white">
+        <div className="container max-w-[1200px] mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16 space-y-4 max-w-3xl mx-auto">
+            <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-xs sm:text-sm block">THE TBN DIFFERENCE</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-zinc-950">
+              WHY PARTNERS JOIN TBN
+            </h2>
+            <p className="text-lg text-zinc-600 leading-relaxed font-light">
+              Unlike traditional testing providers, we don't simply provide tests. <br className="hidden md:inline" />
+              We provide the complete ecosystem required to launch, grow and scale a successful preventative health service.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { title: "TRAINING", description: "Structured practitioner education and pathway training." },
+              { title: "MARKETING", description: "Campaigns, social media, launch assets and growth resources." },
+              { title: "SPECIALIST SUPPORT", description: "Access to doctors, specialists and experienced practitioners." },
+              { title: "BUSINESS GROWTH", description: "Systems designed to increase engagement, retention and recurring revenue." },
+              { title: "AI TOOLS", description: "Ready-to-use prompts, content systems and marketing support." },
+              { title: "ONGOING DEVELOPMENT", description: "Workshops, partner education and implementation support." }
+            ].map((pillar, idx) => (
+              <div key={idx} className="bg-[#faf8f5] border border-[#dbd4c9] p-8 rounded-3xl hover:shadow-lg transition-all flex flex-col justify-between group">
+                <div className="space-y-4">
+                  <div className="w-10 h-10 rounded-xl bg-[#9f1e13]/10 text-[#9f1e13] flex items-center justify-center font-mono font-bold text-sm">
+                    0{idx+1}
+                  </div>
+                  <h3 className="text-xl font-bold tracking-tight text-zinc-900 group-hover:text-[#9f1e13] transition-colors uppercase">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-zinc-600 leading-relaxed text-sm font-light">
+                    {pillar.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Partner Segments (Who is TBN For) */}
+      <section className="py-24 bg-white">
+        <div className="container max-w-[1200px] mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16 space-y-4">
+            <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-xs sm:text-sm block">PARTNER SEGMENTS</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-zinc-950 uppercase">
+              WHO IS TBN FOR?
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
+              <div className="space-y-4">
+                <Building2 className="w-8 h-8 text-[#9f1e13]" />
+                <h3 className="text-xl font-bold text-zinc-900 uppercase">CLINICS & PRACTITIONERS</h3>
+                <p className="text-zinc-600 leading-relaxed text-sm font-light">
+                  Enhance osteopathy, chiropractic, physiotherapy, aesthetics and wellness services through testing, education and personalised pathways.
+                </p>
+                <p className="text-zinc-600 leading-relaxed text-sm font-light">
+                  Help clients better understand factors linked to inflammation balance, gut health, recovery, women's health, performance and lifestyle.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
+              <div className="space-y-4">
+                <Store className="w-8 h-8 text-[#9f1e13]" />
+                <h3 className="text-xl font-bold text-zinc-900 uppercase">PHARMACIES</h3>
+                <p className="text-zinc-600 leading-relaxed text-sm font-light">
+                  Move beyond reactive healthcare.
+                </p>
+                <p className="text-zinc-600 leading-relaxed text-sm font-light">
+                  Introduce preventative health conversations through testing, screening and ongoing support pathways.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
+              <div className="space-y-4">
+                <HeartPulse className="w-8 h-8 text-[#9f1e13]" />
+                <h3 className="text-xl font-bold text-zinc-900 uppercase">HEALTH CLUBS & GYMS</h3>
+                <p className="text-zinc-600 leading-relaxed text-sm font-light">
+                  Create premium performance, recovery and longevity services that increase engagement, retention and member value.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Why Partners Choose TBN Checklist */}
+      <section className="py-24 bg-white border-y border-zinc-100">
+        <div className="container max-w-[900px] mx-auto px-4">
+          <h2 className="text-center text-3xl font-playfair font-bold text-zinc-950 uppercase mb-12">
+            WHY PARTNERS CHOOSE TBN
+          </h2>
+          
+          <div className="bg-[#faf8f5] border border-[#dbd4c9] p-8 md:p-12 rounded-[2.5rem] shadow-sm">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                "Foundational Testing and Rapid Screening",
+                "Certified Practitioner Training",
+                "Marketing & Launch Support Included",
+                "Specialist Referral & Escalation Pathways",
+                "Workshops & Community Education Systems",
+                "AI Marketing & Content Resources",
+                "Recurring Revenue Opportunities",
+                "Premium Client Experiences",
+                "A Complete Business-In-A-Box"
+              ].map((val, idx) => (
+                <li key={idx} className="flex items-start gap-3">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#9f1e13]/10 text-[#9f1e13]">
+                    <Check className="h-3.5 w-3.5" strokeWidth={3.5} />
+                  </span>
+                  <span className="text-sm font-semibold text-zinc-700 leading-snug">{val}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Limited Founding Partner Offer Section */}
       <section className="py-24 bg-white relative overflow-hidden border-b border-zinc-100">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#9f1e13]/5 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#dbd4c9]/20 rounded-full blur-[80px] pointer-events-none"></div>
@@ -154,14 +301,14 @@ const PartnerWithUs3 = () => {
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-2.5">
                     <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#9f1e13]/10 text-[#9f1e13]">
-                      <Check className="h-3 w-3" strokeWidth={3} />
+                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
                     </span>
                     <span className="text-xs sm:text-sm font-medium text-zinc-700">{feature}</span>
                   </li>
                 ))}
               </ul>
               
-              <Button className="w-full h-14 bg-[#9f1e13] hover:bg-[#b02216] text-white text-sm font-bold tracking-wide rounded-xl" asChild>
+              <Button className="w-full h-14 bg-[#9f1e13] hover:bg-[#861910] text-white text-sm font-bold tracking-wide rounded-xl" asChild>
                 <a href="#apply">Secure Your Founding Partner Spot</a>
               </Button>
             </div>
@@ -169,7 +316,7 @@ const PartnerWithUs3 = () => {
         </div>
       </section>
 
-      {/* 3. What Could This Look Like Section */}
+      {/* 7. What Could This Look Like Section */}
       <section className="py-24 bg-[#faf8f5] border-b border-[#dbd4c9]/30">
         <div className="container max-w-[1000px] mx-auto px-4 sm:px-6">
           <div className="text-center mb-16 space-y-4">
@@ -239,48 +386,7 @@ const PartnerWithUs3 = () => {
         </div>
       </section>
 
-      {/* 4. Why Partners Join TBN */}
-      <section className="py-24 bg-white">
-        <div className="container max-w-[1200px] mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16 space-y-4 max-w-3xl mx-auto">
-            <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-xs sm:text-sm block">THE TBN DIFFERENCE</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-zinc-950">
-              WHY PARTNERS JOIN TBN
-            </h2>
-            <p className="text-lg text-zinc-600 leading-relaxed font-light">
-              Unlike traditional testing providers, we don't simply provide tests. <br className="hidden md:inline" />
-              We provide the complete ecosystem required to launch, grow and scale a successful preventative health service.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: "TRAINING", description: "Structured practitioner education and pathway training." },
-              { title: "MARKETING", description: "Campaigns, social media, launch assets and growth resources." },
-              { title: "SPECIALIST SUPPORT", description: "Access to doctors, specialists and experienced practitioners." },
-              { title: "BUSINESS GROWTH", description: "Systems designed to increase engagement, retention and recurring revenue." },
-              { title: "AI TOOLS", description: "Ready-to-use prompts, content systems and marketing support." },
-              { title: "ONGOING DEVELOPMENT", description: "Workshops, partner education and implementation support." }
-            ].map((pillar, idx) => (
-              <div key={idx} className="bg-[#faf8f5] border border-[#dbd4c9] p-8 rounded-3xl hover:shadow-lg transition-all flex flex-col justify-between group">
-                <div className="space-y-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#9f1e13]/10 text-[#9f1e13] flex items-center justify-center font-mono font-bold text-sm">
-                    0{idx+1}
-                  </div>
-                  <h3 className="text-xl font-bold tracking-tight text-zinc-900 group-hover:text-[#9f1e13] transition-colors uppercase">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-zinc-600 leading-relaxed text-sm font-light">
-                    {pillar.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Learn. Launch. Lead. Details Section */}
+      {/* 8. Learn. Launch. Lead. Details Section */}
       <section className="py-24 bg-secondary relative overflow-hidden">
         {/* Top Fade Transition */}
         <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#faf8f5] to-transparent pointer-events-none z-10" />
@@ -320,80 +426,7 @@ const PartnerWithUs3 = () => {
         </div>
       </section>
 
-      {/* 6. Who is TBN For */}
-      <section className="py-24 bg-white">
-        <div className="container max-w-[1200px] mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16 space-y-4">
-            <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-xs sm:text-sm block">PARTNER SEGMENTS</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-zinc-950 uppercase">
-              WHO IS TBN FOR?
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
-              <div className="space-y-4">
-                <Building2 className="w-8 h-8 text-[#9f1e13]" />
-                <h3 className="text-xl font-bold text-zinc-900 uppercase">CLINICS & PRACTITIONERS</h3>
-                <p className="text-zinc-600 leading-relaxed text-sm font-light">
-                  Enhance osteopathy, chiropractic, physiotherapy, aesthetics and wellness services through testing, education and personalised pathways.
-                </p>
-                <p className="text-zinc-600 leading-relaxed text-sm font-light">
-                  Help clients better understand factors linked to inflammation balance, gut health, recovery, women's health, performance and lifestyle.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
-              <div className="space-y-4">
-                <Store className="w-8 h-8 text-[#9f1e13]" />
-                <h3 className="text-xl font-bold text-zinc-900 uppercase">PHARMACIES</h3>
-                <p className="text-zinc-600 leading-relaxed text-sm font-light">
-                  Move beyond reactive healthcare.
-                </p>
-                <p className="text-zinc-600 leading-relaxed text-sm font-light">
-                  Introduce preventative health conversations through testing, screening and ongoing support pathways.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
-              <div className="space-y-4">
-                <HeartPulse className="w-8 h-8 text-[#9f1e13]" />
-                <h3 className="text-xl font-bold text-zinc-900 uppercase">HEALTH CLUBS & GYMS</h3>
-                <p className="text-zinc-600 leading-relaxed text-sm font-light">
-                  Create premium performance, recovery and longevity services that increase engagement, retention and member value.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
-              <div className="space-y-4">
-                <ShieldCheck className="w-8 h-8 text-[#9f1e13]" />
-                <h3 className="text-xl font-bold text-zinc-900 uppercase">WELLNESS RESORTS & RETREATS</h3>
-                <p className="text-zinc-600 leading-relaxed text-sm font-light">
-                  Deliver luxury wellness experiences built around personalised health insights, specialist support and measurable outcomes.
-                </p>
-                <p className="text-zinc-600 leading-relaxed text-sm font-light">
-                  Bespoke wellness integration strategies available.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between lg:col-span-2">
-              <div className="space-y-4">
-                <UserCheck className="w-8 h-8 text-[#9f1e13]" />
-                <h3 className="text-xl font-bold text-zinc-900 uppercase">CONSULTANTS & COACHES</h3>
-                <p className="text-zinc-600 leading-relaxed text-sm font-light">
-                  Launch your own TBN Health Hub with complete systems, support and specialist backing.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. The TBN Testing Framework */}
+      {/* 9. The TBN Testing Framework */}
       <section className="py-24 bg-[#faf8f5] border-y border-[#dbd4c9]/30">
         <div className="container max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="text-center mb-16 space-y-4 max-w-3xl mx-auto">
@@ -511,7 +544,7 @@ const PartnerWithUs3 = () => {
               </div>
 
               <div className="mt-8 pt-4 border-t border-zinc-100 text-xs text-zinc-500 leading-relaxed space-y-2">
-                <p>Where further investigation is required, clients can be supported through our wider Collective, including private GP support, specialist referral and advanced testing pathways.</p>
+                <p>Where further investigation is required, clients can be supported through our Collective, including private GP support, specialist referral and advanced testing pathways.</p>
                 <p className="font-semibold text-zinc-700">You don't need to have all the answers. You simply need the right pathway and the right people around you.</p>
               </div>
             </div>
@@ -519,7 +552,7 @@ const PartnerWithUs3 = () => {
         </div>
       </section>
 
-      {/* 8. Host a TBN Testing Hub */}
+      {/* 10. Host a TBN Testing Hub */}
       <section className="py-24 bg-white">
         <div className="container max-w-[1000px] mx-auto px-4 sm:px-6">
           <div className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-lg relative overflow-hidden flex flex-col items-center text-center">
@@ -561,62 +594,6 @@ const PartnerWithUs3 = () => {
                 <a href="#apply">HOST A TESTING HUB DAY</a>
               </Button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. A New Era in Nutritional Healthcare */}
-      <section className="py-24 bg-[#faf8f5] border-t border-[#dbd4c9]/30">
-        <div className="container max-w-[800px] mx-auto px-4 text-center space-y-6">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#9f1e13] block">OUR VISION</span>
-          <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-zinc-950 uppercase">
-            A NEW ERA IN NUTRITIONAL HEALTHCARE
-          </h2>
-          <p className="text-lg sm:text-xl font-bold text-[#9f1e13] uppercase tracking-widest">
-            Science-Led. Preventative. Transformational.
-          </p>
-          <div className="text-zinc-700 leading-relaxed font-light text-base sm:text-lg space-y-4 max-w-2xl mx-auto">
-            <p>
-              The future belongs to businesses that can combine expertise, education and measurable health insights to create meaningful client journeys.
-            </p>
-            <p className="font-semibold text-[#9f1e13]">
-              TBN helps you deliver exactly that.
-            </p>
-            <p>
-              Through testing. Through education. Through specialist support. Through personalised pathways. And through a system designed to help both your clients and your business thrive.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 10. Why Partners Choose TBN Checklist */}
-      <section className="py-24 bg-white border-y border-zinc-100">
-        <div className="container max-w-[900px] mx-auto px-4">
-          <h2 className="text-center text-3xl font-playfair font-bold text-zinc-950 uppercase mb-12">
-            WHY PARTNERS CHOOSE TBN
-          </h2>
-          
-          <div className="bg-[#faf8f5] border border-[#dbd4c9] p-8 md:p-12 rounded-[2.5rem] shadow-sm">
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                "Foundational Testing and Rapid Screening",
-                "Certified Practitioner Training",
-                "Marketing & Launch Support Included",
-                "Specialist Referral & Escalation Pathways",
-                "Workshops & Community Education Systems",
-                "AI Marketing & Content Resources",
-                "Recurring Revenue Opportunities",
-                "Premium Client Experiences",
-                "A Complete Business-In-A-Box"
-              ].map((val, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#9f1e13]/10 text-[#9f1e13]">
-                    <Check className="h-3.5 w-3.5" strokeWidth={3.5} />
-                  </span>
-                  <span className="text-sm font-semibold text-zinc-700 leading-snug">{val}</span>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
