@@ -67,7 +67,7 @@ const AmbassadorProfile = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (slug) {
-      const spec = specialists.find((s) => s.slug === slug && s.is_approved === true);
+      const spec = specialists.find((s) => s.slug === slug);
       if (spec && !AMBASSADOR_SLUGS.includes(slug) && spec.primary_category !== "TBN Brand Ambassador") {
         navigate(`/specialists/${slug}`, { replace: true });
       }

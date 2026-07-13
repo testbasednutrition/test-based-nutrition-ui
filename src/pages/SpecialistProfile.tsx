@@ -166,7 +166,7 @@ const SpecialistProfile = () => {
     queryFn: fetchSpecialists
   });
 
-  const specialist = specialists.find((s) => s.slug === slug && s.is_approved === true);
+  const specialist = specialists.find((s) => s.slug === slug);
 
   // Redirect to Ambassador profile if the slug belongs to an ambassador
   useEffect(() => {
