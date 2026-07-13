@@ -1190,40 +1190,24 @@ const SpecialistsDirectory = () => {
                 <Sparkles className="w-3.5 h-3.5" /> Welcome To The Collective
               </span>
 
-              <h2 className="text-2xl md:text-3xl font-playfair font-bold text-zinc-900 leading-tight">
-                Celebrating Our Newest Partner
+              <h2 className="text-2xl md:text-3xl font-playfair font-bold text-[#9f1e13] leading-tight">
+                {welcomedPartner.name}
               </h2>
 
-              <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
+              <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">
                 {welcomedPartner.slug && (AMBASSADOR_SLUGS.includes(welcomedPartner.slug) || welcomedPartner.primary_category === "TBN Brand Ambassador") 
                   ? "TBN Brand Ambassador" 
                   : welcomedPartner.role || "TBN Specialist"}
               </p>
 
-              {/* Profile Card Preview */}
-              <div className="bg-white/80 p-5 rounded-2xl border border-zinc-200/60 shadow-sm flex flex-col sm:flex-row items-center gap-5 text-left">
-                <div className="w-24 h-24 sm:w-20 sm:h-20 rounded-xl overflow-hidden border border-zinc-200 shrink-0 shadow-inner">
+              {/* Big Photo in the Middle */}
+              <div className="flex justify-center py-1">
+                <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden border border-zinc-200 shadow-md">
                   <img
                     src={welcomedPartner.image}
                     alt={welcomedPartner.name}
                     className="w-full h-full object-cover"
                   />
-                </div>
-                <div className="flex-1 space-y-1.5 text-center sm:text-left min-w-0">
-                  <h3 className="text-lg font-bold text-zinc-900 truncate">
-                    {welcomedPartner.name}
-                  </h3>
-                  {welcomedPartner.clinic_name && (
-                    <p className="text-xs font-semibold text-[#9f1e13] truncate">
-                      {welcomedPartner.clinic_name}
-                    </p>
-                  )}
-                  {welcomedPartner.location && (
-                    <p className="text-xs text-zinc-500 font-medium flex items-center justify-center sm:justify-start gap-1">
-                      <MapPin className="w-3.5 h-3.5 shrink-0 text-zinc-400" />
-                      <span>{welcomedPartner.location}</span>
-                    </p>
-                  )}
                 </div>
               </div>
 
