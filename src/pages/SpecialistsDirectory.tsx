@@ -253,6 +253,9 @@ const SpecialistsDirectory = () => {
   const location = useLocation();
   const state = location.state as { category?: SpecialistCategory; profession?: string; search?: string; testingTier?: string; testingTiers?: string[] } | null;
 
+  const queryParams = new URLSearchParams(location.search);
+  const initialShowAmbassadors = queryParams.get("ambassadors") === "true" || (location.state as any)?.ambassadors === true;
+
   const [activeCategory, setActiveCategory] = useState<SpecialistCategory>(state?.category || "All");
   const [activeProfession, setActiveProfession] = useState<string>(state?.profession || "All");
   const [locationSearch, setLocationSearch] = useState(state?.search || "");
@@ -262,7 +265,7 @@ const SpecialistsDirectory = () => {
     return [];
   });
   const [currentPage, setCurrentPage] = useState(1);
-  const [showAmbassadorsOnly, setShowAmbassadorsOnly] = useState(false);
+  const [showAmbassadorsOnly, setShowAmbassadorsOnly] = useState(initialShowAmbassadors);
   const [selectedNameSearch, setSelectedNameSearch] = useState("");
   const [nameInput, setNameInput] = useState("");
 
@@ -303,6 +306,13 @@ const SpecialistsDirectory = () => {
   useEffect(() => {
     setCurrentPage(1);
   }, [activeCategory, activeProfession, locationSearch, selectedTestingTiers]);
+
+  // Sync ambassadors view when query parameter changes
+  useEffect(() => {
+    const qParams = new URLSearchParams(location.search);
+    const filterAmbassadors = qParams.get("ambassadors") === "true" || (location.state as any)?.ambassadors === true;
+    setShowAmbassadorsOnly(filterAmbassadors);
+  }, [location.search, location.state]);
   
   const { data: specialists = [], isLoading, error } = useQuery({
     queryKey: ['specialists'],

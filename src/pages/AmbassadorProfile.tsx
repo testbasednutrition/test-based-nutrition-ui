@@ -21,6 +21,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { fetchSpecialists } from "@/lib/api";
 import NotFound from "./NotFound";
+import { AMBASSADOR_SLUGS } from "@/data/specialists";
 
 // High-quality action and training galleries for the brand ambassadors
 const AMBASSADOR_GALLERIES: Record<string, string[]> = {
@@ -65,7 +66,10 @@ const AmbassadorProfile = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [slug]);
+    if (slug && !AMBASSADOR_SLUGS.includes(slug)) {
+      navigate(`/specialists/${slug}`, { replace: true });
+    }
+  }, [slug, navigate]);
 
   if (isLoading) {
     return (

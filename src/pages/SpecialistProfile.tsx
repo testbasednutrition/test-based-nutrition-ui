@@ -39,7 +39,7 @@ import { fetchSpecialists } from "@/lib/api";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { type SpecialistCategory } from "@/data/specialists";
+import { type SpecialistCategory, AMBASSADOR_SLUGS } from "@/data/specialists";
 import {
   Select,
   SelectContent,
@@ -165,6 +165,13 @@ const SpecialistProfile = () => {
     queryKey: ['specialists'],
     queryFn: fetchSpecialists
   });
+
+  // Redirect to Ambassador profile if the slug belongs to an ambassador
+  useEffect(() => {
+    if (slug && AMBASSADOR_SLUGS.includes(slug)) {
+      navigate(`/ambassadors/${slug}`, { replace: true });
+    }
+  }, [slug, navigate]);
 
   const specialist = specialists.find((s) => s.slug === slug && s.is_approved === true);
 

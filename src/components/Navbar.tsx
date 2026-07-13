@@ -139,6 +139,7 @@ const tbnMethodMenuItems = [
 
 const clinicsMenuItems = [
   { label: "A Specialist", href: "/specialists" },
+  { label: "An Ambassador", href: "/specialists?ambassadors=true" },
   { label: "A Health Club", href: "/collectives" },
   { label: "A Clinic", href: "/collectives" },
 ];
@@ -279,6 +280,10 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
     if (href.includes("#")) {
       const [path, hash] = href.split("#");
       return location.pathname === path && location.hash === "#" + hash;
+    }
+    if (href.includes("?")) {
+      const [path, search] = href.split("?");
+      return location.pathname === path && location.search === "?" + search;
     }
     return location.pathname === href;
   };

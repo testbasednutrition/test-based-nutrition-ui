@@ -15,14 +15,14 @@ export default function PartnerLeadForm({
   sourcePage,
 }: PartnerLeadFormProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [leadType, setLeadType] = useState<"partner" | "clinic">("partner");
+  const [leadType, setLeadType] = useState<"partner" | "clinic" | "ambassador">("partner");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleOpen = (type: "partner" | "clinic") => {
+  const handleOpen = (type: "partner" | "clinic" | "ambassador") => {
     setLeadType(type);
     setIsOpen(true);
   };
@@ -39,7 +39,12 @@ export default function PartnerLeadForm({
     e.preventDefault();
     setIsLoading(true);
 
-    const chosenOption = leadType === "partner" ? partnerLabel : inviteLabel;
+    const chosenOption = 
+      leadType === "partner" 
+        ? partnerLabel 
+        : leadType === "clinic" 
+          ? inviteLabel 
+          : "Become a TBN Brand Ambassador";
     const referrerCode = localStorage.getItem("tbn_referrer_code");
 
     try {
@@ -201,6 +206,27 @@ export default function PartnerLeadForm({
                           {leadType === "clinic" && <Check className="w-3 h-3 stroke-[3]" />}
                         </div>
                         <span className="truncate">{inviteLabel}</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setLeadType("ambassador")}
+                        className={`w-full flex items-center justify-start gap-2.5 px-3 py-2.5 rounded-xl border text-[12px] font-bold uppercase tracking-wider transition-all duration-200 text-left ${
+                          leadType === "ambassador"
+                            ? "bg-[#9f1e13] border-[#9f1e13] text-white shadow-sm"
+                            : "bg-white border-[#dbd4c9] text-gray-700 hover:bg-gray-50/50"
+                        }`}
+                      >
+                        <div
+                          className={`w-4.5 h-4.5 rounded-md border flex items-center justify-center transition-colors shrink-0 ${
+                            leadType === "ambassador"
+                              ? "bg-white border-white text-[#9f1e13]"
+                              : "bg-white border-gray-300"
+                          }`}
+                        >
+                          {leadType === "ambassador" && <Check className="w-3 h-3 stroke-[3]" />}
+                        </div>
+                        <span className="truncate">Become a TBN Brand Ambassador</span>
                       </button>
                     </div>
                   </div>
