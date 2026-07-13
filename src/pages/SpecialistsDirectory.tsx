@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { type SpecialistCategory, AMBASSADOR_SLUGS } from "@/data/specialists";
@@ -251,7 +251,11 @@ const getTestingButtonLabel = (selected: string[]) => {
 
 const SpecialistsDirectory = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const state = location.state as { category?: SpecialistCategory; profession?: string; search?: string; testingTier?: string; testingTiers?: string[] } | null;
+
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  const [welcomedPartner, setWelcomedPartner] = useState<any>(null);
 
   const queryParams = new URLSearchParams(location.search);
   const initialShowAmbassadors = queryParams.get("ambassadors") === "true" || (location.state as any)?.ambassadors === true;
@@ -318,6 +322,40 @@ const SpecialistsDirectory = () => {
     queryKey: ['specialists'],
     queryFn: fetchSpecialists
   });
+
+  // Dynamic Welcome Popup Detection Logic
+  useEffect(() => {
+    if (import.meta.env.MODE === 'test') {
+      return;
+    }
+    if (!isLoading && specialists && specialists.length > 0) {
+      const newestApproved = specialists.find(s => s.is_approved === true);
+      if (newestApproved) {
+        const storedSlug = localStorage.getItem("tbn_welcomed_partner_slug");
+        if (storedSlug !== newestApproved.slug) {
+          setWelcomedPartner(newestApproved);
+          setShowWelcomeModal(true);
+        }
+      }
+    }
+  }, [isLoading, specialists]);
+
+  const handleCloseWelcomeModal = () => {
+    if (welcomedPartner) {
+      localStorage.setItem("tbn_welcomed_partner_slug", welcomedPartner.slug);
+    }
+    setShowWelcomeModal(false);
+  };
+
+  const handleViewWelcomeProfile = () => {
+    if (welcomedPartner) {
+      localStorage.setItem("tbn_welcomed_partner_slug", welcomedPartner.slug);
+      const isAmbassador = welcomedPartner.slug && (AMBASSADOR_SLUGS.includes(welcomedPartner.slug) || welcomedPartner.primary_category === "TBN Brand Ambassador");
+      const path = isAmbassador ? "ambassadors" : "specialists";
+      navigate(`/${path}/${welcomedPartner.slug}`);
+    }
+    setShowWelcomeModal(false);
+  };
 
   // Apply a basic filter just for show (only show approved profiles in the grid)
   const approvedSpecialists = specialists.filter(s => s.is_approved === true);
@@ -1190,6 +1228,99 @@ const SpecialistsDirectory = () => {
           </div>
         </div>
       </section>
+
+      {/* Dynamic Welcome Modal Popup */}
+      {showWelcomeModal && welcomedPartner && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4 animate-[fadeIn_0.3s_ease-out]">
+          <div className="bg-[#faf8f5] border border-[#dbd4c9] text-zinc-950 rounded-3xl max-w-lg w-full p-8 relative shadow-2xl overflow-hidden animate-[scaleIn_0.3s_ease-out]">
+            {/* Subtle Gradient Accent */}
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#9f1e13] to-amber-600"></div>
+
+            <button 
+              onClick={handleCloseWelcomeModal} 
+              className="absolute top-5 right-5 text-zinc-400 hover:text-zinc-700 transition-colors p-1 bg-white/50 hover:bg-white rounded-full border border-zinc-200"
+              title="Close modal"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            <div className="text-center pt-2 space-y-5">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-[#9f1e13] bg-[#9f1e13]/10 border border-[#9f1e13]/25 animate-pulse">
+                <Sparkles className="w-3.5 h-3.5" /> Welcome To The Collective
+              </span>
+
+              <h2 className="text-2xl md:text-3xl font-playfair font-bold text-zinc-900 leading-tight">
+                Celebrating Our Newest Partner
+              </h2>
+
+              <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
+                {welcomedPartner.slug && (AMBASSADOR_SLUGS.includes(welcomedPartner.slug) || welcomedPartner.primary_category === "TBN Brand Ambassador") 
+                  ? "TBN Brand Ambassador" 
+                  : welcomedPartner.role || "TBN Specialist"}
+              </p>
+
+              {/* Profile Card Preview */}
+              <div className="bg-white/80 p-5 rounded-2xl border border-zinc-200/60 shadow-sm flex flex-col sm:flex-row items-center gap-5 text-left">
+                <div className="w-24 h-24 sm:w-20 sm:h-20 rounded-xl overflow-hidden border border-zinc-200 shrink-0 shadow-inner">
+                  <img
+                    src={welcomedPartner.image}
+                    alt={welcomedPartner.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 space-y-1.5 text-center sm:text-left min-w-0">
+                  <h3 className="text-lg font-bold text-zinc-900 truncate">
+                    {welcomedPartner.name}
+                  </h3>
+                  {welcomedPartner.clinic_name && (
+                    <p className="text-xs font-semibold text-[#9f1e13] truncate">
+                      {welcomedPartner.clinic_name}
+                    </p>
+                  )}
+                  {welcomedPartner.location && (
+                    <p className="text-xs text-zinc-500 font-medium flex items-center justify-center sm:justify-start gap-1">
+                      <MapPin className="w-3.5 h-3.5 shrink-0 text-zinc-400" />
+                      <span>{welcomedPartner.location}</span>
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <p className="text-sm text-zinc-600 leading-relaxed max-w-sm mx-auto">
+                We are thrilled to welcome them to our network of preventative health pioneers. Explore their profile to read their bio and achievements.
+              </p>
+
+              {/* CTA Action Buttons */}
+              <div className="pt-4 flex flex-col sm:flex-row gap-3">
+                <Button 
+                  onClick={handleViewWelcomeProfile}
+                  className="flex-1 h-12 text-xs font-bold tracking-widest bg-[#9f1e13] hover:bg-[#b02216] text-white rounded-xl uppercase hover:text-white"
+                >
+                  View Profile
+                </Button>
+                <Button 
+                  onClick={handleCloseWelcomeModal}
+                  variant="outline"
+                  className="flex-1 h-12 text-xs font-bold tracking-widest border-zinc-300 hover:bg-secondary text-zinc-700 rounded-xl uppercase"
+                >
+                  Explore Directory
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes scaleIn {
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
+        }
+      `}</style>
 
       <Footer />
     </div>
