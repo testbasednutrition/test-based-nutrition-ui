@@ -401,24 +401,24 @@ const TestingPageV2 = () => {
               </div>
 
               {/* Level 2: Baseline Screening */}
-              <div id="rapid-screening" className="bg-[#9f1e13] text-white border border-[#dbd4c9]/25 rounded-[2.5rem] p-8 sm:p-10 shadow-lg hover:shadow-2xl transition-all relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+              <div id="rapid-screening" className="bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 sm:p-10 shadow-md hover:shadow-xl transition-all relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-[#dbd4c9]/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch relative z-10">
                   {/* Left Column (Row Info) */}
                   <div className="lg:col-span-4 flex flex-col justify-between py-2">
                     <div className="space-y-4">
                       <div className="space-y-1">
-                        <span className="text-xs font-extrabold uppercase tracking-widest text-[#dbd4c9] font-sans">LEVEL 2</span>
-                        <h3 className="text-3xl font-playfair font-bold text-white">Baseline Screening</h3>
-                        <p className="text-sm font-semibold text-zinc-200 italic">Rapid finger-prick point-of-care screening.</p>
+                        <span className="text-xs font-extrabold uppercase tracking-widest text-[#9f1e13] font-sans">LEVEL 2</span>
+                        <h3 className="text-3xl font-playfair font-bold text-zinc-900">Baseline Screening</h3>
+                        <p className="text-sm font-semibold text-zinc-500 italic">Rapid finger-prick point-of-care screening.</p>
                       </div>
-                      <p className="text-sm text-zinc-100 leading-relaxed font-light">
+                      <p className="text-sm text-zinc-600 leading-relaxed font-light">
                         Available through selected TBN clinics and health hubs.
                       </p>
                     </div>
                     <div className="mt-6 lg:mt-0">
-                      <p className="text-xs text-white font-semibold inline-flex items-center gap-1.5 bg-white/10 border border-white/20 px-3 py-1.5 rounded-xl">
-                        <Zap className="w-3.5 h-3.5" /> Selected results typically available in 3–15 minutes.
+                      <p className="text-xs font-semibold inline-flex items-center gap-1.5 bg-[#9f1e13]/5 border border-[#9f1e13]/15 text-[#9f1e13] px-3 py-1.5 rounded-xl">
+                        <Zap className="w-3.5 h-3.5 text-[#9f1e13]" /> Selected results typically available in 3–15 minutes.
                       </p>
                     </div>
                   </div>
@@ -426,7 +426,7 @@ const TestingPageV2 = () => {
                   <div className="lg:col-span-8 flex flex-col justify-between gap-8">
                     {/* Section 1: Baseline Screening Markers */}
                     <div className="space-y-3">
-                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#dbd4c9] block">
+                      <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">
                         Baseline Screening Markers
                       </span>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -443,22 +443,22 @@ const TestingPageV2 = () => {
                           { name: "AMH", level: "Level 2", desc: "Anti-Müllerian hormone ovarian reserve" },
                           { name: "Progesterone", level: "Level 2", desc: "Luteal phase support hormone" }
                         ].map((m, i) => (
-                          <div key={i} className="bg-white/10 hover:bg-white/15 border border-white/20 p-3.5 rounded-xl flex flex-col justify-between transition-colors shadow-sm text-white">
+                          <div key={i} className="bg-white border border-[#dbd4c9]/50 p-4 rounded-xl flex flex-col justify-between hover:border-[#9f1e13]/30 transition-colors shadow-sm text-zinc-900">
                             <div>
-                              <span className="text-[8px] font-bold text-zinc-300 uppercase tracking-wider block mb-0.5">
+                              <span className="text-[9px] font-bold text-[#9f1e13] uppercase tracking-wider block mb-1">
                                 {m.level}
                               </span>
-                              <span className="text-xs font-bold text-white">{m.name}</span>
+                              <span className="text-xs font-bold text-zinc-900">{m.name}</span>
                             </div>
-                            <p className="text-[10px] text-zinc-200 font-light mt-1">{m.desc}</p>
+                            <p className="text-[11px] text-zinc-500 font-light mt-1.5">{m.desc}</p>
                           </div>
                         ))}
                       </div>
                     </div>
 
                     {/* Section 2: Additional Point-of-Care Options */}
-                    <div className="space-y-3 border-t border-white/15 pt-6">
-                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#dbd4c9] block">
+                    <div className="space-y-3 border-t border-[#dbd4c9]/50 pt-6">
+                      <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">
                         Additional Point-of-Care Options
                       </span>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -466,14 +466,14 @@ const TestingPageV2 = () => {
                           { name: "NT-proBNP", level: "Level 2 Additional", desc: "Cardiac wall stress screening" },
                           { name: "RSV / Influenza A & B", level: "Level 2 Additional", desc: "Acute point-of-care virus test" }
                         ].map((m, i) => (
-                          <div key={i} className="bg-white/10 hover:bg-white/15 border border-white/20 p-3.5 rounded-xl flex flex-col justify-between transition-colors shadow-sm text-white">
+                          <div key={i} className="bg-white border border-[#dbd4c9]/50 p-4 rounded-xl flex flex-col justify-between hover:border-[#9f1e13]/30 transition-colors shadow-sm text-zinc-900">
                             <div>
-                              <span className="text-[8px] font-bold text-zinc-300 uppercase tracking-wider block mb-0.5">
+                              <span className="text-[9px] font-bold text-[#9f1e13] uppercase tracking-wider block mb-1">
                                 {m.level}
                               </span>
-                              <span className="text-xs font-bold text-white">{m.name}</span>
+                              <span className="text-xs font-bold text-zinc-900">{m.name}</span>
                             </div>
-                            <p className="text-[10px] text-zinc-200 font-light mt-1">{m.desc}</p>
+                            <p className="text-[11px] text-zinc-500 font-light mt-1.5">{m.desc}</p>
                           </div>
                         ))}
                       </div>
