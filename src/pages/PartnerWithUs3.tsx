@@ -999,7 +999,19 @@ const PartnerWithUs3 = () => {
                   <Button type="submit" size="lg" disabled={isLoading} className="flex-1 h-16 text-sm font-bold tracking-widest bg-[#9f1e13] hover:bg-[#b02216] text-white rounded-xl uppercase">
                     {isLoading ? "Submitting..." : "APPLY TO PARTNER WITH TBN"}
                   </Button>
-                  <Button type="button" disabled={isLoading} onClick={() => setIsDiscoveryOpen(true)} size="lg" className="flex-1 h-16 text-sm font-bold tracking-widest bg-transparent hover:bg-zinc-800/5 text-zinc-750 border border-[#dbd4c9] rounded-xl uppercase">
+                  <Button 
+                    type="button" 
+                    disabled={isLoading} 
+                    onClick={() => {
+                      if (!leadForm.fullName.trim() || !leadForm.companyName.trim() || !leadForm.email.trim() || !leadForm.partnershipType) {
+                        toast.error("Please fill out your Name, Company, Email, and Category first to book a call.");
+                        return;
+                      }
+                      setIsDiscoveryOpen(true);
+                    }} 
+                    size="lg" 
+                    className="flex-1 h-16 text-sm font-bold tracking-widest bg-transparent hover:bg-zinc-800/5 text-zinc-750 border border-[#dbd4c9] rounded-xl uppercase"
+                  >
                     BOOK A PARTNER DISCOVERY CALL
                   </Button>
                 </div>
@@ -1009,7 +1021,11 @@ const PartnerWithUs3 = () => {
         </div>
       </section>
 
-      <DiscoveryCallModal isOpen={isDiscoveryOpen} onClose={() => setIsDiscoveryOpen(false)} />
+      <DiscoveryCallModal 
+        isOpen={isDiscoveryOpen} 
+        onClose={() => setIsDiscoveryOpen(false)} 
+        parentLeadForm={leadForm}
+      />
 
       <Footer />
     </div>

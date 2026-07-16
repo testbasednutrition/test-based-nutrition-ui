@@ -10,6 +10,14 @@ import { toast } from "sonner";
 interface DiscoveryCallModalProps {
   isOpen: boolean;
   onClose: () => void;
+  parentLeadForm?: {
+    fullName: string;
+    companyName: string;
+    email: string;
+    phone: string;
+    partnershipType: string;
+    message: string;
+  };
 }
 
 const mapTypeToLabel = (type: string) => {
@@ -37,15 +45,28 @@ const TIME_SLOTS = [
   "16:00 - 16:30"
 ];
 
-export default function DiscoveryCallModal({ isOpen, onClose }: DiscoveryCallModalProps) {
+export default function DiscoveryCallModal({ isOpen, onClose, parentLeadForm }: DiscoveryCallModalProps) {
   const [leadForm, setLeadForm] = useState({
-    fullName: "",
-    companyName: "",
-    email: "",
-    phone: "",
-    partnershipType: "",
-    message: ""
+    fullName: parentLeadForm?.fullName || "",
+    companyName: parentLeadForm?.companyName || "",
+    email: parentLeadForm?.email || "",
+    phone: parentLeadForm?.phone || "",
+    partnershipType: parentLeadForm?.partnershipType || "",
+    message: parentLeadForm?.message || ""
   });
+
+  React.useEffect(() => {
+    if (isOpen && parentLeadForm) {
+      setLeadForm({
+        fullName: parentLeadForm.fullName || "",
+        companyName: parentLeadForm.companyName || "",
+        email: parentLeadForm.email || "",
+        phone: parentLeadForm.phone || "",
+        partnershipType: parentLeadForm.partnershipType || "",
+        message: parentLeadForm.message || ""
+      });
+    }
+  }, [isOpen, parentLeadForm]);
   
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState<string>("");
@@ -249,96 +270,136 @@ export default function DiscoveryCallModal({ isOpen, onClose }: DiscoveryCallMod
 
             <form onSubmit={handleSubmit} className="flex flex-col md:grid md:grid-cols-2 gap-8 items-start">
               
-              {/* Left Column: Form Details */}
-              <div className="w-full space-y-4">
-                <div className="space-y-1">
-                  <label htmlFor="fullName" className="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Full Name *</label>
-                  <Input 
-                    id="fullName" 
-                    value={leadForm.fullName} 
-                    onChange={handleInputChange} 
-                    disabled={isSubmitting}
-                    placeholder="Your Name" 
-                    className="h-11 bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13] text-xs" 
-                    required 
-                  />
-                </div>
-
-                <div className="space-y-1">
-                  <label htmlFor="companyName" className="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Clinic / Company Name *</label>
-                  <Input 
-                    id="companyName" 
-                    value={leadForm.companyName} 
-                    onChange={handleInputChange} 
-                    disabled={isSubmitting}
-                    placeholder="Your Business Name" 
-                    className="h-11 bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13] text-xs" 
-                    required 
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
+              {/* Left Column: Form Details / Info Summary */}
+              {!parentLeadForm ? (
+                <div className="w-full space-y-4">
                   <div className="space-y-1">
-                    <label htmlFor="email" className="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Email Address *</label>
+                    <label htmlFor="fullName" className="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Full Name *</label>
                     <Input 
-                      id="email" 
-                      type="email" 
-                      value={leadForm.email} 
+                      id="fullName" 
+                      value={leadForm.fullName} 
                       onChange={handleInputChange} 
                       disabled={isSubmitting}
-                      placeholder="email@address.com" 
+                      placeholder="Your Name" 
                       className="h-11 bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13] text-xs" 
                       required 
                     />
                   </div>
+
                   <div className="space-y-1">
-                    <label htmlFor="phone" className="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Phone Number</label>
+                    <label htmlFor="companyName" className="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Clinic / Company Name *</label>
                     <Input 
-                      id="phone" 
-                      value={leadForm.phone} 
+                      id="companyName" 
+                      value={leadForm.companyName} 
                       onChange={handleInputChange} 
                       disabled={isSubmitting}
-                      placeholder="Your Number" 
+                      placeholder="Your Business Name" 
                       className="h-11 bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13] text-xs" 
+                      required 
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <label htmlFor="email" className="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Email Address *</label>
+                      <Input 
+                        id="email" 
+                        type="email" 
+                        value={leadForm.email} 
+                        onChange={handleInputChange} 
+                        disabled={isSubmitting}
+                        placeholder="email@address.com" 
+                        className="h-11 bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13] text-xs" 
+                        required 
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label htmlFor="phone" className="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Phone Number</label>
+                      <Input 
+                        id="phone" 
+                        value={leadForm.phone} 
+                        onChange={handleInputChange} 
+                        disabled={isSubmitting}
+                        placeholder="Your Number" 
+                        className="h-11 bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13] text-xs" 
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label htmlFor="partnershipType" className="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Partnership Type *</label>
+                    <select 
+                      id="partnershipType" 
+                      value={leadForm.partnershipType} 
+                      onChange={handleInputChange} 
+                      disabled={isSubmitting}
+                      className="flex h-11 w-full rounded-md border border-[#dbd4c9] bg-white text-zinc-900 px-3 py-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9f1e13]" 
+                      required
+                    >
+                      <option value="" disabled className="text-zinc-400">Select a category</option>
+                      <option value="clinic">Clinic / Private Practice</option>
+                      <option value="pharmacy">Pharmacy</option>
+                      <option value="healthClub">Health Club / Gym</option>
+                      <option value="hub">TBN Hub</option>
+                      <option value="academy">Training Academy</option>
+                      <option value="retreat">Retreat / Resort</option>
+                      <option value="expert">Specialist / Consultant</option>
+                      <option value="ambassador">TBN Brand Ambassador</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label htmlFor="message" className="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Additional details (Optional)</label>
+                    <Textarea 
+                      id="message" 
+                      value={leadForm.message} 
+                      onChange={handleInputChange} 
+                      disabled={isSubmitting}
+                      placeholder="Tell us briefly about your expectations or goals..." 
+                      className="bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13] min-h-[80px] text-xs" 
                     />
                   </div>
                 </div>
-
-                <div className="space-y-1">
-                  <label htmlFor="partnershipType" className="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Partnership Type *</label>
-                  <select 
-                    id="partnershipType" 
-                    value={leadForm.partnershipType} 
-                    onChange={handleInputChange} 
-                    disabled={isSubmitting}
-                    className="flex h-11 w-full rounded-md border border-[#dbd4c9] bg-white text-zinc-900 px-3 py-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9f1e13]" 
-                    required
-                  >
-                    <option value="" disabled className="text-zinc-400">Select a category</option>
-                    <option value="clinic">Clinic / Private Practice</option>
-                    <option value="pharmacy">Pharmacy</option>
-                    <option value="healthClub">Health Club / Gym</option>
-                    <option value="hub">TBN Hub</option>
-                    <option value="academy">Training Academy</option>
-                    <option value="retreat">Retreat / Resort</option>
-                    <option value="expert">Specialist / Consultant</option>
-                    <option value="ambassador">TBN Brand Ambassador</option>
-                    <option value="other">Other</option>
-                  </select>
+              ) : (
+                <div className="w-full space-y-6 bg-[#faf8f5]/60 border border-[#dbd4c9]/60 p-6 rounded-2xl">
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-[#9f1e13]/80 border-b border-[#dbd4c9]/45 pb-2">
+                    Partner Information Summary
+                  </h4>
+                  <div className="grid grid-cols-2 gap-4 text-xs">
+                    <div>
+                      <span className="font-bold text-zinc-500 uppercase text-[9px] tracking-wider block mb-0.5">Full Name</span>
+                      <p className="font-semibold text-zinc-900">{leadForm.fullName}</p>
+                    </div>
+                    <div>
+                      <span className="font-bold text-zinc-500 uppercase text-[9px] tracking-wider block mb-0.5">Company Name</span>
+                      <p className="font-semibold text-zinc-900">{leadForm.companyName}</p>
+                    </div>
+                    <div className="col-span-2">
+                      <span className="font-bold text-zinc-500 uppercase text-[9px] tracking-wider block mb-0.5">Email Address</span>
+                      <p className="font-semibold text-zinc-900 break-all">{leadForm.email}</p>
+                    </div>
+                    {leadForm.phone && (
+                      <div className="col-span-2">
+                        <span className="font-bold text-zinc-500 uppercase text-[9px] tracking-wider block mb-0.5">Phone Number</span>
+                        <p className="font-semibold text-zinc-900">{leadForm.phone}</p>
+                      </div>
+                    )}
+                    <div className="col-span-2">
+                      <span className="font-bold text-zinc-500 uppercase text-[9px] tracking-wider block mb-0.5">Partnership Type</span>
+                      <p className="font-semibold text-zinc-900">{mapTypeToLabel(leadForm.partnershipType)}</p>
+                    </div>
+                  </div>
+                  {leadForm.message && (
+                    <div className="border-t border-[#dbd4c9]/40 pt-4">
+                      <span className="font-bold text-zinc-500 uppercase text-[9px] tracking-wider block mb-1">Additional Details</span>
+                      <p className="text-zinc-600 font-normal leading-relaxed text-xs italic bg-white p-3 rounded-lg border border-zinc-100">
+                        "{leadForm.message}"
+                      </p>
+                    </div>
+                  )}
                 </div>
-
-                <div className="space-y-1">
-                  <label htmlFor="message" className="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Additional details (Optional)</label>
-                  <Textarea 
-                    id="message" 
-                    value={leadForm.message} 
-                    onChange={handleInputChange} 
-                    disabled={isSubmitting}
-                    placeholder="Tell us briefly about your expectations or goals..." 
-                    className="bg-white border-[#dbd4c9] text-zinc-900 placeholder:text-zinc-400 focus-visible:ring-[#9f1e13] min-h-[80px] text-xs" 
-                  />
-                </div>
-              </div>
+              )}
 
               {/* Right Column: Calendar and Time Selection */}
               <div className="w-full space-y-4">
