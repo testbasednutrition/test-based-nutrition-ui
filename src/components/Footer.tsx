@@ -4,12 +4,14 @@ import InstagramFeed from "./InstagramFeed";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 import { X, Loader2, CheckCircle2 } from "lucide-react";
+import { useQuiz } from "@/components/QuizContext";
 
 interface FooterProps {
   hideInstagram?: boolean;
 }
 
 const Footer = ({ hideInstagram = false }: FooterProps) => {
+  const { openQuiz } = useQuiz();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -157,7 +159,7 @@ const Footer = ({ hideInstagram = false }: FooterProps) => {
               Book your free consultation or find a clinic near you to start your journey.
             </p>
             <button
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => openQuiz()}
               className="inline-flex items-center justify-center rounded-md bg-[#9f1e13] text-white px-6 py-2.5 text-sm font-bold hover:bg-[#861910] transition-colors w-full cursor-pointer"
             >
               Book Now
