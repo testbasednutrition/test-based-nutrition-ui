@@ -726,17 +726,17 @@ const SpecialistProfile = () => {
                     <h1 className="text-2xl font-extrabold tracking-tight text-foreground uppercase mb-2">
                       {specialist.name}
                     </h1>
-                    <div className="flex flex-wrap justify-center gap-2">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-[#9f1e13] border border-primary/20">
+                    <div className="flex flex-wrap justify-center items-stretch gap-2.5">
+                      <span className="inline-flex items-center justify-center text-center px-4 py-2 rounded-xl text-[10px] font-extrabold uppercase tracking-widest bg-[#9f1e13]/5 text-[#9f1e13] border border-[#9f1e13]/25 leading-normal max-w-[200px]">
                         {specialist.category}
                       </span>
                       {specialist.specificTitle && (
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary text-secondary-foreground border border-border">
+                        <span className="inline-flex items-center justify-center text-center px-4 py-2 rounded-xl text-[10px] font-extrabold uppercase tracking-widest bg-[#dbd4c9]/15 text-zinc-700 border border-[#dbd4c9]/45 leading-normal max-w-[200px]">
                           {specialist.specificTitle}
                         </span>
                       )}
                       {specialist.is_tbn_leadership && (
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#1a3646] text-[#faf8f5] border border-[#1a3646]/20">
+                        <span className="inline-flex items-center justify-center text-center px-4 py-2 rounded-xl text-[10px] font-extrabold uppercase tracking-widest bg-[#1a3646] text-[#faf8f5] border border-[#1a3646]/30 leading-normal max-w-[200px]">
                           TBN Leadership: {specialist.tbn_leadership_title || "Team"}
                         </span>
                       )}
@@ -770,17 +770,17 @@ const SpecialistProfile = () => {
                       </h1>
 
                       {/* Category Badge & Specific Title */}
-                      <div className="hidden md:flex items-center gap-2 mb-3">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-[#9f1e13] border border-primary/20">
+                      <div className="hidden md:flex flex-wrap items-stretch gap-2.5 mb-4">
+                        <span className="inline-flex items-center justify-center text-center px-4 py-2 rounded-xl text-[10px] font-extrabold uppercase tracking-widest bg-[#9f1e13]/5 text-[#9f1e13] border border-[#9f1e13]/25 leading-normal max-w-[200px]">
                           {specialist.category}
                         </span>
                         {specialist.specificTitle && (
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary text-secondary-foreground border border-border">
+                          <span className="inline-flex items-center justify-center text-center px-4 py-2 rounded-xl text-[10px] font-extrabold uppercase tracking-widest bg-[#dbd4c9]/15 text-zinc-700 border border-[#dbd4c9]/45 leading-normal max-w-[200px]">
                             {specialist.specificTitle}
                           </span>
                         )}
                         {specialist.is_tbn_leadership && (
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#1a3646] text-[#faf8f5] border border-[#1a3646]/20">
+                          <span className="inline-flex items-center justify-center text-center px-4 py-2 rounded-xl text-[10px] font-extrabold uppercase tracking-widest bg-[#1a3646] text-[#faf8f5] border border-[#1a3646]/30 leading-normal max-w-[220px]">
                             TBN Leadership: {specialist.tbn_leadership_title || "Team"}
                           </span>
                         )}
