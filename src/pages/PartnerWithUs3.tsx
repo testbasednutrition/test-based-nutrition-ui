@@ -375,9 +375,6 @@ const PartnerWithUs3 = () => {
                 <div className="flex items-baseline gap-2 mb-4">
                   <span className="text-5xl sm:text-7xl font-bold font-playfair tracking-tight text-zinc-950">£1,250</span>
                 </div>
-                <p className="text-lg font-semibold text-zinc-800 leading-relaxed">
-                  Receive over £6,000 of training, marketing and launch support included.
-                </p>
                 <p className="text-sm sm:text-base text-zinc-600 font-light mt-4 leading-relaxed">
                   Designed for clinics, pharmacies, health clubs, wellness businesses, resorts and practitioners looking to introduce a complete preventative health service without building it themselves.
                 </p>
@@ -385,7 +382,10 @@ const PartnerWithUs3 = () => {
 
               <div className="border-t border-[#dbd4c9]/60 pt-6">
                 <span className="text-xs font-bold uppercase tracking-widest text-zinc-400 block mb-2">Total Added Value</span>
-                <span className="text-3xl sm:text-4xl font-bold font-playfair text-[#9f1e13]">£6,000+</span>
+                <span className="text-3xl sm:text-4xl font-bold font-playfair text-[#9f1e13] block mb-2">£6,000+</span>
+                <p className="text-sm font-semibold text-zinc-800 leading-relaxed">
+                  Receive over £6,000 of training, marketing and launch support included.
+                </p>
               </div>
             </div>
 
