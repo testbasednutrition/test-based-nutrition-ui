@@ -233,9 +233,9 @@ export default function DiscoveryCallModal({ isOpen, onClose, parentLeadForm }: 
             <div className="w-20 h-20 bg-[#9f1e13]/10 rounded-full flex items-center justify-center mx-auto text-[#9f1e13]">
               <CheckCircle2 className="w-10 h-10" />
             </div>
-            <h3 className="text-2xl font-bold font-playfair text-zinc-900 uppercase tracking-tight">Discovery Call Scheduled!</h3>
+            <h3 className="text-2xl font-bold font-playfair text-zinc-900 uppercase tracking-tight">Booking Confirmed!</h3>
             <p className="text-zinc-600 max-w-md mx-auto text-sm leading-relaxed">
-              Thank you for booking! We are redirecting you to your email client to send confirmation to our team.
+              Thank you for your Booking, we will contact you shortly.
             </p>
             {selectedDate && (
               <div className="bg-white border border-[#dbd4c9] p-4 rounded-xl max-w-md mx-auto mt-6 text-left space-y-2">
