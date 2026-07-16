@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QuizProvider } from "@/components/QuizContext";
 import Quiz from "@/components/Quiz";
+import BookingModal from "@/components/BookingModal";
 import FloatingQuizCTA from "@/components/FloatingQuizCTA";
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
@@ -50,6 +51,7 @@ const App = () => (
         <Sonner />
         <CopyProtection />
         <Quiz />
+        <BookingModal />
         <FloatingQuizCTA />
         <BrowserRouter>
           <ScrollToTop />

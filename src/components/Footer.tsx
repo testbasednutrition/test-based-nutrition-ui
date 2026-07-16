@@ -7,7 +7,7 @@ interface FooterProps {
 }
 
 const Footer = ({ hideInstagram = false }: FooterProps) => {
-  const { openQuiz } = useQuiz();
+  const { openBooking } = useQuiz();
 
   return (
     <>
@@ -76,7 +76,7 @@ const Footer = ({ hideInstagram = false }: FooterProps) => {
                 Book your free consultation or find a clinic near you to start your journey.
               </p>
               <button
-                onClick={() => openQuiz()}
+                onClick={() => openBooking()}
                 className="inline-flex items-center justify-center rounded-md bg-[#9f1e13] text-white px-6 py-2.5 text-sm font-bold hover:bg-[#861910] transition-colors w-full cursor-pointer"
               >
                 Book Now

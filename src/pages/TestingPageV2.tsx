@@ -42,6 +42,7 @@ const heroImg = "/images/testing-hero-new.jpg";
 const TestingPageV2 = () => {
   const quizContext = useQuiz();
   const openQuiz = quizContext?.openQuiz || (() => {});
+  const openBooking = quizContext?.openBooking || (() => {});
   const location = useLocation();
   
   const [showAllMarkers, setShowAllMarkers] = useState(false);
@@ -105,7 +106,7 @@ const TestingPageV2 = () => {
 
               <div className="pt-4 flex flex-col sm:flex-row gap-4">
                 <Button 
-                  onClick={() => openQuiz()}
+                  onClick={() => openBooking()}
                   className="bg-[#9f1e13] hover:bg-[#861910] text-white px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg shadow-red-950/20 transition-all flex items-center justify-center gap-2"
                 >
                   BOOK A FREE CONSULTATION <ArrowRight className="w-4 h-4" />
@@ -970,7 +971,7 @@ const TestingPageV2 = () => {
 
             <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                onClick={() => openQuiz()}
+                onClick={() => openBooking()}
                 className="bg-white hover:bg-zinc-50 text-[#9f1e13] px-8 h-14 text-sm font-bold tracking-wider rounded-xl shadow-lg transition-all"
               >
                 BOOK MY FREE CONSULTATION <ArrowRight className="ml-2 w-4 h-4" />
