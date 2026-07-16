@@ -467,10 +467,11 @@ const TestingPageV2 = () => {
               </div>
 
               {/* Show all markers expansion list */}
+              {/* Show all markers expansion list */}
               {showAllMarkers && (
                 <div className="bg-secondary/20 border border-[#dbd4c9]/80 rounded-[2rem] p-8 shadow-inner animate-in fade-in slide-in-from-top-4 duration-300">
                   <h4 className="text-lg font-playfair font-bold text-zinc-900 mb-6 flex items-center gap-2">
-                    <Layers className="w-5 h-5 text-[#9f1e13]" /> Full Point-of-Care Marker List
+                    <Layers className="w-5 h-5 text-[#9f1e13]" /> Full Level 2 Point-of-Care Marker List
                   </h4>
                   <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {[
@@ -486,11 +487,7 @@ const TestingPageV2 = () => {
                       { name: "AMH", level: "Level 2", desc: "Anti-Müllerian hormone ovarian reserve" },
                       { name: "Progesterone", level: "Level 2", desc: "Luteal phase support hormone" },
                       { name: "NT-proBNP", level: "Level 2 Additional", desc: "Cardiac wall stress screening" },
-                      { name: "RSV / Influenza A & B", level: "Level 2 Additional", desc: "Acute point-of-care virus test" },
-                      { name: "Testosterone", level: "Level 3", desc: "Primary androgen status" },
-                      { name: "Vitamin B12", level: "Level 3", desc: "Neurological & red cell support" },
-                      { name: "FSH", level: "Level 3", desc: "Follicle-stimulating hormone" },
-                      { name: "TSH", level: "Level 3", desc: "Thyroid-stimulating hormone" }
+                      { name: "RSV / Influenza A & B", level: "Level 2 Additional", desc: "Acute point-of-care virus test" }
                     ].map((m, i) => (
                       <div key={i} className="bg-white p-4 rounded-xl border border-[#dbd4c9]/50 shadow-sm flex flex-col justify-between hover:border-[#9f1e13]/30 transition-colors">
                         <div>
@@ -527,11 +524,21 @@ const TestingPageV2 = () => {
                   <div className="lg:col-span-8 flex flex-col justify-between gap-6">
                     <div className="space-y-3">
                       <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">Markers may include:</span>
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        {["Testosterone", "Vitamin B12", "FSH", "TSH"].map((m, i) => (
-                          <div key={i} className="bg-white border border-[#dbd4c9]/50 p-4 rounded-xl flex items-center gap-2.5 shadow-sm">
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#9f1e13]"></div>
-                            <span className="text-xs font-bold text-zinc-800">{m}</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {[
+                          { name: "Testosterone", level: "Level 3", desc: "Primary androgen status" },
+                          { name: "Vitamin B12", level: "Level 3", desc: "Neurological & red cell support" },
+                          { name: "FSH", level: "Level 3", desc: "Follicle-stimulating hormone" },
+                          { name: "TSH", level: "Level 3", desc: "Thyroid-stimulating hormone" }
+                        ].map((m, i) => (
+                          <div key={i} className="bg-white border border-[#dbd4c9]/50 p-4 rounded-xl flex flex-col justify-between hover:border-[#9f1e13]/30 transition-colors shadow-sm">
+                            <div>
+                              <span className="text-[9px] font-bold text-[#9f1e13] uppercase tracking-wider block mb-1">
+                                {m.level}
+                              </span>
+                              <span className="text-xs font-bold text-zinc-900">{m.name}</span>
+                            </div>
+                            <p className="text-[11px] text-zinc-500 font-light mt-1.5">{m.desc}</p>
                           </div>
                         ))}
                       </div>
