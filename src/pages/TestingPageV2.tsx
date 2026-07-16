@@ -111,11 +111,13 @@ const TestingPageV2 = () => {
                   BOOK A FREE CONSULTATION <ArrowRight className="w-4 h-4" />
                 </Button>
                 <Button 
-                  onClick={() => openQuiz()}
+                  asChild
                   variant="outline"
-                  className="border-[#dbd4c9] text-zinc-800 hover:bg-secondary/20 px-8 h-14 text-sm font-bold tracking-wider rounded-xl transition-all"
+                  className="border-[#dbd4c9] text-zinc-800 hover:bg-secondary/20 px-8 h-14 text-sm font-bold tracking-wider rounded-xl transition-all cursor-pointer"
                 >
-                  FIND MY NEAREST TBN HUB
+                  <Link to="/specialists">
+                    FIND MY NEAREST TBN HUB
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -974,11 +976,13 @@ const TestingPageV2 = () => {
                 BOOK MY FREE CONSULTATION <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
               <Button 
-                onClick={() => openQuiz()}
+                asChild
                 variant="outline"
-                className="border-white/30 text-white bg-white/10 hover:bg-white/20 px-8 h-14 text-sm font-bold tracking-wider rounded-xl transition-all"
+                className="border-white/30 text-white bg-white/10 hover:bg-white/20 px-8 h-14 text-sm font-bold tracking-wider rounded-xl transition-all cursor-pointer"
               >
-                FIND MY NEAREST TBN HUB
+                <Link to="/specialists">
+                  FIND MY NEAREST TBN HUB
+                </Link>
               </Button>
               <Button 
                 asChild

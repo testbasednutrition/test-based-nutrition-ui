@@ -61,11 +61,12 @@ const TestingPage = () => {
                   className="bg-[#9f1e13] hover:bg-[#9f1e13] transition-colors text-white px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2 shadow-lg">
                   Order My Balance Test Kit <ArrowRight className="w-4 h-4" />
                 </button>
-                <button 
-                  onClick={() => openQuiz()}
-                  className="bg-white hover:bg-gray-50 border border-gray-200 transition-colors text-gray-900 px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2 shadow-sm">
+                <Link 
+                  to="/specialists"
+                  className="bg-white hover:bg-gray-50 border border-gray-200 transition-colors text-gray-900 px-8 py-3.5 rounded-md font-bold text-[15px] flex justify-center items-center gap-2 shadow-sm cursor-pointer"
+                >
                   Find My Nearest TBN Hub
-                </button>
+                </Link>
               </div>
            </div>
         </div>
