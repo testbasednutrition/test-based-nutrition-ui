@@ -889,7 +889,7 @@ const PartnerWithUs3 = () => {
               JOIN THE NEXT GENERATION OF<br />PREVENTATIVE HEALTH BUSINESS
             </h2>
             <p className="text-zinc-950 text-sm font-bold tracking-widest uppercase">
-              Applications for the Founding Partner Programme close 31st July 2026.
+              Applications for the Founding Partner Programme close 31st August 2026.
             </p>
           </div>
 
