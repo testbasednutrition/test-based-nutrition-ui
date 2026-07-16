@@ -363,7 +363,7 @@ const PartnerWithUs3 = () => {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#9f1e13]/10 text-[#9f1e13] font-bold tracking-wider uppercase text-xs">
               <Sparkles className="w-3.5 h-3.5" /> LIMITED FOUNDING PARTNER OFFER
             </span>
-            <p className="text-[#9f1e13] text-sm font-bold tracking-widest uppercase">Available Until 31st July 2026</p>
+            <p className="text-[#9f1e13] text-sm font-bold tracking-widest uppercase">Available Until 31st August 2026</p>
             <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-zinc-950">THE TBN BUSINESS-IN-A-BOX™</h2>
           </div>
 
@@ -373,7 +373,6 @@ const PartnerWithUs3 = () => {
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-[#9f1e13] mb-3">Partner Investment</p>
                 <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-2xl sm:text-3xl font-playfair italic text-zinc-500">from</span>
                   <span className="text-5xl sm:text-7xl font-bold font-playfair tracking-tight text-zinc-950">£1,250</span>
                 </div>
                 <p className="text-lg font-semibold text-zinc-800 leading-relaxed">
@@ -397,7 +396,7 @@ const PartnerWithUs3 = () => {
               </div>
               
               <h3 className="text-sm font-bold text-zinc-900 uppercase tracking-widest border-b border-zinc-100 pb-4 mb-6">
-                INCLUDED FREE UNTIL 31ST JULY 2026
+                INCLUDED FREE UNTIL 31ST AUGUST 2026
               </h3>
               
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3.5 gap-x-4 mb-8">
@@ -427,6 +426,108 @@ const PartnerWithUs3 = () => {
               <Button className="w-full h-14 bg-[#9f1e13] hover:bg-[#861910] text-white text-sm font-bold tracking-wide rounded-xl" asChild>
                 <a href="#apply">Secure Your Founding Partner Spot</a>
               </Button>
+            </div>
+          </div>
+
+          {/* Month-One Opportunity Section */}
+          <div className="mt-16 bg-[#faf8f5] border border-[#dbd4c9] rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-xl space-y-12">
+            <div className="text-center space-y-4">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#9f1e13] block">
+                WHAT COULD THIS LOOK LIKE IN YOUR BUSINESS?
+              </span>
+              <h3 className="text-3xl sm:text-4xl font-playfair font-bold text-zinc-950 uppercase">
+                POTENTIAL MONTH-ONE OPPORTUNITY
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+              {/* Financial Calculations - Left Side */}
+              <div className="lg:col-span-7 bg-white border border-[#dbd4c9] rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+                <h4 className="text-sm font-bold uppercase tracking-widest text-zinc-800 border-b border-zinc-100 pb-3">
+                  Illustrative Earnings Breakdown
+                </h4>
+                
+                <div className="space-y-4 text-sm">
+                  {/* Step 1 */}
+                  <div className="flex justify-between items-center gap-4 py-2 border-b border-zinc-100/60">
+                    <div className="space-y-1">
+                      <p className="font-semibold text-zinc-900">40 free launch tests sold at £69</p>
+                    </div>
+                    <span className="text-lg font-bold text-zinc-900 font-sans">£2,760</span>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className="flex justify-between items-center gap-4 py-2 border-b border-zinc-100/60">
+                    <div className="space-y-1">
+                      <p className="font-semibold text-zinc-900">40 additional tests sold at £69</p>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-lg font-bold text-zinc-900 font-sans block">£2,760 <span className="text-xs font-normal text-zinc-500">revenue</span></span>
+                      <span className="text-xs font-bold text-emerald-600">£1,760 profit <span className="font-normal text-zinc-500">after test costs</span></span>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="flex justify-between items-center gap-4 py-2 border-b border-zinc-100/60">
+                    <div className="space-y-1">
+                      <p className="font-semibold text-zinc-900">Potential retail profit from TBN stock kits</p>
+                    </div>
+                    <span className="text-lg font-bold text-zinc-900 font-sans">£2,000</span>
+                  </div>
+
+                  {/* Step 4 */}
+                  <div className="flex justify-between items-center gap-4 py-2 text-zinc-500 border-b border-zinc-100/60">
+                    <div className="space-y-1">
+                      <p className="font-semibold">Less monthly machine fee</p>
+                    </div>
+                    <span className="text-lg font-bold font-sans">-£250</span>
+                  </div>
+                </div>
+
+                {/* Highlighted Totals */}
+                <div className="bg-[#9f1e13]/5 border border-[#9f1e13]/10 rounded-2xl p-6 grid grid-cols-2 gap-4 text-center">
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#9f1e13]">Potential Revenue</p>
+                    <p className="text-2xl sm:text-3xl font-bold font-playfair text-[#9f1e13]">£7,520</p>
+                  </div>
+                  <div className="space-y-1 border-l border-[#9f1e13]/20">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#9f1e13]">Potential Profit</p>
+                    <p className="text-2xl sm:text-3xl font-bold font-playfair text-[#9f1e13]">£6,270</p>
+                  </div>
+                </div>
+
+                <p className="text-[11px] text-zinc-500 italic leading-relaxed text-center">
+                  Plus further revenue from treatments, programmes, follow-up appointments and retesting. 
+                  Illustrative figures based on clinic activity and sales performance.
+                </p>
+              </div>
+
+              {/* Ongoing Opportunities - Right Side */}
+              <div className="lg:col-span-5 bg-white border border-[#dbd4c9] rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm h-full flex flex-col justify-between">
+                <div>
+                  <h4 className="text-sm font-bold uppercase tracking-widest text-zinc-800 border-b border-zinc-100 pb-3 mb-6">
+                    Plus Ongoing Opportunities Through:
+                  </h4>
+                  
+                  <ul className="space-y-3.5">
+                    {[
+                      "Reviews",
+                      "Retesting",
+                      "Programmes",
+                      "Memberships",
+                      "Workshops",
+                      "Practitioner Referrals",
+                      "Supplement Subscriptions",
+                      "Long-Term Client Pathways"
+                    ].map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-3">
+                        <span className="flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#9f1e13]" />
+                        <span className="text-sm font-medium text-zinc-700">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
