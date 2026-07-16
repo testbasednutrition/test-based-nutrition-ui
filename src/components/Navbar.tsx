@@ -140,8 +140,8 @@ const tbnMethodMenuItems = [
 const clinicsMenuItems = [
   { label: "A Specialist", href: "/specialists" },
   { label: "An Ambassador", href: "/specialists?ambassadors=true" },
-  { label: "A Health Club", href: "/collectives" },
-  { label: "A Clinic", href: "/collectives" },
+  { label: "A Health Club", href: "/collectives", disabled: true },
+  { label: "A Clinic", href: "/collectives", disabled: true },
 ];
 
 const partnerMenuItems: { label: string; href: string | null }[] = [
@@ -446,8 +446,19 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                       Find a:
                     </div>
                     {clinicsMenuItems.map((item) => (
-                      <MenubarItem key={item.label} className="cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent" asChild>
-                        <a href={item.href} className={`${getDropdownItemClass(item.href)} pl-5`}>{item.label}</a>
+                      <MenubarItem 
+                        key={item.label} 
+                        className={item.disabled ? "p-0 focus:bg-transparent data-[highlighted]:bg-transparent" : "cursor-pointer p-0 focus:bg-transparent data-[highlighted]:bg-transparent"} 
+                        disabled={item.disabled}
+                        asChild={!item.disabled}
+                      >
+                        {item.disabled ? (
+                          <span className="font-playfair font-bold text-[12px] xl:text-[13px] uppercase tracking-[0.08em] py-1 px-2 pl-5 block w-full text-muted-foreground/45 cursor-not-allowed select-none opacity-60">
+                            {item.label}
+                          </span>
+                        ) : (
+                          <a href={item.href} className={`${getDropdownItemClass(item.href)} pl-5`}>{item.label}</a>
+                        )}
                       </MenubarItem>
                     ))}
                   </MenubarContent>
@@ -693,20 +704,29 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                   <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#9f1e13] px-1 py-1">
                     Find a:
                   </div>
-                  {clinicsMenuItems.map((item) => (
-                    <a 
-                      key={item.label} 
-                      href={item.href} 
-                      className={`text-sm font-semibold transition-colors block pl-4 ${
-                        isRouteActive(item.href)
-                          ? "text-black font-extrabold"
-                          : "text-muted-foreground hover:text-primary"
-                      }`} 
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
+                  {clinicsMenuItems.map((item) => 
+                    item.disabled ? (
+                      <span 
+                        key={item.label} 
+                        className="text-sm font-semibold block pl-4 text-muted-foreground/45 cursor-not-allowed select-none opacity-60"
+                      >
+                        {item.label}
+                      </span>
+                    ) : (
+                      <a 
+                        key={item.label} 
+                        href={item.href} 
+                        className={`text-sm font-semibold transition-colors block pl-4 ${
+                          isRouteActive(item.href)
+                            ? "text-black font-extrabold"
+                            : "text-muted-foreground hover:text-primary"
+                        }`} 
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    )
+                  )}
                 </div>
               )}
 

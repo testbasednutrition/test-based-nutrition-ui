@@ -735,6 +735,11 @@ const SpecialistProfile = () => {
                           {specialist.specificTitle}
                         </span>
                       )}
+                      {specialist.is_tbn_leadership && (
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#1a3646] text-[#faf8f5] border border-[#1a3646]/20">
+                          TBN Leadership: {specialist.tbn_leadership_title || "Team"}
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -772,6 +777,11 @@ const SpecialistProfile = () => {
                         {specialist.specificTitle && (
                           <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary text-secondary-foreground border border-border">
                             {specialist.specificTitle}
+                          </span>
+                        )}
+                        {specialist.is_tbn_leadership && (
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#1a3646] text-[#faf8f5] border border-[#1a3646]/20">
+                            TBN Leadership: {specialist.tbn_leadership_title || "Team"}
                           </span>
                         )}
                       </div>

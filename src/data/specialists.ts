@@ -62,6 +62,8 @@ export interface Specialist {
   clinic_name?: string;
   is_approved?: boolean;
   primary_category?: string;
+  is_tbn_leadership?: boolean;
+  tbn_leadership_title?: string;
 }
 
 export const categories: SpecialistCategory[] = [

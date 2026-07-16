@@ -85,17 +85,39 @@ export default function PartnerLeadForm({
       setIsSubmitted(true);
     }
 
-    // Launch mailto option
-    const mailtoUrl = `mailto:thinkjsk@gmail.com?subject=${encodeURIComponent(
-      `TBN Partnership Inquiry - ${chosenOption}`
-    )}&body=${encodeURIComponent(
-      `Hello Admin,\n\nWe have received a new partnership lead.\n\nDetails:\n- Name: ${name}\n- Email: ${email}\n- Mobile: ${mobile}\n- Selection: ${chosenOption}\n- Source Page: ${sourcePage}\n- Referrer Partner: ${referrerCode || "None"}\n\nDate: ${new Date().toLocaleDateString()}\n\nKind regards,\nTBN System`
-    )}`;
-    
-    // Smooth delay before triggering mailto so the user sees the success state
-    setTimeout(() => {
-      window.location.href = mailtoUrl;
-    }, 800);
+    // Trigger background email notification via Next.js partner-hub API
+    try {
+      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const baseUrl = isLocal ? "http://localhost:3000" : "https://partner-hub-jade.vercel.app";
+      
+      const apiRes = await fetch(`${baseUrl}/api/leads/notify`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          mobile,
+          selection: chosenOption,
+          sourcePage
+        })
+      });
+
+      if (!apiRes.ok) throw new Error("API response was not ok");
+      console.log("Background email notification sent successfully via partner-hub!");
+    } catch (err) {
+      console.warn("Background email notification failed, launching client-side fallback mailto:", err);
+      // Launch mailto option fallback
+      const mailtoUrl = `mailto:thinkjsk@gmail.com?subject=${encodeURIComponent(
+        `TBN Partnership Inquiry - ${chosenOption}`
+      )}&body=${encodeURIComponent(
+        `Hello Admin,\n\nWe have received a new partnership lead.\n\nDetails:\n- Name: ${name}\n- Email: ${email}\n- Mobile: ${mobile}\n- Selection: ${chosenOption}\n- Source Page: ${sourcePage}\n- Referrer Partner: ${referrerCode || "None"}\n\nDate: ${new Date().toLocaleDateString()}\n\nKind regards,\nTBN System`
+      )}`;
+      
+      // Smooth delay before triggering mailto so the user sees the success state
+      setTimeout(() => {
+        window.location.href = mailtoUrl;
+      }, 800);
+    }
   };
 
   return (

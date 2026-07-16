@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
+import DiscoveryCallModal from "@/components/DiscoveryCallModal";
 
 const heroImg = "/images/partner-hero-2.jpg";
 
@@ -41,6 +42,7 @@ const PartnerWithUs3 = () => {
   
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isDiscoveryOpen, setIsDiscoveryOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,6 +69,27 @@ const PartnerWithUs3 = () => {
       
       setSubmitted(true);
       toast.success("Application submitted successfully!");
+
+      // Dispatch background email alert to admin
+      try {
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const baseUrl = isLocal ? "http://localhost:3000" : "https://partner-hub-jade.vercel.app";
+        await fetch(`${baseUrl}/api/leads/notify`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: leadForm.fullName,
+            email: leadForm.email,
+            mobile: leadForm.phone,
+            company: leadForm.companyName,
+            selection: chosenTypeLabel,
+            message: leadForm.message,
+            sourcePage: "Partner Onboarding Portal"
+          })
+        });
+      } catch (emailErr) {
+        console.warn("Background email alert failed:", emailErr);
+      }
     } catch (err: any) {
       console.warn("Database insert failed, saving to local storage fallback:", err.message);
       try {
@@ -324,7 +347,8 @@ const PartnerWithUs3 = () => {
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-[#9f1e13] mb-3">Partner Investment</p>
                 <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-5xl sm:text-7xl font-bold font-playfair tracking-tight text-zinc-950">£1,300</span>
+                  <span className="text-2xl sm:text-3xl font-playfair italic text-zinc-500">from</span>
+                  <span className="text-5xl sm:text-7xl font-bold font-playfair tracking-tight text-zinc-950">£1,250</span>
                 </div>
                 <p className="text-lg font-semibold text-zinc-800 leading-relaxed">
                   Receive over £6,000 of training, marketing and launch support included.
@@ -391,37 +415,168 @@ const PartnerWithUs3 = () => {
         {/* Bottom Fade Transition */}
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#faf8f5] to-transparent pointer-events-none z-10" />
 
-        <div className="container max-w-[1100px] mx-auto px-4 sm:px-6 relative z-20">
+        <div className="container max-w-[1400px] mx-auto px-4 sm:px-8 relative z-20">
           <div className="text-center mb-16">
             <span className="text-[#9f1e13] uppercase tracking-[0.2em] font-bold text-sm">For Businesses</span>
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13] mt-4">Learn. Launch. Lead.</h2>
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#9f1e13] mt-4">Learn. Launch. Grow. Lead.</h2>
             <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
               A complete integration model for clinics, pharmacies, health clubs, academies, resorts and wellness businesses. We help you build a commercially sustainable pathway.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5] shadow-sm">
-              <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 1: Learn</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Train your team in the TBN Method, testing ecosystem, consultation pathway, and compliance-conscious communication. Give your business the confidence to introduce test-based nutrition professionally.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {/* Box 1: Learn */}
+            <div className="space-y-6 p-6 sm:p-8 border border-[#dbd4c9] rounded-[2rem] bg-[#faf8f5] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+              <div className="space-y-5">
+                <div className="text-center space-y-1">
+                  <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#9f1e13]/70 block">Phase 1</span>
+                  <h3 className="text-3xl font-bold font-playfair text-[#9f1e13]">Learn</h3>
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mt-1">Master The TBN Method™</h4>
+                </div>
+                <div className="w-12 h-0.5 bg-[#9f1e13]/30 mx-auto rounded-full" />
+                <div className="text-zinc-600 text-sm leading-relaxed font-normal space-y-4">
+                  <p className="font-semibold text-zinc-800 text-center text-sm md:text-base min-h-[3rem] md:min-h-[3.5rem] flex items-center justify-center">Access certified training covering:</p>
+                  <ul className="space-y-2.5 text-left w-fit mx-auto text-sm md:text-base">
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Foundational Testing</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Gut Health</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Point-of-Care Screening</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Consultations &amp; Results Reviews</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Specialist Health Pathways</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Protocol Integration</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Compliance &amp; Best Practice</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <p className="font-bold text-zinc-800 text-sm mt-4 pt-4 border-t border-[#dbd4c9]/50 text-center">Built for real-world implementation.</p>
             </div>
-            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5] shadow-sm">
-              <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 2: Launch</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Bring test-based nutrition into your real-world service model through consultations, test days, workshops, or screening pathways. The TBN Method becomes part of your business, not an add-on.
-              </p>
+
+            {/* Box 2: Launch */}
+            <div className="space-y-6 p-6 sm:p-8 border border-[#dbd4c9] rounded-[2rem] bg-[#faf8f5] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+              <div className="space-y-5">
+                <div className="text-center space-y-1">
+                  <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#9f1e13]/70 block">Phase 2</span>
+                  <h3 className="text-3xl font-bold font-playfair text-[#9f1e13]">Launch</h3>
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mt-1">Everything You Need To Go Live</h4>
+                </div>
+                <div className="w-12 h-0.5 bg-[#9f1e13]/30 mx-auto rounded-full" />
+                <div className="text-zinc-600 text-sm leading-relaxed font-normal space-y-4">
+                  <p className="font-semibold text-zinc-800 text-center text-sm md:text-base min-h-[3rem] md:min-h-[3.5rem] flex items-center justify-center">Launch testing clinics &amp; programmes with confidence. Receive:</p>
+                  <ul className="space-y-2.5 text-left w-fit mx-auto text-sm md:text-base">
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Marketing Campaigns</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Social Media Assets</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Workshop Frameworks</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Consultation Systems</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Results Review Templates</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>AI Marketing Tools</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Launch Support</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <p className="font-bold text-zinc-800 text-sm mt-4 pt-4 border-t border-[#dbd4c9]/50 text-center">No need to build systems from scratch.</p>
             </div>
-            <div className="text-center space-y-4 p-8 border border-[#dbd4c9] rounded-3xl bg-[#faf8f5] shadow-sm">
-              <h3 className="text-xl font-bold font-playfair text-[#9f1e13]">Phase 3: Lead</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Become known for personalised preventative health. Build stronger client engagement, new revenue streams, and recurring wellness programmes with regional visibility.
-              </p>
+
+            {/* Box 3: Grow */}
+            <div className="space-y-6 p-6 sm:p-8 border border-[#dbd4c9] rounded-[2rem] bg-[#faf8f5] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+              <div className="space-y-5">
+                <div className="text-center space-y-1">
+                  <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#9f1e13]/70 block">Phase 3</span>
+                  <h3 className="text-3xl font-bold font-playfair text-[#9f1e13]">Grow</h3>
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mt-1">Create Long-Term Client Pathways</h4>
+                </div>
+                <div className="w-12 h-0.5 bg-[#9f1e13]/30 mx-auto rounded-full" />
+                <div className="text-zinc-600 text-sm leading-relaxed font-normal space-y-4">
+                  <p className="font-semibold text-zinc-805 text-center text-sm md:text-base min-h-[3rem] md:min-h-[3.5rem] flex items-center justify-center">Generate recurring revenue through:</p>
+                  <ul className="space-y-2.5 text-left w-fit mx-auto text-sm md:text-base">
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Reviews &amp; Retesting</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Memberships</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Workshops &amp; Events</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Health Programmes</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#9f1e13] shrink-0 mt-2" />
+                      <span>Follow-Up Support</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <p className="font-bold text-zinc-800 text-sm mt-4 pt-4 border-t border-[#dbd4c9]/50 text-center">Help increase client engagement, retention and lifetime value.</p>
             </div>
+
+            {/* Box 4: Lead */}
+            <div className="space-y-6 p-6 sm:p-8 border border-[#dbd4c9] rounded-[2rem] bg-[#faf8f5] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+              <div className="space-y-5">
+                <div className="text-center space-y-1">
+                  <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#9f1e13]/70 block">Phase 4</span>
+                  <h3 className="text-3xl font-bold font-playfair text-[#9f1e13]">Lead</h3>
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mt-1">Become The Trusted Authority</h4>
+                </div>
+                <div className="w-12 h-0.5 bg-[#9f1e13]/30 mx-auto rounded-full" />
+                <div className="text-zinc-650 text-sm leading-relaxed font-normal space-y-4">
+                  <div className="min-h-[3rem] md:min-h-[3.5rem] flex items-center justify-center">
+                    <p className="text-center px-2 text-sm md:text-base">
+                      Position your business as a recognised destination for preventative health, personalised wellbeing and measurable outcomes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <p className="font-bold text-zinc-800 text-sm mt-4 pt-4 border-t border-[#dbd4c9]/50 text-center">Supported by a growing collective of doctors, specialists and practitioners.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* 9. The TBN Testing Framework */}
       <section className="py-24 bg-[#faf8f5] border-y border-[#dbd4c9]/30">
@@ -719,7 +874,7 @@ const PartnerWithUs3 = () => {
                   <Button type="submit" size="lg" disabled={isLoading} className="flex-1 h-16 text-sm font-bold tracking-widest bg-[#9f1e13] hover:bg-[#b02216] text-white rounded-xl uppercase">
                     {isLoading ? "Submitting..." : "APPLY TO PARTNER WITH TBN"}
                   </Button>
-                  <Button type="button" disabled={isLoading} onClick={() => window.open("https://calendly.com", "_blank")} size="lg" className="flex-1 h-16 text-sm font-bold tracking-widest bg-transparent hover:bg-zinc-800/5 text-zinc-750 border border-[#dbd4c9] rounded-xl uppercase">
+                  <Button type="button" disabled={isLoading} onClick={() => setIsDiscoveryOpen(true)} size="lg" className="flex-1 h-16 text-sm font-bold tracking-widest bg-transparent hover:bg-zinc-800/5 text-zinc-750 border border-[#dbd4c9] rounded-xl uppercase">
                     BOOK A PARTNER DISCOVERY CALL
                   </Button>
                 </div>
@@ -728,6 +883,8 @@ const PartnerWithUs3 = () => {
           </div>
         </div>
       </section>
+
+      <DiscoveryCallModal isOpen={isDiscoveryOpen} onClose={() => setIsDiscoveryOpen(false)} />
 
       <Footer />
     </div>

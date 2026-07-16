@@ -81,6 +81,8 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
         location: row.town_city || row.address || '',
         is_approved: row.is_approved,
         primary_category: row.primary_category,
+        is_tbn_leadership: row.is_tbn_leadership || false,
+        tbn_leadership_title: row.tbn_leadership_title || '',
 
         // Other properties mapped best-effort
         consultationType: row.consultation_type,

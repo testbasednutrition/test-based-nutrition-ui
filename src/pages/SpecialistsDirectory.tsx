@@ -270,6 +270,7 @@ const SpecialistsDirectory = () => {
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [showAmbassadorsOnly, setShowAmbassadorsOnly] = useState(initialShowAmbassadors);
+  const [selectedLeadershipTitles, setSelectedLeadershipTitles] = useState<string[]>([]);
   const [selectedNameSearch, setSelectedNameSearch] = useState("");
   const [nameInput, setNameInput] = useState("");
 
@@ -314,7 +315,8 @@ const SpecialistsDirectory = () => {
     locationSearch, 
     selectedTestingTiers, 
     showAmbassadorsOnly, 
-    selectedNameSearch
+    selectedNameSearch,
+    selectedLeadershipTitles
   ]);
   // Sync ambassadors view when query parameter changes
   useEffect(() => {
@@ -391,13 +393,17 @@ const SpecialistsDirectory = () => {
         return keywords.some(kw => lowerTag.includes(kw));
       });
       
-      const catMatch = s.category && s.category === activeCategory;
+      const catMatch = activeCategory === "TBN Leadership Team"
+        ? !!s.is_tbn_leadership
+        : (s.category && s.category === activeCategory);
       matchesCategory = !!(catMatch || tagsMatch);
     }
 
     let matchesProfession = true;
     if (activeProfession !== "All") {
-      matchesProfession = !!(s.category && s.category === activeProfession);
+      matchesProfession = activeProfession === "TBN Leadership Team"
+        ? !!s.is_tbn_leadership
+        : !!(s.category && s.category === activeProfession);
     }
       
     const matchesLocation = !locationSearch || 
@@ -422,7 +428,14 @@ const SpecialistsDirectory = () => {
 
     const matchesNameSearch = !selectedNameSearch || (s.name && s.name.toLowerCase().includes(selectedNameSearch.toLowerCase()));
 
-    return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch;
+    let matchesLeadership = true;
+    if (selectedLeadershipTitles.length > 0) {
+      matchesLeadership = !!s.is_tbn_leadership && 
+                          !!s.tbn_leadership_title && 
+                          selectedLeadershipTitles.includes(s.tbn_leadership_title);
+    }
+
+    return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch && matchesLeadership;
   });
 
   const filteredAmbassadors = ambassadorsOnly.filter((s) => {
@@ -446,13 +459,17 @@ const SpecialistsDirectory = () => {
         return keywords.some(kw => lowerTag.includes(kw));
       });
       
-      const catMatch = s.category && s.category === activeCategory;
+      const catMatch = activeCategory === "TBN Leadership Team"
+        ? !!s.is_tbn_leadership
+        : (s.category && s.category === activeCategory);
       matchesCategory = !!(catMatch || tagsMatch);
     }
 
     let matchesProfession = true;
     if (activeProfession !== "All") {
-      matchesProfession = !!(s.category && s.category === activeProfession);
+      matchesProfession = activeProfession === "TBN Leadership Team"
+        ? !!s.is_tbn_leadership
+        : !!(s.category && s.category === activeProfession);
     }
       
     const matchesLocation = !locationSearch || 
@@ -477,7 +494,14 @@ const SpecialistsDirectory = () => {
 
     const matchesNameSearch = !selectedNameSearch || (s.name && s.name.toLowerCase().includes(selectedNameSearch.toLowerCase()));
 
-    return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch;
+    let matchesLeadership = true;
+    if (selectedLeadershipTitles.length > 0) {
+      matchesLeadership = !!s.is_tbn_leadership && 
+                          !!s.tbn_leadership_title && 
+                          selectedLeadershipTitles.includes(s.tbn_leadership_title);
+    }
+
+    return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch && matchesLeadership;
   });
   const combinedDirectoryList = showAmbassadorsOnly
     ? filteredAmbassadors
@@ -563,12 +587,50 @@ const SpecialistsDirectory = () => {
                     setLocationSearch("");
                     setSelectedTestingTiers([]);
                     setShowAmbassadorsOnly(false);
+                    setSelectedLeadershipTitles([]);
                   }}
                   className="text-muted-foreground hover:text-primary transition-colors"
                   title="Clear all filters"
                 >
                   <RefreshCcw className="w-4 h-4" />
                 </button>
+              </div>
+
+              {/* TBN Leadership Team filter */}
+              <div className="space-y-4">
+                <h4 className="font-extrabold text-xs uppercase tracking-widest text-[#9f1e13] font-sans">
+                  TBN Leadership Team
+                </h4>
+                <div className="space-y-3">
+                  {[
+                    "Medical Advisory Team",
+                    "Integration & Growth Lead",
+                    "Marketing & Commercial Lead",
+                    "Consultant"
+                  ].map((title) => {
+                    const isChecked = selectedLeadershipTitles.includes(title);
+                    return (
+                      <div className="flex items-center space-x-3" key={title}>
+                        <Checkbox 
+                          id={`filter-leadership-${title}`} 
+                          className="rounded border-border data-[state=checked]:bg-primary data-[state=checked]:text-white" 
+                          checked={isChecked}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              setShowAmbassadorsOnly(false);
+                              setSelectedLeadershipTitles(prev => [...prev, title]);
+                            } else {
+                              setSelectedLeadershipTitles(prev => prev.filter(t => t !== title));
+                            }
+                          }}
+                        />
+                        <Label htmlFor={`filter-leadership-${title}`} className="text-sm font-medium text-muted-foreground cursor-pointer">
+                          {title}
+                        </Label>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
 
               {/* TBN Brand Ambassadors filter */}
@@ -582,7 +644,10 @@ const SpecialistsDirectory = () => {
                       id="filter-ambassadors" 
                       className="rounded border-border data-[state=checked]:bg-primary data-[state=checked]:text-white" 
                       checked={showAmbassadorsOnly}
-                      onCheckedChange={(checked) => setShowAmbassadorsOnly(!!checked)}
+                      onCheckedChange={(checked) => {
+                        setShowAmbassadorsOnly(!!checked);
+                        if (checked) setSelectedLeadershipTitles([]);
+                      }}
                     />
                     <Label htmlFor="filter-ambassadors" className="text-sm font-medium text-muted-foreground cursor-pointer">
                       View Brand Ambassadors Only
@@ -1060,6 +1125,11 @@ const SpecialistsDirectory = () => {
                           {isAmbassador && (
                             <div className="absolute bottom-0 left-0 right-0 bg-[#9f1e13] text-[#faf8f5] text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center py-2 shadow-inner">
                               TBN Brand Ambassador
+                            </div>
+                          )}
+                          {specialist.is_tbn_leadership && (
+                            <div className="absolute bottom-0 left-0 right-0 bg-[#1a3646] text-[#faf8f5] text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center py-2 shadow-inner">
+                              {specialist.tbn_leadership_title || "TBN Leadership Team"}
                             </div>
                           )}
                         </Link>

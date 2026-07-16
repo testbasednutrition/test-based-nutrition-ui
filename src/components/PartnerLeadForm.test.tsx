@@ -16,6 +16,8 @@ describe("PartnerLeadForm Component Mailto & Fallback Test", () => {
     localStorage.clear();
     // Stub window.location to capture mailto redirect url
     vi.stubGlobal("location", { href: "" });
+    // Mock global fetch to reject instantly so fallback triggers immediately
+    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("Network offline")));
   });
 
   it("should open the modal on button click, fill form, save locally, and trigger mailto to thinkjsk@gmail.com", async () => {
