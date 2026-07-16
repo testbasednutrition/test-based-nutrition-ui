@@ -73,6 +73,43 @@ export default function DiscoveryCallModal({ isOpen, onClose, parentLeadForm }: 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const getGoogleCalendarLink = () => {
+    if (!selectedDate || !selectedTime) return "";
+    
+    try {
+      // Parse time slot (e.g. "09:00 - 09:30")
+      const [startPart, endPart] = selectedTime.split(" - ");
+      const [startHour, startMin] = startPart.split(":").map(Number);
+      const [endHour, endMin] = endPart.split(":").map(Number);
+      
+      const startDate = new Date(selectedDate);
+      startDate.setHours(startHour, startMin, 0, 0);
+      
+      const endDate = new Date(selectedDate);
+      endDate.setHours(endHour, endMin, 0, 0);
+      
+      const formatToUtcIso = (date: Date) => {
+        return date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+      };
+      
+      const dateRange = `${formatToUtcIso(startDate)}/${formatToUtcIso(endDate)}`;
+      
+      const baseUrl = "https://calendar.google.com/calendar/render";
+      const params = new URLSearchParams({
+        action: "TEMPLATE",
+        text: "TBN Discovery Call Booking",
+        details: `Preventative health discovery call with Test-Based Nutrition (TBN).\n\nDetails:\n- Client: ${leadForm.fullName}\n- Clinic/Company: ${leadForm.companyName}\n- Contact Email: ${leadForm.email}\n- Phone: ${leadForm.phone || "Not specified"}\n\nWe will contact you shortly at your scheduled time.`,
+        dates: dateRange,
+        location: "Phone / Google Meet (details will be emailed)"
+      });
+      
+      return `${baseUrl}?${params.toString()}`;
+    } catch (err) {
+      console.warn("Failed to generate Google Calendar link:", err);
+      return "";
+    }
+  };
+
   if (!isOpen) return null;
 
   // Always give one day until next available booking
@@ -243,9 +280,18 @@ export default function DiscoveryCallModal({ isOpen, onClose, parentLeadForm }: 
                 <p className="text-sm font-semibold text-zinc-800 flex items-center gap-2">
                   <CalendarIcon className="w-4 h-4 text-[#9f1e13]" /> {selectedDate.toLocaleDateString("en-GB", { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
                 </p>
-                <p className="text-sm font-semibold text-zinc-800 flex items-center gap-2">
+                <p className="text-sm font-semibold text-zinc-800 flex items-center gap-2 mb-3">
                   <Clock className="w-4 h-4 text-[#9f1e13]" /> {selectedTime}
                 </p>
+                <Button 
+                  asChild
+                  variant="outline"
+                  className="w-full border-zinc-200 text-zinc-700 hover:text-zinc-900 h-10 rounded-lg text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 mt-2 cursor-pointer transition-colors hover:bg-zinc-50"
+                >
+                  <a href={getGoogleCalendarLink()} target="_blank" rel="noopener noreferrer">
+                    <CalendarIcon className="w-3.5 h-3.5" /> Add to Google Calendar
+                  </a>
+                </Button>
               </div>
             )}
             <div className="pt-8">
