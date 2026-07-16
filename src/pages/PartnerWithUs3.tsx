@@ -453,18 +453,16 @@ const PartnerWithUs3 = () => {
                     <div className="space-y-1">
                       <p className="font-semibold text-zinc-900">40 free launch tests sold at £69</p>
                     </div>
-                    <span className="text-lg font-bold text-zinc-900 font-sans">£2,760</span>
+                    <span className="text-lg font-bold text-zinc-900 font-sans w-24 text-right">£2,760</span>
                   </div>
 
                   {/* Step 2 */}
-                  <div className="flex justify-between items-center gap-4 py-2 border-b border-zinc-100/60">
+                  <div className="flex justify-between items-start gap-4 py-2 border-b border-zinc-100/60">
                     <div className="space-y-1">
                       <p className="font-semibold text-zinc-900">40 additional tests sold at £69</p>
+                      <p className="text-xs font-bold text-emerald-600">£1,760 profit after test costs</p>
                     </div>
-                    <div className="text-right">
-                      <span className="text-lg font-bold text-zinc-900 font-sans block">£2,760 <span className="text-xs font-normal text-zinc-500">revenue</span></span>
-                      <span className="text-xs font-bold text-emerald-600">£1,760 profit <span className="font-normal text-zinc-500">after test costs</span></span>
-                    </div>
+                    <span className="text-lg font-bold text-zinc-900 font-sans w-24 text-right">£2,760</span>
                   </div>
 
                   {/* Step 3 */}
@@ -472,7 +470,7 @@ const PartnerWithUs3 = () => {
                     <div className="space-y-1">
                       <p className="font-semibold text-zinc-900">Potential retail profit from TBN stock kits</p>
                     </div>
-                    <span className="text-lg font-bold text-zinc-900 font-sans">£2,000</span>
+                    <span className="text-lg font-bold text-zinc-900 font-sans w-24 text-right">£2,000</span>
                   </div>
 
                   {/* Step 4 */}
@@ -480,7 +478,7 @@ const PartnerWithUs3 = () => {
                     <div className="space-y-1">
                       <p className="font-semibold">Less monthly machine fee</p>
                     </div>
-                    <span className="text-lg font-bold font-sans">-£250</span>
+                    <span className="text-lg font-bold font-sans w-24 text-right">-£250</span>
                   </div>
                 </div>
 
