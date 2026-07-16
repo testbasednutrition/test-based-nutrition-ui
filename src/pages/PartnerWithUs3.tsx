@@ -244,8 +244,9 @@ const PartnerWithUs3 = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-zinc-950 uppercase">
               WHO IS TBN FOR?
             </h2>
-          </div>          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
+          </div>          <div className="flex flex-wrap gap-6 justify-center">
+            {/* Box 1 */}
+            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
               <div className="space-y-4">
                 <h3 className="text-xl font-bold text-zinc-900 uppercase">CLINICS & PRACTITIONERS</h3>
                 <p className="text-zinc-600 leading-relaxed text-sm font-light">
@@ -257,7 +258,8 @@ const PartnerWithUs3 = () => {
               </div>
             </div>
 
-            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
+            {/* Box 2 */}
+            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
               <div className="space-y-4">
                 <h3 className="text-xl font-bold text-zinc-900 uppercase">PHARMACIES</h3>
                 <p className="text-zinc-600 leading-relaxed text-sm font-light">
@@ -269,11 +271,35 @@ const PartnerWithUs3 = () => {
               </div>
             </div>
 
-            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between">
+            {/* Box 3 */}
+            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
               <div className="space-y-4">
                 <h3 className="text-xl font-bold text-zinc-900 uppercase">HEALTH CLUBS & GYMS</h3>
                 <p className="text-zinc-600 leading-relaxed text-sm font-light">
                   Create premium performance, recovery and longevity services that increase engagement, retention and member value.
+                </p>
+              </div>
+            </div>
+
+            {/* Box 4 */}
+            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-zinc-900 uppercase">WELLNESS RESORTS & RETREATS</h3>
+                <p className="text-zinc-600 leading-relaxed text-sm font-light">
+                  Deliver luxury wellness experiences built around personalised health insights, specialist support and measurable outcomes.
+                </p>
+                <p className="text-zinc-600 leading-relaxed text-sm font-light">
+                  Bespoke wellness integration strategies available.
+                </p>
+              </div>
+            </div>
+
+            {/* Box 5 */}
+            <div className="bg-[#faf8f5] rounded-3xl p-8 border border-[#dbd4c9] flex flex-col justify-between w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-zinc-900 uppercase">CONSULTANTS & COACHES</h3>
+                <p className="text-zinc-600 leading-relaxed text-sm font-light">
+                  Launch your own TBN Health Hub with complete systems, support and specialist backing.
                 </p>
               </div>
             </div>
