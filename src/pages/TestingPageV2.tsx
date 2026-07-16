@@ -467,38 +467,67 @@ const TestingPageV2 = () => {
               </div>
 
               {/* Show all markers expansion list */}
-              {/* Show all markers expansion list */}
               {showAllMarkers && (
-                <div className="bg-secondary/20 border border-[#dbd4c9]/80 rounded-[2rem] p-8 shadow-inner animate-in fade-in slide-in-from-top-4 duration-300">
-                  <h4 className="text-lg font-playfair font-bold text-zinc-900 mb-6 flex items-center gap-2">
-                    <Layers className="w-5 h-5 text-[#9f1e13]" /> Full Level 2 Point-of-Care Marker List
-                  </h4>
-                  <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {[
-                      { name: "Vitamin D", level: "Level 2", desc: "Bone, immune & overall health" },
-                      { name: "HbA1c", level: "Level 2", desc: "Average blood sugar levels" },
-                      { name: "CRP / hs-CRP", level: "Level 2", desc: "Systemic inflammation markers" },
-                      { name: "Ferritin", level: "Level 2", desc: "Stored iron reserves" },
-                      { name: "Folate", level: "Level 2", desc: "Vitamin B9 & methylation" },
-                      { name: "Cortisol", level: "Level 2", desc: "Primary adrenal stress hormone" },
-                      { name: "Cystatin C", level: "Level 2", desc: "Glomerular kidney filtration" },
-                      { name: "Rheumatoid factor", level: "Level 2", desc: "Autoimmune screen marker" },
-                      { name: "HCG-β", level: "Level 2", desc: "Hormonal screen" },
-                      { name: "AMH", level: "Level 2", desc: "Anti-Müllerian hormone ovarian reserve" },
-                      { name: "Progesterone", level: "Level 2", desc: "Luteal phase support hormone" },
-                      { name: "NT-proBNP", level: "Level 2 Additional", desc: "Cardiac wall stress screening" },
-                      { name: "RSV / Influenza A & B", level: "Level 2 Additional", desc: "Acute point-of-care virus test" }
-                    ].map((m, i) => (
-                      <div key={i} className="bg-white p-4 rounded-xl border border-[#dbd4c9]/50 shadow-sm flex flex-col justify-between hover:border-[#9f1e13]/30 transition-colors">
-                        <div>
-                          <span className="text-[9px] font-bold text-[#9f1e13] uppercase tracking-wider block mb-1">
-                            {m.level}
-                          </span>
-                          <span className="text-xs font-bold text-zinc-900">{m.name}</span>
+                <div className="bg-[#faf8f5]/65 border border-[#dbd4c9]/80 rounded-[2.5rem] p-8 md:p-10 shadow-inner animate-in fade-in slide-in-from-top-4 duration-300 space-y-10">
+                  <div className="border-b border-[#dbd4c9]/40 pb-4">
+                    <h4 className="text-xl font-playfair font-bold text-zinc-900 flex items-center gap-2">
+                      <Layers className="w-5 h-5 text-[#9f1e13]" /> Full Level 2 Point-of-Care Marker List
+                    </h4>
+                  </div>
+
+                  {/* Section 1: Baseline Screening Markers */}
+                  <div className="space-y-4">
+                    <span className="text-xs font-extrabold uppercase tracking-widest text-[#9f1e13] font-sans block">
+                      Baseline Screening Markers
+                    </span>
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                      {[
+                        { name: "Vitamin D", level: "Level 2", desc: "Bone, immune & overall health" },
+                        { name: "HbA1c", level: "Level 2", desc: "Average blood sugar levels" },
+                        { name: "CRP / hs-CRP", level: "Level 2", desc: "Systemic inflammation markers" },
+                        { name: "Ferritin", level: "Level 2", desc: "Stored iron reserves" },
+                        { name: "Folate", level: "Level 2", desc: "Vitamin B9 & methylation" },
+                        { name: "Cortisol", level: "Level 2", desc: "Primary adrenal stress hormone" },
+                        { name: "Cystatin C", level: "Level 2", desc: "Glomerular kidney filtration" },
+                        { name: "Rheumatoid factor", level: "Level 2", desc: "Autoimmune screen marker" },
+                        { name: "HCG-β", level: "Level 2", desc: "Hormonal screen" },
+                        { name: "AMH", level: "Level 2", desc: "Anti-Müllerian hormone ovarian reserve" },
+                        { name: "Progesterone", level: "Level 2", desc: "Luteal phase support hormone" }
+                      ].map((m, i) => (
+                        <div key={i} className="bg-white p-4 rounded-xl border border-[#dbd4c9]/50 shadow-sm flex flex-col justify-between hover:border-[#9f1e13]/30 transition-colors">
+                          <div>
+                            <span className="text-[9px] font-bold text-[#9f1e13] uppercase tracking-wider block mb-1">
+                              {m.level}
+                            </span>
+                            <span className="text-xs font-bold text-zinc-900">{m.name}</span>
+                          </div>
+                          <p className="text-[11px] text-zinc-500 font-light mt-1.5">{m.desc}</p>
                         </div>
-                        <p className="text-[11px] text-zinc-500 font-light mt-1.5">{m.desc}</p>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Section 2: Additional Point-of-Care Options */}
+                  <div className="space-y-4 border-t border-[#dbd4c9]/45 pt-8">
+                    <span className="text-xs font-extrabold uppercase tracking-widest text-[#9f1e13] font-sans block">
+                      Additional Point-of-Care Options
+                    </span>
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                      {[
+                        { name: "NT-proBNP", level: "Level 2 Additional", desc: "Cardiac wall stress screening" },
+                        { name: "RSV / Influenza A & B", level: "Level 2 Additional", desc: "Acute point-of-care virus test" }
+                      ].map((m, i) => (
+                        <div key={i} className="bg-white p-4 rounded-xl border border-[#dbd4c9]/50 shadow-sm flex flex-col justify-between hover:border-[#9f1e13]/30 transition-colors">
+                          <div>
+                            <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-wider block mb-1">
+                              {m.level}
+                            </span>
+                            <span className="text-xs font-bold text-zinc-900">{m.name}</span>
+                          </div>
+                          <p className="text-[11px] text-zinc-500 font-light mt-1.5">{m.desc}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
