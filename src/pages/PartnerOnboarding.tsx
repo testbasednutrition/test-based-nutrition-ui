@@ -1867,7 +1867,7 @@ export default function PartnerOnboarding() {
               Partnership Onboarding
             </span>
             <h1 className="text-2xl md:text-3xl font-playfair font-bold text-foreground mt-1.5">
-              TBN Pre-Integration Form
+              Welcome to TBN Onboarding Portal
             </h1>
             <p className="text-muted-foreground font-montserrat text-xs mt-1.5 max-w-xl mx-auto">
               Please complete this streamlined questionnaire before our scheduled 1:1 integration clinic setup session.
