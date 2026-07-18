@@ -378,16 +378,12 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                         <div className="flex flex-col gap-0.5">
                           {col.items.length > 0 ? (
                             col.items.map((item) => (
-                              <MenubarItem 
+                              <span 
                                 key={item} 
-                                onClick={() => {
-                                  const route = treatmentRoutes[item];
-                                  if (route) navigate(route);
-                                }}
-                                className={getMegaMenuSubItemClass(item)}
+                                className="py-1 px-1.5 -mx-1 text-[10px] xl:text-[10.5px] font-bold uppercase tracking-[0.1em] leading-snug whitespace-normal break-words block w-full text-muted-foreground/50 cursor-default select-none"
                               >
                                 {item}
-                              </MenubarItem>
+                              </span>
                             ))
                           ) : (
                             <span className="text-[10px] text-muted-foreground italic">Coming soon</span>
@@ -572,28 +568,14 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                             )}
                             
                             {col.items.length > 0 ? (
-                              col.items.map((item) => {
-                                const route = treatmentRoutes[item];
-                                const active = route ? isRouteActive(route) : false;
-                                return (
-                                  <button
-                                    key={item}
-                                    className={`text-[13px] text-left transition-colors ${
-                                      active
-                                        ? "text-black font-extrabold"
-                                        : "text-muted-foreground hover:text-primary"
-                                    }`}
-                                    onClick={() => {
-                                      setMobileOpen(false);
-                                      setMobileMegaOpen(false);
-                                      setMobileActivePathwaySection(null);
-                                      if (route) navigate(route);
-                                    }}
-                                  >
-                                    {item}
-                                  </button>
-                                );
-                              })
+                              col.items.map((item) => (
+                                <span
+                                  key={item}
+                                  className="text-[13px] text-left text-muted-foreground/50 cursor-default select-none"
+                                >
+                                  {item}
+                                </span>
+                              ))
                             ) : (
                               <span className="text-xs text-muted-foreground italic pl-1">Coming soon</span>
                             )}

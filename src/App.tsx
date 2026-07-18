@@ -40,6 +40,7 @@ import CopyProtection from "@/components/CopyProtection";
 import ReferralTracker from "@/components/ReferralTracker";
 import AdminAffiliates from "./pages/AdminAffiliates";
 import TrafficTracker from "@/components/TrafficTracker";
+import PartnerOnboarding from "./pages/PartnerOnboarding";
 
 const queryClient = new QueryClient();
 
@@ -86,6 +87,7 @@ const App = () => (
 
             <Route path="/admin/leads" element={<AdminLeads />} />
             <Route path="/admin/affiliates" element={<AdminAffiliates />} />
+            <Route path="/onboarding" element={<PartnerOnboarding />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
