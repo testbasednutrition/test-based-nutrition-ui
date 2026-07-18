@@ -341,6 +341,222 @@ export default function PartnerOnboarding() {
   const [listingMarkedDone, setListingMarkedDone] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [draftId, setDraftId] = useState<string | null>(null);
+  const [isSavingDraft, setIsSavingDraft] = useState(false);
+
+  // Load draft from URL parameters or localStorage on mount
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const draftParam = params.get("draft");
+    if (draftParam) {
+      setDraftId(draftParam);
+      loadDraft(draftParam);
+    } else {
+      const storedDraft = localStorage.getItem("tbn_onboarding_draft_id");
+      if (storedDraft) {
+        setDraftId(storedDraft);
+        loadDraft(storedDraft);
+      }
+    }
+  }, []);
+
+  const loadDraft = async (id: string) => {
+    try {
+      const { data, error } = await supabase
+        .from("partner_onboarding")
+        .select("*")
+        .eq("id", id)
+        .maybeSingle();
+
+      if (error) throw error;
+
+      if (data) {
+        setFormData({
+          clinicName: data.clinic_name || "",
+          contactName: data.contact_name || "",
+          roleProfession: data.role_profession || "",
+          email: data.email || "",
+          phone: data.phone || "",
+          businessAddress: data.business_address || "",
+          website: data.website || "",
+          bookingLink: data.booking_link || "",
+          locationServed: data.location_served || "",
+          workStyle: data.work_style || [],
+
+          businessType: data.business_type || "",
+          servicesOffered: data.services_offered || "",
+          bestsellingTreatments: data.bestselling_treatments || "",
+          tbnIntegrationPathways: data.tbn_integration_pathways || [],
+          knownForArea: data.known_for_area || "",
+
+          facebookLink: data.social_links?.facebook || "",
+          instagramHandle: data.social_links?.instagram || "",
+          linkedinPage: data.social_links?.linkedin || "",
+          googleBusinessLink: data.social_links?.google_business || "",
+          tiktokYtThreads: data.social_links?.tiktok_yt_threads || "",
+          emailDbSize: data.social_links?.email_db_size || "",
+          whatsappGroup: data.social_links?.whatsapp_group || "",
+          postingFrequency: data.posting_frequency || "",
+          worksWithAgency: data.works_with_agency ? "Yes" : "No",
+          agencyName: data.agency_name || "",
+
+          priorities1to1: data.priorities_1to1 || [],
+          helpNeeded1to1: data.help_needed_1to1 || "",
+
+          hasIdealCustomers: data.has_ideal_customers || "",
+          potentialCustomers: data.potential_customers && data.potential_customers.length === 5 
+            ? data.potential_customers 
+            : [...(data.potential_customers || []), "", "", "", "", ""].slice(0, 5),
+          idealForOmega: data.ideal_for_omega || "",
+          idealForGut: data.ideal_for_gut || "",
+          idealForPoc: data.ideal_for_poc || "",
+          idealFor120day: data.ideal_for_120day || "",
+          idealForCaseStudy: data.ideal_for_casestudy || "",
+
+          crmSystem: data.crm_system || "",
+          hasConsultationProcess: data.has_consultation_process ? "Yes" : "No",
+          useTbnConsultation: data.use_tbn_consultation || "",
+          integrationPreference: data.integration_preference || "",
+
+          testingRoutesPurchased: data.testing_routes_purchased || [],
+          marketingSupportPathways: data.marketing_support_pathways || [],
+          growthRoutesInterest: data.growth_routes_interest || [],
+
+          localHubsInterest: data.local_hubs_interest || "",
+          localVenuesList: data.local_venues_list && data.local_venues_list.length === 5 
+            ? data.local_venues_list 
+            : [...(data.local_venues_list || []), "", "", "", "", ""].slice(0, 5),
+          approachPartnersInterest: data.approach_partners_interest || "",
+          approachPartnersList: data.approach_partners_list && data.approach_partners_list.length === 5 
+            ? data.approach_partners_list 
+            : [...(data.approach_partners_list || []), "", "", "", "", ""].slice(0, 5),
+          wantsApproachSupport: data.wants_approach_support || "",
+
+          wantsIntegrateProgrammes: data.wants_integrate_programmes || "",
+          programmeEventRoutes: data.programme_event_routes || [],
+          firstProgrammeChoice: data.first_programme_choice || "",
+          hasLaunchIdea: data.has_launch_idea || "",
+          launchIdeaDetails: data.launch_idea_details || "",
+
+          marketingHelpTopics: data.marketing_help_topics || [],
+          additionalPaidMarketing: data.additional_paid_marketing || "",
+        });
+        
+        if (data.listing_form_completed) {
+          setListingMarkedDone(true);
+        }
+
+        // Restore to details step on load
+        setCurrentStep(2);
+        toast.success("Saved draft found and restored!");
+      }
+    } catch (err) {
+      console.warn("Failed to load onboarding draft:", err);
+    }
+  };
+
+  const autoSaveDraft = async (idToUse?: string) => {
+    if (!isStep2Valid) return; // Cannot save without clinic_name, contact_name, email
+
+    setIsSavingDraft(true);
+    const activeId = idToUse || draftId;
+    try {
+      const payload = {
+        clinic_name: formData.clinicName,
+        contact_name: formData.contactName,
+        role_profession: formData.roleProfession || null,
+        email: formData.email,
+        phone: formData.phone || null,
+        business_address: formData.businessAddress || null,
+        website: formData.website || null,
+        booking_link: formData.bookingLink || null,
+        location_served: formData.locationServed || null,
+        work_style: formData.workStyle,
+
+        business_type: formData.businessType || null,
+        services_offered: formData.servicesOffered || null,
+        bestselling_treatments: formData.bestsellingTreatments || null,
+        tbn_integration_pathways: formData.tbnIntegrationPathways,
+        known_for_area: formData.knownForArea || null,
+
+        social_links: {
+          facebook: formData.facebookLink,
+          instagram: formData.instagramHandle,
+          linkedin: formData.linkedinPage,
+          google_business: formData.googleBusinessLink,
+          tiktok_yt_threads: formData.tiktokYtThreads,
+          whatsapp_group: formData.whatsappGroup,
+          email_db_size: formData.emailDbSize,
+        },
+        posting_frequency: formData.postingFrequency || null,
+        works_with_agency: formData.worksWithAgency === "Yes",
+        agency_name: formData.agencyName || null,
+
+        priorities_1to1: formData.priorities1to1,
+        help_needed_1to1: formData.helpNeeded1to1 || null,
+
+        has_ideal_customers: formData.hasIdealCustomers || null,
+        potential_customers: formData.potentialCustomers.filter(s => s.trim() !== ""),
+        ideal_for_omega: formData.idealForOmega || null,
+        ideal_for_gut: formData.idealForGut || null,
+        ideal_for_poc: formData.idealForPoc || null,
+        ideal_for_120day: formData.idealFor120day || null,
+        ideal_for_casestudy: formData.idealForCaseStudy || null,
+
+        crm_system: formData.crmSystem || null,
+        has_consultation_process: formData.hasConsultationProcess === "Yes",
+        use_tbn_consultation: formData.useTbnConsultation || null,
+        integration_preference: formData.integrationPreference || null,
+
+        testing_routes_purchased: formData.testingRoutesPurchased,
+        marketing_support_pathways: formData.marketingSupportPathways,
+        growth_routes_interest: formData.growthRoutesInterest,
+
+        local_hubs_interest: formData.localHubsInterest || null,
+        local_venues_list: formData.localVenuesList.filter(s => s.trim() !== ""),
+        approach_partners_interest: formData.approachPartnersInterest || null,
+        approach_partners_list: formData.approachPartnersList.filter(s => s.trim() !== ""),
+        wants_approach_support: formData.wantsApproachSupport || null,
+
+        wants_integrate_programmes: formData.wantsIntegrateProgrammes || null,
+        programme_event_routes: formData.programmeEventRoutes,
+        first_programme_choice: formData.firstProgrammeChoice || null,
+        has_launch_idea: formData.hasLaunchIdea || null,
+        launch_idea_details: formData.launchIdeaDetails || null,
+
+        marketing_help_topics: formData.marketingHelpTopics,
+        additional_paid_marketing: formData.additionalPaidMarketing || null,
+        
+        listing_form_completed: listingMarkedDone,
+      };
+
+      if (activeId) {
+        const { error } = await supabase
+          .from("partner_onboarding")
+          .update(payload)
+          .eq("id", activeId);
+        if (error) throw error;
+      } else {
+        const { data, error } = await supabase
+          .from("partner_onboarding")
+          .insert([payload])
+          .select("id")
+          .single();
+        if (error) throw error;
+        
+        if (data?.id) {
+          setDraftId(data.id);
+          localStorage.setItem("tbn_onboarding_draft_id", data.id);
+          const newUrl = `${window.location.origin}${window.location.pathname}?draft=${data.id}`;
+          window.history.replaceState({ path: newUrl }, "", newUrl);
+        }
+      }
+    } catch (err) {
+      console.warn("Failed to auto-save draft:", err);
+    } finally {
+      setIsSavingDraft(false);
+    }
+  };
 
   const goTo = (step: number) => {
     if (step < 1 || step > 6) return;
@@ -348,8 +564,11 @@ export default function PartnerOnboarding() {
     setCurrentStep(step);
   };
 
-  const next = () => {
+  const next = async () => {
     setCompletedSteps((prev) => new Set(prev).add(currentStep));
+    if (currentStep >= 2) {
+      await autoSaveDraft();
+    }
     goTo(currentStep + 1);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -430,73 +649,86 @@ export default function PartnerOnboarding() {
         launch_idea_details: formData.launchIdeaDetails,
       };
 
-      const { error } = await supabase.from("partner_onboarding").insert([
-        {
-          clinic_name: formData.clinicName,
-          contact_name: formData.contactName,
-          role_profession: formData.roleProfession,
-          email: formData.email,
-          phone: formData.phone || null,
-          business_address: formData.businessAddress || null,
-          website: formData.website || null,
-          booking_link: formData.bookingLink || null,
-          location_served: formData.locationServed || null,
-          work_style: formData.workStyle,
-          
-          business_type: formData.businessType,
-          services_offered: formData.servicesOffered || null,
-          bestselling_treatments: formData.bestsellingTreatments || null,
-          tbn_integration_pathways: formData.tbnIntegrationPathways,
-          known_for_area: formData.knownForArea || null,
-          
-          social_links: socialLinksJson,
-          posting_frequency: formData.postingFrequency || null,
-          works_with_agency: formData.worksWithAgency === "Yes",
-          agency_name: formData.agencyName || null,
-          
-          priorities_1to1: formData.priorities1to1,
-          help_needed_1to1: formData.helpNeeded1to1 || null,
-          
-          has_ideal_customers: formData.hasIdealCustomers || null,
-          potential_customers: firstCustomersJson.potential_customers,
-          ideal_for_omega: formData.idealForOmega || null,
-          ideal_for_gut: formData.idealForGut || null,
-          ideal_for_poc: formData.idealForPoc || null,
-          ideal_for_120day: formData.idealFor120day || null,
-          ideal_for_casestudy: formData.idealForCaseStudy || null,
-          
-          crm_system: formData.crmSystem || null,
-          has_consultation_process: formData.hasConsultationProcess === "Yes",
-          use_tbn_consultation: formData.useTbnConsultation || null,
-          integration_preference: formData.integrationPreference || null,
-          
-          testing_routes_purchased: formData.testingRoutesPurchased,
-          marketing_support_pathways: formData.marketingSupportPathways,
-          
-          growth_routes_interest: formData.growthRoutesInterest,
-          
-          local_hubs_interest: localHubsJson.local_hubs_interest || null,
-          local_venues_list: localHubsJson.local_venues_list,
-          approach_partners_interest: localHubsJson.approach_partners_interest || null,
-          approach_partners_list: localHubsJson.approach_partners_list,
-          wants_approach_support: localHubsJson.wants_approach_support || null,
-          
-          wants_integrate_programmes: programmesJson.wants_integrate_programmes || null,
-          programme_event_routes: programmesJson.programme_event_routes,
-          first_programme_choice: programmesJson.first_programme_choice || null,
-          has_launch_idea: programmesJson.has_launch_idea || null,
-          launch_idea_details: programmesJson.launch_idea_details || null,
-          
-          marketing_help_topics: formData.marketingHelpTopics,
-          additional_paid_marketing: formData.additionalPaidMarketing || null,
-          
-          listing_form_completed: listingMarkedDone,
-          completed_at: new Date().toISOString(),
-        },
-      ]);
+      const payload = {
+        clinic_name: formData.clinicName,
+        contact_name: formData.contactName,
+        role_profession: formData.roleProfession || null,
+        email: formData.email,
+        phone: formData.phone || null,
+        business_address: formData.businessAddress || null,
+        website: formData.website || null,
+        booking_link: formData.bookingLink || null,
+        location_served: formData.locationServed || null,
+        work_style: formData.workStyle,
+        
+        business_type: formData.businessType,
+        services_offered: formData.servicesOffered || null,
+        bestselling_treatments: formData.bestsellingTreatments || null,
+        tbn_integration_pathways: formData.tbnIntegrationPathways,
+        known_for_area: formData.knownForArea || null,
+        
+        social_links: socialLinksJson,
+        posting_frequency: formData.postingFrequency || null,
+        works_with_agency: formData.worksWithAgency === "Yes",
+        agency_name: formData.agencyName || null,
+        
+        priorities_1to1: formData.priorities1to1,
+        help_needed_1to1: formData.helpNeeded1to1 || null,
+        
+        has_ideal_customers: formData.hasIdealCustomers || null,
+        potential_customers: firstCustomersJson.potential_customers,
+        ideal_for_omega: formData.idealForOmega || null,
+        ideal_for_gut: formData.idealForGut || null,
+        ideal_for_poc: formData.idealForPoc || null,
+        ideal_for_120day: formData.idealFor120day || null,
+        ideal_for_casestudy: formData.idealForCaseStudy || null,
+        
+        crm_system: formData.crmSystem || null,
+        has_consultation_process: formData.hasConsultationProcess === "Yes",
+        use_tbn_consultation: formData.useTbnConsultation || null,
+        integration_preference: formData.integrationPreference || null,
+        
+        testing_routes_purchased: formData.testingRoutesPurchased,
+        marketing_support_pathways: formData.marketingSupportPathways,
+        
+        growth_routes_interest: formData.growthRoutesInterest,
+        
+        local_hubs_interest: localHubsJson.local_hubs_interest || null,
+        local_venues_list: localHubsJson.local_venues_list,
+        approach_partners_interest: localHubsJson.approach_partners_interest || null,
+        approach_partners_list: localHubsJson.approach_partners_list,
+        wants_approach_support: localHubsJson.wants_approach_support || null,
+        
+        wants_integrate_programmes: programmesJson.wants_integrate_programmes || null,
+        programme_event_routes: programmesJson.programme_event_routes,
+        first_programme_choice: programmesJson.first_programme_choice || null,
+        has_launch_idea: programmesJson.has_launch_idea || null,
+        launch_idea_details: programmesJson.launch_idea_details || null,
+        
+        marketing_help_topics: formData.marketingHelpTopics,
+        additional_paid_marketing: formData.additionalPaidMarketing || null,
+        
+        listing_form_completed: listingMarkedDone,
+        completed_at: new Date().toISOString(),
+      };
+
+      let error;
+      if (draftId) {
+        const res = await supabase
+          .from("partner_onboarding")
+          .update(payload)
+          .eq("id", draftId);
+        error = res.error;
+      } else {
+        const res = await supabase
+          .from("partner_onboarding")
+          .insert([payload]);
+        error = res.error;
+      }
 
       if (error) throw error;
 
+      localStorage.removeItem("tbn_onboarding_draft_id");
       setCompletedSteps((prev) => new Set(prev).add(6));
       setIsComplete(true);
       toast.success("Clinic Onboarding Form submitted successfully!");
@@ -1756,6 +1988,37 @@ export default function PartnerOnboarding() {
                     })}
                   </div>
                 </div>
+
+                {draftId ? (
+                  <div className="rounded-xl border border-emerald-100 bg-emerald-50/40 p-4 text-xs shadow-sm space-y-2 transition-all">
+                    <div className="flex items-center gap-2 text-emerald-800 font-semibold font-montserrat">
+                      <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                      <span>Progress saved</span>
+                    </div>
+                    <p className="text-[10px] text-emerald-950/70 leading-normal font-medium font-montserrat">
+                      Copy this unique link to resume filling this form on any device at any time:
+                    </p>
+                    <Button
+                      onClick={() => {
+                        const url = `${window.location.origin}${window.location.pathname}?draft=${draftId}`;
+                        navigator.clipboard.writeText(url);
+                        toast.success("Draft magic link copied to clipboard!");
+                      }}
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-[10px] py-1 h-8 cursor-pointer flex items-center justify-center gap-1.5 border-0"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      Copy Draft Link
+                    </Button>
+                  </div>
+                ) : (
+                  currentStep >= 2 && (
+                    <div className="rounded-xl border border-border/40 bg-zinc-50/50 p-4 text-xs shadow-sm space-y-1.5">
+                      <p className="text-[10px] text-muted-foreground/80 leading-normal font-medium font-montserrat">
+                        Fill out your clinic details on Step 2 to save progress and get a magic draft link.
+                      </p>
+                    </div>
+                  )
+                )}
 
                 <div className="rounded-xl border border-border/40 bg-white shadow-sm p-4 text-xs text-muted-foreground leading-relaxed">
                   <h3 className="font-bold text-foreground mb-1">Clinic 1:1 Integration</h3>
