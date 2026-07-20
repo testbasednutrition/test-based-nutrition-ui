@@ -41,6 +41,8 @@ import ReferralTracker from "@/components/ReferralTracker";
 import AdminAffiliates from "./pages/AdminAffiliates";
 import TrafficTracker from "@/components/TrafficTracker";
 import PartnerOnboarding from "./pages/PartnerOnboarding";
+import SupportPage from "./pages/Support";
+import CookieBanner from "@/components/CookieBanner";
 
 const queryClient = new QueryClient();
 
@@ -53,9 +55,10 @@ const App = () => (
         <CopyProtection />
         <Quiz />
         <BookingModal />
-        <FloatingQuizCTA />
+        <CookieBanner />
         <BrowserRouter>
           <ScrollToTop />
+          <FloatingQuizCTA />
           <ReferralTracker />
           <TrafficTracker />
           <Routes>
@@ -88,6 +91,7 @@ const App = () => (
             <Route path="/admin/leads" element={<AdminLeads />} />
             <Route path="/admin/affiliates" element={<AdminAffiliates />} />
             <Route path="/onboarding" element={<PartnerOnboarding />} />
+            <Route path="/support" element={<SupportPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

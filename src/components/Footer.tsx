@@ -66,6 +66,7 @@ const Footer = ({ hideInstagram = false }: FooterProps) => {
                 <li className="pl-3"><span className="text-muted-foreground/45 cursor-not-allowed select-none opacity-60">A Health Club</span></li>
                 <li className="pl-3"><span className="text-muted-foreground/45 cursor-not-allowed select-none opacity-60">A Clinic</span></li>
                 <li className="pt-2 border-t border-border/40 mt-2"><Link to="/partner-with-us" className="hover:text-[#9f1e13] transition-colors font-semibold text-[#9f1e13]">Partner With Us</Link></li>
+                <li className="pt-2 border-t border-border/40 mt-2"><Link to="/support" className="hover:text-foreground transition-colors">Support Centre</Link></li>
               </ul>
             </div>
 

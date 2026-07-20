@@ -1,10 +1,12 @@
 import { useQuiz } from "@/components/QuizContext";
+import { useLocation } from "react-router-dom";
 import { Sparkles } from "lucide-react";
 
 const FloatingQuizCTA = () => {
   const { openQuiz, isOpen } = useQuiz();
+  const { pathname } = useLocation();
 
-  if (isOpen) return null;
+  if (isOpen || pathname === "/onboarding") return null;
 
   return (
     <button
