@@ -142,7 +142,7 @@ export default function SupportPage() {
 
       // Dispatch background email alert using portal Resend endpoint
       try {
-        const baseUrl = "https://partner-hub-jade.vercel.app";
+        const baseUrl = "https://portal.test-basednutrition.com";
         
         await fetch(`${baseUrl}/api/leads/notify`, {
           method: "POST",

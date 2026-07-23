@@ -212,7 +212,7 @@ export default function DiscoveryCallModal({ isOpen, onClose, parentLeadForm }: 
 
     // Trigger background email notification via Next.js partner-hub API
     try {
-      const baseUrl = "https://partner-hub-jade.vercel.app";
+      const baseUrl = "https://portal.test-basednutrition.com";
       
       const apiRes = await fetch(`${baseUrl}/api/leads/notify`, {
         method: "POST",

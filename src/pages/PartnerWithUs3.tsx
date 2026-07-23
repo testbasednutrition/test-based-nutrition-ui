@@ -72,7 +72,7 @@ const PartnerWithUs3 = () => {
 
       // Dispatch background email alert to admin
       try {
-        const baseUrl = "https://partner-hub-jade.vercel.app";
+        const baseUrl = "https://portal.test-basednutrition.com";
         await fetch(`${baseUrl}/api/leads/notify`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },

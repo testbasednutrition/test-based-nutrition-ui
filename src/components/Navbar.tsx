@@ -182,7 +182,7 @@ const PartnerLoginModal = ({ children }: { children: React.ReactNode }) => {
     } else {
       toast.success("Successfully authenticated!");
       
-      const baseUrl = "https://partner-hub-jade.vercel.app";
+      const baseUrl = "https://portal.test-basednutrition.com";
       
       if (data?.session) {
         window.location.href = `${baseUrl}/dashboard?access_token=${data.session.access_token}&refresh_token=${data.session.refresh_token}`;
