@@ -1,4 +1,76 @@
 {
+  "redirects": [
+    {
+      "source": "/assets/images/:path*",
+      "destination": "/specialists",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-includes/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-admin/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/news",
+      "permanent": true
+    },
+    {
+      "source": "/articles/:path*",
+      "destination": "/news",
+      "permanent": true
+    },
+    {
+      "source": "/practitioners/:path*",
+      "destination": "/specialists",
+      "permanent": true
+    },
+    {
+      "source": "/team/:path*",
+      "destination": "/specialists",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/:path*",
+      "destination": "/tbn-method",
+      "permanent": true
+    },
+    {
+      "source": "/our-method/:path*",
+      "destination": "/tbn-method",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/:path*",
+      "destination": "/support",
+      "permanent": true
+    },
+    {
+      "source": "/contact/:path*",
+      "destination": "/support",
+      "permanent": true
+    },
+    {
+      "source": "/partner/:path*",
+      "destination": "/partner-with-us",
+      "permanent": true
+    },
+    {
+      "source": "/join/:path*",
+      "destination": "/partner-with-us",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
