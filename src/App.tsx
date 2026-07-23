@@ -15,6 +15,7 @@ import ReferralTracker from "@/components/ReferralTracker";
 import TrafficTracker from "@/components/TrafficTracker";
 import CookieBanner from "@/components/CookieBanner";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { Analytics } from "@vercel/analytics/react";
 
 // Lazy-loaded pages for optimal bundle splitting
 const SpecialistsDirectory = lazy(() => import("./pages/SpecialistsDirectory"));
@@ -115,6 +116,7 @@ const App = () => (
         </BrowserRouter>
       </QuizProvider>
     </TooltipProvider>
+    <Analytics />
   </QueryClientProvider>
 );
 
