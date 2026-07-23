@@ -14,91 +14,105 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
       .select('*')
       .order('created_at', { ascending: false });
 
-    if (error || !data || data.length === 0) {
-      if (error) {
-        console.warn('Supabase fetch failed:', error.message);
+    const combinedMap = new Map<string, Specialist>();
+
+    // 1. Add all static specialists first
+    staticSpecialists.forEach((s) => {
+      if (s.slug) {
+        combinedMap.set(s.slug, { ...s, is_approved: s.is_approved !== false });
       }
-      return [];
+    });
+
+    if (!error && data && data.length > 0) {
+      // 2. Map and overlay dynamic Supabase rows
+      data.forEach((row) => {
+        const parseArray = (val: any): string[] => {
+          if (Array.isArray(val)) return val;
+          if (typeof val === 'string') {
+            const trimmed = val.trim();
+            if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+              try {
+                const parsed = JSON.parse(trimmed);
+                if (Array.isArray(parsed)) return parsed;
+              } catch (e) {}
+            }
+            const delimiter = val.includes(';') ? ';' : ',';
+            return val.split(delimiter).map(s => s.trim()).filter(Boolean);
+          }
+          return [];
+        };
+
+        const slug = generateSlug(row.first_name || row.clinic_name || 'partner', row.last_name || '');
+        const existing = combinedMap.get(slug);
+
+        const customPositions: Record<string, string> = {
+          "lynne-matthews": "center 20%",
+          "sarah-abell": "center 30%",
+          "charan-chana": "center 15%",
+          "trevor-ford": "center 20%",
+        };
+        const imagePosition = customPositions[slug] || existing?.imagePosition || "center top";
+
+        const dynamicItem: Specialist = {
+          id: row.id,
+          slug,
+          name: `${row.first_name || ''} ${row.last_name || ''}`.trim() || row.clinic_name || existing?.name || 'Unnamed Partner',
+          role: row.professional_title || existing?.role || '',
+          category: (row.primary_category as SpecialistCategory) || existing?.category || 'All',
+          specificTitle: row.specific_title || existing?.specificTitle,
+          bio: row.professional_bio ? [row.professional_bio] : (existing?.bio || []),
+          quote: row.why_partnered_tbn || existing?.quote || '',
+          credentials: parseArray(row.credentials).length > 0 ? parseArray(row.credentials).map(c => c.replace(/^- /, '')) : (existing?.credentials || []),
+          
+          // Image Handling
+          image: row.profile_picture_url || existing?.image || 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800',
+          imagePosition,
+          gallery_image_urls: parseArray(row.gallery_image_urls),
+          secondaryImage: parseArray(row.gallery_image_urls)[0] || existing?.secondaryImage,
+
+          // New TBN Fields mappings
+          specialization_tags: parseArray(row.specialization_tags).length > 0 ? parseArray(row.specialization_tags) : existing?.specialization_tags,
+          primary_testing_methods: parseArray(row.primary_testing_methods).length > 0 ? parseArray(row.primary_testing_methods) : existing?.primary_testing_methods,
+          first_balance_result: row.first_balance_result || existing?.first_balance_result,
+          second_balance_result: row.second_balance_result || existing?.second_balance_result,
+          why_joined_tbn: row.why_joined_tbn || existing?.why_joined_tbn,
+          why_partnered_tbn: row.why_partnered_tbn || existing?.why_partnered_tbn || '',
+          other_blood_tests: row.other_blood_tests || existing?.other_blood_tests,
+          
+          // Contact & Location
+          email_address: row.email_address || existing?.email_address,
+          phone_number: row.phone_number || existing?.phone_number,
+          address: row.address || existing?.address,
+          clinic_name: row.clinic_name || existing?.clinic_name,
+          location: row.town_city || row.address || existing?.location || '',
+          is_approved: row.is_approved !== undefined && row.is_approved !== null ? row.is_approved : true,
+          primary_category: row.primary_category || existing?.primary_category,
+          is_tbn_leadership: row.is_tbn_leadership !== undefined ? row.is_tbn_leadership : existing?.is_tbn_leadership || false,
+          tbn_leadership_title: row.tbn_leadership_title || existing?.tbn_leadership_title || '',
+          display_order: row.display_order !== undefined && row.display_order !== null ? Number(row.display_order) : existing?.display_order,
+          created_at: row.created_at || existing?.created_at,
+
+          // Other properties mapped best-effort
+          consultationType: row.consultation_type || existing?.consultationType,
+          testimonials: [
+            { text: row.testimonial_1, name: 'Client' },
+            { text: row.testimonial_2, name: 'Client' },
+            { text: row.testimonial_3, name: 'Client' },
+          ].filter(t => !!t.text).length > 0 ? [
+            { text: row.testimonial_1, name: 'Client' },
+            { text: row.testimonial_2, name: 'Client' },
+            { text: row.testimonial_3, name: 'Client' },
+          ].filter(t => !!t.text) : (existing?.testimonials || []),
+          accepting_new_clients: row.accepting_new_clients !== undefined ? row.accepting_new_clients : existing?.accepting_new_clients,
+          experience: row.experience || existing?.experience,
+          newsHubContributions: row.news_hub_article_interest || existing?.newsHubContributions,
+        };
+
+        combinedMap.set(slug, dynamicItem);
+      });
     }
 
-    // Parse strings and map to Specialist interface
-    return data.map((row) => {
-      const parseArray = (val: any): string[] => {
-        if (Array.isArray(val)) return val;
-        if (typeof val === 'string') {
-          const trimmed = val.trim();
-          if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
-            try {
-              const parsed = JSON.parse(trimmed);
-              if (Array.isArray(parsed)) return parsed;
-            } catch (e) {}
-          }
-          const delimiter = val.includes(';') ? ';' : ',';
-          return val.split(delimiter).map(s => s.trim()).filter(Boolean);
-        }
-        return [];
-      };
-
-      const slug = generateSlug(row.first_name || row.clinic_name || 'partner', row.last_name || '');
-      const customPositions: Record<string, string> = {
-        "lynne-matthews": "center 20%",
-        "sarah-abell": "center 30%",
-        "charan-chana": "center 15%",
-        "trevor-ford": "center 20%",
-      };
-      const imagePosition = customPositions[slug] || "center top";
-
-      return {
-        id: row.id,
-        slug,
-        name: `${row.first_name || ''} ${row.last_name || ''}`.trim() || row.clinic_name || 'Unnamed Partner',
-        role: row.professional_title || '',
-        category: (row.primary_category as SpecialistCategory) || 'All',
-        specificTitle: row.specific_title,
-        bio: row.professional_bio ? [row.professional_bio] : [],
-        quote: row.why_partnered_tbn || '',
-        credentials: parseArray(row.credentials).map(c => c.replace(/^- /, '')), // Remove leading dashes if exist
-        
-        // Image Handling
-        image: row.profile_picture_url || 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800',
-        imagePosition,
-        gallery_image_urls: parseArray(row.gallery_image_urls),
-        secondaryImage: parseArray(row.gallery_image_urls)[0], // Use first gallery image as secondary if available
-
-        // New TBN Fields mappings
-        specialization_tags: parseArray(row.specialization_tags),
-        primary_testing_methods: parseArray(row.primary_testing_methods),
-        first_balance_result: row.first_balance_result,
-        second_balance_result: row.second_balance_result,
-        why_joined_tbn: row.why_joined_tbn,
-        why_partnered_tbn: row.why_partnered_tbn || '',
-        other_blood_tests: row.other_blood_tests,
-        
-        // Contact & Location
-        email_address: row.email_address,
-        phone_number: row.phone_number,
-        address: row.address,
-        clinic_name: row.clinic_name,
-        location: row.town_city || row.address || '',
-        is_approved: row.is_approved,
-        primary_category: row.primary_category,
-        is_tbn_leadership: row.is_tbn_leadership || false,
-        tbn_leadership_title: row.tbn_leadership_title || '',
-        display_order: row.display_order !== undefined && row.display_order !== null ? Number(row.display_order) : undefined,
-        created_at: row.created_at,
-
-        // Other properties mapped best-effort
-        consultationType: row.consultation_type,
-        testimonials: [
-          { text: row.testimonial_1, name: 'Client' },
-          { text: row.testimonial_2, name: 'Client' },
-          { text: row.testimonial_3, name: 'Client' },
-        ].filter(t => !!t.text),
-        accepting_new_clients: row.accepting_new_clients,
-        experience: row.experience,
-        newsHubContributions: row.news_hub_article_interest,
-      };
-    });
+    return Array.from(combinedMap.values());
   } catch (err) {
     console.warn('Supabase query failed. Falling back to static specialists data:', err);
     return staticSpecialists.map(s => ({ ...s, is_approved: s.is_approved !== false }));
