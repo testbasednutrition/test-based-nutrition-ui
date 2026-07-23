@@ -135,49 +135,49 @@ const WomensHealth = () => {
                   title: "Fertility & Conception",
                   description: "Up to 70% of women with PMOS formally known as PCOS are undiagnosed\nExplore how cellular health, nutrient status, and blood sugar balance may influence hormonal signalling and fertility.",
                   href: "#",
-                  image: "/images/womens-health/flicker-1.jpg",
+                  image: "/images/womens-health/flicker-1.webp",
                 },
                 {
                   id: "pregnancy",
                   title: "Pregnancy & Postnatal Health",
                   description: "Iron deficiency is one of the most common deficiencies in women of reproductive age\nSupport recovery, energy, and wellbeing by understanding iron levels, nutrient demand, and absorption.",
                   href: "#",
-                  image: "/images/womens-health/flicker-2.jpg",
+                  image: "/images/womens-health/flicker-2.webp",
                 },
                 {
                   id: "perimenopause",
                   title: "Perimenopause & Menopause",
                   description: "Many women experience symptoms despite HRT — or are unable to take it.\nLook beyond symptoms to explore inflammation, fatty acid balance, and metabolic changes influencing this transition.",
                   href: "#",
-                  image: "/images/womens-health/flicker-3.jpg",
+                  image: "/images/womens-health/flicker-3.webp",
                 },
                 {
                   id: "hormonal",
                   title: "Hormonal Conditions",
                   description: "PMOS (formally PCOS) • Endometriosis • Adenomyosis • PMDD • Irregular Cycles.\nUnderstand how inflammation, gut health, and cellular balance may influence pain, cycle disruption, and hormonal signalling.",
                   href: "#",
-                  image: "/images/womens-health/flicker-4.jpg",
+                  image: "/images/womens-health/flicker-4.webp",
                 },
                 {
                   id: "mood",
                   title: "Mood, Brain Fog & Burnout",
                   description: "The brain is nearly 60% fat\nExplore how fatty acid balance, iron status, and blood sugar stability may influence focus, mood, and energy.",
                   href: "#",
-                  image: "/images/womens-health/flicker-5.jpg",
+                  image: "/images/womens-health/flicker-5.webp",
                 },
                 {
                   id: "weight",
                   title: "Weight, Metabolism & Blood Sugar",
                   description: "Hormonal and metabolic health are closely connected\nUnderstand how insulin response, inflammation, and cellular energy may influence weight, cravings, and energy levels.",
                   href: "#",
-                  image: "/images/womens-health/flicker-6.jpg",
+                  image: "/images/womens-health/flicker-6.webp",
                 },
                 {
                   id: "gut",
                   title: "Gut Health Issues",
                   description: "Gut health plays a role in how hormones are processed and regulated.\nAssess digestion, microbiome balance, and how gut-driven inflammation may influence wider symptoms.",
                   href: "#",
-                  image: "/images/womens-health/flicker-7.jpg",
+                  image: "/images/womens-health/flicker-7.webp",
                 }
               ]}
             />
@@ -295,7 +295,7 @@ const WomensHealth = () => {
         <StructuredTesting
           foundational={[
             { name: "Omega Balance", logo: "/images/test-logos/omega3balance.png" },
-            { name: "Cortisol", logo: "/images/test-logos/cortisol.png" }
+            { name: "Gut Microbiome", logo: "/images/test-logos/guthealth1.png" }
           ]}
           baseline={[
             { name: "Vitamin D", logo: "/images/test-logos/vitamind.png" },
@@ -303,13 +303,13 @@ const WomensHealth = () => {
             { name: "Ferritin", logo: "/images/test-logos/ferritin.png" },
             { name: "CRP / hs-CRP", logo: "/images/test-logos/crp.png" },
             { name: "Folate", logo: "/images/test-logos/folate.png" },
-            { name: "Cystatin C", logo: "/images/test-logos/cystatin.png" },
-            { name: "Gut Microbiome", logo: "/images/test-logos/guthealth1.png" },
+            { name: "Cystatin C", logo: "/images/test-logos/cystatin.webp" },
+            { name: "Cortisol", logo: "/images/test-logos/cortisol.png" },
             { name: "Progesterone", logo: "/images/test-logos/hormone.png" }
           ]}
           advanced={[
-            { name: "Testosterone", logo: "/images/test-logos/testosterone.png" },
-            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.png" },
+            { name: "Testosterone", logo: "/images/test-logos/testosterone.webp" },
+            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.webp" },
             { name: "Vitamin B12", logo: "/images/test-logos/vitaminb12.png" },
             { name: "FSH", logo: "/images/test-logos/fsh-v2.png" }
           ]}
