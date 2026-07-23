@@ -66,6 +66,7 @@ export interface Specialist {
   is_tbn_leadership?: boolean;
   tbn_leadership_title?: string;
   display_order?: number;
+  created_at?: string;
 }
 
 export const categories: SpecialistCategory[] = [

@@ -501,9 +501,12 @@ const SpecialistsDirectory = () => {
     if (hasA) return -1;
     if (hasB) return 1;
 
-    const rankA = getSpecialistRank(a);
-    const rankB = getSpecialistRank(b);
-    return rankA - rankB;
+    // Fallback: match Partner Hub portal default order (created_at descending)
+    const timeA = a.created_at ? new Date(a.created_at).getTime() : 0;
+    const timeB = b.created_at ? new Date(b.created_at).getTime() : 0;
+    if (timeA !== timeB) return timeB - timeA;
+
+    return (a.name || '').localeCompare(b.name || '');
   });
 
   const ITEMS_PER_PAGE = 24;

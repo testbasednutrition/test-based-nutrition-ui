@@ -85,6 +85,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
         is_tbn_leadership: row.is_tbn_leadership || false,
         tbn_leadership_title: row.tbn_leadership_title || '',
         display_order: row.display_order !== undefined && row.display_order !== null ? Number(row.display_order) : undefined,
+        created_at: row.created_at,
 
         // Other properties mapped best-effort
         consultationType: row.consultation_type,
