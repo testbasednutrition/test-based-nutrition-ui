@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import SEO from "@/components/SEO";
+import SchemaMarkup from "@/components/SchemaMarkup";
 import TrainingTicker from "@/components/TrainingTicker";
 import Pillars from "@/components/Pillars";
 import HowItWorks from "@/components/HowItWorks";
@@ -22,6 +23,7 @@ const Index = () => {
         description="A New Era in Nutritional Preventative Healthcare. Personalised health pathways guided by lab-grade blood spot screening."
         canonical="https://testbasednutrition.com/"
       />
+      <SchemaMarkup type="Organization" />
       <Navbar />
       <Hero />
       <TrainingTicker />
@@ -29,7 +31,7 @@ const Index = () => {
       <Experts />
 
       {/* Methodology & Meet the Experts Block */}
-      <div className="w-full max-w-[1800px] mx-auto px-4 md:px-8 xl:px-12 py-12 lg:py-20">
+      <div className="w-full max-w-[1800px] mx-auto px-4 md:px-8 xl:px-12 py-4 lg:py-8">
         <div className="flex flex-col lg:flex-row w-full gap-6 lg:gap-8">
           <div className="w-full lg:w-1/2 flex overflow-hidden rounded-3xl shadow-sm">
             <Pillars />

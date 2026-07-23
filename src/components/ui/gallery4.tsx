@@ -178,7 +178,7 @@ const Gallery4 = ({
                   <div className="absolute inset-0 backface-hidden rounded-xl overflow-hidden bg-muted border-b-2 border-[#dbd4c9]">
                     <img
                       src={item.image}
-                      alt={item.title}
+                      alt={`${item.title} Biomarker Screening Protocol - Test-Based Healthcare`}
                       className={`absolute h-full w-full object-cover transition-transform duration-[2000ms] group-hover:scale-110 ${item.imageClassName || "object-center"}`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
@@ -230,7 +230,7 @@ const Gallery4 = ({
                     <div className="group relative h-full max-w-full overflow-hidden rounded-xl bg-muted min-h-[27rem] md:aspect-[5/4] lg:aspect-[16/9]">
                       <img
                         src={item.image}
-                        alt={item.title}
+                        alt={`${item.title} Biomarker Screening Protocol - Test-Based Healthcare`}
                         className={`absolute h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 ${item.imageClassName || "object-center"}`}
                       />
                       <div className="absolute inset-0 h-full bg-gradient-to-t from-black/80 via-black/10 to-transparent" />

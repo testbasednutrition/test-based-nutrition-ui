@@ -191,15 +191,12 @@ const Quiz = () => {
         .then(({ error }) => {
           if (error) {
             console.warn("Supabase quiz lead insert failed:", error.message);
-          } else {
-            console.log("Quiz lead successfully submitted to Supabase.");
           }
         });
     } catch (dbErr) {
       console.warn("Error submitting quiz lead to Supabase:", dbErr);
     }
 
-    console.log("Quiz submitted:", newQuizLead);
     setSubmitted(true);
   };
 

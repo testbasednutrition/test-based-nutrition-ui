@@ -748,7 +748,7 @@ export default function PartnerOnboarding() {
     <div className="flex flex-col gap-6">
       <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#1a1a2e] to-[#16213e] aspect-[21/9] flex items-center justify-center">
         <img
-          src="/images/partner-hero-2.jpg"
+          src="/images/partner-hero-2.webp"
           alt="TBN Integration"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
         />

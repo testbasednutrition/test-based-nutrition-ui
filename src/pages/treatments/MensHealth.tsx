@@ -150,7 +150,7 @@ const MensHealth = () => {
                   title: "Male Fertility",
                   description: "Sperm health is influenced by lifestyle, inflammation, and nutrient status\nUnderstand how oxidative stress, hormones, and cellular health may impact fertility and reproductive function.",
                   href: "#",
-                  image: "/images/treatments/mens-fertility.jpg",
+                  image: "/images/treatments/mens-fertility.webp",
                 },
                 {
                   id: "weight",
@@ -164,7 +164,7 @@ const MensHealth = () => {
                   title: "Stress, Mood & Burnout",
                   description: "Chronic stress can impact hormones, energy, and mental clarity\nExplore how cortisol patterns, nutrient levels, and metabolic health may influence mood, focus, and resilience.",
                   href: "#",
-                  image: "/images/treatments/mens-stress.jpg",
+                  image: "/images/treatments/mens-stress.webp",
                 },
                 {
                   id: "ageing",
@@ -305,13 +305,13 @@ const MensHealth = () => {
             { name: "Ferritin", logo: "/images/test-logos/ferritin.png" },
             { name: "Cortisol", logo: "/images/test-logos/cortisol.png" },
             { name: "Folate", logo: "/images/test-logos/folate.png" },
-            { name: "Cystatin C", logo: "/images/test-logos/cystatin.png" },
+            { name: "Cystatin C", logo: "/images/test-logos/cystatin.webp" },
             { name: "CRP / hs-CRP", logo: "/images/test-logos/crp.png" }
           ]}
           advanced={[
-            { name: "Testosterone", logo: "/images/test-logos/testosterone.png" },
+            { name: "Testosterone", logo: "/images/test-logos/testosterone.webp" },
             { name: "Vitamin B12", logo: "/images/test-logos/vitaminb12.png" },
-            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.png" }
+            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.webp" }
           ]}
         />
 

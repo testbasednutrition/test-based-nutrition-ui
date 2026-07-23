@@ -140,7 +140,7 @@ const PainFatigue = () => {
                   title: "Fibromyalgia & Widespread Pain",
                   description: "Chronic widespread pain affects a significant proportion of the population.\nExplore how nervous system load and systemic inflammation may influence sensitivity and flare-ups.",
                   href: "#",
-                  image: "/images/pain-fatigue/fibro.jpg",
+                  image: "/images/pain-fatigue/fibro.webp",
                 },
                 {
                   id: "hormonal",
@@ -161,14 +161,14 @@ const PainFatigue = () => {
                   title: "Injury, Recovery & Ongoing Pain",
                   description: "Recovery timelines vary significantly between individuals.\nTest what may be influencing healing, repair, and recovery capacity.",
                   href: "#",
-                  image: "/images/pain-fatigue/injury.jpg",
+                  image: "/images/pain-fatigue/injury.webp",
                 },
                 {
                   id: "surgery",
                   title: "Surgery Preparation & Recovery",
                   description: "Recovery outcomes differ widely between patients.\nPrepare the body by addressing inflammation, immune response, and metabolic readiness.",
                   href: "#",
-                  image: "/images/pain-fatigue/surgery.jpg",
+                  image: "/images/pain-fatigue/surgery.webp",
                 },
                 {
                   id: "gut",
@@ -320,12 +320,12 @@ const PainFatigue = () => {
             { name: "RF", logo: "/images/test-logos/inflammation.png" },
             { name: "Cortisol", logo: "/images/test-logos/cortisol.png" },
             { name: "Folate", logo: "/images/test-logos/folate.png" },
-            { name: "Cystatin C", logo: "/images/test-logos/cystatin.png" }
+            { name: "Cystatin C", logo: "/images/test-logos/cystatin.webp" }
           ]}
           advanced={[
-            { name: "Testosterone", logo: "/images/test-logos/testosterone.png" },
+            { name: "Testosterone", logo: "/images/test-logos/testosterone.webp" },
             { name: "Vitamin B12", logo: "/images/test-logos/vitaminb12.png" },
-            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.png" }
+            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.webp" }
           ]}
         />
 

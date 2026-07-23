@@ -154,14 +154,14 @@ const SportsPerformance = () => {
                   title: "Athletes (Amateur → Elite)",
                   description: "Improve output, recovery, and repeatable high-level performance.\nAcross individual and team sports, from amateur to elite level — including the demands of focus, reaction speed, and decision-making under pressure.",
                   href: "#",
-                  image: "/images/sports/athletes.jpg",
+                  image: "/images/sports/athletes.webp",
                 },
                 {
                   id: "event",
                   title: "Event & Competition Preparation",
                   description: "Prepare for peak performance under pressure and in the lead-up to competition.\nFor HYROX, endurance events, competitions, and performance deadlines where both physical and mental readiness are critical.",
                   href: "#",
-                  image: "/images/sports/events.jpg",
+                  image: "/images/sports/events.webp",
                 },
                 {
                   id: "coaches",
@@ -175,7 +175,7 @@ const SportsPerformance = () => {
                   title: "Cognitive & Gaming Performance",
                   description: "Optimise focus, reaction time, and decision-making under load.\nFor gamers, esports competitors, and high-performance individuals where precision, timing, and sustained mental output drive results.",
                   href: "#",
-                  image: "/images/sports/esports.jpg",
+                  image: "/images/sports/esports.webp",
                 },
                 {
                   id: "longevity",
@@ -329,13 +329,13 @@ const SportsPerformance = () => {
             { name: "Ferritin", logo: "/images/test-logos/ferritin.png" },
             { name: "Cortisol", logo: "/images/test-logos/cortisol.png" },
             { name: "Folate", logo: "/images/test-logos/folate.png" },
-            { name: "Cystatin C", logo: "/images/test-logos/cystatin.png" },
+            { name: "Cystatin C", logo: "/images/test-logos/cystatin.webp" },
             { name: "CRP / hs-CRP", logo: "/images/test-logos/crp.png" }
           ]}
           advanced={[
-            { name: "Testosterone", logo: "/images/test-logos/testosterone.png" },
+            { name: "Testosterone", logo: "/images/test-logos/testosterone.webp" },
             { name: "Vitamin B12", logo: "/images/test-logos/vitaminb12.png" },
-            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.png" }
+            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.webp" }
           ]}
         />
         {/* SECTION 7.8 — HOW WE SUPPORT YOU */}

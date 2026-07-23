@@ -95,55 +95,6 @@ function HeroGeometric({
 
     return (
         <div className="relative py-24 md:py-32 w-full flex items-center justify-center overflow-hidden bg-background">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#9f1e13]/[0.05] via-transparent to-black/[0.03] blur-3xl" />
-
-            <div className="absolute inset-0 overflow-hidden">
-                <ElegantShape
-                    delay={0.3}
-                    width={600}
-                    height={140}
-                    rotate={12}
-                    gradient="from-[#9f1e13]/[0.10]"
-                    className="left-[-10%] md:left-[-5%] top-[15%] md:top-[20%]"
-                />
-
-                <ElegantShape
-                    delay={0.5}
-                    width={500}
-                    height={120}
-                    rotate={-15}
-                    gradient="from-black/[0.06]"
-                    className="right-[-5%] md:right-[0%] top-[70%] md:top-[75%]"
-                />
-
-                <ElegantShape
-                    delay={0.4}
-                    width={300}
-                    height={80}
-                    rotate={-8}
-                    gradient="from-white/[0.35]"
-                    className="left-[5%] md:left-[10%] bottom-[5%] md:bottom-[10%]"
-                />
-
-                <ElegantShape
-                    delay={0.6}
-                    width={200}
-                    height={60}
-                    rotate={20}
-                    gradient="from-[#9f1e13]/[0.12]"
-                    className="right-[15%] md:right-[20%] top-[10%] md:top-[15%]"
-                />
-
-                <ElegantShape
-                    delay={0.7}
-                    width={150}
-                    height={40}
-                    rotate={-25}
-                    gradient="from-black/[0.05]"
-                    className="left-[20%] md:left-[25%] top-[5%] md:top-[10%]"
-                />
-            </div>
-
             <div className="relative z-10 container mx-auto px-4 md:px-6">
                 <div className="max-w-4xl mx-auto text-center">
                     {badge && (

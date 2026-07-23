@@ -23,14 +23,14 @@ const servicesData: Gallery4Props = {
       title: "Children's Health",
       description: "Supporting growth, brain development and immune health through personalised nutrition and preventative testing.",
       href: "/treatments/childrens-health",
-      image: "/services/childrens-health-v2.jpg",
+      image: "/services/childrens-health-v2.webp",
     },
     {
       id: "neurodivergence",
       title: "Neurodivergence",
       description: "Targeted nutrition strategies designed to support focus, cognitive health and brain function.",
       href: "/treatments/neurodivergence",
-      image: "/services/neurodivergence-v2.jpg",
+      image: "/services/neurodivergence-v2.webp",
     },
     {
       id: "skin-health",
@@ -59,7 +59,7 @@ const servicesData: Gallery4Props = {
 
 const Services = () => {
   return (
-    <div className="w-full bg-background pt-16 pb-12 md:pb-16 flex flex-col">
+    <div className="w-full bg-background pt-3 md:pt-5 pb-12 md:pb-16 flex flex-col">
       <div className="pb-10 md:pb-14">
         <Gallery4 
           title={servicesData.title}

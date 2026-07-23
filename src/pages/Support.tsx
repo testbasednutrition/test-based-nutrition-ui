@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import SchemaMarkup from "@/components/SchemaMarkup";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -141,8 +142,7 @@ export default function SupportPage() {
 
       // Dispatch background email alert using portal Resend endpoint
       try {
-        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const baseUrl = isLocal ? "http://localhost:3000" : "https://partner-hub-jade.vercel.app";
+        const baseUrl = "https://partner-hub-jade.vercel.app";
         
         await fetch(`${baseUrl}/api/leads/notify`, {
           method: "POST",
@@ -177,6 +177,10 @@ export default function SupportPage() {
         title="Support Centre & Clinical Help | Test-Based Nutrition"
         description="Submit clinical case inquiries, kit status questions, or general support tickets. Access practitioner FAQs and assistance."
         canonical="https://testbasednutrition.com/support"
+      />
+      <SchemaMarkup 
+        type="FAQPage" 
+        faqs={faqs.map(f => ({ question: f.q, answer: f.a }))} 
       />
       <Navbar alwaysSolid />
       

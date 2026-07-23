@@ -33,7 +33,9 @@ export default function ReferralTracker() {
       
       localStorage.setItem("tbn_referrer_code", finalReferrerCode);
       sessionStorage.setItem("tbn_referrer_code", finalReferrerCode);
-      console.log(`[ReferralTracker] URL Intercept: Referrer code set to "${finalReferrerCode}"`);
+      if (import.meta.env.DEV) {
+        console.log(`[ReferralTracker] URL Intercept: Referrer code set to "${finalReferrerCode}"`);
+      }
     }
 
     // 2. Intercept direct specialist profile visits (e.g. /specialists/bryony-alford)
@@ -49,7 +51,9 @@ export default function ReferralTracker() {
       if (exists || specialists.length === 0) {
         localStorage.setItem("tbn_referrer_code", specialistSlug);
         sessionStorage.setItem("tbn_referrer_code", specialistSlug);
-        console.log(`[ReferralTracker] Profile Intercept: Referrer code set to "${specialistSlug}"`);
+        if (import.meta.env.DEV) {
+          console.log(`[ReferralTracker] Profile Intercept: Referrer code set to "${specialistSlug}"`);
+        }
       }
     }
   }, [location, specialists]);

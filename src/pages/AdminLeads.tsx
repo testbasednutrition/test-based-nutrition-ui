@@ -4,7 +4,8 @@ import Footer from "@/components/Footer";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import { Download, Trash2, Key, Users, BookOpen, Search, LogOut, BarChart3, Stethoscope } from "lucide-react";
+import { Download, Trash2, Key, Users, BookOpen, Search, LogOut, BarChart3, Stethoscope, ArrowUp, ArrowDown, Save, Calendar } from "lucide-react";
+import { specialists, type Specialist } from "@/data/specialists";
 
 interface LocalLead {
   id?: any;
@@ -33,14 +34,57 @@ export default function AdminLeads() {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [activeTab, setActiveTab] = useState<"partner" | "discovery" | "academy" | "quiz" | "customer">("partner");
+  const [activeTab, setActiveTab] = useState<"partner" | "discovery" | "academy" | "quiz" | "customer" | "profiles">("partner");
   const [searchTerm, setSearchTerm] = useState("");
 
   const [partnerLeads, setPartnerLeads] = useState<LocalLead[]>([]);
   const [academyRegistrations, setAcademyRegistrations] = useState<LocalLead[]>([]);
   const [quizLeads, setQuizLeads] = useState<LocalLead[]>([]);
   const [customerLeads, setCustomerLeads] = useState<LocalLead[]>([]);
+  const [profileOrderList, setProfileOrderList] = useState<(Specialist & { displayOrder: number })[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("tbn_profile_display_orders");
+    const customMap: Record<string, number> = saved ? JSON.parse(saved) : {};
+
+    const list = [...specialists].map((s, idx) => {
+      const existingOrder = s.display_order ?? customMap[s.slug || s.name];
+      return {
+        ...s,
+        displayOrder: existingOrder !== undefined ? existingOrder : idx + 1,
+      };
+    });
+
+    list.sort((a, b) => a.displayOrder - b.displayOrder);
+    setProfileOrderList(list);
+  }, []);
+
+  const handleMoveProfile = (index: number, direction: "up" | "down") => {
+    const updated = [...profileOrderList];
+    const targetIndex = direction === "up" ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex >= updated.length) return;
+
+    const temp = updated[index];
+    updated[index] = updated[targetIndex];
+    updated[targetIndex] = temp;
+
+    const reindexed = updated.map((item, idx) => ({
+      ...item,
+      displayOrder: idx + 1,
+    }));
+
+    setProfileOrderList(reindexed);
+  };
+
+  const handleSaveProfileOrders = () => {
+    const mapToSave: Record<string, number> = {};
+    profileOrderList.forEach((item, idx) => {
+      mapToSave[item.slug || item.name] = idx + 1;
+    });
+    localStorage.setItem("tbn_profile_display_orders", JSON.stringify(mapToSave));
+    toast.success("Directory Profile Display Order saved successfully! Live directory updated.");
+  };
 
   // Authenticate with session storage so users don't need to retype password on refresh
   useEffect(() => {
@@ -577,6 +621,19 @@ export default function AdminLeads() {
               >
                 Customer Leads
               </button>
+              <button
+                onClick={() => {
+                  setActiveTab("profiles");
+                  setSearchTerm("");
+                }}
+                className={`flex-1 sm:flex-initial px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+                  activeTab === "profiles"
+                    ? "bg-[#9f1e13] text-white shadow-sm"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                Directory Profile Sorting
+              </button>
             </div>
 
             {/* Actions (Export) */}
@@ -603,6 +660,8 @@ export default function AdminLeads() {
                   ? "Search academy registrations by name, email..."
                   : activeTab === "quiz"
                   ? "Search quiz enquiries by name, email, phone, doctor, goal..."
+                  : activeTab === "profiles"
+                  ? "Filter directory profiles..."
                   : "Search customer leads by name, email, phone, pathway, postcode..."
               }
               value={searchTerm}
@@ -614,7 +673,82 @@ export default function AdminLeads() {
 
         {/* Results table */}
         <div className="bg-white border border-[#dbd4c9] rounded-2xl overflow-hidden shadow-sm">
-          {isLoading ? (
+          {activeTab === "profiles" ? (
+            <div className="p-6 space-y-6">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-secondary/30 p-4 rounded-xl border border-border">
+                <div>
+                  <h3 className="font-bold text-gray-900 text-sm">Directory Profile Display Order</h3>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    Use the ⬆️ and ⬇️ buttons to re-order how specialists appear on the live directory. Click Save when finished.
+                  </p>
+                </div>
+                <button
+                  onClick={handleSaveProfileOrders}
+                  className="flex items-center gap-2 px-5 py-2.5 bg-[#9f1e13] hover:bg-[#861910] text-white text-xs font-bold rounded-xl shadow-sm transition-all shrink-0"
+                >
+                  <Save className="w-4 h-4" />
+                  Save Display Order
+                </button>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs">
+                  <thead className="bg-gray-50 text-gray-500 uppercase tracking-widest text-[9px] border-b border-gray-100">
+                    <tr>
+                      <th className="px-4 py-3">Rank</th>
+                      <th className="px-4 py-3">Specialist Name</th>
+                      <th className="px-4 py-3">Role / Title</th>
+                      <th className="px-4 py-3">Category</th>
+                      <th className="px-4 py-3 text-right">Re-Order</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 font-montserrat">
+                    {profileOrderList
+                      .filter((s) => !searchTerm || s.name.toLowerCase().includes(searchTerm.toLowerCase()) || s.role.toLowerCase().includes(searchTerm.toLowerCase()))
+                      .map((spec, index) => (
+                        <tr key={spec.slug || index} className="hover:bg-gray-50/50 transition-colors">
+                          <td className="px-4 py-3 font-bold text-primary">
+                            #{index + 1}
+                          </td>
+                          <td className="px-4 py-3 font-bold text-gray-900 flex items-center gap-3">
+                            <img src={spec.image} alt={spec.name} className="w-8 h-8 rounded-full object-cover shrink-0" />
+                            <span>{spec.name}</span>
+                          </td>
+                          <td className="px-4 py-3 text-gray-600 font-medium">
+                            {spec.role}
+                          </td>
+                          <td className="px-4 py-3">
+                            <span className="px-2 py-0.5 text-[9px] font-bold uppercase rounded bg-gray-100 text-gray-700">
+                              {spec.category}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-right">
+                            <div className="inline-flex items-center gap-1">
+                              <button
+                                disabled={index === 0}
+                                onClick={() => handleMoveProfile(index, "up")}
+                                className="p-1.5 border rounded hover:bg-gray-100 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                                title="Move Up"
+                              >
+                                <ArrowUp className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                disabled={index === profileOrderList.length - 1}
+                                onClick={() => handleMoveProfile(index, "down")}
+                                className="p-1.5 border rounded hover:bg-gray-100 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                                title="Move Down"
+                              >
+                                <ArrowDown className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : isLoading ? (
             <div className="p-12 text-center text-gray-500 font-montserrat text-sm">
               Loading Captured Leads...
             </div>

@@ -182,9 +182,7 @@ const PartnerLoginModal = ({ children }: { children: React.ReactNode }) => {
     } else {
       toast.success("Successfully authenticated!");
       
-      // Pass the tokens to the separated partner-hub so it can securely bypass the cross-domain login wall
-      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      const baseUrl = isLocal ? "http://localhost:3000" : "https://partner-hub-jade.vercel.app";
+      const baseUrl = "https://partner-hub-jade.vercel.app";
       
       if (data?.session) {
         window.location.href = `${baseUrl}/dashboard?access_token=${data.session.access_token}&refresh_token=${data.session.refresh_token}`;
@@ -344,7 +342,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
           <a href="/" className="flex items-center">
             <img 
               src="/logos/tbn-official-logo.png" 
-              alt="Test-Based Nutrition" 
+              alt="Test-Based Nutrition Official Brand Logo - Science-Led Health & Performance" 
               className={logoClass}
             />
           </a>

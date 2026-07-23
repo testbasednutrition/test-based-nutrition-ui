@@ -86,7 +86,7 @@ export default function TrafficTracker() {
 
         if (error) {
           console.error("[TrafficTracker] Error inserting pageview:", error.message);
-        } else {
+        } else if (import.meta.env.DEV) {
           console.log(`[TrafficTracker] Logged pageview: ${currentPath} | Ref: ${referrer} | Geo: ${locationStr} | Vis: ${visitorId.substring(0, 8)}`);
         }
       } catch (err) {

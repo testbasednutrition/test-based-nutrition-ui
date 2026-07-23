@@ -20,7 +20,7 @@ import {
   ArrowRight, CheckCircle2, Quote, Users, Search, Zap, AlertTriangle
 } from "lucide-react";
 
-const heroImg = "/images/treatments/childrens-hero.png";
+const heroImg = "/images/treatments/childrens-hero.webp";
 
 const ChildrensHealth = () => {
   const quizContext = useQuiz();
@@ -128,7 +128,7 @@ const ChildrensHealth = () => {
                   title: "EARLY CHILDHOOD DEVELOPMENT",
                   description: "Early nutrition and development may influence lifelong health outcomes. Identify potential nutritional gaps, inflammatory imbalance, and lifestyle factors influencing growth, resilience, behaviour, and development.",
                   href: "#",
-                  image: "/images/treatments/child-pathway-2.jpg",
+                  image: "/images/treatments/child-pathway-2.webp",
                 },
                 {
                   id: "gut-health",
@@ -296,11 +296,11 @@ const ChildrensHealth = () => {
             { name: "Ferritin", logo: "/images/test-logos/ferritin.png" },
             { name: "Cortisol", logo: "/images/test-logos/cortisol.png" },
             { name: "Folate", logo: "/images/test-logos/folate.png" },
-            { name: "Cystatin C", logo: "/images/test-logos/cystatin.png" }
+            { name: "Cystatin C", logo: "/images/test-logos/cystatin.webp" }
           ]}
           advanced={[
             { name: "Vitamin B12", logo: "/images/test-logos/vitaminb12.png" },
-            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.png" }
+            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.webp" }
           ]}
         />
         

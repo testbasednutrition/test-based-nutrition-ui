@@ -189,14 +189,14 @@ const SkinHealth = () => {
                   title: "Hormonal & Perimenopause Skin",
                   description: "Hormonal fluctuations commonly impact the skin\nUnderstand how internal signalling may influence breakouts and skin changes",
                   href: "#",
-                  image: "/images/skin-health/hormonal-skin.jpg",
+                  image: "/images/skin-health/hormonal-skin.webp",
                 },
                 {
                   id: "baby-children",
                   title: "Baby & Children's Skin",
                   description: "Explore how microbiome balance and early immune health may influence skin clarity and sensitivity",
                   href: "#",
-                  image: "/images/skin-health/baby-skin.jpg",
+                  image: "/images/skin-health/baby-skin.webp",
                 },
                 {
                   id: "ageing",
@@ -443,11 +443,11 @@ const SkinHealth = () => {
             { name: "CRP / hs-CRP", logo: "/images/test-logos/crp.png" },
             { name: "Cortisol", logo: "/images/test-logos/cortisol.png" },
             { name: "Folate", logo: "/images/test-logos/folate.png" },
-            { name: "Cystatin C", logo: "/images/test-logos/cystatin.png" }
+            { name: "Cystatin C", logo: "/images/test-logos/cystatin.webp" }
           ]}
           advanced={[
             { name: "Vitamin B12", logo: "/images/test-logos/vitaminb12.png" },
-            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.png" },
+            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.webp" },
             { name: "Hormonal markers", logo: "/images/test-logos/hormone.png" }
           ]}
         />

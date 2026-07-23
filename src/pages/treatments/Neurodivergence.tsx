@@ -140,7 +140,7 @@ const Neurodivergence = () => {
                   title: "NEURO CURIOUS",
                   description: "Many individuals explore neurodivergent traits long before formal assessment or diagnosis. Understand how sleep, stress load, nutrition, gut health, and metabolic function may influence focus, overwhelm, emotional regulation, and cognitive wellbeing.",
                   href: "#",
-                  image: "/images/treatments/neuro-pathway-7.jpg",
+                  image: "/images/treatments/neuro-pathway-7.webp",
                 },
                 {
                   id: "diagnosed-adhd",
@@ -313,13 +313,13 @@ const Neurodivergence = () => {
             { name: "Ferritin", logo: "/images/test-logos/ferritin.png" },
             { name: "Cortisol", logo: "/images/test-logos/cortisol.png" },
             { name: "Folate", logo: "/images/test-logos/folate.png" },
-            { name: "Cystatin C", logo: "/images/test-logos/cystatin.png" }
+            { name: "Cystatin C", logo: "/images/test-logos/cystatin.webp" }
           ]}
           advanced={[
             { name: "Vitamin B12", logo: "/images/test-logos/vitaminb12.png" },
-            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.png" },
+            { name: "Thyroid (TSH)", logo: "/images/test-logos/tsh.webp" },
             { name: "FSH", logo: "/images/test-logos/fsh-v2.png" },
-            { name: "Testosterone", logo: "/images/test-logos/testosterone.png" }
+            { name: "Testosterone", logo: "/images/test-logos/testosterone.webp" }
           ]}
         />
         

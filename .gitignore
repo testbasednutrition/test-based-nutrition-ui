@@ -23,3 +23,13 @@ dist-ssr
 *.sln
 *.sw?
 venv/
+
+# Backup & Secret Report Safety Rules
+*Backup*
+*.json.backup
+TBN_*_Backup.*
+*.pdf
+*.csv
+*.zip
+*.xlsx
+!public/favicon.svg

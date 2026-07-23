@@ -87,8 +87,7 @@ export default function PartnerLeadForm({
 
     // Trigger background email notification via Next.js partner-hub API
     try {
-      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      const baseUrl = isLocal ? "http://localhost:3000" : "https://partner-hub-jade.vercel.app";
+      const baseUrl = "https://partner-hub-jade.vercel.app";
       
       const apiRes = await fetch(`${baseUrl}/api/leads/notify`, {
         method: "POST",
@@ -103,7 +102,6 @@ export default function PartnerLeadForm({
       });
 
       if (!apiRes.ok) throw new Error("API response was not ok");
-      console.log("Background email notification sent successfully via partner-hub!");
     } catch (err) {
       console.warn("Background email notification failed, launching client-side fallback mailto:", err);
       // Launch mailto option fallback

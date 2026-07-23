@@ -230,21 +230,6 @@ export default function EnhancedBackgroundPaths({
 
   return (
     <div className="relative min-h-[60vh] w-full flex items-center justify-center overflow-hidden bg-background">
-      {/* Dynamic Background Patterns */}
-      <div className="absolute inset-0 text-primary opacity-30">
-        <motion.div
-           key="spiral"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 2 }}
-        >
-          {renderPattern()}
-        </motion.div>
-      </div>
-
-      {/* Gradient Overlay to match theme */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background dark:from-background dark:via-transparent dark:to-background" />
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">

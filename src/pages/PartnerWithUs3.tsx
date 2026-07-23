@@ -13,7 +13,7 @@ import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 import DiscoveryCallModal from "@/components/DiscoveryCallModal";
 
-const heroImg = "/images/partner-hero-2.jpg";
+const heroImg = "/images/partner-hero-2.webp";
 
 const mapTypeToLabel = (type: string) => {
   const mapping: Record<string, string> = {
@@ -72,8 +72,7 @@ const PartnerWithUs3 = () => {
 
       // Dispatch background email alert to admin
       try {
-        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const baseUrl = isLocal ? "http://localhost:3000" : "https://partner-hub-jade.vercel.app";
+        const baseUrl = "https://partner-hub-jade.vercel.app";
         await fetch(`${baseUrl}/api/leads/notify`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
