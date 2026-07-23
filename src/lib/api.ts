@@ -65,13 +65,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
           credentials: parseArray(row.credentials).length > 0 ? parseArray(row.credentials).map(c => c.replace(/^- /, '')) : (existing?.credentials || []),
           
           // Image Handling
-          image: (() => {
-            const raw = row.profile_picture_url || existing?.image;
-            if (!raw || raw.includes('test-basednutrition.com/assets/images/')) {
-              return 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800';
-            }
-            return raw;
-          })(),
+          image: row.profile_picture_url || existing?.image || '',
           imagePosition,
           gallery_image_urls: parseArray(row.gallery_image_urls),
           secondaryImage: parseArray(row.gallery_image_urls)[0] || existing?.secondaryImage,
