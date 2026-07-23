@@ -460,12 +460,9 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
 
                 {/* News */}
                 <MenubarMenu>
-                  <MenubarTrigger 
-                    className={getTriggerClass(isNewsActive)}
-                    onClick={() => navigate('/news')}
-                  >
+                  <div className={getTriggerClass(isNewsActive) + " cursor-default hover:bg-transparent pointer-events-none opacity-80"}>
                     News
-                  </MenubarTrigger>
+                  </div>
                 </MenubarMenu>
               </Menubar>
             </div>
@@ -710,17 +707,15 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
                 </div>
               )}
 
-              <a
-                href="/news"
-                className={`text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors py-2 block ${
+              <span
+                className={`text-[11px] uppercase font-montserrat font-semibold tracking-wider transition-colors py-2 block cursor-default opacity-80 ${
                   isNewsActive 
                     ? "text-black font-extrabold border-b border-black w-max" 
-                    : "text-muted-foreground hover:text-foreground"
+                    : "text-muted-foreground"
                 }`}
-                onClick={() => setMobileOpen(false)}
               >
                 News
-              </a>
+              </span>
 
               {/* Mobile Partner With Us Accordion */}
               <button
