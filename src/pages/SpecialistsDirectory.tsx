@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import SchemaMarkup from "@/components/SchemaMarkup";
 import { type SpecialistCategory, AMBASSADOR_SLUGS } from "@/data/specialists";
 import { useQuery } from "@tanstack/react-query";
 import { fetchSpecialists } from "@/lib/api";
@@ -504,9 +505,62 @@ const SpecialistsDirectory = () => {
 
     return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch && matchesLeadership;
   });
-  const combinedDirectoryList = showAmbassadorsOnly
+  const getSpecialistRank = (s: any) => {
+    // Rank 1: TBN Leadership Team
+    if (
+      s.is_tbn_leadership ||
+      s.category === "TBN Leadership Team" ||
+      s.slug === "natasha-sundharawipata" ||
+      s.slug === "ishtiaq-rehman" ||
+      s.slug === "neil-parsley" ||
+      (s.role && s.role.toLowerCase().includes("director"))
+    ) {
+      return 1;
+    }
+
+    // Rank 2: Doctor-Led Profiles
+    const nameLower = (s.name || "").toLowerCase();
+    const roleLower = (s.role || "").toLowerCase();
+    const creds = (s.credentials || []).map((c: string) => c.toLowerCase());
+    
+    const isDoctor =
+      nameLower.includes("dr.") ||
+      nameLower.includes("dr ") ||
+      roleLower.includes("doctor") ||
+      roleLower.includes("gp") ||
+      roleLower.includes("chiropractic") ||
+      creds.some((c: string) => c.includes("doctor") || c.includes("mbbs") || c.includes("mbchb") || c.includes("dc") || c.includes("dr."));
+
+    if (isDoctor) {
+      return 2;
+    }
+
+    // Rank 3: All other profiles
+    return 3;
+  };
+
+  const rawList = showAmbassadorsOnly
     ? filteredAmbassadors
     : [...filtered, ...filteredAmbassadors];
+
+  // Check for admin custom profile order overrides from storage / DB
+  const customOrdersStr = typeof window !== "undefined" ? localStorage.getItem("tbn_profile_display_orders") : null;
+  const customOrders: Record<string, number> = customOrdersStr ? JSON.parse(customOrdersStr) : {};
+
+  const combinedDirectoryList = [...rawList].sort((a, b) => {
+    const orderA = a.display_order !== undefined && a.display_order !== null ? a.display_order : customOrders[a.slug || a.id];
+    const orderB = b.display_order !== undefined && b.display_order !== null ? b.display_order : customOrders[b.slug || b.id];
+
+    if (orderA !== undefined && orderA !== null && orderB !== undefined && orderB !== null) {
+      return orderA - orderB;
+    }
+    if (orderA !== undefined && orderA !== null) return -1;
+    if (orderB !== undefined && orderB !== null) return 1;
+
+    const rankA = getSpecialistRank(a);
+    const rankB = getSpecialistRank(b);
+    return rankA - rankB;
+  });
 
   const ITEMS_PER_PAGE = 24;
   const totalPages = Math.ceil(combinedDirectoryList.length / ITEMS_PER_PAGE) || 1;
@@ -521,6 +575,13 @@ const SpecialistsDirectory = () => {
         title="Find a Specialist Practitioner | Test-Based Nutrition Directory"
         description="Search accredited healthcare specialists, clinical practitioners, and TBN hubs near you. Book consultations for personalized blood-test-guided nutrition."
         canonical="https://testbasednutrition.com/specialists"
+      />
+      <SchemaMarkup 
+        type="MedicalBusiness" 
+        businessDetails={{
+          name: "Test-Based Nutrition Specialist & Practitioner Directory",
+          description: "Search accredited healthcare specialists, clinical practitioners, and TBN hubs across the UK."
+        }}
       />
       <Navbar alwaysSolid />
 

@@ -63,7 +63,9 @@ export interface Specialist {
   is_approved?: boolean;
   primary_category?: string;
   is_tbn_leadership?: boolean;
+  display_order?: number;
   tbn_leadership_title?: string;
+  display_order?: number;
 }
 
 export const categories: SpecialistCategory[] = [
@@ -79,13 +81,39 @@ export const categories: SpecialistCategory[] = [
 ];
 
 export const specialists: Specialist[] = [
-  // ── Medical & Clinical ──
+  // ── TBN Leadership Team ──
+  {
+    slug: "natasha-sundharawipata",
+    name: "Natasha Sundharawipata",
+    role: "Founder & Director",
+    category: "TBN Leadership Team",
+    is_tbn_leadership: true,
+    tbn_leadership_title: "Founder & Director",
+    image: "/experts/natasha-hq-new.jpg",
+    bio: [
+      "Over 25 years of experience in marketing, commercial growth and brand development, scaling luxury lifestyle, hospitality, health club and wellness businesses.",
+    ],
+    quote:
+      "Test-Based Nutrition (TBN) was created to bridge the gap between reactive healthcare and personalised preventive wellness.",
+    credentials: [
+      "Founder & Director — test-basednutrition.com",
+      "25+ Years Commercial & Brand Development",
+      "Preventative Healthcare & Clinic Growth Specialist",
+    ],
+    experience: "25+ Years Exp.",
+    location: "London, UK",
+    consultationType: "In-person & Online",
+    rating: 5.0,
+    reviewCount: 150,
+  },
   {
     slug: "ishtiaq-rehman",
     name: "Dr. Ishtiaq Rehman",
-    role: "Co-Director & Medical Director",
+    role: "Medical Director",
     category: "Women's Health",
-    image: "/experts/ishtiaq-rehman-new.jpg",
+    is_tbn_leadership: true,
+    tbn_leadership_title: "Medical Director",
+    image: "/experts/ishtiaq-rehman-v4.jpg",
     secondaryImage: "https://test-basednutrition.com/assets/images/ish2-634x434.jpeg",
     bio: [
       "Current England FA Doctor and specialist in sports and lifestyle medicine. Dr Rehman leads the clinical, educational and preventative health framework behind TBN.",
@@ -96,7 +124,7 @@ export const specialists: Specialist[] = [
       "MBBS / MBChB — Medical Degree",
       "Consulting Doctor — England FA",
       "Former Head of Medical and Performance — Sunderland FC",
-      "Co-Director — test-basednutrition.com",
+      "Medical Director — test-basednutrition.com",
       "Sports Medicine & Musculoskeletal Health",
       "Preventive Health Screening",
     ],
@@ -140,42 +168,12 @@ export const specialists: Specialist[] = [
     ],
   },
   {
-    slug: "jayden-blanchard",
-    name: "Jayden Blanchard",
-    role: "Doctor of Chiropractic — Life Chiropractic Basildon",
-    category: "Pain, Fatigue & Inflammation",
-    image: "https://test-basednutrition.com/assets/images/jayden-blanchard-3-1256x1883.jpeg",
-    secondaryImage: "https://test-basednutrition.com/assets/images/jayden-blanchard-1-698x1046.jpg",
-    bio: [
-      "Jayden Blanchard works at Life Chiropractic Basildon, where he focuses on helping patients recover from pain and improve their overall mobility. The clinic's advanced X-ray diagnostics and rehabilitation services provide the foundation for comprehensive care.",
-      "Jayden is passionate about going beyond the typical chiropractic approach, always seeking ways to enhance his patients' recovery. Incorporating Test-Based Nutrition into his practice allows him to give a more complete service, addressing not only physical adjustments but also the internal factors that contribute to long-term health.",
-    ],
-    quote:
-      "Test-Based Nutrition allows me to give my patients a more thorough approach to their wellness by addressing cellular health and reducing inflammation. This helps ensure faster recovery and better long-term results, whether they are athletes or everyday patients.",
-    credentials: [
-      "Doctor of Chiropractic (DC)",
-      "Advanced X-Ray Diagnostics",
-      "Rehabilitation & Recovery Specialist",
-      "Cellular Health Integration",
-    ],
-    bookingUrl: "https://www.lifechiropractic.co.uk/book-appointment/",
-    bookingLabel: "Book Now",
-    currentOrg: "Life Chiropractic Basildon",
-    experience: "10+ Years Exp.",
-    location: "Essex, London",
-    consultationType: "Online Only",
-    rating: 4.8,
-    reviewCount: 89,
-    languages: ["English", "Spanish"],
-    testingExpertise: ["Microbiome Analysis"],
-  },
-
-  // ── Combat Sports ──
-  {
     slug: "neil-parsley",
     name: "Neil Parsley",
-    role: "Co-Director & Performance Director",
+    role: "Elite Performance Director",
     category: "Sports Performance",
+    is_tbn_leadership: true,
+    tbn_leadership_title: "Elite Performance Director",
     image: "/experts/neil-parsley-new.jpg",
     bio: [
       "Former Team GB, England FA and Manchester City performance coach. As founder of UTS Gym, Neil also leads TBN’s gym integration and sports performance pathways.",
@@ -262,7 +260,7 @@ export const specialists: Specialist[] = [
     role: "UFC Veteran & Commonwealth Games Medalist",
     category: "Sports Performance",
     image: "https://test-basednutrition.com/assets/images/mike-grundy-6-1015x1014.jpg",
-    secondaryImage: "https://test-basednutrition.com/assets/images/mike-grundy3-477x611.jpg",
+    secondaryImage: "https://test-basednutrition.com/assets/images/mike-grundy3-477x611.webp",
     bio: [
       "Mike Grundy began his athletic career as a freestyle wrestler at the age of six, eventually competing at the international level. He represented Team England in two Commonwealth Games, securing a bronze medal at the 2014 Glasgow Games. After transitioning into MMA, Mike joined the UFC, where he made his debut in front of 22,000 fans at the O2 Arena.",
       "As the owner of Elite Fitness Factory, Mike now dedicates himself to coaching athletes in wrestling, Jiu-Jitsu, and MMA, passing on the discipline and expertise he gained throughout his illustrious career.",
@@ -286,7 +284,7 @@ export const specialists: Specialist[] = [
     role: "Professional Boxing Coach — RJ's Boxing Gym",
     category: "Sports Performance",
     image: "https://test-basednutrition.com/assets/images/ross-pearce-4-1200x1500.jpg",
-    secondaryImage: "https://test-basednutrition.com/assets/images/ross-pearce-3-698x873.jpg",
+    secondaryImage: "https://test-basednutrition.com/assets/images/ross-pearce-3-698x873.webp",
     bio: [
       "Ross Pearce has been a professional boxing coach at RJ's Boxing Gym in Essex for over 5 years. With a personal boxing career spanning 15 years, Ross brings a wealth of experience to his coaching. In 2022, Ross coached his fighter, Liam Dillon, to win the British title.",
       "Ross currently trains six professional fighters and provides personal training sessions for individuals at all fitness levels. His approach to coaching focuses on tailored training plans, discipline, and overall health.",
@@ -309,7 +307,7 @@ export const specialists: Specialist[] = [
     role: "Personal Trainer & Online Wellness Coach — David Lloyd",
     category: "Women's Health",
     image: "https://test-basednutrition.com/assets/images/0a4ad164-ccc2-4459-a338-38f4cb2fce4e-1256x1675.jpg",
-    secondaryImage: "https://test-basednutrition.com/assets/images/133eeab8-4ba2-4af3-932c-258cc70b76521-698x931.jpg",
+    secondaryImage: "https://test-basednutrition.com/assets/images/133eeab8-4ba2-4af3-932c-258cc70b76521-698x931.webp",
     bio: [
       "Lyndsey Hopper is a personal trainer and online wellness coach with over 10 years of personal training experience. With a background in Sport Science and a personal health and fitness journey, Lyndsey understands the challenges many face when trying to improve their health.",
       "She is dedicated to helping her clients learn how to nourish and move their bodies properly, while building confidence in the gym. Lyndsey specialises in creating personalised fitness plans for individuals along with nutritional guidance, and healthy habit building.",
@@ -469,7 +467,7 @@ export const specialists: Specialist[] = [
     name: "Emily Holland",
     role: "Gut and Skin Health Specialist",
     category: "Skin Health",
-    image: "https://test-basednutrition.com/assets/images/612056a2-c50b-4e85-9b8d-4639e40f9106-1256x942.jpeg",
+    image: "https://test-basednutrition.com/assets/images/612056a2-c50b-4e85-9b8d-4639e40f9106-1256x942.webp",
     secondaryImage: "https://test-basednutrition.com/assets/images/7153dd7b-7bb7-47be-b82d-864b5c1a68831-698x386.jpeg",
     bio: [
       "Emily Holland, founder of Emily Holland Wellness, is dedicated to helping individuals overcome gut and skin health issues through holistic methods. Her personal journey with cystic acne led her to explore alternative treatments, eventually becoming a certified holistic nutritionist.",
