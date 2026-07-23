@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import { type SpecialistCategory, AMBASSADOR_SLUGS } from "@/data/specialists";
+import { getInitialsAvatar } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { fetchSpecialists } from "@/lib/api";
 import { 
@@ -1148,11 +1149,15 @@ const SpecialistsDirectory = () => {
                           className="block w-full aspect-[3/4] bg-secondary relative group cursor-pointer overflow-hidden"
                         >
                           <img
-                            src={specialist.image}
+                            src={specialist.image || getInitialsAvatar(specialist.name)}
                             alt={specialist.name}
                             className="w-full h-full object-cover origin-top transition-transform duration-300 group-hover:scale-105"
                             style={{ objectPosition: specialist.imagePosition || 'center top' }}
                             loading="lazy"
+                            onError={(e) => {
+                              e.currentTarget.onerror = null;
+                              e.currentTarget.src = getInitialsAvatar(specialist.name);
+                            }}
                           />
                           {isAmbassador && (
                             <div className="absolute bottom-0 left-0 right-0 bg-[#9f1e13] text-[#faf8f5] text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center py-2 shadow-inner">

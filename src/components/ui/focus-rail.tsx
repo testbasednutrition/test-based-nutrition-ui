@@ -4,7 +4,7 @@ import * as React from "react";
 import { motion, AnimatePresence, PanInfo, type Transition } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { cn } from "@/lib/utils";
+import { cn, getInitialsAvatar } from "@/lib/utils";
 
 export type FocusRailItem = {
   id: string | number;
@@ -276,9 +276,13 @@ export function FocusRail({
                 }}
               >
                 <img
-                  src={item.imageSrc}
+                  src={item.imageSrc || getInitialsAvatar(item.title)}
                   alt={item.title}
                   className="h-full w-full rounded-2xl object-cover pointer-events-none"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = getInitialsAvatar(item.title);
+                  }}
                 />
 
                 {/* Lighting layers */}
