@@ -499,13 +499,13 @@ const SpecialistsDirectory = () => {
   };
 
   const combinedDirectoryList = [...filteredAll].sort((a, b) => {
-    const rawA = a.display_order !== undefined && a.display_order !== null 
-      ? a.display_order 
-      : (customOrders[a.slug] || (a.id ? customOrders[a.id] : DEFAULT_ORDER_MAP[a.slug]));
+    const rawA = DEFAULT_ORDER_MAP[a.slug] !== undefined 
+      ? DEFAULT_ORDER_MAP[a.slug] 
+      : (a.display_order !== undefined && a.display_order !== null ? a.display_order : (customOrders[a.slug] || (a.id ? customOrders[a.id] : undefined)));
 
-    const rawB = b.display_order !== undefined && b.display_order !== null 
-      ? b.display_order 
-      : (customOrders[b.slug] || (b.id ? customOrders[b.id] : DEFAULT_ORDER_MAP[b.slug]));
+    const rawB = DEFAULT_ORDER_MAP[b.slug] !== undefined 
+      ? DEFAULT_ORDER_MAP[b.slug] 
+      : (b.display_order !== undefined && b.display_order !== null ? b.display_order : (customOrders[b.slug] || (b.id ? customOrders[b.id] : undefined)));
 
     const orderA = rawA !== undefined && rawA !== null ? Number(rawA) : undefined;
     const orderB = rawB !== undefined && rawB !== null ? Number(rawB) : undefined;
