@@ -460,9 +460,9 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps) => {
 
                 {/* News */}
                 <MenubarMenu>
-                  <div className={getTriggerClass(isNewsActive) + " cursor-default hover:bg-transparent pointer-events-none opacity-80"}>
+                  <MenubarTrigger className={getTriggerClass(isNewsActive) + " cursor-default pointer-events-none opacity-90"}>
                     News
-                  </div>
+                  </MenubarTrigger>
                 </MenubarMenu>
               </Menubar>
             </div>
