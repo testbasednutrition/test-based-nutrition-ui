@@ -49,6 +49,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
       const imagePosition = customPositions[slug] || "center top";
 
       return {
+        id: row.id,
         slug,
         name: `${row.first_name || ''} ${row.last_name || ''}`.trim() || row.clinic_name || 'Unnamed Partner',
         role: row.professional_title || '',

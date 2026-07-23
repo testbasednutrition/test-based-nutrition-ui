@@ -370,11 +370,12 @@ const SpecialistsDirectory = () => {
   const approvedSpecialists = specialists.filter(s => s.is_approved === true);
   const allApprovedNames = Array.from(new Set(approvedSpecialists.map(s => s.name).filter(Boolean)));
   
-  // Separate into regular specialists and ambassadors
-  const regularSpecialistsOnly = approvedSpecialists.filter(s => !AMBASSADOR_SLUGS.includes(s.slug) && s.primary_category !== "TBN Brand Ambassador");
-  const ambassadorsOnly = approvedSpecialists.filter(s => AMBASSADOR_SLUGS.includes(s.slug) || s.primary_category === "TBN Brand Ambassador");
+  const filteredAll = approvedSpecialists.filter((s) => {
+    if (showAmbassadorsOnly) {
+      const isAmbassador = AMBASSADOR_SLUGS.includes(s.slug) || s.primary_category === "TBN Brand Ambassador";
+      if (!isAmbassador) return false;
+    }
 
-  const filtered = regularSpecialistsOnly.filter((s) => {
     let matchesCategory = true;
     
     if (activeCategory !== "All") {
@@ -440,71 +441,6 @@ const SpecialistsDirectory = () => {
     return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch && matchesLeadership;
   });
 
-  const filteredAmbassadors = ambassadorsOnly.filter((s) => {
-    let matchesCategory = true;
-    
-    if (activeCategory !== "All") {
-      const pathwayKeywords: Record<string, string[]> = {
-        "Women's Health": ["women", "pregnancy", "postnatal", "perimenopause", "menopause", "hormonal conditions", "fertility & conception", "hormonal skin", "pcos", "endometriosis"],
-        "Men's Health": ["men", "testosterone", "male"],
-        "Children's Health": ["child", "teen", "youth", "puberty", "growth & development", "paediatric"],
-        "Neurodivergence": ["neurodivergen", "adhd", "focus", "brain fog", "cognitive", "autism"],
-        "Skin Health": ["skin", "acne", "collagen", "eczema", "psoriasis"],
-        "Sports Performance": ["performance", "athlete", "competition", "coach", "sport"],
-        "Pain, Fatigue & Inflammation": ["pain", "fatigue", "inflammation", "stress", "burnout", "immunity", "gut health", "metabolic", "weight", "joint"]
-      };
-
-      const keywords = pathwayKeywords[activeCategory] || [activeCategory.toLowerCase()];
-      
-      const tagsMatch = s.specialization_tags && s.specialization_tags.some(tag => {
-        const lowerTag = tag.toLowerCase();
-        return keywords.some(kw => lowerTag.includes(kw));
-      });
-      
-      const catMatch = activeCategory === "TBN Leadership Team"
-        ? !!s.is_tbn_leadership
-        : (s.category && s.category === activeCategory);
-      matchesCategory = !!(catMatch || tagsMatch);
-    }
-
-    let matchesProfession = true;
-    if (activeProfession !== "All") {
-      matchesProfession = activeProfession === "TBN Leadership Team"
-        ? !!s.is_tbn_leadership
-        : !!(s.category && s.category === activeProfession);
-    }
-      
-    const matchesLocation = !locationSearch || 
-      (s.location && s.location.toLowerCase().includes(locationSearch.toLowerCase())) ||
-      (s.address && s.address.toLowerCase().includes(locationSearch.toLowerCase()));
-    
-    const matchesTestingTiers = selectedTestingTiers.length === 0 || selectedTestingTiers.some(tierOrTest => {
-      if (tierOrTest === "foundational" || tierOrTest === "baseline" || tierOrTest === "advanced") {
-        const mappedTests = TIER_MAPPINGS[tierOrTest] || [];
-        return s.primary_testing_methods && s.primary_testing_methods.some(method => {
-          const cleanMethod = method.trim().toLowerCase();
-          return mappedTests.some(testName => testName.toLowerCase() === cleanMethod);
-        });
-      } else {
-        const equivalents = TEST_EQUIVALENTS[tierOrTest] || [tierOrTest];
-        const lowerEquivalents = equivalents.map(e => e.toLowerCase().trim());
-        return s.primary_testing_methods && s.primary_testing_methods.some(method => {
-          return lowerEquivalents.includes(method.trim().toLowerCase());
-        });
-      }
-    });
-
-    const matchesNameSearch = !selectedNameSearch || (s.name && s.name.toLowerCase().includes(selectedNameSearch.toLowerCase()));
-
-    let matchesLeadership = true;
-    if (selectedLeadershipTitles.length > 0) {
-      matchesLeadership = !!s.is_tbn_leadership && 
-                          !!s.tbn_leadership_title && 
-                          selectedLeadershipTitles.includes(s.tbn_leadership_title);
-    }
-
-    return matchesCategory && matchesProfession && matchesLocation && matchesTestingTiers && matchesNameSearch && matchesLeadership;
-  });
   const getSpecialistRank = (s: any) => {
     // Rank 1: TBN Leadership Team
     if (
@@ -539,17 +475,13 @@ const SpecialistsDirectory = () => {
     return 3;
   };
 
-  const rawList = showAmbassadorsOnly
-    ? filteredAmbassadors
-    : [...filtered, ...filteredAmbassadors];
-
   // Check for admin custom profile order overrides from storage / DB
   const customOrdersStr = typeof window !== "undefined" ? localStorage.getItem("tbn_profile_display_orders") : null;
   const customOrders: Record<string, number> = customOrdersStr ? JSON.parse(customOrdersStr) : {};
 
-  const combinedDirectoryList = [...rawList].sort((a, b) => {
-    const orderA = a.display_order !== undefined && a.display_order !== null ? a.display_order : customOrders[a.slug || a.id];
-    const orderB = b.display_order !== undefined && b.display_order !== null ? b.display_order : customOrders[b.slug || b.id];
+  const combinedDirectoryList = [...filteredAll].sort((a, b) => {
+    const orderA = a.display_order !== undefined && a.display_order !== null ? a.display_order : customOrders[a.slug || a.id || ''];
+    const orderB = b.display_order !== undefined && b.display_order !== null ? b.display_order : customOrders[b.slug || b.id || ''];
 
     if (orderA !== undefined && orderA !== null && orderB !== undefined && orderB !== null) {
       return orderA - orderB;

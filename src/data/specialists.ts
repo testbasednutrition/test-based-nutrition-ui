@@ -16,6 +16,7 @@ export interface Testimonial {
 }
 
 export interface Specialist {
+  id?: string;
   slug: string;
   name: string;
   role: string;
