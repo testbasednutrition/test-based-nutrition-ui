@@ -1,6 +1,41 @@
 {
   "redirects": [
     {
+      "source": "/nutrition.html",
+      "destination": "/tbn-method",
+      "permanent": true
+    },
+    {
+      "source": "/testing.html",
+      "destination": "/testing",
+      "permanent": true
+    },
+    {
+      "source": "/specialists.html",
+      "destination": "/specialists",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/tbn-method",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/support",
+      "permanent": true
+    },
+    {
+      "source": "/:path*.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*.php",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/assets/images/:path*",
       "destination": "/specialists",
       "permanent": true
