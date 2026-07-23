@@ -64,7 +64,6 @@ export interface Specialist {
   is_approved?: boolean;
   primary_category?: string;
   is_tbn_leadership?: boolean;
-  display_order?: number;
   tbn_leadership_title?: string;
   display_order?: number;
 }

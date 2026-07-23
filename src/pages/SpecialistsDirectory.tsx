@@ -475,19 +475,31 @@ const SpecialistsDirectory = () => {
     return 3;
   };
 
-  // Check for admin custom profile order overrides from storage / DB
-  const customOrdersStr = typeof window !== "undefined" ? localStorage.getItem("tbn_profile_display_orders") : null;
-  const customOrders: Record<string, number> = customOrdersStr ? JSON.parse(customOrdersStr) : {};
+  let customOrders: Record<string, number> = {};
+  try {
+    const customOrdersStr = typeof window !== "undefined" ? localStorage.getItem("tbn_profile_display_orders") : null;
+    if (customOrdersStr) {
+      customOrders = JSON.parse(customOrdersStr);
+    }
+  } catch (e) {
+    console.error("Error parsing customOrders:", e);
+  }
 
   const combinedDirectoryList = [...filteredAll].sort((a, b) => {
-    const orderA = a.display_order !== undefined && a.display_order !== null ? a.display_order : customOrders[a.slug || a.id || ''];
-    const orderB = b.display_order !== undefined && b.display_order !== null ? b.display_order : customOrders[b.slug || b.id || ''];
+    const rawA = a.display_order !== undefined && a.display_order !== null ? a.display_order : (customOrders[a.slug] || (a.id ? customOrders[a.id] : undefined));
+    const rawB = b.display_order !== undefined && b.display_order !== null ? b.display_order : (customOrders[b.slug] || (b.id ? customOrders[b.id] : undefined));
 
-    if (orderA !== undefined && orderA !== null && orderB !== undefined && orderB !== null) {
-      return orderA - orderB;
+    const orderA = rawA !== undefined && rawA !== null ? Number(rawA) : undefined;
+    const orderB = rawB !== undefined && rawB !== null ? Number(rawB) : undefined;
+
+    const hasA = orderA !== undefined && !isNaN(orderA);
+    const hasB = orderB !== undefined && !isNaN(orderB);
+
+    if (hasA && hasB) {
+      return orderA! - orderB!;
     }
-    if (orderA !== undefined && orderA !== null) return -1;
-    if (orderB !== undefined && orderB !== null) return 1;
+    if (hasA) return -1;
+    if (hasB) return 1;
 
     const rankA = getSpecialistRank(a);
     const rankB = getSpecialistRank(b);
