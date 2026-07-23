@@ -1014,10 +1014,10 @@ const SpecialistsDirectory = () => {
                 <div>
                   <h2 className="text-[11px] sm:text-xs md:text-[15px] lg:text-[17px] xl:text-lg font-bold uppercase tracking-wider whitespace-nowrap">
                     {showAmbassadorsOnly ? (
-                      <span>{filteredAmbassadors.length} TBN Brand Ambassadors</span>
+                      <span>{combinedDirectoryList.length} TBN Brand Ambassadors</span>
                     ) : (
                       <span>
-                        {filtered.length} Leading TBN Specialists &amp; {filteredAmbassadors.length} TBN Brand Ambassadors
+                        {combinedDirectoryList.length} Leading TBN Specialists &amp; Brand Ambassadors
                       </span>
                     )}
                   </h2>
