@@ -279,6 +279,10 @@ export function FocusRail({
                   src={item.imageSrc}
                   alt={item.title}
                   className="h-full w-full rounded-2xl object-cover pointer-events-none"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800";
+                  }}
                 />
 
                 {/* Lighting layers */}
