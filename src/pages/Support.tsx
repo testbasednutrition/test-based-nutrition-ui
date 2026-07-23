@@ -85,8 +85,8 @@ export default function SupportPage() {
       a: "Yes, certain baseline screening finger-prick tests (like Vitamin D) are suitable for pediatric and teen pathways. However, please consult the specific children & teen pathway protocol guides for dosage and reference range adjustments."
     },
     {
-      q: "What is Zinzino Fast Start qualification exactly?",
-      a: "Fast Start is Zinzino's primary onboarding target for new clinic partners: securing 25 active personal customer subscriptions within your first 90 days of registration. Achieving this unlocks advanced retail payouts."
+      q: "What is Partner Fast Start qualification exactly?",
+      a: "Fast Start is the primary onboarding target for new clinic partners: securing 25 active personal customer subscriptions within your first 90 days of registration. Achieving this unlocks advanced retail payouts."
     },
     {
       q: "How do I update my public directory profile?",

@@ -15,7 +15,7 @@ const testimonials = [
     role: "via Nicola Michael (Skin Health Expert)",
   },
   {
-    text: "Training daily demands strong recovery, and Zinzino BalanceOil has been a game changer. My elbow pain has completely gone, recovery feels instant, and my body composition improved. With Sarah’s expert support, my mobility and overall wellbeing have never felt better.",
+    text: "Training daily demands strong recovery, and the Test-Based BalanceOil protocol has been a game changer. My elbow pain has completely gone, recovery feels instant, and my body composition improved. With Sarah’s expert support, my mobility and overall wellbeing have never felt better.",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=150",
     name: "Fitness & Mobility Client",
     role: "via Sarah Abell (TBN Lead Expert)",

@@ -58,7 +58,7 @@ describe("PartnerPortal2 Component", () => {
       "LEAD WITH PARTNERS",
       "POINT-OF-CARE SCREENING",
       "PROTOCOL HUB",
-      "ZINZINO TRAINING",
+      "PARTNER ONBOARDING",
       "MARKETING HUB",
       "SUPPORT CENTRE"
     ];
