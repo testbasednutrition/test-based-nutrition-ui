@@ -485,9 +485,27 @@ const SpecialistsDirectory = () => {
     console.error("Error parsing customOrders:", e);
   }
 
+  const DEFAULT_ORDER_MAP: Record<string, number> = {
+    "jacki-milne": 1,
+    "keeley-poore": 2,
+    "louise-parsley": 3,
+    "wayne-lineker": 4,
+    "david-ballard": 5,
+    "emma-skingley": 6,
+    "olena-kapinus": 7,
+    "katie-gautier": 8,
+    "jenny-hughes": 9,
+    "rosalia-barresi": 10,
+  };
+
   const combinedDirectoryList = [...filteredAll].sort((a, b) => {
-    const rawA = a.display_order !== undefined && a.display_order !== null ? a.display_order : (customOrders[a.slug] || (a.id ? customOrders[a.id] : undefined));
-    const rawB = b.display_order !== undefined && b.display_order !== null ? b.display_order : (customOrders[b.slug] || (b.id ? customOrders[b.id] : undefined));
+    const rawA = a.display_order !== undefined && a.display_order !== null 
+      ? a.display_order 
+      : (customOrders[a.slug] || (a.id ? customOrders[a.id] : DEFAULT_ORDER_MAP[a.slug]));
+
+    const rawB = b.display_order !== undefined && b.display_order !== null 
+      ? b.display_order 
+      : (customOrders[b.slug] || (b.id ? customOrders[b.id] : DEFAULT_ORDER_MAP[b.slug]));
 
     const orderA = rawA !== undefined && rawA !== null ? Number(rawA) : undefined;
     const orderB = rawB !== undefined && rawB !== null ? Number(rawB) : undefined;
