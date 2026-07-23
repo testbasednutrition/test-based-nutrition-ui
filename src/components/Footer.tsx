@@ -94,8 +94,6 @@ const Footer = ({ hideInstagram = false }: FooterProps) => {
                 This service provides wellness screening and educational insight. It does not diagnose, treat or replace medical or sports medicine advice. Any information provided is for general wellbeing purposes only and should be discussed with a qualified healthcare professional where appropriate.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground border-t border-border/40 pt-4">
-                <span>© {new Date().getFullYear()} Test-Based Nutrition. All rights reserved.</span>
-                <span>•</span>
                 <Link to="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
                 <span>•</span>
                 <Link to="/terms" className="hover:text-foreground transition-colors">Terms of Service</Link>
