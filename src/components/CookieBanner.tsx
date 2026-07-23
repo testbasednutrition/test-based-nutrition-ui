@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
@@ -38,7 +39,10 @@ export default function CookieBanner() {
           </div>
           <div className="flex-1">
             <p className="text-[11px] text-stone-700 leading-relaxed font-sans font-medium">
-              We use cookies to analyze site traffic, optimize performance, and support clinical features. By accepting, you agree to our GDPR-compliant cookie settings.
+              We use cookies to analyze site traffic, optimize performance, and support clinical features. By accepting, you agree to our{" "}
+              <Link to="/privacy-policy" className="underline font-semibold hover:text-[#9f1e13] transition-colors">
+                GDPR-compliant privacy & cookie policy
+              </Link>.
             </p>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Link, useLocation } from "react-router-dom";
 import { useQuiz } from "@/components/QuizContext";
 import { Button } from "@/components/ui/button";
@@ -63,6 +64,11 @@ const TestingPageV2 = () => {
 
   return (
     <div className="min-h-screen flex flex-col pt-[85px] md:pt-[96px] bg-[#faf8f5] font-montserrat text-zinc-950 selection:bg-[#9f1e13]/10 selection:text-[#9f1e13]">
+      <SEO 
+        title="Testing Pathways & Clinical Biomarkers | Test-Based Nutrition"
+        description="Explore Foundational, Baseline, and Advanced blood spot testing pathways. Accurate dry blood spot biomarker analysis for fatty acids, Vitamin D, and metabolic health."
+        canonical="https://testbasednutrition.com/testing"
+      />
       <Navbar alwaysSolid />
 
       <main className="flex-grow">

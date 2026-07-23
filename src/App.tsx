@@ -35,7 +35,6 @@ import PartnerWithUs3 from "./pages/PartnerWithUs3";
 
 import TBNMethod from "./pages/TBNMethod";
 import AdminLeads from "./pages/AdminLeads";
-import PartnerPortal2 from "./pages/PartnerPortal2";
 import CopyProtection from "@/components/CopyProtection";
 import ReferralTracker from "@/components/ReferralTracker";
 import AdminAffiliates from "./pages/AdminAffiliates";
@@ -43,6 +42,9 @@ import TrafficTracker from "@/components/TrafficTracker";
 import PartnerOnboarding from "./pages/PartnerOnboarding";
 import SupportPage from "./pages/Support";
 import CookieBanner from "@/components/CookieBanner";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -83,15 +85,18 @@ const App = () => (
             <Route path="/partner-with-us" element={<PartnerWithUs3 />} />
             <Route path="/partner-with-us-2" element={<PartnerWithUs />} />
             <Route path="/partner-with-us-3" element={<PartnerWithUs3 />} />
-            <Route path="/partner-portal-2" element={<PartnerPortal2 />} />
             <Route path="/testing" element={<TestingPageV2 />} />
             <Route path="/testing-v2" element={<TestingPageV2 />} />
             <Route path="/tbn-method" element={<TBNMethod />} />
-
-            <Route path="/admin/leads" element={<AdminLeads />} />
-            <Route path="/admin/affiliates" element={<AdminAffiliates />} />
-            <Route path="/onboarding" element={<PartnerOnboarding />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
             <Route path="/support" element={<SupportPage />} />
+
+            {/* Protected Admin & Internal Partner Routes */}
+            <Route path="/admin/leads" element={<ProtectedRoute title="Admin Leads Dashboard"><AdminLeads /></ProtectedRoute>} />
+            <Route path="/admin/affiliates" element={<ProtectedRoute title="Admin Affiliates Portal"><AdminAffiliates /></ProtectedRoute>} />
+            <Route path="/onboarding" element={<ProtectedRoute title="Partner Onboarding Portal"><PartnerOnboarding /></ProtectedRoute>} />
+
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

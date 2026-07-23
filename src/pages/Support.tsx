@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -172,6 +173,11 @@ export default function SupportPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <SEO 
+        title="Support Centre & Clinical Help | Test-Based Nutrition"
+        description="Submit clinical case inquiries, kit status questions, or general support tickets. Access practitioner FAQs and assistance."
+        canonical="https://testbasednutrition.com/support"
+      />
       <Navbar alwaysSolid />
       
       <main className="flex-grow pt-24 pb-16">

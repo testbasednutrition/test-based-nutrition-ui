@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import SEO from "@/components/SEO";
 import TrainingTicker from "@/components/TrainingTicker";
 import Pillars from "@/components/Pillars";
 import HowItWorks from "@/components/HowItWorks";
@@ -16,6 +17,11 @@ import { ModernBackgroundDemo } from "@/components/ModernBackgroundDemo";
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Test-Based Nutrition | Science-Led Health & Performance"
+        description="A New Era in Nutritional Preventative Healthcare. Personalised health pathways guided by lab-grade blood spot screening."
+        canonical="https://testbasednutrition.com/"
+      />
       <Navbar />
       <Hero />
       <TrainingTicker />

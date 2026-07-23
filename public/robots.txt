@@ -12,3 +12,8 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /onboarding
+
+Sitemap: https://testbasednutrition.com/sitemap.xml
+

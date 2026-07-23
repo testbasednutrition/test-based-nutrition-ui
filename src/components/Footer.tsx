@@ -54,6 +54,8 @@ const Footer = ({ hideInstagram = false }: FooterProps) => {
                 <li><Link to="/testing" className="hover:text-foreground transition-colors">Testing Pathways</Link></li>
                 <li><Link to="/partner-with-us" className="hover:text-foreground transition-colors">Retreats</Link></li>
                 <li><Link to="/news" className="hover:text-foreground transition-colors">News Hub</Link></li>
+                <li><Link to="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</Link></li>
+                <li><Link to="/terms" className="hover:text-foreground transition-colors">Terms of Service</Link></li>
               </ul>
             </div>
 
@@ -86,11 +88,18 @@ const Footer = ({ hideInstagram = false }: FooterProps) => {
           </div>
 
           <div className="border-t border-border mt-12 pt-8 flex flex-col items-center justify-center gap-4">
-            <div className="max-w-5xl w-full text-center px-4">
+            <div className="max-w-5xl w-full text-center px-4 space-y-3">
               <p className="text-[11px] text-muted-foreground leading-relaxed">
                 <span className="font-bold text-foreground uppercase tracking-widest mr-1">Disclaimer:</span>
                 This service provides wellness screening and educational insight. It does not diagnose, treat or replace medical or sports medicine advice. Any information provided is for general wellbeing purposes only and should be discussed with a qualified healthcare professional where appropriate.
               </p>
+              <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground border-t border-border/40 pt-4">
+                <span>© {new Date().getFullYear()} Test-Based Nutrition. All rights reserved.</span>
+                <span>•</span>
+                <Link to="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
+                <span>•</span>
+                <Link to="/terms" className="hover:text-foreground transition-colors">Terms of Service</Link>
+              </div>
             </div>
           </div>
         </div>

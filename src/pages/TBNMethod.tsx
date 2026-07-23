@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, ChevronRight, BookOpen, Users, Brain, Compass, Microscope, Target, Zap, Activity, TrendingUp } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronRight, BookOpen, Users, Brain, Compass, Microscope, Target, Zap, Activity, TrendingUp, XCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 import { useQuiz } from "@/components/QuizContext";
@@ -62,6 +63,11 @@ const TBNMethod = () => {
 
   return (
     <div className="min-h-screen bg-[#faf8f5]">
+      <SEO 
+        title="The TBN Method | Test-Based Preventative Healthcare"
+        description="Discover the 4-stage Test-Based Nutrition methodology. Moving beyond symptom suppression with precision biomarker testing and targeted protocols."
+        canonical="https://testbasednutrition.com/tbn-method"
+      />
       <Navbar alwaysSolid={false} />
 
       {/* Hero Section */}

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { type SpecialistCategory, AMBASSADOR_SLUGS } from "@/data/specialists";
 import { useQuery } from "@tanstack/react-query";
 import { fetchSpecialists } from "@/lib/api";
@@ -516,6 +517,11 @@ const SpecialistsDirectory = () => {
 
   return (
     <div className="min-h-screen bg-secondary/30 font-sans">
+      <SEO 
+        title="Find a Specialist Practitioner | Test-Based Nutrition Directory"
+        description="Search accredited healthcare specialists, clinical practitioners, and TBN hubs near you. Book consultations for personalized blood-test-guided nutrition."
+        canonical="https://testbasednutrition.com/specialists"
+      />
       <Navbar alwaysSolid />
 
       {/* Header & Search Area */}
