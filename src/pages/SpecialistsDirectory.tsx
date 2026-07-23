@@ -1160,7 +1160,7 @@ const SpecialistsDirectory = () => {
                             </div>
                           )}
                           {specialist.is_tbn_leadership && (
-                            <div className="absolute bottom-0 left-0 right-0 bg-[#1a3646] text-[#faf8f5] text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center py-2 shadow-inner">
+                            <div className="absolute bottom-0 left-0 right-0 bg-[#9f1e13] text-[#faf8f5] text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center py-2 shadow-inner">
                               {specialist.tbn_leadership_title || "TBN Leadership Team"}
                             </div>
                           )}
