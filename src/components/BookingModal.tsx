@@ -34,8 +34,12 @@ const BookingModal = () => {
       setIsSubmitted(false);
       setIsLoading(false);
       
-      if (bookingGoal && GOAL_MAPPING[bookingGoal]) {
-        setPathway(GOAL_MAPPING[bookingGoal]);
+      if (bookingGoal) {
+        if (GOAL_MAPPING[bookingGoal]) {
+          setPathway(GOAL_MAPPING[bookingGoal]);
+        } else {
+          setPathway(bookingGoal);
+        }
       } else {
         setPathway("");
       }
@@ -204,14 +208,22 @@ const BookingModal = () => {
                     disabled={isLoading}
                     className="w-full h-10 px-3 rounded-xl bg-white border border-[#dbd4c9] text-gray-900 focus:outline-none focus:border-[#9f1e13] focus:ring-1 focus:ring-[#9f1e13] transition-all text-xs cursor-pointer bg-white"
                   >
-                    <option value="">Select a Pathway</option>
-                    <option value="Women's Health">Women's Health</option>
-                    <option value="Men's Health">Men's Health</option>
-                    <option value="Children's Health">Children's Health</option>
-                    <option value="Neurodivergence">Neurodivergence</option>
-                    <option value="Skin Health">Skin Health</option>
-                    <option value="Sports Performance">Sports Performance</option>
-                    <option value="Pain & Fatigue">Pain & Fatigue</option>
+                    <option value="">Select a Pathway or Programme</option>
+                    <optgroup label="Support Levels & Programmes">
+                      <option value="Free Consultation">Free Consultation</option>
+                      <option value="TBN Foundations (6-Month Programme)">TBN Foundations (6-Month Programme)</option>
+                      <option value="TBN Advanced Review (1:1 Strategic)">TBN Advanced Review (1:1 Strategic)</option>
+                      <option value="TBN Elite Consultation (Private 1:1)">TBN Elite Consultation (Private 1:1)</option>
+                    </optgroup>
+                    <optgroup label="Health Pathways">
+                      <option value="Women's Health">Women's Health</option>
+                      <option value="Men's Health">Men's Health</option>
+                      <option value="Children's Health">Children's Health</option>
+                      <option value="Neurodivergence">Neurodivergence</option>
+                      <option value="Skin Health">Skin Health</option>
+                      <option value="Sports Performance">Sports Performance</option>
+                      <option value="Pain & Fatigue">Pain & Fatigue</option>
+                    </optgroup>
                   </select>
                 </div>
 
