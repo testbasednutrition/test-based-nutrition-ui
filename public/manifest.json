@@ -15,7 +15,7 @@
   ],
   "start_url": "https://www.test-basednutrition.com/",
   "scope": "https://www.test-basednutrition.com/",
-  "background_color": "#9f1e13",
-  "theme_color": "#9f1e13",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "display": "standalone"
 }
