@@ -48,8 +48,7 @@ const heroImg = "/services/skin-health-v2.jpg";
 
 
 const SkinHealth = () => {
-  const quizContext = useQuiz();
-  const openQuiz = quizContext?.openQuiz || (() => {});
+  const { openQuiz, openBooking } = useQuiz();
 
   const { data: specialists = [], isLoading: isSpecialistsLoading } = useQuery({
     queryKey: ['specialists'],
@@ -494,7 +493,7 @@ const SkinHealth = () => {
                  <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
                     <span className="text-[32px] font-bold text-gray-900 leading-none">Free</span>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase border border-gray-200 text-gray-900 rounded-full hover:bg-gray-50 transition-colors shadow-sm mb-6">
+                 <button onClick={() => openBooking("Skin Health — Free Consultation")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase border border-gray-200 text-gray-900 rounded-full hover:bg-gray-50 transition-colors shadow-sm mb-6">
                    Book Free Consultation
                  </button>
                </div>
@@ -526,7 +525,7 @@ const SkinHealth = () => {
                     </div>
                     <p className="text-[13px] text-[#9f1e13] font-bold">+ £39/month optional support</p>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6">
+                 <button onClick={() => openBooking("Skin Health — TBN Foundations")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6">
                    Start Foundations
                  </button>
                </div>
@@ -550,7 +549,7 @@ const SkinHealth = () => {
                  <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
                      <span className="text-[32px] font-bold text-gray-900 leading-none mb-1">£85 <span className="text-[14px] text-gray-500 font-bold tracking-widest uppercase mb-0.5">Add-on</span></span>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6">
+                 <button onClick={() => openBooking("Skin Health — TBN Advanced Review")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6">
                    Book Advanced Review
                  </button>
                </div>
@@ -579,7 +578,7 @@ const SkinHealth = () => {
                  <div className="h-[85px] shrink-0 flex flex-col justify-end pb-4">
                      <span className="text-[32px] font-bold text-white leading-none">£185</span>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#dbd4c9] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6">
+                 <button onClick={() => openBooking("Skin Health — TBN Elite Consultation")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#dbd4c9] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6">
                    Apply for Elite Support
                  </button>
                </div>

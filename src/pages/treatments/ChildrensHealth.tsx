@@ -23,8 +23,7 @@ import {
 const heroImg = "/images/treatments/childrens-hero.webp";
 
 const ChildrensHealth = () => {
-  const quizContext = useQuiz();
-  const openQuiz = quizContext?.openQuiz || (() => {});
+  const { openQuiz, openBooking } = useQuiz();
   
   const { data: specialists = [], isLoading: isSpecialistsLoading } = useQuery({
     queryKey: ['specialists'],
@@ -337,7 +336,7 @@ const ChildrensHealth = () => {
                      <span className="text-[32px] font-bold text-gray-900 leading-none">Free</span>
                    </div>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase border border-gray-200 text-gray-900 rounded-full hover:bg-gray-50 transition-colors shadow-sm mb-6">
+                 <button onClick={() => openBooking("Children's Health — Free Consultation")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase border border-gray-200 text-gray-900 rounded-full hover:bg-gray-50 transition-colors shadow-sm mb-6 cursor-pointer">
                    Book Free Consultation
                  </button>
                </div>
@@ -374,7 +373,7 @@ const ChildrensHealth = () => {
                      <p className="text-[13px] text-gray-500 font-medium flex items-center gap-1.5">+ £39/mo <span className="text-gray-400 font-normal">optional support</span></p>
                    </div>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6">
+                 <button onClick={() => openBooking("Children's Health — TBN Foundations")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6 cursor-pointer">
                    Start Foundations
                  </button>
                </div>
@@ -404,7 +403,7 @@ const ChildrensHealth = () => {
                      </div>
                    </div>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6">
+                 <button onClick={() => openBooking("Children's Health — TBN Advanced Review")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6 cursor-pointer">
                    Book Advanced Review
                  </button>
                  <div className="flex-grow flex flex-col justify-between">
@@ -441,7 +440,7 @@ const ChildrensHealth = () => {
                      </div>
                    </div>
                  </div>
-                 <button className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#dbd4c9] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6">
+                 <button onClick={() => openBooking("Children's Health — TBN Elite Consultation")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#dbd4c9] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6 cursor-pointer">
                    Apply for Elite Support
                  </button>
                  <div className="flex-grow flex flex-col justify-between">

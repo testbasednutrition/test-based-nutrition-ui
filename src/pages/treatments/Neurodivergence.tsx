@@ -28,8 +28,7 @@ import {
 const heroImg = "/images/treatments/neuro_hero.jpg";
 
 const Neurodivergence = () => {
-  const quizContext = useQuiz();
-  const openQuiz = quizContext?.openQuiz || (() => {});
+  const { openQuiz, openBooking } = useQuiz();
   
   const { data: specialists = [], isLoading: isSpecialistsLoading } = useQuery({
     queryKey: ['specialists'],
