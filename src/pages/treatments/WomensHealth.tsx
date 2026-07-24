@@ -24,9 +24,7 @@ import {
 const heroImg = "/services/womens-health-v2.jpg";
 
 const WomensHealth = () => {
-  const quizContext = useQuiz();
-  const openQuiz = quizContext?.openQuiz || (() => {});
-  const openBooking = quizContext?.openBooking || (() => {});
+  const { openQuiz, openBooking } = useQuiz();
   
   const { data: specialists = [], isLoading: isSpecialistsLoading } = useQuery({
     queryKey: ['specialists'],

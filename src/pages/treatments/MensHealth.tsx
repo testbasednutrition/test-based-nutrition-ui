@@ -24,9 +24,7 @@ import {
 const heroImg = "/services/mens-health-v2.jpg";
 
 const MensHealth = () => {
-  const quizContext = useQuiz();
-  const openQuiz = quizContext?.openQuiz || (() => {});
-  const openBooking = quizContext?.openBooking || (() => {});
+  const { openQuiz, openBooking } = useQuiz();
   
   const { data: specialists = [], isLoading: isSpecialistsLoading } = useQuery({
     queryKey: ['specialists'],
