@@ -175,22 +175,22 @@ export function FocusRail({
     if (containerWidth < 450) {
       cardWidthClass = "w-[180px]";
       stageHeightClass = "h-[260px]";
-      containerHeightClass = "h-[450px]";
+      containerHeightClass = "h-[540px]";
       xOffsetValue = 150;
     } else if (containerWidth < 650) {
       cardWidthClass = "w-[220px]";
       stageHeightClass = "h-[320px]";
-      containerHeightClass = "h-[500px]";
+      containerHeightClass = "h-[580px]";
       xOffsetValue = 190;
     } else if (containerWidth < 900) {
       cardWidthClass = "w-[260px]";
       stageHeightClass = "h-[370px]";
-      containerHeightClass = "h-[550px]";
+      containerHeightClass = "h-[580px]";
       xOffsetValue = 240;
     } else {
       cardWidthClass = "w-[300px]";
       stageHeightClass = "h-[420px]";
-      containerHeightClass = "h-[600px]";
+      containerHeightClass = "h-[620px]";
       xOffsetValue = 320;
     }
   }

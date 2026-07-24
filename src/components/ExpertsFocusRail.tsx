@@ -18,7 +18,7 @@ export default function ExpertsFocusRail({
   description = "Explore our growing network of practitioners, clinicians, pharmacists and performance specialists delivering personalised preventative healthcare through the Test-Based Nutrition approach.",
   alignment = "center",
   layout = "stacked",
-  className = "w-full h-full bg-stone-50/50 py-16 md:py-24 overflow-hidden flex flex-col justify-start"
+  className = "w-full h-full bg-stone-50/50 py-16 md:py-24 pb-20 sm:pb-24 overflow-hidden flex flex-col justify-start"
 }: ExpertsFocusRailProps = {}) {
   const { data: specialists = [], isLoading } = useQuery({
     queryKey: ['specialists'],
