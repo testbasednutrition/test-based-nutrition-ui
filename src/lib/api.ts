@@ -1,6 +1,7 @@
 import { supabase } from './supabase';
 import { Specialist, SpecialistCategory, specialists as staticSpecialists } from '../data/specialists';
 import { Article, Category, articles as staticArticles } from '../data/newsArticles';
+import { getInitialsAvatar } from './utils';
 
 // Helper to generate a URL-friendly slug
 const generateSlug = (firstName: string, lastName: string) => {
@@ -19,7 +20,11 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
     // 1. Add all static specialists first
     staticSpecialists.forEach((s) => {
       if (s.slug) {
-        combinedMap.set(s.slug, { ...s, is_approved: s.is_approved !== false });
+        const rawImage = s.image;
+        const cleanImage = (!rawImage || rawImage.includes('test-basednutrition.com/assets/images/')) 
+          ? getInitialsAvatar(s.name) 
+          : rawImage;
+        combinedMap.set(s.slug, { ...s, image: cleanImage, is_approved: s.is_approved !== false });
       }
     });
 
@@ -65,7 +70,14 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
           credentials: parseArray(row.credentials).length > 0 ? parseArray(row.credentials).map(c => c.replace(/^- /, '')) : (existing?.credentials || []),
           
           // Image Handling
-          image: row.profile_picture_url || existing?.image || '',
+          image: (() => {
+            const raw = row.profile_picture_url || existing?.image || '';
+            const name = `${row.first_name || ''} ${row.last_name || ''}`.trim() || row.clinic_name || existing?.name || 'Specialist';
+            if (!raw || raw.includes('test-basednutrition.com/assets/images/')) {
+              return getInitialsAvatar(name);
+            }
+            return raw;
+          })(),
           imagePosition,
           gallery_image_urls: parseArray(row.gallery_image_urls),
           secondaryImage: parseArray(row.gallery_image_urls)[0] || existing?.secondaryImage,
