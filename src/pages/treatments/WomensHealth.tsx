@@ -348,7 +348,7 @@ const WomensHealth = () => {
                      <span className="text-[32px] font-bold text-gray-900 leading-none">Free</span>
                    </div>
                  </div>
-                 <button onClick={() => openBooking("Free Consultation")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase border border-gray-200 text-gray-900 rounded-full hover:bg-gray-50 transition-colors shadow-sm mb-6 cursor-pointer">
+                 <button onClick={() => openBooking("Women's Health — Free Consultation")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase border border-gray-200 text-gray-900 rounded-full hover:bg-gray-50 transition-colors shadow-sm mb-6 cursor-pointer">
                    Book Free Consultation
                  </button>
                  <div className="flex-grow">
@@ -388,7 +388,7 @@ const WomensHealth = () => {
                      <p className="text-[13px] text-gray-500 font-medium flex items-center gap-1.5">+ £39/mo optional support</p>
                    </div>
                  </div>
-                 <button onClick={() => openBooking("TBN Foundations (6-Month Programme)")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6 cursor-pointer">
+                 <button onClick={() => openBooking("Women's Health — TBN Foundations")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6 cursor-pointer">
                    Start Foundations
                  </button>
                  <div className="flex-grow">
@@ -423,7 +423,7 @@ const WomensHealth = () => {
                      </div>
                    </div>
                  </div>
-                 <button onClick={() => openBooking("TBN Advanced Review (1:1 Strategic)")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6 cursor-pointer">
+                 <button onClick={() => openBooking("Women's Health — TBN Advanced Review")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#9f1e13] text-white rounded-full hover:bg-[#9f1e13] transition-colors shadow-md mb-6 cursor-pointer">
                    Book Advanced Review
                  </button>
                  <div className="flex-grow flex flex-col justify-between">
@@ -459,7 +459,7 @@ const WomensHealth = () => {
                      </div>
                    </div>
                  </div>
-                 <button onClick={() => openBooking("TBN Elite Consultation (Private 1:1)")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#dbd4c9] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6 cursor-pointer">
+                 <button onClick={() => openBooking("Women's Health — TBN Elite Consultation")} className="w-full h-[52px] shrink-0 text-[13px] font-bold tracking-widest uppercase bg-[#dbd4c9] text-[#1c1c1c] rounded-full hover:bg-white transition-colors shadow-md mb-6 cursor-pointer">
                    Apply for Elite Support
                  </button>
                  <div className="flex-grow flex flex-col justify-between">
