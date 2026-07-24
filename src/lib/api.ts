@@ -110,12 +110,12 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
     }
 
     return Array.from(combinedMap.values()).filter(
-      s => s.is_approved !== false && !REVOKED_SPECIALIST_SLUGS.has(s.slug)
+      s => s.is_approved !== false
     );
   } catch (err) {
     console.warn('Supabase query failed. Falling back to static specialists data:', err);
     return staticSpecialists.filter(
-      s => s.is_approved !== false && !REVOKED_SPECIALIST_SLUGS.has(s.slug)
+      s => s.is_approved !== false
     );
   }
 }
