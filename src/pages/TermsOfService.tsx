@@ -12,7 +12,7 @@ export default function TermsOfService() {
       <SEO 
         title="Terms of Service | Test-Based Nutrition"
         description="Review the legal terms and conditions governing the use of Test-Based Nutrition services, website, testing protocols, and partner consultation features."
-        canonical="https://testbasednutrition.com/terms"
+        canonical="https://www.test-basednutrition.com/terms"
       />
       <Navbar alwaysSolid />
 

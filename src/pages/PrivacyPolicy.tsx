@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
       <SEO 
         title="Privacy Policy | Test-Based Nutrition"
         description="Learn how Test-Based Nutrition collects, protects, and handles your personal and health screening data in full compliance with GDPR regulations."
-        canonical="https://testbasednutrition.com/privacy-policy"
+        canonical="https://www.test-basednutrition.com/privacy-policy"
       />
       <Navbar alwaysSolid />
 

@@ -13,11 +13,11 @@ export default function SEO({
   title = "Test-Based Nutrition | Science-Led Health & Performance",
   description = "Customized nutritional pathways driven by clinical blood spot biomarker testing. Partnering with elite clinics, practitioners, and athletes across the UK.",
   canonical,
-  ogImage = "https://testbasednutrition.com/og-image.jpg",
+  ogImage = "https://www.test-basednutrition.com/og-image.jpg",
   ogType = "website"
 }: SEOProps) {
   const location = useLocation();
-  const currentUrl = canonical || `https://testbasednutrition.com${location.pathname}`;
+  const currentUrl = canonical || `https://www.test-basednutrition.com${location.pathname}`;
 
   useEffect(() => {
     // 1. Update Title

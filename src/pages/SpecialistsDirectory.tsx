@@ -540,7 +540,7 @@ const SpecialistsDirectory = () => {
       <SEO 
         title="Find a Specialist Practitioner | Test-Based Nutrition Directory"
         description="Search accredited healthcare specialists, clinical practitioners, and TBN hubs near you. Book consultations for personalized blood-test-guided nutrition."
-        canonical="https://testbasednutrition.com/specialists"
+        canonical="https://www.test-basednutrition.com/specialists"
       />
       <SchemaMarkup 
         type="MedicalBusiness" 

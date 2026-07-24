@@ -34,8 +34,8 @@ export default function SchemaMarkup({ type, faqs = [], breadcrumbs = [], busine
         "@type": "Organization",
         "name": "Test-Based Nutrition",
         "alternateName": "TBN",
-        "url": "https://testbasednutrition.com",
-        "logo": "https://testbasednutrition.com/logos/tbn-official-logo.png",
+        "url": "https://www.test-basednutrition.com",
+        "logo": "https://www.test-basednutrition.com/logos/tbn-official-logo.png",
         "description": "A New Era in Nutritional Preventative Healthcare. Personalised health pathways guided by lab-grade blood spot screening.",
         "slogan": "Test. Target. Transform.™",
         "sameAs": [
@@ -43,7 +43,7 @@ export default function SchemaMarkup({ type, faqs = [], breadcrumbs = [], busine
         ],
         "contactPoint": {
           "@type": "ContactPoint",
-          "contactType": "customer support",
+          "contactType": "customer service",
           "email": "privacy@testbasednutrition.com"
         }
       };
@@ -64,10 +64,10 @@ export default function SchemaMarkup({ type, faqs = [], breadcrumbs = [], busine
       schemaData = {
         "@context": "https://schema.org",
         "@type": type,
-        "name": businessDetails?.name || "Test-Based Nutrition Specialist Network",
-        "description": businessDetails?.description || "Accredited healthcare specialists, clinical practitioners, and TBN hubs.",
-        "url": "https://testbasednutrition.com/specialists",
-        "image": businessDetails?.image || "https://testbasednutrition.com/logos/tbn-official-logo.png",
+        "name": businessDetails?.name || "Test-Based Nutrition",
+        "description": businessDetails?.description || "Specialist provider of clinical blood spot biomarker testing and personalized nutrition protocols.",
+        "url": "https://www.test-basednutrition.com/specialists",
+        "image": businessDetails?.image || "https://www.test-basednutrition.com/logos/tbn-official-logo.png",
         "priceRange": businessDetails?.priceRange || "$$",
         "address": {
           "@type": "PostalAddress",

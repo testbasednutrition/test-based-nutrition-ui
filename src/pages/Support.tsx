@@ -176,7 +176,7 @@ export default function SupportPage() {
       <SEO 
         title="Support Centre & Clinical Help | Test-Based Nutrition"
         description="Submit clinical case inquiries, kit status questions, or general support tickets. Access practitioner FAQs and assistance."
-        canonical="https://testbasednutrition.com/support"
+        canonical="https://www.test-basednutrition.com/support"
       />
       <SchemaMarkup 
         type="FAQPage" 

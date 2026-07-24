@@ -66,7 +66,7 @@ const TBNMethod = () => {
       <SEO 
         title="The TBN Method | Test-Based Preventative Healthcare"
         description="Discover the 4-stage Test-Based Nutrition methodology. Moving beyond symptom suppression with precision biomarker testing and targeted protocols."
-        canonical="https://testbasednutrition.com/tbn-method"
+        canonical="https://www.test-basednutrition.com/tbn-method"
       />
       <Navbar alwaysSolid={false} />
 

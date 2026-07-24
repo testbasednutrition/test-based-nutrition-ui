@@ -21,7 +21,7 @@ const Index = () => {
       <SEO 
         title="Test-Based Nutrition | Science-Led Health & Performance"
         description="A New Era in Nutritional Preventative Healthcare. Personalised health pathways guided by lab-grade blood spot screening."
-        canonical="https://testbasednutrition.com/"
+        canonical="https://www.test-basednutrition.com/"
       />
       <SchemaMarkup type="Organization" />
       <Navbar />

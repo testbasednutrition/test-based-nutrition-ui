@@ -67,7 +67,7 @@ const TestingPageV2 = () => {
       <SEO 
         title="Testing Pathways & Clinical Biomarkers | Test-Based Nutrition"
         description="Explore Foundational, Baseline, and Advanced blood spot testing pathways. Accurate dry blood spot biomarker analysis for fatty acids, Vitamin D, and metabolic health."
-        canonical="https://testbasednutrition.com/testing"
+        canonical="https://www.test-basednutrition.com/testing"
       />
       <Navbar alwaysSolid />
 
