@@ -196,35 +196,44 @@ const BookingModal = () => {
                   />
                 </div>
 
-                {/* Pathway Dropdown */}
+                {/* Selected Pathway / Programme Field */}
                 <div className="space-y-1">
                   <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400 pl-0.5">
-                    Area of Interest
+                    Selected Pathway / Programme
                   </label>
-                  <select
-                    required
-                    value={pathway}
-                    onChange={(e) => setPathway(e.target.value)}
-                    disabled={isLoading}
-                    className="w-full h-10 px-3 rounded-xl bg-white border border-[#dbd4c9] text-gray-900 focus:outline-none focus:border-[#9f1e13] focus:ring-1 focus:ring-[#9f1e13] transition-all text-xs cursor-pointer bg-white"
-                  >
-                    <option value="">Select a Pathway or Programme</option>
-                    <optgroup label="Support Levels & Programmes">
-                      <option value="Free Consultation">Free Consultation</option>
-                      <option value="TBN Foundations (6-Month Programme)">TBN Foundations (6-Month Programme)</option>
-                      <option value="TBN Advanced Review (1:1 Strategic)">TBN Advanced Review (1:1 Strategic)</option>
-                      <option value="TBN Elite Consultation (Private 1:1)">TBN Elite Consultation (Private 1:1)</option>
-                    </optgroup>
-                    <optgroup label="Health Pathways">
-                      <option value="Women's Health">Women's Health</option>
-                      <option value="Men's Health">Men's Health</option>
-                      <option value="Children's Health">Children's Health</option>
-                      <option value="Neurodivergence">Neurodivergence</option>
-                      <option value="Skin Health">Skin Health</option>
-                      <option value="Sports Performance">Sports Performance</option>
-                      <option value="Pain & Fatigue">Pain & Fatigue</option>
-                    </optgroup>
-                  </select>
+                  {bookingGoal ? (
+                    <input
+                      type="text"
+                      readOnly
+                      value={pathway}
+                      className="w-full h-10 px-3.5 rounded-xl bg-gray-100/80 border border-[#dbd4c9] text-gray-900 font-semibold transition-all text-xs select-none cursor-not-allowed"
+                    />
+                  ) : (
+                    <select
+                      required
+                      value={pathway}
+                      onChange={(e) => setPathway(e.target.value)}
+                      disabled={isLoading}
+                      className="w-full h-10 px-3 rounded-xl bg-white border border-[#dbd4c9] text-gray-900 focus:outline-none focus:border-[#9f1e13] focus:ring-1 focus:ring-[#9f1e13] transition-all text-xs cursor-pointer"
+                    >
+                      <option value="">Select a Pathway or Programme</option>
+                      <optgroup label="Support Levels & Programmes">
+                        <option value="Free Consultation">Free Consultation</option>
+                        <option value="TBN Foundations (6-Month Programme)">TBN Foundations (6-Month Programme)</option>
+                        <option value="TBN Advanced Review (1:1 Strategic)">TBN Advanced Review (1:1 Strategic)</option>
+                        <option value="TBN Elite Consultation (Private 1:1)">TBN Elite Consultation (Private 1:1)</option>
+                      </optgroup>
+                      <optgroup label="Health Pathways">
+                        <option value="Women's Health">Women's Health</option>
+                        <option value="Men's Health">Men's Health</option>
+                        <option value="Children's Health">Children's Health</option>
+                        <option value="Neurodivergence">Neurodivergence</option>
+                        <option value="Skin Health">Skin Health</option>
+                        <option value="Sports Performance">Sports Performance</option>
+                        <option value="Pain & Fatigue">Pain & Fatigue</option>
+                      </optgroup>
+                    </select>
+                  )}
                 </div>
 
                 {/* Postcode */}
