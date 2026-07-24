@@ -8,22 +8,6 @@ const generateSlug = (firstName: string, lastName: string) => {
   return `${firstName}-${lastName}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-+|-+$)/g, '');
 };
 
-export const REVOKED_SPECIALIST_SLUGS = new Set([
-  'william-todd',
-  'lyndsey-hopper',
-  'emily-holland',
-  'fiona-pursglove',
-  'trevor-ford',
-  'sonny-hardy',
-  'mike-grundy',
-  'mariusz-domasat',
-  'kia-porter',
-  'kimberly-whittall',
-  'sally-butler',
-  'jayden-blanchard',
-  'ross-pearce',
-]);
-
 export async function fetchSpecialists(): Promise<Specialist[]> {
   try {
     const { data, error } = await supabase
@@ -35,7 +19,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
 
     // 1. Add all static specialists first
     staticSpecialists.forEach((s) => {
-      if (s.slug && s.is_approved !== false && !REVOKED_SPECIALIST_SLUGS.has(s.slug)) {
+      if (s.slug && s.is_approved !== false) {
         combinedMap.set(s.slug, { ...s, is_approved: true });
       }
     });
@@ -60,7 +44,6 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
         };
 
         const slug = generateSlug(row.first_name || row.clinic_name || 'partner', row.last_name || '');
-        if (REVOKED_SPECIALIST_SLUGS.has(slug)) return;
 
         const existing = staticSpecialists.find(s => s.slug === slug);
         const imagePosition = row.image_position || existing?.imagePosition;
