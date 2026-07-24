@@ -139,7 +139,7 @@ const tbnMethodMenuItems = [
 
 const clinicsMenuItems = [
   { label: "A Specialist", href: "/specialists" },
-  { label: "An Ambassador", href: "/specialists?ambassadors=true" },
+  { label: "An Ambassador", href: "/specialists?ambassadors=true", disabled: true },
   { label: "A Health Club", href: "/collectives", disabled: true },
   { label: "A Clinic", href: "/collectives", disabled: true },
 ];
