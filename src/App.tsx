@@ -16,6 +16,7 @@ import TrafficTracker from "@/components/TrafficTracker";
 import CookieBanner from "@/components/CookieBanner";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Lazy-loaded pages for optimal bundle splitting
 const SpecialistsDirectory = lazy(() => import("./pages/SpecialistsDirectory"));
@@ -117,6 +118,7 @@ const App = () => (
       </QuizProvider>
     </TooltipProvider>
     <Analytics />
+    <SpeedInsights />
   </QueryClientProvider>
 );
 
