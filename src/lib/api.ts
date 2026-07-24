@@ -8,6 +8,22 @@ const generateSlug = (firstName: string, lastName: string) => {
   return `${firstName}-${lastName}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-+|-+$)/g, '');
 };
 
+export const REVOKED_SPECIALIST_SLUGS = new Set([
+  'william-todd',
+  'lyndsey-hopper',
+  'emily-holland',
+  'fiona-pursglove',
+  'trevor-ford',
+  'sonny-hardy',
+  'mike-grundy',
+  'mariusz-domasat',
+  'kia-porter',
+  'kimberly-whittall',
+  'sally-butler',
+  'jayden-blanchard',
+  'ross-pearce',
+]);
+
 export async function fetchSpecialists(): Promise<Specialist[]> {
   try {
     const { data, error } = await supabase
@@ -19,12 +35,8 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
 
     // 1. Add all static specialists first
     staticSpecialists.forEach((s) => {
-      if (s.slug) {
-        const rawImage = s.image;
-        const cleanImage = (!rawImage || rawImage.includes('test-basednutrition.com/assets/images/')) 
-          ? getInitialsAvatar(s.name) 
-          : rawImage;
-        combinedMap.set(s.slug, { ...s, image: cleanImage, is_approved: s.is_approved !== false });
+      if (s.slug && s.is_approved !== false && !REVOKED_SPECIALIST_SLUGS.has(s.slug)) {
+        combinedMap.set(s.slug, { ...s, is_approved: true });
       }
     });
 
@@ -48,15 +60,10 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
         };
 
         const slug = generateSlug(row.first_name || row.clinic_name || 'partner', row.last_name || '');
-        const existing = combinedMap.get(slug);
+        if (REVOKED_SPECIALIST_SLUGS.has(slug)) return;
 
-        const customPositions: Record<string, string> = {
-          "lynne-matthews": "center 20%",
-          "sarah-abell": "center 30%",
-          "charan-chana": "center 15%",
-          "trevor-ford": "center 20%",
-        };
-        const imagePosition = customPositions[slug] || existing?.imagePosition || "center top";
+        const existing = staticSpecialists.find(s => s.slug === slug);
+        const imagePosition = row.image_position || existing?.imagePosition;
 
         const dynamicItem: Specialist = {
           id: row.id,
@@ -70,14 +77,7 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
           credentials: parseArray(row.credentials).length > 0 ? parseArray(row.credentials).map(c => c.replace(/^- /, '')) : (existing?.credentials || []),
           
           // Image Handling
-          image: (() => {
-            const raw = row.profile_picture_url || existing?.image || '';
-            const name = `${row.first_name || ''} ${row.last_name || ''}`.trim() || row.clinic_name || existing?.name || 'Specialist';
-            if (!raw || raw.includes('test-basednutrition.com/assets/images/')) {
-              return getInitialsAvatar(name);
-            }
-            return raw;
-          })(),
+          image: row.profile_picture_url || existing?.image || '',
           imagePosition,
           gallery_image_urls: parseArray(row.gallery_image_urls),
           secondaryImage: parseArray(row.gallery_image_urls)[0] || existing?.secondaryImage,
@@ -120,14 +120,20 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
           newsHubContributions: row.news_hub_article_interest || existing?.newsHubContributions,
         };
 
-        combinedMap.set(slug, dynamicItem);
+        if (dynamicItem.is_approved !== false) {
+          combinedMap.set(slug, dynamicItem);
+        }
       });
     }
 
-    return Array.from(combinedMap.values());
+    return Array.from(combinedMap.values()).filter(
+      s => s.is_approved !== false && !REVOKED_SPECIALIST_SLUGS.has(s.slug)
+    );
   } catch (err) {
     console.warn('Supabase query failed. Falling back to static specialists data:', err);
-    return staticSpecialists.map(s => ({ ...s, is_approved: s.is_approved !== false }));
+    return staticSpecialists.filter(
+      s => s.is_approved !== false && !REVOKED_SPECIALIST_SLUGS.has(s.slug)
+    );
   }
 }
 
