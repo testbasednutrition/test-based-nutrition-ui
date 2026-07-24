@@ -103,7 +103,9 @@ export async function fetchSpecialists(): Promise<Specialist[]> {
           newsHubContributions: row.news_hub_article_interest || existing?.newsHubContributions,
         };
 
-        if (dynamicItem.is_approved !== false) {
+        if (dynamicItem.is_approved === false) {
+          combinedMap.delete(slug);
+        } else {
           combinedMap.set(slug, dynamicItem);
         }
       });
