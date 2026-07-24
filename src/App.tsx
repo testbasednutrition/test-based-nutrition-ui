@@ -15,6 +15,7 @@ import ReferralTracker from "@/components/ReferralTracker";
 import TrafficTracker from "@/components/TrafficTracker";
 import CookieBanner from "@/components/CookieBanner";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
@@ -74,46 +75,48 @@ const App = () => (
           <FloatingQuizCTA />
           <ReferralTracker />
           <TrafficTracker />
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/specialists" element={<SpecialistsDirectory />} />
-              <Route path="/specialists/:slug" element={<SpecialistProfile />} />
-              <Route path="/ambassadors/:slug" element={<AmbassadorProfile />} />
-              <Route path="/collectives" element={<ClinicsDirectory />} />
-              <Route path="/collectives/:slug" element={<ClinicProfile />} />
-              <Route path="/locations/:area" element={<AreaProfile />} />
-              <Route path="/treatments/mens-health" element={<MensHealth />} />
-              <Route path="/treatments/womens-health" element={<WomensHealth />} />
-              <Route path="/treatments/childrens-health" element={<ChildrensHealth />} />
-              <Route path="/treatments/skin-health" element={<SkinHealth />} />
-              <Route path="/treatments/neurodivergence" element={<Neurodivergence />} />
-              <Route path="/treatments/sports-performance" element={<SportsPerformance />} />
-              <Route path="/treatments/pain-fatigue" element={<PainFatigue />} />
-              <Route path="/treatments/anti-ageing" element={<AntiAgeing />} />
-              <Route path="/treatments/fertility" element={<Fertility />} />
-              <Route path="/news" element={<NewsHub />} />
-              <Route path="/news/:id" element={<NewsArticle />} />
-              <Route path="/partner-with-us" element={<PartnerWithUs3 />} />
-              <Route path="/partner-with-us-2" element={<PartnerWithUs />} />
-              <Route path="/partner-with-us-3" element={<PartnerWithUs3 />} />
-              <Route path="/testing" element={<TestingPageV2 />} />
-              <Route path="/testing-v2" element={<TestingPageV2 />} />
-              <Route path="/tbn-method" element={<TBNMethod />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms" element={<TermsOfService />} />
-              <Route path="/support" element={<SupportPage />} />
+          <ErrorBoundary>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/specialists" element={<SpecialistsDirectory />} />
+                <Route path="/specialists/:slug" element={<SpecialistProfile />} />
+                <Route path="/ambassadors/:slug" element={<AmbassadorProfile />} />
+                <Route path="/collectives" element={<ClinicsDirectory />} />
+                <Route path="/collectives/:slug" element={<ClinicProfile />} />
+                <Route path="/locations/:area" element={<AreaProfile />} />
+                <Route path="/treatments/mens-health" element={<MensHealth />} />
+                <Route path="/treatments/womens-health" element={<WomensHealth />} />
+                <Route path="/treatments/childrens-health" element={<ChildrensHealth />} />
+                <Route path="/treatments/skin-health" element={<SkinHealth />} />
+                <Route path="/treatments/neurodivergence" element={<Neurodivergence />} />
+                <Route path="/treatments/sports-performance" element={<SportsPerformance />} />
+                <Route path="/treatments/pain-fatigue" element={<PainFatigue />} />
+                <Route path="/treatments/anti-ageing" element={<AntiAgeing />} />
+                <Route path="/treatments/fertility" element={<Fertility />} />
+                <Route path="/news" element={<NewsHub />} />
+                <Route path="/news/:id" element={<NewsArticle />} />
+                <Route path="/partner-with-us" element={<PartnerWithUs3 />} />
+                <Route path="/partner-with-us-2" element={<PartnerWithUs />} />
+                <Route path="/partner-with-us-3" element={<PartnerWithUs3 />} />
+                <Route path="/testing" element={<TestingPageV2 />} />
+                <Route path="/testing-v2" element={<TestingPageV2 />} />
+                <Route path="/tbn-method" element={<TBNMethod />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<TermsOfService />} />
+                <Route path="/support" element={<SupportPage />} />
 
-              {/* Protected Admin & Internal Partner Routes */}
-              <Route path="/admin" element={<ProtectedRoute title="Admin Leads Dashboard"><AdminLeads /></ProtectedRoute>} />
-              <Route path="/admin/leads" element={<ProtectedRoute title="Admin Leads Dashboard"><AdminLeads /></ProtectedRoute>} />
-              <Route path="/admin/affiliates" element={<ProtectedRoute title="Admin Affiliates Portal"><AdminAffiliates /></ProtectedRoute>} />
-              <Route path="/onboarding" element={<ProtectedRoute title="Partner Onboarding Portal"><PartnerOnboarding /></ProtectedRoute>} />
+                {/* Protected Admin & Internal Partner Routes */}
+                <Route path="/admin" element={<ProtectedRoute title="Admin Leads Dashboard"><AdminLeads /></ProtectedRoute>} />
+                <Route path="/admin/leads" element={<ProtectedRoute title="Admin Leads Dashboard"><AdminLeads /></ProtectedRoute>} />
+                <Route path="/admin/affiliates" element={<ProtectedRoute title="Admin Affiliates Portal"><AdminAffiliates /></ProtectedRoute>} />
+                <Route path="/onboarding" element={<ProtectedRoute title="Partner Onboarding Portal"><PartnerOnboarding /></ProtectedRoute>} />
 
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
         </BrowserRouter>
       </QuizProvider>
     </TooltipProvider>
